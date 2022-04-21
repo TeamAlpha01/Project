@@ -15,5 +15,5 @@ public class CancellationResponse{
     public void ScheduleInterview(int employeeId);
     
     //For CancellationReason entity
-    public void CancellInterview(int employeeId);
+    public void CancelInterview(int employeeId);
  }

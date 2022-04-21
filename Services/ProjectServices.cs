@@ -7,5 +7,5 @@ public class ProjectServices{
 
     public void CreateProject(Project project);
     public void RemoveProject(int projectId);
-    public List<Project> ViewProjects();
+    public List<Project> ViewProjects(int departmentId);
 }
