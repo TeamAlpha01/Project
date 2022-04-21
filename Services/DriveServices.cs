@@ -14,7 +14,7 @@ public class DriveServices{
     public List<Drive> ViewDrives(int departmentId,int poolId,DateTime driveDate);
     
     //For Interviewer in Drive Enitity
-    public List<Drive> ViewDrives(int employeeId);
+    
     public List<Drive> ViewDriveInvites(int employeeId);
     public List<Drive> ViewTodayInterviews(int driveId,int poolId,DateTime driveDate,int employeeId);
     public List<Drive> ViewScheduledInterviews(int driveId,int poolId,DateTime driveDate,int employeeId);
