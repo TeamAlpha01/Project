@@ -27,7 +27,11 @@ namespace Source.Service{
 
         public List<IRole> ViewRoles()
         {
-            IRole role = new Role();
+            IRole role = new Role(){
+                RoleId = 10,
+                RoleName ="Software Developer",
+                IsActive=true
+            };
             List<IRole> roles = new List<IRole>();
             roles.Add(role);
             return roles;
