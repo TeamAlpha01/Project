@@ -1,5 +1,5 @@
 using Source.Models;
-
+using System.Linq;
 namespace Source.Service{
     public class RoleService 
     {
@@ -7,6 +7,11 @@ namespace Source.Service{
         {
             if(roleName!=null)
             {
+                Role role = new Role();
+                role.RoleName=roleName;
+                IMSDbContext db = new IMSDbContext();
+                db.Roles.Add(role);
+                db.SaveChanges();
                 return true;
             }
             else{
@@ -18,6 +23,9 @@ namespace Source.Service{
         {
             if(roleId!=null)
             {
+                IMSDbContext db = new IMSDbContext();
+                db.Roles.Remove(db.Roles.Find(roleId));
+                db.SaveChanges();
                 return true;
             }
             else{
@@ -27,13 +35,9 @@ namespace Source.Service{
 
         public List<IRole> ViewRoles()
         {
-            IRole role = new Role(){
-                RoleId = 10,
-                RoleName ="Software Developer",
-                IsActive=true
-            };
-            List<IRole> roles = new List<IRole>();
-            roles.Add(role);
+            IMSDbContext db = new IMSDbContext();
+            List<IRole> roles = new List<IRole>();    
+            roles = db.Roles.ToList().Cast<IRole>().ToList();    
             return roles;
         }
         
