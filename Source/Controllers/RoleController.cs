@@ -6,6 +6,8 @@ namespace Source.Controllers;
 [Route("[controller]/[action]")]
 public class RoleController : ControllerBase
 {
+
+    [HttpPost]
       public bool CreateNewRole(string? roleName)
       {
           if(roleName!=null)
@@ -18,6 +20,7 @@ public class RoleController : ControllerBase
               return false;
           }
       }  
+    [HttpDelete]
       public bool RemoveRole(int? roleId)
       {
           if(roleId!=null)
@@ -30,6 +33,7 @@ public class RoleController : ControllerBase
               return false;
           }
       }
+    [HttpGet]
       public  List<IRole> ViewRoles()
       {
           Service.RoleService roleService = new Service.RoleService();

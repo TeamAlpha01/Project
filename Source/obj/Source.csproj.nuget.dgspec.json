@@ -10,11 +10,11 @@
         "projectUniqueName": "D:\\GIT-Prithvi\\Project\\Source\\Source.csproj",
         "projectName": "Source",
         "projectPath": "D:\\GIT-Prithvi\\Project\\Source\\Source.csproj",
-        "packagesPath": "C:\\Users\\iswarya.mothi\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\prithvi.palani\\.nuget\\packages\\",
         "outputPath": "D:\\GIT-Prithvi\\Project\\Source\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\iswarya.mothi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\prithvi.palani\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
