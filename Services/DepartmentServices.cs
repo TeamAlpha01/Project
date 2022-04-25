@@ -1,9 +1,11 @@
 using System;
-public class Department{
+public class Department
+{
 
 }
 
-public class DepartmentServices{
+public class DepartmentServices
+{
 
     public void CreateDepartment(Department department);
     public List<Department> ViewDepartment();
@@ -12,5 +14,5 @@ public class DepartmentServices{
     public void CreateProject(Project project);
     public void RemoveProject(int projectId);
     public List<Project> ViewProjects(int departmentId);
-    
+
 }

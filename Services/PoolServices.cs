@@ -1,6 +1,9 @@
 using System;
 
-
+class Pool
+{
+    
+}
 public class PoolServices
 {
     public void CreatePool(Pool pool);
@@ -9,7 +12,8 @@ public class PoolServices
     public List<Pool> ViewPool(int departmentId);
 }
 
-public class PoolMembersServices
+//PoolMembers
+public class PoolMembers
 {
     public void CreatePool(Employee employeeId);
     public void RemovePool(int employeeId);
