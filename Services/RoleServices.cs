@@ -1,5 +1,7 @@
 using System;
-
+public class Role{
+    
+}
 public class RoleServices
 {
     public bool CreateRole(Role role);
