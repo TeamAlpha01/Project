@@ -312,3 +312,23 @@ body {background:#ccc}
 #SoftwareEngineerButton,#SeniorSoftwareEngineerBuuton,#TeamLeadButton,#ManagementButton{
     margin-left: 8rem;
 }
+
+/* Register page */
+
+.Register {
+  margin: 0 25% 0;
+  padding: 1% 5%;
+  border: 1px solid black;
+  border-radius: 1rem;
+  /* background: linear-gradient(to bottom, rgb(207, 102, 231), rgb(255, 255, 255)) */
+  background-color: rgba(255, 255, 255, 0.915);
+}
+
+.form-input {
+  padding-bottom: 2.5%;
+}
+.background-img{
+  padding: 5%;
+  background-image:url(Interview.jpg);
+  background-size: cover;
+}
