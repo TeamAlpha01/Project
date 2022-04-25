@@ -1,6 +1,7 @@
-using Source.DataAccessLayer;
-using Source.Service;
-namespace Source.DataFactory{
+using InterviewManagementSystemAPI.DataAccessLayer;
+using InterviewManagementSystemAPI.Models;
+using InterviewManagementSystemAPI.Service;
+namespace InterviewManagementSystemAPI.DataFactory{
     public static class RoleDataFactory
     {
         public static IRoleDataAccessLayer GetRoleDataAccessLayerObject()
@@ -11,5 +12,10 @@ namespace Source.DataFactory{
         {
             return new RoleService();
         }
+        public static Role GetRoleObject()
+        {
+            return new Role();
+        }
+
     }
 }

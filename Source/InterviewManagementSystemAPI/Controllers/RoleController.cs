@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Source.Models;
-using Source.Service;
-namespace Source.Controllers;
+using InterviewManagementSystemAPI.Models;
+using InterviewManagementSystemAPI.Service;
+namespace InterviewManagementSystemAPI.Controllers;
 
 [ApiController]
 [Route("[controller]/[action]")]
@@ -21,10 +21,10 @@ public class RoleController : ControllerBase
               return false;
           }
       }  
-    [HttpDelete]
+    [HttpPost]
       public bool RemoveRole(int roleId)
       {
-          if(roleId!=null)
+          if(roleId!=0)
           {
             IRoleService roleService = DataFactory.RoleDataFactory.GetRoleServiceObject();
             return roleService.RemoveRole(roleId);

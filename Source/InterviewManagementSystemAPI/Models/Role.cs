@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace Source.Models
+namespace InterviewManagementSystemAPI.Models
 {
     public class Role
     {

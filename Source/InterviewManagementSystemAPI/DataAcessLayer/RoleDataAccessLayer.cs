@@ -1,17 +1,27 @@
-using Source.Models;
+using InterviewManagementSystemAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
-
-namespace Source.DataAccessLayer{
+namespace InterviewManagementSystemAPI.DataAccessLayer{
 public class RoleDataAccessLayer : IRoleDataAccessLayer
 {
+        private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         public bool AddRoleToDatabase(Role role)
         {
             if(role!=null)
             {
-                var db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
-                db.Roles.Add(role);
-                db.SaveChanges();
-                return true;
+                try{
+                    _db.Roles.Add(role);
+                    _db.SaveChanges();
+                    return true;
+                }
+                catch(DbUpdateException)
+                {
+                    return false;
+                }
+                catch(OperationCanceledException)
+                {
+                    return false;
+                }
             }
             else
             {
@@ -20,12 +30,26 @@ public class RoleDataAccessLayer : IRoleDataAccessLayer
         }
         public bool RemoveRoleFromDatabase(int roleId)
         {
-            if(roleId!=null)
+            if(roleId!=0)
             { 
-                var db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
-                db.Roles.Remove(db.Roles.Find(roleId));
-                db.SaveChanges();
-                return true;
+                try{
+                    var role = _db.Roles.Find(roleId);
+                    // db.Roles.Remove(role);
+                    role.IsActive=false;
+                    _db.Roles.Update(role);
+                    _db.SaveChanges();
+                    return true;
+                }
+                catch(OperationCanceledException)
+                {
+                    return false;
+                }
+                catch(ArgumentNullException)
+                {
+                    //The given Role Id doesn't exists
+                    return false;
+                }
+                
             }
             else
             {
@@ -34,8 +58,7 @@ public class RoleDataAccessLayer : IRoleDataAccessLayer
         }
         public List<Role> GetRolesFromDatabase()
         {
-            var db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
-            return db.Roles.ToList();                   //Cast<IRole>().ToList();
+            return _db.Roles.ToList();                   //Cast<IRole>().ToList();
         }
 
     }

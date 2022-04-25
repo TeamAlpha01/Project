@@ -1,5 +1,5 @@
-using Source.DataAccessLayer;
-namespace Source.DataFactory{
+using InterviewManagementSystemAPI.DataAccessLayer;
+namespace InterviewManagementSystemAPI.DataFactory{
     public static class DbContextDataFactory{
         public static InterviewManagementSystemDbContext GetInterviewManagementSystemDbContextObject()
         {
