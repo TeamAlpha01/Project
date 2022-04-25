@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Source.Models;
+using Source.Service;
 namespace Source.Controllers;
 
 [ApiController]
@@ -8,11 +9,11 @@ public class RoleController : ControllerBase
 {
 
     [HttpPost]
-      public bool CreateNewRole(string? roleName)
+      public bool CreateNewRole(string roleName)
       {
           if(roleName!=null)
           {
-            Service.RoleService roleService = new Service.RoleService();
+            IRoleService roleService = DataFactory.RoleDataFactory.GetRoleServiceObject();
             return roleService.CreateRole(roleName);
           }
           else
@@ -21,11 +22,11 @@ public class RoleController : ControllerBase
           }
       }  
     [HttpDelete]
-      public bool RemoveRole(int? roleId)
+      public bool RemoveRole(int roleId)
       {
           if(roleId!=null)
           {
-            Service.RoleService roleService = new Service.RoleService();
+            IRoleService roleService = DataFactory.RoleDataFactory.GetRoleServiceObject();
             return roleService.RemoveRole(roleId);
           }
           else
@@ -34,9 +35,9 @@ public class RoleController : ControllerBase
           }
       }
     [HttpGet]
-      public  List<IRole> ViewRoles()
+      public  List<Role> ViewRoles()
       {
-          Service.RoleService roleService = new Service.RoleService();
+          IRoleService roleService = DataFactory.RoleDataFactory.GetRoleServiceObject();
           return roleService.ViewRoles();
       }
        

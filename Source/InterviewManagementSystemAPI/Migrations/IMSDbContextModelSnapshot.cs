@@ -2,18 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Source.DataAccessLayer;
 
 #nullable disable
 
 namespace Source.Migrations
 {
-    [DbContext(typeof(IMSDbContext))]
-    [Migration("20220423082330_AddedRoleModel")]
-    partial class AddedRoleModel
+    [DbContext(typeof(InterviewManagementSystemDbContext))]
+    partial class IMSDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

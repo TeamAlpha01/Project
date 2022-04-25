@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Source.Models
 {
-    public class Role : IRole
+    public class Role
     {
         [Key]
         public int RoleId{get; set;}
