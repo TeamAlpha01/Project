@@ -7,12 +7,12 @@ public class Department
 public class DepartmentServices
 {
 
-    public void CreateDepartment(Department department);
-    public List<Department> ViewDepartment();
-    public void RemoveDepartment(int departmentId);
+    public bool CreateDepartment(Department department);
+    public List<Department> ViewDepartments();
+    public bool RemoveDepartment(int departmentId);
 
-    public void CreateProject(Project project);
-    public void RemoveProject(int projectId);
+    public bool CreateProject(Project project);
+    public bool RemoveProject(int projectId);
     public List<Project> ViewProjects(int departmentId);
 
 }

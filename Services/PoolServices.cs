@@ -6,17 +6,17 @@ class Pool
 }
 public class PoolServices
 {
-    public void CreatePool(Pool pool);
-    public void EditPool(int poolId);
-    public void RemovePool(int poolId);
-    public List<Pool> ViewPool(int departmentId);
+    public bool CreatePool(Pool pool);
+    public bool EditPool(Pool pool);
+    public bool RemovePool(int poolId);
+    public List<Pool> ViewPools(int departmentId);
 }
 
 //PoolMembers
 public class PoolMembers
 {
-    public void CreatePool(Employee employeeId);
-    public void RemovePool(int employeeId);
+    public bool CreatePool(Employee employeeId);
+    public bool RemovePool(int employeeId);
     public List<Employee> ViewMembers(int departmentId, int employeeId);
 
 }

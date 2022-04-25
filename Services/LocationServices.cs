@@ -8,8 +8,7 @@ public class LocationServices
 {
 
     //For Location-Entity
-    public void AddLocation(Location location);
-    public void RemoveLocation(int locationId);
-    public Location ViewLocation(int locationId);
+    public bool AddLocation(Location location);
+    public bool RemoveLocation(int locationId);
     public List<Location> ViewLocations();
 };
