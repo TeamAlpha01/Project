@@ -17,14 +17,14 @@
  height: 100%;
  padding:75px;
  background-size: cover;
- background: linear-gradient(to top, rgb(207, 102, 231), rgb(255, 255, 255)); 
+ /* background: linear-gradient(to top, rgb(207, 102, 231), rgb(255, 255, 255));  */
  background-image:url(Interview.jpg);
 }
 .background-img-login{
   height: 100vh;
   padding:10%;
   background-size: cover;
-  background: linear-gradient(to top, rgb(207, 102, 231), rgb(255, 255, 255)); 
+  /* background: linear-gradient(to top, rgb(207, 102, 231), rgb(255, 255, 255));  */
   background-image:url(Interview.jpg);
 }
 .Login{
