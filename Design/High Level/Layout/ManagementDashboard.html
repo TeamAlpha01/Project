@@ -38,34 +38,35 @@
     </div>
    </div>
 
-   <div class="container">
-       <div class="row h-100">
-            <div class="d-flex justify-content-center" >
-                <div>
-                    <button id="MDashboardScheduled" class="btn btn-default display-5 mx-5" ><h3 id="ScheduledCount">15<div class="display-6">Total No. of Drives Scheduled</div></h3></button>                   
-                </div>
-                <div>
+   <div id="MDashboard" class="container row  "> 
+        <div class="col-4 justify-content-center">
+            <div>
+                <button id="MDashboardScheduled" class="btn btn-default display-5 mx-5" ><h3 id="ScheduledCount">15<div class="display-6">Total No. of Drives Scheduled</div></h3></button>                   
+            </div>
+        </div>
+        <div class="col-8 justify-content-center">
+            <div class="justify-content-center row">
+                <div class="col-4">
                     <button id="AvailabilityGiven" class="btn btn-default display-5 mx-4" ><h3 id="AvailabilityGivenCount">10<div class="display-6">Availability Given</div></h3></button>
                 </div>
-                <div>
+                <div class="col-4">
                     <button id="Utilized" class="btn btn-default display-5 mx-4 " ><h3 id="UtilizedCount">8<div class="display-6">Utilized</div></h3></button>
                 </div>
-                <div>
-                    <button id="NotUtilized" class="btn btn-default display-5 mx-4 " ><h3 id="NotUtilizedCount">3<div class="display-6">Not Utilized</div></h3></button>
+                <div class="col-4">
+                    <button id="NotUtilized" class="btn btn-default display-5 mx-4 " ><h3 id="NotUtilizedCount">3<div class="display-6">Not Utilized</div></h3></button><br>
                 </div>
-                <div>
+            </div>
+            
+            <div class="justify-content-center row">
+                <div class=" justify-content-center col-6">
                     <button id="InterviewsIgnored" class="btn btn-default display-5 mx-4 " ><h3 id="IgnoredCount">2<div class="display-6">Interviews Ignored</div></h3></button>
                 </div>
-                <div>
-                  <button id="InterviewsDenied" class="btn btn-default display-5 mx-4 " ><h3 id="DeniedCount">3<div class="display-6">Interviews Denied</div></h3></button>
-              </div>
-                
-
+                <div class="col-6">
+                    <button id="InterviewsDenied" class="btn btn-default display-5 mx-4 " ><h3 id="DeniedCount">3<div class="display-6">Interviews Denied</div></h3></button>
+                </div>
             </div>
-       </div>
-        
-   </div>
-
+        </div>
+</div>
      
 
 
