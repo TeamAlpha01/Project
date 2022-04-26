@@ -2,7 +2,7 @@
 :root {
     --primary: #a851f0;
     --light: #F3F6F9;
-    --dark: #191C24;
+    --dark: #231924;
 }
 
 .back-to-top {
@@ -12,32 +12,38 @@
     bottom: 45px;
     z-index: 99;
 }
-.sidebar-layout 
-{
-  position: fixed; 
-  /* left: -250px; */
-  width: 250px;
-  height: 100%;
-  background: white;          /*   b295c0      8958a0 */
-  transition: all .5s ease;
-  text-decoration: none;
+
+.page-title {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: black;
 }
 
-#headericon
-{
-  font-size: 40px; 
+.sidebar-layout {
+    position: fixed;
+    /* left: -250px; */
+    width: 250px;
+    height: 100%;
+    background: white;
+    /*   b295c0      8958a0 */
+    transition: all .5s ease;
+    text-decoration: none;
 }
 
-.sidebar-header
-{
-  padding-top: 50px;
-  /* font-size: 20px; */
-  color: #000000;
-  line-height: 30px;
-  text-align: center;
-  background: white;
-  user-select: none;
-  border-bottom: 1px solid black;
+#headericon {
+    font-size: 40px;
+}
+
+.sidebar-header {
+    padding-top: 50px;
+    /* font-size: 20px; */
+    color: #000000;
+    line-height: 30px;
+    text-align: center;
+    background: white;
+    user-select: none;
+    border-bottom: 1px solid black;
 }
 
 
@@ -154,14 +160,13 @@
     color: var(--dark);
     font-weight: 500;
     border-left: 3px solid var(--light);
-    border-radius: 0 30px 30px 0;
     outline: none;
 }
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
     /* color: var(--primary); */
-    background: white;
+    background: rgb(218, 47, 209);
     /* border-color: var(--primary); */
     border-color: black;
 }
@@ -172,7 +177,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #FFFFFF;
+    background: white;
     border-radius: 40px;
 }
 
@@ -303,7 +308,8 @@
     background: var(--dark);
     border-color: var(--primary);
 }
-.bread{
+
+.bread {
     margin-left: 10px;
 }
 
@@ -319,7 +325,7 @@
 
 .background-image {
     background-image: url(/src/img/bb.jpg);
-    height: 100%;   
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -327,4 +333,36 @@
 
 body {
     height: 100%;
+}
+
+.logout-btn {
+    text-decoration: none;
+    text-align: center;
+    font-style: italic;
+    display: block;
+    color: black;
+    padding-bottom: 10%;
+
+
+}
+
+a.logout-btn:hover {
+    color: red;
+}
+
+.profile-img {
+    width: 60%;
+    display: block;
+    margin: auto;
+}
+
+.username {
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    margin: auto;
+}
+.fa{
+    color: var(--primary);
+    
 }
