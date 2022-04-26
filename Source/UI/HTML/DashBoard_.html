@@ -36,16 +36,16 @@
     <!-- Sidebar Start -->
     <div class="sidebar">
         <nav class="navbar bg-light navbar-light">
-           <div class="user-profile">
-               <div>
-                   <img src="/Images/profile_.png" class="profile-img" alt="">
-               </div>
-               <p class="username">Username</p>
-               <a href="#" class="logout-btn " >Logout</a>
-           </div>
-        
+            <div class="user-profile">
+                <div>
+                    <img src="/Images/profile_.png" class="profile-img" alt="">
+                </div>
+                <p class="username">Username</p>
+                <a href="#" class="logout-btn ">Logout</a>
+            </div>
 
-            <div class="navbar-nav w-100">                
+
+            <div class="navbar-nav w-100">
                 <a href="#" class="nav-item nav-link active"><i class="fa fa-home"></i> Home</a>
                 <a href="#" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
                 <a href="#" class="nav-item nav-link "><i class="fa fa-bell"></i> Notifications</a>
@@ -61,17 +61,35 @@
     <!-- Content Start -->
     <div class="content">
         <!-- Navbar Start -->
-        <nav  class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
             <div class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
             </div>
         </nav>
         <div class="page-title">
-            <h2 style="text-align: center;">Home</h2>
+            <h2 style="text-align: center;">DashBoard</h2>
         </div>
         <!-- Navbar End -->
+        <div class="container">
+            <div class="row h100">
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <button id="DashboardScheduled" class="btn btn-default display-2 mx-5">
+                            <h3 id="ScheduledCount">15<div class="display-6">Total No. of Drives Scheduled</div>
+                            </h3>
+                        </button>
+                    </div>
+                    <div>
+                        <button id="DashboardCancelled" class="btn btn-default ">
+                            <h3 id="CancelledCount">01<div class="display-6">Total No. of Drives Cancelled</div>
+                            </h3>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-        
+        </div>
+
 
         <footer>
             <div class="container-fluid flex-end pt-4 px-4">
