@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #009CFF;
+    --primary: #a851f0;
     --light: #F3F6F9;
     --dark: #191C24;
 }
@@ -11,6 +11,33 @@
     right: 45px;
     bottom: 45px;
     z-index: 99;
+}
+.sidebar-layout 
+{
+  position: fixed; 
+  /* left: -250px; */
+  width: 250px;
+  height: 100%;
+  background: white;          /*   b295c0      8958a0 */
+  transition: all .5s ease;
+  text-decoration: none;
+}
+
+#headericon
+{
+  font-size: 40px; 
+}
+
+.sidebar-header
+{
+  padding-top: 50px;
+  /* font-size: 20px; */
+  color: #000000;
+  line-height: 30px;
+  text-align: center;
+  background: white;
+  user-select: none;
+  border-bottom: 1px solid black;
 }
 
 
