@@ -36,16 +36,16 @@
     <!-- Sidebar Start -->
     <div class="sidebar">
         <nav class="navbar bg-light navbar-light">
-           <div class="user-profile">
-               <div>
-                   <img src="/Images/profile_.png" class="profile-img" alt="">
-               </div>
-               <p class="username">Username</p>
-               <a href="#" class="logout-btn " >Logout</a>
-           </div>
-        
+            <div class="user-profile">
+                <div>
+                    <img src="/Images/profile_.png" class="profile-img" alt="">
+                </div>
+                <p class="username">Username</p>
+                <a href="#" class="logout-btn ">Logout</a>
+            </div>
 
-            <div class="navbar-nav w-100">                
+
+            <div class="navbar-nav w-100">
                 <a href="/HTML/Home.html" class="nav-item nav-link active"><i class="fa fa-home"></i> Home</a>
                 <a href="/HTML/Profile.html" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
                 <a href="#" class="nav-item nav-link "><i class="fa fa-bell"></i> Notifications</a>
@@ -61,105 +61,26 @@
     <!-- Content Start -->
     <div class="content">
         <!-- Navbar Start -->
-        <nav  class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
             <div class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
             </div>
         </nav>
         <div class="page-title">
-            <h2 style="text-align: center;">CurrentDrives</h2>
+            <h2 style="text-align: center;">Home</h2>
         </div>
         <!-- Navbar End -->
-        <div class="row">
-            <div class="box row" id="CurrentDrivesFilterBox">
-                   <h3 class="col-5 d-flex justify-content-center">Department: 
-                     <div class="dropdown">
-                         <button type="button" class="btn btn-custom dropdown-toggle" data-bs-toggle="dropdown">
-                          .NET
-                         </button>
-                         <ul class="dropdown-menu">
-                           <li><a class="dropdown-item" href="#">BFS</a></li>
-                           <li><a class="dropdown-item" href="#">LAMP</a></li>
-                           <li><a class="dropdown-item" href="#">.NET</a></li>
-                         </ul>
-                     </div>
-                   </h3>
-                   <h3 class="col-5 d-flex justify-content-center">Pool: 
-                     <div class="dropdown">
-                         <button type="button" class="btn btn-custom dropdown-toggle" data-bs-toggle="dropdown">
-                           Freshers 2021
-                         </button>
-                         <ul class="dropdown-menu">
-                           <li><a class="dropdown-item" href="#">FRESHERS 2020</a></li>
-                           <li><a class="dropdown-item" href="#">FRESHERS 2021</a></li>
-                           <li><a class="dropdown-item" href="#">FRESHERS 2022</a></li>
-                         </ul>
-                     </div>
-                   </h3>
-                   <div class="col-2 ">
-                     <button class="btn btn-outline-danger" id="CurrentDrivesFilterButton">Filter</button>
-                   </div>
-             </div>
-             <div class="box effect1 row" id="CurrentDrivesBox">
-                <div class="col-4" id="align">
-                    <p><b>DATE :</b>09/04/2022 </p>
-                    <p><b>DEPARTMENT :</b>.NET </p>
-                </div>
-            
-                <div class="col-4 " id="align">
-                    <p><b>DRIVE NAME :</b>FRESHERS </p>
-                    <p><b>MODE :</b>ONLINE </p>
-                </div>
-                <div class="col-4" id="CurrentDrivesCancelButton">
-                    <button class="btn btn-danger">Cancel</button>
-                </div>
+        <div class="home">
+            <div class="home-btn">
+                <a href="/HTML/CurrentDrives.html"><button type="button" class="btn-light-custom">CURRENT DRIVES</button></a>
             </div>
-            <div class="box effect1 row" id="CurrentDrivesBox">
-                <div class="col-4" id="align">
-                    <p><b>DATE :</b>09/04/2022 </p>
-                    <p><b>DEPARTMENT :</b>.NET </p>
-                </div>
-            
-                <div class="col-4 " id="align">
-                    <p><b>DRIVE NAME :</b>FRESHERS </p>
-                    <p><b>MODE :</b>ONLINE </p>
-                </div>
-                <div class="col-4" id="CurrentDrivesCancelButton">
-                    <button class="btn btn-danger">Cancel</button>
-                </div>
+            <div class="home-btn">
+                <a href="#"><button type="button" class="btn-light-custom">SCHEDULED DRIVES</button></a>
             </div>
-         <div class="box effect1 row" id="CurrentDrivesBox">
-            <div class="col-4" id="align">
-                <p><b>DATE :</b>09/04/2022 </p>
-                <p><b>DEPARTMENT :</b>.NET </p>
-            </div>
-        
-            <div class="col-4 " id="align">
-                <p><b>DRIVE NAME :</b>FRESHERS </p>
-                <p><b>MODE :</b>ONLINE </p>
-            </div>
-            <div class="col-4" id="CurrentDrivesCancelButton">
-                <button class="btn btn-danger">Cancel</button>
+            <div class="home-btn">
+                <a href="#"><button type="button" class="btn-light-custom">UPCOMING DRIVES</button></a>
             </div>
         </div>
-        <div class="box effect1 row" id="CurrentDrivesBox">
-            <div class="col-4" id="align">
-                <p><b>DATE :</b>09/04/2022 </p>
-                <p><b>DEPARTMENT :</b>.NET </p>
-            </div>
-        
-            <div class="col-4 " id="align">
-                <p><b>DRIVE NAME :</b>FRESHERS </p>
-                <p><b>MODE :</b>ONLINE </p>
-            </div>
-            <div class="col-4" id="CurrentDrivesCancelButton">
-                <button class="btn btn-danger">Cancel</button>
-            </div>
-        </div>
-     
-             
-        </div>
-        
 
         <footer>
             <div class="container-fluid flex-end pt-4 px-4">
@@ -191,6 +112,7 @@
 
         <!-- Template Javascript -->
         <script src="/JS/main.js"></script>
+    </div>
 </body>
 
 </html>

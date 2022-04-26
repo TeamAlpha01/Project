@@ -707,6 +707,24 @@ h6 {
   
   width: 10vw;
 }
+.btn-light-custom{
+  margin: auto;
+  width: 80%;
+  height: 10vh;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+.home-btn{
+  padding-top: 5vh;
+  padding-left: 15vw;
+    
+}
+.btn-light-custom:hover{
+  background-color: rgb(218, 47, 209);
+  }
+.home{
+  margin: auto;
+}
 
 #align {
   padding-top: 25px;
