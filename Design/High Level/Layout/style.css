@@ -644,8 +644,89 @@ h6 {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out
 }
-
 /* --------------- Profile end -------------- */
 
-/*Common */
+/*--------------------ViewPool-start-------------*/
+
+.container .box label{
+  font-size: larger;
+  font-style: bold;
+}
+#ViewPoolFilterCard{
+  width: 100%;
+  height: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+#ViewPoolContainer{
+  padding-left: 15rem;
+  padding-top: 4rem;
+}
+#FreshersButton,#SoftwareEngineerButton,#SeniorSoftwareEngineerBuuton,#ProjectLeadButton,#TeamLeadButton,#ManagementButton{
+    margin-top: 5rem;
+    height: 8rem;
+    width: 20rem;
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-radius: 20px;
+}
+#SoftwareEngineerButton,#SeniorSoftwareEngineerBuuton,#TeamLeadButton,#ManagementButton{
+    margin-left: 8rem;
+}
+#ViewPoolFilterButton{
+  width: 10rem;
+  height: 40px;
+  
+}
+/*--------------------ViewPool-end-------------*/
+
+/*--------------------------Notifications-start------------------------*/
+#NotoficationsCard{
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  border-radius: 20px;
+}
+#NotificationsConatiner{
+  padding-left: 15rem;
+  padding-top: 7rem;
+}
+/*--------------------------Notifications-end------------------------*/ 
+
+
+/*--------------------------CurrentDrives-start------------------------*/
+#CurrentDrivesFilterBox {
+  width: 60%;
+  height: 4rem;
+  background: #FFF;
+  margin-top: 6rem;
+  margin-left: 27rem;
+  align-items: center;
+}
+
+#align {
+  padding-top: 25px;
+  padding-left: 4rem;
+}
+
+#CurrentDrivesCancelButton {
+  padding-left: 7rem;
+  padding-top: 35px;
+}
+#CurrentDrivesBox{
+  border-radius: 25px;
+  width: 55%;
+  height: 7rem;
+  background: #FFF;
+  margin-top: 3rem;
+  margin-left: 30rem;
+}
+#CurrnetDrivesFilterButton{
+  width: 8rem;
+  height: 40px;
+  margin-left: 5rem;
+}
+/*--------------------------CurrentDrives-end------------------------*/
+
 
