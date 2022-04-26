@@ -7,7 +7,7 @@ public class Pool
 public class PoolMembers { }
 public class PoolServices
 {
-    public bool CreatePool(Pool pool);
+    public bool CreatePool(string poolName,string poolDepartment);
     public bool EditPool(Pool pool);
     public bool RemovePool(int poolId);
     public List<Pool> ViewPools(int departmentId);
