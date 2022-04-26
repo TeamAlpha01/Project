@@ -35,7 +35,7 @@
   color: #000000;
   line-height: 30px;
   text-align: center;
-  background: white;
+  background: rgb(255, 131, 131);
   user-select: none;
   border-bottom: 1px solid black;
 }
@@ -163,7 +163,7 @@
     /* color: var(--primary); */
     background: white;
     /* border-color: var(--primary); */
-    border-color: ;
+    border-color: black;
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
