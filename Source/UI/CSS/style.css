@@ -333,9 +333,8 @@ body
 /*-----------------------------------------Dashboard-----------------------------------------*/
 
 #DashboardScheduled,#DashboardCancelled{
-  padding-left: 15rem;
-  margin-top: 20rem;
-  margin-left: 20rem;
+  margin: auto;
+  margin: 10rem 0 ;
 }
 
 #DashboardScheduled:hover,#DashboardCancelled :hover{
