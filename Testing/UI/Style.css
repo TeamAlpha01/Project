@@ -160,9 +160,10 @@
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
-    background: #FFFFFF;
-    border-color: var(--primary);
+    /* color: var(--primary); */
+    background: white;
+    /* border-color: var(--primary); */
+    border-color: ;
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
