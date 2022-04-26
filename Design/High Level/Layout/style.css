@@ -350,7 +350,7 @@ body
 
 /*-----------------------------------------Dashboard End-----------------------------------------*/
 
-/*-----------------------------------------View Pool-----------------------------------------*/
+/* -----------------------------------------View Pool-----------------------------------------
 #ViewPoolFilterCard{
   width: 100%;
   height: 3rem;
@@ -375,7 +375,7 @@ body
 /*-----------------------------------------View Pool End-----------------------------------------*/
 
 
-#CurrentDrivesFilterBox {
+/* #CurrentDrivesFilterBox {
     width: 60%;
     height: 4rem;
     background: #FFF;
@@ -406,7 +406,7 @@ body
     width: 8rem;
     height: 40px;
     margin-left: 5rem;
-}
+}  */
 
 body {
   background: #e9ecef99;
