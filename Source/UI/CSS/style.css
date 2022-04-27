@@ -875,6 +875,7 @@ h6 {
   min-height: 100vh;
   background: #FFFFFF;
   transition: 0.5s;
+  padding: 20rem;
 }
 
 @media (min-width: 992px) {
@@ -1132,7 +1133,7 @@ a.logout-btn:hover {
 }
 .container{
   
-  margin-bottom: 20rem;
+  margin-bottom: 15rem;
 
 }
 /* DashBoard */
