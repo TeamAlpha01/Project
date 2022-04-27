@@ -29,7 +29,7 @@
 
 
     <!-- Template Stylesheet -->
-    <link href="/CSS/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -70,46 +70,48 @@
             <h2 style="text-align: center;">View Pool</h2>
         </div>
         <!-- Navbar End -->
-
-        <div class="row ViewPoolsContainer container">
-            <div class="box row" id="CurrentDrivesFilterBox">
-                <h3 class="col-5 d-flex justify-content-center Filter">Department:
-                    <div>
-                        <select name="Department" id="Department Name" class="form-select ">
-                            <option value="">Select the Department</option>
-                            <option value=".Net">.Net</option>
-                            <option value="Java">Java</option>
-                            <option value="BFS">BFS</option>
-                            <option value="LAMP">LAMP</option>
-                        </select>
+        
+            <div class="container">
+                <div class="box row container" id="CurrentDrivesFilterBox">
+                    <h3 class="col-5 d-flex justify-content-center Filter">Department:
+                        <div>
+                            <select name="Department" id="Department Name" class="form-select ">
+                                <option value="">Select the Department</option>
+                                <option value=".Net">.Net</option>
+                                <option value="Java">Java</option>
+                                <option value="BFS">BFS</option>
+                                <option value="LAMP">LAMP</option>
+                            </select>
+                        </div>
+                    </h3>
+                    <h3 class="col-5 d-flex justify-content-center Filter">Pool:
+                        <div>
+                            <select name="Pool" id="Pool" class="form-select ">
+                                <option value="">Select the Pool</option>
+                                <option value="FRESHERS">FRESHERS</option>
+                                <option value="TL">TL</option>
+                                <option value="SSE">SSE</option>
+                                <option value="SE">SE</option>
+                            </select>
+                        </div>
+                    </h3>
+                    <div class="col-2 ">
+                        <button class="btn btn-outline-danger" id="CurrentDrivesFilterButton">Filter</button>
                     </div>
-                </h3>
-                <h3 class="col-5 d-flex justify-content-center Filter">Pool:
-                    <div>
-                        <select name="Pool" id="Pool" class="form-select ">
-                            <option value="">Select the Pool</option>
-                            <option value="FRESHERS">FRESHERS</option>
-                            <option value="TL">TL</option>
-                            <option value="SSE">SSE</option>
-                            <option value="SE">SE</option>
-                        </select>
-                    </div>
-                </h3>
-                <div class="col-2 ">
-                    <button class="btn btn-outline-danger" id="CurrentDrivesFilterButton">Filter</button>
+                    
+                </div> 
+                <div class="d-flex mx-4">
+                    <button class="btn FreshersButton">FRESHERS</button>
+                    <button class="btn SoftwareEngineerButton">SOFTWARE ENGINEER</button>
+                    <button class="btn SeniorSoftwareEngineerBuuton">SENIOR SOFTWARE ENGINEER</button>
+                </div>
+                <div class="d-flex mx-4">
+                    <button class="btn ProjectLeadButton">PROJECT LEAD</button>
+                    <button class="btn TeamLeadButton">TEAM LEAD</button>
+                    <button class="btn ManagementButton">MANAGEMENT</button>
                 </div>
             </div>
-            <div class="d-flex ">
-                <button class="btn FreshersButton">FRESHERS</button>
-                <button class="btn SoftwareEngineerButton">SOFTWARE ENGINEER</button>
-                <button class="btn SeniorSoftwareEngineerBuuton">SENIOR SOFTWARE ENGINEER</button>
-            </div>
-            <div class="d-flex">
-                <button class="btn ProjectLeadButton">PROJECT LEAD</button>
-                <button class="btn TeamLeadButton">TEAM LEAD</button>
-                <button class="btn ManagementButton">MANAGEMENT</button>
-            </div>
-        </div>
+        
 
        
 
