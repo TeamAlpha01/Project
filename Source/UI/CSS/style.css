@@ -869,13 +869,15 @@ h6 {
   transition: 0.5s;
   z-index: 999;
 }
+.table{
+  margin: auto;
+}
 
 .content {
   margin-left: 250px;
   min-height: 100vh;
   background: #FFFFFF;
   transition: 0.5s;
-  padding: 20rem;
 }
 
 @media (min-width: 992px) {
