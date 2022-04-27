@@ -36,16 +36,16 @@
     <!-- Sidebar Start -->
     <div class="sidebar">
         <nav class="navbar bg-light navbar-light">
-           <div class="user-profile">
-               <div>
-                   <img src="/Images/profile_.png" class="profile-img" alt="">
-               </div>
-               <p class="username">Username</p>
-               <a href="#" class="logout-btn " >Logout</a>
-           </div>
-        
+            <div class="user-profile">
+                <div>
+                    <img src="/Images/profile_.png" class="profile-img" alt="">
+                </div>
+                <p class="username">Username</p>
+                <a href="#" class="logout-btn ">Logout</a>
+            </div>
 
-            <div class="navbar-nav w-100">                
+
+            <div class="navbar-nav w-100">
                 <a href="/HTML/Home.html" class="nav-item nav-link active"><i class="fa fa-home"></i> Home</a>
                 <a href="/HTML/Profile.html" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
                 <a href="#" class="nav-item nav-link "><i class="fa fa-bell"></i> Notifications</a>
@@ -61,7 +61,7 @@
     <!-- Content Start -->
     <div class="content">
         <!-- Navbar Start -->
-        <nav  class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
             <div class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
             </div>
@@ -71,39 +71,41 @@
         </div>
         <!-- Navbar End -->
         <div class="row">
-            <div class="box row" id="CurrentDrivesFilterBox">
-                   <h3 class="col-5 d-flex justify-content-center Department">Department: 
-                     <div class="Department">
-                        <select name="Department" id="Department Name" class="form-select ">
-                            <option value="">Select the Department</option>
-                            <option value=".Net">.Net</option>
-                            <option value="Java">Java</option>
-                            <option value="BFS">BFS</option>
-                            <option value="LAMP">LAMP</option>
-                        </select>
-                     </div>
-                   </h3>
-                   <h3 class="col-5 d-flex justify-content-center">Pool: 
-                     <div class="Department">
-                        <select name="Pool" id="Pool" class="form-select ">
-                            <option value="">Select the Pool</option>
-                            <option value="FRESHERS">FRESHERS</option>
-                            <option value="TL">TL</option>
-                            <option value="SSE">SSE</option>
-                            <option value="SE">SE</option>
-                        </select>
-                     </div>
-                   </h3>
-                   <div class="col-2 ">
-                     <button class="btn btn-outline-danger" id="CurrentDrivesFilterButton">Filter</button>
-                   </div>
-             </div>
-             <div class="box effect1 row" id="CurrentDrivesBox">
+            <div class="container">
+                <div class="box row" id="CurrentDrivesFilterBox">
+                    <h3 class="col-5 d-flex justify-content-center Department">Department:
+                        <div class="Department">
+                            <select name="Department" id="Department Name" class="form-select ">
+                                <option value="">Select the Department</option>
+                                <option value=".Net">.Net</option>
+                                <option value="Java">Java</option>
+                                <option value="BFS">BFS</option>
+                                <option value="LAMP">LAMP</option>
+                            </select>
+                        </div>
+                    </h3>
+                    <h3 class="col-5 d-flex justify-content-center">Pool:
+                        <div class="Department">
+                            <select name="Pool" id="Pool" class="form-select ">
+                                <option value="">Select the Pool</option>
+                                <option value="FRESHERS">FRESHERS</option>
+                                <option value="TL">TL</option>
+                                <option value="SSE">SSE</option>
+                                <option value="SE">SE</option>
+                            </select>
+                        </div>
+                    </h3>
+                    <div class="col-2 ">
+                        <button class="btn btn-outline-danger" id="CurrentDrivesFilterButton">Filter</button>
+                    </div>
+                </div>
+            </div>
+            <div class="box effect1 row" id="CurrentDrivesBox">
                 <div class="col-4" id="align">
                     <p><b>DATE :</b>09/04/2022 </p>
                     <p><b>DEPARTMENT :</b>.NET </p>
                 </div>
-            
+
                 <div class="col-4 " id="align">
                     <p><b>DRIVE NAME :</b>FRESHERS </p>
                     <p><b>MODE :</b>ONLINE </p>
@@ -117,7 +119,7 @@
                     <p><b>DATE :</b>09/04/2022 </p>
                     <p><b>DEPARTMENT :</b>.NET </p>
                 </div>
-            
+
                 <div class="col-4 " id="align">
                     <p><b>DRIVE NAME :</b>FRESHERS </p>
                     <p><b>MODE :</b>ONLINE </p>
@@ -126,38 +128,38 @@
                     <button class="btn btn-danger">Cancel</button>
                 </div>
             </div>
-         <div class="box effect1 row" id="CurrentDrivesBox">
-            <div class="col-4" id="align">
-                <p><b>DATE :</b>09/04/2022 </p>
-                <p><b>DEPARTMENT :</b>.NET </p>
+            <div class="box effect1 row" id="CurrentDrivesBox">
+                <div class="col-4" id="align">
+                    <p><b>DATE :</b>09/04/2022 </p>
+                    <p><b>DEPARTMENT :</b>.NET </p>
+                </div>
+
+                <div class="col-4 " id="align">
+                    <p><b>DRIVE NAME :</b>FRESHERS </p>
+                    <p><b>MODE :</b>ONLINE </p>
+                </div>
+                <div class="col-4" id="CurrentDrivesCancelButton">
+                    <button class="btn btn-danger">Cancel</button>
+                </div>
             </div>
-        
-            <div class="col-4 " id="align">
-                <p><b>DRIVE NAME :</b>FRESHERS </p>
-                <p><b>MODE :</b>ONLINE </p>
+            <div class="box effect1 row" id="CurrentDrivesBox">
+                <div class="col-4" id="align">
+                    <p><b>DATE :</b>09/04/2022 </p>
+                    <p><b>DEPARTMENT :</b>.NET </p>
+                </div>
+
+                <div class="col-4 " id="align">
+                    <p><b>DRIVE NAME :</b>FRESHERS </p>
+                    <p><b>MODE :</b>ONLINE </p>
+                </div>
+                <div class="col-4" id="CurrentDrivesCancelButton">
+                    <button class="btn btn-danger">Cancel</button>
+                </div>
             </div>
-            <div class="col-4" id="CurrentDrivesCancelButton">
-                <button class="btn btn-danger">Cancel</button>
-            </div>
+
+
         </div>
-        <div class="box effect1 row" id="CurrentDrivesBox">
-            <div class="col-4" id="align">
-                <p><b>DATE :</b>09/04/2022 </p>
-                <p><b>DEPARTMENT :</b>.NET </p>
-            </div>
-        
-            <div class="col-4 " id="align">
-                <p><b>DRIVE NAME :</b>FRESHERS </p>
-                <p><b>MODE :</b>ONLINE </p>
-            </div>
-            <div class="col-4" id="CurrentDrivesCancelButton">
-                <button class="btn btn-danger">Cancel</button>
-            </div>
-        </div>
-     
-             
-        </div>
-        
+
 
         <footer>
             <div class="container-fluid flex-end pt-4 px-4">

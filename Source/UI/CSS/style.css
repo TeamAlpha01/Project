@@ -423,7 +423,7 @@ body {
 
 i.far {
   margin-right: 13px;
-  color: #bb04e9
+  color: #b57ae6
 }
 
 .container.kl {
@@ -465,7 +465,7 @@ span.nrate {
 }
 
 .btn.btn-lg {
-  background: #834bd1
+  background: #b57ae6
 }
 
 .btn.btn-lg span {
@@ -720,7 +720,7 @@ h6 {
     
 }
 .btn-light-custom:hover{
-  background-color: rgb(218, 47, 209);
+  background-color: #b57ae6;
   }
 .home{
   margin: auto;
@@ -758,7 +758,7 @@ h6 {
 /*--------------------------CurrentDrives-end------------------------*/
 /********** Template CSS **********/
 :root {
-  --primary: #a851f0;
+  --primary: #b57ae6;
   --light: #F3F6F9;
   --dark: #231924;
 }
@@ -924,7 +924,7 @@ h6 {
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
   /* color: var(--primary); */
-  background: rgb(218, 47, 209);
+  background: #b57ae6;
   /* border-color: var(--primary); */
   border-color: black;
 }
