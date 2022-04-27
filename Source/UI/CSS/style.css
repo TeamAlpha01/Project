@@ -1157,7 +1157,9 @@ a.logout-btn:hover {
   font-size: 7rem;
 }
 #MDashboard{
-  margin-left:18rem;
+  margin:auto;
+  margin-top: 10vh;
+  font-size: smaller;
  
 }
 /* Management DashBoard Ends*/
