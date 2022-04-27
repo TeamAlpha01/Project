@@ -1,6 +1,7 @@
 
 /*-------------------------------------Login & Register-----------------------------------------*/
 
+
 .Register {   
   margin: 0% 25%;
  padding: 0% 5%;
@@ -685,6 +686,11 @@ h6 {
   padding-left: 7rem;
   padding-top: 35px;
 }
+.CurrentDrivesBoxHead{
+margin-top: 5vh;
+margin-bottom: 5vh;
+
+}
 .CurrentDrivesBox{
   border-radius: 25px;
   width: 60vw;
@@ -692,7 +698,7 @@ h6 {
   background: #FFF;
   margin: auto;
   border: 1px solid black;
-  margin: 10px auto;
+  margin: 2.5vh auto;
   /* margin-top: 3rem;
   margin-left: 30rem; */
 }
@@ -1082,14 +1088,9 @@ a.logout-btn:hover {
 #Responsetextalign{
    /* margin-left: 30rem; */
   text-align: center;
-  padding-top: 6rem;
+  /* padding-top: 6rem; */
 }
 
-/* .container{
-  
-  margin-bottom: 15rem;
-
-} */
 
 /* DashBoard */
 #DashboardScheduled,#DashboardCancelled{
@@ -1337,4 +1338,10 @@ h1.heading {
   padding:10px;
   font-weight:600;
   text-transform: uppercase
+}
+#back-button{
+  position: relative;
+  left: 70vw;
+  
+
 }
