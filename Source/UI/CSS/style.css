@@ -1135,11 +1135,13 @@ a.logout-btn:hover {
   text-align: center;
   padding-top: 6rem;
 }
-.container{
+
+/* .container{
   
   margin-bottom: 15rem;
 
-}
+} */
+
 /* DashBoard */
 #DashboardScheduled,#DashboardCancelled{
   padding-left: 15rem;
