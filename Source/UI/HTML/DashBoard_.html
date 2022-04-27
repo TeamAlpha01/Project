@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Layout</title>
+    <title>DashBoard</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -46,14 +46,13 @@
 
 
             <div class="navbar-nav w-100">
-                <a href="/HTML/Home.html" class="nav-item nav-link active"><i class="fa fa-home"></i> Home</a>
+                <a href="/HTML/Home.html" class="nav-item nav-link"><i class="fa fa-home"></i> Home</a>
                 <a href="/HTML/Profile.html" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
                 <a href="#" class="nav-item nav-link "><i class="fa fa-bell"></i> Notifications</a>
-                <a href="/HTML/DashBoard.html" class="nav-item nav-link"><i class="fa fa-info-circle"></i> Dashboard</a>
+                <a href="/HTML/DashBoard.html" class="nav-item nav-link active"><i class="fa fa-info-circle"></i> Dashboard</a>
                 <a href="#" class="nav-item nav-link"><i class="fa fa-user-tie"></i> Manage Pool</a>
                 <a href="#" class="nav-item nav-link"><i class="fa fa-trash"></i> Remove Members</a>
-                <a href="/HTML/CreateInvite.html" class="nav-item nav-link"><i class="fa fa-calendar-week"></i> Create
-                    Invite</a>
+                <a href="/HTML/CreateInvite.html" class="nav-item nav-link"><i class="fa fa-calendar-week"></i> Create Invite</a>
             </div>
         </nav>
     </div>
@@ -68,57 +67,29 @@
             </div>
         </nav>
         <div class="page-title">
-            <h2 style="text-align: center;">DASHBOARD</h2>
+            <h2 style="text-align: center;">DashBoard</h2>
         </div>
         <!-- Navbar End -->
-
-        <div id="MDashboard" class="container row  ">
-            <div class="col-4 justify-content-center">
-                <div>
-                    <button id="MDashboardScheduled" class="btn btn-default display-5 mx-5">
-                        <h3 id="ScheduledCount">15<div class="display-6">Total No. of Drives Scheduled</div>
-                        </h3>
-                    </button>
-                </div>
-            </div>
-            <div class="col-8 justify-content-center">
-                <div class="justify-content-center row">
-                    <div class="col-4">
-                        <button id="AvailabilityGiven" class="btn btn-default display-5 mx-4">
-                            <h3 id="AvailabilityGivenCount">10<div class="display-6">Availability Given</div>
+        <div class="container">
+            <div class="row h100">
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <button id="DashboardScheduled" class="btn btn-default display-2 mx-5">
+                            <h3 id="ScheduledCount">15<div class="display-6">Total No. of Drives Scheduled</div>
                             </h3>
                         </button>
                     </div>
-                    <div class="col-4">
-                        <button id="Utilized" class="btn btn-default display-5 mx-4 ">
-                            <h3 id="UtilizedCount">8<div class="display-6">Utilized</div>
-                            </h3>
-                        </button>
-                    </div>
-                    <div class="col-4">
-                        <button id="NotUtilized" class="btn btn-default display-5 mx-4 ">
-                            <h3 id="NotUtilizedCount">3<div class="display-6">Not Utilized</div>
-                            </h3>
-                        </button><br>
-                    </div>
-                </div>
-
-                <div class="justify-content-center row">
-                    <div class=" justify-content-center col-6">
-                        <button id="InterviewsIgnored" class="btn btn-default display-5 mx-4 ">
-                            <h3 id="IgnoredCount">2<div class="display-6">Interviews Ignored</div>
-                            </h3>
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button id="InterviewsDenied" class="btn btn-default display-5 mx-4 ">
-                            <h3 id="DeniedCount">3<div class="display-6">Interviews Denied</div>
+                    <div>
+                        <button id="DashboardCancelled" class="btn btn-default display-2 mx-5">
+                            <h3 id="CancelledCount">01<div class="display-6">Total No. of Drives Cancelled</div>
                             </h3>
                         </button>
                     </div>
                 </div>
             </div>
+
         </div>
+
 
         <footer>
             <div class="container-fluid flex-end pt-4 px-4">
