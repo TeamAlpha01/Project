@@ -124,6 +124,7 @@
 
     .content {
         width: calc(100% - 250px);
+        border-radius: 5px;
     }
 
     .content.open {
@@ -330,7 +331,6 @@ body {
 }
 
 .button {
-    border: none;
     color: white;
     padding: 5px 10px;
     text-align: center;
@@ -342,12 +342,16 @@ body {
     
   }
   
-  .button1 {background-color: #cf11cf;} 
+  .button1 {
+      background-color: #c248c2;
+      border-radius: 5px;
+    } 
   .button2 {
       background-color: #0b0a0b;
       position:absolute; 
       bottom:20px; 
-      right: 20px;; ;
+      right: 20px;
+      border-radius: 5px;
     }
   a {
     text-decoration: none;
@@ -378,9 +382,20 @@ body {
     border: 3px solid rgb(203, 13, 177);
   }
 .location {
-    background-color: white;
-    border: 5px solid rgb(176, 67, 186);
+    border:#191C24;
+    background-color:#ddd;
     padding: 2px;
     margin: 12px;
-    text-align:center
+    text-align:center;
+    border-radius: 5px;
+}
+
+.location1{
+    float:right;
+}
+.XYZ{
+    position:center;
+    top: 90%;
+    text-align:center;
+    
 }
