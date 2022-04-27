@@ -330,7 +330,7 @@ body {
     height: 100%;
 }
 
-.button {
+.button-admin {
     color: white;
     padding: 5px 10px;
     text-align: center;
@@ -342,11 +342,11 @@ body {
     
   }
   
-  .button1 {
+  .button1-admin {
       background-color: #c248c2;
       border-radius: 5px;
     } 
-  .button2 {
+  .button2-admin {
       background-color: #0b0a0b;
       position:absolute; 
       bottom:20px; 
@@ -364,12 +364,12 @@ body {
     color: black;
   }
   
-  .previous {
+  .previous-pagination {
     background-color: #f1f1f1;
     color: black;
   }
   
-  .next {
+  .next-pagination {
     background-color: #cf11cf;
     color: white;
   }
@@ -381,7 +381,7 @@ body {
     text-align: center;
     border: 3px solid rgb(203, 13, 177);
   }
-.location {
+.location-admin {
     border:#191C24;
     background-color:#ddd;
     padding: 2px;
@@ -390,10 +390,10 @@ body {
     border-radius: 5px;
 }
 
-.location1{
+.location1-admin{
     float:right;
 }
-.XYZ{
+.pagination{
     position:center;
     top: 90%;
     text-align:center;
