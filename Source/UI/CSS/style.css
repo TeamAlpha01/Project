@@ -649,16 +649,16 @@ h6 {
   font-size: larger;
   font-style: bold;
 }
-#ViewPoolFilterCard{
+/* #ViewPoolFilterCard{
   width: 100%;
   height: 3rem;
   text-align: center;
   margin-top: 2rem;
-}
-#ViewPoolContainer{
+} */
+/* #ViewPoolContainer{
   padding-left: 15rem;
   padding-top: 4rem;
-}
+} */
 .FreshersButton,.SoftwareEngineerButton,.SeniorSoftwareEngineerBuuton,.ProjectLeadButton,.TeamLeadButton,.ManagementButton{
     margin-top: 3rem;
     margin-left: 3rem;
@@ -680,8 +680,7 @@ h6 {
 .ViewPoolsContainer{
   margin-left: 10rem;
 }
-
-/*--------------------------Notifications-start------------------------*/
+/*--------------------ViewPool-end-------------*/
 #NotoficationsCard{
   width: 100%;
   text-align: center;
@@ -696,7 +695,7 @@ h6 {
 
 
 /*--------------------------CurrentDrives-start------------------------*/
-#CurrentDrivesFilterBox {
+.CurrentDrivesFilterBox {
   width: 60vw;
   height: auto;
   background: #FFF;
@@ -733,16 +732,16 @@ h6 {
   padding-top: 1%;
 }
 
-#align {
+.align {
   padding-top: 25px;
   padding-left: 4rem;
 }
 
-#CurrentDrivesCancelButton {
+.CurrentDrivesCancelButton {
   padding-left: 7rem;
   padding-top: 35px;
 }
-#CurrentDrivesBox{
+.CurrentDrivesBox{
   border-radius: 25px;
   width: 60vw;
   height: auto;
@@ -753,7 +752,7 @@ h6 {
   /* margin-top: 3rem;
   margin-left: 30rem; */
 }
-#CurrentDrivesFilterButton{
+.CurrentDrivesFilterButton{
   width: 8rem;
   height: 40px;
 }
@@ -1169,7 +1168,7 @@ a.logout-btn:hover {
  
 }
 /* Management DashBoard Ends*/
-#ViewPoolFilterCard{
+/* #ViewPoolFilterCard{
   width: 100%;
   height: 3rem;
   text-align: center;
@@ -1189,7 +1188,7 @@ a.logout-btn:hover {
 }
 #SoftwareEngineerButton,#SeniorSoftwareEngineerBuuton,#TeamLeadButton,#ManagementButton{
     margin-left: 8rem;
-}
+} */
 
 /* Create Pool */
 #CreatingPool{
