@@ -721,7 +721,12 @@ h6 {
   text-decoration: none;
   text-align: center;
   display: block;
-  color: black;
+  color: white;
+  background-color: #b57ae6;
+  padding: 2.5px;
+}
+.page-title h2{
+  margin: auto;
 }
 
 .sidebar-layout {
