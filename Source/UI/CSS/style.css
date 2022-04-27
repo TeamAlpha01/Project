@@ -1135,3 +1135,93 @@ a.logout-btn:hover {
   margin-bottom: 20rem;
 
 }
+/* DashBoard */
+#DashboardScheduled,#DashboardCancelled{
+  padding-left: 15rem;
+  margin-top: 20rem;
+  margin-left: 20rem;
+}
+
+#DashboardScheduled:hover,#DashboardCancelled:hover{
+  color: #8958a0;
+}
+#ScheduledCount,#CancelledCount{
+  font-size: 7rem;
+}
+/* DashBoard  Ends */
+/* Management DashBoard */
+#MDashboardScheduled:hover,#AvailabilityGiven:hover,#Utilized:hover,#NotUtilized:hover,#InterviewsIgnored:hover,#InterviewsDenied :hover{
+  color: #8958a0;
+}
+#AvailabilityGivenCount,#UtilizedCount,#NotUtilizedCount,#IgnoredCount,#DeniedCount{
+  font-size: 7rem;
+}
+#MDashboard{
+  margin-left:18rem;
+ 
+}
+/* Management DashBoard Ends*/
+#ViewPoolFilterCard{
+  width: 100%;
+  height: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+#ViewPoolContainer{
+  padding-left: 15rem;
+  padding-top: 4rem;
+}
+#FreshersButton,#SoftwareEngineerButton,#SeniorSoftwareEngineerBuuton,#ProjectLeadButton,#TeamLeadButton,#ManagementButton{
+    margin-top: 5rem;
+    height: 8rem;
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-radius: 20px;
+}
+#SoftwareEngineerButton,#SeniorSoftwareEngineerBuuton,#TeamLeadButton,#ManagementButton{
+    margin-left: 8rem;
+}
+
+/* Create Pool */
+#CreatingPool{
+  text-decoration: none;
+  color: black;
+}
+#CreatingPool:hover{
+  color:#38114b;
+}
+
+#CreateButton{
+  font-size: large;
+  margin-left: 6.3rem;
+  text-decoration-color: #FFF;
+  border-radius: 2px;
+  background-color:#f9f9f9;
+}
+#CreateButton:hover{
+  color:#38114b;
+}
+
+.dropdown{
+  padding-left:0.5rem;
+  
+}
+#DepartmentName{
+  padding-top: 0.5rem;
+}
+#CPdropdown{
+  background-color:#b295c0;
+  text-decoration-color: white;
+}
+/* Create Pool Ends */
+
+/* DashBoard Selection */
+ .card .mperf ,.card .pmperf{
+   width: 50px;
+ }
+
+ .card .mperf{
+   margin-left: 15rem;
+ }
+/* DashBoard Selection Ends */
