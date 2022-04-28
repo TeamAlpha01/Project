@@ -78,7 +78,7 @@ body
   /* left: -250px; */
   width: 250px;
   height: 100%;
-  background: #d5c7e0;          /*   b295c0      8958a0 */
+  background: #b57ae6;          /*   b295c0      8958a0 */
   transition: all .5s ease;
   text-decoration: none;
 }
@@ -95,7 +95,7 @@ body
   color: #000000;
   line-height: 30px;
   text-align: center;
-  background: #c08ddde3;
+  background: #b57ae6;
   user-select: none;
   border-bottom: 1px solid black;
 }
@@ -665,7 +665,7 @@ h6 {
     
 }
 .btn-light-custom:hover{
-  background-color: #b57ae6;
+  background-color: white;
   }
 .home{
   margin: auto;
@@ -819,7 +819,6 @@ margin-bottom: 5vh;
   width: 250px;
   height: 100vh;
   overflow-y: auto;
-  background: var(--light);
   transition: 0.5s;
   z-index: 999;
 }
@@ -872,7 +871,7 @@ margin-bottom: 5vh;
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
   padding: 7px 20px;
-  color: var(--dark);
+  color: var(--light);
   font-weight: 500;
   border-left: 3px solid var(--light);
   outline: none;
@@ -880,8 +879,8 @@ margin-bottom: 5vh;
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
-  /* color: var(--primary); */
-  background: #b57ae6;
+  color: var(--primary);
+  background: white;
   /* border-color: var(--primary); */
   border-color: black;
 }
@@ -1050,15 +1049,20 @@ body {
   height: 100%;
 }
 
+
+
 .logout-btn {
   text-decoration: none;
   text-align: center;
-  font-style: italic;
+  /* font-style: italic; */
+  font-weight: bold;
   display: block;
-  color: black;
+  color: white;
   padding-bottom: 10%;
+}
 
-
+#logout {
+  margin-top: 100%;
 }
 
 a.logout-btn:hover {
@@ -1069,6 +1073,7 @@ a.logout-btn:hover {
   width: 40%;
   display: block;
   margin: auto;
+  border-radius: 50%;
 }
 
 .username {
@@ -1076,9 +1081,12 @@ a.logout-btn:hover {
   font-weight: bold;
   font-size: large;
   margin: auto;
+  color: white;
 }
+
 .fa{
   color: var(--primary);
+
   
 }
 /*  Upcoming drives  */
@@ -1386,4 +1394,6 @@ h1.heading {
   color: white;
 }
 
-
+.bg-custom{
+  background-color:#b57ae6;
+}
