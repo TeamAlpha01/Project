@@ -1348,3 +1348,36 @@ h1.heading {
 .Location{
   margin-top: 5vh ;    
 }
+.card:hover {
+  box-shadow: 0 5px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.grey-bg {  
+  background-color: #F5F7FA;
+}
+.media{
+  height: 5vw;
+}
+.title{
+  font-size: 1.5rem;
+}
+@media screen and (max-width: 1000px) {
+  .title{
+      font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .title{
+      font-size: 1rem;
+  }
+}
+@media screen and (max-with: 800px) {
+  .title{
+      font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 575px) {
+  .title{
+      font-size: 1.5rem;
+  }
+}
