@@ -40,6 +40,11 @@
         });
     }, {offset: '80%'});
 
+    // For Filters
+
+
     
 })(jQuery);
+
+
 
