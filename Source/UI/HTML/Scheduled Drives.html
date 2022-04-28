@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>IMS-UpcomingDrives</title>
+    <title>IMS-CurrentDrives</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -50,10 +50,8 @@
                 <a href="/HTML/Home.html" class="nav-item nav-link active"><i class="fa fa-home"></i> Home</a>
                 <a href="/HTML/Profile.html" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
                 <a href="/HTML/DashBoard.html" class="nav-item nav-link"><i class="fa fa-info-circle"></i> Dashboard</a>
-                <a href="/HTML/Manage_Pools.html" class="nav-item nav-link"><i class="fa fa-user-tie"></i> Manage
-                    Pool</a>
-                <a href="/HTML/CreateInvite.html" class="nav-item nav-link"><i class="fa fa-calendar-week"></i> Create
-                    Invite</a>
+                <a href="/HTML/Manage_Pools.html" class="nav-item nav-link"><i class="fa fa-user-tie"></i> Manage Pool</a>
+                <a href="/HTML/CreateInvite.html" class="nav-item nav-link"><i class="fa fa-calendar-week"></i> Create Invite</a>
             </div>
         </nav>
     </div>
@@ -68,41 +66,40 @@
             </div>
         </nav>
         <div class="page-title">
-            <h2 style="text-align: center;">Upcoming Drives</h2>
+            <h2 style="text-align: center;">Scheduled Drives</h2>
         </div>
         <!-- Navbar End -->
-        <div class="CurrentDrivesBoxHead">
-            <div class="box row container CurrentDrivesFilterBox">
-                <h3 class="col-5 d-flex justify-content-center Filter">Department:
-                    <div>
-                        <select name="Department" id="Department Name" class="form-select ">
-                            <option value="">Select the Department</option>
-                            <option value=".Net">.Net</option>
-                            <option value="Java">Java</option>
-                            <option value="BFS">BFS</option>
-                            <option value="LAMP">LAMP</option>
-                        </select>
+        <div class="mt-5">
+                <div class="box row container CurrentDrivesFilterBox">
+                    <h3 class="col-5 d-flex justify-content-center Filter">Department:
+                        <div>
+                            <select name="Department" id="Department Name" class="form-select ">
+                                <option value="">Select the Department</option>
+                                <option value=".Net">.Net</option>
+                                <option value="Java">Java</option>
+                                <option value="BFS">BFS</option>
+                                <option value="LAMP">LAMP</option>
+                            </select>
+                        </div>
+                    </h3>
+                    <h3 class="col-5 d-flex justify-content-center Filter">Pool:
+                        <div>
+                            <select name="Pool" id="Pool" class="form-select ">
+                                <option value="">Select the Pool</option>
+                                <option value="FRESHERS">FRESHERS</option>
+                                <option value="TL">TL</option>
+                                <option value="SSE">SSE</option>
+                                <option value="SE">SE</option>
+                            </select>
+                        </div>
+                    </h3>
+                    <div class="col-2 ">
+                        <button class="btn btn-outline-danger CurrentDrivesFilterButton">Filter</button>
                     </div>
-                </h3>
-                <h3 class="col-5 d-flex justify-content-center Filter">Pool:
-                    <div>
-                        <select name="Pool" id="Pool" class="form-select ">
-                            <option value="">Select the Pool</option>
-                            <option value="FRESHERS">FRESHERS</option>
-                            <option value="TL">TL</option>
-                            <option value="SSE">SSE</option>
-                            <option value="SE">SE</option>
-                        </select>
-                    </div>
-                </h3>
-                <div class="col-2 ">
-                    <button class="btn btn-outline-danger CurrentDrivesFilterButton">Filter</button>
                 </div>
-            </div>
-        </div>
-<!-- 
+            
             <div class="box effect1 row CurrentDrivesBox">
-                <div class="col-4 align">
+                <div class="col-4 align" >
                     <p><b>DATE :</b>09/04/2022 </p>
                     <p><b>DEPARTMENT :</b>.NET </p>
                 </div>
@@ -112,52 +109,53 @@
                     <p><b>MODE :</b>ONLINE </p>
                 </div>
                 <div class="col-4 CurrentDrivesCancelButton">
-                    <a href="/HTML/ViewResponse.html"><button class="btn btn-outline-danger">View Responses</button></a>
+                    <a href="/HTML/CancelDrive.html"><button class="btn btn-danger">Cancel</button></a>
                 </div>
-            </div> -->
-            <div class="container">
-                <table class="table table-hover table-striped">
-                    <tbody>
-                        <tr class="table-dark">
-                            <th scope="row">S.NO</th>
-                            <th>DRIVE NAME</th>
-                            <th>DEPARTMENT</th>
-                            <th>DATE</th>
-                            <th>MODE</th>
-                            <!-- <th>LOCATION</th> -->
-                            <th></th>
-                        </tr>
+            </div>
+            <div class="box effect1 row CurrentDrivesBox">
+                <div class="col-4 align" >
+                    <p><b>DATE :</b>09/04/2022 </p>
+                    <p><b>DEPARTMENT :</b>.NET </p>
+                </div>
 
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>FRESHERS</td>
-                            <td>.NET</td>
-                            <td>09/04/2022</td>
-                            <td>ONLINE</td>
-                            <!-- <td>Time slot : 2:00pm to 3:00pm</td> -->
-                            <td><a href="/HTML/ViewResponse.html"><button class="btn btn-outline-danger btn-sm" id="ScheduleButton">ViewResponse</button></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>FRESHERS</td>
-                            <td>.NET</td>
-                            <td>09/04/2022</td>
-                            <td>ONLINE</td>
-                            <!-- <td>Time slot : 2:00pm to 3:00pm</td> -->
-                            <td><a href="/HTML/ViewResponse.html"><button class="btn btn-outline-danger btn-sm" id="ScheduleButton">ViewResponse</button></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>FRESHERS</td>
-                            <td>.NET</td>
-                            <td>09/04/2022</td>
-                            <td>ONLINE</td>
-                            <!-- <td>Time slot : 2:00pm to 3:00pm</td> -->
-                            <td><a href="/HTML/ViewResponse.html"><button class="btn btn-outline-danger btn-sm" id="ScheduleButton">ViewResponse</button></a></td>
-                        </tr>
+                <div class="col-4 align" >
+                    <p><b>DRIVE NAME :</b>FRESHERS </p>
+                    <p><b>MODE :</b>ONLINE </p>
+                </div>
+                <div class="col-4 CurrentDrivesCancelButton" >
+                    <a href="/HTML/CancelDrive.html"><button class="btn btn-danger">Cancel</button></a>
+                </div>
+            </div>
+            <div class="box effect1 row CurrentDrivesBox">
+                <div class="col-4 align" >
+                    <p><b>DATE :</b>09/04/2022 </p>
+                    <p><b>DEPARTMENT :</b>.NET </p>
+                </div>
 
+                <div class="col-4 align" >
+                    <p><b>DRIVE NAME :</b>FRESHERS </p>
+                    <p><b>MODE :</b>ONLINE </p>
+                </div>
+                <div class="col-4 CurrentDrivesCancelButton" >
+                    <a href="/HTML/CancelDrive.html"><button class="btn btn-danger">Cancel</button></a>
+                </div>
+            </div>
+            <div class="box effect1 row CurrentDrivesBox">
+                <div class="col-4 align" >
+                    <p><b>DATE :</b>09/04/2022 </p>
+                    <p><b>DEPARTMENT :</b>.NET </p>
+                </div>
+
+                <div class="col-4 align" >
+                    <p><b>DRIVE NAME :</b>FRESHERS </p>
+                    <p><b>MODE :</b>ONLINE </p>
+                </div>
+                <div class="col-4 CurrentDrivesCancelButton" >
+                    <a href="/HTML/CancelDrive.html"><button class="btn btn-danger">Cancel</button></a>
+                </div>
             </div>
         </div>
+
         <footer class="fixed-bottom mb-5 p-5">
             <div style="width: 100%;" class=" container-footer">
                 <div class="row center ">
@@ -169,7 +167,6 @@
                 </div>
             </div>
         </footer>
-
         <!-- <footer>
             <div class="container-fluid flex-end pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
@@ -184,7 +181,7 @@
                 </div>
             </div>
         </footer> -->
-
+        
 
 
         <!-- JavaScript Libraries -->
