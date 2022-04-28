@@ -495,7 +495,8 @@ body {
 }
 
 .card-block {
-    padding: 1.25rem
+    /* padding: 1.25rem; */
+    width: 30rem;
 }
 
 .m-b-25 {
@@ -503,7 +504,7 @@ body {
 }
 
 .img-radius {
-    border-radius: 5px
+    border-radius: 10px;
 }
 
 h6 {
@@ -518,10 +519,6 @@ h6 {
     p {
         font-size: 14px
     }
-}
-
-.card-block {
-    padding: 1.25rem
 }
 
 .b-b-default {
@@ -582,7 +579,7 @@ h6 {
 
 .user-card-full .social-link li a {
     font-size: 20px;
-    margin: 0 10px 0 0;
+    margin: 0 0 0 0;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out
 }
