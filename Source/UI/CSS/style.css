@@ -1340,8 +1340,11 @@ h1.heading {
   text-transform: uppercase
 }
 #back-button{
-  position: relative;
-  left: 70vw;
+  background-color: #0b0a0b;
+      position:absolute; 
+      bottom:20px; 
+      right: 35px;
+      border-radius: 5px;
   
 
 }
