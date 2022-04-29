@@ -410,15 +410,8 @@ body {
   color: #b57ae6;
 }
 
-.filter-icon:hover{
-  color: #b57ae6;
-}
-
 .text-custom{
   color: white;
-}
-.filter-icon{
-  color: white!important;
 }
 
 i.far {
