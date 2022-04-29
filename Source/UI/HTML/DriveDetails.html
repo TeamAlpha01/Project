@@ -59,7 +59,21 @@
     </div>
     <!-- Sidebar End -->
 
-    <!-- Content Start -->
+    <div>
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top py-0">
+            <div class="sidebar-toggler flex-shrink-0  collapse-btn ">
+                <i class="fa fa-bars fa-bar"></i>
+            </div>
+            <div class="page-title">
+                <h2>Drive Details</h2>
+            </div>
+        </nav>        
+    </div>
+
+    <!-- Navbar End -->
+
+
     <div class="content">
         <div class="container">
         <div class="card mx-auto">
@@ -76,47 +90,42 @@
                         <p class="text-muted"><b>MODE       : </b>Online</p>
                     </div>
                 </div>
+                <div class="card mx-auto">
+                    <div class="card-body">  
+                        <div class="row rone mt-4">
+                            <div class="col-md-6">
+                                <label class="text-muted" ><b>Availability</b> </label>
+                                <select name="Pool" id="appt" class="form-select ">
+                                    <option value=""></option>
+                                    <option value="">10/04/2022</option>
+                                </select>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                     <div class="form-input">
+                              <label class="form-label" for="Name">AVAILABILITY</label>
+                          </div>
+                           </div> -->
+                            <div class="col-md-4">
+                                <label class="text-muted"><b>Select Timing</b></label>
+                                <input type="time" class="form-control" id="appt" name="appt" min="09:00" max="18:00" required>
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <a href="Home.html"><button type="button" class="btn filter-btn">Add</button></a>
+                            </div>
+                        </div>
+                     </div>
+                     
+               </div>
              </div>
        </div>
 
        <br><br>
 
-       <div class="card mx-auto">
-            <div class="card-body">  
-                <div class="row rone mt-4">
-                    <div class="col-md-6">
-                             <div class="form-input">
-                      <label class="form-label" for="Name">AVAILABILITY</label>
-                  </div>
-                   </div>
-                    <div class="col-md-6">
-                        <p class="text-muted"><b>SELECT TIMING </b></p>
-                        
-                    </div>
-                </div>
-             </div>
-             
+
        </div>
-       </div>
+       
     </div>
-
-
-
-        <!-- Navbar Start -->
-        <nav class="navbar navbar-expand bg-light navbar-light sticky-top py-0">
-            <div class="sidebar-toggler flex-shrink-0  collapse-btn ">
-                <i class="fa fa-bars fa-bar"></i>
-            </div>
-            <div class="page-title">
-                <h2>Home</h2>
-            </div>
-        </nav>        
-    </div>
-
-    <!-- Navbar End -->
-
-
-
 
 
 
