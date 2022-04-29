@@ -363,6 +363,40 @@ body {
   display: block;
   box-shadow: 0 0 15px #dae0e5
 }
+.card-filter {
+  max-width: 1000px;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  display: block;
+  /* box-shadow: 0 0 15px #dae0e5 */
+}
+.filter-btn{
+  margin-top: 30px;
+  margin-left: 50px;
+  color: white;
+  background-color:#b57ae6 ;
+  border-radius: 5%;  
+}
+.filter-btn:hover{
+  background-color: white;
+  border: 1px solid #b57ae6;
+}
+.text-custom:hover{
+  color: #b57ae6;
+}
+
+.filter-icon:hover{
+  color: #b57ae6;
+}
+
+.text-custom{
+  color: white;
+}
+.filter-icon{
+  color: white!important;
+}
 
 i.far {
   margin-right: 13px;
