@@ -41,7 +41,6 @@
                    <img src="CSS/Images/profile_.png" class="profile-img" alt="">
                </div>
                <p class="username">Username</p>
-               <a href="Login.html" class="logout-btn " >Logout</a>
            </div>
         
 
@@ -73,6 +72,16 @@
           <div class="card-body">
               <form>                  
                   <div class="form-input">
+                      <label class="form-label " for="Department Name">Department</label>
+                      <select name="Department" id="Department Name" class="form-select ">
+                          <option value="">Select the Department</option>
+                          <option value=".Net">.Net</option>
+                          <option value="Java">Java</option>
+                          <option value="BFS">BFS</option>
+                          <option value="LAMP">LAMP</option>
+                      </select>
+                  </div>
+                  <div class="form-input">
                     <label class="form-label " for="Pool Name">Pool</label>
                     <select name="Department" id="Department Name" class="form-select ">
                         <option value="">Select the Pool</option>
@@ -82,16 +91,6 @@
                         <option value="LAMP">EC PM </option>
                     </select>
 
-                  </div>
-                  <div class="form-input">
-                      <label class="form-label " for="Department Name">Department</label>
-                      <select name="Department" id="Department Name" class="form-select ">
-                          <option value="">Select the Department</option>
-                          <option value=".Net">.Net</option>
-                          <option value="Java">Java</option>
-                          <option value="BFS">BFS</option>
-                          <option value="LAMP">LAMP</option>
-                      </select>
                   </div>
                   <div class="text-center">
                     <button type="button" class="btn btn-primary btn-lg btn-block mt-3" >Delete</button>
@@ -105,7 +104,7 @@
                     <div class="col-sm-6 text-center text-sm-start">
                     </div>
                     <div class="col-sm-6 text-center text-sm-end">
-                        <a href="Manage_Pools.html" ><button type="button" class="btn btn-danger">BACK</button></a>
+                        <a href="Manage_Pools.html" ><button type="button" class="btn filter-btn">BACK</button></a>
                     </div>
                 </div>
             </div>
