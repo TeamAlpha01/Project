@@ -387,6 +387,21 @@ body {
   background-color:#b57ae6 ;
   border-radius: 5%;  
 }
+.pagination{
+  position:center;
+  top: 90%;
+  text-align:center;
+  
+}
+.previous-pagination {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next-pagination {
+  background-color: #cf11cf;
+  color: white;
+}
 .filter-btn:hover{
   background-color: white;
   border: 1px solid #b57ae6;
