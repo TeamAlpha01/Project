@@ -21,6 +21,11 @@
   background-image: url(Images/Interview.jpg);
 }
 
+.background-img-register1 {
+  padding: 75px;
+  background-size: cover;
+}
+
 .background-img-login {
   height: 100vh;
   padding: 10%;
