@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.HttpLogging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //builder.Services.AddDbContext<IMSDbContext>(options => options.UseSqlServer("connection"));
+
+
+
+//Logging
+builder.Services.AddHttpLogging(httpLogging =>{
+    httpLogging.LoggingFields=HttpLoggingFields.All; 
+});
+
 
 var app = builder.Build();
 
@@ -24,6 +33,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseHttpLogging(); 
+
 app.MapControllers();
 
 app.Run();
+

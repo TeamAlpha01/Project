@@ -1,64 +1,111 @@
 using InterviewManagementSystemAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace InterviewManagementSystemAPI.DataAccessLayer{
-public class RoleDataAccessLayer : IRoleDataAccessLayer
+namespace InterviewManagementSystemAPI.DataAccessLayer
 {
+    public class RoleDataAccessLayer : IRoleDataAccessLayer
+    {
         private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+
+        /*  Returns False when Exception occured in Database Connectivity
+            
+            Throws ArgumentNullException when Role object is not passed 
+        */
         public bool AddRoleToDatabase(Role role)
         {
-            if(role!=null)
+            if (role != null)
             {
-                try{
+                try
+                {
                     _db.Roles.Add(role);
                     _db.SaveChanges();
                     return true;
                 }
-                catch(DbUpdateException)
+                catch (DbUpdateException)
                 {
+                    //LOG   "DB Update Exception Occured"
                     return false;
                 }
-                catch(OperationCanceledException)
+                catch (OperationCanceledException)
                 {
+                    //LOG   "Opreation cancelled exception"
+                    return false;
+                }
+                catch (Exception)
+                {
+                    //LOG   "unknown exception occured "
                     return false;
                 }
             }
             else
             {
-                return false;
+                throw new ArgumentNullException("Role is not provided");
             }
         }
+
+
+        /*  Returns False when Exception occured in Database Connectivity
+            
+            Throws ArgumentNullException when Role Id is not passed 
+        */
         public bool RemoveRoleFromDatabase(int roleId)
         {
-            if(roleId!=0)
-            { 
-                try{
+            if (roleId != 0)
+            {
+                try
+                {
                     var role = _db.Roles.Find(roleId);
-                    // db.Roles.Remove(role);
-                    role.IsActive=false;
+                    role.IsActive = false;
                     _db.Roles.Update(role);
                     _db.SaveChanges();
                     return true;
                 }
-                catch(OperationCanceledException)
+                catch (DbUpdateException)
                 {
+                    //LOG   "DB Update Exception Occured"
                     return false;
                 }
-                catch(ArgumentNullException)
+                catch (OperationCanceledException)
                 {
-                    //The given Role Id doesn't exists
+                    //LOG   "Opreation cancelled exception"
                     return false;
                 }
-                
+                catch (Exception)
+                {
+                    //LOG   "unknown exception occured "
+                    return false;
+                }
             }
             else
             {
-                return false;
+                throw new ArgumentNullException("Role Id is not provided ");
             }
         }
+
+        /*  
+            Throws Exception when Exception occured in Database Connectivity
+        */
         public List<Role> GetRolesFromDatabase()
         {
-            return _db.Roles.ToList();                   //Cast<IRole>().ToList();
+            try
+            {
+                return _db.Roles.ToList();
+            }
+            catch (DbUpdateException)
+            {
+                //LOG   "DB Update Exception Occured"
+                throw new DbUpdateException();
+            }
+            catch (OperationCanceledException)
+            {
+                //LOG   "Opreation cancelled exception"
+                throw new OperationCanceledException();
+            }
+            catch (Exception)
+            {
+                //LOG   "unknown exception occured "
+                throw new Exception();
+            }
         }
 
     }

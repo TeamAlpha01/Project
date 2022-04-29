@@ -5,7 +5,7 @@ namespace InterviewManagementSystemAPI.Service{
     {
         public  bool CreateRole(string roleName);
         public bool RemoveRole(int roleId);
-        public List<Role> ViewRoles();
+        public IEnumerable<Role> ViewRoles();
 
     }
 }
