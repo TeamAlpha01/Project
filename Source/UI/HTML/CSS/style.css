@@ -1527,3 +1527,9 @@ h1.heading {
 .bg-custom {
   background-color: #b57ae6;
 }
+
+.wrapper-dashboard {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
