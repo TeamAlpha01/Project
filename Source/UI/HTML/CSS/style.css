@@ -1556,3 +1556,16 @@ input,
 label {
   margin: .4rem 0;
 }
+
+#BackButton{
+  padding-left: 17rem;
+  margin-top: 15rem;
+}
+.mt-3.container.shadow.bg-body.rounded{
+  overflow-y: scroll;
+  max-height: 60vh;
+}
+.row.AddMemberstopool{
+  text-align: center;
+ 
+}
