@@ -1561,11 +1561,14 @@ label {
   padding-left: 17rem;
   margin-top: 15rem;
 }
-.mt-3.container.shadow.bg-body.rounded{
+.my-box{
   overflow-y: scroll;
-  max-height: 60vh;
+  max-height: 50vh;
 }
 .row.AddMemberstopool{
   text-align: center;
  
+}
+#dashselect{
+  padding-top: 10rem;
 }
