@@ -380,19 +380,15 @@ body {
   display: block;
   /* box-shadow: 0 0 15px #dae0e5 */
 }
-.filter-btn{
-  /* margin-top: 30px;
-  margin-left: 50px; */
-  color: white;
-  background-color:#b57ae6 ;
-  border-radius: 5%;  
-}
+
 .background{
   background: #b57ae6;
 }
+.cards{
+  margin-top:100%;
+}
 .btn-filter{
-  margin-top: 30px;
-  margin-left: 50px;
+  margin-top: 15px;
   color: white;
   background-color: #b57ae6;
 }
@@ -404,9 +400,8 @@ body {
   background-color: #b57ae6;
 }
 .btn-filter:hover{
-  color: #b57ae6;
-  background-color: white;
-  border: 1px solid #b57ae6;
+  color: white;
+  background-color: #aa60e7;
 }
 .pagination{
   position:center;
@@ -535,7 +530,7 @@ body {
   -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
   box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
   border: none;
-  margin-bottom: 30px
+  margin-bottom: 30px;
 }
 
 .m-r-0 {
