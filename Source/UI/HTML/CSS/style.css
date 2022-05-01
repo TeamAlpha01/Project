@@ -387,9 +387,7 @@ body {
   background: #b57ae6;
 }
 
-.cards {
-  margin-top: 100%;
-}
+
 
 .btn-filter {
   margin-top: 15px;
@@ -404,6 +402,12 @@ body {
   color: white;
   background-color: #b57ae6;
 }
+.btn-back:hover{
+  color: white;
+  background-color: #aa60e7;
+}
+
+
 
 .btn-filter:hover {
   color: white;
@@ -506,6 +510,7 @@ span.nrate {
   .card {
     padding: 2vh;
     width: 100%
+    
   }
 
   span.rate {
@@ -773,6 +778,9 @@ h6 {
 
 .Filter {
   padding-top: 1%;
+}
+.filter{
+  margin-top: 33px;
 }
 
 .align {
@@ -1485,6 +1493,9 @@ h1.heading {
   height: 200px;
   object-fit: cover;
   transition: all .25s ease;
+}
+.card-img{
+  margin-left: 100px;
 }
 
 .card-content {
