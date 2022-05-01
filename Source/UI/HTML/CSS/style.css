@@ -316,7 +316,7 @@ body {
 }
 
 .CreatePool {
-  margin-top: vh;
+  margin-top: 25vh;
 }
 
 #buttonheight {
@@ -396,7 +396,6 @@ body {
 }
 
 .btn-back {
-  margin-top: 30px;
   margin-left: 10px;
   margin-bottom: 10px;
   color: white;
@@ -1615,9 +1614,10 @@ label {
   max-height: 50vh;
 }
 
-.row.AddMemberstopool {
-  text-align: center;
 
+.AddMemberPool{
+  width: 100%;
+  margin-left: 10px;
 }
 
 #dashselect {

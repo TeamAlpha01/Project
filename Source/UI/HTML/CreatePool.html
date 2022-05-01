@@ -48,15 +48,20 @@
                 <a href="Home.html" class="nav-item nav-link "><i class="fa fa-home"></i> Home</a>
                 <a href="Profile.html" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
                 <a href="DashBoard.html" class="nav-item nav-link"><i class="fa fa-info-circle"></i> Dashboard</a>
-                <a href="#" class="nav-item nav-link"><i class="fa fa-user-tie"></i> Manage Pool</a>
+                <a href="ManagePools.html" class="nav-item nav-link"><i class="fa fa-user-tie"></i> Manage Pool</a>
                 <a href="DriveInvites.html" class="nav-item nav-link"><i class="fa fa-calendar-week"></i>
                     Drive Invites</a>
                 <a href="CreateInvite.html" class="nav-item nav-link"><i class="fa fa-calendar-week"></i> Create
                     Invite</a>
-                <a href="Login.html" class="nav-item nav-link" id="logout"><i
-                        class="fa fa-solid fa-right-from-bracket"></i> Logout</a>
+              
             </div>
         </nav>
+        <footer class="navbar navbar-light sticky-footer ">
+            <div class="navbar-nav w-100">
+                <a href="Login.html" class="nav-item nav-link mb-md-2" id="logout"><i
+                        class="fa fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+        </footer>
     </div>
     <!-- Sidebar End -->
 
@@ -78,10 +83,6 @@
             <div class="card-body">
                 <form>
                     <div class="form-input">
-                        <label class="form-label" for="Name">Pool Name </label>
-                        <input type="text" id="Name" class="form-control " />
-                    </div>
-                    <div class="form-input">
                         <label class="form-label " for="Department Name">Department</label>
                         <select name="Department" id="Department Name" class="form-select ">
                             <option value="">Select the Department</option>
@@ -91,39 +92,52 @@
                             <option value="LAMP">LAMP</option>
                         </select>
                     </div>
+                    <div class="form-input">
+                        <label class="form-label" for="Name">Pool Name </label>
+                        <input type="text" id="Name" class="form-control " />
+                    </div>
+                  
                     <div class="text-center">
                         <button type="button" class="btn text-custom btn-lg btn-block mt-3">Create</button>
                     </div>
                 </form>
             </div>
         </div>
-        <footer class="fixed-bottom mb-5 p-5">
-            <div style="width: 100%;" class=" container-footer">
-                <div class="row center ">
-                    <div class="col-sm-6 text-center text-sm-start">
-                    </div>
-                    <div class="col-sm-6 text-center text-sm-end">
-                        <a href="ManagePools.html"><button type="button" class="btn filter-btn">BACK</button></a>
+      
+
+
+        
+        
+        <footer class="sticky-footer">
+            <div>
+                <a href="ManagePools.html"><button class="btn btn-back">BACK</button></a>
+            </div>
+            <div class="container-fluid text-light" style="background: #b57ae6;">
+                <div class="container">
+                    <div class="row g-0">
+                        <div class="col-md-4 text-center text-md-start mb-md-5">
+                            <p class="mb-md-0">&copy; <a class="text-white ">AIMS</a>. All
+                                Rights
+                                Reserved.</p>
+                        </div>
+                        <div class="col-md-4 text-center text-md-middle">
+                            <p class="mb-0 "> <a class="text-white">Address: 1/D-1,SIPCOT IT
+                                    PARK,Siruseri,Chennai-603103</a><br>
+                            <p class="mb-0 "><i class=" fa fa-light fa-phone"></i><a class="text-white">
+                                    Phone:+91-4467404000</a><br>
+                            <p class="mb-0 "> <i class="fa fa-light fa-envelope"></i><a class="text-white">
+                                    Email:info-india@aspiresys.com</a><br>
+                        </div>
+                        <div class="col-md-4 text-center text-md-end">
+                            <p class="mb-0">Designed by <a class="text-white">Team Alpha</a><br>
+
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </footer>
-
-
-        <!-- <footer>
-            <div class="container-fluid flex-end pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; All Right Reserved.
-                        </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            Designed By ALPHA</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer> -->
 
 
         <!-- JavaScript Libraries -->
