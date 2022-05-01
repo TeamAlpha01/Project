@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Cancel Drive</title>
+    <title>AIMS-CancelDrive</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -48,7 +48,7 @@
                 <a href="Home.html" class="nav-item nav-link active"><i class="fa fa-home"></i> Home</a>
                 <a href="Profile.html" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
                 <a href="DashBoard.html" class="nav-item nav-link"><i class="fa fa-info-circle"></i> Dashboard</a>
-                <a href="#" class="nav-item nav-link"><i class="fa fa-user-tie"></i> Manage Pool</a>
+                <a href="ManagePools.html" class="nav-item nav-link"><i class="fa fa-user-tie"></i> Manage Pool</a>
                 <a href="DriveInvites.html" class="nav-item nav-link"><i class="fa fa-calendar-week"></i> Drive Invites</a>
                 <a href="CreateInvite.html" class="nav-item nav-link"><i class="fa fa-calendar-week"></i> Create Invite</a>
                 <a href="Login.html" class="nav-item nav-link" id="logout"><i
@@ -59,16 +59,17 @@
 <!-- Sidebar End -->
 
 <!-- Content Start -->
-<div class="content">
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand bg-light navbar-light sticky-top py-0">
-        <div class="sidebar-toggler flex-shrink-0  collapse-btn ">
-            <i class="fa fa-bars fa-bar"></i>
-        </div>
-        <div class="page-title">
-            <h2>Cancel Drive</h2>
-        </div>
-    </nav>
+
+    <div class="content">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top py-0">
+            <div class="sidebar-toggler flex-shrink-0  collapse-btn ">
+                <i class="fa fa-bars fa-bar"></i>
+            </div>
+            <div class="page-title">
+                <h2>Cancel Drive</h2>
+            </div>
+        </nav>
         <!-- Navbar End -->
 
 
@@ -77,28 +78,28 @@
                 <div class="card-body">
                     <div class="row rone mt-4">
                         <div class="col-md-6">
-                            <p class="text-muted">Date : 10/04/2022</p>
-                            <p class="text-muted">Drive Name : Freshers2022</p>
-                            <p class="text-muted">Role : SSE</p>
+                            <p><b>Date :</b> 10/04/2022</p>
+                            <p><b>Drive Name :</b> Freshers2022</p>
+                            <p><b>Role :</b> SSE</p>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-muted">Department : .NET</p>
-                            <p class="text-muted">Mode : Online</p>
+                            <p><b>Department :</b> .NET</p>
+                            <p><b>Mode :</b> Online</p>
                         </div>
                     </div>
 
                     <br>
                     <div>
-                        <div class="container kl"><br>
+                        <div class="container "><br>
                             <h6><b>Cancellation Reason :</b></h6><BR>
                             <div class="form-outline">
                    
-                                <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
+                                <textarea class="textinput" name="Reason" ></textarea>
                                 <br>
                             </div>
 
                             <div class="text-center">
-                                <button type="button" class="btn btn-primary btn-lg btn-block mt-3">Submit</button>
+                                <button type="button" class="btn btn-filter">Submit</button>
                             </div>
                             <br>
                         </div>
@@ -106,32 +107,41 @@
                 </div>
             </div>
         </div>
-        <footer class="fixed-bottom mb-5 p-5">
-            <div style="width: 100%;" class=" container-footer">
-                <div class="row center ">
-                    <div class="col-sm-6 text-center text-sm-start">
-                    </div>
-                    <div class="col-sm-6 text-center text-sm-end">
-                        <a href="CurrentDrives.html" ><button type="button" class="filter-btn">BACK</button></a>
-                    </div>
-                </div>
+       
+        <footer class="sticky-footer">
+            <div>
+                <button class="btn btn-back ">BACK</button>
             </div>
-        </footer>
+            <div class="container-fluid text-light" style="background: #b57ae6;">
+                <div class="container">
+                    <div class="row g-0">
+                        <div class="col-md-4 text-center text-md-start mb-md-5">
+                            <p class="mb-md-0">&copy; <a class="text-white ">AIMS</a>. All
+                                Rights
+                                Reserved.</p>
+                        </div>
+                        <div class="col-md-4 text-center text-md-middle">
+                            <p class="mb-0 "> <a class="text-white">Address: 1/D-1,SIPCOT IT
+                                    PARK,Siruseri,Chennai-603103</a><br>
+                            <p class="mb-0 "><i class=" fa fa-light fa-phone"></i><a class="text-white">
+                                    Phone:+91-4467404000</a><br>
+                            <p class="mb-0 "> <i class="fa fa-light fa-envelope"></i><a class="text-white">
+                                    Email:info-india@aspiresys.com</a><br>
+                        </div>
+                        <div class="col-md-4 text-center text-md-end">
+                            <p class="mb-0">Designed by <a class="text-white">Team Alpha</a><br>
 
-        <!-- <footer>
-            <div class="container-fluid flex-end pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; All Right Reserved.
-                        </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            Designed By ALPHA</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>-->
+
+        </footer>
+    
+
+
+
 
 
         <!-- JavaScript Libraries -->

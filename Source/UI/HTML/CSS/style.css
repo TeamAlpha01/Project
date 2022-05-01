@@ -314,7 +314,8 @@ body {
   margin-left: 39rem;
   margin-top: 15rem;
 }
-.CreatePool{
+
+.CreatePool {
   margin-top: vh;
 }
 
@@ -371,6 +372,7 @@ body {
   display: block;
   box-shadow: 0 0 15px #dae0e5
 }
+
 .card-filter {
   max-width: 1000px;
   border: none;
@@ -381,34 +383,49 @@ body {
   /* box-shadow: 0 0 15px #dae0e5 */
 }
 
-.background{
+.background {
   background: #b57ae6;
 }
-.cards{
-  margin-top:100%;
+
+.cards {
+  margin-top: 100%;
 }
-.btn-filter{
+
+.btn-filter {
   margin-top: 15px;
   color: white;
   background-color: #b57ae6;
 }
-.btn-back{
+
+.btn-back {
   margin-top: 30px;
   margin-left: 10px;
   margin-bottom: 10px;
   color: white;
   background-color: #b57ae6;
 }
-.btn-filter:hover{
+
+.btn-filter:hover {
   color: white;
   background-color: #aa60e7;
 }
-.pagination{
-  position:center;
-  top: 90%;
-  text-align:center;
-  
+
+.textinput {
+  float: left;
+  width: 100%;
+  min-height: 75px;
+  outline: none;
+  resize: none;
+  border: 1px solid grey;
 }
+
+.pagination {
+  position: center;
+  top: 90%;
+  text-align: center;
+
+}
+
 .previous-pagination {
   background-color: #f1f1f1;
   color: black;
@@ -418,15 +435,17 @@ body {
   background-color: #cf11cf;
   color: white;
 }
-.filter-btn:hover{
+
+.filter-btn:hover {
   background-color: white;
   border: 1px solid #b57ae6;
 }
-.text-custom:hover{
+
+.text-custom:hover {
   color: #b57ae6;
 }
 
-.text-custom{
+.text-custom {
   color: white;
 }
 
@@ -1393,9 +1412,10 @@ body {
   height: 100%;
   width: 100%;
 }
-.sticky-footer{
+
+.sticky-footer {
   position: sticky;
-  top:100%;
+  top: 100%;
 }
 
 .container-fostrap {
@@ -1574,18 +1594,21 @@ label {
   margin: .4rem 0;
 }
 
-#BackButton{
+#BackButton {
   padding-left: 17rem;
   margin-top: 15rem;
 }
-.my-box{
+
+.my-box {
   overflow-y: scroll;
   max-height: 50vh;
 }
-.row.AddMemberstopool{
+
+.row.AddMemberstopool {
   text-align: center;
- 
+
 }
-#dashselect{
+
+#dashselect {
   padding-top: 10rem;
 }
