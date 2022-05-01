@@ -86,7 +86,7 @@ body {
   position: fixed;
   /* left: -250px; */
   width: 250px;
-  height: 100%;
+  min-height: 100vh;
   background: #b57ae6;
   /*   b295c0      8958a0 */
   transition: all .5s ease;
@@ -116,7 +116,7 @@ body {
 
 .sidebar ul a {
   display: block;
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
   line-height: 65px;
   font-size: 15px;
@@ -943,6 +943,7 @@ h6 {
 
 
 /*** Navbar ***/
+
 .sidebar .navbar .navbar-nav .nav-link {
   padding: 7px 20px;
   color: var(--light);
@@ -1140,10 +1141,6 @@ body {
   padding-bottom: 10%;
 }
 
-#logout {
-  position: fixed;
-  bottom: 3%;
-}
 
 a.logout-btn:hover {
   color: red;
@@ -1367,7 +1364,7 @@ html,
 body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
   background: #FFF;
   font-family: 'Roboto', sans-serif;
@@ -1379,6 +1376,10 @@ body {
   display: table;
   height: 100%;
   width: 100%;
+}
+.sticky-footer{
+  position: sticky;
+  top:100%;
 }
 
 .container-fostrap {
