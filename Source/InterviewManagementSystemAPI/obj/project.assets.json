@@ -3912,24 +3912,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\prithvi.palani\\.nuget\\packages\\": {}
+    "C:\\Users\\Hp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+      "projectUniqueName": "E:\\Aspire\\GIT-Rafi_Project\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
       "projectName": "Source",
-      "projectPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
-      "packagesPath": "C:\\Users\\prithvi.palani\\.nuget\\packages\\",
-      "outputPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
+      "projectPath": "E:\\Aspire\\GIT-Rafi_Project\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+      "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
+      "outputPath": "E:\\Aspire\\GIT-Rafi_Project\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\prithvi.palani\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4002,13 +4004,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

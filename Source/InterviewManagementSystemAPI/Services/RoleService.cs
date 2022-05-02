@@ -6,6 +6,7 @@ namespace InterviewManagementSystemAPI.Service
     public class RoleService : IRoleService
     {
         private IRoleDataAccessLayer _roleDataAccessLayer = DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject();
+        private Role _role = DataFactory.RoleDataFactory.GetRoleObject();
 
         /*  
             Returns False when Exception occured in Data Access Layer
@@ -14,41 +15,21 @@ namespace InterviewManagementSystemAPI.Service
         */
         public bool CreateRole(string roleName)
         {
-            if (roleName != null)
-            {
-                try
-                {
-                    var role = DataFactory.RoleDataFactory.GetRoleObject();
-                    role.RoleName = roleName;
-                    role.IsActive = true;
-
-                    if (_roleDataAccessLayer.AddRoleToDatabase(role))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        // LOG Error in DAL
-                        return false;
-                    }
-                }
-                catch (ArgumentNullException)
-                {
-                    //Log Role object is not provided  to DAL
-                    return false;
-                }
-                catch (Exception)
-                {
-                    // Log "Exception Occured in Data Access Layer"
-                    return false;
-                }
-            }
-            else
-            {
-
+            if (roleName == null)
                 throw new ArgumentNullException("Role Name is not provided");
+
+            try
+            {
+                _role.RoleName = roleName;
+                return _roleDataAccessLayer.AddRoleToDatabase(_role) ? true : false; // LOG Error in DAL;
+            }
+            catch (Exception)
+            {
+                // Log "Exception Occured in Data Access Layer"
+                return false;
             }
         }
+
         /*  
             Returns False when Exception occured in Data Access Layer
             
@@ -58,36 +39,18 @@ namespace InterviewManagementSystemAPI.Service
         public bool RemoveRole(int roleId)
         {
             if (roleId != 0)
-            {
-                try
-                {
-                    if (_roleDataAccessLayer.RemoveRoleFromDatabase(roleId))
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        // LOG Error in DAL
-                        return false;
-                    }
-                }
-                catch (ArgumentNullException)
-                {
-                    //Log Role id is not provided  to DAL
-                    return false;
-                }
-                catch (Exception)
-                {
-                    // Log "Exception Occured in Data Access Layer"
-                    return false;
-                }
-            }
-            else
-            {
                 throw new ArgumentNullException("Role Id is not provided");
+
+            try
+            {
+                return _roleDataAccessLayer.RemoveRoleFromDatabase(roleId) ? true :false; // LOG Error in DAL;
+            }
+            catch (Exception)
+            {
+                // Log "Exception Occured in Data Access Layer"
+                return false;
             }
         }
-
 
         /*  
             Throws Exception when Exception occured in DAL while fetching roles
@@ -97,8 +60,7 @@ namespace InterviewManagementSystemAPI.Service
             try
             {
                 IEnumerable<Role> roles = new List<Role>();
-                roles = from role in _roleDataAccessLayer.GetRolesFromDatabase() where role.IsActive == true select role;
-                return roles;
+                return roles = from role in _roleDataAccessLayer.GetRolesFromDatabase() where role.IsActive == true select role;
             }
             catch (Exception)
             {

@@ -9,40 +9,26 @@ namespace InterviewManagementSystemAPI.Controllers;
 [Route("[controller]/[action]")]
 public class RoleController : ControllerBase
 {
-
     private readonly ILogger _logger;
     public RoleController(ILogger<RoleController> logger)
     {
         _logger = logger;
     }
+    IRoleService roleService = DataFactory.RoleDataFactory.GetRoleServiceObject();
 
     [HttpPost]
     public IActionResult CreateNewRole(string roleName)
     {
+        if (roleName == null) 
+            return BadRequest("Role name is required");
+
         try
         {
-            if (roleName != null)
-            {
-                IRoleService roleService = DataFactory.RoleDataFactory.GetRoleServiceObject();
-                if (roleService.CreateRole(roleName))
-                    return Ok("Role Added Successfully");
-                else
-                    return BadRequest("Sorry internal error occured");
-            }
-            else
-            {
-                _logger.LogInformation("Role name was null");
-                return BadRequest("Role name is required");
-            }
-        }
-        catch (ArgumentNullException argumentNullException)
-        {
-            _logger.LogInformation("Service throwed ArgumentException", argumentNullException);
-            return BadRequest("Sorry some internal error occured");
+            return roleService.CreateRole(roleName) ? Ok("Role Added Successfully") : BadRequest("Sorry internal error occured");
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception",exception);
+            _logger.LogInformation("Role Service : CreateRole throwed an exception", exception);
             return BadRequest("Sorry some internal error occured");
         }
     }
@@ -50,29 +36,15 @@ public class RoleController : ControllerBase
     [HttpPost]
     public IActionResult RemoveRole(int roleId)
     {
+        if (roleId == 0) return BadRequest("Role Id is not provided");
+
         try
         {
-            if (roleId != 0)
-            {
-                IRoleService roleService = DataFactory.RoleDataFactory.GetRoleServiceObject();
-                if (roleService.RemoveRole(roleId))
-                    return Ok("Role Removed Successfully");
-                else
-                    return BadRequest("Sorry internal error occured");
-            }
-            else
-            {
-                return BadRequest("Role Id is required");
-            }
-        }
-        catch (ArgumentException argumentNullException)
-        {
-            _logger.LogInformation("Service throwed ArgumentException", argumentNullException);
-            return BadRequest("Sorry some internal error occured");
+            return roleService.RemoveRole(roleId) ? Ok("Role Removed Successfully") : BadRequest("Sorry internal error occured");
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception",exception);
+            _logger.LogInformation("Role Service : RemoveRole throwed an exception", exception);
             return BadRequest("Sorry some internal error occured");
         }
     }
@@ -81,12 +53,11 @@ public class RoleController : ControllerBase
     {
         try
         {
-            IRoleService roleService = DataFactory.RoleDataFactory.GetRoleServiceObject();
             return Ok(roleService.ViewRoles());
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching roles ",exception);
+            _logger.LogInformation("Service throwed exception while fetching roles ", exception);
             return BadRequest("Sorry some internal error occured");
         }
     }

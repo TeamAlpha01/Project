@@ -9,8 +9,8 @@ namespace InterviewManagementSystemAPI.Models
         [Required]
         [StringLength(25)]
         public string RoleName  { get; set; }
-        
-        public bool IsActive { get; set; }
+
+        public bool IsActive { get; set; } = true;
         
     }
 }

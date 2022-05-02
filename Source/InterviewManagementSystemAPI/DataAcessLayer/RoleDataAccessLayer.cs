@@ -11,37 +11,35 @@ namespace InterviewManagementSystemAPI.DataAccessLayer
             
             Throws ArgumentNullException when Role object is not passed 
         */
+
+        //private readonly ILogger _logger = new ILogger<RoleDataAccessLayer>();        
         public bool AddRoleToDatabase(Role role)
         {
-            if (role != null)
-            {
-                try
-                {
-                    _db.Roles.Add(role);
-                    _db.SaveChanges();
-                    return true;
-                }
-                catch (DbUpdateException)
-                {
-                    //LOG   "DB Update Exception Occured"
-                    return false;
-                }
-                catch (OperationCanceledException)
-                {
-                    //LOG   "Opreation cancelled exception"
-                    return false;
-                }
-                catch (Exception)
-                {
-                    //LOG   "unknown exception occured "
-                    return false;
-                }
-            }
-            else
-            {
+            if (role == null)
                 throw new ArgumentNullException("Role is not provided");
+            try
+            {
+                _db.Roles.Add(role);
+                _db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                //LOG   "DB Update Exception Occured"
+                return false;
+            }
+            catch (OperationCanceledException)
+            {
+                //LOG   "Opreation cancelled exception"
+                return false;
+            }
+            catch (Exception)
+            {
+                //LOG   "unknown exception occured "
+                return false;
             }
         }
+
 
 
         /*  Returns False when Exception occured in Database Connectivity
@@ -51,35 +49,32 @@ namespace InterviewManagementSystemAPI.DataAccessLayer
         public bool RemoveRoleFromDatabase(int roleId)
         {
             if (roleId != 0)
-            {
-                try
-                {
-                    var role = _db.Roles.Find(roleId);
-                    role.IsActive = false;
-                    _db.Roles.Update(role);
-                    _db.SaveChanges();
-                    return true;
-                }
-                catch (DbUpdateException)
-                {
-                    //LOG   "DB Update Exception Occured"
-                    return false;
-                }
-                catch (OperationCanceledException)
-                {
-                    //LOG   "Opreation cancelled exception"
-                    return false;
-                }
-                catch (Exception)
-                {
-                    //LOG   "unknown exception occured "
-                    return false;
-                }
-            }
-            else
-            {
                 throw new ArgumentNullException("Role Id is not provided ");
+
+            try
+            {
+                var role = _db.Roles.Find(roleId);
+                role.IsActive = false;
+                _db.Roles.Update(role);
+                _db.SaveChanges();
+                return true;
             }
+            catch (DbUpdateException)
+            {
+                //LOG   "DB Update Exception Occured"
+                return false;
+            }
+            catch (OperationCanceledException)
+            {
+                //LOG   "Opreation cancelled exception"
+                return false;
+            }
+            catch (Exception)
+            {
+                //LOG   "unknown exception occured "
+                return false;
+            }
+
         }
 
         /*  
