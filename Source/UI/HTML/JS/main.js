@@ -33,27 +33,7 @@
     });
 
 
-    // Progress Bar
-    $('.pg-bar').waypoint(function () {
-        $('.progress .progress-bar').each(function () {
-            $(this).css("width", $(this).attr("aria-valuenow") + '%');
-        });
-    }, { offset: '80%' });
 
-    // For Filters
-
-
-    $('.accept').click(function () {
-        var y = document.getElementById("denied");
-        y.className = "show";
-        setTimeout(function () { y.className = y.className.replace("show", ""); }, 3000);
-    });
-
-    function accept() {
-        var x = document.getElementById("accept");
-        x.className = "show";
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-    }
 
   
 
