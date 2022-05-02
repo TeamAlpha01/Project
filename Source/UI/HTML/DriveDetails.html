@@ -45,18 +45,23 @@
 
 
             <div class="navbar-nav w-100">
-                <a href="Home.html" class="nav-item nav-link "><i class="fa fa-home"></i> Home</a>
+                <a href="Home.html" class="nav-item nav-link  "><i class="fa fa-home"></i> Home</a>
                 <a href="Profile.html" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
                 <a href="DashBoard.html" class="nav-item nav-link"><i class="fa fa-info-circle"></i> Dashboard</a>
                 <a href="ManagePools.html" class="nav-item nav-link"><i class="fa fa-user-tie"></i> Manage
                     Pool</a>
-                    <a href="DriveInvites.html" class="nav-item nav-link active"><i class="fa fa-calendar-week"></i> Drive Invites</a>
+                <a href="DriveInvites.html" class="nav-item nav-link active"><i class="fa fa-calendar-week"></i>
+                    Drive Invites</a>
                 <a href="CreateInvite.html" class="nav-item nav-link"><i class="fa fa-calendar-week"></i> Create
                     Invite</a>
-                <a href="Login.html" class="nav-item nav-link" id="logout"><i
-                        class="fa fa-solid fa-right-from-bracket"></i> Logout</a>
             </div>
         </nav>
+        <footer class="navbar navbar-light sticky-footer ">
+            <div class="navbar-nav w-100">
+                <a href="Login.html" class="nav-item nav-link mb-md-2" id="logout"><i
+                        class="fa fa-solid fa-right-from-bracket"></i> Logout</a>
+            </div>
+        </footer>
     </div>
     <!-- Sidebar End -->
 
@@ -69,87 +74,71 @@
             <div class="page-title">
                 <h2>Drive Details</h2>
             </div>
-        </nav>        
-    <!-- Navbar End -->
+        </nav>
+        <!-- Navbar End -->
 
         <div class="container">
-        <div class="card mx-auto">
-            <div class="card-body">  
-                <h3 class="card-title" id="cancelinvitealign"><b>XYZ INTERVIEW INVITE</b></h3>
-                <div class="row rone mt-4">
-                    <div class="col-md-6">
-                        <p class="text-muted"><b>ROLE             : </b> Senior Software Engineer</p>
-                        <p class="text-muted"><b>DATE             : </b> 10/04/2022</p>
-                        <p class="text-muted"><b>INTERVIEW TIMING : </b>1 Hr</p>
+            <div class="card mx-auto">
+                <div class="card-body">
+                    <h3 class="card-title" id="cancelinvitealign"><b>XYZ INTERVIEW INVITE</b></h3>
+                    <div class="row rone mt-4">
+                        <div class="col-md-6">
+                            <p ><b>ROLE : </b> Senior Software Engineer</p>
+                            <p ><b>DATE : </b> 10/04/2022</p>
+                            <p ><b>INTERVIEW TIMING : </b>1 Hr</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p ><b>DEPARTMENT : </b>.NET</p>
+                            <p ><b>MODE : </b>Online</p>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <p class="text-muted"><b>DEPARTMENT : </b>.NET</p>
-                        <p class="text-muted"><b>MODE       : </b>Online</p>
-                    </div>
-                </div>
-                <div class="card mx-auto">
-                    <div class="card-body">  
-                        <div class="row rone mt-4">
-                            <div class="col-md-6">
-                                <label class="text-muted" ><b>Availability</b> </label>
-                                <select name="Pool" id="appt" class="form-select ">
-                                    <option value=""></option>
-                                    <option value="">10/04/2022</option>
-                                </select>
-                            </div>
-                            <!-- <div class="col-md-6">
-                                     <div class="form-input">
-                              <label class="form-label" for="Name">AVAILABILITY</label>
-                          </div>
-                           </div> -->
-                            <div class="col-md-4">
-                                <label class="text-muted"><b>Select Timing</b></label>
-                                <input type="time" class="form-control" id="appt" name="appt" min="09:00" max="18:00" required>
-                            </div>
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            <div class="row rone mt-4">
+                                <div class="col-md-6">
+                                    <label class="text-muted"><b>Availability</b> </label>
+                                    <select name="Pool" id="appt" class="form-select ">
+                                        <option value=""></option>
+                                        <option value="">10/04/2022</option>
+                                    </select>
+                                </div>
 
-                            <div class="col-md-2 ">
-                                <a href="#"><button type="button" class="btn filter-btn">Add</button></a>
+                                <div class="col-md-4">
+                                    <label class="text-muted"><b>Select Timing</b></label>
+                                    <input type="time" class="form-control" id="appt" name="appt" min="09:00"
+                                        max="18:00" required>
+                                </div>
+
+                                <div class="col-md-2 ">
+                                    <a href="#"><button type="button" class="btn btn-back">Add</button></a>
+                                </div>
                             </div>
                         </div>
-                     </div>
-                     
-               </div>
-             </div>
-       </div>
 
-       <br><br>
-
-
-       </div>
-        <footer class="fixed-bottom mb-5 p-5">
-                <div style="width: 100%;" class=" container-footer">
-                    <div class="row center ">
-                        <div class="col-sm-6 text-center text-sm-start">
-                        </div>
-                        <div class="col-sm-6 text-center text-sm-end">
-                            <a href="DriveInvites.html"><button type="button" class="btn filter-btn">BACK</button></a>
-                        </div>
                     </div>
                 </div>
-            </footer>
-   
+            </div>
+            <br><br>
+        </div>
 
 
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="JS/main.js"></script>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/chart/chart.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="JS/main.js"></script>
     </div>
 </body>
 
