@@ -396,6 +396,7 @@ body {
 }
 
 .btn-back {
+  margin-top: 5px;
   margin-left: 10px;
   margin-bottom: 10px;
   color: white;
@@ -423,6 +424,7 @@ body {
 }
 
 .pagination {
+  margin-top: 80px;
   position: center;
   top: 90%;
   text-align: center;
