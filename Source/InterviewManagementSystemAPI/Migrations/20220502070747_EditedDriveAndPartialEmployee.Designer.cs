@@ -4,6 +4,7 @@ using InterviewManagementSystemAPI.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class IMSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220502070747_EditedDriveAndPartialEmployee")]
+    partial class EditedDriveAndPartialEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,6 +33,9 @@ namespace Source.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DriveId"), 1L, 1);
 
                     b.Property<int>("AddedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AddedEmployeeEmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("AddedOn")
@@ -57,8 +62,7 @@ namespace Source.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PoolId")
                         .HasColumnType("int");
@@ -72,14 +76,17 @@ namespace Source.Migrations
                     b.Property<int>("UpdatedBy")
                         .HasColumnType("int");
 
+                    b.Property<int>("UpdatedEmployeeEmployeeId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("datetime2");
 
                     b.HasKey("DriveId");
 
-                    b.HasIndex("AddedBy");
+                    b.HasIndex("AddedEmployeeEmployeeId");
 
-                    b.HasIndex("UpdatedBy");
+                    b.HasIndex("UpdatedEmployeeEmployeeId");
 
                     b.ToTable("Drives");
                 });
@@ -94,8 +101,7 @@ namespace Source.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeId");
 
@@ -126,27 +132,20 @@ namespace Source.Migrations
             modelBuilder.Entity("InterviewManagementSystemAPI.Models.Drive", b =>
                 {
                     b.HasOne("InterviewManagementSystemAPI.Models.Employee", "AddedEmployee")
-                        .WithMany("AddedEmployeeDrives")
-                        .HasForeignKey("AddedBy")
+                        .WithMany()
+                        .HasForeignKey("AddedEmployeeEmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("InterviewManagementSystemAPI.Models.Employee", "UpdatedEmployee")
-                        .WithMany("UpdatedEmployeeDrives")
-                        .HasForeignKey("UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedEmployeeEmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AddedEmployee");
 
                     b.Navigation("UpdatedEmployee");
-                });
-
-            modelBuilder.Entity("InterviewManagementSystemAPI.Models.Employee", b =>
-                {
-                    b.Navigation("AddedEmployeeDrives");
-
-                    b.Navigation("UpdatedEmployeeDrives");
                 });
 #pragma warning restore 612, 618
         }
