@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InterviewerHeaderComponent } from './interviewer-header/interviewer-header.component';
-import { FooterComponent } from './footer/footer.component';
-import { AdminRoleComponent } from './admin-role/admin-role.component';
-import { BackButtonComponent } from './back-button/back-button.component';
-import { InterviewerHomeComponent } from './interviewer-home/interviewer-home.component';
-import { ProfileComponent } from './profile/profile.component';
+import { InterviewerHeaderComponent } from './Interviewer/interviewer-header/interviewer-header.component';
+import { FooterComponent } from './Shared/footer/footer.component';
+import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
+import { BackButtonComponent } from './Shared/back-button/back-button.component';
+import { InterviewerHomeComponent } from './Interviewer/interviewer-home/interviewer-home.component';
+import { ProfileComponent } from './Shared/profile/profile.component';
 
 
 @NgModule({

@@ -14,7 +14,6 @@ export class InterviewerHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   userName="Admin";
-  gotohome(){
-    this.router.navigate(['/home']);
-  }
+ 
+  
 }
