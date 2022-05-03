@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /*-------------------------------------Login & Register-----------------------------------------*/
 
-
 .Register {
     margin: 0% 25%;
     padding: 0% 5%;
@@ -19,7 +18,7 @@
     height: 100%;
     padding: 75px;
     background-size: cover;
-    /* background-image: url(/src/assets/Images/profile_.png); */
+    background-image: url(./assets/Images/profile_.png);
   }
   
   .background-img-register1 {
@@ -31,7 +30,7 @@
     height: 100vh;
     padding: 10%;
     background-size: cover;
-    /* background-image: url(Images/Interview.jpg); */
+    background-image: url(./assets/Images/Interview.jpg);
   }
   
   .Login {
@@ -85,11 +84,9 @@
   
   .sidebar {
     position: fixed;
-    /* left: -250px; */
     width: 250px;
-    min-height: 100vh;
+    max-height: 100vh;
     background: #b57ae6;
-    /*   b295c0      8958a0 */
     transition: all .5s ease;
     text-decoration: none;
   }
@@ -109,11 +106,7 @@
     border-bottom: 1px solid black;
   }
   
-  /* .sidebar ul{
-    overflow-x: hidden;
-    overflow-y: scroll;
-    
-  } */
+
   
   .sidebar ul a {
     display: block;
@@ -935,7 +928,7 @@
     left: 0;
     bottom: 0;
     width: 250px;
-    height: 100vh;
+    max-height: 100vh;
     overflow-y: auto;
     transition: 0.5s;
     z-index: 999;
@@ -1425,7 +1418,7 @@
   
   .sticky-footer {
     position: sticky;
-    top: 100%;
+    /* top: 40%; */
   }
   
   .container-fostrap {

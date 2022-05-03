@@ -9,6 +9,8 @@ import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 import { BackButtonComponent } from './Shared/back-button/back-button.component';
 import { InterviewerHomeComponent } from './Interviewer/interviewer-home/interviewer-home.component';
 import { ProfileComponent } from './Shared/profile/profile.component';
+import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
+import { TacHeaderComponent } from './TAC/tac-header/tac-header.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ProfileComponent } from './Shared/profile/profile.component';
     AdminRoleComponent,
     BackButtonComponent,
     InterviewerHomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminHeaderComponent,
+    TacHeaderComponent
 
   ],
   imports: [
