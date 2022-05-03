@@ -5,22 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InterviewerHeaderComponent } from './interviewer-header/interviewer-header.component';
 import { FooterComponent } from './footer/footer.component';
-<<<<<<< Updated upstream
-import { BackButtonComponent } from './back-button/back-button.component';
-=======
 import { AdminRoleComponent } from './admin-role/admin-role.component';
->>>>>>> Stashed changes
+import { BackButtonComponent } from './back-button/back-button.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     InterviewerHeaderComponent,
     FooterComponent,
-<<<<<<< Updated upstream
+    AdminRoleComponent,
     BackButtonComponent
-=======
-    AdminRoleComponent
->>>>>>> Stashed changes
+
   ],
   imports: [
     BrowserModule,
