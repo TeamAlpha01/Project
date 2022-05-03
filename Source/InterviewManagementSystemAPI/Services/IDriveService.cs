@@ -9,10 +9,9 @@ namespace IMS.Service
         public List<Drive> ViewTodayDrives();
         public List<Drive> ViewScheduledDrives();
         public List<Drive> ViewUpcommingDrives();
-        // public List<Drive> ViewScheduledDrive(int departmentId, int poolId, DateTime driveDate);
-        // public List<int> ViewDashboard(int employeeId); //for all  user : based on the emp role we can seggregate the output
-        // public List<Drive> ViewAllScheduledDrives(int departmentId, int poolId, DateTime driveDate);
-        // public List<Drive> ViewAllCancelledDrives(int departmentId, int poolId, DateTime driveDate);
+        public List<Drive> ViewAllScheduledDrives();
+        public List<Drive> ViewAllCancelledDrives();
+        public List<int> ViewDashboard(int employeeId);  //for all  user : based on the emp role we can seggregate the output
 
 
         // //For Interviewer in Drive Enitity

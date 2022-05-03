@@ -88,4 +88,45 @@ public class DriveController : ControllerBase
 
     }
 
+    [HttpGet]
+    public IActionResult ViewAllScheduledDrives()
+    {
+        try
+        {
+            return Ok(_driveService.ViewAllScheduledDrives());
+        }
+        catch (Exception exception)
+        {
+            return Problem(exception.Message);
+        }
+
+    }
+    [HttpGet]
+    public IActionResult ViewAllCancelledDrives()
+    {
+        try
+        {
+            return Ok(_driveService.ViewAllCancelledDrives());
+        }
+        catch (Exception exception)
+        {
+            return Problem(exception.Message);
+        }
+
+    }
+    [HttpGet]
+    public IActionResult ViewDashboard(int tacId)
+    {
+        try
+        {
+            return Ok(_driveService.ViewDashboard(tacId));
+        }
+        catch (Exception exception)
+        {
+            return Problem(exception.Message);
+        }
+
+    }
+
+
 }
