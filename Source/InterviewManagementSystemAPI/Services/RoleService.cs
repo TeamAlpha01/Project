@@ -1,12 +1,20 @@
 using IMS.Models;
 using IMS.DataAccessLayer;
 using System.Linq;
+using IMS.Controllers;
+
 namespace IMS.Service
 {
     public class RoleService : IRoleService
     {
-        private IRoleDataAccessLayer _roleDataAccessLayer = DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject();
+        private IRoleDataAccessLayer _roleDataAccessLayer ;
         private Role _role = DataFactory.RoleDataFactory.GetRoleObject();
+        private readonly ILogger _logger;
+        public RoleService(ILogger logger)
+        {
+            _logger = logger;
+            _roleDataAccessLayer = DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
+        }
 
         /*  
             Returns False when Exception occured in Data Access Layer
@@ -60,6 +68,7 @@ namespace IMS.Service
         {
             try
             {
+                _logger.LogInformation("Log working service");
                 IEnumerable<Role> roles = new List<Role>();
                 return roles = from role in _roleDataAccessLayer.GetRolesFromDatabase() where role.IsActive == true select role;
             }

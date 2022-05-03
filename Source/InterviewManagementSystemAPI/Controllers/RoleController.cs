@@ -10,11 +10,12 @@ namespace IMS.Controllers;
 public class RoleController : ControllerBase
 {
     private readonly ILogger _logger;
+    private IRoleService roleService;
     public RoleController(ILogger<RoleController> logger)
     {
         _logger = logger;
+        roleService = DataFactory.RoleDataFactory.GetRoleServiceObject(_logger);
     }
-    IRoleService roleService = DataFactory.RoleDataFactory.GetRoleServiceObject();
 
     [HttpPost]
     public IActionResult CreateNewRole(string roleName)

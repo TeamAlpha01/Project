@@ -6,6 +6,12 @@ namespace IMS.DataAccessLayer
     public class RoleDataAccessLayer : IRoleDataAccessLayer
     {
         private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private ILogger _logger;
+
+        public RoleDataAccessLayer(ILogger logger)
+        {
+            _logger = logger;
+        }
 
         /*  Returns False when Exception occured in Database Connectivity
             
@@ -84,6 +90,7 @@ namespace IMS.DataAccessLayer
         {
             try
             {
+                _logger.LogInformation("logger DAL");
                 return _db.Roles.ToList();
             }
             catch (DbUpdateException)

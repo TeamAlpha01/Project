@@ -18,15 +18,14 @@ public class DriveController : ControllerBase
     public IActionResult CreateDrive(Drive drive)
     {
         if (ModelState.IsValid)
-            return _driveService.CreateDrive(drive) ? Ok("Drive Created Successfully") : BadRequest("controller : Sorry internal error occured");
-
+            return BadRequest("Drive is not valid");
         try
         {
-            return BadRequest("Drive is not valid");
+            return _driveService.CreateDrive(drive) ? Ok("Drive Created Successfully") : Problem("controller : Sorry internal error occured");
         }
-        catch (Exception)
+        catch (Exception exception)
         {
-            return BadRequest();
+            return Problem(exception.Message);
         }
 
     }
@@ -39,11 +38,11 @@ public class DriveController : ControllerBase
 
         try
         {
-            return _driveService.CancelDrive(driveId, tacId, reason) ? Ok("Drive Cancelled Sucessfully") : BadRequest("controller - cancel drive : Sorry internal error occured");
+            return _driveService.CancelDrive(driveId, tacId, reason) ? Ok("Drive Cancelled Sucessfully") : Problem("controller - cancel drive : Sorry internal error occured");
         }
-        catch (Exception)
+        catch (Exception exception)
         {
-            return BadRequest();
+            return Problem(exception.Message);
         }
 
     }
@@ -57,7 +56,7 @@ public class DriveController : ControllerBase
         }
         catch (Exception exception)
         {
-            return BadRequest();
+            return Problem(exception.Message);
         }
 
     }
@@ -71,7 +70,7 @@ public class DriveController : ControllerBase
         }
         catch (Exception exception)
         {
-            return BadRequest();
+            return Problem(exception.Message);
         }
 
     }
@@ -84,7 +83,7 @@ public class DriveController : ControllerBase
         }
         catch (Exception exception)
         {
-            return BadRequest();
+            return Problem(exception.Message);
         }
 
     }

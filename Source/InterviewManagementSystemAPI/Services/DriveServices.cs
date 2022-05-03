@@ -12,6 +12,7 @@ namespace IMS.Service
                 throw new ArgumentNullException("Drive object is empty");
             try
             {
+                
                 return _driveDataAccess.AddDriveToDatabase(drive) ? true : false;
             }
             catch (Exception)
@@ -52,7 +53,7 @@ namespace IMS.Service
         {
             try
             {
-                return (from drive in _driveDataAccess.GetActiveDrives() where drive.FromDate != System.DateTime.Now && drive.IsScheduled == true select drive).Cast<Drive>().ToList();
+                return (from drive in _driveDataAccess.GetActiveDrives() where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == true select drive).Cast<Drive>().ToList();
             }
             catch (Exception exception)
             {

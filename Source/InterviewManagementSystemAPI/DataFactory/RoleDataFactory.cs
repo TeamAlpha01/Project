@@ -1,16 +1,17 @@
+using IMS.Controllers;
 using IMS.DataAccessLayer;
 using IMS.Models;
 using IMS.Service;
 namespace IMS.DataFactory{
     public static class RoleDataFactory
     {
-        public static IRoleDataAccessLayer GetRoleDataAccessLayerObject()
+        public static IRoleDataAccessLayer GetRoleDataAccessLayerObject(ILogger logger)
         {
-            return new RoleDataAccessLayer();
+            return new RoleDataAccessLayer(logger);
         }
-        public static IRoleService GetRoleServiceObject()
+        public static IRoleService GetRoleServiceObject(ILogger logger)
         {            
-            return new RoleService();
+            return new RoleService(logger);
         }
         public static Role GetRoleObject()
         {
