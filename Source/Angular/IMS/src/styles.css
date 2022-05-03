@@ -1185,7 +1185,7 @@
   }
   
   .profile-img {
-    width: 40%;
+    width: 40%!important;
     display: block;
     margin: auto;
     border-radius: 50%;
@@ -1418,7 +1418,7 @@
   
   .sticky-footer {
     position: sticky;
-    /* top: 40%; */
+    top: 100%;
   }
   
   .container-fostrap {
