@@ -7,6 +7,8 @@ import { InterviewerHeaderComponent } from './interviewer-header/interviewer-hea
 import { FooterComponent } from './footer/footer.component';
 import { AdminRoleComponent } from './admin-role/admin-role.component';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { InterviewerHomeComponent } from './interviewer-home/interviewer-home.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { BackButtonComponent } from './back-button/back-button.component';
     InterviewerHeaderComponent,
     FooterComponent,
     AdminRoleComponent,
-    BackButtonComponent
+    BackButtonComponent,
+    InterviewerHomeComponent,
+    ProfileComponent
 
   ],
   imports: [
