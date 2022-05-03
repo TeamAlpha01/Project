@@ -8,11 +8,13 @@ namespace IMS.Controllers;
 public class DriveController : ControllerBase
 {
     private readonly ILogger _logger;
+    private IDriveService _driveService;
     public DriveController(ILogger<DriveController> logger)
     {
         _logger = logger;
+        _driveService = DataFactory.DriveDataFactory.GetDriveServiceObject(logger);
     }
-    private IDriveService _driveService = DataFactory.DriveDataFactory.GetDriveServiceObject();
+    
 
     [HttpPost]
     public IActionResult CreateDrive(Drive drive)

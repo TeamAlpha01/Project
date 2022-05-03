@@ -4,13 +4,13 @@ using IMS.Service;
 namespace IMS.DataFactory{
     public static class DriveDataFactory
     {
-        public static IDriveDataAccessLayer GetDriveDataAccessLayerObject()
+        public static IDriveDataAccessLayer GetDriveDataAccessLayerObject(ILogger logger)
         {
-            return new DriveDataAccessLayer();
+            return new DriveDataAccessLayer(logger);
         }
-        public static IDriveService GetDriveServiceObject()
+        public static IDriveService GetDriveServiceObject(ILogger logger)
         {
-            return new DriveService();
+            return new DriveService(logger);
         }
         public static Drive GetDriveObject()
         {

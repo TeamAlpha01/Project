@@ -5,6 +5,13 @@ namespace IMS.DataAccessLayer
     public class DriveDataAccessLayer : IDriveDataAccessLayer
     {
         private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        
+        private ILogger logger;
+        public DriveDataAccessLayer(ILogger logger)
+        {
+            this.logger = logger;
+        }
+
         public bool AddDriveToDatabase(Drive drive)
         {
             if (drive == null)

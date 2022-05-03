@@ -5,7 +5,15 @@ namespace IMS.Service
 {
     public class DriveService : IDriveService
     {
-        private IDriveDataAccessLayer _driveDataAccess = DataFactory.DriveDataFactory.GetDriveDataAccessLayerObject();
+        private IDriveDataAccessLayer _driveDataAccess;
+        private ILogger logger;
+
+        public DriveService(ILogger logger)
+        {
+            this.logger = logger;
+            _driveDataAccess = DataFactory.DriveDataFactory.GetDriveDataAccessLayerObject(logger);
+        }
+
         public bool CreateDrive(Drive drive)
         {
             if (drive == null)
