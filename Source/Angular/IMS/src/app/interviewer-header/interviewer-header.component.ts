@@ -11,5 +11,6 @@ export class InterviewerHeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  userName="Admin";
 
 }
