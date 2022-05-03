@@ -34,9 +34,9 @@ namespace IMS.DataAccessLayer
 
         }
 
-        public List<Drive> GetActiveDrives()
+        public List<Drive> GetDrivesByStatus(bool status)
         {
-            return (from drive in _db.Drives where drive.IsCancelled == false select drive).Cast<Drive>().ToList();
+            return (from drive in _db.Drives where drive.IsCancelled == status select drive).Cast<Drive>().ToList();
         }
 
     }
