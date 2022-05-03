@@ -1,6 +1,6 @@
-using InterviewManagementSystemAPI.Models;
+using IMS.Models;
 
-namespace InterviewManagementSystemAPI.Service{
+namespace IMS.Service{
     public interface IRoleService 
     {
         public  bool CreateRole(string roleName);

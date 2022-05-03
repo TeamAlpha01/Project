@@ -1,6 +1,6 @@
-using InterviewManagementSystemAPI.Models;
+using IMS.Models;
 
-namespace InterviewManagementSystemAPI.DataAccessLayer
+namespace IMS.DataAccessLayer
 {
     public class DriveDataAccessLayer : IDriveDataAccessLayer
     {
@@ -34,15 +34,10 @@ namespace InterviewManagementSystemAPI.DataAccessLayer
 
         }
 
-        public List<Drive> ViewTodayDrive(int departmentId, int poolId)
+        public List<Drive> GetActiveDrives()
         {
-            if (departmentId == 0 && poolId != 0)
-                return (from drive in _db.Drives where (drive.PoolId == poolId && drive.FromDate.Date == System.DateTime.Now.Date) select drive).Cast<Drive>().ToList();
-            // if(poolId==0)
-            //     return (List<Drive>)(from drive in _db.Drives where drive
-
-            return (from drive in _db.Drives where drive.FromDate.Date == System.DateTime.Now.Date select drive).Cast<Drive>().ToList();
-
+            return (from drive in _db.Drives where drive.IsCancelled == false select drive).Cast<Drive>().ToList();
         }
+
     }
 }

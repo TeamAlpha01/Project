@@ -1,7 +1,7 @@
-using InterviewManagementSystemAPI.DataAccessLayer;
-using InterviewManagementSystemAPI.Models;
-using InterviewManagementSystemAPI.Service;
-namespace InterviewManagementSystemAPI.DataFactory{
+using IMS.DataAccessLayer;
+using IMS.Models;
+using IMS.Service;
+namespace IMS.DataFactory{
     public static class RoleDataFactory
     {
         public static IRoleDataAccessLayer GetRoleDataAccessLayerObject()
@@ -9,7 +9,7 @@ namespace InterviewManagementSystemAPI.DataFactory{
             return new RoleDataAccessLayer();
         }
         public static IRoleService GetRoleServiceObject()
-        {
+        {            
             return new RoleService();
         }
         public static Role GetRoleObject()

@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using InterviewManagementSystemAPI.Models;
-using InterviewManagementSystemAPI.Service;
+using IMS.Models;
+using IMS.Service;
 using System.Net;
 
-namespace InterviewManagementSystemAPI.Controllers;
+namespace IMS.Controllers;
 
 [ApiController]
 [Route("[controller]/[action]")]

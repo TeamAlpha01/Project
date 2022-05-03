@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using InterviewManagementSystemAPI.Models;
+using IMS.Models;
 
-namespace InterviewManagementSystemAPI.DataAccessLayer{
+namespace IMS.DataAccessLayer{
 public class InterviewManagementSystemDbContext : DbContext
 {
     public DbSet<Role> Roles {get; set;} 
@@ -9,7 +9,7 @@ public class InterviewManagementSystemDbContext : DbContext
     public DbSet<Drive> Drives {get; set;} 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     { 
-        optionsBuilder.UseSqlServer(@"Server=DESKTOP-0EL7H73;Database=InterviewManagementSystem;Trusted_Connection=True;");
+        optionsBuilder.UseSqlServer(@"Server=ASPIREREN009;Database=InterviewManagementSystem;Trusted_Connection=True;");
     }
 }
 }

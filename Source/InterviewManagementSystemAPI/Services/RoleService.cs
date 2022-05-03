@@ -1,7 +1,7 @@
-using InterviewManagementSystemAPI.Models;
-using InterviewManagementSystemAPI.DataAccessLayer;
+using IMS.Models;
+using IMS.DataAccessLayer;
 using System.Linq;
-namespace InterviewManagementSystemAPI.Service
+namespace IMS.Service
 {
     public class RoleService : IRoleService
     {
@@ -25,6 +25,7 @@ namespace InterviewManagementSystemAPI.Service
             }
             catch (Exception)
             {
+                
                 // Log "Exception Occured in Data Access Layer"
                 return false;
             }
@@ -38,7 +39,7 @@ namespace InterviewManagementSystemAPI.Service
 
         public bool RemoveRole(int roleId)
         {
-            if (roleId != 0)
+            if (roleId == 0)
                 throw new ArgumentNullException("Role Id is not provided");
 
             try

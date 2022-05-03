@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace InterviewManagementSystemAPI.Models
+namespace IMS.Models
 {
     public class Drive
     {

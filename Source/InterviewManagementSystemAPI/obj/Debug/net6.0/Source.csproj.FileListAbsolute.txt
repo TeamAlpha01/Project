@@ -254,3 +254,15 @@ E:\Aspire\GIT-Rafi_Project\Project\Source\InterviewManagementSystemAPI\obj\Debug
 E:\Aspire\GIT-Rafi_Project\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.pdb
 E:\Aspire\GIT-Rafi_Project\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.genruntimeconfig.cache
 E:\Aspire\GIT-Rafi_Project\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\ref\Source.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.AspNetCore.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Settings.Configuration.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Sinks.File.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Sinks.PeriodicBatching.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Sinks.Seq.dll

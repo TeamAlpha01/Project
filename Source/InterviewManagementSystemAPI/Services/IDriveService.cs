@@ -1,13 +1,14 @@
-using InterviewManagementSystemAPI.Models;
+using IMS.Models;
 
-namespace InterviewManagementSystemAPI.Service
+namespace IMS.Service
 {
     public interface IDriveService
     {
         public bool CreateDrive(Drive drive);
         public bool CancelDrive(int driveId,int employeeId,string Reason);
-        public List<Drive> ViewTodayDrive(int departmentId, int poolId);
-        // public List<Drive> ViewUpcommingDrive(int departmentId, int poolId, DateTime driveDate);
+        public List<Drive> ViewTodayDrives();
+        public List<Drive> ViewScheduledDrives();
+        public List<Drive> ViewUpcommingDrives();
         // public List<Drive> ViewScheduledDrive(int departmentId, int poolId, DateTime driveDate);
         // public List<int> ViewDashboard(int employeeId); //for all  user : based on the emp role we can seggregate the output
         // public List<Drive> ViewAllScheduledDrives(int departmentId, int poolId, DateTime driveDate);

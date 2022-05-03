@@ -1,7 +1,7 @@
-using InterviewManagementSystemAPI.DataAccessLayer;
-using InterviewManagementSystemAPI.Models;
-using InterviewManagementSystemAPI.Service;
-namespace InterviewManagementSystemAPI.DataFactory{
+using IMS.DataAccessLayer;
+using IMS.Models;
+using IMS.Service;
+namespace IMS.DataFactory{
     public static class DriveDataFactory
     {
         public static IDriveDataAccessLayer GetDriveDataAccessLayerObject()

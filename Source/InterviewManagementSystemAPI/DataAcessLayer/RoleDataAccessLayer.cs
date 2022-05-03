@@ -1,7 +1,7 @@
-using InterviewManagementSystemAPI.Models;
+using IMS.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace InterviewManagementSystemAPI.DataAccessLayer
+namespace IMS.DataAccessLayer
 {
     public class RoleDataAccessLayer : IRoleDataAccessLayer
     {
@@ -48,7 +48,7 @@ namespace InterviewManagementSystemAPI.DataAccessLayer
         */
         public bool RemoveRoleFromDatabase(int roleId)
         {
-            if (roleId != 0)
+            if (roleId == 0)
                 throw new ArgumentNullException("Role Id is not provided ");
 
             try
