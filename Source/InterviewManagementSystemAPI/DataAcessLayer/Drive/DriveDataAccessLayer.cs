@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using IMS.Models;
 
 namespace IMS.DataAccessLayer
@@ -46,5 +47,12 @@ namespace IMS.DataAccessLayer
             return (from drive in _db.Drives where drive.IsCancelled == status select drive).Cast<Drive>().ToList();
         }
 
+        public Drive ViewDrive(int driveId)
+        {
+            if (driveId <= 0)
+                throw new ValidationException("driveId is not valid");
+
+            return (Drive)from drive in _db.Drives where drive.DriveId==driveId select drive;
+        }
     }
 }

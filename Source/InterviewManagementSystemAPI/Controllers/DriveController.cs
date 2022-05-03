@@ -117,6 +117,19 @@ public class DriveController : ControllerBase
 
     }
     [HttpGet]
+    public IActionResult ViewDrive(int driveId)
+    {
+        try
+        {
+            return Ok(_driveService.ViewDrive(driveId));
+        }
+        catch (Exception exception)
+        {
+            return Problem(exception.Message);
+        }
+
+    }
+    [HttpGet]
     public IActionResult ViewDashboard(int tacId)
     {
         try

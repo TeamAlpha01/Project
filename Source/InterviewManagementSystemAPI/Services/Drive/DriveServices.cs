@@ -1,5 +1,6 @@
 using IMS.Models;
 using IMS.DataAccessLayer;
+using System.ComponentModel.DataAnnotations;
 
 namespace IMS.Service
 {
@@ -115,6 +116,21 @@ namespace IMS.Service
                 DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.AddedBy==employeeId select drive).Cast<Drive>().ToList().Count());
                 DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(true) where drive.AddedBy==employeeId select drive).Cast<Drive>().ToList().Count());
                 return DashboardCount;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+        public Drive ViewDrive(int driveId)
+        {
+            if (driveId <= 0)
+                throw new ValidationException("driveId is not valid");
+
+            try
+            {
+                return _driveDataAccess.ViewDrive(driveId);
             }
             catch (Exception exception)
             {
