@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using IMS.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,30 +19,29 @@ namespace IMS.DataAccessLayer
             Throws ArgumentNullException when Role object is not passed 
         */
 
-        //private readonly ILogger _logger = new ILogger<RoleDataAccessLayer>();        
         public bool AddRoleToDatabase(Role role)
         {
             if (role == null)
-                throw new ArgumentNullException("Role is not provided");
+                throw new ArgumentNullException("Role object is not provided to DAL");
             try
             {
                 _db.Roles.Add(role);
                 _db.SaveChanges();
                 return true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
-                //LOG   "DB Update Exception Occured"
+                _logger.LogInformation($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
                 return false;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
-                //LOG   "Opreation cancelled exception"
+                _logger.LogInformation($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
                 return false;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //LOG   "unknown exception occured "
+                _logger.LogInformation($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
                 return false;
             }
         }
@@ -54,30 +54,37 @@ namespace IMS.DataAccessLayer
         */
         public bool RemoveRoleFromDatabase(int roleId)
         {
-            if (roleId == 0)
-                throw new ArgumentNullException("Role Id is not provided ");
+            if (roleId <= 0)
+                throw new ArgumentNullException("Role Id is not provided to DAL");
 
             try
             {
                 var role = _db.Roles.Find(roleId);
+
+                if (role == null) throw new ValidationException("No role is found with given role Id");
+
                 role.IsActive = false;
                 _db.Roles.Update(role);
                 _db.SaveChanges();
                 return true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
-                //LOG   "DB Update Exception Occured"
+                _logger.LogInformation($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
                 return false;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
-                //LOG   "Opreation cancelled exception"
+                _logger.LogInformation($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
                 return false;
             }
-            catch (Exception)
+            catch (ValidationException roleNotFound)
             {
-                //LOG   "unknown exception occured "
+                throw roleNotFound;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
                 return false;
             }
 
@@ -93,19 +100,19 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation("logger DAL");
                 return _db.Roles.ToList();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
-                //LOG   "DB Update Exception Occured"
+                _logger.LogInformation($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
                 throw new DbUpdateException();
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
-                //LOG   "Opreation cancelled exception"
+                _logger.LogInformation($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //LOG   "unknown exception occured "
+                _logger.LogInformation($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
         }
