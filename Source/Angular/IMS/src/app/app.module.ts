@@ -20,6 +20,7 @@ import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-driv
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
+import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 
 
 
@@ -41,6 +42,7 @@ import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
     InterviewerScheduledDriveComponent,
     InterviewerUpcomingDriveComponent,
     TacHomeComponent,
+    TacDashboardComponent
   ],
   
   imports: [
