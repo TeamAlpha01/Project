@@ -15,6 +15,7 @@ import { AdminHeaderComponent } from './Admin/admin-header/admin-header.componen
 import { TacHeaderComponent } from './TAC/tac-header/tac-header.component';
 import { DriveDetailCardComponent } from './Shared/drive-detail-card/drive-detail-card.component';
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
+import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-curr
     AdminHeaderComponent,
     TacHeaderComponent,
     DriveDetailCardComponent,
-    InterviewerCurrentDriveComponent
+    InterviewerCurrentDriveComponent,
+    InterviewerDashboardComponent
 
   ],
   imports: [

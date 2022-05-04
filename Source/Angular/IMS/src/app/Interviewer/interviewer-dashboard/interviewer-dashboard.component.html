@@ -1,0 +1,40 @@
+<app-interviewer-header></app-interviewer-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-light navbar-light sticky-top py-0">
+        <div class="sidebar-toggler flex-shrink-0  collapse-btn ">
+            <i class="fa fa-bars fa-bar"></i>
+        </div>
+        <div class="page-title">
+            <h2>My Dashboard</h2>
+        </div>
+    </nav>
+
+    <!-- Navbar End -->
+    <div class="grey-bg container-fluid">
+        <section id="minimal-statistics">
+            <div class="row">
+                <div class="col-12 mt-3 mb-1">
+                    <h4 class="text-uppercase">Interviewer Dashboard</h4>
+                </div>
+            </div>
+            <section class="wrapper-dashboard">
+                <div class="container" *ngFor="let item of card">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="card-card">
+                                <div class="card-content">
+                                    <h1 class="card-title">
+                                        {{item.count}}
+                                    </h1>
+                                    <p class="">
+                                        {{item.name}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
