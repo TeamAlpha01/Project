@@ -21,6 +21,11 @@ import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-sc
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
+import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
+import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
+
+
+
 
 
 
@@ -42,7 +47,10 @@ import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.compone
     InterviewerScheduledDriveComponent,
     InterviewerUpcomingDriveComponent,
     TacHomeComponent,
+    AdminAddlocationComponent,
+    AdminAddprojectComponent,
     TacDashboardComponent
+
   ],
   
   imports: [
