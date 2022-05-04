@@ -1420,6 +1420,10 @@
     position: sticky;
     top: 100%;
   }
+  .sticky-pagination {
+    position: sticky;
+    top: 90%;
+  }
   
   .container-fostrap {
     display: table-cell;

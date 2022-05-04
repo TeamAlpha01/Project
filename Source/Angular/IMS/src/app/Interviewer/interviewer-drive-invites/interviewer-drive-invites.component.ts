@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-interviewer-current-drive',
-  templateUrl: './interviewer-current-drive.component.html',
-  styleUrls: ['./interviewer-current-drive.component.css']
+  selector: 'app-interviewer-drive-invites',
+  templateUrl: './interviewer-drive-invites.component.html',
+  styleUrls: ['./interviewer-drive-invites.component.css']
 })
-export class InterviewerCurrentDriveComponent implements OnInit {
-
+export class InterviewerDriveInvitesComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
@@ -14,9 +13,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
-  drive: any[] = [{
+  driveInvites: any[] = [{
     driveName: 'freshers 2021',
     department: 'asd',
     poolName: '',
