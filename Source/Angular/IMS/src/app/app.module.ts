@@ -17,9 +17,9 @@ import { DriveDetailCardComponent } from './Shared/drive-detail-card/drive-detai
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
+import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
+import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
-
- 
 
 
 
@@ -38,12 +38,11 @@ import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
     InterviewerCurrentDriveComponent,
     InterviewerDashboardComponent,
     InterviewerDriveInvitesComponent,
+    InterviewerScheduledDriveComponent,
+    InterviewerUpcomingDriveComponent,
     TacHomeComponent,
-    
-    
-  
-
   ],
+  
   imports: [
     BrowserModule,
     FormsModule,

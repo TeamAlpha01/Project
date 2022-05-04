@@ -384,9 +384,9 @@
   
   
   .btn-filter {
-    margin-top: 15px;
-    color: white;
-    background-color: #b57ae6;
+    margin-top: 30px!important;
+    color: white!important;
+    background-color: #b57ae6!important;
   }
   
   .btn-back {
@@ -1422,7 +1422,7 @@
   }
   .sticky-pagination {
     position: sticky;
-    top: 90%;
+    top: 80%;
   }
   
   .container-fostrap {
