@@ -18,7 +18,7 @@ import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-curr
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
-import { FilterButtonComponent } from './Shared/filter-button/filter-button.component';
+
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { FilterButtonComponent } from './Shared/filter-button/filter-button.comp
     InterviewerDashboardComponent,
     InterviewerDriveInvitesComponent,
     TacHomeComponent,
-    FilterButtonComponent
+  
 
   ],
   imports: [
