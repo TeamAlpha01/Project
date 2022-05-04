@@ -6,6 +6,7 @@ import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboa
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
 import { InterviewerHomeComponent } from './Interviewer/interviewer-home/interviewer-home.component';
 import { ProfileComponent } from './Shared/profile/profile.component';
+import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 
 const routes: Routes = [
   { path: 'interviewer-home', component:InterviewerHomeComponent },
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
   { path: 'interviewer-currentDrives', component:InterviewerCurrentDriveComponent },
   { path: 'interviewer-driveInvites', component:InterviewerDriveInvitesComponent },
-  {path:'', component:InterviewerHomeComponent}
+  {path:'', component:TacHomeComponent}
 ];
 
 @NgModule({
