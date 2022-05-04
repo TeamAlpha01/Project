@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\Source.csproj": {}
+    "C:\\Users\\darshana.annappan\\Downloads\\IMS\\IMS.csproj": {}
   },
   "projects": {
-    "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\Source.csproj": {
+    "C:\\Users\\darshana.annappan\\Downloads\\IMS\\IMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\Source.csproj",
-        "projectName": "Source",
-        "projectPath": "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+        "projectUniqueName": "C:\\Users\\darshana.annappan\\Downloads\\IMS\\IMS.csproj",
+        "projectName": "IMS",
+        "projectPath": "C:\\Users\\darshana.annappan\\Downloads\\IMS\\IMS.csproj",
         "packagesPath": "C:\\Users\\darshana.annappan\\.nuget\\packages\\",
-        "outputPath": "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\obj\\",
+        "outputPath": "C:\\Users\\darshana.annappan\\Downloads\\IMS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\darshana.annappan\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -58,13 +58,9 @@
               "target": "Package",
               "version": "[6.0.4, )"
             },
-            "Serilog.AspNetCore": {
+            "Microsoft.Extensions.Configuration": {
               "target": "Package",
-              "version": "[5.0.0, )"
-            },
-            "Serilog.Sinks.Seq": {
-              "target": "Package",
-              "version": "[5.1.1, )"
+              "version": "[6.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
