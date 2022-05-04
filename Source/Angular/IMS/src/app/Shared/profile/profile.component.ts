@@ -11,5 +11,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
+Name:string='Prithvi';
+email:string='Prithvi@aspiresys.com';
+Contact:number=9876543210;
+Id:string='ACE123';
+Department:string='.net';
+Role:string='SSE';
+
 
 }

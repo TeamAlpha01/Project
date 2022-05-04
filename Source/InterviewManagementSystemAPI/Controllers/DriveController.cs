@@ -8,11 +8,13 @@ namespace IMS.Controllers;
 public class DriveController : ControllerBase
 {
     private readonly ILogger _logger;
+    private IDriveService _driveService;
     public DriveController(ILogger<DriveController> logger)
     {
         _logger = logger;
+        _driveService = DataFactory.DriveDataFactory.GetDriveServiceObject(logger);
     }
-    private IDriveService _driveService = DataFactory.DriveDataFactory.GetDriveServiceObject();
+    
 
     [HttpPost]
     public IActionResult CreateDrive(Drive drive)
@@ -107,6 +109,19 @@ public class DriveController : ControllerBase
         try
         {
             return Ok(_driveService.ViewAllCancelledDrives());
+        }
+        catch (Exception exception)
+        {
+            return Problem(exception.Message);
+        }
+
+    }
+    [HttpGet]
+    public IActionResult ViewDrive(int driveId)
+    {
+        try
+        {
+            return Ok(_driveService.ViewDrive(driveId));
         }
         catch (Exception exception)
         {

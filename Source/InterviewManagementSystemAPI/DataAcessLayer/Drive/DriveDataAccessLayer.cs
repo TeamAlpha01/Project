@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using IMS.Models;
 
 namespace IMS.DataAccessLayer
@@ -5,6 +6,13 @@ namespace IMS.DataAccessLayer
     public class DriveDataAccessLayer : IDriveDataAccessLayer
     {
         private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        
+        private ILogger logger;
+        public DriveDataAccessLayer(ILogger logger)
+        {
+            this.logger = logger;
+        }
+
         public bool AddDriveToDatabase(Drive drive)
         {
             if (drive == null)
@@ -39,5 +47,12 @@ namespace IMS.DataAccessLayer
             return (from drive in _db.Drives where drive.IsCancelled == status select drive).Cast<Drive>().ToList();
         }
 
+        public Drive ViewDrive(int driveId)
+        {
+            if (driveId <= 0)
+                throw new ValidationException("driveId is not valid");
+
+            return (Drive)from drive in _db.Drives where drive.DriveId==driveId select drive;
+        }
     }
 }

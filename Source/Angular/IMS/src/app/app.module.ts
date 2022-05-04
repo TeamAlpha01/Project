@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +13,8 @@ import { InterviewerHomeComponent } from './Interviewer/interviewer-home/intervi
 import { ProfileComponent } from './Shared/profile/profile.component';
 import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { TacHeaderComponent } from './TAC/tac-header/tac-header.component';
+import { DriveDetailCardComponent } from './Shared/drive-detail-card/drive-detail-card.component';
+import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
 
 
 @NgModule({
@@ -23,11 +27,15 @@ import { TacHeaderComponent } from './TAC/tac-header/tac-header.component';
     InterviewerHomeComponent,
     ProfileComponent,
     AdminHeaderComponent,
-    TacHeaderComponent
+    TacHeaderComponent,
+    DriveDetailCardComponent,
+    InterviewerCurrentDriveComponent
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    NgxPaginationModule,
     AppRoutingModule
   ],
   providers: [],

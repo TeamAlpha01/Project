@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Role } from '../role.model';
+import { RoleService } from '../role.service';
 
 @Component({
   selector: 'app-admin-role',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminRoleComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service:RoleService) { }
 
   ngOnInit(): void {
   }

@@ -1,11 +1,20 @@
 using IMS.Models;
 using IMS.DataAccessLayer;
+using System.ComponentModel.DataAnnotations;
 
 namespace IMS.Service
 {
     public class DriveService : IDriveService
     {
-        private IDriveDataAccessLayer _driveDataAccess = DataFactory.DriveDataFactory.GetDriveDataAccessLayerObject();
+        private IDriveDataAccessLayer _driveDataAccess;
+        private ILogger logger;
+
+        public DriveService(ILogger logger)
+        {
+            this.logger = logger;
+            _driveDataAccess = DataFactory.DriveDataFactory.GetDriveDataAccessLayerObject(logger);
+        }
+
         public bool CreateDrive(Drive drive)
         {
             if (drive == null)
@@ -107,6 +116,21 @@ namespace IMS.Service
                 DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.AddedBy==employeeId select drive).Cast<Drive>().ToList().Count());
                 DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(true) where drive.AddedBy==employeeId select drive).Cast<Drive>().ToList().Count());
                 return DashboardCount;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+        public Drive ViewDrive(int driveId)
+        {
+            if (driveId <= 0)
+                throw new ValidationException("driveId is not valid");
+
+            try
+            {
+                return _driveDataAccess.ViewDrive(driveId);
             }
             catch (Exception exception)
             {
