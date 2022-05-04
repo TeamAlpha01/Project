@@ -18,7 +18,7 @@ import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-curr
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
-import { CurrentDrivesFilterComponent } from './tac/current-drives-filter/current-drives-filter.component';
+
  
 
 
@@ -39,7 +39,7 @@ import { CurrentDrivesFilterComponent } from './tac/current-drives-filter/curren
     InterviewerDashboardComponent,
     InterviewerDriveInvitesComponent,
     TacHomeComponent,
-    CurrentDrivesFilterComponent,
+    
     
   
 
