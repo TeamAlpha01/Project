@@ -17,6 +17,7 @@ import { DriveDetailCardComponent } from './Shared/drive-detail-card/drive-detai
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
+import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-driv
     DriveDetailCardComponent,
     InterviewerCurrentDriveComponent,
     InterviewerDashboardComponent,
-    InterviewerDriveInvitesComponent
+    InterviewerDriveInvitesComponent,
+    TacHomeComponent
 
   ],
   imports: [
