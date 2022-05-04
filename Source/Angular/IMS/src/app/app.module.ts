@@ -23,6 +23,8 @@ import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
+import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
+import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 
 
 
@@ -49,7 +51,9 @@ import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproj
     TacHomeComponent,
     AdminAddlocationComponent,
     AdminAddprojectComponent,
-    TacDashboardComponent
+    TacDashboardComponent,
+    AdminAdddepartmentComponent,
+    AdminRequestsComponent
 
   ],
   
