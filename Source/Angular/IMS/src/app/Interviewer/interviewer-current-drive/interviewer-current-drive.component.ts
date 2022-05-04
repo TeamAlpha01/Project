@@ -14,15 +14,17 @@ export class InterviewerCurrentDriveComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
   drive: any[] = [{
-    driveName: 'freshers',
+    driveName: 'freshers 2021',
     department: '',
     poolName: '',
     date: 0,
     mode: '',
     location: ''
   }, {
-    driveName: 'freshers',
+    driveName: 'freshers 2022',
     department: '',
     poolName: '',
     date: 0,

@@ -7,7 +7,6 @@ import { ProfileComponent } from './Shared/profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component:InterviewerHomeComponent },
-  { path: 'home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
   {path:'', component:InterviewerCurrentDriveComponent}
 ];

@@ -6,17 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drive-detail-card.component.css']
 })
 export class DriveDetailCardComponent implements OnInit {
-
+  data: any;
+  totalLength: any;
+  page: number = 1;
   constructor() { }
 
   ngOnInit(): void {
   }
-  driveName:string='as';
-  department:string='';
-  poolName:string='';
-  date:number=0;
-  mode:string='';
-  location:string='';
+  drive: any[] = [{
+    driveName: 'freshers',
+    department: '',
+    poolName: '',
+    date: 0,
+    mode: '',
+    location: ''
+  }]
 
   
 
