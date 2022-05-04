@@ -1,45 +1,56 @@
 using IMS.Models;
 using IMS.DataAccessLayer;
 using System.ComponentModel.DataAnnotations;
+using IMS.Validations;
 
 namespace IMS.Service
 {
     public class DriveService : IDriveService
     {
         private IDriveDataAccessLayer _driveDataAccess;
-        private ILogger logger;
+        private ILogger _logger;
 
         public DriveService(ILogger logger)
         {
-            this.logger = logger;
+            _logger = logger;
             _driveDataAccess = DataFactory.DriveDataFactory.GetDriveDataAccessLayerObject(logger);
         }
 
         public bool CreateDrive(Drive drive)
         {
-            if (drive == null)
-                throw new ArgumentNullException("Drive object is empty");
+            DriveValidation.IsdriveValid(drive);
+
             try
             {
-
                 return _driveDataAccess.AddDriveToDatabase(drive) ? true : false;
             }
-            catch (Exception)
+            catch (ValidationException driveNotValid)
             {
+                _logger.LogInformation($"Drive Service : CreateDrive() : {driveNotValid.Message}");
+                return false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : CreateDrive() : {exception.Message}");
                 return false;
             }
         }
         public bool CancelDrive(int driveId, int tacId, string reason)
         {
-            if (driveId == 0 || tacId == 0 || reason.Length == 0)
-                return false;
-
+            DriveValidation.IsCancelDriveValid(driveId,tacId,reason);
+            
             try
             {
                 return _driveDataAccess.CancelDriveFromDatabase(driveId, tacId, reason);
             }
-            catch (Exception)
+            catch (ValidationException cancelDriveNotValid)
             {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {cancelDriveNotValid.Message}");
+                return false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
                 return false;
             }
 
@@ -53,6 +64,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
+                _logger.LogInformation($"Drive Service : ViewTodayDrives() : {exception.Message}");
                 throw exception;
             }
 
@@ -66,6 +78,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
+                _logger.LogInformation($"Drive Service : ViewScheduledDrives() : {exception.Message}");
                 throw exception;
             }
 
@@ -79,6 +92,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
+                _logger.LogInformation($"Drive Service : ViewUpcommingDrives() : {exception.Message}");
                 throw exception;
             }
 
@@ -92,6 +106,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
+                _logger.LogInformation($"Drive Service : ViewAllScheduledDrives() : {exception.Message}");
                 throw exception;
             }
         }
@@ -104,12 +119,14 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
+                _logger.LogInformation($"Drive Service : ViewAllCancelledDrives() : {exception.Message}");
                 throw exception;
             }
         }
 
         public List<int> ViewDashboard(int employeeId)
         {
+            DriveValidation.IsEmployeeIdValid(employeeId);
             try
             {
                 List<int> DashboardCount = new List<int>();
@@ -119,21 +136,27 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
+                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
                 throw exception;
             }
         }
 
         public Drive ViewDrive(int driveId)
         {
-            if (driveId <= 0)
-                throw new ValidationException("driveId is not valid");
+            DriveValidation.IsDriveIdValid(driveId);
 
             try
             {
                 return _driveDataAccess.ViewDrive(driveId);
             }
+            catch (ValidationException driveIdNotValid)
+            {
+                _logger.LogInformation($"Drive Service : ViewDrive() : {driveIdNotValid.Message}");
+                throw driveIdNotValid;
+            }
             catch (Exception exception)
             {
+                _logger.LogInformation($"Drive Service : ViewDrive() : {exception.Message}");
                 throw exception;
             }
         }

@@ -3912,26 +3912,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hp\\.nuget\\packages\\": {}
+    "C:\\Users\\prithvi.palani\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Aspire\\GIT-Rafi_Project\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+      "projectUniqueName": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
       "projectName": "Source",
-      "projectPath": "E:\\Aspire\\GIT-Rafi_Project\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
-      "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
-      "outputPath": "E:\\Aspire\\GIT-Rafi_Project\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
+      "projectPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+      "packagesPath": "C:\\Users\\prithvi.palani\\.nuget\\packages\\",
+      "outputPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\prithvi.palani\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
