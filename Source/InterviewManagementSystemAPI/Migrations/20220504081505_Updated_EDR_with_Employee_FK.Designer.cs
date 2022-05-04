@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class IMSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220504081505_Updated_EDR_with_Employee_FK")]
+    partial class Updated_EDR_with_Employee_FK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,13 +156,13 @@ namespace Source.Migrations
                     b.HasOne("IMS.Models.Employee", "AddedEmployee")
                         .WithMany("AddedEmployeeDrives")
                         .HasForeignKey("AddedBy")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("IMS.Models.Employee", "UpdatedEmployee")
                         .WithMany("UpdatedEmployeeDrives")
                         .HasForeignKey("UpdatedBy")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("AddedEmployee");
@@ -173,13 +175,13 @@ namespace Source.Migrations
                     b.HasOne("IMS.Models.Drive", "Drive")
                         .WithMany("DriveResponses")
                         .HasForeignKey("DriveId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("IMS.Models.Employee", "Employee")
                         .WithMany("EmployeeResonses")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Drive");

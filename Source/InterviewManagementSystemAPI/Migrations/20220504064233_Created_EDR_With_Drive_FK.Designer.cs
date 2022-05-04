@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class IMSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220504064233_Created_EDR_With_Drive_FK")]
+    partial class Created_EDR_With_Drive_FK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,9 +123,8 @@ namespace Source.Migrations
 
                     b.HasKey("ResponseId");
 
-                    b.HasIndex("DriveId");
-
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("DriveId")
+                        .IsUnique();
 
                     b.ToTable("EmployeeDriveResponse");
                 });
@@ -171,20 +172,12 @@ namespace Source.Migrations
             modelBuilder.Entity("IMS.Models.EmployeeDriveResponse", b =>
                 {
                     b.HasOne("IMS.Models.Drive", "Drive")
-                        .WithMany("DriveResponses")
-                        .HasForeignKey("DriveId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IMS.Models.Employee", "Employee")
-                        .WithMany("EmployeeResonses")
-                        .HasForeignKey("EmployeeId")
+                        .WithOne("DriveResponses")
+                        .HasForeignKey("IMS.Models.EmployeeDriveResponse", "DriveId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Drive");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("IMS.Models.Drive", b =>
@@ -195,8 +188,6 @@ namespace Source.Migrations
             modelBuilder.Entity("IMS.Models.Employee", b =>
                 {
                     b.Navigation("AddedEmployeeDrives");
-
-                    b.Navigation("EmployeeResonses");
 
                     b.Navigation("UpdatedEmployeeDrives");
                 });

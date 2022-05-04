@@ -4,6 +4,10 @@ namespace IMS.Models
 {
     public class Drive
     {
+        public Drive()
+        {
+            DriveResponses = new HashSet<EmployeeDriveResponse>();
+        }
         [Key]
         public int DriveId { get; set; }
         [StringLength(10)]
@@ -29,6 +33,10 @@ namespace IMS.Models
         [ForeignKey("UpdatedBy")]
         [InverseProperty("UpdatedEmployeeDrives")]
         public virtual Employee? UpdatedEmployee { get; set; }
+
+        [InverseProperty("Drive")]
+        public ICollection<EmployeeDriveResponse>? DriveResponses { get; set; }
+        
 
     }
 }
