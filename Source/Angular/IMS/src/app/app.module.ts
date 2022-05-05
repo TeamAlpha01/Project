@@ -34,6 +34,7 @@ import { DashboardComponent } from './Shared/dashboard/dashboard.component';
 import { EditpoolComponent } from './TAC/editpool/editpool.component';
 import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
 import { AdminViewRoleComponent } from './Admin/admin-view-role/admin-view-role.component';
+import { CurrentDrivesFilterComponent } from './TAC/current-drives-filter/current-drives-filter.component';
 
 
 
@@ -72,6 +73,7 @@ import { AdminViewRoleComponent } from './Admin/admin-view-role/admin-view-role.
     EditpoolComponent,
     ManagepoolmembersComponent,
     AdminViewRoleComponent,
+    CurrentDrivesFilterComponent
 
   ],
   
