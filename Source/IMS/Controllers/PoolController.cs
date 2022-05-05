@@ -48,7 +48,7 @@ public class PoolController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
-    [HttpGet]
+    [HttpPut]
     public IActionResult EditPool(int PoolId,string PoolName)
     {
         if(PoolId==0 || PoolName==null) return BadRequest("Pool Id can't be empty");

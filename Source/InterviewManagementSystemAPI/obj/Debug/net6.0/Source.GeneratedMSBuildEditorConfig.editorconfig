@@ -9,6 +9,7 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Source
 build_property.RootNamespace = Source
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 build_property.ProjectDir = D:\Git-Darshana\Source\InterviewManagementSystemAPI\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
@@ -20,5 +21,12 @@ build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI
+>>>>>>> Stashed changes
+=======
+build_property.ProjectDir = d:\Git-Darshana\Source\InterviewManagementSystemAPI\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = d:\Git-Darshana\Source\InterviewManagementSystemAPI
 >>>>>>> Stashed changes
 build_property._RazorSourceGeneratorDebug = 

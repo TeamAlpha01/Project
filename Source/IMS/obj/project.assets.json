@@ -2096,11 +2096,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\darshana.annappan\\Downloads\\IMS\\IMS.csproj",
+      "projectUniqueName": "D:\\Git-Darshana\\Source\\IMS\\IMS.csproj",
       "projectName": "IMS",
-      "projectPath": "C:\\Users\\darshana.annappan\\Downloads\\IMS\\IMS.csproj",
+      "projectPath": "D:\\Git-Darshana\\Source\\IMS\\IMS.csproj",
       "packagesPath": "C:\\Users\\darshana.annappan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\darshana.annappan\\Downloads\\IMS\\obj\\",
+      "outputPath": "D:\\Git-Darshana\\Source\\IMS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\darshana.annappan\\AppData\\Roaming\\NuGet\\NuGet.Config"
