@@ -13,6 +13,7 @@ import { InterviewerHomeComponent } from './Interviewer/interviewer-home/intervi
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { ProfileComponent } from './Shared/profile/profile.component';
+import { EditpoolComponent } from './TAC/editpool/editpool.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 
@@ -37,7 +38,7 @@ const routes: Routes = [
   {path:'tac-dashboard',component:TacDashboardComponent},
 
   // {path:'', component:InterviewerHomeComponent}
-  {path:'', component:TacHomeComponent}
+  {path:'', component: TacHomeComponent}
 
 ];
 
