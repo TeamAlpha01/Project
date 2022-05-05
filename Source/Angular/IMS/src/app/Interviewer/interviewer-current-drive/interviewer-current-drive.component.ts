@@ -15,7 +15,6 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   drive: any[] = [{
     driveName: 'freshers 2021',
     department: 'asd',

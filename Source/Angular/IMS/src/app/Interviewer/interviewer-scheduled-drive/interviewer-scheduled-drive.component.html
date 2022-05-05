@@ -46,8 +46,9 @@
             </div>
         </div>
     </div>
-
-    <div class="container" *ngFor="let item of drive| paginate: { itemsPerPage: 1, currentPage: page,totalItems:totalLength }">
+<!-- 
+    <div class="container"
+        *ngFor="let item of drive| paginate: { itemsPerPage: 1, currentPage: page,totalItems:totalLength }">
         <div class="mt-3 container shadow  bg-body rounded">
             <div class>
                 <div class="card-body">
@@ -71,7 +72,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+    <!-- <div *ngFor="let item of drive| paginate: { itemsPerPage: 1, currentPage: page,totalItems:totalLength }">
+        
+    </div> -->
+    <!-- <app-card-details *ngFor="let item of drive| paginate: { itemsPerPage: 1, currentPage: page,totalItems:totalLength }"  [data]=item></app-card-details> -->
+
 
     <div class="mt-3 sticky-pagination">
         <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>

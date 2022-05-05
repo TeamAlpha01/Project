@@ -37,6 +37,10 @@ import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolme
 import { CurrentDrivesFilterComponent } from './TAC/current-drives-filter/current-drives-filter.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
+import { CardDetailsComponent } from './Shared/card-details/card-details.component';
+
+
+
 
 
 
@@ -46,7 +50,7 @@ import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
     AppComponent,
     InterviewerHeaderComponent,
     FooterComponent,
-    AdminRoleComponent,
+    AdminRoleComponent,    
     BackButtonComponent,
     InterviewerHomeComponent,
     ProfileComponent,
@@ -73,7 +77,8 @@ import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
     ManagepoolmembersComponent,
     CurrentDrivesFilterComponent,
     AdminViewRolePageComponent,
-    TacProfileComponent
+    TacProfileComponent,
+    CardDetailsComponent
 
     
 
