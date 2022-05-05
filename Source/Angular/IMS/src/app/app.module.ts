@@ -39,6 +39,7 @@ import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { NavbarComponent } from './Shared/navbar/navbar.component';
+import { LoginComponent } from './Shared/login/login.component';
 
 
 
@@ -81,6 +82,7 @@ import { NavbarComponent } from './Shared/navbar/navbar.component';
     CardDetailsComponent,
     InterviewerUpcomingDriveComponent,
     NavbarComponent,
+    LoginComponent,
 
     
 

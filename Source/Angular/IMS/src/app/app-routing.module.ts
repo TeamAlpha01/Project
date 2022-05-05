@@ -25,11 +25,12 @@ import { MyperformanceComponent } from './TAC/myperformance/myperformance.compon
 import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
+import { LoginComponent } from './Shared/login/login.component';
 
 const routes: Routes = [
   // { path: '', component: TacHomeComponent},
   // { path: '', component: AdminViewRolePageComponent},
-  { path: '', component: InterviewerScheduledDriveComponent},
+  { path: '', component: LoginComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
