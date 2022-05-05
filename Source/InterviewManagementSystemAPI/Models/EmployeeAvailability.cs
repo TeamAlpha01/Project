@@ -8,8 +8,8 @@ namespace IMS.Models
         public int  DriveId { get; set; }
         public int  EmployeeId { get; set; }        
         public DateTime InterviewDate { get; set; }
-        public TimeSpan FromTime { get; set; }
-        public TimeSpan ToTime { get; set; }
+        // public TimeSpan FromTime { get; set; }
+        // public TimeSpan ToTime { get; set; }
         public bool IsInterviewScheduled { get; set; }
         public bool IsInterviewCancelled { get; set; }
         public string? CancellationReason { get; set; }

@@ -48,7 +48,7 @@ public class LocationController : ControllerBase
         }
        catch(ValidationException locationNotFound)
         {
-            _logger.LogInformation($"Location Service : RemoveLocation() : {locationNotFound.Message}");
+            _logger.LogInformation($"Location Service : RemoveLocation(int locationId) : {locationNotFound.Message}");
             return BadRequest(locationNotFound.Message);
         }
         catch (Exception exception)

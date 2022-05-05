@@ -16,7 +16,8 @@ namespace IMS.DataAccessLayer
 
         public bool AddLocationToDatabase(Location location)
         {
-            LocationValidation.IsLocationValid(location);
+             if (location == null)
+                throw new ArgumentNullException("Location object is not provided to DAL");
             try
             {
                 _db.Locations.Add(location);
@@ -33,6 +34,7 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location) : {exception.Message}");
                 return false;
             }
+             
             catch (Exception exception)
             {
                 _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location)) : {exception.Message}");
@@ -41,7 +43,8 @@ namespace IMS.DataAccessLayer
         }
          public bool RemoveLocationFromDatabase(int locationId)
         {
-            LocationValidation.IsLocationIdValid(locationId);
+             if (locationId <= 0)
+                throw new ArgumentNullException("Location object is not provided to DAL");
            
             try
             {
@@ -60,6 +63,10 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId ) : {exception.Message}");
                 return false;
+            }
+            catch (ValidationException locationNotFound)
+            {
+                throw locationNotFound;
             }
             catch (Exception exception)
             {

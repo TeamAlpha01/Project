@@ -5,7 +5,7 @@ namespace IMS.Service
     public interface IDriveService
     {
         public bool CreateDrive(Drive drive);
-        public bool CancelDrive(int driveId,int employeeId,string Reason);
+        public bool CancelDrive(int driveId, int employeeId, string Reason);
         public List<Drive> ViewTodayDrives();
         public List<Drive> ViewScheduledDrives();
         public List<Drive> ViewUpcommingDrives();
@@ -15,14 +15,11 @@ namespace IMS.Service
         public Drive ViewDrive(int driveId);
 
 
-        // //For Interviewer in Drive Enitity
+        //For Employee Drive Response Entity
+        public bool AddResponse(EmployeeDriveResponse response);
+        public bool UpdateResponse(int employeeId, int driveId, int responseType);
 
-        // public List<Drive> ViewDriveInvites(int employeeId);
-        // public List<Drive> ViewAllInterview(int employeeId);
-        // public List<Drive> ViewTodayInterviews(int poolId, DateTime driveDate, int employeeId);
-        // public List<Drive> ViewScheduledInterviews(int poolId, DateTime driveDate, int employeeId);
-        // public List<Drive> ViewUpcommingInterviews(int poolId, DateTime driveDate, int employeeId);
-        // public List<Drive> ViewInterviewStatus(int employeeId, bool IsScheduled, bool IsInterviewCancelled, int ResponseType);
-
+        //For Employee Availability Entity
+        public bool SetTimeSlot(EmployeeAvailability employeeAvailability);
     }
 }

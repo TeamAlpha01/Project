@@ -59,9 +59,14 @@ namespace IMS.Services
             }
             catch (ArgumentException exception)
             {
-                _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {exception.Message}");
-                return false;
+            _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {exception.Message}");
+              return false;
             }
+             catch (ValidationException locationNotFound)
+            {
+                throw locationNotFound;
+            }
+
             
             catch (Exception exception)
             {
