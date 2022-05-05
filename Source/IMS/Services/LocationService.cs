@@ -18,7 +18,7 @@ namespace IMS.Services
         /*  
             Returns False when Exception occured in Data Access Layer
             
-            Throws ArgumentNullException when Role Name is not passed to this service method
+            Throws ArgumentNullException when Location Name is not passed to this service method
         */
         public bool CreateLocation(string locationName)
         {
@@ -46,7 +46,7 @@ namespace IMS.Services
         /*  
             Returns False when Exception occured in Data Access Layer
             
-            Throws ArgumentNullException when Role Id is not passed to this service method
+            Throws ArgumentNullException when Location Id is not passed to this service method
         */
 
         public bool RemoveLocation(int locationId)
@@ -76,7 +76,7 @@ namespace IMS.Services
         }
 
         /*  
-            Throws Exception when Exception occured in DAL while fetching roles
+            Throws Exception when Exception occured in DAL while fetching location
         */
         public IEnumerable<Location> ViewLocations()
         {

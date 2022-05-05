@@ -17,14 +17,14 @@ public class PoolController : ControllerBase
     IPoolService PoolService = DataFactory.PoolDataFactory.GetPoolServiceObject();
 
     [HttpPost]
-    public IActionResult CreateNewPool( int DepartmentId,string PoolName)
+    public IActionResult CreateNewPool( int departmentId,string poolName)
     {
-        if (DepartmentId == 0 || PoolName == null) 
+        if (departmentId == 0 || poolName == null) 
             return BadRequest("Pool name is required");
 
         try
         {
-            return PoolService.CreatePool(DepartmentId,PoolName) ? Ok("Pool Added Successfully") : BadRequest("Sorry internal error occured");
+            return PoolService.CreatePool(departmentId,poolName) ? Ok("Pool Added Successfully") : BadRequest("Sorry internal error occured");
         }
         catch (Exception exception)
         {
@@ -34,13 +34,13 @@ public class PoolController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult RemovePool(int DepartmentId, int PoolId)
+    public IActionResult RemovePool(int departmentId, int poolId)
     {
-        if (DepartmentId == 0 || PoolId == 0) return BadRequest("Pool Id is not provided");
+        if (departmentId == 0 || poolId == 0) return BadRequest("Pool Id is not provided");
 
         try
         {
-            return PoolService.RemovePool(DepartmentId,PoolId) ? Ok("Pool Removed Successfully") : BadRequest("Sorry internal error occured");
+            return PoolService.RemovePool(departmentId,poolId) ? Ok("Pool Removed Successfully") : BadRequest("Sorry internal error occured");
         }
         catch (Exception exception)
         {
@@ -49,12 +49,12 @@ public class PoolController : ControllerBase
         }
     }
     [HttpPut]
-    public IActionResult EditPool(int PoolId,string PoolName)
+    public IActionResult EditPool(int poolId,string poolName)
     {
-        if(PoolId==0 || PoolName==null) return BadRequest("Pool Id can't be empty");
+        if(poolId==0 || poolName==null) return BadRequest("Pool Id can't be empty");
         try
         {
-            return PoolService.EditPool(PoolId,PoolName)?Ok("Pool name changed Successfully") : BadRequest("Sorry internal error occured");
+            return PoolService.EditPool(poolId,poolName)?Ok("Pool name changed Successfully") : BadRequest("Sorry internal error occured");
 
         }
          catch (Exception exception)
@@ -68,11 +68,11 @@ public class PoolController : ControllerBase
 
     
     [HttpGet]
-    public IActionResult ViewPools(int DepartmentId)
+    public IActionResult ViewPools(int departmentId)
     {
         try
         {
-            return Ok(PoolService.ViewPools(DepartmentId));
+            return Ok(PoolService.ViewPools(departmentId));
         }
         catch (Exception exception)
         {
@@ -83,14 +83,14 @@ public class PoolController : ControllerBase
 
     
     [HttpPost]
-    public IActionResult AddPoolMembers(int EmployeeId, int PoolId)
+    public IActionResult AddPoolMembers(int employeeId, int poolId)
     {
-        if (EmployeeId == 0 || PoolId == 0) 
+        if (employeeId == 0 || poolId == 0) 
             return BadRequest("Employee Id is required");
 
         try
         {
-            return PoolService.AddPoolMembers(EmployeeId,PoolId) ? Ok("Employee Added Successfully") : BadRequest("Sorry internal error occured");
+            return PoolService.AddPoolMembers(employeeId,poolId) ? Ok("Employee Added Successfully") : BadRequest("Sorry internal error occured");
         }
         catch (Exception exception)
         {

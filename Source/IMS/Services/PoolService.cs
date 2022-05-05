@@ -1,6 +1,7 @@
 using IMS.Models;
 using IMS.DataAccessLayer;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 namespace IMS.Services
 {
     public class PoolService:IPoolService
@@ -118,7 +119,7 @@ namespace IMS.Services
                 
                 return _PoolDataAccessLayer.RemovePoolMembersFromDatabase(EmployeeID,PoolId) ? true : false; // LOG Error in DAL;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 // Log "Exception Occured in Data Access Layer"
                 return false;
@@ -132,7 +133,7 @@ namespace IMS.Services
                 return poolMembers = from PoolMembers in _PoolDataAccessLayer.GetPoolMembersFromDatabase(PoolId) where PoolMembers.IsActive == true select PoolMembers;
             }
             
-            catch (Exception)
+            catch (Exception exception)
             {
                 //Log "Exception occured in DAL while fetching Pools"
                 throw new Exception();

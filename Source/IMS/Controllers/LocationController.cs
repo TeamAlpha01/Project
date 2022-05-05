@@ -53,7 +53,7 @@ public class LocationController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Role Service : RemoveLocation throwed an exception : {exception}");
+            _logger.LogInformation($"Location Service : RemoveLocation throwed an exception : {exception}");
             return BadRequest("Sorry some internal error occured");
         }
     }
@@ -66,7 +66,7 @@ public class LocationController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching roles ", exception);
+            _logger.LogInformation("Service throwed exception while fetching Location ", exception);
             return BadRequest("Sorry some internal error occured");
         }
     }
