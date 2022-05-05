@@ -17,6 +17,7 @@ import { ProfileComponent } from './Shared/profile/profile.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
+import { EditpoolComponent } from './TAC/editpool/editpool.component';
 const routes: Routes = [
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
@@ -30,7 +31,7 @@ const routes: Routes = [
   {path: 'Admin-role',component:AdminRoleComponent},
   {path: 'Admin-requests',component:AdminRequestsComponent},
   {path: 'Admin-dashboard',component:AdminDashboardComponent},
-  {path:'',component:AdminDashboardComponent},
+  {path:'',component:EditpoolComponent},
   
 
   { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
@@ -39,7 +40,7 @@ const routes: Routes = [
   {path:'tac-dashboard',component:TacDashboardComponent},
 
   // {path:'', component:InterviewerHomeComponent}
-  {path:'', component: TacHomeComponent}
+  {path:'', component: EditpoolComponent}
 
 ];
 
