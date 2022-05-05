@@ -73,7 +73,7 @@ public class LocationController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching roles ", exception);
+            _logger.LogInformation("Service throwed exception while fetching locations ", exception);
             return BadRequest("Sorry some internal error occured");
         }
     }
