@@ -18,6 +18,15 @@ builder.Services.AddHttpLogging(httpLogging =>{
     httpLogging.LoggingFields=HttpLoggingFields.All; 
 });
 
+//CORS ANGULAR
+builder.Services.AddCors((setup)=>
+{
+    setup.AddPolicy("default",(options)=>
+    {
+        options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+    });
+});
+
 
 var app = builder.Build();
 
@@ -27,13 +36,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("default");
+
 app.UseDeveloperExceptionPage();
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseHttpLogging(); 
+app.UseHttpLogging();
+
 
 app.MapControllers();
 

@@ -23,14 +23,14 @@ public class RoleController : ControllerBase
     [HttpPost]
     public IActionResult CreateNewRole(string roleName)
     {
-        if (roleName == null) 
+        if (roleName == null)
             return BadRequest("Role name is required");
 
         try
         {
             return roleService.CreateRole(roleName) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");
         }
-        catch(ValidationException roleNameException)
+        catch (ValidationException roleNameException)
         {
             _logger.LogInformation($"Role Service : CreateNewRole() : {roleNameException.Message}");
             return BadRequest(roleNameException.Message);
@@ -53,7 +53,7 @@ public class RoleController : ControllerBase
         {
             return roleService.RemoveRole(roleId) ? Ok("Role Removed Successfully") : BadRequest("Sorry internal error occured");
         }
-        catch(ValidationException roleNotFound)
+        catch (ValidationException roleNotFound)
         {
             _logger.LogInformation($"Role Service : RemoveRole() : {roleNotFound.Message}");
             return BadRequest(roleNotFound.Message);
@@ -72,6 +72,7 @@ public class RoleController : ControllerBase
     {
         try
         {
+
             return Ok(roleService.ViewRoles());
         }
         catch (Exception exception)
