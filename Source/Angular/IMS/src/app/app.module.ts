@@ -26,6 +26,7 @@ import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproj
 import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
+import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 
 
 
@@ -55,7 +56,8 @@ import { CreatepoolComponent } from './TAC/createpool/createpool.component';
     TacDashboardComponent,
     AdminAdddepartmentComponent,
     AdminRequestsComponent,
-    CreatepoolComponent
+    CreatepoolComponent,
+    AdminDashboardComponent,
 
   ],
   
