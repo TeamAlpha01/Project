@@ -17,7 +17,12 @@ import { ProfileComponent } from './Shared/profile/profile.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
+
 import { EditpoolComponent } from './TAC/editpool/editpool.component';
+
+import { PoolmembersPerformanceComponent } from './TAC/poolmembers-performance/poolmembers-performance.component';
+import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
+
 const routes: Routes = [
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
@@ -32,12 +37,17 @@ const routes: Routes = [
   {path: 'Admin-requests',component:AdminRequestsComponent},
   {path: 'Admin-dashboard',component:AdminDashboardComponent},
   {path:'',component:EditpoolComponent},
+  {path: 'TAC-dashboard',component:TacDashboardComponent},
+  {path: 'TAC-performance',component:MyperformanceComponent},
+  {path: 'Poolmembers-performance',component:PoolmembersPerformanceComponent},
+
+  // {path:'',component:AdminDashboardComponent},
   
 
   { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
   { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
   { path: 'tac-home',component:TacHomeComponent},
-  {path:'tac-dashboard',component:TacDashboardComponent},
+
 
   // {path:'', component:InterviewerHomeComponent}
   {path:'', component: EditpoolComponent}
