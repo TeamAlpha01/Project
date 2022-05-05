@@ -46,7 +46,8 @@ namespace IMS.DataAccessLayer
             try
             {
                 var location = _db.Locations.Find(locationId);
-                if (location == null) throw new ValidationException("No location is found with given Location Id");
+                if (location == null) 
+                    throw new ValidationException("No location is found with given Location Id");
                
                 location.IsActive = false;
                 _db.Locations.Update(location);
