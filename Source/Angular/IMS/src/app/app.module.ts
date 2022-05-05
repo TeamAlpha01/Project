@@ -31,6 +31,8 @@ import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard
 import { PoolmembersPerformanceComponent } from './TAC/poolmembers-performance/poolmembers-performance.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
+import { EditpoolComponent } from './TAC/editpool/editpool.component';
+import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
 
 
 
@@ -66,6 +68,8 @@ import { DashboardComponent } from './Shared/dashboard/dashboard.component';
     MyperformanceComponent,
     AdminDashboardComponent,
     DashboardComponent,
+    EditpoolComponent,
+    ManagepoolmembersComponent,
 
   ],
   
