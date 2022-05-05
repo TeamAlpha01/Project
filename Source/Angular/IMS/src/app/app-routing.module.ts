@@ -37,7 +37,6 @@ const routes: Routes = [
   {path: 'Admin-role',component:AdminRoleComponent},
   {path: 'Admin-requests',component:AdminRequestsComponent},
   {path: 'Admin-dashboard',component:AdminDashboardComponent},
-  {path:'',component:EditpoolComponent},
   {path: 'TAC-dashboard',component:TacDashboardComponent},
   {path: 'TAC-performance',component:MyperformanceComponent},
   {path: 'Poolmembers-performance',component:PoolmembersPerformanceComponent},
