@@ -6,7 +6,7 @@ import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproj
 import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
-// import { AdminRoleComponent } from './Admin/admin-addrole/admin-role.component';
+
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
@@ -16,7 +16,7 @@ import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upc
 import { ProfileComponent } from './Shared/profile/profile.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
-
+import { DashboardComponent } from './Shared/dashboard/dashboard.component';
 const routes: Routes = [
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
