@@ -37,8 +37,8 @@ namespace IMS.Service
         }
         public bool CancelDrive(int driveId, int tacId, string reason)
         {
-            DriveValidation.IsCancelDriveValid(driveId,tacId,reason);
-            
+            DriveValidation.IsCancelDriveValid(driveId, tacId, reason);
+
             try
             {
                 return _driveDataAccess.CancelDriveFromDatabase(driveId, tacId, reason);
@@ -130,8 +130,8 @@ namespace IMS.Service
             try
             {
                 List<int> DashboardCount = new List<int>();
-                DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.AddedBy==employeeId select drive).Cast<Drive>().ToList().Count());
-                DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(true) where drive.AddedBy==employeeId select drive).Cast<Drive>().ToList().Count());
+                DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.AddedBy == employeeId select drive).Cast<Drive>().ToList().Count());
+                DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(true) where drive.AddedBy == employeeId select drive).Cast<Drive>().ToList().Count());
                 return DashboardCount;
             }
             catch (Exception exception)
@@ -159,6 +159,54 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewDrive() : {exception.Message}");
                 throw exception;
             }
+        }
+
+         //For Employee Drive Response Entity
+        public bool AddResponse(EmployeeDriveResponse response)
+        {
+            if (response == null) throw new ValidationException("Response cannnot be null");
+
+            try
+            {
+                return _driveDataAccess.AddResponseToDatabase(response) ? true : false;
+            }
+            catch (ValidationException responseNotValid)
+            {
+                _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {responseNotValid.Message}");
+                return false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {exception.Message}");
+                return false;
+            }
+        }
+
+        public bool UpdateResponse(int employeeId, int driveId, int responseType)
+        {
+            if (driveId <= 0 || employeeId <= 0 || responseType <= 0) throw new ValidationException("DriveId or EmployeeId or Response Type is not valid");
+
+            try
+            {
+                return _driveDataAccess.UpdateResponseToDatabase(employeeId, driveId, responseType) ? true : false;
+            }
+            catch (ValidationException updateResponseNotValid)
+            {
+                _logger.LogInformation($"EmployeeDriveResponse Service : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
+                return false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"EmployeeDriveResponse Service : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
+                return false;
+            }
+        }
+
+        //For Employee Availability Entity
+         public bool SetTimeSlot(EmployeeAvailability employeeAvailability)
+        {
+            return _driveDataAccess.SetTimeSlotToDatabase(employeeAvailability);
+            
         }
     }
 }

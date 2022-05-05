@@ -74,7 +74,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                var viewDrive = (Drive)from drive in _db.Drives where drive.DriveId == driveId select drive;
+                var viewDrive = (from drive in _db.Drives where drive.DriveId == driveId select drive).First();
 
                 return viewDrive != null ? viewDrive : throw new ValidationException("no drive is found");
             }
@@ -83,6 +83,57 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : IsDriveIdValid(driveId) : {exception.Message}");
                 throw exception;
             }
+        }
+
+
+
+        //For Employee Drive Response Entity
+        public bool AddResponseToDatabase(EmployeeDriveResponse response)
+        {
+            if (response == null) throw new ValidationException("Response cannnot be null");
+
+            try
+            {
+                _db.EmployeeDriveResponse.Add(response);
+                _db.SaveChanges();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : AddResponseToDatabase(EmployeeDriveResponse response) : {exception.Message}");
+                return false;
+            }
+        }
+
+
+        public bool UpdateResponseToDatabase(int employeeId, int driveId, int responseType)
+        {
+            if (driveId <= 0 || employeeId <= 0 || responseType <= 0)
+                throw new ValidationException("DriveId or EmployeeId or Response Type is not valid");
+
+            try
+            {
+                var EmployeeResponse = (from response in _db.EmployeeDriveResponse where response.EmployeeId == employeeId && response.DriveId == driveId select response).First();
+
+                if (EmployeeResponse == null) throw new ValidationException("no response is found with given employee id and drive id");
+
+                EmployeeResponse.ResponseType = responseType;
+                _db.EmployeeDriveResponse.Update(EmployeeResponse);
+                _db.SaveChanges();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                return false;
+            }
+        }
+
+        //For Employee Avalability Entity
+        public bool SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability)
+        {
+            _db.EmployeeAvailability.Add(employeeAvailability);
+            return true;
         }
     }
 }
