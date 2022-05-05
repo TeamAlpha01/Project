@@ -25,7 +25,7 @@ import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlo
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
 import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
-import { EditComponentComponent } from './edit-component/edit-component.component';
+import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 
 
 
@@ -55,7 +55,7 @@ import { EditComponentComponent } from './edit-component/edit-component.componen
     TacDashboardComponent,
     AdminAdddepartmentComponent,
     AdminRequestsComponent,
-    
+    CreatepoolComponent
 
   ],
   
