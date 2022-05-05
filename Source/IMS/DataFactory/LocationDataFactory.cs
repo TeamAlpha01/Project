@@ -4,7 +4,7 @@ using IMS.Services;
 namespace IMS.DataFactory{
     public static class LocationDataFactory
     {
-        public static ILocationDataAccessLayer GetLocationDataAccessLayerObject()
+        public static ILocationDataAccessLayer GetLocationDataAccessLayerObject(ILogger _logger)
         {
             return new LocationDataAccessLayer();
         }
@@ -13,9 +13,9 @@ namespace IMS.DataFactory{
         {
             return new Location();
         }
-        public static ILocationServices GetLocationServiceObject()
+        public static ILocationServices GetLocationServiceObject(ILogger _logger)
         {
-            return new LocationService();
+            return new LocationService(_logger);
         }
     }
 }

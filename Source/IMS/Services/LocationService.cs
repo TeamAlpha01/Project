@@ -1,13 +1,19 @@
 using IMS.Models;
+using IMS.Validations;
 using IMS.DataAccessLayer;
 using System.Linq;
 namespace IMS.Services
 {
     public class LocationService : ILocationServices
     {
-        private ILocationDataAccessLayer _locationDataAccessLayer = DataFactory.LocationDataFactory.GetLocationDataAccessLayerObject();
+        private ILocationDataAccessLayer _locationDataAccessLayer;
         private Location _location = DataFactory.LocationDataFactory.GetLocationObject();
-
+        private readonly ILogger _logger;
+        public LocationService(ILogger logger)
+        {
+            _logger = logger;
+            _locationDataAccessLayer = DataFactory.LocationDataFactory.GetLocationDataAccessLayerObject(_logger);
+        }
         /*  
             Returns False when Exception occured in Data Access Layer
             
@@ -15,8 +21,8 @@ namespace IMS.Services
         */
         public bool CreateLocation(string locationName)
         {
-            if (locationName == null)
-                throw new ArgumentNullException("Location Name is not provided");
+            if (!LocationValidation.IsLocationValid(locationName))
+                throw new ValidationException("Role Name is not valid");
 
             try
             {
@@ -38,7 +44,7 @@ namespace IMS.Services
 
         public bool RemoveLocation(int locationId)
         {
-            if (locationId == null)
+            if (locationId == 0)
                 throw new ArgumentNullException("Location Id is not provided");
 
             try
