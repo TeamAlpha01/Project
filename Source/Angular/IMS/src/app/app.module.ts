@@ -38,6 +38,7 @@ import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-v
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
+import { NavbarComponent } from './Shared/navbar/navbar.component';
 
 
 
@@ -79,6 +80,7 @@ import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upc
     TacProfileComponent,
     CardDetailsComponent,
     InterviewerUpcomingDriveComponent,
+    NavbarComponent,
 
     
 
