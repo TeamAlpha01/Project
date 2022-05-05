@@ -12,8 +12,5 @@ namespace IMS.Models
         
         [InverseProperty("employees")]
         public PoolMembers poolMembers{get;set;}
-      
-
-        
     }
 }
