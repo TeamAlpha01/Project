@@ -9,7 +9,8 @@ namespace IMS.Models
         {
             AddedEmployeeDrives = new HashSet<Drive>();
             UpdatedEmployeeDrives = new HashSet<Drive>();
-            EmployeeResonses = new HashSet<EmployeeDriveResponse>();
+            EmployeeDriveResponses = new HashSet<EmployeeDriveResponse>();
+            EmployeeSlotResponses = new HashSet<EmployeeAvailability>();
         }
         [Key]
         public int EmployeeId { get; set; }
@@ -24,6 +25,9 @@ namespace IMS.Models
         public ICollection<Drive>? UpdatedEmployeeDrives { get; set; }
 
         [InverseProperty("Employee")]
-        public ICollection<EmployeeDriveResponse>? EmployeeResonses { get; set; }
+        public ICollection<EmployeeDriveResponse>? EmployeeDriveResponses { get; set; }
+
+        [InverseProperty("Employee")]
+        public ICollection<EmployeeAvailability>? EmployeeSlotResponses { get; set; }
     }
 }

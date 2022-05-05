@@ -22,6 +22,7 @@ import { EditpoolComponent } from './TAC/editpool/editpool.component';
 
 import { PoolmembersPerformanceComponent } from './TAC/poolmembers-performance/poolmembers-performance.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
+import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
 
 const routes: Routes = [
   { path: 'interviewer-home', component:InterviewerHomeComponent },
@@ -40,7 +41,7 @@ const routes: Routes = [
   {path: 'TAC-dashboard',component:TacDashboardComponent},
   {path: 'TAC-performance',component:MyperformanceComponent},
   {path: 'Poolmembers-performance',component:PoolmembersPerformanceComponent},
-
+  {path: 'managepoolmembers',component:ManagepoolmembersComponent},
   // {path:'',component:AdminDashboardComponent},
   
 
@@ -50,7 +51,7 @@ const routes: Routes = [
 
 
   // {path:'', component:InterviewerHomeComponent}
-  {path:'', component: EditpoolComponent}
+  {path:'', component: ManagepoolmembersComponent}
 
 ];
 

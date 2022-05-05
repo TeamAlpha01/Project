@@ -15,7 +15,7 @@ namespace IMS.Models
         public Drive? Drive { get; set; }
 
         [ForeignKey("EmployeeId")]
-        [InverseProperty("EmployeeResonses")]
+        [InverseProperty("EmployeeDriveResponses")]
         public Employee? Employee { get; set; }
 
     }

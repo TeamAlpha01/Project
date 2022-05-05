@@ -9,6 +9,7 @@ namespace IMS.DataAccessLayer
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Drive> Drives { get; set; }
         public DbSet<EmployeeDriveResponse> EmployeeDriveResponse{ get; set; }
+        public DbSet<EmployeeAvailability> EmployeeAvailability{ get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=ASPIREREN009;Database=InterviewManagementSystem;Trusted_Connection=True;");
