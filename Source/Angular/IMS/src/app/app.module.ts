@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,8 +34,8 @@ import { MyperformanceComponent } from './TAC/myperformance/myperformance.compon
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
 import { EditpoolComponent } from './TAC/editpool/editpool.component';
 import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
-import { AdminViewRoleComponent } from './Admin/admin-view-role/admin-view-role.component';
 import { CurrentDrivesFilterComponent } from './TAC/current-drives-filter/current-drives-filter.component';
+import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 
 
 
@@ -72,8 +73,10 @@ import { CurrentDrivesFilterComponent } from './TAC/current-drives-filter/curren
     DashboardComponent,
     EditpoolComponent,
     ManagepoolmembersComponent,
-    AdminViewRoleComponent,
-    CurrentDrivesFilterComponent
+    CurrentDrivesFilterComponent,
+    AdminViewRolePageComponent
+
+    
 
   ],
   
@@ -81,7 +84,8 @@ import { CurrentDrivesFilterComponent } from './TAC/current-drives-filter/curren
     BrowserModule,
     FormsModule,
     NgxPaginationModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

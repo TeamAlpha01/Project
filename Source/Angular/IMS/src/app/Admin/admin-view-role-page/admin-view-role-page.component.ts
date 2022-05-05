@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-admin-view-role',
-  templateUrl: './admin-view-role.component.html',
-  styleUrls: ['./admin-view-role.component.css']
+  selector: 'app-admin-view-role-page',
+  templateUrl: './admin-view-role-page.component.html',
+  styleUrls: ['./admin-view-role-page.component.css']
 })
-export class AdminViewRoleComponent implements OnInit {
+export class AdminViewRolePageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
@@ -19,7 +19,6 @@ export class AdminViewRoleComponent implements OnInit {
       .subscribe((data) => {
         this.data = data;
         this.totalLength = data.length;
-        console.log(this.totalLength);
       });
   }
 
