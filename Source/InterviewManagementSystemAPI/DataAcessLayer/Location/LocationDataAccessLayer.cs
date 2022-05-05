@@ -46,28 +46,32 @@ namespace IMS.DataAccessLayer
             try
             {
                 var location = _db.Locations.Find(locationId);
-                /*****************  null validation required for location *****************/
+                if (location == null) throw new ValidationException("No location is found with given Location Id");
+               
                 location.IsActive = false;
                 _db.Locations.Update(location);
                 _db.SaveChanges();
                 return true;
             }
-             catch (DbUpdateException exception)
+            catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase( int locationId) : {exception.Message}");
+                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId ) : {exception.Message}");
+                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
                 return false;
+            }
+            catch (ValidationException locationNotFound)
+            {
+                throw locationNotFound;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId )) : {exception.Message}");
+                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
                 return false;
             }
-         
 
         }
          public List<Location> GetLocationsFromDatabase()

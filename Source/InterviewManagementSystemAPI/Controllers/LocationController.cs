@@ -22,14 +22,16 @@ public class LocationController : ControllerBase
     [HttpPost]
     public IActionResult CreateNewLocation(string locationName)
     {
+        if(locationName==null)
+            return BadRequest("Location name is required");
         /*****************  parameter validation required  *****************/
         try
         {
             return _locationService.CreateLocation(locationName) ? Ok("Location Added Successfully") : Problem("Sorry internal error occured");
         }
-        catch(ValidationException locationNameException)
+        catch (ValidationException locationNameException)
         {
-            _logger.LogInformation($"Location Service : CreateLocation() : {locationNameException.Message}");
+            _logger.LogInformation($"Location Service : CreateNewLocation() : {locationNameException.Message}");
             return BadRequest(locationNameException.Message);
         }
         catch (Exception exception)
@@ -42,21 +44,25 @@ public class LocationController : ControllerBase
     [HttpPost]
     public IActionResult RemoveLocation(int locationId)
     {
+        if(locationId == 0)
+            return BadRequest("Location Id can't be null");
+
         /*****************  parameter validation required  *****************/
         try
         {
             return _locationService.RemoveLocation(locationId) ? Ok("Location Removed Successfully") : Problem("Sorry internal error occured");
         }
-       catch(ValidationException locationNotFound)
+         catch (ValidationException locationNotFound)
         {
             _logger.LogInformation($"Location Service : RemoveLocation() : {locationNotFound.Message}");
             return BadRequest(locationNotFound.Message);
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Role Service : RemoveLocation throwed an exception : {exception}");
+            _logger.LogInformation($"Location Service : RemoveLocation throwed an exception : {exception}");
             return BadRequest("Sorry some internal error occured");
         }
+      
     }
     [HttpGet]
     public IActionResult ViewLocations()

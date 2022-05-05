@@ -56,15 +56,19 @@ namespace IMS.Services
             {
                 return _locationDataAccessLayer.RemoveLocationFromDatabase(locationId) ? true : false; // LOG Error in DAL;
             }
-            catch (ArgumentException exception)
+           catch (ArgumentException exception)
             {
                 _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {exception.Message}");
                 return false;
             }
-
+            catch (ValidationException locationNotFound)
+            {
+                _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {locationNotFound.Message}");
+                throw locationNotFound;
+            }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {exception.Message}");
+                _logger.LogInformation($"Location service : RemoveLocation(int locationId) :{exception.Message}");
                 return false;
             }
         }
@@ -81,7 +85,7 @@ namespace IMS.Services
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Location service: {exception.Message}");
+                _logger.LogInformation($"Location service:ViewLocations(): {exception.Message}");
                 throw new Exception();
             }
 
