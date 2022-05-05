@@ -27,8 +27,8 @@ import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-v
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 
 const routes: Routes = [
-  { path: '', component: TacHomeComponent},
-  { path: '', component: AdminViewRolePageComponent},
+  // { path: '', component: TacHomeComponent},
+  // { path: '', component: AdminViewRolePageComponent},
   { path: '', component: InterviewerScheduledDriveComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },

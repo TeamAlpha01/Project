@@ -15,20 +15,5 @@ export class CardDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  drive!: any[]
-  // drive: any[] = [{
-  //   driveName: 'freshers 2021',
-  //   department: 'asd',
-  //   poolName: '',
-  //   date: 0,
-  //   mode: '',
-  //   location: ''
-  // }, {
-  //   driveName: 'freshers 2022',
-  //   department: 'fgh',
-  //   poolName: '',
-  //   date: 0,
-  //   mode: '',
-  //   location: ''
-  // }]
+
 }

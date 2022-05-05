@@ -19,7 +19,6 @@ import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-curr
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
-import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
@@ -38,6 +37,7 @@ import { CurrentDrivesFilterComponent } from './TAC/current-drives-filter/curren
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
+import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 
 
 
@@ -61,7 +61,6 @@ import { CardDetailsComponent } from './Shared/card-details/card-details.compone
     InterviewerDashboardComponent,
     InterviewerDriveInvitesComponent,
     InterviewerScheduledDriveComponent,
-    InterviewerUpcomingDriveComponent,
     TacHomeComponent,
     AdminAddlocationComponent,
     AdminAddprojectComponent,
@@ -78,7 +77,8 @@ import { CardDetailsComponent } from './Shared/card-details/card-details.compone
     CurrentDrivesFilterComponent,
     AdminViewRolePageComponent,
     TacProfileComponent,
-    CardDetailsComponent
+    CardDetailsComponent,
+    InterviewerUpcomingDriveComponent,
 
     
 
