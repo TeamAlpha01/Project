@@ -1,6 +1,7 @@
 using IMS.Models;
 using IMS.Validations;
 using IMS.DataAccessLayer;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 namespace IMS.Services
 {
@@ -21,19 +22,25 @@ namespace IMS.Services
         */
         public bool CreateLocation(string locationName)
         {
-            if (!LocationValidation.IsLocationValid(locationName))
-                throw new ValidationException("Role Name is not valid");
+            LocationValidation.IsLocationNameValid(locationName);
+               
 
             try
             {
                 _location.LocationName = locationName;
                 return _locationDataAccessLayer.AddLocationToDatabase(_location) ? true : false; // LOG Error in DAL;
             }
-            catch (Exception)
+             catch (ArgumentException exception)
             {
-                // Log "Exception Occured in Data Access Layer"
+                _logger.LogInformation($"Location service : CreateLocation(string  locationName) : {exception.Message}");
                 return false;
             }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Location service : CreateLocation(string locationName) : {exception.Message}");
+                return false;
+            }
+         
         }
 
         /*  
@@ -44,16 +51,21 @@ namespace IMS.Services
 
         public bool RemoveLocation(int locationId)
         {
-            if (locationId == 0)
-                throw new ArgumentNullException("Location Id is not provided");
+              LocationValidation.IsLocationIdValid(locationId);
 
             try
             {
                 return _locationDataAccessLayer.RemoveLocationFromDatabase(locationId) ? true :false; // LOG Error in DAL;
             }
-            catch (Exception)
+            catch (ArgumentException exception)
             {
-                // Log "Exception Occured in Data Access Layer"
+                _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {exception.Message}");
+                return false;
+            }
+            
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {exception.Message}");
                 return false;
             }
         }
@@ -68,11 +80,13 @@ namespace IMS.Services
                 IEnumerable<Location> locations = new List<Location>();
                 return locations = from location in _locationDataAccessLayer.GetLocationsFromDatabase() where location.IsActive == true select location;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //Log "Exception occured in DAL while fetching roles"
+                _logger.LogInformation($"Location service: {exception.Message}");
                 throw new Exception();
+              
             }
+          
         }
 
     }

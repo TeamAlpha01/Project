@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using IMS.Models;
 using IMS.Validations;
+using System.ComponentModel.DataAnnotations;
 using IMS.Services;
 using System.Net;
 
@@ -21,10 +22,6 @@ public class LocationController : ControllerBase
     [HttpPost]
     public IActionResult CreateNewLocation(string locationName)
     {
-      
-        if (locationName == null) 
-            return BadRequest("Location name is required");
-
         try
         {
             return locationService.CreateLocation(locationName) ? Ok("Location Added Successfully") : Problem("Sorry internal error occured");
@@ -44,15 +41,19 @@ public class LocationController : ControllerBase
     [HttpPost]
     public IActionResult RemoveLocation(int locationId)
     {
-        if (locationId == 0) return BadRequest("Location Id is not provided");
 
         try
         {
-            return locationService.RemoveLocation(locationId) ? Ok("Location Removed Successfully") : BadRequest("Sorry internal error occured");
+            return locationService.RemoveLocation(locationId) ? Ok("Location Removed Successfully") : Problem("Sorry internal error occured");
+        }
+       catch(ValidationException locationNotFound)
+        {
+            _logger.LogInformation($"Location Service : RemoveLocation() : {locationNotFound.Message}");
+            return BadRequest(locationNotFound.Message);
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Location Service : RemoveLocation throwed an exception", exception);
+            _logger.LogInformation($"Role Service : RemoveLocation throwed an exception : {exception}");
             return BadRequest("Sorry some internal error occured");
         }
     }

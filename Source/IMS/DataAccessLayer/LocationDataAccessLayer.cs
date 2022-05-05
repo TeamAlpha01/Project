@@ -1,41 +1,48 @@
 using IMS.Models;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using IMS.Validations;
 namespace IMS.DataAccessLayer
 {
     public class LocationDataAccessLayer:ILocationDataAccessLayer
     {
        private LocationContext _db = DataFactory.DbContextDataFactory.GetIMSDbContextObject();  
+        private ILogger _logger;
+
+        public LocationDataAccessLayer(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         public bool AddLocationToDatabase(Location location)
         {
-            if (location == null)
-                throw new ArgumentNullException("Location can't be null");
+            LocationValidation.IsLocationValid(location);
             try
             {
                 _db.Locations.Add(location);
                 _db.SaveChanges();
                 return true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
-                //LOG   "DB Update Exception Occured"
+                _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location) : {exception.Message}");
                 return false;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
-                //LOG   "Opreation cancelled exception"
+                _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location) : {exception.Message}");
                 return false;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //LOG   "unknown exception occured "
+                _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location)) : {exception.Message}");
                 return false;
             }
         }
          public bool RemoveLocationFromDatabase(int locationId)
         {
-            if (locationId == 0)
-                throw new ArgumentNullException("Location Id is not provided ");
-
+            LocationValidation.IsLocationIdValid(locationId);
+           
             try
             {
                 var location = _db.Locations.Find(locationId);
@@ -44,21 +51,22 @@ namespace IMS.DataAccessLayer
                 _db.SaveChanges();
                 return true;
             }
-            catch (DbUpdateException)
+             catch (DbUpdateException exception)
             {
-                //LOG   "DB Update Exception Occured"
+                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase( int locationId) : {exception.Message}");
                 return false;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
-                //LOG   "Opreation cancelled exception"
+                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId ) : {exception.Message}");
                 return false;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //LOG   "unknown exception occured "
+                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId )) : {exception.Message}");
                 return false;
             }
+         
 
         }
          public List<Location> GetLocationsFromDatabase()
@@ -67,19 +75,19 @@ namespace IMS.DataAccessLayer
             {
                 return _db.Locations.ToList();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
-                //LOG   "DB Update Exception Occured"
+                _logger.LogInformation($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
                 throw new DbUpdateException();
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
-                //LOG   "Opreation cancelled exception"
+                _logger.LogInformation($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                //LOG   "unknown exception occured "
+                _logger.LogInformation($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
         }
