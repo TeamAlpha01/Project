@@ -10,12 +10,13 @@ namespace IMS.Controllers;
 public class PoolController : ControllerBase
 {
     private readonly ILogger _logger;
+     private IPoolService poolService;
     public PoolController(ILogger<PoolController> logger)
     {
         _logger = logger;
+        poolService = DataFactory.PoolDataFactory.GetPoolServiceObject(_logger);
     }
-    IPoolService PoolService = DataFactory.PoolDataFactory.GetPoolServiceObject();
-
+   
     [HttpPost]
     public IActionResult CreateNewPool( int departmentId,string poolName)
     {
