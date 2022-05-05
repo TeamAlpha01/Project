@@ -36,9 +36,7 @@ import { EditpoolComponent } from './TAC/editpool/editpool.component';
 import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
 import { CurrentDrivesFilterComponent } from './TAC/current-drives-filter/current-drives-filter.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
-
-
-
+import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 
 
 
@@ -74,7 +72,8 @@ import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-v
     EditpoolComponent,
     ManagepoolmembersComponent,
     CurrentDrivesFilterComponent,
-    AdminViewRolePageComponent
+    AdminViewRolePageComponent,
+    TacProfileComponent
 
     
 
