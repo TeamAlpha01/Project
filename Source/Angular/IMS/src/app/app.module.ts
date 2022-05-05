@@ -25,6 +25,7 @@ import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlo
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
 import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
+import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 
 
 
@@ -53,7 +54,8 @@ import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.co
     AdminAddprojectComponent,
     TacDashboardComponent,
     AdminAdddepartmentComponent,
-    AdminRequestsComponent
+    AdminRequestsComponent,
+    AdminDashboardComponent
 
   ],
   

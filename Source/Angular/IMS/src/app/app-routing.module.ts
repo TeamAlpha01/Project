@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
+import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 // import { AdminRoleComponent } from './Admin/admin-addrole/admin-role.component';
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path: 'Admin-addproject',component:AdminAddprojectComponent},
   {path: 'Admin-role',component:AdminRoleComponent},
   {path: 'Admin-requests',component:AdminRequestsComponent},
-
+  {path: 'Admin-dashboard',component:AdminDashboardComponent},
+  {path:'',component:AdminDashboardComponent}
   
 
   { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
