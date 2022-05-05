@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Role } from '../role.model';
-import { RoleService } from '../role.service';
+import { Role } from 'src/app/Model/Role';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { url } from 'inspector';
+
 
 @Component({
   selector: 'app-admin-role',
@@ -8,11 +10,16 @@ import { RoleService } from '../role.service';
   styleUrls: ['./admin-role.component.css']
 })
 export class AdminRoleComponent implements OnInit {
-
-  constructor(public service:RoleService) { }
-
-  ngOnInit(): void {
-  }
+  role: Role={
+  roleName : '',
+}
+constructor(private http: HttpClient) { }
+addRole(){
+console.log(this.role)
+// this.http.post(url:)
+}
+ngOnInit(): void {
+}
 pageTitle = "Role"
       
 }
