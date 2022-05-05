@@ -4113,19 +4113,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\prithvi.palani\\.nuget\\packages\\": {}
+    "C:\\Users\\Darshana\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+      "projectUniqueName": "F:\\Git\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
       "projectName": "Source",
-      "projectPath": "d:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
-      "packagesPath": "C:\\Users\\prithvi.palani\\.nuget\\packages\\",
-      "outputPath": "d:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
+      "projectPath": "F:\\Git\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+      "packagesPath": "C:\\Users\\Darshana\\.nuget\\packages\\",
+      "outputPath": "F:\\Git\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\prithvi.palani\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Darshana\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -4204,7 +4204,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
