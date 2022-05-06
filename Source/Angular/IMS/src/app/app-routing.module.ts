@@ -38,12 +38,15 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
 const routes: Routes = [
   { path: 'admin-addrole-page', component: AdminViewRolePageComponent},
   // { path: '', component: InterviewerScheduledDriveComponent},
-  { path: '', component: AdminViewRolePageComponent},
+  { path: '', component: TacHomeComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
   { path: 'interviewer-currentDrives', component:InterviewerCurrentDriveComponent },
+  { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
+  { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
   { path: 'interviewer-driveInvites', component:InterviewerDriveInvitesComponent },
+
 
   {path: 'Admin-adddepartment ',component:AdminAdddepartmentComponent},
   {path: 'Admin-addlocation ',component:AdminAddlocationComponent},
@@ -69,14 +72,13 @@ const routes: Routes = [
   {path:'managepoolmembers',component:ManagepoolmembersComponent},
   {path:'managepool',component:ManagepoolComponent},
 
-  { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
-  { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
+  
   { path: 'tac-home',component:TacHomeComponent},
 
   // {path:'', component: ManagepoolmembersComponent},
 
-  // {path:'', component:InterviewerHomeComponent}
-  {path:'', component: ManagepoolComponent}
+  // {path:'', component: ManagepoolComponent}
+  //{path:'', component: ManagepoolComponent}
   // {path:'', component: ManagepoolmembersComponent},
 
 ];
