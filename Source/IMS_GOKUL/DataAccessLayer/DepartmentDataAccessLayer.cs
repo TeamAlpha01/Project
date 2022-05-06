@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using IMS.Model;
+using System.ComponentModel.DataAnnotations;
+
 namespace IMS.DataAccessLayer
 {
     public class DepartmentDataAccessLayer : IDepartmentDataAccessLayer
@@ -101,6 +103,102 @@ namespace IMS.DataAccessLayer
                 throw new Exception();
             }
         }
+
+        public bool AddProjectToDatabase(Project project)
+        {
+            if (project == null)
+                throw new ArgumentNullException("DepartmentId and ProjectName is not provided");
+            try
+            {
+                _db.Projects.Add(project);
+                _db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                //LOG   "DB Update Exception Occured"
+                return false;
+            }
+            catch (OperationCanceledException)
+            {
+                //LOG   "Opreation cancelled exception"
+                return false;
+            }
+            catch (Exception)
+            {
+                //LOG   "unknown exception occured "
+                return false;
+            }
+        }
+
+
+
+        /*  Returns False when Exception occured in Database Connectivity
+            
+            Throws ArgumentNullException when Role Id is not passed 
+        */
+        public bool RemoveProjectFromDatabase(int projectId)
+        {
+            if (projectId <=0 )
+                throw new ArgumentNullException("Project Id is not provided ");
+
+            try
+            {
+                var project = _db.Projects.Find(projectId);
+                project.IsActive = false;
+                _db.Projects.Update(project);
+                _db.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                //LOG   "DB Update Exception Occured"
+                return false;
+            }
+            catch (OperationCanceledException)
+            {
+                //LOG   "Opreation cancelled exception"
+                return false;
+            }
+            catch (Exception)
+            {
+                //LOG   "unknown exception occured "
+                return false;
+            }
+
+        }
+
+        /*  
+            Throws Exception when Exception occured in Database Connectivity
+        */
+        public List<Project> GetProjectsFromDatabase(int departmentId)
+        {
+            try
+            { 
+                  var project1 = (from project in _db.Projects where project.DepartmentId == departmentId select project);
+                   return project1.Count() != 0 ? project1.ToList() : throw new ValidationException("Department is not  found");
+            }
+            catch (DbUpdateException)
+            {
+                //LOG   "DB Update Exception Occured"
+                throw new DbUpdateException();
+            }
+            catch (OperationCanceledException)
+            {
+                //LOG   "Opreation cancelled exception"
+                throw new OperationCanceledException();
+            }
+            catch (Exception)
+            {
+                //LOG   "unknown exception occured "
+                throw new Exception();
+            }
+        }
+
+
+
+
+
 
     }
 }

@@ -16,6 +16,10 @@ namespace IMS.DataFactory{
         {
             return new Department();
         }
+         public static Project GetProjectObject()
+        {
+            return new Project();
+        }
 
     }
 }

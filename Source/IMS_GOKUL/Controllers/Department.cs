@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
-using IMS.Model;
 using IMS.Service;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 namespace IMS.Controllers;
 
@@ -26,15 +26,21 @@ public class DeparmentController : ControllerBase
         {
             return departmentService.CreateDepartment(departmentName) ? Ok("Department Added Successfully") : BadRequest("Sorry internal error occured");
         }
+         catch (ValidationException exception)
+        {
+             _logger.LogInformation("Department Service : Department throwed an exception", exception);
+            return BadRequest("Department Name is invalid");
+        }
         catch (Exception exception)
         {
             _logger.LogInformation("Department Service : Department throwed an exception", exception);
             return BadRequest("Sorry some internal error occured");
         }
+       
     }
 
     [HttpPost]
-    public IActionResult DepartmentRole(int departmentId)
+    public IActionResult RemoveDepartment(int departmentId)
     {
         if (departmentId == 0) return BadRequest("Department Id is not provided");
 
