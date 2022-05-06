@@ -493,3 +493,13 @@ D:\InterviewManagementSystemAPI\obj\Debug\net6.0\scopedcss\bundle\Source.styles.
 D:\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.csproj.CopyComplete
 D:\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.genruntimeconfig.cache
 D:\InterviewManagementSystemAPI\obj\Debug\net6.0\ref\Source.dll
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\Source.csproj.AssemblyReference.cache
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\Source.GeneratedMSBuildEditorConfig.editorconfig
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\Source.AssemblyInfoInputs.cache
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\Source.AssemblyInfo.cs
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\Source.csproj.CoreCompileInputs.cache
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\Source.MvcApplicationPartsAssemblyInfo.cs
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\Source.MvcApplicationPartsAssemblyInfo.cache
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\Source.dll
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\refint\Source.dll
+F:\Git\Project\Source\Pool Service - Working Copy\obj\Debug\net6.0\Source.pdb
