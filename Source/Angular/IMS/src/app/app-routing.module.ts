@@ -29,6 +29,7 @@ import { LoginComponent } from './Shared/login/login.component';
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
+import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 
 
 
@@ -59,6 +60,7 @@ const routes: Routes = [
   {path: 'managepoolmembers',component:ManagepoolmembersComponent},
   {path: 'tac-profile', component:TacProfileComponent },
   {path: 'tac-current-drive', component:TacCurrentDriveComponent },
+  {path: 'tac-scheduled-drive', component:TacScheduledDriveComponent },
   // {path:'',component:AdminDashboardComponent},
 
   {path:'createpool',component:CreatepoolComponent},
