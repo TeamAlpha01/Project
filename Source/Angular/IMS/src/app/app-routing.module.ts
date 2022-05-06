@@ -67,6 +67,7 @@ const routes: Routes = [
   {path:'createpool',component:CreatepoolComponent},
   {path:'editpool',component:EditpoolComponent},
   {path:'managepoolmembers',component:ManagepoolmembersComponent},
+  {path:'managepool',component:ManagepoolComponent},
 
   { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
   { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
