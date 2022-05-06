@@ -9,12 +9,14 @@ namespace project.Controller;
   public class ProjectController : ControllerBase
   {
     private readonly ILogger _logger;
+    IDepartmentService departmentService1;
     public ProjectController(ILogger<ProjectController> logger)
     {
         _logger = logger;
+         departmentService1 = IMS.DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
     }
     
- IDepartmentService departmentService1 = IMS.DataFactory.DepartmentDataFactory.GetDepartmentServiceObject();
+ 
     [HttpPost]
     public IActionResult CreateNewProject( int departmentId,string projectName)
     {
@@ -27,12 +29,12 @@ namespace project.Controller;
         }
         catch (ValidationException exception)
         {
-             _logger.LogInformation("Department Service : Department throwed an exception", exception);
+             _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {exception.Message} : {exception.StackTrace}");
             return BadRequest("project Name is invalid");
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Pool Service : CreatePool throwed an exception", exception);
+             _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {exception.Message} : {exception.StackTrace}");
             return BadRequest("Sorry some internal error occured");
         }
     }
@@ -47,7 +49,7 @@ namespace project.Controller;
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Project Service : RemoveProject throwed an exception", exception);
+             _logger.LogInformation($"Project Controller : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
             return BadRequest("Sorry some internal error occured");
         }
     }
@@ -60,7 +62,7 @@ namespace project.Controller;
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching roles ", exception);
+            _logger.LogInformation($"Project Controller : ViewProjects() : {exception.Message} : {exception.StackTrace}");
             return BadRequest("Sorry some internal error occured");
         }
     }

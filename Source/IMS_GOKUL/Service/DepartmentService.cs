@@ -6,7 +6,17 @@ namespace IMS.Service
 {
     public class DepartmentService : IDepartmentService
     {
-        private IDepartmentDataAccessLayer _departmentDataAccessLayer = DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject();
+
+        private IDepartmentDataAccessLayer _departmentDataAccessLayer ;
+         private ILogger _logger;
+
+        public DepartmentService(ILogger logger)
+        {
+            _logger = logger;
+         _departmentDataAccessLayer = DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(logger);
+        }
+
+         
         private Department _department = DataFactory.DepartmentDataFactory.GetDepartmentObject();
        private Project _project = DataFactory.DepartmentDataFactory.GetProjectObject();
 
@@ -17,8 +27,7 @@ namespace IMS.Service
         */
         public bool CreateDepartment(string departmentName)
         {
-            if(!DepartmentValidation.IsDepartmentValid(departmentName))
-                throw new ArgumentNullException("Department Name is not provided");
+            DepartmentValidation.IsDepartmentValid(departmentName);
 
             try
             {

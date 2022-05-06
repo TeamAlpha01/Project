@@ -10,11 +10,14 @@ namespace IMS.Controllers;
 public class DeparmentController : ControllerBase
 {
     private readonly ILogger _logger;
+     IDepartmentService departmentService;
+
     public DeparmentController(ILogger<DeparmentController> logger)
     {
         _logger = logger;
+         departmentService = DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
     }
-    IDepartmentService departmentService = DataFactory.DepartmentDataFactory.GetDepartmentServiceObject();
+    
 
     [HttpPost]
     public IActionResult CreateNewDeparment(string departmentName)
@@ -28,12 +31,12 @@ public class DeparmentController : ControllerBase
         }
          catch (ValidationException exception)
         {
-             _logger.LogInformation("Department Service : Department throwed an exception", exception);
+             _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
             return BadRequest("Department Name is invalid");
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Department Service : Department throwed an exception", exception);
+            _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
             return BadRequest("Sorry some internal error occured");
         }
        
@@ -50,7 +53,7 @@ public class DeparmentController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Department Service : DepartmentRole throwed an exception", exception);
+         _logger.LogInformation($"Department Controller : RemoveDepartment(int departmentId) : {exception.Message} : {exception.StackTrace}");
             return BadRequest("Sorry some internal error occured");
         }
     }
@@ -63,7 +66,7 @@ public class DeparmentController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching roles ", exception);
+           _logger.LogInformation($"Department Controller : ViewDepartment() : {exception.Message} : {exception.StackTrace}");
             return BadRequest("Sorry some internal error occured");
         }
     }

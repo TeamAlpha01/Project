@@ -14,6 +14,11 @@ namespace IMS.DataAccessLayer
         */
 
         //private readonly ILogger _logger = new ILogger<RoleDataAccessLayer>();        
+         private ILogger _logger;
+        public DepartmentDataAccessLayer(ILogger logger)
+        {
+            _logger = logger;
+        }
         public bool AddDepartmentToDatabase(Department department)
         {
             if (department == null)

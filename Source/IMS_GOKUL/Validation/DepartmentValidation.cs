@@ -9,12 +9,12 @@ namespace IMS.Validation
 {
     public class DepartmentValidation
     {
-         public static bool IsDepartmentValid(string departmentName)
+         public static void IsDepartmentValid(string departmentName)
         {
             if(departmentName==null) throw new ValidationException("department name cannot be null");
             //if(departmentName.Length<2 && departmentName.Length>15) throw new ValidationException("department name is in Invalid Length");
             if(!Regex.IsMatch(departmentName,@"^[a-zA-Z]{3,15}$")) throw new ValidationException("Department Name is invalid");
-            return true;
+           
         }
     }
 }
