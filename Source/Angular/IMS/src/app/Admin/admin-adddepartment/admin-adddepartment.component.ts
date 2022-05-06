@@ -9,9 +9,9 @@ import { Department } from 'src/app/Model/Department';
 })
 export class AdminAdddepartmentComponent implements OnInit {
   department: Department ={
-      departmentName:'';
+      departmentName:'',
   }
-  }
+
   constructor(private http:HttpClient) { }
   addDepartment(){
     console.log(this.department)
@@ -22,3 +22,4 @@ export class AdminAdddepartmentComponent implements OnInit {
   pageTitle = "Department"
 
 }
+
