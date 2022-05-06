@@ -16,9 +16,5 @@ namespace IMS.Model
         public bool IsAdminAccepted {get;set;} = false;
         public bool IsAdminResponded {get;set;} = false;
 
-        internal static bool CreateNewEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

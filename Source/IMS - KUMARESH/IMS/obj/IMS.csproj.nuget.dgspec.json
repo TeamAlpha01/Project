@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\IMS\\IMS\\IMS.csproj": {}
+    "D:\\GIT-Aravindhan\\Project\\Source\\IMS - KUMARESH\\IMS\\IMS.csproj": {}
   },
   "projects": {
-    "D:\\IMS\\IMS\\IMS.csproj": {
+    "D:\\GIT-Aravindhan\\Project\\Source\\IMS - KUMARESH\\IMS\\IMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\IMS\\IMS\\IMS.csproj",
+        "projectUniqueName": "D:\\GIT-Aravindhan\\Project\\Source\\IMS - KUMARESH\\IMS\\IMS.csproj",
         "projectName": "IMS",
-        "projectPath": "D:\\IMS\\IMS\\IMS.csproj",
-        "packagesPath": "C:\\Users\\kumareshk.suresh\\.nuget\\packages\\",
-        "outputPath": "D:\\IMS\\IMS\\obj\\",
+        "projectPath": "D:\\GIT-Aravindhan\\Project\\Source\\IMS - KUMARESH\\IMS\\IMS.csproj",
+        "packagesPath": "C:\\Users\\aravind.rangaraj\\.nuget\\packages\\",
+        "outputPath": "D:\\GIT-Aravindhan\\Project\\Source\\IMS - KUMARESH\\IMS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kumareshk.suresh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\aravind.rangaraj\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

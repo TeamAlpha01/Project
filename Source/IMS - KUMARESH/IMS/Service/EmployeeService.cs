@@ -3,6 +3,7 @@ using IMS.DataAccessLayer;
 using IMS.Validations;
 using IMS.DataFactory;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IMS.Service
 {
@@ -19,6 +20,7 @@ namespace IMS.Service
 
         // private IEmployeeDataAccessLayer _employeeDataAccessLayer = DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject();
 
+        
         public bool CreateNewEmployee(Employee employee)
         {
             EmployeeValidation.IsEmployeeValid(employee);
@@ -38,6 +40,7 @@ namespace IMS.Service
                 return false;
             }
         }
+        
 
         public bool RemoveEmployee(int employeeId)
         {
@@ -64,7 +67,7 @@ namespace IMS.Service
                 return false;
             }
         }
-
+       
         public IEnumerable<Employee> ViewEmployees()
         {
             try
@@ -78,7 +81,7 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
-        public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId)
+               public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId)
         {
              try
             {
@@ -91,6 +94,7 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
+        
         public IEnumerable<Employee> ViewEmployeeByApprovalStatus()
         {
             try
@@ -105,6 +109,7 @@ namespace IMS.Service
             }
         }
 
+        
         public IEnumerable<Employee> ViewTACRequest()
         {
             try

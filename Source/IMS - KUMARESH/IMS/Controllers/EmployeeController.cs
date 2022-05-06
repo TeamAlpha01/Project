@@ -20,12 +20,12 @@ public class EmployeeController : ControllerBase
     }
     // private IEmployeeService _employee = DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
 
-
+    [HttpPost]
     public IActionResult CreateNewEmployee(Employee employee)
     {
         try
         {
-            return Employee.CreateNewEmployee(employee) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");
+            return employeeService.CreateNewEmployee(employee) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");
         }
         catch(ValidationException employeeNameException)
         {
@@ -38,13 +38,14 @@ public class EmployeeController : ControllerBase
             return Problem("Sorry some internal error occured");
         }
     }
+    [HttpPatch]
     public IActionResult RemoveEmployee(int employeeId)
     {
-         if (employeeId == 0) return BadRequest("Role Id is not provided");
+         if (employeeId == 0) return BadRequest("Employee Id is not provided");
 
         try
         {
-            return employeeService.RemoveEmployee(employeeId) ? Ok("Role Removed Successfully") : BadRequest("Sorry internal error occured");
+            return employeeService.RemoveEmployee(employeeId) ? Ok("Employee Removed Successfully") : BadRequest("Sorry internal error occured");
         }
         catch(ValidationException employeeNotFound)
         {
@@ -57,6 +58,7 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+     [HttpGet]
     public IActionResult ViewEmployees()
     {
         try
@@ -69,6 +71,8 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+
+     [HttpGet]
     public IActionResult ViewEmployeesByDepartment(int departmentId)
     {
         try
@@ -81,6 +85,8 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+
+    [HttpGet]
     public IActionResult ViewEmployeeByApprovalStatus()
     {
         try
@@ -93,6 +99,7 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+    [HttpGet]
     public IActionResult ViewTACRequest()
     {
         try
