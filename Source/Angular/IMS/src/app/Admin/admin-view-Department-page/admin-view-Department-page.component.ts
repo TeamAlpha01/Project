@@ -3,8 +3,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-viewDepartment-page',
-  templateUrl: './admin-viewDepartment-page.component.html',
-  styleUrls: ['./admin-viewDepartment-page.component.css']
+  templateUrl: './admin-view-Department-page.component.html',
+  styleUrls: ['./admin-view-Department-page.component.css']
 })
 export class AdminviewDepartmentPageComponent implements OnInit {
   data: any;

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminAddprojectPageComponent } from './admin-view-Project-view.component';
+import { AdminviewProjectPageComponent } from './admin-view-Project-view.component';
 
 describe('AdminAddProjectPageComponent', () => {
-  let component: AdminAddprojectPageComponent;
-  let fixture: ComponentFixture<AdminAddprojectPageComponent>;
+  let component: AdminviewProjectPageComponent;
+  let fixture: ComponentFixture<AdminviewProjectPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminAddprojectPageComponent ]
+      declarations: [ AdminviewProjectPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminAddprojectPageComponent);
+    fixture = TestBed.createComponent(AdminviewProjectPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

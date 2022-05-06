@@ -47,6 +47,7 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 import { AdminAddprojectPageComponent } from './Admin/admin-view-Project-page/admin-view-Project-view.component';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-Department-page/admin-view-Department-page.component';
+import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 
 
 
@@ -58,8 +59,8 @@ import { AdminviewDepartmentPageComponent } from './Admin/admin-view-Department-
     AdminAdddepartmentComponent,
     AdminviewDepartmentPageComponent,
     AdminAddlocationComponent,
+    AdminviewLocationPageComponent,
     AdminAddprojectComponent,
-    AdminAddprojectPageComponent,
     AdminDashboardComponent,
     AdminRequestsComponent,
     AdminViewRolePageComponent,

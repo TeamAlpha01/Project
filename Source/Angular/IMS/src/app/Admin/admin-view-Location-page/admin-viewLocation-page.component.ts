@@ -3,10 +3,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-AddLocation-page',
-  templateUrl: './admin-AddLocation-page.component.html',
-  styleUrls: ['./admin-AddLocation-page.component.css']
+  templateUrl: './admin-viewLocation-page.component.html',
+  styleUrls: ['./admin-viewLocation-page.component.css']
 })
-export class AdminAddLocationPageComponent implements OnInit {
+export class AdminviewLocationPageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;

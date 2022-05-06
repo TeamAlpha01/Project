@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminAddLocationPageComponent } from './admin-viewLocation-page.component';
+import { AdminviewLocationPageComponent } from './admin-viewLocation-page.component';
 
 describe('AdminViewAddprojectPageComponent', () => {
-  let component: AdminAddLocationPageComponent;
-  let fixture: ComponentFixture<AdminAddLocationPageComponent>;
+  let component: AdminviewLocationPageComponent;
+  let fixture: ComponentFixture<AdminviewLocationPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminAddLocationPageComponent ]
+      declarations: [ AdminviewLocationPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminAddLocationPageComponent);
+    fixture = TestBed.createComponent(AdminviewLocationPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
