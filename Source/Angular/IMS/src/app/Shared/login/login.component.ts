@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   login(){
     console.log(this.userDetails);
     // this.userDetails.resetform();
-    this.userDetails.['reset'];
+    //this.userDetails.['reset'];
   }
 
 }

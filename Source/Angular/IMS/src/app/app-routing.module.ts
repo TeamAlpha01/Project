@@ -27,6 +27,7 @@ import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-v
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { LoginComponent } from './Shared/login/login.component';
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
+import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 
 
 
@@ -56,6 +57,7 @@ const routes: Routes = [
   {path: 'Poolmembers-performance',component:PoolmembersPerformanceComponent},
   {path: 'managepoolmembers',component:ManagepoolmembersComponent},
   {path: 'tac-profile', component:TacProfileComponent },
+  {path: 'tac-current-drive', component:TacCurrentDriveComponent },
   // {path:'',component:AdminDashboardComponent},
   
 
