@@ -15,7 +15,7 @@ namespace IMS.Services
             _logger = logger;
             _poolDataAccessLayer = DataFactory.PoolDataFactory.GetPoolDataAccessLayerObject(_logger);
      
-       // private PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
+      
 
         public bool CreatePool( int departmentId,string poolName)
         {
@@ -114,23 +114,22 @@ namespace IMS.Services
         }
     
 
-        //  public bool AddPoolMembers (int EmployeeId, int PoolId)
-        // {
-        //     if (EmployeeId == 0 || PoolId == 0)
-        //         throw new ArgumentNullException("PoolID is not provided");
-
-        //     try
-        //     {
-        //         _PoolMembers.EmployeeId=EmployeeId;
-        //         _PoolMembers.PoolId = PoolId;
-        //         return _PoolDataAccessLayer.AddPoolMembersToDatabase(_PoolMembers) ? true : false; // LOG Error in DAL;
-        //     }
-        //     catch (Exception)
-        //     {
-        //         // Log "Exception Occured in Data Access Layer"
-        //         return false;
-        //     }
-        // }
+         public bool AddPoolMembers (int employeeId, int poolId)
+        {
+            private PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
+            
+            try
+            {
+                _PoolMembers.EmployeeId=employeeId;
+                _PoolMembers.PoolId = poolId;
+                return _poolDataAccessLayer.AddPoolMembersToDatabase(_PoolMembers) ? true : false; // LOG Error in DAL;
+            }
+            catch (Exception)
+            {
+                // Log "Exception Occured in Data Access Layer"
+                return false;
+            }
+        }
 
         //     public bool RemovePoolMembers (int EmployeeID, int PoolId)
         // {

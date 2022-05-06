@@ -98,6 +98,28 @@ public class PoolController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+    [HttpPost]
+    public IActionResult AddPoolMembers(int employeeId,int poolId)
+    {
+        if(employeeId==0 || poolId==0)
+            return BadRequest("Employee Id or Pool Id cannot be null");
+        
+        try
+        {
+            return _poolService.AddPoolMembers(employeeId,poolId) ? Ok("Pool Added Successfully") : Problem("Sorry internal error occured");
+        }
+        catch (ValidationException poolMemberNotException)
+        {
+            _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {poolMemberNotException.Message}");
+            return BadRequest(poolMemberNotException.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Pool Service : AddPoolMembers throwed an exception : {exception}");
+            return Problem("Sorry some internal error occured");
+        }
+    }
+
 
 }
     
