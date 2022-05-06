@@ -14,7 +14,7 @@ import { AdminHeaderComponent } from './Admin/admin-header/admin-header.componen
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
 import { AdminAddLocationPageComponent } from './Admin/admin-AddLocation-page/admin-addlocation-page.component';
-import { AdminAddprojectPageComponent } from './Admin/admin-AddProject-page/admin-addproject-view.component';
+import { AdminAddprojectPageComponent } from './Admin/admin-addproject-page/admin-addproject-page.component';
 import { AdminAdddepartmentPageComponent } from './Admin/admin-AddDepartment-page/admin-adddepartment-page.component';
 
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
@@ -57,11 +57,11 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
     AdminRoleComponent, 
     AdminHeaderComponent,
     AdminAdddepartmentComponent,
-    AdminAddDepartmentPageComponent,
-    AdminAddLocationComponent,
+    AdminAdddepartmentPageComponent,
+    AdminAddlocationComponent,
     AdminAddLocationPageComponent,
     AdminAddprojectComponent,
-    AdminAddProjectPageComponent,
+    AdminAddprojectPageComponent,
     AdminDashboardComponent,
     AdminRequestsComponent,
     AdminViewRolePageComponent,
