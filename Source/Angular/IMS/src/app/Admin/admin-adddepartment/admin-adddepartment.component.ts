@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Department } from 'src/app/Model/Department';
 
 @Component({
   selector: 'app-admin-adddepartment',
