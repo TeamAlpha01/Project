@@ -54,6 +54,7 @@ const routes: Routes = [
   {path: 'Admin-role',component:AdminRoleComponent},
   {path: 'Admin-requests',component:AdminRequestsComponent},
   {path: 'Admin-dashboard',component:AdminDashboardComponent},
+  
 
 
   // {path:'',component:EditpoolComponent},
