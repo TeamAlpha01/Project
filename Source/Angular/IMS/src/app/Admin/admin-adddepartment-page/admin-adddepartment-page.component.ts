@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-admin-view-adddepartment-page',
+  selector: 'app-admin-adddepartment-page',
   templateUrl: './admin-adddepartment-page.component.html',
   styleUrls: ['./admin-adddepartment-page.component.css']
 })
