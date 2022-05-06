@@ -14,19 +14,13 @@ namespace IMS.Services
         {
             _logger = logger;
             _poolDataAccessLayer = DataFactory.PoolDataFactory.GetPoolDataAccessLayerObject(_logger);
-        }
-       private Pool _pool = DataFactory.PoolDataFactory.GetPoolObject();
-        private PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
+     
+       // private PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
 
-
-
-        /*  
-            Returns False when Exception occured in Data Access Layer
-            
-            Throws ArgumentNullException when Pool Name is not passed to this service method
-        */
         public bool CreatePool( int departmentId,string poolName)
         {
+    
+           private Pool _pool = DataFactory.PoolDataFactory.GetPoolObject(); 
            PoolValidation.IsCreatePoolValid(departmentId,poolName);
             try
             {
