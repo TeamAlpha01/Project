@@ -20,7 +20,7 @@ namespace IMS.Service
 
         // private IEmployeeDataAccessLayer _employeeDataAccessLayer = DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject();
 
-        
+
         public bool CreateNewEmployee(Employee employee)
         {
             EmployeeValidation.IsEmployeeValid(employee);
@@ -31,16 +31,16 @@ namespace IMS.Service
             }
             catch (ValidationException employeeNotValid)
             {
-                _logger.LogInformation($"Employee Service : CreateDrive() : {employeeNotValid.Message}");
+                _logger.LogInformation($"Employee Service : CreateEmployee() : {employeeNotValid.Message}");
                 return false;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee Service : CreateDrive() : {exception.Message}");
+                _logger.LogInformation($"Employee Service : CreateEmployee() : {exception.Message}");
                 return false;
             }
         }
-        
+
 
         public bool RemoveEmployee(int employeeId)
         {
@@ -53,21 +53,21 @@ namespace IMS.Service
             }
             catch (ArgumentException exception)
             {
-                _logger.LogInformation($"Role service : RemoveEmployee(int employeeId) : {exception.Message}");
+                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
                 return false;
             }
             catch (ValidationException employeeNotFound)
             {
-                _logger.LogInformation($"Role service : CreateEmployee(Employee employee) : {employeeNotFound.Message}");
+                _logger.LogInformation($"Employee service : CreateEmployee(Employee employee) : {employeeNotFound.Message}");
                 throw employeeNotFound;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Role service : RemoveEmployee(int employeeId) : {exception.Message}");
+                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
                 return false;
             }
         }
-       
+
         public IEnumerable<Employee> ViewEmployees()
         {
             try
@@ -81,9 +81,9 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
-               public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId)
+        public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId)
         {
-             try
+            try
             {
                 IEnumerable<Employee> employees = new List<Employee>();
                 return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.DepartmentId == departmentId select employee;
@@ -94,7 +94,7 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
-        
+
         public IEnumerable<Employee> ViewEmployeeByApprovalStatus()
         {
             try
@@ -109,7 +109,7 @@ namespace IMS.Service
             }
         }
 
-        
+
         public IEnumerable<Employee> ViewTACRequest()
         {
             try
