@@ -15,7 +15,7 @@
 
     <div class="Register CreatePool">
         <div class="card-body">
-            <form>
+            <form #form="ngForm" (ngSubmit)="addProject" >
                 <div class="form-input">
                     <label class="form-label " for="Department Name">Department</label>
                     <select name="Department" id="Department Name" class="form-select ">
