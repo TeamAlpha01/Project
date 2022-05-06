@@ -41,10 +41,7 @@ import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upc
 import { NavbarComponent } from './Shared/navbar/navbar.component';
 import { LoginComponent } from './Shared/login/login.component';
 
-
-
-
-
+import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 
 
 @NgModule({
@@ -83,6 +80,12 @@ import { LoginComponent } from './Shared/login/login.component';
     InterviewerUpcomingDriveComponent,
     NavbarComponent,
     LoginComponent,
+
+    
+    ManagepoolComponent,
+    CurrentDrivesFilterComponent,
+    AdminViewRolePageComponent,
+    TacProfileComponent
 
     
 

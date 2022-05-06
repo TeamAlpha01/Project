@@ -26,11 +26,15 @@ import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolme
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { LoginComponent } from './Shared/login/login.component';
+import { ManagepoolComponent } from './TAC/managepool/managepool.component';
+
+
+
+
 
 const routes: Routes = [
-  // { path: '', component: TacHomeComponent},
-  // { path: '', component: AdminViewRolePageComponent},
-  { path: '', component: LoginComponent},
+  { path: '', component: TacHomeComponent},
+  { path: '', component: AdminViewRolePageComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
@@ -59,6 +63,10 @@ const routes: Routes = [
   { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
   { path: 'tac-home',component:TacHomeComponent},
 
+  // {path:'', component: ManagepoolmembersComponent},
+
+  // {path:'', component:InterviewerHomeComponent}
+  {path:'', component: ManagepoolComponent}
   // {path:'', component: ManagepoolmembersComponent},
 
 ];
