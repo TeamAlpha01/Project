@@ -218,5 +218,25 @@ public class DriveController : ControllerBase
         {
             return  _driveService.SetTimeSlot(employeeAvailability) ? Ok() : Problem();
         }
+        [HttpGet]
+        public IActionResult ViewTodaysInterview()
+        {
+            return Ok(_driveService.ViewTodayInterviews());
+        }
+        [HttpGet]
+        public IActionResult ViewScheduledInterview()
+        {
+            return Ok(_driveService.ViewScheduledInterview());
+        }
+        [HttpGet]
+        public IActionResult ViewUpcomingInterview()
+        {
+            return Ok(_driveService.ViewUpcomingInterview());
+        }
+        [HttpGet]
+        public IActionResult ViewAllInterview()
+        {
+            return Ok(_driveService.ViewAllInterview());
+        }
 
 }

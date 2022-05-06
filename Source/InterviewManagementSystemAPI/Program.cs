@@ -27,6 +27,13 @@ builder.Services.AddCors((setup)=>
     });
 });
 
+//JSON Include() output Serializer
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling =
+Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
 
 var app = builder.Build();
 

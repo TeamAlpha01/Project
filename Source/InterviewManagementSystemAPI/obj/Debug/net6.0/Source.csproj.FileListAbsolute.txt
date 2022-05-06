@@ -412,3 +412,7 @@ D:\GIT - Sheik\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\scop
 D:\GIT - Sheik\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.csproj.CopyComplete
 D:\GIT - Sheik\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.genruntimeconfig.cache
 D:\GIT - Sheik\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\ref\Source.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\GIT-Prithvi\Project\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
