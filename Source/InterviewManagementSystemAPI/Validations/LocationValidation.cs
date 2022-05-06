@@ -17,7 +17,7 @@ namespace IMS.Validations
         {
             if(locationName==null) throw new ValidationException("Location name cannot be null");
             if(locationName.Length<6) throw new ValidationException("Location name is too short");
-            //if(!Regex.IsMatch(locationName,"^[a-zA-Z]$")) throw new ValidationException("Lcation name cannot contain symbols or numbers");
+            //if(!Regex.IsMatch(locationName,"^[a-zA-Z]$")) throw new ValidationException("Location name cannot contain symbols or numbers");
            
         }
         public static void IsLocationIdValid(int locationId)
