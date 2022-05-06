@@ -4,18 +4,15 @@ import {FormsModule} from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
-import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
-import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
+import { AdminAddlocationComponent } from './Admin/admin-addLocation/admin-addlocation.component';
+import { AdminAddprojectComponent } from './Admin/admin-addProject/admin-addproject.component';
+import { AdminAdddepartmentComponent } from './Admin/admin-addDepartment/admin-adddepartment.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
-import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
-import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
+import { AdminRoleComponent } from './Admin/admin-Role/admin-role.component';
+import { AdminHeaderComponent } from './Admin/admin-Header/admin-header.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
-import { AdminAddLocationPageComponent } from './Admin/admin-AddLocation-page/admin-addlocation-page.component';
-import { AdminAddprojectPageComponent } from './Admin/admin-AddProject-page/admin-addproject-view.component';
-import { AdminAdddepartmentPageComponent } from './Admin/admin-AddDepartment-page/admin-adddepartment-page.component';
 
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,7 +35,6 @@ import { MyperformanceComponent } from './TAC/myperformance/myperformance.compon
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
 import { EditpoolComponent } from './TAC/editpool/editpool.component';
 import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
-import { CurrentDrivesFilterComponent } from './TAC/current-drives-filter/current-drives-filter.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
@@ -48,6 +44,9 @@ import { LoginComponent } from './Shared/login/login.component';
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
+import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
+import { AdminAddprojectPageComponent } from './Admin/admin-view-Project-page/admin-view-Project-view.component';
+import { AdminviewDepartmentPageComponent } from './Admin/admin-view-Department-page/admin-view-Department-page.component';
 
 
 
@@ -57,11 +56,10 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
     AdminRoleComponent, 
     AdminHeaderComponent,
     AdminAdddepartmentComponent,
-    AdminAdddepartmentPageComponent,
-    AdminAddLocationComponent,
-    AdminAddLocationPageComponent,
+    AdminviewDepartmentPageComponent,
+    AdminAddlocationComponent,
     AdminAddprojectComponent,
-    AdminAddProjectPageComponent,
+    AdminAddprojectPageComponent,
     AdminDashboardComponent,
     AdminRequestsComponent,
     AdminViewRolePageComponent,
@@ -84,7 +82,6 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
     DashboardComponent,
     EditpoolComponent,
     ManagepoolmembersComponent,
-    CurrentDrivesFilterComponent,
     TacProfileComponent,
     CardDetailsComponent,
     InterviewerUpcomingDriveComponent,
@@ -92,14 +89,14 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
     LoginComponent,
     TacCurrentDriveComponent,
     ManagepoolComponent,
-    CurrentDrivesFilterComponent,
     TacProfileComponent,
     TacCurrentDriveComponent,
     TacScheduledDriveComponent,
-    
+    CreateInviteComponent,
+    AdminViewRequestsPageComponent,   
 
   ],
-
+  
   imports: [
     BrowserModule,
     FormsModule,
