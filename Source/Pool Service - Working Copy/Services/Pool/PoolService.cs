@@ -73,6 +73,7 @@ namespace IMS.Services
         }
         public bool EditPool(int poolId,string poolName)
         {
+            PoolValidation.IsEditPoolValid(poolId,poolName);
            
 
              try
@@ -100,6 +101,7 @@ namespace IMS.Services
         }
         public IEnumerable<Pool> ViewPools(int departmentId)
         {
+            PoolValidation.IsVaLidDepartmentId(int departmentId);
             try
             {
                 IEnumerable<Pool> Pools = new List<Pool>(departmentId);
@@ -124,9 +126,20 @@ namespace IMS.Services
                 _PoolMembers.PoolId = poolId;
                 return _poolDataAccessLayer.AddPoolMembersToDatabase(_PoolMembers) ? true : false; // LOG Error in DAL;
             }
-            catch (Exception)
+           catch (ArgumentException exception)
             {
-                // Log "Exception Occured in Data Access Layer"
+                _logger.LogInformation($"Pool service : AddPoolMembers(int employeeId,int poolId) : {exception.Message}");
+                return false;
+            }
+            catch (ValidationException poolMemberNotException)
+            {
+            _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {poolMemberNotException.Message}");
+             throw poolMemberNotException;
+            }
+            
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Pool service : AddPoolMembers(int employeeId,int poolId) : {exception.Message}");
                 return false;
             }
         }

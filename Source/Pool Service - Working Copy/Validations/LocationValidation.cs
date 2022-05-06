@@ -8,8 +8,7 @@ namespace IMS.Validations
     {
         public static void IsLocationValid(Location location)
         {
-            if(location==null) throw new ArgumentNullException("Location  cannot be null");
-           
+            if(location==null) throw new ValidationException("Location  cannot be null");
            
         }
 

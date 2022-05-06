@@ -8,7 +8,7 @@ namespace IMS.Services{
 
         public bool EditPool(int PoolId,string PoolName);
          public IEnumerable<Pool> ViewPools(int DepartmentId);
-        // public bool AddPoolMembers(int EmployeeId,int PoolId);
+         public bool AddPoolMembers(int EmployeeId,int PoolId);
 
         // public bool RemovePoolMembers(int EmployeeId,int PoolId);
           
