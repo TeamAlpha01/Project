@@ -48,6 +48,7 @@ import { LoginComponent } from './Shared/login/login.component';
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
+import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 
 
 
@@ -95,7 +96,8 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
     CurrentDrivesFilterComponent,
     TacProfileComponent,
     TacCurrentDriveComponent,
-    TacScheduledDriveComponent
+    TacScheduledDriveComponent,
+    CreateInviteComponent
     
 
   ],
