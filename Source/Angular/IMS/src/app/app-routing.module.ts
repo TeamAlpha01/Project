@@ -70,6 +70,7 @@ const routes: Routes = [
   {path:'createpool',component:CreatepoolComponent},
   {path:'editpool',component:EditpoolComponent},
   {path:'managepoolmembers',component:ManagepoolmembersComponent},
+  {path:'managepool',component:ManagepoolComponent},
 
   
   { path: 'tac-home',component:TacHomeComponent},
