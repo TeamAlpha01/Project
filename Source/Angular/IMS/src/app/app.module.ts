@@ -57,7 +57,7 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
     AdminRoleComponent, 
     AdminHeaderComponent,
     AdminAdddepartmentComponent,
-    AdminAddDepartmentPageComponent,
+    AdminAdddepartmentPageComponent,
     AdminAddLocationComponent,
     AdminAddLocationPageComponent,
     AdminAddprojectComponent,
@@ -95,11 +95,11 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
     CurrentDrivesFilterComponent,
     TacProfileComponent,
     TacCurrentDriveComponent,
-    TacScheduledDriveComponent
+    TacScheduledDriveComponent,
     
 
   ],
-  
+
   imports: [
     BrowserModule,
     FormsModule,
