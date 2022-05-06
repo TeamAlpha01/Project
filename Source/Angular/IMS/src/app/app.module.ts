@@ -36,7 +36,6 @@ import { MyperformanceComponent } from './TAC/myperformance/myperformance.compon
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
 import { EditpoolComponent } from './TAC/editpool/editpool.component';
 import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
-import { CurrentDrivesFilterComponent } from './TAC/current-drives-filter/current-drives-filter.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
@@ -81,7 +80,6 @@ import { CreateInviteComponent } from './TAC/create-invite/create-invite.compone
     DashboardComponent,
     EditpoolComponent,
     ManagepoolmembersComponent,
-    CurrentDrivesFilterComponent,
     TacProfileComponent,
     CardDetailsComponent,
     InterviewerUpcomingDriveComponent,
@@ -89,7 +87,6 @@ import { CreateInviteComponent } from './TAC/create-invite/create-invite.compone
     LoginComponent,
     TacCurrentDriveComponent,
     ManagepoolComponent,
-    CurrentDrivesFilterComponent,
     TacProfileComponent,
     TacCurrentDriveComponent,
     TacScheduledDriveComponent,
