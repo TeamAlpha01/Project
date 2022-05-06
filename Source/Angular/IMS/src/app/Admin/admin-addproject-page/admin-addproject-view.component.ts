@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-admin-view-addlocation-page',
-  templateUrl: './admin-view-addlocation-page.component.html',
-  styleUrls: ['./admin-view-addlocation-page.component.css']
+  selector: 'app-admin-view-addproject-page',
+  templateUrl: './admin-addproject-page.component.html',
+  styleUrls: ['./admin-addproject-page.component.css']
 })
-export class AdminViewAddlocationPageComponent implements OnInit {
+export class AdminAddprojectPageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
@@ -15,7 +15,7 @@ export class AdminViewAddlocationPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('https://localhost:7072/Role/ViewAddlocation')
+      .get<any>('https://localhost:7072/Role/Addproject')
       .subscribe((data) => {
         this.data = data;
         this.totalLength = data.length;

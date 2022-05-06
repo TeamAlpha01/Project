@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Department } from 'src/app/Model/Department';
 
 @Component({
   selector: 'app-admin-adddepartment',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-adddepartment.component.css']
 })
 export class AdminAdddepartmentComponent implements OnInit {
-
-  constructor() { }
+  department: Department ={
+      departmentName:'';
+  }
+  }
+  constructor(private http:HttpClient) { }
+  addDepartment(){
+    console.log(this.department)
+  }
 
   ngOnInit(): void {
   }
+  pageTitle = "Department"
 
 }

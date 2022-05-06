@@ -36,6 +36,7 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
 
 
 const routes: Routes = [
+  { path: 'admin-addrole-page', component: AdminViewRolePageComponent},
   // { path: '', component: InterviewerScheduledDriveComponent},
   { path: '', component: AdminViewRolePageComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
