@@ -43,48 +43,54 @@ import { LoginComponent } from './Shared/login/login.component';
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
+import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
+import { AdminAddlocationPageComponent } from './Admin/admin-addlocation-page/admin-addlocation-page.component';
+import { AdminAddprojectPageComponent } from './Admin/admin-addproject-page/admin-addproject-view.component';
+import { AdminAdddepartmentPageComponent } from './Admin/admin-adddepartment-page/admin-adddepartment-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminRoleComponent, 
+    AdminHeaderComponent,
+    AdminAdddepartmentComponent,
+    AdminAdddepartmentPageComponent,
+    AdminAddlocationComponent,
+    AdminAddlocationPageComponent,
+    AdminAddprojectComponent,
+    AdminAddprojectPageComponent,
+    AdminDashboardComponent,
+    AdminRequestsComponent,
+    AdminViewRolePageComponent,
+    AdminViewRequestsPageComponent,
     InterviewerHeaderComponent,
     FooterComponent,
-    AdminRoleComponent,    
     BackButtonComponent,
     InterviewerHomeComponent,
     ProfileComponent,
-    AdminHeaderComponent,
     TacHeaderComponent,
     InterviewerCurrentDriveComponent,
     InterviewerDashboardComponent,
     InterviewerDriveInvitesComponent,
     InterviewerScheduledDriveComponent,
     TacHomeComponent,
-    AdminAddlocationComponent,
-    AdminAddprojectComponent,
     TacDashboardComponent,
-    AdminAdddepartmentComponent,
-    AdminRequestsComponent,
     CreatepoolComponent,
     PoolmembersPerformanceComponent,
     MyperformanceComponent,
-    AdminDashboardComponent,
     DashboardComponent,
     EditpoolComponent,
     ManagepoolmembersComponent,
     CurrentDrivesFilterComponent,
-    AdminViewRolePageComponent,
     TacProfileComponent,
     CardDetailsComponent,
     InterviewerUpcomingDriveComponent,
     NavbarComponent,
     LoginComponent,
     TacCurrentDriveComponent,
-    
     ManagepoolComponent,
     CurrentDrivesFilterComponent,
-    AdminViewRolePageComponent,
     TacProfileComponent,
     TacCurrentDriveComponent,
     TacScheduledDriveComponent
