@@ -10,6 +10,7 @@ export class AdminViewRolePageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
+  title:string='View Role';
  
   constructor(private http: HttpClient) { }
 

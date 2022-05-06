@@ -42,7 +42,10 @@ const routes: Routes = [
   { path: 'profile', component:ProfileComponent },
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
   { path: 'interviewer-currentDrives', component:InterviewerCurrentDriveComponent },
+  { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
+  { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
   { path: 'interviewer-driveInvites', component:InterviewerDriveInvitesComponent },
+
 
   {path: 'Admin-adddepartment ',component:AdminAdddepartmentComponent},
   {path: 'Admin-addlocation ',component:AdminAddlocationComponent},
@@ -67,13 +70,11 @@ const routes: Routes = [
   {path:'editpool',component:EditpoolComponent},
   {path:'managepoolmembers',component:ManagepoolmembersComponent},
 
-  { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
-  { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
+  
   { path: 'tac-home',component:TacHomeComponent},
 
   // {path:'', component: ManagepoolmembersComponent},
 
-  // {path:'', component:InterviewerHomeComponent}
   {path:'', component: ManagepoolComponent}
   // {path:'', component: ManagepoolmembersComponent},
 
