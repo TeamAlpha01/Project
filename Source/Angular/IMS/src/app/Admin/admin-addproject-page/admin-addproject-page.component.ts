@@ -10,6 +10,7 @@ export class AdminAddprojectPageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
+  title="Add Project";
  
   constructor(private http: HttpClient) { }
 

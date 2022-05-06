@@ -13,9 +13,7 @@ import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
-import { AdminAddLocationPageComponent } from './Admin/admin-AddLocation-page/admin-addlocation-page.component';
 import { AdminAddprojectPageComponent } from './Admin/admin-addproject-page/admin-addproject-page.component';
-import { AdminAdddepartmentPageComponent } from './Admin/admin-AddDepartment-page/admin-adddepartment-page.component';
 
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -58,9 +56,7 @@ import { CreateInviteComponent } from './TAC/create-invite/create-invite.compone
     AdminRoleComponent, 
     AdminHeaderComponent,
     AdminAdddepartmentComponent,
-    AdminAdddepartmentPageComponent,
     AdminAddlocationComponent,
-    AdminAddLocationPageComponent,
     AdminAddprojectComponent,
     AdminAddprojectPageComponent,
     AdminDashboardComponent,
@@ -97,7 +93,8 @@ import { CreateInviteComponent } from './TAC/create-invite/create-invite.compone
     TacProfileComponent,
     TacCurrentDriveComponent,
     TacScheduledDriveComponent,
-    CreateInviteComponent
+    CreateInviteComponent,
+    AdminViewRequestsPageComponent
     
 
   ],
