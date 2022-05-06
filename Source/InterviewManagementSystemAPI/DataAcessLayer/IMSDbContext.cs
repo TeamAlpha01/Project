@@ -11,8 +11,8 @@ namespace IMS.DataAccessLayer
         public DbSet<EmployeeDriveResponse> EmployeeDriveResponse { get; set; }
         public DbSet<EmployeeAvailability> EmployeeAvailability { get; set; }
         public DbSet<Location> Locations { get; set; }
-        // public DbSet<Pool> Pools { get; set; }
-        // public DbSet<PoolMembers> PoolMembers { get; set; }
+        public DbSet<Pool> Pools { get; set; }
+        public DbSet<PoolMembers> PoolMembers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=ASPIREREN009;Database=InterviewManagementSystem;Trusted_Connection=True;");
