@@ -31,16 +31,16 @@ import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-dr
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
+import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
+import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
 
 
 
 
 
 const routes: Routes = [
-  { path: 'admin-addrole-page', component: AdminViewRolePageComponent},
-  // { path: '', component: InterviewerScheduledDriveComponent},
-  // { path: '', component: TacHomeComponent},
-  { path: '', component: InterviewerHomeComponent},
+//interviewer pages
+  { path: '', component: InterviewerCurrentDriveComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
@@ -48,19 +48,19 @@ const routes: Routes = [
   { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
   { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
   { path: 'interviewer-driveInvites', component:InterviewerDriveInvitesComponent },
+  { path: 'interviewer-acceptInvite', component:InterviewerAcceptInvitePageComponent },
+  { path: 'interviewer-cancelInterview', component:InterviewerCancelInterviewPageComponent },
 
-
+//admin pages
+  {path: 'Admin-addrole-page', component: AdminViewRolePageComponent},
   {path: 'Admin-adddepartment ',component:AdminAdddepartmentComponent},
   {path: 'Admin-addlocation ',component:AdminAddlocationComponent},
   {path: 'Admin-addproject',component:AdminAddprojectComponent},
   {path: 'Admin-role',component:AdminRoleComponent},
   {path: 'Admin-requests',component:AdminRequestsComponent},
   {path: 'Admin-dashboard',component:AdminDashboardComponent},
-  
 
-
-  // {path:'',component:EditpoolComponent},
-
+  //tac pages
   {path: 'TAC-dashboard',component:TacDashboardComponent},
   {path: 'TAC-performance',component:MyperformanceComponent},
   {path: 'Poolmembers-performance',component:PoolmembersPerformanceComponent},
@@ -70,8 +70,6 @@ const routes: Routes = [
   {path: 'tac-scheduled-drive', component:TacScheduledDriveComponent },
   {path: 'create-invite', component:CreateInviteComponent },
 
-  // {path:'',component:AdminDashboardComponent},
-
   {path:'createpool',component:CreatepoolComponent},
   {path:'editpool',component:EditpoolComponent},
   {path:'managepoolmembers',component:ManagepoolmembersComponent},
@@ -79,13 +77,6 @@ const routes: Routes = [
 
   
   { path: 'tac-home',component:TacHomeComponent},
-
-  // {path:'', component: ManagepoolmembersComponent},
-
-  // {path:'', component: ManagepoolComponent}
-  //{path:'', component: ManagepoolComponent}
-  // {path:'', component: ManagepoolmembersComponent},
-
 ];
 
 @NgModule({

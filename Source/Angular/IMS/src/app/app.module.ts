@@ -14,7 +14,6 @@ import { AdminHeaderComponent } from './Admin/admin-header/admin-header.componen
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
 import { AdminAddprojectPageComponent } from './Admin/admin-addproject-page/admin-addproject-page.component';
-
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +29,6 @@ import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-driv
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
-
 import { PoolmembersPerformanceComponent } from './TAC/poolmembers-performance/poolmembers-performance.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
@@ -41,11 +39,13 @@ import { CardDetailsComponent } from './Shared/card-details/card-details.compone
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { NavbarComponent } from './Shared/navbar/navbar.component';
 import { LoginComponent } from './Shared/login/login.component';
-
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
+import { RegisterPageComponent } from './Shared/register-page/register-page.component';
+import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
+import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
 
 
 
@@ -91,7 +91,11 @@ import { CreateInviteComponent } from './TAC/create-invite/create-invite.compone
     TacCurrentDriveComponent,
     TacScheduledDriveComponent,
     CreateInviteComponent,
-    AdminViewRequestsPageComponent
+    AdminViewRequestsPageComponent,
+    RegisterPageComponent,
+    InterviewerAcceptInvitePageComponent,
+    InterviewerCancelInterviewPageComponent,
+    
     
     
 
