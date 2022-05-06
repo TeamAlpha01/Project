@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Git\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {}
+    "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {}
   },
   "projects": {
-    "F:\\Git\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {
+    "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Git\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+        "projectUniqueName": "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
         "projectName": "Source",
-        "projectPath": "F:\\Git\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
-        "packagesPath": "C:\\Users\\Darshana\\.nuget\\packages\\",
-        "outputPath": "F:\\Git\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
+        "projectPath": "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+        "packagesPath": "C:\\Users\\sheikfareet.heera\\.nuget\\packages\\",
+        "outputPath": "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Darshana\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\sheikfareet.heera\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -93,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

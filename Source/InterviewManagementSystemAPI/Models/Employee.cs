@@ -29,7 +29,7 @@ namespace IMS.Models
 
         [InverseProperty("Employee")]
         public ICollection<EmployeeAvailability>? EmployeeSlotResponses { get; set; }
-        [InverseProperty("Employees")]
-        public PoolMembers PoolMembers{get;set;}
+        // [InverseProperty("Employees")]
+        // public PoolMembers PoolMembers{get;set;}
     }
 }
