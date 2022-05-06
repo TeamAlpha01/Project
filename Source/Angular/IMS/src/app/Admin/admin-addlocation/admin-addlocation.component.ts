@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from 'src/app/Model/Location';
+import { HttpClient,HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-addlocation',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-addlocation.component.css']
 })
 export class AdminAddlocationComponent implements OnInit {
-
-  constructor() { }
-
+ location: Location={
+   locationName:'',
+ }
+  constructor(private http: HttpClient) { }
+  addLocation(){
+    console.log(this.location)
+  }
   ngOnInit(): void {
   }
+  pageTitle="Department"
 
 }
