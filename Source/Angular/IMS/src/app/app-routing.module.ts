@@ -39,7 +39,7 @@ import { CreateInviteComponent } from './TAC/create-invite/create-invite.compone
 const routes: Routes = [
   { path: 'admin-addrole-page', component: AdminViewRolePageComponent},
   // { path: '', component: InterviewerScheduledDriveComponent},
-  { path: '', component: TacHomeComponent},
+  // { path: '', component: TacHomeComponent},
   { path: '', component: InterviewerHomeComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },

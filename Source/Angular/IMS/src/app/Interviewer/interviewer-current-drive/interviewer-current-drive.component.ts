@@ -25,10 +25,23 @@ export class InterviewerCurrentDriveComponent implements OnInit {
     //     this.drive = data;
     //     this.totalLength = data.length;
     //   });
+    for(let item of this.driveDetails){
+      this.drive.push(item);
+    }
   }
   
 
   filterDropdown(){
+    
+
+    
+    // this.drive=[];
+    // for(let item of this.driveDetails){
+    //   if(item.department==this.dept){
+    //     this.drive.push(item);
+    //     console.log("true");
+    //   }
+    // }
     this.pool=[];
     for(let item of this.poolDetails){
       if(item.departmentName==this.dept)
@@ -36,28 +49,44 @@ export class InterviewerCurrentDriveComponent implements OnInit {
         this.pool.push(item);  
       }     
     }
-  }
-
-  filterButton(){
-    console.log(this.dept)
-    console.log(this._pool)
     this.drive=[];
     for(let item of this.driveDetails){
-      if(item.department==this.dept && item.poolName==this._pool){
-        this.drive.push(item);
-        console.log("true");
+      if(this.dept==''){
+        this._pool='';
       }
-      else if(item.department==this.dept && item.poolName=='any'){
+
+      else if(this.dept=='' && this._pool=='' ){
         this.drive.push(item);
         console.log("false");
       }
-      else if(item.department=='any' && item.poolName==this._pool){
+      else if(item.department==this.dept && item.poolName==this._pool){
         this.drive.push(item);
-        console.log("null");
+        console.log("true");
+      }
+      else if(item.department==this.dept && this._pool==''){
+        this.drive.push(item);
+        console.log("ga");
+      }
+      else if(item.department==this.dept && item.poolName!=this._pool ){
+        console.log("may");
       }
       
     }
+    
   }
+  
+
+  // filterButton(){
+  //   console.log(this.dept)
+  //   console.log(this._pool)
+  //   this.drive=[];
+  //   for(let item of this.driveDetails){
+  //     if(item.department==this.dept && item.poolName==this._pool){
+  //       this.drive.push(item);
+  //       console.log("true");
+  //     }
+  //   }
+  // }
 
 
   
@@ -65,7 +94,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
 
   poolDetails: any[] = [{
     departmentName: 'dotnet',
-    poolName: 'Fresher'
+    poolName: 'Fresher 1'
   },
   {
     departmentName: 'java',
@@ -86,7 +115,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   driveDetails: any[] = [{
     name: 'freshers 2021',
     department: 'dotnet',
-    poolName: 'Fresher',
+    poolName: 'Fresher 1',
     date: '2022-04-12',
     mode: 'offline',
     location: 'chennai'
@@ -107,7 +136,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   }, {
     name: 'freshers 2021',
     department: 'dotnet',
-    poolName: 'Fresher',
+    poolName: 'Fresher 2',
     date: '2022-04-12',
     mode: 'offline',
     location: 'chennai'
