@@ -14,7 +14,6 @@ import { InterviewerHomeComponent } from './Interviewer/interviewer-home/intervi
 import { ProfileComponent } from './Shared/profile/profile.component';
 import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { TacHeaderComponent } from './TAC/tac-header/tac-header.component';
-import { DriveDetailCardComponent } from './Shared/drive-detail-card/drive-detail-card.component';
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
@@ -56,7 +55,6 @@ import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-dr
     ProfileComponent,
     AdminHeaderComponent,
     TacHeaderComponent,
-    DriveDetailCardComponent,
     InterviewerCurrentDriveComponent,
     InterviewerDashboardComponent,
     InterviewerDriveInvitesComponent,

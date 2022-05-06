@@ -16,12 +16,15 @@ export class LoginComponent implements OnInit {
     aceNumber: '',
     password:''
   }
+  
   ngOnInit(): void {
   }
   login(){
     console.log(this.userDetails);
-    // this.userDetails.resetform();
-    //this.userDetails.['reset'];
+    this.reset();    
   }
-
+  reset(){
+    this.userDetails.aceNumber='';
+    this.userDetails.password='';
+    }
 }
