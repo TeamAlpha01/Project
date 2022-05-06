@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminAdddepartmentPageComponent } from './admin-adddepartment-page.component';
 
-describe('AdminAddprojectPageComponent', () => {
+describe('AdminAddDepartmentPageComponent', () => {
   let component: AdminAdddepartmentPageComponent;
   let fixture: ComponentFixture<AdminAdddepartmentPageComponent>;
 

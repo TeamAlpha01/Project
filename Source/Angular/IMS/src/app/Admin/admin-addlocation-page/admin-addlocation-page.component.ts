@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-admin-addlocation-page',
-  templateUrl: './admin-addlocation-page.component.html',
-  styleUrls: ['./admin-addlocation-page.component.css']
+  selector: 'app-admin-AddLocation-page',
+  templateUrl: './admin-AddLocation-page.component.html',
+  styleUrls: ['./admin-AddLocation-page.component.css']
 })
-export class AdminAddlocationPageComponent implements OnInit {
+export class AdminAddLocationPageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
