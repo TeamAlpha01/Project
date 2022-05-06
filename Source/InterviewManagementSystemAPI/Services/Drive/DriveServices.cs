@@ -205,9 +205,25 @@ namespace IMS.Service
         //For Employee Availability Entity
          public bool SetTimeSlot(EmployeeAvailability employeeAvailability)
         {
-            return _driveDataAccess.SetTimeSlotToDatabase(employeeAvailability);
-            
+            return _driveDataAccess.SetTimeSlotToDatabase(employeeAvailability);   
         }
+        public List<EmployeeAvailability> ViewTodayInterviews()
+        {
+            return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date == System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews).ToList();//filter by user using authentication  
+        }
+        public List<EmployeeAvailability> ViewScheduledInterview()
+        {
+            return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews).ToList();//filter by user using authentication  
+        }
+        public List<EmployeeAvailability> ViewUpcomingInterview()
+        {
+            return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == false select interviews).ToList();//filter by user using authentication  
+        }
+        public List<EmployeeAvailability> ViewAllInterview()
+        {
+            return ((from interviews in _driveDataAccess.ViewInterviewsByStatus(false) select interviews).Concat((from interviews in _driveDataAccess.ViewInterviewsByStatus(true) select interviews).ToList())).ToList();
+        }
+        
     }
 }
 

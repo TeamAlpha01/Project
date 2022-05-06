@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 using IMS.Models;
 using IMS.Validations;
 
@@ -134,6 +135,10 @@ namespace IMS.DataAccessLayer
         {
             _db.EmployeeAvailability.Add(employeeAvailability);
             return true;
+        }
+        public List<EmployeeAvailability> ViewInterviewsByStatus(bool status)//int employeeId
+        {
+            return (from interview in _db.EmployeeAvailability.Include("Drive") where  interview.IsInterviewCancelled == status && interview.Drive.IsCancelled == false  select interview).ToList() ;
         }
     }
 }

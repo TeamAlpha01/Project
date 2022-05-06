@@ -16,5 +16,6 @@ namespace IMS.DataAccessLayer
 
         //For Employee Availability Entity
         public bool SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability);
+        public List<EmployeeAvailability> ViewInterviewsByStatus(bool status);//int employeeId
     }
 }

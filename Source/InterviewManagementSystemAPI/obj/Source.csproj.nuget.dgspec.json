@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {}
+    "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {}
   },
   "projects": {
-    "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {
+    "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+        "projectUniqueName": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
         "projectName": "Source",
-        "projectPath": "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
-        "packagesPath": "C:\\Users\\sheikfareet.heera\\.nuget\\packages\\",
-        "outputPath": "D:\\GIT - Sheik\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
+        "projectPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+        "packagesPath": "C:\\Users\\prithvi.palani\\.nuget\\packages\\",
+        "outputPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sheikfareet.heera\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\prithvi.palani\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -41,6 +41,10 @@
             "Microsoft.AspNetCore.Cors": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
