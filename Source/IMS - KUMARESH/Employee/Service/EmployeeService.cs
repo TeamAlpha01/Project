@@ -44,8 +44,10 @@ namespace IMS.Service
 
         public bool RemoveEmployee(int employeeId)
         {
-            if (employeeId <= 0)
-                throw new ValidationException("Employee Id is not provided");
+            // if (employeeId <= 0)
+            //     throw new ValidationException("Employee Id is not provided");
+            
+            EmployeeValidation.IsEmployeeId(employeeId);
 
             try
             {

@@ -11,7 +11,7 @@ namespace IMS.Validations
             if (employee == null) throw new ValidationException("Employee object cannot be null");
 
             if (String.IsNullOrEmpty(employee.EmployeeName)) throw new ValidationException("Employee Name cannot be null");
-            
+
             else if(!Regex.IsMatch(employee.EmployeeName,@"^[A-Z][a-zA-Z]{3,30}$")) throw new ValidationException("Employee Name must contain only alphabets and length of the name should be 3 to 30 char");
 
             if (String.IsNullOrEmpty(employee.EmployeeAceNumber)) throw new ValidationException("EmployeeACEnumber cannot be null");
@@ -24,12 +24,17 @@ namespace IMS.Validations
 
             if (String.IsNullOrEmpty(employee.EmailId)) throw new ValidationException("EmailId cannot be null");
 
-            if (String.IsNullOrEmpty(employee.Password)) throw new ValidationException("Password cannot be null");      
+            else if (!Regex.IsMatch(employee.EmailId,@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z")) throw new ValidationException ("Email Wrong Please enter valid email");
 
-            // if (!Regex.IsMatch(employee.EmailId,@"^[\w-]+@([\w-]+\.)+[\w-]{2,4}$")) throw new ValidationException ("Email Wrong Please enter valid email");
-            
-            if (!Regex.IsMatch(employee.EmailId,@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z")) throw new ValidationException ("Email Wrong Please enter valid email");
+            if (String.IsNullOrEmpty(employee.Password)) throw new ValidationException("Password cannot be null"); 
 
+            else if (!Regex.IsMatch(employee.Password,@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$")) throw new ValidationException ("Password must be between 8 and 15 characters and atleast contain one uppercase letter, one lowercase letter, one digit and one special character.");            
+
+        }
+        public static void IsEmployeeId(int employeeId)
+        {
+            if (String.IsNullOrEmpty(employeeId)) throw new ValidationException("Employee Id cannot be null");
+            else if(employeeId < 0)  throw new ValidationException("Employee Id cannot be negative characters");
         }
     }
 }                                                        

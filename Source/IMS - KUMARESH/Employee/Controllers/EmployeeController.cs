@@ -20,11 +20,11 @@ public class EmployeeController : ControllerBase
     }
     // private IEmployeeService _employee = DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="employee"></param>
-    /// <returns></returns>
+   /// <summary>
+   /// 
+   /// </summary>
+   /// <param name="employee"></param>
+   /// <returns></returns>
     [HttpPost]
     public IActionResult CreateNewEmployee(Employee employee)
     {
@@ -51,8 +51,8 @@ public class EmployeeController : ControllerBase
     [HttpPatch]
     public IActionResult RemoveEmployee(int employeeId)
     {
-         if (employeeId == 0) return BadRequest("Employee Id is not provided");
-
+        EmployeeValidation.IsEmployeeId(employeeId);
+        
         try
         {
             return employeeService.RemoveEmployee(employeeId) ? Ok("Employee Removed Successfully") : BadRequest("Sorry internal error occured");
