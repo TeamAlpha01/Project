@@ -22,9 +22,11 @@ namespace IMS.Service
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability);
 
-         public List<EmployeeAvailability> ViewTodayInterviews();
-        public List<EmployeeAvailability> ViewScheduledInterview();
-        public List<EmployeeAvailability> ViewUpcomingInterview();
-        public List<EmployeeAvailability> ViewAllInterview();
+        public Object ViewTodayInterviews();
+        public Object ViewScheduledInterview();
+        public Object ViewUpcomingInterview();
+        public Object ViewAllInterview();
+        public bool ScheduleInterview(int employeeAvailabilityId);
+        public bool CancelInterview(int employeeAvailabilityId);
     }
 }
