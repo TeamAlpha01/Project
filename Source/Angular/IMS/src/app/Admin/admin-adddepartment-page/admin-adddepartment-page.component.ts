@@ -10,6 +10,7 @@ export class AdminAdddepartmentPageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
+  title ="View Department";
  
   constructor(private http: HttpClient) { }
 

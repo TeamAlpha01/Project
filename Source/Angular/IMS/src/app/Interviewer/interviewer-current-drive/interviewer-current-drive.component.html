@@ -7,18 +7,18 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-5">
-                        <label class="form-label" for="ACE Number">Department </label>
+                        <label class="form-label" for="Department">Department </label>
                         <select name="Department" id="Department Name" class="form-select " (change)="filterDropdown()" name="dept" [(ngModel)]="dept">
                             <option value="">Select the Department</option>
-                            <option *ngFor="let item of department" value={{item}}>{{item}}</option>
+                            <option *ngFor="let item of department" value={{item}}> {{item}} </option>
 
                         </select>
                     </div>
                     <div class="col-md-5">
-                        <label class="form-label" for="ACE Number">Pool </label>
+                        <label class="form-label" for="Pool">Pool </label>
                         <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool" [(ngModel)]="_pool">
                             <option value="" >Select the Pool</option>
-                            <option *ngFor="let item of pool" value={{item.poolName}}>{{item.poolName}}</option>
+                            <option *ngFor="let item of pool" value={{item.poolName}}> {{item.poolName}}</option>
                         </select>
                     </div>
                     
