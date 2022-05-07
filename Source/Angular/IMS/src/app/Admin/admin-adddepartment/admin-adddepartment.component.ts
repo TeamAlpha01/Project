@@ -8,6 +8,7 @@ import { Department } from 'src/app/Model/Department';
   styleUrls: ['./admin-adddepartment.component.css']
 })
 export class AdminAdddepartmentComponent implements OnInit {
+  title='Add Department'
   department: Department = {
     departmentName: '',
   }

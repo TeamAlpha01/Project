@@ -161,7 +161,7 @@ namespace IMS.Service
             }
         }
 
-         //For Employee Drive Response Entity
+        //For Employee Drive Response Entity
         public bool AddResponse(EmployeeDriveResponse response)
         {
             if (response == null) throw new ValidationException("Response cannnot be null");
@@ -203,27 +203,154 @@ namespace IMS.Service
         }
 
         //For Employee Availability Entity
-         public bool SetTimeSlot(EmployeeAvailability employeeAvailability)
+        public bool SetTimeSlot(EmployeeAvailability employeeAvailability)
         {
-            return _driveDataAccess.SetTimeSlotToDatabase(employeeAvailability);   
+            try
+            {
+                return _driveDataAccess.SetTimeSlotToDatabase(employeeAvailability);
+            }
+            catch (ValidationException employeeAvailabilityNotVlaid)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
+                return false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
+                return false;
+            }
         }
-        public List<EmployeeAvailability> ViewTodayInterviews()
+        public Object ViewTodayInterviews()
         {
-            return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date == System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews).ToList();//filter by user using authentication  
+            try
+            {
+                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date == System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                .Select(e => new
+                {
+                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    DriveName = e.Drive.Name,
+                    PoolName = e.Drive.Pool.PoolName,
+                    IntervieDate = e.InterviewDate, 
+                    Mode = "Online",
+                    LocationName = e.Drive.Location.LocationName,
+                    Status = e.IsInterviewScheduled
+                }
+                );//filter by user using authentication  
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
+                throw exception;
+            }
         }
-        public List<EmployeeAvailability> ViewScheduledInterview()
+        public Object ViewScheduledInterview()
         {
-            return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews).ToList();//filter by user using authentication  
+            try
+            {
+                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                .Select(e => new
+                {
+                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    DriveName = e.Drive.Name,
+                    PoolName = e.Drive.Pool.PoolName,
+                    IntervieDate = e.InterviewDate, 
+                    Mode = "Online",
+                    LocationName = e.Drive.Location.LocationName,
+                    Status = e.IsInterviewScheduled
+                }
+                );//filter by user using authentication  
+
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
+                throw exception;
+            }
         }
-        public List<EmployeeAvailability> ViewUpcomingInterview()
+        public Object ViewUpcomingInterview()
         {
-            return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == false select interviews).ToList();//filter by user using authentication  
+            try
+            {
+                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == false select interviews)
+                .Select(e => new
+                {
+                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    DriveName = e.Drive.Name,
+                    PoolName = e.Drive.Pool.PoolName,
+                    IntervieDate = e.InterviewDate, 
+                    Mode = "Online",
+                    LocationName = e.Drive.Location.LocationName,
+                    Status = e.IsInterviewScheduled
+                }
+                );//filter by user using authentication  
+
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
+                throw exception;
+            }
         }
-        public List<EmployeeAvailability> ViewAllInterview()
+        public Object ViewAllInterview()
         {
-            return ((from interviews in _driveDataAccess.ViewInterviewsByStatus(false) select interviews).Concat((from interviews in _driveDataAccess.ViewInterviewsByStatus(true) select interviews).ToList())).ToList();
+            try
+            {
+                return ((from interviews in _driveDataAccess.ViewInterviewsByStatus(false) select interviews).Concat((from interviews in _driveDataAccess.ViewInterviewsByStatus(true) select interviews)))
+                .Select(e => new
+                {
+                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    DriveName = e.Drive.Name,
+                    PoolName = e.Drive.Pool.PoolName,
+                    IntervieDate = e.InterviewDate, 
+                    Mode = "Online",
+                    LocationName = e.Drive.Location.LocationName,
+                    Status = e.IsInterviewScheduled
+                }
+                );
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
+                throw exception;
+            }
+
         }
-        
+
+        public bool ScheduleInterview(int employeeAvailabilityId)
+        {
+            try
+            {
+                return _driveDataAccess.ScheduleInterview(employeeAvailabilityId);
+            }
+            catch (ValidationException employeeAvailabilityNotVlaid)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
+                return false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
+                return false;
+            }
+        }
+
+        public bool CancelInterview(int employeeAvailabilityId)
+        {
+            try
+            {
+                return _driveDataAccess.CancelInterview(employeeAvailabilityId);
+            }
+            catch (ValidationException employeeAvailabilityNotVlaid)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
+                return false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
+                return false;
+            }
+        }
     }
 }
 

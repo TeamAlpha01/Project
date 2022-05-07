@@ -46,6 +46,7 @@ import { CreateInviteComponent } from './TAC/create-invite/create-invite.compone
 import { RegisterPageComponent } from './Shared/register-page/register-page.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
+import { AdminViewDepartmentPageComponent } from './admin/admin-view-department-page/admin-view-department-page.component';
 
 
 
@@ -95,6 +96,8 @@ import { InterviewerCancelInterviewPageComponent } from './Interviewer/interview
     RegisterPageComponent,
     InterviewerAcceptInvitePageComponent,
     InterviewerCancelInterviewPageComponent,
+    AdminAdddepartmentComponent,
+    AdminViewDepartmentPageComponent,
     
     
     

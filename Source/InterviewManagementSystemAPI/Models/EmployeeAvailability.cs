@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+
 namespace IMS.Models
 {
     public class EmployeeAvailability
@@ -17,6 +19,7 @@ namespace IMS.Models
 
         [ForeignKey("DriveId")]
         [InverseProperty("DriveSoltResponse")]
+  
         public Drive? Drive { get; set; }
 
         [ForeignKey("EmployeeId")]

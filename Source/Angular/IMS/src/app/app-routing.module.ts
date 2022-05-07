@@ -40,7 +40,7 @@ import { InterviewerCancelInterviewPageComponent } from './Interviewer/interview
 
 const routes: Routes = [
 //interviewer pages
-  { path: '', component: InterviewerCurrentDriveComponent},
+  { path: '', component: AdminAdddepartmentComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },

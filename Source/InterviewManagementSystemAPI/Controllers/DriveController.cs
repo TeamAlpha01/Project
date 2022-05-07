@@ -239,4 +239,15 @@ public class DriveController : ControllerBase
             return Ok(_driveService.ViewAllInterview());
         }
 
+        [HttpPatch]
+        public IActionResult ScheduleInterview(int employeeAvailabilityId)
+        {
+            return Ok(_driveService.ScheduleInterview(employeeAvailabilityId));
+        }
+         [HttpPatch]
+        public IActionResult CancelInterview(int employeeAvailabilityId)
+        {
+            return Ok(_driveService.CancelInterview(employeeAvailabilityId));
+        }
+
 }
