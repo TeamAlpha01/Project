@@ -10,7 +10,8 @@ namespace IMS.DataFactory{
         }
         public static IPoolService GetPoolServiceObject(ILogger _logger)
         {
-            return new PoolService(_logger);
+             return new PoolService(_logger);
+           
         }
         public static Pool GetPoolObject()
         {

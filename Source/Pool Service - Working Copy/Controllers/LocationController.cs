@@ -24,7 +24,7 @@ public class LocationController : ControllerBase
     {
         if(locationName==null)
             return BadRequest("Location name is required");
-        /*****************  parameter validation required  *****************/
+     
         try
         {
             return _locationService.CreateLocation(locationName) ? Ok("Location Added Successfully") : Problem("Sorry internal error occured");
@@ -47,7 +47,7 @@ public class LocationController : ControllerBase
         if(locationId == 0)
             return BadRequest("Location Id can't be null");
 
-        /*****************  parameter validation required  *****************/
+      
         try
         {
             return _locationService.RemoveLocation(locationId) ? Ok("Location Removed Successfully") : Problem("Sorry internal error occured");

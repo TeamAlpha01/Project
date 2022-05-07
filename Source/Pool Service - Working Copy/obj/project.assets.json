@@ -4248,19 +4248,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Darshana\\.nuget\\packages\\": {}
+    "C:\\Users\\darshana.annappan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Git\\Project\\Source\\Pool Service - Working Copy\\Source.csproj",
+      "projectUniqueName": "D:\\Git-Darshana\\Source\\Pool Service - Working Copy\\Source.csproj",
       "projectName": "Source",
-      "projectPath": "F:\\Git\\Project\\Source\\Pool Service - Working Copy\\Source.csproj",
-      "packagesPath": "C:\\Users\\Darshana\\.nuget\\packages\\",
-      "outputPath": "F:\\Git\\Project\\Source\\Pool Service - Working Copy\\obj\\",
+      "projectPath": "D:\\Git-Darshana\\Source\\Pool Service - Working Copy\\Source.csproj",
+      "packagesPath": "C:\\Users\\darshana.annappan\\.nuget\\packages\\",
+      "outputPath": "D:\\Git-Darshana\\Source\\Pool Service - Working Copy\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Darshana\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\darshana.annappan\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -4343,7 +4343,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

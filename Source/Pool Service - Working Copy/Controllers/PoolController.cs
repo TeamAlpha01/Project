@@ -87,7 +87,10 @@ public class PoolController : ControllerBase
      }
     [HttpGet]
     public IActionResult ViewPools(int departmentId)
-    {
+    { 
+        if(departmentId==0 ) 
+         BadRequest("Department Id cannot be null");
+
         try
         {
             return Ok(_poolService.ViewPools(departmentId));
@@ -119,6 +122,46 @@ public class PoolController : ControllerBase
             return Problem("Sorry some internal error occured");
         }
     }
+    [HttpPost]
+    public IActionResult RemovePoolMembers(int poolMemberId)
+    {
+        if(poolMemberId==0)
+            return BadRequest("Pool Member Id cannot be null");
+        
+        try
+        {
+            return _poolService.RemovePoolMembers(poolMemberId) ? Ok("Pool Member removed  Successfully") : Problem("Sorry internal error occured");
+        }
+        catch (ValidationException poolMemberNotException)
+        {
+            _logger.LogInformation($"Pool Service :RemovePoolMembers(int poolMemberId): {poolMemberNotException.Message}");
+            return BadRequest(poolMemberNotException.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Pool Service : RemovePoolMembers(int poolMemberId) throwed an exception: {exception}");
+            return Problem("Sorry some internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewPoolMembers(int poolId)
+    {
+        try
+        {
+            return Ok(_poolService.ViewPoolMembers(poolId));
+        }
+        catch (ValidationException poolNotFound)
+        {
+            _logger.LogInformation($"Pool Service : ViewPoolMembers(poolId) : {poolNotFound.Message}");
+            return BadRequest(poolNotFound.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation("Service throwed exception while fetching locations ", exception);
+            return BadRequest("Sorry some internal error occured");
+        }
+    }
+
 
 
 }
