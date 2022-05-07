@@ -8,6 +8,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class TacScheduledDriveComponent implements OnInit {
 
+  title = 'Scheduled Drive'
   drive: any;
   totalLength: any;
   page: number = 1;
