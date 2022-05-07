@@ -55,8 +55,9 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
                 return false;
             }
-            catch (ValidationException employeeNotFound)
+            catch (ValidationException exception)
             {
+                _logger.LogInformation($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
                 return false;
             }
             catch (Exception exception)
@@ -76,17 +77,17 @@ namespace IMS.DataAccessLayer
             catch (DbUpdateException exception)
             {
                 _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
-                return false;
+                throw new DbUpdateException();
             }
             catch (OperationCanceledException exception)
             {
                 _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
-                return false;
+                throw new OperationCanceledException();
             }
             catch (Exception exception)
             {
                 _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
-                return false;
+                 throw new Exception();
             }
         }
     }

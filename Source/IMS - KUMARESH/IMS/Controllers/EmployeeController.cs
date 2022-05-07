@@ -20,6 +20,11 @@ public class EmployeeController : ControllerBase
     }
     // private IEmployeeService _employee = DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
     [HttpPost]
     public IActionResult CreateNewEmployee(Employee employee)
     {
@@ -38,6 +43,11 @@ public class EmployeeController : ControllerBase
             return Problem("Sorry some internal error occured");
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="employeeId"></param>
+    /// <returns></returns>
     [HttpPatch]
     public IActionResult RemoveEmployee(int employeeId)
     {
@@ -58,6 +68,10 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
      [HttpGet]
     public IActionResult ViewEmployees()
     {
@@ -71,7 +85,11 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="departmentId"></param>
+    /// <returns></returns>
      [HttpGet]
     public IActionResult ViewEmployeesByDepartment(int departmentId)
     {
@@ -85,7 +103,10 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public IActionResult ViewEmployeeByApprovalStatus()
     {
@@ -99,6 +120,10 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public IActionResult ViewTACRequest()
     {

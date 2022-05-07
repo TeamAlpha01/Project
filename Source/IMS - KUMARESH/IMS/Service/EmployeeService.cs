@@ -78,7 +78,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
-                return false;
+                throw new Exception();
             }
         }
         public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId)
@@ -91,7 +91,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
-                return false;
+                throw new Exception();
             }
         }
 
@@ -105,7 +105,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
-                return false;
+                throw new Exception();
             }
         }
 
@@ -120,7 +120,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
-                return false;
+                throw new Exception();
             }
         }
     }

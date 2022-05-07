@@ -12,21 +12,24 @@ namespace IMS.Validations
 
             if (String.IsNullOrEmpty(employee.EmployeeName)) throw new ValidationException("Employee Name cannot be null");
             
-            else if(!Regex.IsMatch(employee.EmployeeName,@"^[a-zA-Z]{3,30}$")) throw new ValidationException("Employee Name must contain only alphabets and lenght of the name should be 3 to 30 char");
+            else if(!Regex.IsMatch(employee.EmployeeName,@"^[A-Z][a-zA-Z]{3,30}$")) throw new ValidationException("Employee Name must contain only alphabets and length of the name should be 3 to 30 char");
 
             if (String.IsNullOrEmpty(employee.EmployeeAceNumber)) throw new ValidationException("EmployeeACEnumber cannot be null");
             
-            else if (employee.EmployeeAceNumber.Length != 7) throw new ValidationException("Enter correct ACE number");
+            else if (employee.EmployeeAceNumber.Length != 7) throw new ValidationException("ACE number must be 7 characters");
 
-            else if (!Regex.IsMatch(employee.EmployeeAceNumber,@"^[ACE1234]$")) throw new ValidationException("1st 3 char of EmployeeAceNumber must contain ACE OR ace");
+            else if (employee.EmployeeAceNumber == "ACE0000") throw new ValidationException("Invalid ACE number");
 
-            // else if (!Regex.IsMatch(employee.EmployeeAceNumber.Substring(3,employee.EmployeeAceNumber.Length),@"^[0-9]$")) throw new ValidationException("last 4 char of EmployeeAceNumber cannot contain symbols or Alphabets");
+            else if (!Regex.IsMatch(employee.EmployeeAceNumber,@"^ACE[0-9]{4}$")) throw new ValidationException("Invalid ACE number");
 
             if (String.IsNullOrEmpty(employee.EmailId)) throw new ValidationException("EmailId cannot be null");
 
             if (String.IsNullOrEmpty(employee.Password)) throw new ValidationException("Password cannot be null");      
 
-            // if (!Regex.IsMatch(employee.EmailId,@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$")) throw new ValidationException ("Email Wrong Please enter valid email");
+            // if (!Regex.IsMatch(employee.EmailId,@"^[\w-]+@([\w-]+\.)+[\w-]{2,4}$")) throw new ValidationException ("Email Wrong Please enter valid email");
+            
+            if (!Regex.IsMatch(employee.EmailId,@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z")) throw new ValidationException ("Email Wrong Please enter valid email");
+
         }
     }
 }                                                        
