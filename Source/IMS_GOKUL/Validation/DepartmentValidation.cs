@@ -16,5 +16,11 @@ namespace IMS.Validation
             if(!Regex.IsMatch(departmentName,@"^[a-zA-Z]{3,15}$")) throw new ValidationException("Department Name is invalid");
            
         }
+         public static void IsDepartmentValid(int departmentId)
+        {
+            if(departmentName <=0) throw new ValidationException("department name cannot be Zero or less than zero");
+           
+           
+        }
     }
 }
