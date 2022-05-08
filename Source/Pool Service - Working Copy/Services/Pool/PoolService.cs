@@ -34,11 +34,8 @@ namespace IMS.Services
                 _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
                 return false;
             }
-             catch (ValidationException createPoolException)
-            {
-            _logger.LogInformation($"Pool Service :CreatePool(int departmentId,poolNae) {createPoolException.Message}");
-            throw createPoolException;
-            }
+           
+          
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
@@ -65,6 +62,7 @@ namespace IMS.Services
                 _logger.LogInformation($"Pool service : RemovePool(int poolId): {poolNotFound.Message}");
                 throw poolNotFound;
             }
+             
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool service : RemovePool(int poolId):{exception.Message}");
@@ -107,8 +105,13 @@ namespace IMS.Services
             try
             {
             IEnumerable<Pool> pools = new List<Pool>();
-            return pools=from pool in _poolDataAccessLayer.GetPoolsFromDatabase() where pool.DepartmentId==departmentId select pool;
+            return pools=from pool in _poolDataAccessLayer.GetPoolsFromDatabase(departmentId) where pool.DepartmentId==departmentId && pool.IsActive == true select pool;
                
+            }
+            catch (ValidationException departmentNotFound)
+            {
+                _logger.LogInformation($"Pool service :EditPool(int poolId,string poolName): {departmentNotFound.Message}");
+                throw departmentNotFound;
             }
            catch (Exception exception)
             {
@@ -120,6 +123,7 @@ namespace IMS.Services
          public bool AddPoolMembers (int employeeId, int poolId)
         {
              PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
+             PoolValidation.IsAddPoolMembersValid(employeeId,poolId);
             
             try
             {
@@ -132,11 +136,7 @@ namespace IMS.Services
                 _logger.LogInformation($"Pool service : AddPoolMembers(int employeeId,int poolId) : {exception.Message}");
                 return false;
             }
-            catch (ValidationException poolMemberNotException)
-            {
-            _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {poolMemberNotException.Message}");
-             throw poolMemberNotException;
-            }
+           
             
             catch (Exception exception)
             {
@@ -158,10 +158,11 @@ namespace IMS.Services
                 _logger.LogInformation($"Pool service : RemoveLocation(int departmentId,int poolId) : {exception.Message}");
                 return false;
             }
-            catch (ValidationException poolNotFound)
+          catch (ValidationException poolMemberNotException)
+
             {
-                _logger.LogInformation($"Pool service : RemoveLocation(int departmentId,int poolId) : {poolNotFound.Message}");
-                throw poolNotFound;
+                _logger.LogInformation($"Pool service : RemoveLocation(int departmentId,int poolId) : {poolMemberNotException.Message}");
+                throw poolMemberNotException;
             }
             catch (Exception exception)
             {
@@ -177,9 +178,15 @@ namespace IMS.Services
             try
             {
             IEnumerable<PoolMembers> poolmembers = new List<PoolMembers>();
-            return poolmembers=from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase() where poolmember.PoolId==poolId select poolmember;
+            return poolmembers=from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase(poolId) where poolmember.PoolId==poolId && pool.Isactive==true select poolmember;
                 
             }
+             catch (ValidationException poolNotFound)
+            {
+                _logger.LogInformation($"Pool service :ViewPoolMembers (int poolId): {poolNotFound.Message}");
+                throw poolNotFound;
+            }
+
            catch (Exception exception)
             {
                 _logger.LogInformation($"Pool Service:ViewPoolMembers(int poolId): {exception.Message}");

@@ -22,18 +22,14 @@ public class PoolController : ControllerBase
     [HttpPost]
     public IActionResult CreateNewPool(int departmentId,string poolName)
     {
-        if(departmentId==0 || poolName==null)
-            return BadRequest("Department Id or Pool name cannot be null");
+        PoolValidation.IsCreatePoolValid(departmentId,poolName);
         
         try
         {
             return _poolService.CreatePool(departmentId,poolName) ? Ok("Pool Added Successfully") : Problem("Sorry internal error occured");
         }
-        catch (ValidationException createPoolException)
-        {
-            _logger.LogInformation($"Pool Service :CreatePool(int departmentId,poolNae) {createPoolException.Message}");
-            return BadRequest(createPoolException.Message);
-        }
+         
+        
         catch (Exception exception)
         {
             _logger.LogInformation($"Pool Service : CreatePool throwed an exception : {exception}");
@@ -44,8 +40,7 @@ public class PoolController : ControllerBase
     [HttpPost]
     public IActionResult RemovePool(int poolId)
     {
-        if( poolId==0)
-            return BadRequest("Pool Id can't be null");
+        PoolValidation.IsRemovePoolValid(poolId);
 
       
         try
@@ -54,7 +49,7 @@ public class PoolController : ControllerBase
         }
          catch (ValidationException poolNotFound)
         {
-            _logger.LogInformation($"Pool Service : RemoveLocation(int departmentId,int poolId) : {poolNotFound.Message}");
+            _logger.LogInformation($"Pool Service : RemovePool(int poolId) : {poolNotFound.Message}");
             return BadRequest(poolNotFound.Message);
         }
         catch (Exception exception)
@@ -67,7 +62,7 @@ public class PoolController : ControllerBase
     [HttpPut]
     public IActionResult EditPool(int poolId,string poolName)
    {
-                if(poolId==0 || poolName==null) return BadRequest("Pool Id or poolname can't be empty");
+         PoolValidation.IsEditPoolValid(poolId,poolName);       
       try
         {
              return _poolService.EditPool(poolId,poolName)?Ok("Pool name changed Successfully") : BadRequest("Sorry internal error occured");
@@ -78,6 +73,7 @@ public class PoolController : ControllerBase
             _logger.LogInformation($"Pool Service :EditPool(int poolId,string poolName): {poolNotFound.Message}");
             return BadRequest(poolNotFound.Message);
         }
+        
          catch (Exception exception)
        {
             _logger.LogInformation("Pool Service : RemovePool throwed an exception", exception);
@@ -88,12 +84,16 @@ public class PoolController : ControllerBase
     [HttpGet]
     public IActionResult ViewPools(int departmentId)
     { 
-        if(departmentId==0 ) 
-         BadRequest("Department Id cannot be null");
+        PoolValidation.IsValidDepartmentId(departmentId);
 
         try
         {
             return Ok(_poolService.ViewPools(departmentId));
+        }
+          catch (ValidationException departmentNotFound)
+        {
+            _logger.LogInformation($"Pool Service :EditPool(int poolId,string poolName): {departmentNotFound.Message}");
+            return BadRequest(departmentNotFound.Message);
         }
         catch (Exception exception)
         {
@@ -104,9 +104,7 @@ public class PoolController : ControllerBase
     [HttpPost]
     public IActionResult AddPoolMembers(int employeeId,int poolId)
     {
-        if(employeeId==0 || poolId==0)
-            return BadRequest("Employee Id or Pool Id cannot be null");
-        
+        PoolValidation.IsAddPoolMembersValid(employeeId,poolId);
         try
         {
             return _poolService.AddPoolMembers(employeeId,poolId) ? Ok("Pool Added Successfully") : Problem("Sorry internal error occured");
@@ -125,9 +123,7 @@ public class PoolController : ControllerBase
     [HttpPost]
     public IActionResult RemovePoolMembers(int poolMemberId)
     {
-        if(poolMemberId==0)
-            return BadRequest("Pool Member Id cannot be null");
-        
+         PoolValidation.IsRemovePoolMembersValid(poolMemberId);
         try
         {
             return _poolService.RemovePoolMembers(poolMemberId) ? Ok("Pool Member removed  Successfully") : Problem("Sorry internal error occured");
@@ -146,6 +142,7 @@ public class PoolController : ControllerBase
     [HttpGet]
     public IActionResult ViewPoolMembers(int poolId)
     {
+         PoolValidation.IsValidPoolId(poolId);
         try
         {
             return Ok(_poolService.ViewPoolMembers(poolId));
@@ -154,6 +151,7 @@ public class PoolController : ControllerBase
         {
             _logger.LogInformation($"Pool Service : ViewPoolMembers(poolId) : {poolNotFound.Message}");
             return BadRequest(poolNotFound.Message);
+      
         }
         catch (Exception exception)
         {
