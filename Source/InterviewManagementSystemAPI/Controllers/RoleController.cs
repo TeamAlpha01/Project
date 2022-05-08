@@ -18,8 +18,12 @@ public class RoleController : ControllerBase
         roleService = DataFactory.RoleDataFactory.GetRoleServiceObject(_logger);
     }
 
-
-
+    /// <summary>
+    /// This method will be implemented when "Add a new Role" - Request rises. This method Check the null Validation and
+    /// then Control shifts to Role Service
+    /// </summary>
+    /// <param name="roleName">String</param>
+    /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
     [HttpPost]
     public IActionResult CreateNewRole(string roleName)
     {
@@ -42,8 +46,13 @@ public class RoleController : ControllerBase
         }
     }
 
-
-
+    /// <summary>
+    ///  This method will be implemented when "Remove a new Role" - Request rises. This method Check the null Validation and
+    /// then Control shifts to Role Service
+    /// </summary>
+    /// <param name="roleId">int</param>
+    /// <returns>>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
+    /// 
     [HttpPost]
     public IActionResult RemoveRole(int roleId)
     {
@@ -65,8 +74,11 @@ public class RoleController : ControllerBase
         }
     }
 
-
-
+    /// <summary>
+    /// This method will be implemented when "View Roles" - Request rises.
+    /// The Control shifts to Role Service
+    /// </summary>
+    /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
     [HttpGet]
     public IActionResult ViewRoles()
     {

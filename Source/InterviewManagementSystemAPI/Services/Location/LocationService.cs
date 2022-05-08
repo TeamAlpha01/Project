@@ -15,11 +15,13 @@ namespace IMS.Services
             _logger = logger;
             _locationDataAccessLayer = DataFactory.LocationDataFactory.GetLocationDataAccessLayerObject(_logger);
         }
-        /*  
-            Returns False when Exception occured in Data Access Layer
-            
-            Throws ArgumentNullException when Role Name is not passed to this service method
-        */
+        
+        /// <summary>
+        /// This method will be implemented when Location Controller Passes the Location Name to the service Layer. And controll Shifts to Location DAL.
+        /// </summary>
+        /// <param name="locationName">String</param>
+        /// <returns> Returns False when Exception occured in Data Access Layer. 
+        /// Throws ArgumentNullException when Role Name is not passed to this service method</returns>
         public bool CreateLocation(string locationName)
         {
             LocationValidation.IsLocationNameValid(locationName);
@@ -42,11 +44,12 @@ namespace IMS.Services
 
         }
 
-        /*  
-            Returns False when Exception occured in Data Access Layer
-            
-            Throws ArgumentNullException when Role Id is not passed to this service method
-        */
+        /// <summary>
+        /// This method will be implemented when Location Controller Passes the Location ID to the service Layer. And controll Shifts to Location DAL.
+        /// </summary>
+        /// <param name="locationId">int</param>
+        /// <returns>Returns False when Exception occured in Data Access Layer.
+        /// Throws ArgumentNullException when Role Id is not passed to this service method</returns>
 
         public bool RemoveLocation(int locationId)
         {
@@ -73,9 +76,10 @@ namespace IMS.Services
             }
         }
 
-        /*  
-            Throws Exception when Exception occured in DAL while fetching roles
-        */
+        /// <summary>
+        /// This method will be implemented when "View all Location" - Request raise . And control Shifts to Location DAL.
+        /// </summary>
+        /// <returns>Returns List of locations otherwise Throws Exception when Exception occured in DAL while fetching roles</returns>
         public IEnumerable<Location> ViewLocations()
         {
             try
