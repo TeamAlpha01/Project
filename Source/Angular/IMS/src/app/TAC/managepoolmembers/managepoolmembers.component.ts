@@ -1,5 +1,6 @@
  
 import { Component, OnInit } from '@angular/core';
+import { ManagepoolComponent } from '../managepool/managepool.component';
 
 @Component({
   selector: 'app-managepoolmembers',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagepoolmembersComponent implements OnInit {
     
+  title = "Manage poolmembers"
             
   
   constructor() { }
