@@ -19,10 +19,15 @@ namespace IMS.DataAccessLayer
         {
             _logger = logger;
         }
+        /// <summary>
+        /// This method will implement when Department service pass the object and it interact with Database.It validate the department name
+        /// </summary>
+        /// <param name="department">Department</param>
+        /// <returns>Return True otherwise Return False when it throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool AddDepartmentToDatabase(Department department)
         {
-            if (department == null)
-                throw new ArgumentNullException("Department is not provided");
+             DepartmentValidation.IsDepartmentValid(department);
+                
             try
             {
                 _db.Departments.Add(department);
@@ -31,16 +36,19 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
+                 _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "DB Update Exception Occured"
                 return false;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
+                 _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                 _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "unknown exception occured "
                 return false;
             }
@@ -52,10 +60,15 @@ namespace IMS.DataAccessLayer
             
             Throws ArgumentNullException when Role Id is not passed 
         */
+        /// <summary>
+        /// This method will implement when Department service pass the department Id and it interact with Database.It validate the department Id
+        /// </summary>
+        /// <param name="departmentId">int</param>
+        /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool RemoveDepartmentFromDatabase(int departmentId)
         {
-            if (departmentId == 0)
-                throw new ArgumentNullException("Department Id is not provided ");
+        DepartmentValidation.IsDepartmentValid(departmentId);
+                
 
             try
             {
@@ -65,18 +78,21 @@ namespace IMS.DataAccessLayer
                 _db.SaveChanges();
                 return true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
+                 _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "DB Update Exception Occured"
                 return false;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
+                 _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");         
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                 _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "unknown exception occured "
                 return false;
             }
@@ -86,51 +102,66 @@ namespace IMS.DataAccessLayer
         /*  
             Throws Exception when Exception occured in Database Connectivity
         */
+        /// <summary>
+        /// This method will implement when Department service pass the request and it interact with Database.
+        /// </summary>
+        /// <returns>Return List. otherwise throw DbUpdateException or OperationCanceledException or Exception</returns>
         public List<Department> GetDepartmentsFromDatabase()
         {
             try
             {
                 return _db.Departments.ToList();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
+                 _logger.LogInformation($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
+           
                 //LOG   "DB Update Exception Occured"
-                throw new DbUpdateException();
+                throw exception;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
+                 _logger.LogInformation($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
                 //LOG   "Opreation cancelled exception"
-                throw new OperationCanceledException();
+                throw exception;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                 _logger.LogInformation($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
                 //LOG   "unknown exception occured "
-                throw new Exception();
+                throw exception;
             }
         }
-
+        /// <summary>
+        /// This method will implement when Department service pass the object and it interact with Database.It validate the department Id and project Name
+        /// </summary>
+        /// <param name="project">Project</param>
+        /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool AddProjectToDatabase(Project project)
         {
-            if (project == null)
-                throw new ArgumentNullException("DepartmentId and ProjectName is not provided");
+            ProjectValidation.IsProjectValid(project);
+                
             try
             {
                 _db.Projects.Add(project);
                 _db.SaveChanges();
                 return true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
+                 _logger.LogInformation($"Department DAL : AddProjectToDatabase(Project project) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "DB Update Exception Occured"
                 return false;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
+                 _logger.LogInformation($"Department DAL : AddProjectToDatabase(Project project) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                 _logger.LogInformation($"Department DAl : AddProjectToDatabase(Project project) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "unknown exception occured "
                 return false;
             }
@@ -142,10 +173,15 @@ namespace IMS.DataAccessLayer
             
             Throws ArgumentNullException when Role Id is not passed 
         */
+        /// <summary>
+        /// This method will implement when Department service pass the project Id and it interact with Database.It validate the Project Id
+        /// </summary>
+        /// <param name="projectId">int</param>
+        /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool RemoveProjectFromDatabase(int projectId)
         {
-            if (projectId <=0 )
-                throw new ArgumentNullException("Project Id is not provided ");
+            ProjectValidation.IsProjectValid(projectId);
+                
 
             try
             {
@@ -155,18 +191,24 @@ namespace IMS.DataAccessLayer
                 _db.SaveChanges();
                 return true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
+                 _logger.LogInformation($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
+           
                 //LOG   "DB Update Exception Occured"
                 return false;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
+                 _logger.LogInformation($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
+           
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                 _logger.LogInformation($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
+           
                 //LOG   "unknown exception occured "
                 return false;
             }
@@ -176,34 +218,40 @@ namespace IMS.DataAccessLayer
         /*  
             Throws Exception when Exception occured in Database Connectivity
         */
+        /// <summary>
+        /// This method will implement when Department service pass the department Id and it interact with Database.It validate the department Id.
+        /// </summary>
+        /// <param name="departmentId">int</param>
+        /// <returns>Return List otherwise it throw DbUpdateException or OperationCanceledException or Exception</returns>
         public List<Project> GetProjectsFromDatabase(int departmentId)
         {
+            DepartmentValidation.IsDepartmentValid(departmentId);
             try
             { 
                   var project1 = (from project in _db.Projects where project.DepartmentId == departmentId select project);
                    return project1.Count() != 0 ? project1.ToList() : throw new ValidationException("Department is not  found");
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
+                 _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+           
                 //LOG   "DB Update Exception Occured"
-                throw new DbUpdateException();
+                throw exception;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
+                 _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+           
                 //LOG   "Opreation cancelled exception"
-                throw new OperationCanceledException();
+                throw exception;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                 _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+           
                 //LOG   "unknown exception occured "
-                throw new Exception();
+                throw exception;
             }
         }
-
-
-
-
-
-
     }
 }
