@@ -157,7 +157,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            return Ok(_driveService.ViewDashboard(tacId));
+            return Ok(_driveService.ViewTACDashboard(tacId));
         }
         catch (ValidationException driveException)
         {
@@ -244,10 +244,20 @@ public class DriveController : ControllerBase
         {
             return Ok(_driveService.ScheduleInterview(employeeAvailabilityId));
         }
-         [HttpPatch]
+        [HttpPatch]
         public IActionResult CancelInterview(int employeeAvailabilityId)
         {
             return Ok(_driveService.CancelInterview(employeeAvailabilityId));
+        }
+        [HttpGet]
+        public IActionResult ViewAvailableMembersForDrive(int driveId)
+        {
+            return Ok(_driveService.ViewAvailableMembersForDrive(driveId));
+        }
+        [HttpGet]
+        public IActionResult ViewEmployeeDashboard(int employeeId)
+        {
+            return Ok(_driveService.ViewEmployeeDashboard(employeeId));
         }
 
 }

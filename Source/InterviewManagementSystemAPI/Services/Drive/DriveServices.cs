@@ -124,14 +124,14 @@ namespace IMS.Service
             }
         }
 
-        public List<int> ViewDashboard(int employeeId)
+        public Dictionary<string,int> ViewTACDashboard(int employeeId)
         {
             DriveValidation.IsEmployeeIdValid(employeeId);
             try
             {
-                List<int> DashboardCount = new List<int>();
-                DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.AddedBy == employeeId select drive).Cast<Drive>().ToList().Count());
-                DashboardCount.Add((from drive in _driveDataAccess.GetDrivesByStatus(true) where drive.AddedBy == employeeId select drive).Cast<Drive>().ToList().Count());
+                var DashboardCount = new Dictionary<string,int>();
+                DashboardCount.Add("Scheduled Drives",DriveCountForTacByStatus(false,employeeId));
+                DashboardCount.Add("Cancelled Drives",DriveCountForTacByStatus(true,employeeId));
                 return DashboardCount;
             }
             catch (Exception exception)
@@ -139,6 +139,10 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
                 throw exception;
             }
+        }
+        private int DriveCountForTacByStatus(bool status,int employeeId)
+        {
+            return (from drive in _driveDataAccess.GetDrivesByStatus(status) where drive.AddedBy == employeeId select drive).Count();
         }
 
         public Drive ViewDrive(int driveId)
@@ -230,7 +234,7 @@ namespace IMS.Service
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
-                    IntervieDate = e.InterviewDate, 
+                    IntervieDate = e.InterviewDate,
                     Mode = "Online",
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
@@ -253,7 +257,7 @@ namespace IMS.Service
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
-                    IntervieDate = e.InterviewDate, 
+                    IntervieDate = e.InterviewDate,
                     Mode = "Online",
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
@@ -277,7 +281,7 @@ namespace IMS.Service
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
-                    IntervieDate = e.InterviewDate, 
+                    IntervieDate = e.InterviewDate,
                     Mode = "Online",
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
@@ -301,7 +305,7 @@ namespace IMS.Service
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
-                    IntervieDate = e.InterviewDate, 
+                    IntervieDate = e.InterviewDate,
                     Mode = "Online",
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
@@ -350,6 +354,30 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
                 return false;
             }
+        }
+        public Object ViewAvailableMembersForDrive(int driveId)
+        {
+            //Drive Id validation
+            return _driveDataAccess.ViewAvailableMembersForDrive(driveId).Select(
+                availability => new 
+                {
+                    employeeId = availability.EmployeeId,
+                    employeeAceNumber = "ACE0034",
+                    emplyeeName = availability.Employee.Name,
+                    employeeDepartment = ".NET",    
+                    employeeRole = "Software Engineer" //ACE ,DEPT NAME,ROLE
+                }
+            );
+        }
+
+        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId)
+        {
+            var DashboardCount = new Dictionary<string,int>();
+            DashboardCount.Add("Accepted Interviews",_driveDataAccess.GetResponseCountByStatus(1));
+            DashboardCount.Add("Denied Interviews",_driveDataAccess.GetResponseCountByStatus(2));
+            DashboardCount.Add("Ignored Interviews",_driveDataAccess.GetResponseCountByStatus(3));
+            DashboardCount.Add("Total Interviews",DashboardCount["Accepted Interviews"]+DashboardCount["Denied Interviews"]+DashboardCount["Ignored Interviews"]);
+            return DashboardCount;
         }
     }
 }
