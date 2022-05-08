@@ -18,8 +18,11 @@ namespace IMS.Service
             _employeeDataAccessLayer = DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(_logger);
         }
 
-        // private IEmployeeDataAccessLayer _employeeDataAccessLayer = DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
 
         public bool CreateNewEmployee(Employee employee)
         {

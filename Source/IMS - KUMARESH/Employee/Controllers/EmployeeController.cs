@@ -18,13 +18,16 @@ public class EmployeeController : ControllerBase
         _logger = logger;
         employeeService = DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
     }
-    // private IEmployeeService _employee = DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
 
-   /// <summary>
-   /// 
-   /// </summary>
-   /// <param name="employee"></param>
-   /// <returns></returns>
+    /// <summary>
+    /// This method will implements when you create or register new employee, this method calls the CreateNewEmployee method 
+    /// in servive layer(EmployeeService)
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns>
+    /// Returns OK when role is added successfully or
+    /// Returns Badrequest or Problem when exception is occured in the EmployeeService layer.
+    /// </returns>
     [HttpPost]
     public IActionResult CreateNewEmployee(Employee employee)
     {
@@ -32,7 +35,7 @@ public class EmployeeController : ControllerBase
         {
             return employeeService.CreateNewEmployee(employee) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");
         }
-        catch(ValidationException employeeNameException)
+        catch (ValidationException employeeNameException)
         {
             _logger.LogInformation($"Employee Service : CreateNewEmployee() : {employeeNameException.Message}");
             return BadRequest(employeeNameException.Message);
@@ -44,20 +47,24 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// 
+    /// This method will implements if you remove any employee, this method calls the RemoveEmployee method 
+    /// in servive layer(EmployeeService)
     /// </summary>
     /// <param name="employeeId"></param>
-    /// <returns></returns>
+    /// <returns>
+    /// Returns OK when employee is removed successfully or
+    /// Returns Badrequest when exception is occured in the EmployeeService layer.
+    /// </returns>
     [HttpPatch]
     public IActionResult RemoveEmployee(int employeeId)
     {
         EmployeeValidation.IsEmployeeId(employeeId);
-        
+
         try
         {
             return employeeService.RemoveEmployee(employeeId) ? Ok("Employee Removed Successfully") : BadRequest("Sorry internal error occured");
         }
-        catch(ValidationException employeeNotFound)
+        catch (ValidationException employeeNotFound)
         {
             _logger.LogInformation($"Employee Service : RemoveEmployee() : {employeeNotFound.Message}");
             return BadRequest(employeeNotFound.Message);
@@ -69,10 +76,14 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// 
+    /// This method implements when you want to see all the employees list, this method calls the ViewEmployees method 
+    /// in servive layer(EmployeeService)
     /// </summary>
-    /// <returns></returns>
-     [HttpGet]
+    /// <returns>
+    /// Returns list of all employees or
+    /// Returns BadRequest when exception is occured in the EmployeeService layer.
+    /// </returns>
+    [HttpGet]
     public IActionResult ViewEmployees()
     {
         try
@@ -86,11 +97,15 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// 
+    /// This method implements when you want to see employees list filtered by department id,
+    /// this method calls the ViewEmployeesByDepartment method in servive layer(EmployeeService)
     /// </summary>
     /// <param name="departmentId"></param>
-    /// <returns></returns>
-     [HttpGet]
+    /// <returns>
+    /// Returns list of employees filtered by department or
+    /// Returns BadRequest when exception is occured in the EmployeeService layer.
+    /// </returns>
+    [HttpGet]
     public IActionResult ViewEmployeesByDepartment(int departmentId)
     {
         try
