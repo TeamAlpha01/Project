@@ -13,7 +13,6 @@ import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
-import { AdminAddprojectPageComponent } from './Admin/admin-addproject-page/admin-addproject-page.component';
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +45,8 @@ import { CreateInviteComponent } from './TAC/create-invite/create-invite.compone
 import { RegisterPageComponent } from './Shared/register-page/register-page.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
-import { AdminViewDepartmentPageComponent } from './admin/admin-view-department-page/admin-view-department-page.component';
+import { AdminViewLocationPageComponent } from './Admin/admin-view-location-page/admin-view-location-page.component';
+import { AdminViewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-project-page.component';
 
 
 
@@ -58,7 +58,6 @@ import { AdminViewDepartmentPageComponent } from './admin/admin-view-department-
     AdminAdddepartmentComponent,
     AdminAddlocationComponent,
     AdminAddprojectComponent,
-    AdminAddprojectPageComponent,
     AdminDashboardComponent,
     AdminRequestsComponent,
     AdminViewRolePageComponent,
@@ -97,7 +96,8 @@ import { AdminViewDepartmentPageComponent } from './admin/admin-view-department-
     InterviewerAcceptInvitePageComponent,
     InterviewerCancelInterviewPageComponent,
     AdminAdddepartmentComponent,
-    AdminViewDepartmentPageComponent,
+    AdminViewLocationPageComponent,
+    AdminViewProjectPageComponent,
     
     
     

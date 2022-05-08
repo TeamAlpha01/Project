@@ -1,12 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-admin-AddLocation-page',
-  templateUrl: './admin-AddLocation-page.component.html',
-  styleUrls: ['./admin-AddLocation-page.component.css']
+  selector: 'app-admin-view-location-page',
+  templateUrl: './admin-view-location-page.component.html',
+  styleUrls: ['./admin-view-location-page.component.css']
 })
-export class AdminAddLocationPageComponent implements OnInit {
+export class AdminViewLocationPageComponent implements OnInit {
+
+  title='View Location'
+
   data: any;
   totalLength: any;
   page: number = 1;
