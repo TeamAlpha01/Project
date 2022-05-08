@@ -124,14 +124,14 @@ namespace IMS.Service
             }
         }
 
-        public Dictionary<string,int> ViewTACDashboard(int employeeId)
+        public Dictionary<string, int> ViewTACDashboard(int employeeId)
         {
             DriveValidation.IsEmployeeIdValid(employeeId);
             try
             {
-                var DashboardCount = new Dictionary<string,int>();
-                DashboardCount.Add("Scheduled Drives",DriveCountForTacByStatus(false,employeeId));
-                DashboardCount.Add("Cancelled Drives",DriveCountForTacByStatus(true,employeeId));
+                var DashboardCount = new Dictionary<string, int>();
+                DashboardCount.Add("Scheduled Drives", DriveCountForTacByStatus(false, employeeId));
+                DashboardCount.Add("Cancelled Drives", DriveCountForTacByStatus(true, employeeId));
                 return DashboardCount;
             }
             catch (Exception exception)
@@ -140,7 +140,7 @@ namespace IMS.Service
                 throw exception;
             }
         }
-        private int DriveCountForTacByStatus(bool status,int employeeId)
+        private int DriveCountForTacByStatus(bool status, int employeeId)
         {
             return (from drive in _driveDataAccess.GetDrivesByStatus(status) where drive.AddedBy == employeeId select drive).Count();
         }
@@ -329,12 +329,12 @@ namespace IMS.Service
             catch (ValidationException employeeAvailabilityNotVlaid)
             {
                 _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
-                return false;
+                throw employeeAvailabilityNotVlaid;
             }
             catch (Exception exception)
             {
                 _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
-                return false;
+                throw exception;
             }
         }
 
@@ -358,26 +358,55 @@ namespace IMS.Service
         public Object ViewAvailableMembersForDrive(int driveId)
         {
             //Drive Id validation
-            return _driveDataAccess.ViewAvailableMembersForDrive(driveId).Select(
-                availability => new 
+            try
+            {
+                return _driveDataAccess.ViewAvailableMembersForDrive(driveId).Select(
+                availability => new
                 {
                     employeeId = availability.EmployeeId,
                     employeeAceNumber = "ACE0034",
                     emplyeeName = availability.Employee.Name,
-                    employeeDepartment = ".NET",    
+                    employeeDepartment = ".NET",
                     employeeRole = "Software Engineer" //ACE ,DEPT NAME,ROLE
                 }
             );
+            }
+            catch (ValidationException employeeAvailabilityNotVlaid)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
+                return false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
+                return false;
+            }
+
         }
 
         public Dictionary<string, int> ViewEmployeeDashboard(int employeeId)
         {
-            var DashboardCount = new Dictionary<string,int>();
-            DashboardCount.Add("Accepted Interviews",_driveDataAccess.GetResponseCountByStatus(1));
-            DashboardCount.Add("Denied Interviews",_driveDataAccess.GetResponseCountByStatus(2));
-            DashboardCount.Add("Ignored Interviews",_driveDataAccess.GetResponseCountByStatus(3));
-            DashboardCount.Add("Total Interviews",DashboardCount["Accepted Interviews"]+DashboardCount["Denied Interviews"]+DashboardCount["Ignored Interviews"]);
-            return DashboardCount;
+            try
+            {
+                var DashboardCount = new Dictionary<string, int>();
+                DashboardCount.Add("Accepted Interviews", _driveDataAccess.GetResponseCountByStatus(1));
+                DashboardCount.Add("Denied Interviews", _driveDataAccess.GetResponseCountByStatus(2));
+                DashboardCount.Add("Ignored Interviews", _driveDataAccess.GetResponseCountByStatus(3));
+                DashboardCount.Add("Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(true));
+                DashboardCount.Add("Not Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(false));
+                DashboardCount.Add("Total Interviews", DashboardCount["Accepted Interviews"] + DashboardCount["Denied Interviews"] + DashboardCount["Ignored Interviews"]);
+                return DashboardCount;
+            }
+            catch (ValidationException employeeAvailabilityNotVlaid)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
+                throw employeeAvailabilityNotVlaid;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
+                throw exception;
+            }
         }
     }
 }

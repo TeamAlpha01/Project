@@ -21,5 +21,6 @@ namespace IMS.DataAccessLayer
         public bool ScheduleInterview(int employeeAvailabilityId);
         public bool CancelInterview(int employeeAvailabilityId);
         public int GetResponseCountByStatus(int responseType);
+        public int GetResponseUtilizationByStatus(bool isUtilized);
     }
 }

@@ -212,6 +212,11 @@ namespace IMS.DataAccessLayer
         {
             return (from response in _db.EmployeeDriveResponse where response.ResponseType == responseType select response).Count();
         }
+
+        public int GetResponseUtilizationByStatus(bool isUtilized)
+        {
+            return (from availability in _db.EmployeeAvailability where availability.IsInterviewScheduled == isUtilized select availability).Count();
+        }
     }
 }
 
