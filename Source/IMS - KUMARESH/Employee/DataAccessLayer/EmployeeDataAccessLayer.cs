@@ -82,7 +82,7 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
                 //return false;
-                return false;
+                throw exception;
             }
             catch (Exception exception)
             {
