@@ -31,7 +31,7 @@ namespace IMS.DataAccessLayer
                 bool departmentNameExists=_db.Departments.Any(x=>x.DepartmentName==department.DepartmentName);
                if(departmentNameExists)
                {
-               throw new ValidationException("Department name  already exist");
+               throw new ValidationException("Department already exist");
                }
             try
             {
@@ -75,7 +75,11 @@ namespace IMS.DataAccessLayer
         {
         DepartmentValidation.IsDepartmentValid(departmentId);
                 
-
+               bool DeletedepartmentId=_db.Departments.Any(x=>x.IsActive==false);
+               if(  DeletedepartmentId)
+               {
+               throw new ValidationException("Department name  already deleted");
+               }
             try
             {
                 var department = _db.Departments.Find(departmentId);
@@ -192,7 +196,11 @@ namespace IMS.DataAccessLayer
         {
             ProjectValidation.IsProjectValid(projectId);
                 
-
+             bool DeleteprojectId=_db.Projects.Any(x=>x.IsActive==false);
+               if(DeleteprojectId)
+               {
+               throw new ValidationException("project already deleted");
+               }
             try
             {
                 var project = _db.Projects.Find(projectId);

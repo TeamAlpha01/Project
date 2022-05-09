@@ -42,6 +42,7 @@ namespace IMS.Service
             }
             catch (ValidationException departmentExist)
             {
+                 _logger.LogInformation($"Department Service : CreateDepartment(string departmentName) : {departmentExist.Message} : {departmentExist.StackTrace}");
                 throw departmentExist;
             }
             catch (Exception exception)
@@ -70,6 +71,12 @@ namespace IMS.Service
             try
             {
                 return _departmentDataAccessLayer.RemoveDepartmentFromDatabase(departmentId) ? true :false; // LOG Error in DAL;
+            }
+            catch(ValidationException exception)
+            {
+                 _logger.LogInformation($"Department Service : RemoveDepartment(departmentId) : {exception.Message} : {exception.StackTrace}");
+           
+                throw exception;
             }
             catch (Exception exception)
             {
@@ -120,9 +127,10 @@ namespace IMS.Service
                 _project.DepartmentId= departmentId;
                 return _departmentDataAccessLayer.AddProjectToDatabase(_project) ? true : false; // LOG Error in DAL;
             }
-            catch (ValidationException projectExist)
+            catch (ValidationException exception)
             {
-                throw projectExist;
+                _logger.LogInformation($"Department Service : CreateProject(int deparmentId,string projectId) : {exception.Message} : {exception.StackTrace}");
+                throw exception;
             }
             catch (Exception exception)
             {
@@ -150,6 +158,11 @@ namespace IMS.Service
             try
             {
                 return _departmentDataAccessLayer.RemoveProjectFromDatabase(projectId) ? true :false; // LOG Error in DAL;
+            }
+            catch(ValidationException exception)
+            {
+                 _logger.LogInformation($"Department Service : RemoveDepartment(int projectId) : {exception.Message} : {exception.StackTrace}");
+                throw exception;  
             }
             catch (Exception exception)
             {
