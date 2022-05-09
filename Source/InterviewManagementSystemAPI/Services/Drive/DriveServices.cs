@@ -24,14 +24,14 @@ namespace IMS.Service
             {
                 return _driveDataAccess.AddDriveToDatabase(drive) ? true : false;
             }
-            catch (ValidationException driveNotValid)
+            catch (ValidationException createDriveNotValid)
             {
-                _logger.LogInformation($"Drive Service : CreateDrive() : {driveNotValid.Message}");
+                _logger.LogInformation($"Drive Service : CreateDrive() : {createDriveNotValid.Message} : {createDriveNotValid.StackTrace}");
                 return false;
             }
-            catch (Exception exception)
+            catch (Exception createDrivexception)
             {
-                _logger.LogInformation($"Drive Service : CreateDrive() : {exception.Message}");
+                _logger.LogInformation($"Drive Service : CreateDrive() : {createDrivexception.Message} : {createDrivexception.StackTrace}");
                 return false;
             }
         }
@@ -45,12 +45,12 @@ namespace IMS.Service
             }
             catch (ValidationException cancelDriveNotValid)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {cancelDriveNotValid.Message}");
+                _logger.LogInformation($"Drive Service : CancelDrive() : {cancelDriveNotValid.Message} : {cancelDriveNotValid.StackTrace}");
                 return false;
             }
-            catch (Exception exception)
+            catch (Exception cancelDriveException)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
+                _logger.LogInformation($"Drive Service : CancelDrive() : {cancelDriveException.Message} : {cancelDriveException.StackTrace}");
                 return false;
             }
 
@@ -60,12 +60,12 @@ namespace IMS.Service
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where (drive.FromDate.Date <= System.DateTime.Now.Date && drive.ToDate.Date >= System.DateTime.Now.Date) && drive.IsScheduled == true select drive).Cast<Drive>().ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where (drive.FromDate.Date <= System.DateTime.Now.Date && drive.ToDate.Date >= System.DateTime.Now.Date) && drive.IsScheduled == true select drive).ToList();
             }
-            catch (Exception exception)
+            catch (Exception viewTodayDrivesException)
             {
-                _logger.LogInformation($"Drive Service : ViewTodayDrives() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewTodayDrives() : {viewTodayDrivesException.Message} : {viewTodayDrivesException.StackTrace}");
+                throw viewTodayDrivesException;
             }
 
         }
@@ -74,12 +74,12 @@ namespace IMS.Service
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == true select drive).Cast<Drive>().ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == true select drive).ToList();
             }
-            catch (Exception exception)
+            catch (Exception viewScheduledDrivesException)
             {
-                _logger.LogInformation($"Drive Service : ViewScheduledDrives() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewScheduledDrives() : {viewScheduledDrivesException.Message} : {viewScheduledDrivesException.StackTrace}");
+                throw viewScheduledDrivesException;
             }
 
         }
@@ -88,12 +88,12 @@ namespace IMS.Service
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).Cast<Drive>().ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).ToList();
             }
-            catch (Exception exception)
+            catch (Exception viewUpcommingDrivesException)
             {
-                _logger.LogInformation($"Drive Service : ViewUpcommingDrives() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewUpcommingDrives() : {viewUpcommingDrivesException.Message} : {viewUpcommingDrivesException.StackTrace}");
+                throw viewUpcommingDrivesException;
             }
 
         }
@@ -102,12 +102,12 @@ namespace IMS.Service
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) select drive).Cast<Drive>().ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false) select drive).ToList();
             }
-            catch (Exception exception)
+            catch (Exception viewAllScheduledDrivesException)
             {
-                _logger.LogInformation($"Drive Service : ViewAllScheduledDrives() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewAllScheduledDrives() : {viewAllScheduledDrivesException.Message} : {viewAllScheduledDrivesException.StackTrace}");
+                throw viewAllScheduledDrivesException;
             }
         }
 
@@ -115,12 +115,12 @@ namespace IMS.Service
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(true) select drive).Cast<Drive>().ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(true) select drive).ToList();
             }
-            catch (Exception exception)
+            catch (Exception viewAllCancelledDrivesException)
             {
-                _logger.LogInformation($"Drive Service : ViewAllCancelledDrives() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewAllCancelledDrives() : {viewAllCancelledDrivesException.Message} : {viewAllCancelledDrivesException.StackTrace}");
+                throw viewAllCancelledDrivesException;
             }
         }
 
@@ -134,10 +134,10 @@ namespace IMS.Service
                 DashboardCount.Add("Cancelled Drives", DriveCountForTacByStatus(true, employeeId));
                 return DashboardCount;
             }
-            catch (Exception exception)
+            catch (Exception viewTACDashboardException)
             {
-                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewDashboard() : {viewTACDashboardException.Message} : {viewTACDashboardException.StackTrace}");
+                throw viewTACDashboardException;
             }
         }
         private int DriveCountForTacByStatus(bool status, int employeeId)
@@ -153,15 +153,15 @@ namespace IMS.Service
             {
                 return _driveDataAccess.ViewDrive(driveId);
             }
-            catch (ValidationException driveIdNotValid)
+            catch (ValidationException viewDriveNotValid)
             {
-                _logger.LogInformation($"Drive Service : ViewDrive() : {driveIdNotValid.Message}");
-                throw driveIdNotValid;
+                _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveNotValid.Message} : {viewDriveNotValid.StackTrace}");
+                throw viewDriveNotValid;
             }
-            catch (Exception exception)
+            catch (Exception viewDriveException)
             {
-                _logger.LogInformation($"Drive Service : ViewDrive() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
+                throw viewDriveException;
             }
         }
 
@@ -209,18 +209,19 @@ namespace IMS.Service
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability)
         {
+            // employeeAvailability Validation Class
             try
             {
                 return _driveDataAccess.SetTimeSlotToDatabase(employeeAvailability);
             }
             catch (ValidationException employeeAvailabilityNotVlaid)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
+                _logger.LogInformation($"Drive Service : SetTimeSlot(EmployeeAvailability employeeAvailability) : {employeeAvailabilityNotVlaid.Message} : {employeeAvailabilityNotVlaid.StackTrace}");
                 return false;
             }
-            catch (Exception exception)
+            catch (Exception setTimeSlotException)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
+                _logger.LogInformation($"Drive Service :SetTimeSlot(EmployeeAvailability employeeAvailability) : {setTimeSlotException.Message} : {setTimeSlotException.StackTrace}");
                 return false;
             }
         }

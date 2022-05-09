@@ -24,9 +24,9 @@ namespace IMS.DataAccessLayer
                 _db.SaveChanges();
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception addDriveToDatabaseException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {exception.Message}");
+                _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
                 return false;
             }
         }
@@ -36,9 +36,9 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                Drive drive = _db.Drives.Find(driveId);
+                Drive? drive = _db.Drives.Find(driveId);
 
-                if (drive == null) throw new ValidationException("no drive is found with given drive id");
+                if (drive == null) throw new ValidationException($"No drive is found with given drive id : {driveId}");
 
                 drive.IsCancelled = true;
                 drive.CancelReason = reason;
@@ -48,9 +48,9 @@ namespace IMS.DataAccessLayer
                 _db.SaveChanges();
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception cancelDriveFromDatabaseException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {exception.Message}");
+                _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {cancelDriveFromDatabaseException.Message} : {cancelDriveFromDatabaseException.StackTrace}");
                 return false;
             }
 
@@ -60,12 +60,12 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return (from drive in _db.Drives where drive.IsCancelled == status select drive).Cast<Drive>().ToList();
+                return (from drive in _db.Drives where drive.IsCancelled == status select drive).ToList();
             }
-            catch (Exception exception)
+            catch (Exception getDrivesByStatusException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {getDrivesByStatusException.Message} : {getDrivesByStatusException.StackTrace}");
+                throw getDrivesByStatusException;
             }
         }
 
@@ -77,12 +77,12 @@ namespace IMS.DataAccessLayer
             {
                 var viewDrive = (from drive in _db.Drives where drive.DriveId == driveId select drive).First();
 
-                return viewDrive != null ? viewDrive : throw new ValidationException("no drive is found");
+                return viewDrive != null ? viewDrive : throw new ValidationException("No drive is found");
             }
-            catch (Exception exception)
+            catch (Exception isDriveIdValidException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : IsDriveIdValid(driveId) : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Exception on Drive DAL : IsDriveIdValid(driveId) : {isDriveIdValidException.Message} : {isDriveIdValidException.StackTrace}");
+                throw isDriveIdValidException;
             }
         }
 
@@ -91,7 +91,7 @@ namespace IMS.DataAccessLayer
         //For Employee Drive Response Entity
         public bool AddResponseToDatabase(EmployeeDriveResponse response)
         {
-            if (response == null) throw new ValidationException("Response cannnot be null");
+            //response validation Class
 
             try
             {
@@ -99,9 +99,9 @@ namespace IMS.DataAccessLayer
                 _db.SaveChanges();
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception addResponseToDatabaseException)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : AddResponseToDatabase(EmployeeDriveResponse response) : {exception.Message}");
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : AddResponseToDatabase(EmployeeDriveResponse response) : {addResponseToDatabaseException.Message} : {addResponseToDatabaseException.StackTrace}");
                 return false;
             }
         }
@@ -109,8 +109,7 @@ namespace IMS.DataAccessLayer
 
         public bool UpdateResponseToDatabase(int employeeId, int driveId, int responseType)
         {
-            if (driveId <= 0 || employeeId <= 0 || responseType <= 0)
-                throw new ValidationException("DriveId or EmployeeId or Response Type is not valid");
+            //validation
 
             try
             {
@@ -123,9 +122,9 @@ namespace IMS.DataAccessLayer
                 _db.SaveChanges();
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception updateResponseToDatabaseException)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {updateResponseToDatabaseException.Message} : {updateResponseToDatabaseException.StackTrace}");
                 return false;
             }
         }
@@ -140,9 +139,9 @@ namespace IMS.DataAccessLayer
                 _db.EmployeeAvailability.Add(employeeAvailability);
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception setTimeSlotToDatabaseException)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {setTimeSlotToDatabaseException.Message} : {setTimeSlotToDatabaseException.StackTrace}");
                 return false;
             }
         }
