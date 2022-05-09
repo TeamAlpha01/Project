@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\Source.csproj": {}
+    "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {}
   },
   "projects": {
-    "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\Source.csproj": {
+    "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+        "projectUniqueName": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
         "projectName": "Source",
-        "projectPath": "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\Source.csproj",
-        "packagesPath": "C:\\Users\\darshana.annappan\\.nuget\\packages\\",
-        "outputPath": "D:\\Git-Darshana\\Source\\InterviewManagementSystemAPI\\obj\\",
+        "projectPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+        "packagesPath": "C:\\Users\\prithvi.palani\\.nuget\\packages\\",
+        "outputPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\darshana.annappan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\prithvi.palani\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"

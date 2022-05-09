@@ -50,7 +50,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception cancelDriveFromDatabaseException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {cancelDriveFromDatabaseException.Message} : {cancelDriveFromDatabaseException.StackTrace}");
+                _logger.LogInformation($"Exception on Drive DAL : CancelDriveFromDatabase(int driveId, int tacId, string reason) : {cancelDriveFromDatabaseException.Message} : {cancelDriveFromDatabaseException.StackTrace}");
                 return false;
             }
 
@@ -64,7 +64,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getDrivesByStatusException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {getDrivesByStatusException.Message} : {getDrivesByStatusException.StackTrace}");
+                _logger.LogInformation($"Exception on Drive DAL : GetDrivesByStatus(bool status) : {getDrivesByStatusException.Message} : {getDrivesByStatusException.StackTrace}");
                 throw getDrivesByStatusException;
             }
         }
@@ -75,13 +75,13 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                var viewDrive = (from drive in _db.Drives where drive.DriveId == driveId select drive).First();
-
+                var viewDrive = _db.Drives.Find(driveId);    ///use include method
+                //(from drive in _db.Drives where drive.DriveId == driveId select drive).First()
                 return viewDrive != null ? viewDrive : throw new ValidationException("No drive is found");
             }
             catch (Exception isDriveIdValidException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : IsDriveIdValid(driveId) : {isDriveIdValidException.Message} : {isDriveIdValidException.StackTrace}");
+                _logger.LogInformation($"Exception on Drive DAL : ViewDrive(int driveId) : {isDriveIdValidException.Message} : {isDriveIdValidException.StackTrace}");
                 throw isDriveIdValidException;
             }
         }
@@ -101,7 +101,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception addResponseToDatabaseException)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : AddResponseToDatabase(EmployeeDriveResponse response) : {addResponseToDatabaseException.Message} : {addResponseToDatabaseException.StackTrace}");
+                _logger.LogInformation($"Exception on Drive DAL : AddResponseToDatabase(EmployeeDriveResponse response) : {addResponseToDatabaseException.Message} : {addResponseToDatabaseException.StackTrace}");
                 return false;
             }
         }
@@ -124,7 +124,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception updateResponseToDatabaseException)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {updateResponseToDatabaseException.Message} : {updateResponseToDatabaseException.StackTrace}");
+                _logger.LogInformation($"Exception on Drive DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {updateResponseToDatabaseException.Message} : {updateResponseToDatabaseException.StackTrace}");
                 return false;
             }
         }
@@ -141,7 +141,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception setTimeSlotToDatabaseException)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {setTimeSlotToDatabaseException.Message} : {setTimeSlotToDatabaseException.StackTrace}");
+                _logger.LogInformation($"Exception on Drive DAL : SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability) : {setTimeSlotToDatabaseException.Message} : {setTimeSlotToDatabaseException.StackTrace}");
                 return false;
             }
         }
@@ -149,17 +149,19 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return (from interview in _db.EmployeeAvailability.Include(d => d.Drive).Include(a => a.Drive.Location).Include(a => a.Drive.Pool) where interview.IsInterviewCancelled == status && interview.Drive.IsCancelled == false select interview).ToList();
+                return (from interview in _db.EmployeeAvailability.Include(d => d.Drive).Include(L => L.Drive.Location).Include(P => P.Drive.Pool) where interview.IsInterviewCancelled == status && interview.Drive.IsCancelled == false select interview).ToList();
             }
-            catch (Exception exception)
+            catch (Exception viewInterviewsByStatusException)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Exception on Drive DAL : ViewInterviewsByStatus(bool status) : {viewInterviewsByStatusException.Message}");
+                throw viewInterviewsByStatusException;
             }
         }
 
         public bool ScheduleInterview(int employeeAvailabilityId)
         {
+            //validation
+
             try
             {
                 var employeeAvailability = _db.EmployeeAvailability.Find(employeeAvailabilityId);
@@ -170,14 +172,15 @@ namespace IMS.DataAccessLayer
                 _db.SaveChanges();
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception scheduleInterviewException)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                _logger.LogInformation($"Exception on Drive DAL : ScheduleInterview(int employeeAvailabilityId) : {scheduleInterviewException.Message} : {scheduleInterviewException.StackTrace}");
                 return false;
             }
         }
         public bool CancelInterview(int employeeAvailabilityId)
         {
+            //validation
             try
             {
                 var employeeAvailability = _db.EmployeeAvailability.Find(employeeAvailabilityId);
@@ -190,7 +193,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                _logger.LogInformation($"Exception on Drive DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
                 return false;
             }
         }
@@ -203,7 +206,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                _logger.LogInformation($"Exception on Drive DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
                 throw exception;
             }
         }
