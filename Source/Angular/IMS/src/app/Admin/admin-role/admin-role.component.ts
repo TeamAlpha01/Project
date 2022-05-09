@@ -17,7 +17,14 @@ export class AdminRoleComponent implements OnInit {
   constructor(private http: HttpClient) { }
   addRole() {
     console.log(this.role)
-    // this.http.post(url:)
+    
+    this.http
+      .post<any>('https://localhost:7072/Role/CreateNewRole',this.role.roleName)
+      .subscribe((data) => {
+        // this.role = data;
+        data =this.role;
+        
+      });
   }
   ngOnInit(): void {
   }

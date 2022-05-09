@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-interviewer-header',
   templateUrl: './interviewer-header.component.html',
@@ -14,6 +15,7 @@ export class InterviewerHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   userName="Admin";
+ 
  
   
 }
