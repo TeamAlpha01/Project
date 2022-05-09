@@ -13,6 +13,9 @@ import { AdminRoleComponent } from './Admin/admin-Role/admin-role.component';
 import { AdminHeaderComponent } from './Admin/admin-Header/admin-header.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
+import { AdminviewProjectPageComponent } from './Admin/admin-view-Project-page/admin-view-Project-page.component';
+import { AdminviewDepartmentPageComponent } from './Admin/admin-view-Department-page/admin-view-Department-page.component';
+import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -45,9 +48,7 @@ import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
-import { AdminviewProjectPageComponent } from './Admin/admin-view-Project-page/admin-view-Project-page.component';
-import { AdminviewDepartmentPageComponent } from './Admin/admin-view-Department-page/admin-view-Department-page.component';
-import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
+
 
 
 
@@ -65,6 +66,7 @@ import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page
     AdminRequestsComponent,
     AdminViewRolePageComponent,
     AdminViewRequestsPageComponent,
+    AdminviewProjectPageComponent,
 
     InterviewerHeaderComponent,
     FooterComponent,
