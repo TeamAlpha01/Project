@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminAdddepartmentComponent } from './Admin/admin-addDepartment/admin-adddepartment.component';
-import { AdminAddlocationComponent } from './Admin/admin-addLocation/admin-addlocation.component';
-import { AdminAddprojectComponent } from './Admin/admin-addProject/admin-addproject.component';
+import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
+import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
+import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
 import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
-import { AdminRoleComponent } from './Admin/admin-Role/admin-role.component';
+import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
