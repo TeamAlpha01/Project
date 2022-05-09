@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/Model/Role';
+import { ConnectionService } from 'src/app/Services/connection.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { data } from 'jquery';
 
 // import { url } from 'inspector';
 
@@ -14,18 +16,15 @@ export class AdminRoleComponent implements OnInit {
   role: Role = {
     roleName: '',
   }
-  constructor(private http: HttpClient) { }
+  constructor(private createRole: ConnectionService) { }
   addRole() {
-    console.log(this.role)
-    
-    this.http
-      .post<any>('https://localhost:7072/Role/CreateNewRole',this.role.roleName)
-      .subscribe((data) => {
-        // this.role = data;
-        data =this.role;
-        
-      });
-  }
+    console.log(this.role.roleName)
+    this.createRole.CreateRole(this.role.roleName).subscribe((data)=>{
+      console.log(data)
+    })
+
+  };
+
   ngOnInit(): void {
   }
   pageTitle = "Role"

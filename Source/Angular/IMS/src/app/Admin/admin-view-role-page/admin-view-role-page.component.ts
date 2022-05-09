@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-admin-view-role-page',
@@ -12,16 +13,18 @@ export class AdminViewRolePageComponent implements OnInit {
   page: number = 1;
   title:string='View Role';
   
+
  
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http
-      .get<any>('https://localhost:7072/Role/ViewRoles')
-      .subscribe((data) => {
-        this.data = data;
-        this.totalLength = data.length;
-      });
+    // this.http
+    //   .get<any>('https://localhost:7072/Role/ViewRoles')
+    //   .subscribe((data) => {
+    //     this.data = data;
+    //     this.totalLength = data.length;
+    //   });
+
   }
 
 }

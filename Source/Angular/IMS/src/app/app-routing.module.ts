@@ -36,56 +36,56 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
-import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
+// import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
 
 
 
 const routes: Routes = [
-//interviewer pages
-  { path: 'Admin-view-location-page', component: AdminviewLocationPageComponent},     //Admin-view-location-page
-  { path: 'interviewer-home', component:InterviewerHomeComponent },
-  { path: 'profile', component:ProfileComponent },
-  { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
-  { path: 'interviewer-currentDrives', component:InterviewerCurrentDriveComponent },
-  { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
-  { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
-  { path: 'interviewer-driveInvites', component:InterviewerDriveInvitesComponent },
-  {path: 'interviewer-accept-invite-page',component:InterviewerAcceptInvitePageComponent},
-  { path: 'interviewer-cancelInterview', component:InterviewerCancelInterviewPageComponent },
-  
+  //interviewer pages
+  // { path: 'Admin-view-location-page', component: AdminviewLocationPageComponent },     //Admin-view-location-page
+  { path: 'interviewer-home', component: InterviewerHomeComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
+  { path: 'interviewer-currentDrives', component: InterviewerCurrentDriveComponent },
+  { path: 'interviewer-scheduledDrives', component: InterviewerScheduledDriveComponent },
+  { path: 'interviewer-upcomingDrives', component: InterviewerUpcomingDriveComponent },
+  { path: 'interviewer-driveInvites', component: InterviewerDriveInvitesComponent },
+  { path: 'interviewer-accept-invite-page', component: InterviewerAcceptInvitePageComponent },
+  { path: 'interviewer-cancelInterview', component: InterviewerCancelInterviewPageComponent },
 
-//admin pages
-  {path: '', component: AdminViewRolePageComponent},             //Admin-addrole-page
-  {path: 'Admin-adddepartment ',component:AdminAdddepartmentComponent},
-  {path: 'Admin-addlocation ',component:AdminAddlocationComponent},
-  {path: 'Admin-addproject',component:AdminAddprojectComponent},
-  {path: 'Admin-role',component:AdminRoleComponent},
-  {path: 'Admin-requests',component:AdminRequestsComponent},
-  {path: 'Admin-dashboard',component:AdminDashboardComponent},
+
+  //admin pages
+  { path: '', component: AdminRoleComponent },             //Admin-addrole-page
+  { path: 'Admin-adddepartment ', component: AdminAdddepartmentComponent },
+  { path: 'Admin-addlocation ', component: AdminAddlocationComponent },
+  { path: 'Admin-addproject', component: AdminAddprojectComponent },
+  { path: 'Admin-role', component: AdminRoleComponent },
+  { path: 'Admin-requests', component: AdminRequestsComponent },
+  { path: 'Admin-dashboard', component: AdminDashboardComponent },
   // {path:'Admin-viewdepartment-page',component:AdminviewDepartmentPageComponent},
   //{path:'Admin-viewlocation-page',component:AdminviewLocationPageComponent},
-  {path:'',component:AdminviewProjectPageComponent},                  //Admin-veiwproject-page
-  
+  { path: '', component: AdminviewProjectPageComponent },                  //Admin-veiwproject-page
+
 
   //tac pages
-  {path: 'TAC-dashboard',component:TacDashboardComponent},
-  {path: 'TAC-performance',component:MyperformanceComponent},
-  {path: 'Poolmembers-performance',component:PoolmembersPerformanceComponent},
-  {path: 'managepoolmembers',component:ManagepoolmembersComponent},
-  {path: 'tac-profile', component:TacProfileComponent },
-  {path: 'tac-current-drive', component:TacCurrentDriveComponent },
-  {path: 'tac-scheduled-drive', component:TacScheduledDriveComponent },
-  {path: 'create-invite', component:CreateInviteComponent },
+  { path: 'TAC-dashboard', component: TacDashboardComponent },
+  { path: 'TAC-performance', component: MyperformanceComponent },
+  { path: 'Poolmembers-performance', component: PoolmembersPerformanceComponent },
+  { path: 'managepoolmembers', component: ManagepoolmembersComponent },
+  { path: 'tac-profile', component: TacProfileComponent },
+  { path: 'tac-current-drive', component: TacCurrentDriveComponent },
+  { path: 'tac-scheduled-drive', component: TacScheduledDriveComponent },
+  { path: 'create-invite', component: CreateInviteComponent },
 
-  {path:'createpool',component:CreatepoolComponent},
-  {path:'editpool',component:EditpoolComponent},
-  {path:'managepoolmembers',component:ManagepoolmembersComponent},
-  {path:'managepool',component:ManagepoolComponent},
-  {path:'login',component:LoginComponent},
-  {path:'dashboaard',component:DashboardComponent},
-  { path: 'tac-home',component:TacHomeComponent},
+  { path: 'createpool', component: CreatepoolComponent },
+  { path: 'editpool', component: EditpoolComponent },
+  { path: 'managepoolmembers', component: ManagepoolmembersComponent },
+  { path: 'managepool', component: ManagepoolComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboaard', component: DashboardComponent },
+  { path: 'tac-home', component: TacHomeComponent },
 ];
 
 @NgModule({

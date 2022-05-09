@@ -47,7 +47,7 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
-import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
+// import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 // import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
 
 
@@ -66,7 +66,7 @@ import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page
     AdminRequestsComponent,
     AdminViewRolePageComponent,
     AdminviewProjectPageComponent,
-    AdminviewLocationPageComponent,
+    // AdminviewLocationPageComponent,
     InterviewerHeaderComponent,
     FooterComponent,
     BackButtonComponent,
