@@ -393,12 +393,12 @@
     margin-top: 5px;
     margin-left: 10px;
     margin-bottom: 10px;
-    color: white;
-    background-color: #b57ae6;
+    color: white!important;
+    background-color: #b57ae6!important;
   }
   .btn-back:hover{
-    color: white;
-    background-color: #aa60e7;
+    color: white!important;
+    background-color: #aa60e7!important;
   }
   
   

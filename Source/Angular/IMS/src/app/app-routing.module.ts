@@ -6,8 +6,8 @@ import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproj
 import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
-import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
-import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
+// import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
+// import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
@@ -43,7 +43,7 @@ import { InterviewerCancelInterviewPageComponent } from './Interviewer/interview
 
 const routes: Routes = [
 //interviewer pages
-  { path: '', component: AdminviewLocationPageComponent},
+  { path: '', component: AdminAddprojectComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
@@ -63,8 +63,8 @@ const routes: Routes = [
   {path: 'Admin-role',component:AdminRoleComponent},
   {path: 'Admin-requests',component:AdminRequestsComponent},
   {path: 'Admin-dashboard',component:AdminDashboardComponent},
-  {path:'Admin-viewdepartment-page',component:AdminviewDepartmentPageComponent},
-  {path:'Admin-viewlocation-page',component:AdminviewLocationPageComponent},
+  // {path:'Admin-viewdepartment-page',component:AdminviewDepartmentPageComponent},
+  // {path:'Admin-viewlocation-page',component:AdminviewLocationPageComponent},
   {path:'Admin-veiwproject-page',component:AdminviewProjectPageComponent},
   
 
