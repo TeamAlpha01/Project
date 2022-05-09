@@ -4248,19 +4248,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\deepika.senthil\\.nuget\\packages\\": {}
+    "C:\\Users\\prithvi.palani\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Git-Deepika\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+      "projectUniqueName": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
       "projectName": "Source",
-      "projectPath": "D:\\Git-Deepika\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
-      "packagesPath": "C:\\Users\\deepika.senthil\\.nuget\\packages\\",
-      "outputPath": "D:\\Git-Deepika\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
+      "projectPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\Source.csproj",
+      "packagesPath": "C:\\Users\\prithvi.palani\\.nuget\\packages\\",
+      "outputPath": "D:\\GIT-Prithvi\\Project\\Source\\InterviewManagementSystemAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\deepika.senthil\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\prithvi.palani\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
