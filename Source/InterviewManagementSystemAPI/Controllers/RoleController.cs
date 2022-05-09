@@ -84,7 +84,6 @@ public class RoleController : ControllerBase
     {
         try
         {
-
             return Ok(roleService.ViewRoles());
         }
         catch (Exception exception)

@@ -137,6 +137,7 @@ namespace IMS.DataAccessLayer
             try
             {
                 _db.EmployeeAvailability.Add(employeeAvailability);
+                _db.SaveChanges();
                 return true;
             }
             catch (Exception setTimeSlotToDatabaseException)
@@ -201,8 +202,8 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                if (_db.EmployeeAvailability.Find(driveId) == null) throw new ValidationException($"No Drive is Found with driveId : {driveId}");
-                return (from availability in _db.EmployeeAvailability.Include(e=>e.Employee) where availability.DriveId==driveId select availability).ToList();
+                if (_db.Drives.Find(driveId) == null) throw new ValidationException($"No Drive is Found with driveId : {driveId}");
+                return (from availability in _db.EmployeeAvailability.Include(e => e.Employee) where availability.DriveId == driveId && availability.IsInterviewScheduled == false select availability).ToList();
             }
             catch (Exception exception)
             {
