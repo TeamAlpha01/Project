@@ -15,7 +15,13 @@ namespace project.Controller;
         _logger = logger;
          departmentService1 = IMS.DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
     }
-    
+    /// <summary>
+    /// This Method Will Implement When Create New Department Request rises-The Project controller passes the the parameter 
+    /// to the Department Service.
+    /// </summary>
+    /// <param name="departmentId">int</param>
+    /// <param name="projectName">String</param>
+    /// <returns>Return Ok or Badrequest otherwise it returns validation exeption or Exception when exception thrown in service.</returns>
  
     [HttpPost]
     public IActionResult CreateNewProject( int departmentId,string projectName)
@@ -30,14 +36,20 @@ namespace project.Controller;
         catch (ValidationException exception)
         {
              _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest("project Name is invalid");
+            return BadRequest(exception.Message);
         }
         catch (Exception exception)
         {
              _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest("Sorry some internal error occured");
+            return BadRequest(exception.Message);
         }
     }
+    /// <summary>
+    /// This Method Will Implement When Remove Project Request rises-The Project controller passes the the parameter 
+    /// to the Department Service.
+    /// </summary>
+    /// <param name="projectId">int</param>
+    /// <returns>Return Ok or Badrequest otherwise it returns validation exeption or Exception when exception thrown in service.</returns>
     [HttpPost]
     public IActionResult RemoveProject(int projectId)
     {
@@ -47,15 +59,28 @@ namespace project.Controller;
         {
             return departmentService1.RemoveProject(projectId) ? Ok("Project Removed Successfully") : BadRequest("Sorry internal error occured");
         }
+        catch(Validation exception)
+        {
+              _logger.LogInformation($"Project Controller : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
+            return BadRequest(exception.Message);
+
+        }
         catch (Exception exception)
         {
              _logger.LogInformation($"Project Controller : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest("Sorry some internal error occured");
+            return BadRequest(exception.Message);
         }
     }
+    /// <summary>
+    /// This Method Will Implement When View Projects Request rises-The Project controller passes the the parameter 
+    /// to the Department Service.It validate the department Id .
+    /// </summary>
+    /// <param name="departmentId">int</param>
+    /// <returns>Return Ok  otherwise it returns  Exception when exception thrown in service .</returns>
       [HttpGet]
     public IActionResult ViewProjects(int departmentId)
     {
+        if (departmentId <= 0) return BadRequest("Department Id is not provided");
         try
         {
             return Ok(departmentService1.ViewProjects(departmentId));
@@ -63,7 +88,7 @@ namespace project.Controller;
         catch (Exception exception)
         {
             _logger.LogInformation($"Project Controller : ViewProjects() : {exception.Message} : {exception.StackTrace}");
-            return BadRequest("Sorry some internal error occured");
+            return BadRequest(exception.Message);
         }
     }
   }

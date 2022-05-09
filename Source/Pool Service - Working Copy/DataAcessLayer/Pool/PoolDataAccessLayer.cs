@@ -18,36 +18,35 @@ namespace IMS.DataAccessLayer
 
         public bool AddPoolToDatabase(Pool pool)
         {
-            if (pool == null)
-                throw new ArgumentNullException("Pool can't be empty");
-            try
+            
+            PoolValidation.IsAddPoolValid( pool);    
+             try
             {
                 _db.Pools.Add(pool);
                 _db.SaveChanges();
                 return true;
             }
-             catch (DbUpdateException exception)
+            catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Pool DAL :AddPoolToDatabase(Pool pool):  {exception.Message}");
+                _logger.LogInformation($"Pool DAL : AddPoolToDatabase(Pool pool) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Pool DAL :AddPoolToDatabase(Pool pool):  {exception.Message}");
-                return false;
-            }
-            catch (Exception exception)
-            {
-                _logger.LogInformation($"Pool DAL :AddPoolToDatabase(Pool pool):  {exception.Message}");
+                _logger.LogInformation($"Pool DAL : AddPoolToDatabase(Pool pool) : {exception.Message}");
                 return false;
             }
 
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Pool DAL : AddPoolToDatabase(Pool pool)  : {exception.Message}");
+                return false;
+            }
 
         }
         public bool RemovePoolFromDatabase(int poolId)
         {
-            if ( poolId == 0)
-                throw new ArgumentNullException("Pool Id is not provided ");
+            PoolValidation.IsValidPoolId(poolId);
 
             try
             {
@@ -85,13 +84,16 @@ namespace IMS.DataAccessLayer
 
         public bool EditPoolFromDatabase ( int poolId,string poolName)
         {
-           if(poolId==0 || poolName==null)
-            throw new ArgumentNullException("Pool Id is not provided");
+            PoolValidation.IsEditPoolValid(poolId,poolName);
             try
             {
+                
                 var edit = _db.Pools.Find(poolId);
-                 if (edit == null) 
-                    throw new ValidationException("No Pool is found with given pool Id");
+                if(edit == null )
+                    throw new ValidationException("No pool is found with given Pool Id");
+                else if(edit.IsActive==false)
+                    throw new   ValidationException("The given pool Id is inactive,so unable to rename the pool");
+                
                 
                 
                 edit.PoolName = poolName;
@@ -114,6 +116,7 @@ namespace IMS.DataAccessLayer
             {
                 throw poolNotFound;
             }
+           
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool DAL : EditPoolFromDatabase(int poolId,string poolName) : {exception.Message}");
@@ -127,110 +130,129 @@ namespace IMS.DataAccessLayer
 
         public List<Pool> GetPoolsFromDatabase(int departmentId)
         {
-             if (departmentId == 0)
-                throw new ArgumentNullException("Department Id is not provided ");
+             
             try
             {
-                return (from pool in _db.Pools where pool.DepartmentId == departmentId select pool).ToList();
+                  var list = _db.Pools.Find(departmentId);
+                 if(list == null )
+                    throw new ValidationException("No pool is found with given department Id ");
+            return _db.Pools.ToList();
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase(int departmentId) : {exception.Message}");
+                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new DbUpdateException();
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase(int departmentId) : {exception.Message}");
+                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
+            }
+              catch (ValidationException departmentNotFound)
+            {
+                throw departmentNotFound;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase(int departmentId) : {exception.Message}");
+                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
 
         }
           public bool AddPoolMembersToDatabase(PoolMembers poolMembers)
         {
-            if (poolMembers== null)
-                throw new ArgumentNullException("PoolMembers can't be empty");
+            PoolValidation.IsAddPoolMemberValid(poolMembers);
+            
             try
             {
                 _db.PoolMembers.Add(poolMembers);
                 _db.SaveChanges();
                 return true;
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
-                //LOG   "DB Update Exception Occured"
+                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers) : {exception.Message}");
                 return false;
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
-                //LOG   "Opreation cancelled exception"
+                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers): {exception.Message}");
                 return false;
             }
-            catch (Exception)
+           
+            catch (Exception exception)
             {
-                //LOG   "unknown exception occured "
+                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers)  : {exception.Message}");
                 return false;
             }
 
 
         }
-        public bool RemovePoolMembersFromDatabase(int EmployeeId,int PoolId)
+        public bool RemovePoolMembersFromDatabase(int poolMemberId)
         {
-            if(EmployeeId==0 || PoolId==0)
-            
-               throw new ArgumentNullException("Department Id is not provided "); 
+           PoolValidation.IsRemovePoolMembersValid(poolMemberId);
             
             try{
-                 var employee = (from emp in _db.PoolMembers where emp.EmployeeId==EmployeeId && emp.PoolId == PoolId select emp).First();
-                //var employee=_db.PoolMembers.Find(EmployeeId,PoolId);
+                var employee = _db.PoolMembers.Find(poolMemberId);
+                if(employee==null) 
+                    throw new ValidationException("PoolMember not found with the given PoolMember Id");
+               
                 employee.IsActive=false;
                 _db.PoolMembers.Update(employee);
                 _db.SaveChanges();
                 return true;
             }
+            catch (DbUpdateException exception)
+            {
+                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers) : {exception.Message}");
+                return false;
+            }
+            catch (OperationCanceledException exception)
+            {
+                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers): {exception.Message}");
+                return false;
+            }
+            catch(ValidationException poolMemberNotException)
+            {
+               throw poolMemberNotException;     
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers)  : {exception.Message}");
+                return false;
+            }
               
-            catch (DbUpdateException)
-            {
-                //LOG   "DB Update Exception Occured"
-                return false;
-            }
-            catch (OperationCanceledException)
-            {
-                //LOG   "Opreation cancelled exception"
-                return false;
-            }
-            catch (Exception)
-            {
-                //LOG   "unknown exception occured "
-                return false;
-            }
-       
+           
         }
-        public List<PoolMembers> GetPoolMembersFromDatabase(int PoolId)
+        public List<PoolMembers> GetPoolMembersFromDatabase(int poolId)
         {
-            if (PoolId == 0)
-                throw new ArgumentNullException("Department Id is not provided ");
+            
+              
             try
             {
-                return _db.PoolMembers.ToList();
+                var member = _db.PoolMembers.Find(poolId);
+                if(member==null) 
+                    throw new ValidationException("Pool not found with the given Pool Id");
+               
+            return _db.PoolMembers.ToList();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException exception)
             {
-                //LOG   "DB Update Exception Occured"
+                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new DbUpdateException();
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException exception)
             {
-                //LOG   "Opreation cancelled exception"
+                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
             }
-            catch (Exception)
+             catch(ValidationException poolNotFound)
             {
-                //LOG   "unknown exception occured "
+               throw poolNotFound;     
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
              

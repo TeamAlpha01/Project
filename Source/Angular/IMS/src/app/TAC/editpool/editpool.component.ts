@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditpoolComponent implements OnInit {
 
+  title ="Edit pool"
+
   constructor() { }
 
   ngOnInit(): void {

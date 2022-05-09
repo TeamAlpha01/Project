@@ -21,4 +21,5 @@ export class CardDetailsComponent implements OnInit {
     
   }
 
+
 }

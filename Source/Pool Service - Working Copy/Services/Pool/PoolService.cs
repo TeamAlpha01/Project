@@ -5,47 +5,45 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 namespace IMS.Services
 {
-    public class PoolService:IPoolService
+    public class PoolService : IPoolService
     {
         private IPoolDataAccessLayer _poolDataAccessLayer;
-      
+       
         private readonly ILogger _logger;
         public PoolService(ILogger logger)
         {
             _logger = logger;
-            _poolDataAccessLayer = DataFactory.PoolDataFactory.GetPoolDataAccessLayerObject(_logger);
-     
-      
-
-        public bool CreatePool( int departmentId,string poolName)
+             _poolDataAccessLayer= DataFactory.PoolDataFactory.GetPoolDataAccessLayerObject(_logger);
+        }
+        public bool CreatePool(int departmentId,string poolName)
+        
         {
-    
-           private Pool _pool = DataFactory.PoolDataFactory.GetPoolObject(); 
-           PoolValidation.IsCreatePoolValid(departmentId,poolName);
+            
+            Pool _pool=DataFactory.PoolDataFactory.GetPoolObject();
+            PoolValidation.IsCreatePoolValid(departmentId,poolName);
+
             try
             {
-                _pool.PoolName = poolName;
-                _pool.DepartmentId=departmentId;
-                return _poolDataAccessLayer.AddPoolToDatabase(_pool) ? true : false; // LOG Error in DAL;
+               _pool.DepartmentId=departmentId;
+               _pool.PoolName=poolName; 
+               return _poolDataAccessLayer.AddPoolToDatabase(_pool) ? true : false;
+              
             }
             catch (ArgumentException exception)
             {
                 _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
                 return false;
             }
+           
+          
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
                 return false;
             }
-        }
-
-        /*  
-            Returns False when Exception occured in Data Access Layer
             
-            Throws ArgumentNullException when Pool Id is not passed to this service method
-        */
 
+        }
         public bool RemovePool(int poolId)
         {
            PoolValidation.IsRemovePoolValid(poolId);
@@ -56,29 +54,30 @@ namespace IMS.Services
             }
             catch (ArgumentException exception)
             {
-                _logger.LogInformation($"Pool service : RemoveLocation(int departmentId,int poolId) : {exception.Message}");
+                _logger.LogInformation($"Pool service : RemovePool(int poolId) : {exception.Message}");
                 return false;
             }
             catch (ValidationException poolNotFound)
             {
-                _logger.LogInformation($"Pool service : RemoveLocation(int departmentId,int poolId) : {poolNotFound.Message}");
+                _logger.LogInformation($"Pool service : RemovePool(int poolId): {poolNotFound.Message}");
                 throw poolNotFound;
             }
+             
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool service : RemoveLocation(int departmentId,int poolId):{exception.Message}");
+                _logger.LogInformation($"Pool service : RemovePool(int poolId):{exception.Message}");
                 return false;
             }
            
         }
-        public bool EditPool(int poolId,string poolName)
+         public bool EditPool(int poolId,string poolName)
         {
             PoolValidation.IsEditPoolValid(poolId,poolName);
            
 
              try
              {
-                 return _poolDataAccessLayer.EditPoolFromDatabase(poolId,poolName)?true:false;
+                 return _poolDataAccessLayer.EditPoolFromDatabase(poolId,poolName)? true:false;
              } 
              catch (ArgumentException exception)
             {
@@ -101,11 +100,18 @@ namespace IMS.Services
         }
         public IEnumerable<Pool> ViewPools(int departmentId)
         {
-            PoolValidation.IsVaLidDepartmentId(int departmentId);
+
+          PoolValidation.IsValidDepartmentId(departmentId);
             try
             {
-                IEnumerable<Pool> Pools = new List<Pool>(departmentId);
-                return Pools = from Pool in _poolDataAccessLayer.GetPoolsFromDatabase(departmentId) where Pool.IsActive == true select Pool;
+            IEnumerable<Pool> pools = new List<Pool>();
+            return pools=from pool in _poolDataAccessLayer.GetPoolsFromDatabase(departmentId) where pool.DepartmentId==departmentId && pool.IsActive == true select pool;
+               
+            }
+            catch (ValidationException departmentNotFound)
+            {
+                _logger.LogInformation($"Pool service :EditPool(int poolId,string poolName): {departmentNotFound.Message}");
+                throw departmentNotFound;
             }
            catch (Exception exception)
             {
@@ -114,68 +120,92 @@ namespace IMS.Services
             }
 
         }
-    
-
          public bool AddPoolMembers (int employeeId, int poolId)
         {
-            private PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
+             PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
+             PoolValidation.IsAddPoolMembersValid(employeeId,poolId);
             
             try
             {
-                _PoolMembers.EmployeeId=employeeId;
-                _PoolMembers.PoolId = poolId;
-                return _poolDataAccessLayer.AddPoolMembersToDatabase(_PoolMembers) ? true : false; // LOG Error in DAL;
+                _poolMembers.EmployeeId=employeeId;
+                _poolMembers.PoolId = poolId;
+                return _poolDataAccessLayer.AddPoolMembersToDatabase(_poolMembers) ? true : false; // LOG Error in DAL;
             }
            catch (ArgumentException exception)
             {
                 _logger.LogInformation($"Pool service : AddPoolMembers(int employeeId,int poolId) : {exception.Message}");
                 return false;
             }
-            catch (ValidationException poolMemberNotException)
-            {
-            _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {poolMemberNotException.Message}");
-             throw poolMemberNotException;
-            }
+           
             
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool service : AddPoolMembers(int employeeId,int poolId) : {exception.Message}");
                 return false;
             }
-        }
+        
+         }
+         public bool RemovePoolMembers(int poolMemberId)
+         {
+             PoolValidation.IsRemovePoolMembersValid(poolMemberId);
 
-        //     public bool RemovePoolMembers (int EmployeeID, int PoolId)
-        // {
-        //     if (EmployeeID == 0 || PoolId == 0)
-        //         throw new ArgumentNullException("PoolID is not provided");
+            try
+            {
+                return _poolDataAccessLayer.RemovePoolFromDatabase(poolMemberId) ? true :false; // LOG Error in DAL;
+            }
+            catch (ArgumentException exception)
+            {
+                _logger.LogInformation($"Pool service : RemoveLocation(int departmentId,int poolId) : {exception.Message}");
+                return false;
+            }
+          catch (ValidationException poolMemberNotException)
 
-        //     try
-        //     {
+            {
+                _logger.LogInformation($"Pool service : RemoveLocation(int departmentId,int poolId) : {poolMemberNotException.Message}");
+                throw poolMemberNotException;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Pool service : RemoveLocation(int departmentId,int poolId):{exception.Message}");
+                return false;
+            }
+
+         }
+       public IEnumerable<PoolMembers> ViewPoolMembers (int poolId)
+        {
+
+          PoolValidation.IsValidPoolId(poolId);
+            try
+            {
+            IEnumerable<PoolMembers> poolmembers = new List<PoolMembers>();
+            return poolmembers=from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase(poolId) where poolmember.PoolId==poolId && pool.Isactive==true select poolmember;
                 
-        //         return _PoolDataAccessLayer.RemovePoolMembersFromDatabase(EmployeeID,PoolId) ? true : false; // LOG Error in DAL;
-        //     }
-        //     catch (Exception exception)
-        //     {
-        //         // Log "Exception Occured in Data Access Layer"
-        //         return false;
-        //     }
-        // } 
-        // public IEnumerable<PoolMembers> ViewPoolMembers(int PoolId)
-        // {
-        //     try
-        //     {
-        //         IEnumerable<PoolMembers> poolMembers = new List<PoolMembers>();
-        //         return poolMembers = from PoolMembers in _PoolDataAccessLayer.GetPoolMembersFromDatabase(PoolId) where PoolMembers.IsActive == true select PoolMembers;
-        //     }
-            
-        //     catch (Exception exception)
-        //     {
-        //         //Log "Exception occured in DAL while fetching Pools"
-        //         throw new Exception();
-        //     }
-        // }
+            }
+             catch (ValidationException poolNotFound)
+            {
+                _logger.LogInformation($"Pool service :ViewPoolMembers (int poolId): {poolNotFound.Message}");
+                throw poolNotFound;
+            }
 
-
+           catch (Exception exception)
+            {
+                _logger.LogInformation($"Pool Service:ViewPoolMembers(int poolId): {exception.Message}");
+                throw new Exception();
+            }
+        }
 
     }
 }
+
+
+
+         
+        
+
+    
+
+
+
+
+    
+

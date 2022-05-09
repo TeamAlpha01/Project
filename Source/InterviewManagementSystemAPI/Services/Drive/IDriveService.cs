@@ -11,7 +11,7 @@ namespace IMS.Service
         public List<Drive> ViewUpcommingDrives();
         public List<Drive> ViewAllScheduledDrives();
         public List<Drive> ViewAllCancelledDrives();
-        public List<int> ViewDashboard(int employeeId);  //for all  user : based on the emp role we can seggregate the output
+        public Dictionary<string,int> ViewTACDashboard(int employeeId);  
         public Drive ViewDrive(int driveId);
 
 
@@ -22,9 +22,13 @@ namespace IMS.Service
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability);
 
-         public List<EmployeeAvailability> ViewTodayInterviews();
-        public List<EmployeeAvailability> ViewScheduledInterview();
-        public List<EmployeeAvailability> ViewUpcomingInterview();
-        public List<EmployeeAvailability> ViewAllInterview();
+        public Object ViewTodayInterviews();
+        public Object ViewScheduledInterview();
+        public Object ViewUpcomingInterview();
+        public Object ViewAllInterview();
+        public bool ScheduleInterview(int employeeAvailabilityId);
+        public bool CancelInterview(int employeeAvailabilityId);
+        public Object ViewAvailableMembersForDrive(int driveId);
+        public Dictionary<string,int> ViewEmployeeDashboard(int employeeId);  
     }
 }

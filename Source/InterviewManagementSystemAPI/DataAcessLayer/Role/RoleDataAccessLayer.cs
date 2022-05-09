@@ -14,10 +14,12 @@ namespace IMS.DataAccessLayer
             _logger = logger;
         }
 
-        /*  Returns False when Exception occured in Database Connectivity
-            
-            Throws ArgumentNullException when Role object is not passed 
-        */
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control to Role DAL. 
+        /// Role DAL Perform the interaction with Database and Respond to the Add Role to Database request.
+        /// </summary>
+        /// <param name="role">Object</param>
+        /// <returns>Returns False when Exception occured in Database Connectivity . Throws ArgumentNullException when Role object is not passed </returns>
 
         public bool AddRoleToDatabase(Role role)
         {
@@ -46,12 +48,12 @@ namespace IMS.DataAccessLayer
             }
         }
 
-
-
-        /*  Returns False when Exception occured in Database Connectivity
-            
-            Throws ArgumentNullException when Role Id is not passed 
-        */
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control to Role DAL. 
+        /// Role DAL Perform the interaction with Database and Respond to the Remove Role from Database request.
+        /// </summary>
+        /// <param name="roleId">int</param>
+        /// <returns>  Returns False when Exception occured in Database Connectivity . Throws ArgumentNullException when Role Id is not passed </returns>
         public bool RemoveRoleFromDatabase(int roleId)
         {
             if (roleId <= 0)
@@ -90,9 +92,12 @@ namespace IMS.DataAccessLayer
 
         }
 
-        /*  
-            Throws Exception when Exception occured in Database Connectivity
-        */
+        /// <summary>
+        ///  This method is implemented when the Service layer shifts the control to Role DAL to View all Roles. 
+        /// Role DAL Perform the interaction with Database and Respond to the view all Role request.
+        /// </summary>
+        /// <returns>Throws Exception when Exception occured in Database Connectivity</returns>
+        
         public List<Role> GetRolesFromDatabase()
         {
             try

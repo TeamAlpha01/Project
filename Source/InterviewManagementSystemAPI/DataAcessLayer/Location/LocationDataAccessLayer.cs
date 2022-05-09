@@ -14,6 +14,15 @@ namespace IMS.DataAccessLayer
             _logger = logger;
         }
 
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control to Location DAL. 
+        /// Location DAL Perform the interaction with Database and Respond to the Add Location to Database request. 
+        /// </summary>
+        /// <param name="Location">Object</param>
+        /// <returns> Returns False when Exception occured in Database Connectivity.
+        /// Throws ArgumentNullException when Role object is not passed </returns>       
+
+
         public bool AddLocationToDatabase(Location location)
         {
             LocationValidation.IsLocationValid(location);
@@ -39,6 +48,15 @@ namespace IMS.DataAccessLayer
                 return false;
             }
         }
+
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control to Location DAL. 
+        /// Location DAL Perform the interaction with Database and Respond to the Remove Location From Database request. 
+        /// </summary>
+        /// <param name="locationId">int</param>
+        /// <returns>Returns False when Exception occured in Database Connectivity.
+        /// Throws Argument Null Exception when Location ID is null</returns>
+        
          public bool RemoveLocationFromDatabase(int locationId)
         {
             LocationValidation.IsLocationIdValid(locationId);
@@ -75,6 +93,13 @@ namespace IMS.DataAccessLayer
             }
 
         }
+
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control to Location DAL to View all Locations. 
+        /// Location DAL Perform the interaction with Database and Respond to the view all Locations request.
+        /// </summary>
+        /// <returns>Returns a list of Location.
+        /// Catches exceptions if any problems in interacting with Database</returns>
          public List<Location> GetLocationsFromDatabase()
         {
             try

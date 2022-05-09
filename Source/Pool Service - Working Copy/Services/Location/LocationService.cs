@@ -21,7 +21,9 @@ namespace IMS.Services
             Throws ArgumentNullException when Role Name is not passed to this service method
         */
         public bool CreateLocation(string locationName)
+        
         {
+            
             LocationValidation.IsLocationNameValid(locationName);
 
             try

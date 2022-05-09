@@ -100,6 +100,10 @@ namespace Source.Migrations
 
                     b.HasIndex("AddedBy");
 
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("PoolId");
+
                     b.HasIndex("UpdatedBy");
 
                     b.ToTable("Drives");
@@ -287,6 +291,18 @@ namespace Source.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("IMS.Models.Location", "Location")
+                        .WithMany("DrivesUnderLocation")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IMS.Models.Pool", "Pool")
+                        .WithMany("DrivesUnderPool")
+                        .HasForeignKey("PoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("IMS.Models.Employee", "UpdatedEmployee")
                         .WithMany("UpdatedEmployeeDrives")
                         .HasForeignKey("UpdatedBy")
@@ -294,6 +310,10 @@ namespace Source.Migrations
                         .IsRequired();
 
                     b.Navigation("AddedEmployee");
+
+                    b.Navigation("Location");
+
+                    b.Navigation("Pool");
 
                     b.Navigation("UpdatedEmployee");
                 });
@@ -381,8 +401,15 @@ namespace Source.Migrations
                     b.Navigation("UpdatedEmployeeDrives");
                 });
 
+            modelBuilder.Entity("IMS.Models.Location", b =>
+                {
+                    b.Navigation("DrivesUnderLocation");
+                });
+
             modelBuilder.Entity("IMS.Models.Pool", b =>
                 {
+                    b.Navigation("DrivesUnderPool");
+
                     b.Navigation("PoolMembers");
                 });
 #pragma warning restore 612, 618

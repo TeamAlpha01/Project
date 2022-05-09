@@ -133,12 +133,89 @@ namespace IMS.DataAccessLayer
         //For Employee Avalability Entity
         public bool SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability)
         {
-            _db.EmployeeAvailability.Add(employeeAvailability);
-            return true;
+
+            //employeeAvailability validation
+            try
+            {
+                _db.EmployeeAvailability.Add(employeeAvailability);
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                return false;
+            }
         }
         public List<EmployeeAvailability> ViewInterviewsByStatus(bool status)//int employeeId
         {
-            return (from interview in _db.EmployeeAvailability.Include("Drive") where  interview.IsInterviewCancelled == status && interview.Drive.IsCancelled == false  select interview).ToList() ;
+            try
+            {
+                return (from interview in _db.EmployeeAvailability.Include(d => d.Drive).Include(a => a.Drive.Location).Include(a => a.Drive.Pool) where interview.IsInterviewCancelled == status && interview.Drive.IsCancelled == false select interview).ToList();
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                throw exception;
+            }
+        }
+
+        public bool ScheduleInterview(int employeeAvailabilityId)
+        {
+            try
+            {
+                var employeeAvailability = _db.EmployeeAvailability.Find(employeeAvailabilityId);
+                if (employeeAvailability == null) throw new ValidationException($"No Employe Availability is Found with employeeAvailabilityId : {employeeAvailabilityId}");
+
+                employeeAvailability.IsInterviewScheduled = true;
+                _db.EmployeeAvailability.Update(employeeAvailability);
+                _db.SaveChanges();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                return false;
+            }
+        }
+        public bool CancelInterview(int employeeAvailabilityId)
+        {
+            try
+            {
+                var employeeAvailability = _db.EmployeeAvailability.Find(employeeAvailabilityId);
+                if (employeeAvailability == null) throw new ValidationException($"No Employe Availability is Found with employeeAvailabilityId : {employeeAvailabilityId}");
+
+                employeeAvailability.IsInterviewCancelled = true;
+                _db.EmployeeAvailability.Update(employeeAvailability);
+                _db.SaveChanges();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                return false;
+            }
+        }
+        public List<EmployeeAvailability> ViewAvailableMembersForDrive(int driveId)
+        {
+            try
+            {
+                if (_db.EmployeeAvailability.Find(driveId) == null) throw new ValidationException($"No Drive is Found with driveId : {driveId}");
+                return (from availability in _db.EmployeeAvailability.Include(e=>e.Employee) where availability.DriveId==driveId select availability).ToList();
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Exception on EmployeeDriveResponse DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                throw exception;
+            }
+        }
+        public int GetResponseCountByStatus(int responseType)// want to filter with Employee ID
+        {
+            return (from response in _db.EmployeeDriveResponse where response.ResponseType == responseType select response).Count();
+        }
+
+        public int GetResponseUtilizationByStatus(bool isUtilized)
+        {
+            return (from availability in _db.EmployeeAvailability where availability.IsInterviewScheduled == isUtilized select availability).Count();
         }
     }
 }

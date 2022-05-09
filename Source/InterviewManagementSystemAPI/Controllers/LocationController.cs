@@ -18,6 +18,13 @@ public class LocationController : ControllerBase
         _logger = logger;
         _locationService = DataFactory.LocationDataFactory.GetLocationServiceObject(_logger);
     }
+
+    /// <summary>
+    /// This method will be implemented when "Add a new Locatioon" - Request rises. This method Check the null Validation and
+    /// then Control shifts to Location Service. 
+    /// </summary>
+    /// <param name="locationName">String</param>
+    /// <returns> Returns Error Message when Exception occured in Location Service. Succsess Message or Internal Error</returns>
     
     [HttpPost]
     public IActionResult CreateNewLocation(string locationName)
@@ -40,6 +47,13 @@ public class LocationController : ControllerBase
             return Problem("Sorry some internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method will be implemented when "Remove a Location" - Request rises. This method Check the null Validation and
+    /// then Control shifts to Location Service.
+    /// </summary>
+    /// <param name="locationId">int</param>
+    /// <returns>Returns Error Message when Exception occured in Location Service. Succsess Message or Internal Error</returns>
 
     [HttpPost]
     public IActionResult RemoveLocation(int locationId)
@@ -64,6 +78,10 @@ public class LocationController : ControllerBase
         }
       
     }
+    /// <summary>
+    /// This method will be implemented when "View all Location" - Request rises
+    /// </summary>
+    /// <returns>Returns Error Message when Exception occured in Location Service. A list contains All locations or Error Message</returns>
     [HttpGet]
     public IActionResult ViewLocations()
     {
