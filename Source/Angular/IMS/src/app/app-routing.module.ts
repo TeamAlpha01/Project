@@ -34,7 +34,7 @@ import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-dr
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
-import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
+// import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
 
 
@@ -43,7 +43,7 @@ import { InterviewerCancelInterviewPageComponent } from './Interviewer/interview
 
 const routes: Routes = [
 //interviewer pages
-  { path: '', component: AdminAdddepartmentComponent},
+  { path: '', component: AdminviewLocationPageComponent},
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
@@ -51,7 +51,7 @@ const routes: Routes = [
   { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
   { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
   { path: 'interviewer-driveInvites', component:InterviewerDriveInvitesComponent },
-  { path: 'interviewer-acceptInvite', component:InterviewerAcceptInvitePageComponent },
+  // { path: 'interviewer-acceptInvite', component:InterviewerAcceptInvitePageComponent },
   { path: 'interviewer-cancelInterview', component:InterviewerCancelInterviewPageComponent },
   
 

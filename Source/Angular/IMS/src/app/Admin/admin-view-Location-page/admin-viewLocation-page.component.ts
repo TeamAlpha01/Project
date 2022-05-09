@@ -16,7 +16,7 @@ export class AdminviewLocationPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('https://localhost:7072/Role/Addlocation')
+      .get<any>('https://localhost:7072/Location/ViewLocations')
       .subscribe((data) => {
         this.data = data;
         this.totalLength = data.length;
