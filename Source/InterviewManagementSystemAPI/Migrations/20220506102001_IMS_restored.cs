@@ -4,7 +4,7 @@
 
 namespace Source.Migrations
 {
-    public partial class FK_LOC_DRIVE : Migration
+    public partial class IMS_restored : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,12 +57,24 @@ namespace Source.Migrations
                 {
                     table.PrimaryKey("PK_PoolMembers", x => x.PoolMembersId);
                     table.ForeignKey(
+                        name: "FK_PoolMembers_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "EmployeeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_PoolMembers_Pools_PoolId",
                         column: x => x.PoolId,
                         principalTable: "Pools",
                         principalColumn: "PoolId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PoolMembers_EmployeeId",
+                table: "PoolMembers",
+                column: "EmployeeId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PoolMembers_PoolId",

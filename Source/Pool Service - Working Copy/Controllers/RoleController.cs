@@ -18,8 +18,6 @@ public class RoleController : ControllerBase
         roleService = DataFactory.RoleDataFactory.GetRoleServiceObject(_logger);
     }
 
-
-
     [HttpPost]
     public IActionResult CreateNewRole(string roleName)
     {

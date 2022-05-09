@@ -14,13 +14,18 @@ namespace IMS.DataAccessLayer
         {
             _logger = logger;
         }
-        
 
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+        /// Pool DAL Perform the interaction with Database and Respond to the Add Pool to Database request.
+        /// </summary>
+        /// <param name="pool">object</param>
+        /// <returns>Returns true or Exception message when any misconnection in database</returns>
         public bool AddPoolToDatabase(Pool pool)
         {
             
             PoolValidation.IsAddPoolValid( pool);    
-             try
+            try
             {
                 _db.Pools.Add(pool);
                 _db.SaveChanges();
@@ -44,6 +49,14 @@ namespace IMS.DataAccessLayer
             }
 
         }
+
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+        /// Pool DAL Perform the interaction with Database and Respond to the Remove Pool from Database request.
+        /// </summary>
+        /// <param name="poolId">int</param>
+        /// <returns>Returns true or Exception message when any misconnection in database</returns>
+        /// 
         public bool RemovePoolFromDatabase(int poolId)
         {
             PoolValidation.IsValidPoolId(poolId);
@@ -82,6 +95,15 @@ namespace IMS.DataAccessLayer
 
         }
 
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+        /// Pool DAL Perform the interaction with Database and Respond to the Rename a Pool from Database request.
+        /// </summary>
+        /// <param name="poolId">int</param>
+        /// <param name="poolName">string</param>
+        /// <returns>Return true or Throws Exception : No pool is found with given Pool Id or The given pool Id is inactive,so unable to rename the pool</returns>
+        /// Catches exceptions thorwed by Database if any Misconnections in DB
+
         public bool EditPoolFromDatabase ( int poolId,string poolName)
         {
             PoolValidation.IsEditPoolValid(poolId,poolName);
@@ -92,10 +114,8 @@ namespace IMS.DataAccessLayer
                 if(edit == null )
                     throw new ValidationException("No pool is found with given Pool Id");
                 else if(edit.IsActive==false)
-                    throw new   ValidationException("The given pool Id is inactive,so unable to rename the pool");
-                
-                
-                
+                    throw new ValidationException("The given pool Id is inactive,so unable to rename the pool");
+
                 edit.PoolName = poolName;
                 _db.Pools.Update(edit);
                 _db.SaveChanges();
@@ -127,6 +147,13 @@ namespace IMS.DataAccessLayer
             
         }
         
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+        /// Pool DAL Perform the interaction with Database and Respond to the Get Pools from Database request.
+        /// </summary>
+        /// <param name="departmentId">int</param>
+        /// <returns>Return list of pools from database or Throws Exception : No pool is found with given department Id</returns>
+        /// Catches exceptions thorwed by Database if any Misconnections in DB </returns>
 
         public List<Pool> GetPoolsFromDatabase(int departmentId)
         {
@@ -157,8 +184,14 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
-
         }
+
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+        /// Pool DAL Perform the interaction with Database and Respond to the Add members to Pools request.
+        /// </summary>
+        /// <param name="poolMembers">object</param>
+        /// <returns>Return true or  Catches exceptions thorwed by Database if any Misconnections in DB</returns>
           public bool AddPoolMembersToDatabase(PoolMembers poolMembers)
         {
             PoolValidation.IsAddPoolMemberValid(poolMembers);
@@ -188,6 +221,13 @@ namespace IMS.DataAccessLayer
 
 
         }
+
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+        /// Pool DAL Perform the interaction with Database and Respond to the Remove members to Pools request.
+        /// </summary>
+        /// <param name="poolMemberId">int</param>
+        /// <returns>Return true or  Catches exceptions thorwed by Database if any Misconnections in DB</returns>
         public bool RemovePoolMembersFromDatabase(int poolMemberId)
         {
            PoolValidation.IsRemovePoolMembersValid(poolMemberId);
@@ -224,6 +264,15 @@ namespace IMS.DataAccessLayer
               
            
         }
+
+        /// <summary>
+        /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+        /// Pool DAL Perform the interaction with Database and Respond to theGet pool members from Database request.
+        /// </summary>
+        /// <param name="poolId">int</param>
+        /// <returns>Return the list of pool members or Throws exception : Pool not found with the given Pool Id
+        /// Catches exceptions thorwed by Database if any Misconnections in DB </returns>
+        
         public List<PoolMembers> GetPoolMembersFromDatabase(int poolId)
         {
          PoolValidation.IsPoolIdValid(poolId) ;  

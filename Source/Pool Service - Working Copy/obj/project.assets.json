@@ -4248,19 +4248,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\darshana.annappan\\.nuget\\packages\\": {}
+    "C:\\Users\\sheikfareet.heera\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Git-Darshana\\Source\\Pool Service - Working Copy\\Source.csproj",
+      "projectUniqueName": "D:\\GIT - Sheik\\Project\\Source\\Pool Service - Working Copy\\Source.csproj",
       "projectName": "Source",
-      "projectPath": "D:\\Git-Darshana\\Source\\Pool Service - Working Copy\\Source.csproj",
-      "packagesPath": "C:\\Users\\darshana.annappan\\.nuget\\packages\\",
-      "outputPath": "D:\\Git-Darshana\\Source\\Pool Service - Working Copy\\obj\\",
+      "projectPath": "D:\\GIT - Sheik\\Project\\Source\\Pool Service - Working Copy\\Source.csproj",
+      "packagesPath": "C:\\Users\\sheikfareet.heera\\.nuget\\packages\\",
+      "outputPath": "D:\\GIT - Sheik\\Project\\Source\\Pool Service - Working Copy\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\darshana.annappan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\sheikfareet.heera\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
