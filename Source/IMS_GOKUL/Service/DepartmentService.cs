@@ -161,7 +161,7 @@ namespace IMS.Service
             }
             catch(ValidationException exception)
             {
-                 _logger.LogInformation($"Department Service : RemoveDepartment(int projectId) : {exception.Message} : {exception.StackTrace}");
+                 _logger.LogInformation($"Department Service : RemoveDepartment(int projectId) : {exception.Message} : {exception .StackTrace}");
                 throw exception;  
             }
             catch (Exception exception)

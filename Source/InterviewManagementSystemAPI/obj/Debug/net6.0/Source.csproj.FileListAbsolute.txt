@@ -436,3 +436,13 @@ D:\Git-Darshana\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Sin
 D:\Git-Darshana\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Sinks.File.dll
 D:\Git-Darshana\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Sinks.PeriodicBatching.dll
 D:\Git-Darshana\Source\InterviewManagementSystemAPI\bin\Debug\net6.0\Serilog.Sinks.Seq.dll
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.csproj.AssemblyReference.cache
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.AssemblyInfoInputs.cache
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.AssemblyInfo.cs
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.csproj.CoreCompileInputs.cache
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.MvcApplicationPartsAssemblyInfo.cs
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.MvcApplicationPartsAssemblyInfo.cache
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.dll
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\refint\Source.dll
+D:\Git-Deepika\Project\Source\InterviewManagementSystemAPI\obj\Debug\net6.0\Source.pdb
