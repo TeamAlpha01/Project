@@ -7,8 +7,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./admin-addproject.component.css']
 })
 export class AdminAddprojectComponent implements OnInit {
+ title ='Manage Project'
  project: Project={
    projectName: '',
+   
  }
   constructor(private http:HttpClient) { }
   addProject(){

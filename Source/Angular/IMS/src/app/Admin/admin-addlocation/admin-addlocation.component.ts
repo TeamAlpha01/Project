@@ -8,6 +8,7 @@ import { HttpClient,HttpClientModule } from '@angular/common/http';
   styleUrls: ['./admin-addlocation.component.css']
 })
 export class AdminAddlocationComponent implements OnInit {
+  title ='Location'
  location: Location={
    locationName:'',
  }

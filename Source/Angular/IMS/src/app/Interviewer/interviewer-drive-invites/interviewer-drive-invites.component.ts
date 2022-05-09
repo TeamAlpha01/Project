@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interviewer-drive-invites.component.css']
 })
 export class InterviewerDriveInvitesComponent implements OnInit {
+  title ='Drive Invites'
   data: any;
   totalLength: any;
   page: number = 1;

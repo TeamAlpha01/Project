@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-invite.component.css']
 })
 export class CreateInviteComponent implements OnInit {
+  title ='Create Invite'
 
   constructor() { }
 

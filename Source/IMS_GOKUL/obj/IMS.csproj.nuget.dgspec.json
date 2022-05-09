@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Services\\IMS\\IMS.csproj": {}
+    "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Project\\Source\\IMS_GOKUL\\IMS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Services\\IMS\\IMS.csproj": {
+    "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Project\\Source\\IMS_GOKUL\\IMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Services\\IMS\\IMS.csproj",
+        "projectUniqueName": "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Project\\Source\\IMS_GOKUL\\IMS.csproj",
         "projectName": "IMS",
-        "projectPath": "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Services\\IMS\\IMS.csproj",
+        "projectPath": "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Project\\Source\\IMS_GOKUL\\IMS.csproj",
         "packagesPath": "C:\\Users\\gokul.prathaban\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Services\\IMS\\obj\\",
+        "outputPath": "C:\\Users\\gokul.prathaban\\Documents\\GitHub\\Project\\Source\\IMS_GOKUL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gokul.prathaban\\AppData\\Roaming\\NuGet\\NuGet.Config"

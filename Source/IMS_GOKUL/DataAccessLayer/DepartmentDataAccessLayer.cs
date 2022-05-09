@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using IMS.Model;
 using System.ComponentModel.DataAnnotations;
+using IMS.Validation;
 
 namespace IMS.DataAccessLayer
 {
@@ -27,7 +28,11 @@ namespace IMS.DataAccessLayer
         public bool AddDepartmentToDatabase(Department department)
         {
              DepartmentValidation.IsDepartmentValid(department);
-                
+                bool departmentNameExists=_db.Departments.Any(x=>x.DepartmentName==department.DepartmentName);
+               if(departmentNameExists)
+               {
+               throw new ValidationException("Department already exist");
+               }
             try
             {
                 _db.Departments.Add(department);
@@ -46,6 +51,7 @@ namespace IMS.DataAccessLayer
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
+           
             catch (Exception exception)
             {
                  _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
@@ -69,7 +75,11 @@ namespace IMS.DataAccessLayer
         {
         DepartmentValidation.IsDepartmentValid(departmentId);
                 
-
+               bool DeletedepartmentId=_db.Departments.Any(x=>x.IsActive==false);
+               if(  DeletedepartmentId)
+               {
+               throw new ValidationException("Department name  already deleted");
+               }
             try
             {
                 var department = _db.Departments.Find(departmentId);
@@ -140,7 +150,11 @@ namespace IMS.DataAccessLayer
         public bool AddProjectToDatabase(Project project)
         {
             ProjectValidation.IsProjectValid(project);
-                
+                 bool projectNameExist=_db.Projects.Any(x=>x.ProjectName==project.ProjectName);
+               if(projectNameExist)
+               {
+               throw new ValidationException("Project name  already exist");
+               }
             try
             {
                 _db.Projects.Add(project);
@@ -182,7 +196,11 @@ namespace IMS.DataAccessLayer
         {
             ProjectValidation.IsProjectValid(projectId);
                 
-
+             bool DeleteprojectId=_db.Projects.Any(x=>x.IsActive==false);
+               if(DeleteprojectId)
+               {
+               throw new ValidationException("project already deleted");
+               }
             try
             {
                 var project = _db.Projects.Find(projectId);
@@ -243,6 +261,12 @@ namespace IMS.DataAccessLayer
                  _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
            
                 //LOG   "Opreation cancelled exception"
+                throw exception;
+            }
+            catch (ValidationException exception)
+            {
+                 _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+                 //LOG "Validate Exception Occured"
                 throw exception;
             }
             catch (Exception exception)

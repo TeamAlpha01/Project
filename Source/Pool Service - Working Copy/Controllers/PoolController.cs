@@ -18,6 +18,14 @@ public class PoolController : ControllerBase
         _logger = logger;
         _poolService = DataFactory.PoolDataFactory.GetPoolServiceObject(_logger);
     }
+
+    /// <summary>
+    /// This method will be implemented when "Create a New Pool" - Request rises. This method Check the Parameter Validation and
+    /// then Control shifts to Pool Service Layer
+    /// </summary>
+    /// <param name="departmentId">int</param>
+    /// <param name="poolName">string</param>
+    /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
     
     [HttpPost]
     public IActionResult CreateNewPool(int departmentId,string poolName)
@@ -36,6 +44,13 @@ public class PoolController : ControllerBase
             return Problem("Sorry some internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method will be implemented when "Remove a Pool" - Request rises. This method Check the Parameter Validation and
+    /// then Control shifts to Pool Service Layer
+    /// </summary>
+    /// <param name="poolId">int</param>
+    /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
 
     [HttpPost]
     public IActionResult RemovePool(int poolId)
@@ -59,6 +74,15 @@ public class PoolController : ControllerBase
         }
       
     }
+
+    /// <summary>
+    /// This method will be implemented when "Rename a Pool" - Request rises. This method Check the Parameter Validation and
+    /// then Control shifts to Pool Service Layer
+    /// </summary>
+    /// <param name="poolId">int</param>
+    /// <param name="poolName">String</param>
+    /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
+    
     [HttpPut]
     public IActionResult EditPool(int poolId,string poolName)
    {
@@ -81,6 +105,15 @@ public class PoolController : ControllerBase
         }
        
      }
+
+     /// <summary>
+     /// This method will be implemented when "View Pools" - Request rises. This method Check the Parameter Validation and
+     /// then Control shifts to Pool Service Layer
+     /// </summary>
+     /// <param name="departmentId">int</param>
+     /// <returns>Returns a list of pools</returns>
+     /// 
+     
     [HttpGet]
     public IActionResult ViewPools(int departmentId)
     { 
@@ -88,7 +121,7 @@ public class PoolController : ControllerBase
 
         try
         {
-            return Ok(_poolService.ViewPools(departmentId));
+          return Ok(_poolService.ViewPools(departmentId));
         }
           catch (ValidationException departmentNotFound)
         {
@@ -101,6 +134,15 @@ public class PoolController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method will be implemented when "Add Pool Members" - Request rises. This method Check the Parameter Validation and
+    /// then Control shifts to Pool Service Layer
+    /// </summary>
+    /// <param name="employeeId">int</param>
+    /// <param name="poolId">int</param>
+    /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
+
     [HttpPost]
     public IActionResult AddPoolMembers(int employeeId,int poolId)
     {
@@ -120,6 +162,14 @@ public class PoolController : ControllerBase
             return Problem("Sorry some internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method will be implemented when "Remove Pool Members" - Request rises. This method Check the Parameter Validation and
+    /// then Control shifts to Pool Service Layer
+    /// </summary>
+    /// <param name="poolMemberId">int</param>
+    /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
+    
     [HttpPost]
     public IActionResult RemovePoolMembers(int poolMemberId)
     {
@@ -139,6 +189,14 @@ public class PoolController : ControllerBase
             return Problem("Sorry some internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method will be implemented when "View Pool Members" - Request rises. This method Check the Parameter Validation and
+    /// then Control shifts to Pool Service Layer
+    /// </summary>
+    /// <param name="poolId">int</param>
+    /// <returns>Returns a list of pool Members</returns>
+
     [HttpGet]
     public IActionResult ViewPoolMembers(int poolId)
     {

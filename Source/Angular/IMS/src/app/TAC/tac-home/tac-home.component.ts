@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tac-home.component.css']
 })
 export class TacHomeComponent implements OnInit {
-
+   
+  title ='Home'
   constructor() { }
 
   ngOnInit(): void {

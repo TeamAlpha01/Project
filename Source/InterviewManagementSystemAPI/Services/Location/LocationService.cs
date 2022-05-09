@@ -8,7 +8,7 @@ namespace IMS.Services
     public class LocationService : ILocationServices
     {
         private ILocationDataAccessLayer _locationDataAccessLayer;
-        private Location _location = DataFactory.LocationDataFactory.GetLocationObject();
+        
         private readonly ILogger _logger;
         public LocationService(ILogger logger)
         {
@@ -23,7 +23,9 @@ namespace IMS.Services
         /// <returns> Returns False when Exception occured in Data Access Layer. 
         /// Throws ArgumentNullException when Role Name is not passed to this service method</returns>
         public bool CreateLocation(string locationName)
+
         {
+            Location _location = DataFactory.LocationDataFactory.GetLocationObject();
             LocationValidation.IsLocationNameValid(locationName);
 
             try
@@ -36,6 +38,12 @@ namespace IMS.Services
                 _logger.LogInformation($"Location service : CreateLocation(string  locationName) : {exception.Message}");
                 return false;
             }
+            catch (ValidationException locationnameAlreadyExists)
+            {
+             _logger.LogInformation($"Location service : CreateLocation(string  locationName) : {locationnameAlreadyExists.Message}");
+              throw locationnameAlreadyExists;
+            }
+
             catch (Exception exception)
             {
                 _logger.LogInformation($"Location service : CreateLocation(string locationName) : {exception.Message}");

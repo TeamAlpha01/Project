@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using IMS.Model;
 
 namespace IMS.Validation
 {
@@ -18,7 +15,7 @@ namespace IMS.Validation
         }
          public static void IsDepartmentValid(int departmentId)
         {
-            if(departmentName <=0) throw new ValidationException("department name cannot be Zero or less than zero");
+            if(departmentId <=0) throw new ValidationException("department name cannot be Zero or less than zero");
         
         }
         public static void IsDepartmentValid(Department department)

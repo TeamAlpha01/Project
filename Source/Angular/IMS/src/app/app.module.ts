@@ -4,13 +4,13 @@ import {FormsModule} from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { AdminAddlocationComponent } from './Admin/admin-addLocation/admin-addlocation.component';
-import { AdminAddprojectComponent } from './Admin/admin-addProject/admin-addproject.component';
-import { AdminAdddepartmentComponent } from './Admin/admin-addDepartment/admin-adddepartment.component';
+import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
+import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
+import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
-import { AdminRoleComponent } from './Admin/admin-Role/admin-role.component';
-import { AdminHeaderComponent } from './Admin/admin-Header/admin-header.component';
+import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
+import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-Project-page/admin-view-Project-page.component';
@@ -49,6 +49,9 @@ import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-dr
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 
+import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
+import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
+import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
 
