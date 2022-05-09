@@ -13,6 +13,8 @@ namespace IMS.DataAccessLayer
         public DbSet<Location> Locations { get; set; }
         public DbSet<Pool> Pools { get; set; }
         public DbSet<PoolMembers> PoolMembers { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Project> Projects { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=ASPIREREN009;Database=InterviewManagementSystem;Trusted_Connection=True;");
