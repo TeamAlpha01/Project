@@ -242,10 +242,10 @@ namespace IMS.Service
                 }
                 );//filter by user using authentication  
             }
-            catch (Exception exception)
+            catch (Exception viewTodayInterviews)
             {
-                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewTodayInterviews() : {viewTodayInterviews.Message} : {viewTodayInterviews.StackTrace}");
+                throw viewTodayInterviews;
             }
         }
         public Object ViewScheduledInterview()
@@ -266,10 +266,10 @@ namespace IMS.Service
                 );//filter by user using authentication  
 
             }
-            catch (Exception exception)
+            catch (Exception viewScheduledInterviewException)
             {
-                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewScheduledInterview() : {viewScheduledInterviewException.Message} : {viewScheduledInterviewException.StackTrace}");
+                throw viewScheduledInterviewException;
             }
         }
         public Object ViewUpcomingInterview()
@@ -290,10 +290,10 @@ namespace IMS.Service
                 );//filter by user using authentication  
 
             }
-            catch (Exception exception)
+            catch (Exception viewUpcomingInterview)
             {
-                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewUpcomingInterview() : {viewUpcomingInterview.Message} : {viewUpcomingInterview.StackTrace}");
+                throw viewUpcomingInterview;
             }
         }
         public Object ViewAllInterview()
@@ -313,10 +313,10 @@ namespace IMS.Service
                 }
                 );
             }
-            catch (Exception exception)
+            catch (Exception viewAllInterview)
             {
-                _logger.LogInformation($"Drive Service : ViewDashboard() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewAllInterview() : {viewAllInterview.Message} : {viewAllInterview.StackTrace}");
+                throw viewAllInterview;
             }
 
         }
@@ -327,15 +327,15 @@ namespace IMS.Service
             {
                 return _driveDataAccess.ScheduleInterview(employeeAvailabilityId);
             }
-            catch (ValidationException employeeAvailabilityNotVlaid)
+            catch (ValidationException scheduleInterviewNotVlaid)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
-                throw employeeAvailabilityNotVlaid;
+                _logger.LogInformation($"Drive Service : ScheduleInterview(int employeeAvailabilityId) : {scheduleInterviewNotVlaid.Message} : {scheduleInterviewNotVlaid.StackTrace}");
+                throw scheduleInterviewNotVlaid;
             }
-            catch (Exception exception)
+            catch (Exception scheduleInterviewException)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ScheduleInterview(int employeeAvailabilityId) : {scheduleInterviewException.Message} : {scheduleInterviewException.StackTrace}");
+                throw scheduleInterviewException;
             }
         }
 
@@ -345,14 +345,14 @@ namespace IMS.Service
             {
                 return _driveDataAccess.CancelInterview(employeeAvailabilityId);
             }
-            catch (ValidationException employeeAvailabilityNotVlaid)
+            catch (ValidationException cancelInterviewNotVlaid)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
+                _logger.LogInformation($"Drive Service : CancelInterview(int employeeAvailabilityId) :{cancelInterviewNotVlaid.Message} : {cancelInterviewNotVlaid.StackTrace}");
                 return false;
             }
-            catch (Exception exception)
+            catch (Exception cancelInterviewException)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
+                _logger.LogInformation($"Drive Service : CancelInterview(int employeeAvailabilityId) : {cancelInterviewException.Message} : {cancelInterviewException.StackTrace}");
                 return false;
             }
         }
@@ -372,14 +372,14 @@ namespace IMS.Service
                 }
             );
             }
-            catch (ValidationException employeeAvailabilityNotVlaid)
+            catch (ValidationException viewAvailableMembersForDriveNotValid)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
+                _logger.LogInformation($"Drive Service : ViewAvailableMembersForDrive(int driveId) : {viewAvailableMembersForDriveNotValid.Message} : {viewAvailableMembersForDriveNotValid.StackTrace}");
                 return false;
             }
-            catch (Exception exception)
+            catch (Exception viewAvailableMembersForDriveException)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
+                _logger.LogInformation($"Drive Service : ViewAvailableMembersForDrive(int driveId) : {viewAvailableMembersForDriveException.Message} : {viewAvailableMembersForDriveException.StackTrace}");
                 return false;
             }
 
@@ -398,15 +398,15 @@ namespace IMS.Service
                 DashboardCount.Add("Total Interviews", DashboardCount["Accepted Interviews"] + DashboardCount["Denied Interviews"] + DashboardCount["Ignored Interviews"]);
                 return DashboardCount;
             }
-            catch (ValidationException employeeAvailabilityNotVlaid)
+            catch (ValidationException viewEmployeeDashboardNotVlaid)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {employeeAvailabilityNotVlaid.Message}");
-                throw employeeAvailabilityNotVlaid;
+                _logger.LogInformation($"Drive Service : ViewEmployeeDashboard(int employeeId) : {viewEmployeeDashboardNotVlaid.Message} : {viewEmployeeDashboardNotVlaid.StackTrace}");
+                throw viewEmployeeDashboardNotVlaid;
             }
-            catch (Exception exception)
+            catch (Exception viewEmployeeDashboardException)
             {
-                _logger.LogInformation($"Drive Service : CancelDrive() : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Drive Service : ViewEmployeeDashboard(int employeeId) : {viewEmployeeDashboardException.Message} : {viewEmployeeDashboardException.StackTrace}");
+                throw viewEmployeeDashboardException;
             }
         }
     }

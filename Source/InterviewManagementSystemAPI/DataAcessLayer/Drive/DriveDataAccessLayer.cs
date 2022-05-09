@@ -192,9 +192,9 @@ namespace IMS.DataAccessLayer
                 _db.SaveChanges();
                 return true;
             }
-            catch (Exception exception)
+            catch (Exception cancelInterviewException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
+                _logger.LogInformation($"Exception on Drive DAL : CancelInterview(int employeeAvailabilityId) : {cancelInterviewException.Message} : {cancelInterviewException.StackTrace}");
                 return false;
             }
         }
@@ -205,20 +205,36 @@ namespace IMS.DataAccessLayer
                 if (_db.Drives.Find(driveId) == null) throw new ValidationException($"No Drive is Found with driveId : {driveId}");
                 return (from availability in _db.EmployeeAvailability.Include(e => e.Employee) where availability.DriveId == driveId && availability.IsInterviewScheduled == false select availability).ToList();
             }
-            catch (Exception exception)
+            catch (Exception viewAvailableMembersForDriveException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {exception.Message}");
-                throw exception;
+                _logger.LogInformation($"Exception on Drive DAL : ViewAvailableMembersForDrive(int driveId) : {viewAvailableMembersForDriveException.Message} : {viewAvailableMembersForDriveException.StackTrace}");
+                throw viewAvailableMembersForDriveException;
             }
         }
         public int GetResponseCountByStatus(int responseType)// want to filter with Employee ID
         {
-            return (from response in _db.EmployeeDriveResponse where response.ResponseType == responseType select response).Count();
+            try
+            {
+                return (from response in _db.EmployeeDriveResponse where response.ResponseType == responseType select response).Count();
+            }
+            catch (Exception getResponseCountByStatusException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : GetResponseCountByStatus(int responseType) : {getResponseCountByStatusException.Message} : {getResponseCountByStatusException.StackTrace}");
+                throw getResponseCountByStatusException;
+            }
         }
 
         public int GetResponseUtilizationByStatus(bool isUtilized)
         {
-            return (from availability in _db.EmployeeAvailability where availability.IsInterviewScheduled == isUtilized select availability).Count();
+            try
+            {
+                return (from availability in _db.EmployeeAvailability where availability.IsInterviewScheduled == isUtilized select availability).Count();
+            }
+            catch (Exception getResponseUtilizationByStatusException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : GetResponseUtilizationByStatus(bool isUtilized) : {getResponseUtilizationByStatusException.Message} : {getResponseUtilizationByStatusException.StackTrace}");
+                throw getResponseUtilizationByStatusException;
+            }
         }
     }
 }
