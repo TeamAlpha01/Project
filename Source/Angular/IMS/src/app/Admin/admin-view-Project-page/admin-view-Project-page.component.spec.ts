@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminviewProjectPageComponent } from './admin-view-Project-view.component';
+import { AdminviewProjectPageComponent } from './admin-view-Project-page.component';
 
-describe('AdminAddProjectPageComponent', () => {
+describe('AdminviewProjectPageComponent', () => {
   let component: AdminviewProjectPageComponent;
   let fixture: ComponentFixture<AdminviewProjectPageComponent>;
 

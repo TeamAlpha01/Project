@@ -3,13 +3,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-addproject-page',
-  templateUrl: './admin-view-project-page.component.html',
-  styleUrls: ['./admin-view-project-page.component.css']
+  templateUrl: './admin-view-Project-page.component.html',
+  styleUrls: ['./admin-view-Project-page.component.css']
 })
-export class AdminAddprojectPageComponent implements OnInit {
+export class AdminviewProjectPageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
+  title = "View Project";
  
   constructor(private http: HttpClient) { }
 

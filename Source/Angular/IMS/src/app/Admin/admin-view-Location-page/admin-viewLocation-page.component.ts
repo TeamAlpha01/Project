@@ -10,6 +10,7 @@ export class AdminviewLocationPageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
+  title ="View Location";
  
   constructor(private http: HttpClient) { }
 
@@ -23,3 +24,6 @@ export class AdminviewLocationPageComponent implements OnInit {
   }
 
 }
+
+
+
