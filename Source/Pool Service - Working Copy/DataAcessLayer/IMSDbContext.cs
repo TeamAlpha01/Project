@@ -15,7 +15,7 @@ namespace IMS.DataAccessLayer
         public DbSet<PoolMembers> PoolMembers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=LAPTOP-43RUK7U3;Database=InterviewManagementSystem;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=ASPIREREN025;Database=InterviewManagementSystem;Trusted_Connection=True;");
         }
     }
 }

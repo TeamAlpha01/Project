@@ -178,7 +178,7 @@ namespace IMS.Services
             try
             {
             IEnumerable<PoolMembers> poolmembers = new List<PoolMembers>();
-            return poolmembers=from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase(poolId) where poolmember.PoolId==poolId && pool.Isactive==true select poolmember;
+            return poolmembers=from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase(poolId) where poolmember.PoolId==poolId && poolmember.IsActive==true select poolmember;
                 
             }
              catch (ValidationException poolNotFound)
