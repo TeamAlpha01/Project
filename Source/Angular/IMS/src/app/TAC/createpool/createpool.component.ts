@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatepoolComponent implements OnInit {
 
-  title ='Createpool'
+  title ='Create pool'
   
   constructor() { }
 

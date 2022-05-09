@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ManagepoolComponent implements OnInit {
 
     title ="Manage pool"
+    
 
   constructor() { }
 

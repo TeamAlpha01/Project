@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-requests.component.css']
 })
 export class AdminRequestsComponent implements OnInit {
-
+   
+  title ='Requests'
+  
   constructor() { }
 
   ngOnInit(): void {

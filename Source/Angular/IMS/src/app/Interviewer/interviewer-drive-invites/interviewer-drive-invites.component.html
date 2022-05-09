@@ -1,17 +1,7 @@
 <app-interviewer-header></app-interviewer-header>
 <div class="content">
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand bg-light navbar-light sticky-top py-0">
-        <div class="sidebar-toggler flex-shrink-0  collapse-btn ">
-            <i class="fa fa-bars fa-bar"></i>
-        </div>
-        <div class="page-title">
-
-            <h2>Drive Invites</h2>
-
-        </div>
-
-    </nav>
+    <app-navbar [title]="title"></app-navbar>
 
     <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of driveInvites| paginate: { itemsPerPage: 1, currentPage: page,totalItems:totalLength }">
         <div class>
