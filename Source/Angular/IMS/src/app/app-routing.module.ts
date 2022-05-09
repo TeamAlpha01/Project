@@ -6,7 +6,7 @@ import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproj
 import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
-import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
+import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
 import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 
@@ -34,7 +34,7 @@ import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-dr
 import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
-// import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
+import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
 
 
@@ -51,7 +51,7 @@ const routes: Routes = [
   { path: 'interviewer-scheduledDrives', component:InterviewerScheduledDriveComponent },
   { path: 'interviewer-upcomingDrives', component:InterviewerUpcomingDriveComponent },
   { path: 'interviewer-driveInvites', component:InterviewerDriveInvitesComponent },
-  // { path: 'interviewer-acceptInvite', component:InterviewerAcceptInvitePageComponent },
+  {path: 'interviewer-accept-invite-page',component:InterviewerAcceptInvitePageComponent},
   { path: 'interviewer-cancelInterview', component:InterviewerCancelInterviewPageComponent },
   
 
