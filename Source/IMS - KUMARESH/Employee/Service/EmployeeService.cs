@@ -76,7 +76,7 @@ namespace IMS.Service
             catch (ValidationException employeeNotFound)
             {
                 _logger.LogInformation($"Employee service : CreateEmployee(Employee employee) : {employeeNotFound.Message}");
-                return false;
+                throw employeeNotFound;
             }
             catch (Exception exception)
             {
