@@ -15,7 +15,7 @@ namespace IMS.DataAccessLayer
         */
 
         //private readonly ILogger _logger = new ILogger<RoleDataAccessLayer>();        
-         private ILogger _logger;
+        private ILogger _logger;
         public DepartmentDataAccessLayer(ILogger logger)
         {
             _logger = logger;
@@ -27,12 +27,12 @@ namespace IMS.DataAccessLayer
         /// <returns>Return True otherwise Return False when it throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool AddDepartmentToDatabase(Department department)
         {
-             DepartmentValidation.IsDepartmentValid(department);
-                bool departmentNameExists=_db.Departments.Any(x=>x.DepartmentName==department.DepartmentName);
-               if(departmentNameExists)
-               {
-               throw new ValidationException("Department already exist");
-               }
+            DepartmentValidation.IsDepartmentValid(department);
+            bool departmentNameExists = _db.Departments.Any(x => x.DepartmentName == department.DepartmentName);
+            if (departmentNameExists)
+            {
+                throw new ValidationException("Department already exist");
+            }
             try
             {
                 _db.Departments.Add(department);
@@ -41,20 +41,20 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                 _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "DB Update Exception Occured"
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                 _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
-           
+
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "unknown exception occured "
                 return false;
             }
@@ -73,36 +73,43 @@ namespace IMS.DataAccessLayer
         /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool RemoveDepartmentFromDatabase(int departmentId)
         {
-        DepartmentValidation.IsDepartmentValid(departmentId);
-                
-               bool DeletedepartmentId=_db.Departments.Any(x=>x.IsActive==false);
-               if(  DeletedepartmentId)
-               {
-               throw new ValidationException("Department name  already deleted");
-               }
+            DepartmentValidation.IsDepartmentValid(departmentId);
+
+            bool DeletedepartmentId = _db.Departments.Any(x => x.IsActive == false);
+            if (DeletedepartmentId)
+            {
+                throw new ValidationException("Department name  already deleted");
+            }
             try
             {
                 var department = _db.Departments.Find(departmentId);
-                department.IsActive = false;
-                _db.Departments.Update(department);
-                _db.SaveChanges();
-                return true;
+                if (department.IsActive == false)
+                {
+                    throw new ValidationException("Department name  already deleted");
+                }
+                else
+                {
+                    department.IsActive = false;
+                    _db.Departments.Update(department);
+                    _db.SaveChanges();
+                    return true;
+                }
             }
             catch (DbUpdateException exception)
             {
-                 _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "DB Update Exception Occured"
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                 _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");         
+                _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "unknown exception occured "
                 return false;
             }
@@ -124,20 +131,20 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                 _logger.LogInformation($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
+
                 //LOG   "DB Update Exception Occured"
                 throw exception;
             }
             catch (OperationCanceledException exception)
             {
-                 _logger.LogInformation($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
                 //LOG   "Opreation cancelled exception"
                 throw exception;
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
                 //LOG   "unknown exception occured "
                 throw exception;
             }
@@ -150,11 +157,11 @@ namespace IMS.DataAccessLayer
         public bool AddProjectToDatabase(Project project)
         {
             ProjectValidation.IsProjectValid(project);
-                 bool projectNameExist=_db.Projects.Any(x=>x.ProjectName==project.ProjectName);
-               if(projectNameExist)
-               {
-               throw new ValidationException("Project name  already exist");
-               }
+            bool projectNameExist = _db.Projects.Any(x => x.ProjectName == project.ProjectName);
+            if (projectNameExist)
+            {
+                throw new ValidationException("Project name  already exist");
+            }
             try
             {
                 _db.Projects.Add(project);
@@ -163,19 +170,19 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                 _logger.LogInformation($"Department DAL : AddProjectToDatabase(Project project) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAL : AddProjectToDatabase(Project project) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "DB Update Exception Occured"
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                 _logger.LogInformation($"Department DAL : AddProjectToDatabase(Project project) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAL : AddProjectToDatabase(Project project) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department DAl : AddProjectToDatabase(Project project) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Department DAl : AddProjectToDatabase(Project project) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "unknown exception occured "
                 return false;
             }
@@ -195,12 +202,12 @@ namespace IMS.DataAccessLayer
         public bool RemoveProjectFromDatabase(int projectId)
         {
             ProjectValidation.IsProjectValid(projectId);
-                
-             bool DeleteprojectId=_db.Projects.Any(x=>x.IsActive==false);
-               if(DeleteprojectId)
-               {
-               throw new ValidationException("project already deleted");
-               }
+
+            bool DeleteprojectId = _db.Projects.Any(x => x.IsActive == false);
+            if (DeleteprojectId)
+            {
+                throw new ValidationException("project already deleted");
+            }
             try
             {
                 var project = _db.Projects.Find(projectId);
@@ -211,22 +218,22 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                 _logger.LogInformation($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
+
                 //LOG   "DB Update Exception Occured"
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                 _logger.LogInformation($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
+
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
+
                 //LOG   "unknown exception occured "
                 return false;
             }
@@ -245,34 +252,34 @@ namespace IMS.DataAccessLayer
         {
             DepartmentValidation.IsDepartmentValid(departmentId);
             try
-            { 
-                  var project1 = (from project in _db.Projects where project.DepartmentId == departmentId select project);
-                   return project1.Count() != 0 ? project1.ToList() : throw new ValidationException("Department is not  found");
+            {
+                var project1 = (from project in _db.Projects where project.DepartmentId == departmentId select project);
+                return project1.Count() != 0 ? project1.ToList() : throw new ValidationException("Department is not  found");
             }
             catch (DbUpdateException exception)
             {
-                 _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+
                 //LOG   "DB Update Exception Occured"
                 throw exception;
             }
             catch (OperationCanceledException exception)
             {
-                 _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+
                 //LOG   "Opreation cancelled exception"
                 throw exception;
             }
             catch (ValidationException exception)
             {
-                 _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
-                 //LOG "Validate Exception Occured"
+                _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+                //LOG "Validate Exception Occured"
                 throw exception;
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+
                 //LOG   "unknown exception occured "
                 throw exception;
             }

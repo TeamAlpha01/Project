@@ -21,7 +21,7 @@ namespace project.Controller;
     /// </summary>
     /// <param name="departmentId">int</param>
     /// <param name="projectName">String</param>
-    /// <returns>Return Ok or Badrequest otherwise it returns validation exeption or Exception when exception thrown in service.</returns>
+    /// <returns>Return project added successfully message when the project is added in the database  otherwise  return Sorry internal error occured message .it return  validation exeption or Exception when exception thrown in service.</returns>
  
     [HttpPost]
     public IActionResult CreateNewProject( int departmentId,string projectName)
@@ -31,7 +31,7 @@ namespace project.Controller;
 
         try
         {
-            return departmentService1.CreateProject(departmentId,projectName) ? Ok("Project Added Successfully") : BadRequest("Sorry internal error occured");
+            return departmentService1.CreateProject(departmentId,projectName) ? Ok("Project Added Successfully") : Problem("Sorry internal error occured");
         }
         catch (ValidationException exception)
         {
@@ -49,7 +49,7 @@ namespace project.Controller;
     /// to the Department Service.
     /// </summary>
     /// <param name="projectId">int</param>
-    /// <returns>Return Ok or Badrequest otherwise it returns validation exeption or Exception when exception thrown in service.</returns>
+    /// <returns>Return Project Removed Successfully message when the project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
     [HttpPost]
     public IActionResult RemoveProject(int projectId)
     {
@@ -57,7 +57,7 @@ namespace project.Controller;
 
         try
         {
-            return departmentService1.RemoveProject(projectId) ? Ok("Project Removed Successfully") : BadRequest("Sorry internal error occured");
+            return departmentService1.RemoveProject(projectId) ? Ok("Project Removed Successfully") : Problem("Sorry internal error occured");
         }
         catch(ValidationException exception)
         {
@@ -76,7 +76,7 @@ namespace project.Controller;
     /// to the Department Service.It validate the department Id .
     /// </summary>
     /// <param name="departmentId">int</param>
-    /// <returns>Return Ok  otherwise it returns  Exception when exception thrown in service .</returns>
+    /// <returns>Return List of Projects  otherwise it returns  Exception when exception thrown in service .</returns>
       [HttpGet]
     public IActionResult ViewProjects(int departmentId)
     {
