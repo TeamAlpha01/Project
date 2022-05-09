@@ -14,6 +14,11 @@ namespace IMS.DataAccessLayer
         {
             _logger = logger;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="drive"></param>
+        /// <returns></returns>
 
         public bool AddDriveToDatabase(Drive drive)
         {

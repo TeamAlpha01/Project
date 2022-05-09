@@ -163,7 +163,7 @@ namespace IMS.DataAccessLayer
         {
             PoolValidation.IsAddPoolMemberValid(poolMembers);
             
-            try
+              try
             {
                 _db.PoolMembers.Add(poolMembers);
                 _db.SaveChanges();
@@ -226,7 +226,7 @@ namespace IMS.DataAccessLayer
         }
         public List<PoolMembers> GetPoolMembersFromDatabase(int poolId)
         {
-            
+         PoolValidation.IsPoolIdValid(poolId) ;  
               
             try
             {
