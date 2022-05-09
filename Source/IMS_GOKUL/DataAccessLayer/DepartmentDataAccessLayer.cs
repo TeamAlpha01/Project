@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using IMS.Model;
 using System.ComponentModel.DataAnnotations;
+using IMS.Validation;
 
 namespace IMS.DataAccessLayer
 {
@@ -27,7 +28,11 @@ namespace IMS.DataAccessLayer
         public bool AddDepartmentToDatabase(Department department)
         {
              DepartmentValidation.IsDepartmentValid(department);
-                
+                bool departmentNameExists=_db.Departments.Any(x=>x.DepartmentName==department.DepartmentName);
+               if(departmentNameExists)
+               {
+               throw new ValidationException("Department name  already exist");
+               }
             try
             {
                 _db.Departments.Add(department);
@@ -46,6 +51,7 @@ namespace IMS.DataAccessLayer
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
+           
             catch (Exception exception)
             {
                  _logger.LogInformation($"Department DAL : AddDepartmentToDatabase(Department department) : {exception.Message} : {exception.StackTrace}");
@@ -140,7 +146,11 @@ namespace IMS.DataAccessLayer
         public bool AddProjectToDatabase(Project project)
         {
             ProjectValidation.IsProjectValid(project);
-                
+                 bool projectNameExist=_db.Projects.Any(x=>x.ProjectName==project.ProjectName);
+               if(projectNameExist)
+               {
+               throw new ValidationException("Project name  already exist");
+               }
             try
             {
                 _db.Projects.Add(project);
@@ -229,7 +239,7 @@ namespace IMS.DataAccessLayer
             try
             { 
                   var project1 = (from project in _db.Projects where project.DepartmentId == departmentId select project);
-                   return project1.Count() != 0 ? project1.ToList() : throw new ValidationException("Department is not  found");
+                   return project1.Count() != 0 ? project1.ToList() : throw new ("Department is not  found");
             }
             catch (DbUpdateException exception)
             {

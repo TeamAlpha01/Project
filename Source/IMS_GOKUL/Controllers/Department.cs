@@ -33,17 +33,16 @@ public class DeparmentController : ControllerBase
         {
             return departmentService.CreateDepartment(departmentName) ? Ok("Department Added Successfully") : BadRequest("Sorry internal error occured");
         }
-         catch (ValidationException exception)
+         catch (ValidationException departmentnotvalid)
         {
-             _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
+             _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {departmentnotvalid.Message} : {departmentnotvalid.StackTrace}");
+            return BadRequest(departmentnotvalid.Message);
         }
         catch (Exception exception)
         {
             _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
             return BadRequest(exception.Message);
         }
-       
     }
 /// <summary>
 /// This Method Will Implement When Remove Department Request rises-The Department controller passes the the parameter 
@@ -54,7 +53,7 @@ public class DeparmentController : ControllerBase
     [HttpPost]
     public IActionResult RemoveDepartment(int departmentId)
     {
-        if (departmentId <= 0) return BadRequest("Department Id is not provided");
+        if (departmentId <= 0) return BadRequest("Department Id  Should not be zero or less than zero");
 
         try
         {

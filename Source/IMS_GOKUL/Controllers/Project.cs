@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace project.Controller;
 
-  [ApiController]
+[ApiController]
   [Route("[controller]/[action]")]
   public class ProjectController : ControllerBase
   {
@@ -53,13 +53,13 @@ namespace project.Controller;
     [HttpPost]
     public IActionResult RemoveProject(int projectId)
     {
-        if (projectId <= 0) return BadRequest("Project Id is not provided");
+        if (projectId <= 0) return BadRequest("Project Id is Should not be zero or less than zero");
 
         try
         {
             return departmentService1.RemoveProject(projectId) ? Ok("Project Removed Successfully") : BadRequest("Sorry internal error occured");
         }
-        catch(Validation exception)
+        catch(ValidationException exception)
         {
               _logger.LogInformation($"Project Controller : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
             return BadRequest(exception.Message);
@@ -80,7 +80,7 @@ namespace project.Controller;
       [HttpGet]
     public IActionResult ViewProjects(int departmentId)
     {
-        if (departmentId <= 0) return BadRequest("Department Id is not provided");
+        if (departmentId <= 0) return BadRequest("Department Id  Should not be zero or less than zero");
         try
         {
             return Ok(departmentService1.ViewProjects(departmentId));

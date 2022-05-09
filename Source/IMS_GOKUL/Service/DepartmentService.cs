@@ -1,6 +1,7 @@
 using IMS.Model;
 using IMS.DataAccessLayer;
 using IMS.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace IMS.Service
 {
@@ -38,6 +39,10 @@ namespace IMS.Service
                 Department _department = DataFactory.DepartmentDataFactory.GetDepartmentObject();
                 _department.DepartmentName = departmentName;
                 return _departmentDataAccessLayer.AddDepartmentToDatabase(_department) ? true : false; // LOG Error in DAL;
+            }
+            catch (ValidationException departmentExist)
+            {
+                throw departmentExist;
             }
             catch (Exception exception)
             {
@@ -114,6 +119,10 @@ namespace IMS.Service
                 _project.ProjectName = projectName;
                 _project.DepartmentId= departmentId;
                 return _departmentDataAccessLayer.AddProjectToDatabase(_project) ? true : false; // LOG Error in DAL;
+            }
+            catch (ValidationException projectExist)
+            {
+                throw projectExist;
             }
             catch (Exception exception)
             {
