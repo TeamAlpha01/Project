@@ -31,9 +31,12 @@ export class ConnectionService {
       });
   }
   CreateRole(data:any){
-    let httpHeaders = new HttpHeaders();
+    console.log(data)
+    let httpHeaders = new Headers();
     httpHeaders.append('Content-Type','application/json');
-    return this.http.post('https://localhost:7072/Role/CreateNewRole',data,{headers:httpHeaders})
+    const body=JSON.stringify(data);
+    console.warn(body);
+    return this.http.post('https://localhost:7072/Role/CreateNewRole',body)
   }
 }
 
