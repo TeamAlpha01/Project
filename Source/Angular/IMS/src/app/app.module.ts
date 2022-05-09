@@ -45,9 +45,9 @@ import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
-import { AdminviewProjectPageComponent } from './Admin/admin-view-Project-page/admin-view-Project-page.component';
-import { AdminviewDepartmentPageComponent } from './Admin/admin-view-Department-page/admin-view-Department-page.component';
-import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
+import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
+import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
+import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
 
