@@ -10,7 +10,6 @@ import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-a
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
-import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
@@ -48,6 +47,7 @@ import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
+import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 
 
 
@@ -56,8 +56,8 @@ import { CreateInviteComponent } from './TAC/create-invite/create-invite.compone
 @NgModule({
   declarations: [
     AppComponent,
-    AdminRoleComponent, 
     AdminHeaderComponent,
+    AdminRoleComponent, 
     AdminAdddepartmentComponent,
     AdminAddlocationComponent,
     AdminviewLocationPageComponent,
