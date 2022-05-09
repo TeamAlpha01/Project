@@ -28,9 +28,15 @@ namespace IMS.DataAccessLayer
             LocationValidation.IsLocationValid(location);
             try
             {
+                bool locationnameAlreadyExists = _db.Locations.Any(x=>x.LocationName==location.LocationName);
+                if(!locationnameAlreadyExists)
+                {
                 _db.Locations.Add(location);
                 _db.SaveChanges();
                 return true;
+                }
+                else
+                    throw new ValidationException("Location Name already exists");
             }
             catch (DbUpdateException exception)
             {
@@ -41,6 +47,10 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location) : {exception.Message}");
                 return false;
+            }
+            catch(ValidationException locationnameAlreadyExists)
+            {
+                throw locationnameAlreadyExists;
             }
             catch (Exception exception)
             {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IMS.Controllers;
 
 [ApiController]
-[Route("[Drive]/[action]")]
+[Route("[Controller]/[action]")]
 public class DriveController : ControllerBase
 {
     private readonly ILogger _logger;

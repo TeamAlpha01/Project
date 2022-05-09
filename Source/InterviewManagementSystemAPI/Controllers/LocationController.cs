@@ -29,17 +29,16 @@ public class LocationController : ControllerBase
     [HttpPost]
     public IActionResult CreateNewLocation(string locationName)
     {
-        if(locationName==null)
-            return BadRequest("Location name is required");
-        /*****************  parameter validation required  *****************/
+      LocationValidation.IsLocationNameValid(locationName);
+     
         try
         {
             return _locationService.CreateLocation(locationName) ? Ok("Location Added Successfully") : Problem("Sorry internal error occured");
         }
-        catch (ValidationException locationNameException)
+        catch (ValidationException locationnameAlreadyExists)
         {
-            _logger.LogInformation($"Location Service : CreateNewLocation() : {locationNameException.Message}");
-            return BadRequest(locationNameException.Message);
+            _logger.LogInformation($"Location Service : CreateNewLocation(string locationName) : {locationnameAlreadyExists.Message}");
+            return BadRequest(locationnameAlreadyExists.Message);
         }
         catch (Exception exception)
         {
@@ -58,17 +57,16 @@ public class LocationController : ControllerBase
     [HttpPost]
     public IActionResult RemoveLocation(int locationId)
     {
-        if(locationId == 0)
-            return BadRequest("Location Id can't be null");
+       LocationValidation.IsLocationIdValid(locationId);
 
-        /*****************  parameter validation required  *****************/
+     
         try
         {
             return _locationService.RemoveLocation(locationId) ? Ok("Location Removed Successfully") : Problem("Sorry internal error occured");
         }
          catch (ValidationException locationNotFound)
         {
-            _logger.LogInformation($"Location Service : RemoveLocation() : {locationNotFound.Message}");
+            _logger.LogInformation($"Location Service : RemoveLocation(int locationId) : {locationNotFound.Message}");
             return BadRequest(locationNotFound.Message);
         }
         catch (Exception exception)

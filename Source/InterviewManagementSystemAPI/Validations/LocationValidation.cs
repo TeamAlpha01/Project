@@ -8,24 +8,26 @@ namespace IMS.Validations
     {
         public static void IsLocationValid(Location location)
         {
-            if(location==null) throw new ArgumentNullException("Location  cannot be null");
+            if(location==null) throw new ValidationException("Location object cannot be null");
            
            
         }
 
         public static void IsLocationNameValid(string locationName)
         {
-            if(locationName==null) throw new ValidationException("Location name cannot be null");
-            if(locationName.Length<6) throw new ValidationException("Location name is too short");
-            //if(!Regex.IsMatch(locationName,"^[a-zA-Z]$")) throw new ValidationException("Location name cannot contain symbols or numbers");
+        if(locationName==null) throw new ValidationException("Location name cannot be null");
+        if (String.IsNullOrEmpty(locationName)) throw new ValidationException("Location Name cannot be null");
+         
+        if(!Regex.IsMatch(locationName , @"^[A-Za-z]{3,30}$")) 
+            throw new ValidationException("Location Name must contain only alphabets and length of the name should be 3 to 30 char");
            
         }
         public static void IsLocationIdValid(int locationId)
         {
-             if(locationId<=0) throw new ValidationException("Location id cannot be null");
+             if(locationId<=0) throw new ValidationException("Location id cannot be negative or null");
 
         }
         
     }
 }
-//Darshana
+
