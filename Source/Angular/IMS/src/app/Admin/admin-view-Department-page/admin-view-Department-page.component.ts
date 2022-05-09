@@ -16,7 +16,7 @@ export class AdminviewDepartmentPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('https://localhost:7072/Role/view-department')
+      .get<any>('https://localhost:7072/Department/ViewDepartments')
       .subscribe((data) => {
         this.data = data;
         this.totalLength = data.length;

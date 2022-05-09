@@ -16,7 +16,7 @@ export class AdminviewProjectPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('https://localhost:7072/Role/Addproject')
+      .get<any>('https://localhost:7072/Project/ViewProjects')
       .subscribe((data) => {
         this.data = data;
         this.totalLength = data.length;

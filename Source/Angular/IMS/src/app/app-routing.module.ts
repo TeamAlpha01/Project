@@ -7,7 +7,7 @@ import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard
 import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 // import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
-// import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
+//import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
@@ -36,6 +36,7 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
+import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
 
@@ -43,7 +44,7 @@ import { InterviewerCancelInterviewPageComponent } from './Interviewer/interview
 
 const routes: Routes = [
 //interviewer pages
-  { path: '', component: AdminAddprojectComponent},
+  { path: 'Admin-view-location-page', component: AdminviewLocationPageComponent},     //Admin-view-location-page
   { path: 'interviewer-home', component:InterviewerHomeComponent },
   { path: 'profile', component:ProfileComponent },
   { path: 'interviewer-dashboard', component:InterviewerDashboardComponent },
@@ -56,7 +57,7 @@ const routes: Routes = [
   
 
 //admin pages
-  {path: 'Admin-addrole-page', component: AdminViewRolePageComponent},
+  {path: '', component: AdminViewRolePageComponent},             //Admin-addrole-page
   {path: 'Admin-adddepartment ',component:AdminAdddepartmentComponent},
   {path: 'Admin-addlocation ',component:AdminAddlocationComponent},
   {path: 'Admin-addproject',component:AdminAddprojectComponent},
@@ -64,8 +65,8 @@ const routes: Routes = [
   {path: 'Admin-requests',component:AdminRequestsComponent},
   {path: 'Admin-dashboard',component:AdminDashboardComponent},
   // {path:'Admin-viewdepartment-page',component:AdminviewDepartmentPageComponent},
-  // {path:'Admin-viewlocation-page',component:AdminviewLocationPageComponent},
-  {path:'Admin-veiwproject-page',component:AdminviewProjectPageComponent},
+  //{path:'Admin-viewlocation-page',component:AdminviewLocationPageComponent},
+  {path:'',component:AdminviewProjectPageComponent},                  //Admin-veiwproject-page
   
 
   //tac pages
