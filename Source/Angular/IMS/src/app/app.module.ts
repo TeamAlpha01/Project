@@ -47,6 +47,7 @@ import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-
 import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
 import { AdminViewLocationPageComponent } from './Admin/admin-view-location-page/admin-view-location-page.component';
 import { AdminViewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-project-page.component';
+// import { DatePickerComponent } from './Shared/date-picker/date-picker.component';
 
 
 
@@ -98,6 +99,7 @@ import { AdminViewProjectPageComponent } from './Admin/admin-view-project-page/a
     AdminAdddepartmentComponent,
     AdminViewLocationPageComponent,
     AdminViewProjectPageComponent,
+    
     
     
     
