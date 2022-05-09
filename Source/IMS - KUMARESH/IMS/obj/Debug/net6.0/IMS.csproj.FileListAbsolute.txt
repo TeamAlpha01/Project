@@ -1,7 +1,0 @@
-D:\IMS\IMS\obj\Debug\net6.0\IMS.csproj.AssemblyReference.cache
-D:\IMS\IMS\obj\Debug\net6.0\IMS.GeneratedMSBuildEditorConfig.editorconfig
-D:\IMS\IMS\obj\Debug\net6.0\IMS.AssemblyInfoInputs.cache
-D:\IMS\IMS\obj\Debug\net6.0\IMS.AssemblyInfo.cs
-D:\IMS\IMS\obj\Debug\net6.0\IMS.csproj.CoreCompileInputs.cache
-D:\IMS\IMS\obj\Debug\net6.0\IMS.MvcApplicationPartsAssemblyInfo.cs
-D:\IMS\IMS\obj\Debug\net6.0\IMS.MvcApplicationPartsAssemblyInfo.cache

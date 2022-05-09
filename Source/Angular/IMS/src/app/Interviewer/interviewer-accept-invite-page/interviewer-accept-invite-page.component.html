@@ -1,0 +1,49 @@
+<app-interviewer-header></app-interviewer-header>
+<div class="content">
+    <app-navbar [title]="title"></app-navbar>
+
+    <div class="container">
+        <div class="card mx-auto">
+            <div class="card-body">
+                <h3 class="card-title" id="cancelinvitealign"><b>XYZ INTERVIEW INVITE</b></h3>
+                <div class="row rone mt-4">
+                    <div class="col-md-6">
+                        <p><b>ROLE : </b> Senior Software Engineer</p>
+                        <p><b>DATE : </b> 10/04/2022</p>
+                        <p><b>INTERVIEW TIMING : </b>1 Hr</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><b>DEPARTMENT : </b>.NET</p>
+                        <p><b>MODE : </b>Online</p>
+                    </div>
+                </div>
+                <div class="card mx-auto">
+                    <div class="card-body">
+                        <div class="row rone mt-4">
+                            <div class="col-md-6">
+                                <label class="text-muted"><b>Availability</b> </label>
+                                <select name="Department" id="Department Name" class="form-select " name="dept"
+                                    [(ngModel)]="dept">
+                                    <option value="">Select the Department</option>
+                                    <option *ngFor="let item of department" value={{item}}>{{item}}</option>
+
+
+                                    <div class="col-md-4">
+                                        <label class="text-muted"><b>Select Timing</b></label>
+                                        <input type="time" class="form-control" id="appt" name="appt" min="09:00"
+                                            max="18:00" required>
+                                    </div>
+
+                                    <div class="col-md-2 ">
+                                        <a href="#"><button type="button" class="btn btn-back">Add</button></a>
+                                    </div>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

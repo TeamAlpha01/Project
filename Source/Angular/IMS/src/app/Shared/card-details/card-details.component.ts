@@ -8,12 +8,18 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardDetailsComponent implements OnInit {
   page: number = 1;
   totalLength:any;
-  
+  driveDetail:any[]=[]
+  item:any[]=[]
+  id:any[]=[]
   @Input()
   data!: any[];
+
+  
   constructor() { }
 
   ngOnInit(): void {
+    
   }
+
 
 }

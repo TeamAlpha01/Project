@@ -40,6 +40,15 @@ namespace IMS.Models
 
         [InverseProperty("Drive")]
         public ICollection<EmployeeAvailability>? DriveSoltResponse { get; set; }
+
+
+        [ForeignKey("LocationId")]
+        [InverseProperty("DrivesUnderLocation")]
+        public virtual Location? Location { get; set; }
+
+        [ForeignKey("PoolId")]
+        [InverseProperty("DrivesUnderPool")]
+        public virtual Pool? Pool { get; set; }
         
 
     }

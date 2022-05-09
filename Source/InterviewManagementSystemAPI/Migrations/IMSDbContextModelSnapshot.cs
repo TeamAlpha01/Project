@@ -22,6 +22,27 @@ namespace Source.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("IMS.Models.Department", b =>
+                {
+                    b.Property<int>("DepartmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DepartmentId"), 1L, 1);
+
+                    b.Property<string>("DepartmentName")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("DepartmentId");
+
+                    b.ToTable("Department");
+                });
+
             modelBuilder.Entity("IMS.Models.Drive", b =>
                 {
                     b.Property<int>("DriveId")
@@ -78,6 +99,10 @@ namespace Source.Migrations
                     b.HasKey("DriveId");
 
                     b.HasIndex("AddedBy");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("PoolId");
 
                     b.HasIndex("UpdatedBy");
 
@@ -187,6 +212,56 @@ namespace Source.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("IMS.Models.Pool", b =>
+                {
+                    b.Property<int>("PoolId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PoolId"), 1L, 1);
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PoolName")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.HasKey("PoolId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("Pools");
+                });
+
+            modelBuilder.Entity("IMS.Models.PoolMembers", b =>
+                {
+                    b.Property<int>("PoolMembersId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PoolMembersId"), 1L, 1);
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PoolId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PoolMembersId");
+
+                    b.HasIndex("PoolId");
+
+                    b.ToTable("PoolMembers");
+                });
+
             modelBuilder.Entity("IMS.Models.Role", b =>
                 {
                     b.Property<int>("RoleId")
@@ -216,6 +291,18 @@ namespace Source.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("IMS.Models.Location", "Location")
+                        .WithMany("DrivesUnderLocation")
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IMS.Models.Pool", "Pool")
+                        .WithMany("DrivesUnderPool")
+                        .HasForeignKey("PoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("IMS.Models.Employee", "UpdatedEmployee")
                         .WithMany("UpdatedEmployeeDrives")
                         .HasForeignKey("UpdatedBy")
@@ -223,6 +310,10 @@ namespace Source.Migrations
                         .IsRequired();
 
                     b.Navigation("AddedEmployee");
+
+                    b.Navigation("Location");
+
+                    b.Navigation("Pool");
 
                     b.Navigation("UpdatedEmployee");
                 });
@@ -265,6 +356,33 @@ namespace Source.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("IMS.Models.Pool", b =>
+                {
+                    b.HasOne("IMS.Models.Department", "department")
+                        .WithMany("Pools")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("department");
+                });
+
+            modelBuilder.Entity("IMS.Models.PoolMembers", b =>
+                {
+                    b.HasOne("IMS.Models.Pool", "Pools")
+                        .WithMany("PoolMembers")
+                        .HasForeignKey("PoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pools");
+                });
+
+            modelBuilder.Entity("IMS.Models.Department", b =>
+                {
+                    b.Navigation("Pools");
+                });
+
             modelBuilder.Entity("IMS.Models.Drive", b =>
                 {
                     b.Navigation("DriveResponses");
@@ -281,6 +399,18 @@ namespace Source.Migrations
                     b.Navigation("EmployeeSlotResponses");
 
                     b.Navigation("UpdatedEmployeeDrives");
+                });
+
+            modelBuilder.Entity("IMS.Models.Location", b =>
+                {
+                    b.Navigation("DrivesUnderLocation");
+                });
+
+            modelBuilder.Entity("IMS.Models.Pool", b =>
+                {
+                    b.Navigation("DrivesUnderPool");
+
+                    b.Navigation("PoolMembers");
                 });
 #pragma warning restore 612, 618
         }

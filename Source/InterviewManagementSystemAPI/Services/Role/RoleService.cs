@@ -18,11 +18,12 @@ namespace IMS.Service
             _roleDataAccessLayer = DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
         }
 
-        /*  
-            Returns False when Exception occured in Data Access Layer
-            
-            Throws ArgumentNullException when Role Name is not passed to this service method
-        */
+        /// <summary>
+        /// This method will be implemented when Role Controller Passes the Role Name to the service Layer. And controll Shifts to Role DAL.
+        /// </summary>
+        /// <param name="roleName">String</param>
+        /// <returns> Returns False when Exception occured in Data Access Layer. Throws ArgumentNullException when Role Name is not passed to this service method</returns>
+        
         public bool CreateRole(string roleName)
         {
             if (!RoleValidation.IsRoleValid(roleName))
@@ -45,11 +46,12 @@ namespace IMS.Service
             }
         }
 
-        /*  
-            Returns False when Exception occured in Data Access Layer
-            
-            Throws ArgumentNullException when Role Id is not passed to this service method
-        */
+        /// <summary>
+        /// This method will be implemented when Role Controller Passes the Role id to the service Layer. And controll Shifts to Role DAL.
+        /// </summary>
+        /// <param name="roleId">int</param>
+        /// <returns> Returns False when Exception occured in Data Access Layer. Throws ArgumentNullException when Role Id is not passed to this service method</returns>
+
 
         public bool RemoveRole(int roleId)
         {
@@ -77,9 +79,10 @@ namespace IMS.Service
             }
         }
 
-        /*  
-            Throws Exception when Exception occured in DAL while fetching roles
-        */
+        /// <summary>
+        /// This method will be implemented when "View all Role" - Request raise . And control Shifts to Role DAL.
+        /// </summary>
+        /// <returns> Throws Exception when Exception occured in DAL while fetching roles</returns>
         public IEnumerable<Role> ViewRoles()
         {
             try

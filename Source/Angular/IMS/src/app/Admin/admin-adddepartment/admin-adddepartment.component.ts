@@ -8,18 +8,19 @@ import { Department } from 'src/app/Model/Department';
   styleUrls: ['./admin-adddepartment.component.css']
 })
 export class AdminAdddepartmentComponent implements OnInit {
-  department: Department ={
-      departmentName:'',
+  title='Add Department'
+  department: Department = {
+    departmentName: '',
   }
 
-  constructor(private http:HttpClient) { }
-  addDepartment(){
-    console.log(this.department)
-  }
+constructor(private http: HttpClient) { }
+addDepartment(){
+  console.log(this.department)
+}
 
-  ngOnInit(): void {
-  }
-  pageTitle = "Department"
+ngOnInit(): void {
+}
+pageTitle = "Department"
 
 }
 

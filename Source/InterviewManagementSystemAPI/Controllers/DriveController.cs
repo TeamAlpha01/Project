@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IMS.Controllers;
 
 [ApiController]
-[Route("[controller]/[action]")]
+[Route("[Drive]/[action]")]
 public class DriveController : ControllerBase
 {
     private readonly ILogger _logger;
@@ -21,6 +21,8 @@ public class DriveController : ControllerBase
     [HttpPost]
     public IActionResult CreateDrive(Drive drive)
     {
+        if(drive==null)
+            return BadRequest("Drive is Invalid {}");
         try
         {
             return _driveService.CreateDrive(drive) ? Ok("Drive Created Successfully") : Problem("Sorry internal error occured");
@@ -38,7 +40,7 @@ public class DriveController : ControllerBase
 
     }
 
-    [HttpPost]
+    [HttpPatch]
     public IActionResult CancelDrive(int driveId, int tacId, string reason)
     {
         if (driveId == 0 || tacId == 0 || reason.Length == 0)
@@ -147,7 +149,7 @@ public class DriveController : ControllerBase
         }
         catch (Exception exception)
         {
-           _logger.LogInformation($"Drive Controller : ViewDrive(int driveId) : {exception.Message}");
+            _logger.LogInformation($"Drive Controller : ViewDrive(int driveId) : {exception.Message}");
             return Problem("Sorry internal error occured");
         }
 
@@ -157,7 +159,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            return Ok(_driveService.ViewDashboard(tacId));
+            return Ok(_driveService.ViewTACDashboard(tacId));
         }
         catch (ValidationException driveException)
         {
@@ -172,71 +174,204 @@ public class DriveController : ControllerBase
 
     }
 
-     //For Employee Drive Response Entity
+    //For Employee Drive Response Entity
     [HttpPost]
-        public IActionResult AddResponse(EmployeeDriveResponse response)
-        {
-            if (response == null) return BadRequest("Response cannnot be null");
+    public IActionResult AddResponse(EmployeeDriveResponse response)
+    {
+        if (response == null) return BadRequest("Response cannnot be null");
 
-            try
-            {
-                return _driveService.AddResponse(response) ? Ok("Response added sucessfully") : Problem("Sorry internal error occured");
-            }
-            catch (ValidationException responseNotValid)
-            {
-                _logger.LogInformation($"Drive Controller : AddResponse(EmployeeDriveResponse response) : {responseNotValid.Message}");
-                return BadRequest(responseNotValid.Message);
-            }
-            catch (Exception exception)
-            {
-                _logger.LogInformation($"Drive Controller : AddResponse(EmployeeDriveResponse response) : {exception.Message}");
-                return Problem("Sorry internal error occured");
-            }
-        }
-        [HttpPost]
-        public IActionResult UpdateResponse(int employeeId, int driveId, int responseType)
+        try
         {
-            if (driveId <= 0 || employeeId <= 0 || responseType <= 0)
-                return BadRequest("provide proper driveId, employeeId and responseType");
-            try
-            {
-                return _driveService.UpdateResponse(employeeId, driveId, responseType) ? Ok("Response updated sucessfully") : Problem("Sorry internal error occured");
-            }
-            catch (ValidationException updateResponseNotValid)
-            {
-                _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
-                return BadRequest(updateResponseNotValid.Message);
-            }
-            catch (Exception exception)
-            {
-                _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
-                return Problem("Sorry internal error occured");
-            }
+            return _driveService.AddResponse(response) ? Ok("Response added sucessfully") : Problem("Sorry internal error occured");
         }
-        [HttpPost]
-        public IActionResult SetTimeSlot(EmployeeAvailability employeeAvailability)
+        catch (ValidationException responseNotValid)
         {
-            return  _driveService.SetTimeSlot(employeeAvailability) ? Ok() : Problem();
+            _logger.LogInformation($"Drive Controller : AddResponse(EmployeeDriveResponse response) : {responseNotValid.Message}");
+            return BadRequest(responseNotValid.Message);
         }
-        [HttpGet]
-        public IActionResult ViewTodaysInterview()
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : AddResponse(EmployeeDriveResponse response) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpPatch]
+    public IActionResult UpdateResponse(int employeeId, int driveId, int responseType)
+    {
+        if (driveId <= 0 || employeeId <= 0 || responseType <= 0)
+            return BadRequest("provide proper driveId, employeeId and responseType");
+        try
+        {
+            return _driveService.UpdateResponse(employeeId, driveId, responseType) ? Ok("Response updated sucessfully") : Problem("Sorry internal error occured");
+        }
+        catch (ValidationException updateResponseNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
+            return BadRequest(updateResponseNotValid.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpPost]
+    public IActionResult SetTimeSlot(EmployeeAvailability employeeAvailability)
+    {
+        if (employeeAvailability == null)
+            return BadRequest("provide proper driveId, employeeId and responseType");
+        try
+        {
+            return _driveService.SetTimeSlot(employeeAvailability) ? Ok() : Problem();
+        }
+        catch (ValidationException updateResponseNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
+            return BadRequest(updateResponseNotValid.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewTodaysInterview()
+    {
+        try
         {
             return Ok(_driveService.ViewTodayInterviews());
         }
-        [HttpGet]
-        public IActionResult ViewScheduledInterview()
+        catch (ValidationException driveException)
+        {
+            _logger.LogInformation($"Drive Service : ViewDashboard(int tacId) : {driveException.Message}");
+            return BadRequest(driveException.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDashboard(int tacId) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewScheduledInterview()
+    {
+        try
         {
             return Ok(_driveService.ViewScheduledInterview());
         }
-        [HttpGet]
-        public IActionResult ViewUpcomingInterview()
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDashboard(int tacId) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewUpcomingInterview()
+    {
+        try
         {
             return Ok(_driveService.ViewUpcomingInterview());
         }
-        [HttpGet]
-        public IActionResult ViewAllInterview()
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDashboard(int tacId) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewAllInterview()
+    {
+        try
         {
             return Ok(_driveService.ViewAllInterview());
         }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDashboard(int tacId) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+
+    [HttpPatch]
+    public IActionResult ScheduleInterview(int employeeAvailabilityId)
+    {
+        if (employeeAvailabilityId <= 0)
+            return BadRequest("provide proper driveId, employeeId and responseType");
+        try
+        {
+            return Ok(_driveService.ScheduleInterview(employeeAvailabilityId));
+        }
+        catch (ValidationException updateResponseNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
+            return BadRequest(updateResponseNotValid.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpPatch]
+    public IActionResult CancelInterview(int employeeAvailabilityId)
+    {
+        if (employeeAvailabilityId <= 0)
+            return BadRequest("provide proper driveId, employeeId and responseType");
+        try
+        {
+            return Ok(_driveService.CancelInterview(employeeAvailabilityId));
+        }
+        catch (ValidationException updateResponseNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
+            return BadRequest(updateResponseNotValid.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewAvailableMembersForDrive(int driveId)
+    {
+        if (driveId <= 0)
+            return BadRequest("provide proper driveId, employeeId and responseType");
+        try
+        {
+            return Ok(_driveService.ViewAvailableMembersForDrive(driveId));
+        }
+        catch (ValidationException updateResponseNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
+            return BadRequest(updateResponseNotValid.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewEmployeeDashboard(int employeeId)
+    {
+        if (employeeId <= 0)
+            return BadRequest("provide proper driveId, employeeId and responseType");
+        try
+        {
+            return Ok(_driveService.ViewEmployeeDashboard(employeeId));
+        }
+        catch (ValidationException updateResponseNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
+            return BadRequest(updateResponseNotValid.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
 
 }

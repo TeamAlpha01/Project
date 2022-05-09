@@ -41,6 +41,47 @@ namespace IMS.Migrations
 
                     b.ToTable("Departments");
                 });
+
+            modelBuilder.Entity("IMS.Model.Project", b =>
+                {
+                    b.Property<int>("ProjectId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectId"), 1L, 1);
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ProjectName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProjectId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("IMS.Model.Project", b =>
+                {
+                    b.HasOne("IMS.Model.Department", "department")
+                        .WithMany("Projects")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("department");
+                });
+
+            modelBuilder.Entity("IMS.Model.Department", b =>
+                {
+                    b.Navigation("Projects");
+                });
 #pragma warning restore 612, 618
         }
     }

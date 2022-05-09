@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace IMS.Model
 {
     public class Department
@@ -10,6 +12,7 @@ namespace IMS.Model
         public string DepartmentName  { get; set; }
 
         public bool IsActive { get; set; } = true;
-        
+        [InverseProperty("department")]
+        public ICollection<Project>? Projects { get; set; }
     }
 }
