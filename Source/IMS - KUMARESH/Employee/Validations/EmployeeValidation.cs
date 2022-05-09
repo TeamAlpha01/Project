@@ -31,10 +31,9 @@ namespace IMS.Validations
             else if (!Regex.IsMatch(employee.Password,@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$")) throw new ValidationException ("Password must be between 8 and 15 characters and atleast contain one uppercase letter, one lowercase letter, one digit and one special character.");            
 
         }
-        public static void IsEmployeeId(int employeeId)
+        public static void IsEmployeeIdValid(int employeeId)
         {
-            if (String.IsNullOrEmpty(employeeId)) throw new ValidationException("Employee Id cannot be null");
-            else if(employeeId < 0)  throw new ValidationException("Employee Id cannot be negative characters");
+            if(employeeId <= 0)  throw new ValidationException("Employee Id cannot be negative characters and null");
         }
     }
 }                                                        

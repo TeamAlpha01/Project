@@ -25,8 +25,8 @@ public class EmployeeController : ControllerBase
     /// </summary>
     /// <param name="employee"></param>
     /// <returns>
-    /// Returns OK when role is added successfully or
-    /// Returns Badrequest or Problem when exception is occured in the EmployeeService layer.
+    /// Return OK when role is added successfully or
+    /// Return Badrequest or Problem when exception occured in the EmployeeService layer.
     /// </returns>
     [HttpPost]
     public IActionResult CreateNewEmployee(Employee employee)
@@ -52,13 +52,12 @@ public class EmployeeController : ControllerBase
     /// </summary>
     /// <param name="employeeId"></param>
     /// <returns>
-    /// Returns OK when employee is removed successfully or
-    /// Returns Badrequest when exception is occured in the EmployeeService layer.
+    /// Return OK when employee is removed successfully or
+    /// Return Badrequest when exception occured in the EmployeeService layer.
     /// </returns>
     [HttpPatch]
     public IActionResult RemoveEmployee(int employeeId)
     {
-        EmployeeValidation.IsEmployeeId(employeeId);
 
         try
         {
@@ -80,8 +79,8 @@ public class EmployeeController : ControllerBase
     /// in servive layer(EmployeeService)
     /// </summary>
     /// <returns>
-    /// Returns list of all employees or
-    /// Returns BadRequest when exception is occured in the EmployeeService layer.
+    /// Return list of all employees or
+    /// Return BadRequest when exception occured in the EmployeeService layer.
     /// </returns>
     [HttpGet]
     public IActionResult ViewEmployees()
@@ -97,13 +96,35 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
+    /// This method implements when you want see your profile,this method calls the ViewProfile method 
+    /// in servive layer(EmployeeService)
+    /// </summary>
+    /// <param name="employeeId"></param>
+    /// <returns>
+    /// Return Employee details(profile) or
+    /// Return BadRequest when exception occured in the EmployeeService layer.
+    /// </returns>
+    [HttpGet]
+    public IActionResult ViewProfile(int employeeId)
+    {
+        try
+        {
+            return Ok(employeeService.ViewProfile(employeeId));
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
+            return BadRequest("Sorry some internal error occured");
+        }
+    }
+    /// <summary>
     /// This method implements when you want to see employees list filtered by department id,
     /// this method calls the ViewEmployeesByDepartment method in servive layer(EmployeeService)
     /// </summary>
     /// <param name="departmentId"></param>
     /// <returns>
-    /// Returns list of employees filtered by department or
-    /// Returns BadRequest when exception is occured in the EmployeeService layer.
+    /// Return list of employees filtered by department id or
+    /// Return BadRequest when exception occured in the EmployeeService layer.
     /// </returns>
     [HttpGet]
     public IActionResult ViewEmployeesByDepartment(int departmentId)
@@ -119,15 +140,20 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// 
+    /// This method implements when admin want to see their approval status,
+    /// this method calls the ViewEmployeeByApprovalStatus method in servive layer(EmployeeService)
     /// </summary>
-    /// <returns></returns>
+    /// <param name="isAdminAccepted"></param>
+    /// <returns>
+    /// Return list of employees who are approved or rejected by admin based on isAdminAccepted parameter or
+    /// Return BadRequest when exception occured in the EmployeeService layer.
+    /// </returns>
     [HttpGet]
-    public IActionResult ViewEmployeeByApprovalStatus()
+    public IActionResult ViewEmployeeByApprovalStatus(bool isAdminAccepted)
     {
         try
         {
-            return Ok(employeeService.ViewEmployeeByApprovalStatus());
+            return Ok(employeeService.ViewEmployeeByApprovalStatus(isAdminAccepted));
         }
         catch (Exception exception)
         {
@@ -136,15 +162,19 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// 
+    /// This method implements when admin want to see who has sent a request to admin,
+    /// this method calls the ViewEmployeeRequest method in servive layer(EmployeeService)
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    /// Return list of employees who has sent a request to admin and doesn't shows a accepted request or 
+    /// Return BadRequest when exception occured in the EmployeeService layer.
+    /// </returns>
     [HttpGet]
-    public IActionResult ViewTACRequest()
+    public IActionResult ViewEmployeeRequest()
     {
         try
         {
-            return Ok(employeeService.ViewTACRequest());
+            return Ok(employeeService.ViewEmployeeRequest());
         }
         catch (Exception exception)
         {

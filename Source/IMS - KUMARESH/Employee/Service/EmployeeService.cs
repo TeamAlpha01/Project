@@ -19,10 +19,14 @@ namespace IMS.Service
         }
 
         /// <summary>
-        /// 
+        /// This method will implemented when EmployeeController passes the request to this method,then this method calls the AddEmployeeToDatabase method in DAL.
         /// </summary>
         /// <param name="employee"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns true when role is added successfully in DAL or
+        /// Returns false when exception occured in AddEmployeeToDatabase method in DAL or
+        /// Throws an exception when error is occuren in this method
+        /// </returns>
 
         public bool CreateNewEmployee(Employee employee)
         {
@@ -43,14 +47,22 @@ namespace IMS.Service
                 return false;
             }
         }
-
+        /// <summary>
+        /// This method will be implemented when EmployeeController passes the request to this method,then this method calls the RemoveEmployeeFromDatabase method in DAL.
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns>
+        /// Returns true when role is removed successfully in DAL or
+        /// Returns false when exception occured in RemoveEmployeeFromDatabase method in DAL or
+        /// Throws an exception when error is occuren in this method.
+        /// </returns>
 
         public bool RemoveEmployee(int employeeId)
         {
             // if (employeeId <= 0)
             //     throw new ValidationException("Employee Id is not provided");
             
-            EmployeeValidation.IsEmployeeId(employeeId);
+            EmployeeValidation.IsEmployeeIdValid(employeeId);
 
             try
             {
@@ -72,7 +84,13 @@ namespace IMS.Service
                 return false;
             }
         }
-
+        /// <summary>
+        /// This method will implemented when EmployeeController passes the request to this method,then this method calls the GetEmployeesFromDatabase method in DAL.
+        /// </summary>
+        /// <returns>
+        /// Returns list of all employees who are in "IsActive==true" or
+        /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
+        /// </returns>
         public IEnumerable<Employee> ViewEmployees()
         {
             try
@@ -86,6 +104,40 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
+        /// <summary>
+        /// This method implements when EmployeeController passes the request to this method,then this method calls ViewProfile method in DAL.
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns>
+        /// Return Employee details or
+        /// Throws an exception when exception is occured in ViewProfile method in DAL. 
+        /// </returns>
+        public Employee ViewProfile(int employeeId)
+        {
+            EmployeeValidation.IsEmployeeIdValid(employeeId);
+            try
+            {
+               return _employeeDataAccessLayer.ViewProfile(employeeId);
+            }
+            catch (ValidationException viewEmployeeNotValid)
+            {
+                _logger.LogInformation($"Employee Service : ViewProfile(int employeeId) : {viewEmployeeNotValid.Message} : {viewEmployeeNotValid.StackTrace}");
+                throw viewEmployeeNotValid;
+            }
+            catch (Exception viewEmployeeException)
+            {
+                _logger.LogInformation($"Drive Service : ViewProfile(int employeeId) : {viewEmployeeException.Message} : {viewEmployeeException.StackTrace}");
+                throw viewEmployeeException;
+            }
+        }
+        /// <summary>
+        /// This method will implemented when EmployeeController passes the request to this method,then this method calls the GetEmployeesFromDatabase method in DAL.
+        /// </summary>
+        /// <param name="departmentId"></param>
+        /// <returns>
+        /// Returns list of employees who's departmentId matches in database table department id or
+        /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
+        /// </returns>
         public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId)
         {
             try
@@ -99,23 +151,36 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
-
-        public IEnumerable<Employee> ViewEmployeeByApprovalStatus()
+        /// <summary>
+        /// This method implements when EmployeeController passes the request to this method,then this method calls the ViewEmployeeByApprovalStatus method in DAL.
+        /// </summary>
+        /// <param name="isAdminAccepted"></param>
+        /// <returns>
+        /// Return list of employees who are approved or rejected by admin based on isAdminAccepted parameter or
+        /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
+        /// </returns>
+        public IEnumerable<Employee> ViewEmployeeByApprovalStatus(bool isAdminAccepted)
         {
             try
             {
                 IEnumerable<Employee> employees = new List<Employee>();
-                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsAdminAccepted == true select employee;
+                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsAdminAccepted == isAdminAccepted select employee;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
+                _logger.LogInformation($"Employee service : ViewEmployeeByApprovalStatus : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
         }
+        /// <summary>
+        /// This method implements when EmployeeController passes the request to this method,then this method calls the ViewEmployeeRequest method in DAL.
+        /// </summary>
+        /// <returns>
+        /// Return list of employees who has sent a request to admin and doesn't shows a accepted request or 
+        /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
+        /// </returns>
 
-
-        public IEnumerable<Employee> ViewTACRequest()
+        public IEnumerable<Employee> ViewEmployeeRequest()
         {
             try
             {
@@ -124,7 +189,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
+                _logger.LogInformation($"Employee service : ViewTACRequest : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
         }
