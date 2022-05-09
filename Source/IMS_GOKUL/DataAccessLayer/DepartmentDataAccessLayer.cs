@@ -239,7 +239,7 @@ namespace IMS.DataAccessLayer
             try
             { 
                   var project1 = (from project in _db.Projects where project.DepartmentId == departmentId select project);
-                   return project1.Count() != 0 ? project1.ToList() : throw new ("Department is not  found");
+                   return project1.Count() != 0 ? project1.ToList() : throw new ValidationException("Department is not  found");
             }
             catch (DbUpdateException exception)
             {
@@ -253,6 +253,12 @@ namespace IMS.DataAccessLayer
                  _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
            
                 //LOG   "Opreation cancelled exception"
+                throw exception;
+            }
+            catch (ValidationException exception)
+            {
+                 _logger.LogInformation($"Department DAL : GetProjectsFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
+                 //LOG "Validate Exception Occured"
                 throw exception;
             }
             catch (Exception exception)
