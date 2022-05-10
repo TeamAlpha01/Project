@@ -14,13 +14,15 @@ import { data } from 'jquery';
 })
 export class AdminRoleComponent implements OnInit {
   role: Role = {
+    roleId:0,
     roleName: '',
+    isActive:true
   }
   constructor(private createRole: ConnectionService) { }
   addRole() {
-    console.log(this.role.roleName)
-    this.createRole.CreateRole(this.role.roleName).subscribe((data)=>{
-      console.log(data)
+    
+    this.createRole.CreateRole(this.role).subscribe((data)=>{
+      // console.log(data)
     })
 
   };
