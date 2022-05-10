@@ -10,8 +10,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class InterviewerScheduledDriveComponent implements OnInit {
   // drive: any;
   totalLength: any;
-  page: number = 1;
- 
+  page: number = 1
+  _dept = 'dotnet';
+  _pool = '';
+  _date = '';
+  pool: any[] = [];
+  drive: any[] = [];
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -21,34 +26,108 @@ export class InterviewerScheduledDriveComponent implements OnInit {
     //     this.drive = data;
     //     this.totalLength = data.length;
     //   }); 
+    for (let item of this.driveDetails) {
+      this.drive.push(item);
+    }
   }
-  drive: any[] = [{
+
+  filterDropdown() {
+
+    //To filter cards based on the date and pool selection
+    this.drive = [];
+    for (let item of this.driveDetails) {
+      if (this._pool == '' && this._date == '') {
+        this.drive.push(item);
+      }
+      else if (this._pool == item.poolName && this._date == item.date) {
+        this.drive.push(item);
+      }
+      else if (this._pool == item.poolName && this._date == '') {
+        this.drive.push(item);
+      }
+      else if (this._pool == '' && this._date == item.date) {
+        this.drive.push(item);
+      }
+    }
+
+  }
+
+
+  department: string[] = ['dotnet']
+
+  poolDetails: any[] = [{
+    departmentName: 'dotnet',
+    poolName: 'Fresher'
+  },
+  {
+    departmentName: 'dotnet',
+    poolName: 'Fresher 1'
+  }, {
+    departmentName: 'dotnet',
+    poolName: 'Fresher 2'
+  },
+  {
+    departmentName: 'dotnet',
+    poolName: 'Fresher 3'
+  }]
+
+
+
+
+
+  driveDetails: any[] = [{
     name: 'freshers 2021',
-    department: 'Java',
-    poolName: 'Freshers',
-    date: 0,
-    mode: '',
+    department: 'dotnet',
+    poolName: 'Fresher 1',
+    date: '2022-04-13',
+    fromTime: '4.00',
+    toTime: '5.00',
+    mode: 'offline',
+    location: 'chennai'
+  }, {
+    name: 'freshers 2022',
+    department: 'dotnet',
+    poolName: 'Fresher 2',
+    fromTime: '4.00',
+    toTime: '5.00',
+    date: '2022-04-12',
+    mode: 'online',
     location: ''
   }, {
-    name :'freshers 2022',
-    department: 'LAMP',
-    poolName: 'Euphoria',
-    date: 0,
-    mode: '',
-    location: ''
-  },{
-    name: 'freshers 2021',
-    department: 'Java',
-    poolName: 'Freshers',
-    date: 0,
-    mode: '',
+    name: 'freshers 2022',
+    department: 'dotnet',
+    poolName: 'Fresher 3',
+    fromTime: '4.00',
+    toTime: '5.00',
+    date: '2022-04-12',
+    mode: 'online',
     location: ''
   }, {
-    name :'freshers 2022',
-    department: 'LAMP',
-    poolName: 'Euphoria',
-    date: 0,
-    mode: '',
+    name: 'freshers 2021',
+    department: 'dotnet',
+    poolName: 'Fresher 2',
+    fromTime: '4.00',
+    toTime: '5.00',
+    date: '2022-04-12',
+    mode: 'offline',
+    location: 'chennai'
+  }, {
+    name: 'freshers 2022',
+    department: 'dotnet',
+    poolName: 'Fresher 1',
+    fromTime: '4.00',
+    toTime: '5.00',
+    date: '2022-04-12',
+    mode: 'online',
+    location: ''
+  }, {
+    name: 'freshers 2022',
+    department: 'dotnet',
+    poolName: 'Fresher',
+    fromTime: '4.00',
+    toTime: '5.00',
+    date: '2022-04-12',
+    mode: 'online',
     location: ''
   }]
 }

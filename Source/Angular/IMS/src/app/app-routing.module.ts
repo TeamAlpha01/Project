@@ -8,7 +8,7 @@ import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.co
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 // import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
 //import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
-import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
+// import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
@@ -44,7 +44,7 @@ import { InterviewerCancelInterviewPageComponent } from './Interviewer/interview
 
 const routes: Routes = [
   //interviewer pages
-  // { path: 'Admin-view-location-page', component: AdminviewLocationPageComponent },     //Admin-view-location-page
+  { path: '', component: InterviewerHomeComponent },     //Admin-view-location-page
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
@@ -66,7 +66,7 @@ const routes: Routes = [
   { path: 'Admin-dashboard', component: AdminDashboardComponent },
   // {path:'Admin-viewdepartment-page',component:AdminviewDepartmentPageComponent},
   //{path:'Admin-viewlocation-page',component:AdminviewLocationPageComponent},
-  { path: '', component: AdminviewProjectPageComponent },                  //Admin-veiwproject-page
+  // { path: '', component: AdminviewProjectPageComponent },                  //Admin-veiwproject-page
 
 
   //tac pages

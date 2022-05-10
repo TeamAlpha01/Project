@@ -11,7 +11,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   title = 'Current Drive'
   totalLength: any;
   page: number = 1;
-  dept = '';
+  dept = 'dotnet';
   _pool = '';
   pool: any[] = [];
   drive: any[] = [];
@@ -32,14 +32,6 @@ export class InterviewerCurrentDriveComponent implements OnInit {
 
 
   filterDropdown() {
-
-    //To filter pool based on the department
-    this.pool = [];
-    for (let item of this.poolDetails) {
-      if (item.departmentName == this.dept) {
-        this.pool.push(item);
-      }
-    }
 
     //To filter cards based on the department and pool selection
     this.drive = [];
@@ -64,35 +56,25 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   }
 
 
-  // filterButton(){
-  //   console.log(this.dept)
-  //   console.log(this._pool)
-  //   this.drive=[];
-  //   for(let item of this.driveDetails){
-  //     if(item.department==this.dept && item.poolName==this._pool){
-  //       this.drive.push(item);
-  //       console.log("true");
-  //     }
-  //   }
-  // }
 
 
 
-  department: string[] = ['dotnet', 'java', 'lamp']
+
+  department: string[] = ['dotnet']
 
   poolDetails: any[] = [{
     departmentName: 'dotnet',
-    poolName: 'Fresher 1'
+    poolName: 'Fresher'
   },
   {
-    departmentName: 'java',
+    departmentName: 'dotnet',
     poolName: 'Fresher 1'
   }, {
     departmentName: 'dotnet',
     poolName: 'Fresher 2'
   },
   {
-    departmentName: 'java',
+    departmentName: 'dotnet',
     poolName: 'Fresher 3'
   }]
 
@@ -105,19 +87,25 @@ export class InterviewerCurrentDriveComponent implements OnInit {
     department: 'dotnet',
     poolName: 'Fresher 1',
     date: '2022-04-12',
+    fromTime: '4.00',
+    toTime: '5.00',
     mode: 'offline',
     location: 'chennai'
   }, {
     name: 'freshers 2022',
-    department: 'java',
-    poolName: 'Technical Lead',
+    department: 'dotnet',
+    poolName: 'Fresher 2',
+    fromTime: '4.00',
+    toTime: '5.00',
     date: '2022-04-12',
     mode: 'online',
     location: ''
   }, {
     name: 'freshers 2022',
-    department: 'java',
-    poolName: 'Technical Lead',
+    department: 'dotnet',
+    poolName: 'Fresher 3',
+    fromTime: '4.00',
+    toTime: '5.00',
     date: '2022-04-12',
     mode: 'online',
     location: ''
@@ -125,20 +113,26 @@ export class InterviewerCurrentDriveComponent implements OnInit {
     name: 'freshers 2021',
     department: 'dotnet',
     poolName: 'Fresher 2',
+    fromTime: '4.00',
+    toTime: '5.00',
     date: '2022-04-12',
     mode: 'offline',
     location: 'chennai'
   }, {
     name: 'freshers 2022',
-    department: 'java',
-    poolName: 'Technical Lead',
+    department: 'dotnet',
+    poolName: 'Fresher 1',
+    fromTime: '4.00',
+    toTime: '5.00',
     date: '2022-04-12',
     mode: 'online',
     location: ''
   }, {
     name: 'freshers 2022',
-    department: 'java',
-    poolName: 'Technical Lead',
+    department: 'dotnet',
+    poolName: 'Fresher',
+    fromTime: '4.00',
+    toTime: '5.00',
     date: '2022-04-12',
     mode: 'online',
     location: ''

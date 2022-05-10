@@ -6,41 +6,23 @@
         <div class="">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-4">
-                        <label class="form-label" for="ACE Number">Department </label>
-                        <select name="Department" id="Department Name" class="form-select ">
-                            <option value="">Select the Department</option>
-                            <option value=".Net">.Net</option>
-                            <option value="Java">Java</option>
-                            <option value="BFS">BFS</option>
-                            <option value="LAMP">LAMP</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label" for="ACE Number" >Pool </label>
-                        <select name="Pool" id="Pool" class="form-select" >
+                    <div class="col-md-5">
+                        <label class="form-label" for="Pool">Pool </label>
+                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool" [(ngModel)]="_pool">
                             <option value="" >Select the Pool</option>
-                            <option value="FRESHERS">FRESHERS</option>
-                            <option value="TL">TL</option>
-                            <option value="SSE">SSE</option>
-                            <option value="SE">SE</option>
+                            <option *ngFor="let item of poolDetails" value={{item.poolName}}> {{item.poolName}} </option>
                         </select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <label class="form-label" for="Date">Date</label>
-                        <input type="date" class="form-control">
-                    </div>
-                    <div class="col-md-2 ">
-                        <div class="row mt-3">
-                            <button class="btn btn-filter">Filter</button>
-                        </div>
-                    </div>
+                        <input type="date" class="form-control" (change)="filterDropdown()" name="date" [(ngModel)]="_date">
+                    </div>                    
                 </div>
             </div>
         </div>
     </div>
 
-    <app-card-details [data]=drive></app-card-details>
+    <app-interviewer-card-details [data]=drive></app-interviewer-card-details>
 
 
    
