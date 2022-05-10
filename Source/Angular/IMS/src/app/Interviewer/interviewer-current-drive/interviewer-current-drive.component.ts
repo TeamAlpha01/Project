@@ -60,21 +60,25 @@ export class InterviewerCurrentDriveComponent implements OnInit {
 
 
 
-  department: string[] = ['dotnet']
+  department: any[] = [{
+    departmentId: '1',
+    departmentName: 'dotnet'
+  }]
 
   poolDetails: any[] = [{
-    departmentName: 'dotnet',
+    departmentId: '1',
     poolName: 'Fresher'
   },
   {
-    departmentName: 'dotnet',
+    departmentId: '1',
     poolName: 'Fresher 1'
-  }, {
-    departmentName: 'dotnet',
+  }, 
+  {
+    departmentId: '1',
     poolName: 'Fresher 2'
   },
   {
-    departmentName: 'dotnet',
+    departmentId: '1',
     poolName: 'Fresher 3'
   }]
 
