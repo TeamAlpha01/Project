@@ -48,6 +48,7 @@ import { AdminHeaderComponent } from './Admin/admin-header/admin-header.componen
 import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming-drive.component';
 import { InterviewerCardDetailsComponent } from './Interviewer/interviewer-card-details/interviewer-card-details.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
+import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 // import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
 
@@ -100,7 +101,7 @@ import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/a
     AdminViewRequestsPageComponent,
     InterviewerAcceptInvitePageComponent,
     TacUpcomingDriveComponent,   
-    InterviewerCardDetailsComponent,   
+    InterviewerCardDetailsComponent, ManageCardsComponent,   
      
 
   ],
