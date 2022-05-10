@@ -21,7 +21,7 @@ public class EmployeeController : ControllerBase
 
     /// <summary>
     /// This method will implements when you create or register new employee, this method calls the CreateNewEmployee method 
-    /// in servive layer(EmployeeService)
+    /// in servive layer(EmployeeService).
     /// </summary>
     /// <param name="employee"></param>
     /// <returns>

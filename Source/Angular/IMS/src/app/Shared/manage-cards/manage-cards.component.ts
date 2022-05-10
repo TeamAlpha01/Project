@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageCardsComponent implements OnInit {
 
+  title="";
+
   constructor() { }
 
   ngOnInit(): void {
