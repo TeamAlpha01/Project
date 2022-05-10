@@ -45,7 +45,7 @@ import { PerformanceDashboardComponent } from './Shared/performance-dashboard/pe
 
 const routes: Routes = [
   //interviewer pages
-  { path: '', component: InterviewerHomeComponent },     //Admin-view-location-page
+  { path: '', component: TacCurrentDriveComponent },     //Admin-view-location-page
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
