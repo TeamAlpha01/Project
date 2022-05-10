@@ -59,9 +59,6 @@ namespace IMS.Service
 
         public bool RemoveEmployee(int employeeId)
         {
-            // if (employeeId <= 0)
-            //     throw new ValidationException("Employee Id is not provided");
-            
             EmployeeValidation.IsEmployeeIdValid(employeeId);
 
             try
@@ -117,7 +114,7 @@ namespace IMS.Service
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
-               return _employeeDataAccessLayer.ViewProfile(employeeId);
+                return _employeeDataAccessLayer.ViewProfile(employeeId);
             }
             catch (ValidationException viewEmployeeNotValid)
             {
@@ -143,7 +140,12 @@ namespace IMS.Service
             try
             {
                 IEnumerable<Employee> employees = new List<Employee>();
-                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.DepartmentId == departmentId select employee;
+                return (employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.DepartmentId == departmentId select employee);
+                // .Select(e => new
+                //     {
+
+                //     }
+                // );
             }
             catch (Exception exception)
             {
