@@ -14,6 +14,8 @@ export class InterviewerUpcomingDriveComponent implements OnInit {
   _date='';
   pool: any[] = [];
   drive: any[] = [];
+  title='Upcoming Drive';
+  
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {

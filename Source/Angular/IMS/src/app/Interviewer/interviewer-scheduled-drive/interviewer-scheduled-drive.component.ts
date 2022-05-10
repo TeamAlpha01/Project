@@ -9,6 +9,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class InterviewerScheduledDriveComponent implements OnInit {
   // drive: any;
+  title='Scheduled Drive'
   totalLength: any;
   page: number = 1
   _dept = 'dotnet';

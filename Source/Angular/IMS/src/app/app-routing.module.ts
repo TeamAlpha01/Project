@@ -36,6 +36,7 @@ import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-schedu
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
+import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
@@ -57,7 +58,7 @@ const routes: Routes = [
 
 
   //admin pages
-  { path: '', component: AdminRoleComponent },             //Admin-addrole-page
+  { path: '', component: PerformanceDashboardComponent },             //Admin-addrole-page
   { path: 'Admin-adddepartment ', component: AdminAdddepartmentComponent },
   { path: 'Admin-addlocation ', component: AdminAddlocationComponent },
   { path: 'Admin-addproject', component: AdminAddprojectComponent },

@@ -20,6 +20,6 @@ export class AdminAddprojectComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  department: string[] = ['dotnet', 'java', 'lamp']
+  department: string[] = ['.Net', 'java', 'lamp', 'Mern',]
 
 }

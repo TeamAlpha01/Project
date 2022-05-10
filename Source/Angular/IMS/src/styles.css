@@ -1586,11 +1586,11 @@
     background-color: #b57ae6;
   }
   
-  .wrapper-dashboard {
-    display: table;
-    height: 100%;
-    width: 100%;
-  }
+    .wrapper-dashboard {
+      display: table;
+      height: 100%;
+      width: 100%;
+    }
   
   /* Drive Details */
   

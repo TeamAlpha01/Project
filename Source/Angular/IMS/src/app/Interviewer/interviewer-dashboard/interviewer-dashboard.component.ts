@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interviewer-dashboard.component.css']
 })
 export class InterviewerDashboardComponent implements OnInit {
-
+  title='Dashboard';
   constructor() { }
 
   ngOnInit(): void {
