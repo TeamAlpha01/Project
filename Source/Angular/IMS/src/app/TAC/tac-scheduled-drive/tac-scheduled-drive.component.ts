@@ -21,12 +21,13 @@ export class TacScheduledDriveComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
   departmentDetails: any;
+  deptId: any;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
 
     this.http
-      .get<any>('https://localhost:7072/Drive/ViewTodayDrives')
+      .get<any>('https://localhost:7072/Drive/ViewScheduledDrives')
       .subscribe((data) => {
         this.driveDetails = data;
         this.drive = data;
@@ -55,8 +56,19 @@ export class TacScheduledDriveComponent implements OnInit {
 
     //To filter pool based on the department
     this.pool = [];
-    for (let item of this.poolDetails) {
+
+    if (this._dept == '') {
+      this._pool = ''
+    }
+
+    for (let item of this.departmentDetails) {
       if (item.departmentName == this._dept) {
+        this.deptId = item.departmentId;
+      }
+    }
+
+    for (let item of this.poolDetails) {
+      if (item.departmentId == this.deptId) {
         this.pool.push(item);
       }
     }

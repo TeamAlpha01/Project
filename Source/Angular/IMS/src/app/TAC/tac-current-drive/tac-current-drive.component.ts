@@ -47,48 +47,46 @@ export class TacCurrentDriveComponent implements OnInit {
         this.departmentDetails = data;
         console.log(this.departmentDetails)
       });
-    
+
+
+
   }
 
 
   filterDropdown() {
-
-
     //To filter pool based on the department
     this.pool = [];
-    if(this._dept==''){
+
+    if (this._dept == '') {
       this._pool = ''
     }
-    
+
     for (let item of this.departmentDetails) {
       if (item.departmentName == this._dept) {
-        this.deptId=item.departmentId;
-        console.log(this.deptId)
+        this.deptId = item.departmentId;
       }
     }
-    
+
     for (let item of this.poolDetails) {
       if (item.departmentId == this.deptId) {
         this.pool.push(item);
-        console.log("false")
       }
     }
 
     //To filter cards based on the department and pool selection
+
     this.drive = [];
+
     for (let item of this.driveDetails) {
       if (this._dept == '' && this._pool == '') {
         this.drive.push(item);
-        console.log("0")
       }
       else if (item.driveDepartment == this._dept && item.drivePool == this._pool) {
         this.drive.push(item);
-        console.log("2")
       }
 
       else if (item.driveDepartment == this._dept && this._pool == '') {
         this.drive.push(item);
-        console.log("4")
       }
       else if (item.driveDepartment == this._dept && item.drivePool != this._pool) {
       }

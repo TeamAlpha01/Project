@@ -41,7 +41,7 @@ import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page
 import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { InterviewerHeaderComponent } from './Interviewer/interviewer-header/interviewer-header.component';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
-import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
+import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-project-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
