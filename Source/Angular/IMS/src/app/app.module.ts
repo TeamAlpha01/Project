@@ -52,7 +52,7 @@ import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.compone
 // import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 
-// import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
+import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 // import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
 
 
@@ -71,7 +71,7 @@ import { PerformanceDashboardComponent } from './Shared/performance-dashboard/pe
     AdminRequestsComponent,
     // AdminviewProjectPageComponent,
     AdminViewRolePageComponent,
-    // AdminviewLocationPageComponent,
+    AdminviewLocationPageComponent,
     InterviewerHeaderComponent,
     FooterComponent,
     BackButtonComponent,
