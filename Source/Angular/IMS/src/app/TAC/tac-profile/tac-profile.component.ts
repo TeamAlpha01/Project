@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
+
 
 @Component({
   selector: 'app-tac-profile',
@@ -6,16 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tac-profile.component.css']
 })
 export class TacProfileComponent implements OnInit {
-    
-  title = 'Profile'
-  constructor() { }
+  title = 'Profile';
+  data: any;
 
-  ngOnInit(): void {
+
+  constructor(private http: HttpClient) { }
+
+  ngOnInit():void{
+    this.http
+      .get<any>('https://localhost:7072/Employee/ViewProfile?employeeId=4')
+      .subscribe((data) => {
+        this.data = data;
+        console.log(data);
+      });
+
   }
-  Name:string='Prithvi';
-  email:string='Prithvi@aspiresys.com';
-  Contact:number=9876543210;
-  Id:string='ACE123';
-  Department:string='.net';
-  Role:string='SSE';
+
 }

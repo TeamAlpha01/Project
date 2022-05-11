@@ -6,11 +6,11 @@ namespace IMS.Service
     {
         public bool CreateDrive(Drive drive);
         public bool CancelDrive(int driveId, int employeeId, string Reason);
-        public List<Drive> ViewTodayDrives();
-        public List<Drive> ViewScheduledDrives();
-        public List<Drive> ViewUpcommingDrives();
-        public List<Drive> ViewAllScheduledDrives();
-        public List<Drive> ViewAllCancelledDrives();
+        public Object ViewTodayDrives();
+        public Object ViewScheduledDrives();
+        public Object ViewUpcommingDrives();
+        public Object ViewAllScheduledDrives();
+        public Object ViewAllCancelledDrives();
         public Dictionary<string,int> ViewTACDashboard(int employeeId);  
         public Drive ViewDrive(int driveId);
 

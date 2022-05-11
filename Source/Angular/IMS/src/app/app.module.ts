@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -49,10 +48,11 @@ import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming
 import { InterviewerCardDetailsComponent } from './Interviewer/interviewer-card-details/interviewer-card-details.component';
 
 import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.component';
-// import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
+import { AdminviewProjectPageComponent } from './Admin/admin-view-Project-page/admin-view-Project-page.component';
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
+import { FormsModule } from '@angular/forms';
 // import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
 
 
@@ -69,7 +69,7 @@ import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page
     AdminAddprojectComponent,
     AdminDashboardComponent,
     AdminRequestsComponent,
-    // AdminviewProjectPageComponent,
+    AdminviewProjectPageComponent,
     AdminViewRolePageComponent,
     AdminviewLocationPageComponent,
     InterviewerHeaderComponent,

@@ -10,22 +10,24 @@ export class ConnectionService {
   totalLength: any;
   department: any;
   role: any;
+  profile:any;
   baseURL = 'https://localhost:7072/'
   constructor(private http: HttpClient) { }
 
   GetDepartment() {
     this.http
-      .get<any>(this.baseURL +'Department/ViewDepartments')
+      .get<any>('https://localhost:7072/Department/ViewDepartments')
       .subscribe((data) => {
         this.department = data;
       });
   }
 
-  GetRole() {
+  GetRole():any {
     this.http
-      .get<any>(this.baseURL + 'Role/ViewRoles')
+      .get<any>('https://localhost:7072/Role/ViewRoles')
       .subscribe((data) => {
         this.role = data;
+        console.log(this.role)
         return this.role
       });
   }
@@ -38,5 +40,14 @@ export class ConnectionService {
     // console.warn(body);
     return this.http.post('https://localhost:7072/Role/CreateNewRole', data)
   }
+
+  // GetEmployeeProfile(){
+  //   this.http
+  //   .get<any>('https://localhost:7072/Employee/ViewProfile?employeeId=1')
+  //   .subscribe((data) => {
+  //     this.profile = data;
+  //     return this.profile
+  //   })
+  // }
 }
 

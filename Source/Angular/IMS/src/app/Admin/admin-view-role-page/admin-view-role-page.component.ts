@@ -11,16 +11,25 @@ export class AdminViewRolePageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
-  title:string='View Role';
-  role!:any[]
+  title: string = 'View Role';
+  role!: any[]
 
- 
-  constructor(private connection: ConnectionService) { }
 
-  ngOnInit(){
+  constructor(private http: HttpClient) { }
 
- this.data=this.connection.GetRole()
+//  this.data=this.connection.GetRole()
+
      
+  ngOnInit() {
+
+    //  this.data=this.connection.GetRole()
+    this.http
+      .get<any>('https://localhost:7072/Role/ViewRoles')
+      .subscribe((data) => {
+        this.role = data;
+        console.log(this.role)
+        return this.role
+      });
   }
 
 }

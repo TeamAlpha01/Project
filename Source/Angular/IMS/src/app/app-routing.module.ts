@@ -38,6 +38,11 @@ import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-
 import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
+import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
+import { InterviewerHeaderComponent } from './Interviewer/interviewer-header/interviewer-header.component';
+import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
+import { AdminviewProjectPageComponent } from './Admin/admin-view-Project-page/admin-view-Project-page.component';
+import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
@@ -46,7 +51,7 @@ import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page
 
 const routes: Routes = [
   //interviewer pages
-  { path: '', component: AdminviewLocationPageComponent },     //Admin-view-location-page
+  { path: '', component: AdminRoleComponent },     //Admin-view-location-page
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
@@ -65,11 +70,16 @@ const routes: Routes = [
   { path: 'Admin-addproject', component: AdminAddprojectComponent },
   { path: 'Admin-role', component: AdminRoleComponent },
   { path: 'Admin-requests', component: AdminRequestsComponent },
-  { path: 'Admin-dashboard', component: AdminDashboardComponent },
-  // {path:'Admin-viewdepartment-page',component:AdminviewDepartmentPageComponent},
-  //{path:'Admin-viewlocation-page',component:AdminviewLocationPageComponent},
-  // { path: '', component: AdminviewProjectPageComponent },                  //Admin-veiwproject-page
+  { path: 'admin-dashboard', component: AdminDashboardComponent },
+  { path: 'admin-view-department', component: AdminviewDepartmentPageComponent },
+  { path: 'admin-view-role', component: AdminViewRolePageComponent },
+  { path: 'admin-view-project', component: AdminviewProjectPageComponent },
+  { path: 'admin-view-location', component: AdminviewLocationPageComponent },
+  { path: 'admin-view-requests', component: AdminViewRequestsPageComponent },
+  
 
+
+               
 
   //tac pages
   { path: 'TAC-dashboard', component: TacDashboardComponent },

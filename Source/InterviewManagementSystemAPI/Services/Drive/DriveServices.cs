@@ -56,11 +56,22 @@ namespace IMS.Service
 
         }
 
-        public List<Drive> ViewTodayDrives()
+        public Object ViewTodayDrives()
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where (drive.FromDate.Date <= System.DateTime.Now.Date && drive.ToDate.Date >= System.DateTime.Now.Date) && drive.IsScheduled == true select drive).ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where (drive.FromDate.Date <= System.DateTime.Now.Date && drive.ToDate.Date >= System.DateTime.Now.Date) && drive.IsScheduled == true select drive).ToList()
+                .Select(d=>new{
+                    DriveId=d.DriveId,
+                    DriveName=d.Name,
+                    FromDate=d.FromDate,
+                    ToDate=d.ToDate,
+                    DriveDepartment=d.Pool.department.DepartmentName,
+                    DriveLocation=d.Location.LocationName,
+                    DrivePool=d.Pool.PoolName,
+                    DriveMode=d.ModeId
+                }
+                );
             }
             catch (Exception viewTodayDrivesException)
             {
@@ -70,11 +81,22 @@ namespace IMS.Service
 
         }
 
-        public List<Drive> ViewScheduledDrives()
+        public Object ViewScheduledDrives()
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == true select drive).ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == true select drive).ToList()
+                .Select(d=>new{
+                    DriveId=d.DriveId,
+                    DriveName=d.Name,
+                    FromDate=d.FromDate,
+                    ToDate=d.ToDate,
+                    DriveDepartment=d.Pool.department.DepartmentName,
+                    DriveLocation=d.Location.LocationName,
+                    DrivePool=d.Pool.PoolName,
+                    DriveMode=d.ModeId
+                }
+                );
             }
             catch (Exception viewScheduledDrivesException)
             {
@@ -84,11 +106,22 @@ namespace IMS.Service
 
         }
 
-        public List<Drive> ViewUpcommingDrives()
+        public Object ViewUpcommingDrives()
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).ToList()
+                .Select(d=>new{
+                    DriveId=d.DriveId,
+                    DriveName=d.Name,
+                    FromDate=d.FromDate,
+                    ToDate=d.ToDate,
+                    DriveDepartment=d.Pool.department.DepartmentName,
+                    DriveLocation=d.Location.LocationName,
+                    DrivePool=d.Pool.PoolName,
+                    DriveMode=d.ModeId
+                }
+                );
             }
             catch (Exception viewUpcommingDrivesException)
             {
@@ -98,11 +131,22 @@ namespace IMS.Service
 
         }
 
-        public List<Drive> ViewAllScheduledDrives()
+        public Object ViewAllScheduledDrives()
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) select drive).ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false) select drive).ToList()
+                .Select(d=>new{
+                    DriveId=d.DriveId,
+                    DriveName=d.Name,
+                    FromDate=d.FromDate,
+                    ToDate=d.ToDate,
+                    DriveDepartment=d.Pool.department.DepartmentName,
+                    DriveLocation=d.Location.LocationName,
+                    DrivePool=d.Pool.PoolName,
+                    DriveMode=d.ModeId
+                }
+                );
             }
             catch (Exception viewAllScheduledDrivesException)
             {
@@ -111,11 +155,22 @@ namespace IMS.Service
             }
         }
 
-        public List<Drive> ViewAllCancelledDrives()
+        public Object ViewAllCancelledDrives()
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(true) select drive).ToList();
+                return (from drive in _driveDataAccess.GetDrivesByStatus(true) select drive).ToList()
+                .Select(d=>new{
+                    DriveId=d.DriveId,
+                    DriveName=d.Name,
+                    FromDate=d.FromDate,
+                    ToDate=d.ToDate,
+                    DriveDepartment=d.Pool.department.DepartmentName,
+                    DriveLocation=d.Location.LocationName,
+                    DrivePool=d.Pool.PoolName,
+                    DriveMode=d.ModeId
+                }
+                );
             }
             catch (Exception viewAllCancelledDrivesException)
             {

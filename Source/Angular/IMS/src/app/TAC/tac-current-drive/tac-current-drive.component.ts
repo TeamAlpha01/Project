@@ -21,12 +21,12 @@ export class TacCurrentDriveComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.http
-    //   .get<any>('https://localhost:7072/Drive/ViewTodayDrives')
-    //   .subscribe((data) => {
-    //     this.drive = data;
-    //     this.totalLength = data.length;
-    //   });
+    this.http
+      .get<any>('https://localhost:7072/Drive/ViewTodayDrives')
+      .subscribe((data) => {
+        this.drive = data;
+        this.totalLength = data.length;
+      });
       
     for (let item of this.driveDetails) {
       this.drive.push(item);

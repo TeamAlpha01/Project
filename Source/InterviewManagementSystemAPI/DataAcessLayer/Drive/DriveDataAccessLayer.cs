@@ -60,7 +60,7 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return (from drive in _db.Drives where drive.IsCancelled == status select drive).ToList();
+                return (from drive in _db.Drives.Include(l=>l.Location).Include(p=>p.Pool).Include(d=>d.Pool.department) where drive.IsCancelled == status select drive).ToList();
             }
             catch (Exception getDrivesByStatusException)
             {
