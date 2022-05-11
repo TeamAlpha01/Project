@@ -18,8 +18,8 @@ namespace IMS.Validations
         if(locationName==null) throw new ValidationException("Location name cannot be null");
         if (String.IsNullOrEmpty(locationName)) throw new ValidationException("Location Name cannot be null");
          
-        if(!Regex.IsMatch(locationName , @"^[A-Za-z]{3,30}$")) 
-            throw new ValidationException("Location Name must contain only alphabets and length of the name should be 3 to 30 char");
+        if(!Regex.IsMatch(locationName , @"[a-zA-Z]{3,15}")) 
+            throw new ValidationException("Location Name must be alphabets and of lenght of 3 to 15.");
            
         }
         public static void IsLocationIdValid(int locationId)

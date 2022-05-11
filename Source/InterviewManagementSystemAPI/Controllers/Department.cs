@@ -59,11 +59,10 @@ public class DeparmentController : ControllerBase
         {
             return departmentService.RemoveDepartment(departmentId) ? Ok("Department Removed Successfully") : Problem("Sorry internal error occured");
         }
-        catch(ValidationException exception)
+        catch (ValidationException departmentNotFound)
         {
-              _logger.LogInformation($"Department Controller : RemoveDepartment(int departmentId) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
-
+            _logger.LogInformation($"Location Service : RemoveLocation(int locationId) : {departmentNotFound.Message}");
+            return BadRequest(departmentNotFound.Message);
         }
         catch (Exception exception)
         {

@@ -27,9 +27,8 @@ public class RoleController : ControllerBase
     [HttpPost]
     public IActionResult CreateNewRole(string roleName)
     {
-        if (roleName == null)
-            return BadRequest("Role name is required");
-
+        if(roleName==null)
+            BadRequest("Role Name cannot be null");
         try
         {
             return roleService.CreateRole(roleName) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");

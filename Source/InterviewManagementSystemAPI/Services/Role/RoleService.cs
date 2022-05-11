@@ -26,8 +26,7 @@ namespace IMS.Service
         
         public bool CreateRole(string roleName)
         {
-            if (!RoleValidation.IsRoleValid(roleName))
-                throw new ValidationException("Role Name is not valid");
+            RoleValidation.IsRoleNameValid(roleName);
 
             try
             {

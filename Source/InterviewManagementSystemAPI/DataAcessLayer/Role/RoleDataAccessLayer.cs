@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using IMS.Models;
+using IMS.Validations;
 using Microsoft.EntityFrameworkCore;
 
 namespace IMS.DataAccessLayer
@@ -23,8 +24,13 @@ namespace IMS.DataAccessLayer
 
         public bool AddRoleToDatabase(Role role)
         {
-            if (role == null)
-                throw new ArgumentNullException("Role object is not provided to DAL");
+            RoleValidation.IsRoleValid(role);
+            bool roleNameExists = _db.Roles.Any(x => x.RoleName == role.RoleName && x.IsActive == true);
+            if (roleNameExists)
+            {
+                throw new ValidationException("Role already exist");
+            }
+           
             try
             {
                 _db.Roles.Add(role);

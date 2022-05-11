@@ -28,7 +28,7 @@ namespace IMS.DataAccessLayer
             LocationValidation.IsLocationValid(location);
             try
             {
-                bool locationnameAlreadyExists = _db.Locations.Any(x=>x.LocationName==location.LocationName);
+                bool locationnameAlreadyExists = _db.Locations.Any(x=>x.LocationName==location.LocationName && x.IsActive == true);
                 if(!locationnameAlreadyExists)
                 {
                 _db.Locations.Add(location);
@@ -70,6 +70,11 @@ namespace IMS.DataAccessLayer
          public bool RemoveLocationFromDatabase(int locationId)
         {
             LocationValidation.IsLocationIdValid(locationId);
+            bool isLoactiontId = _db.Locations.Any(x =>x.LocationId==locationId && x.IsActive == false);
+            if (isLoactiontId)
+            {
+                throw new ValidationException("Location already deleted");
+            }
            
             try
             {

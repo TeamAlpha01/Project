@@ -8,7 +8,7 @@ namespace IMS.Service{
         public IEnumerable<Department> ViewDepartments();
          public  bool CreateProject(int departmentId,string projectName);
         public bool RemoveProject(int projectId);
-        public IEnumerable<Project> ViewProjects(int departmentId);
+        public IEnumerable<Project> ViewProjects(int deparmentId);
 
     }
 }

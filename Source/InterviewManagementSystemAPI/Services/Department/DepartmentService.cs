@@ -66,17 +66,16 @@ namespace IMS.Service
        /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
         public bool RemoveDepartment(int departmentId)
         {
-            DepartmentValidation.IsDepartmentValid(departmentId);
+            DepartmentValidation.IsDepartmentIdValid(departmentId);
 
             try
             {
                 return _departmentDataAccessLayer.RemoveDepartmentFromDatabase(departmentId) ? true :false; // LOG Error in DAL;
             }
-            catch(ValidationException exception)
+          catch (ValidationException departmentNotFound)
             {
-                 _logger.LogInformation($"Department Service : RemoveDepartment(departmentId) : {exception.Message} : {exception.StackTrace}");
-           
-                throw exception;
+                _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {departmentNotFound.Message}");
+                throw departmentNotFound;
             }
             catch (Exception exception)
             {
@@ -182,12 +181,12 @@ namespace IMS.Service
         /// </summary>
         /// <param name="departmentId">int</param>
         /// <returns>Return list otherwise throw exception when exception occur in DAL</returns>
-        public IEnumerable<Project> ViewProjects(int departmentId)
+        public IEnumerable<Project> ViewProjects(int deparmentId)
         {
             try
             {
                 IEnumerable<Project> projects = new List<Project>();
-                return projects = from project in _departmentDataAccessLayer.GetProjectsFromDatabase(departmentId) where project.IsActive == true select project;
+                return projects = from project in _departmentDataAccessLayer.GetProjectsFromDatabase(deparmentId) where project.IsActive == true select project;
             }
             catch (Exception exception)
             {

@@ -8,22 +8,20 @@ namespace IMS.Validation
     {
          public static void IsDepartmentValid(string departmentName)
         {
-            if(departmentName==null) throw new ValidationException("department name cannot be null");
-            //if(departmentName.Length<2 && departmentName.Length>15) throw new ValidationException("department name is in Invalid Length");
-            if(!Regex.IsMatch(departmentName,@"^[a-zA-Z]{3,15}$")) throw new ValidationException("Department Name is invalid");
+            if(departmentName==null) throw new ValidationException("Department name cannot be null");
            
-        }
-         public static void IsDepartmentValid(int departmentId)
-        {
-            if(departmentId <=0) throw new ValidationException("department name cannot be Zero or less than zero");
-        
+            if(!Regex.IsMatch(departmentName,@"[a-zA-Z ]{3,15}")) throw new ValidationException("Department Name must be alphabets and of lenght of 3 to 15.");
+           
         }
         public static void IsDepartmentValid(Department department)
         {
-            if(department.DepartmentName==null) throw new ValidationException("department name cannot be null");
-            //if(departmentName.Length<2 && departmentName.Length>15) throw new ValidationException("department name is in Invalid Length");
-            if(!Regex.IsMatch(department.DepartmentName,@"^[a-zA-Z]{3,15}$")) throw new ValidationException("Department Name is invalid");
+            if(department==null) throw new ValidationException("Department object cannot be null");
+           if(!Regex.IsMatch(department.DepartmentName,@"[a-zA-Z ]{3,15}")) throw new ValidationException("Department Name must be alphabets and of lenght of 3 to 15.");
            
         }
+         public static void IsDepartmentIdValid(int deparmentId)
+         {
+             if(deparmentId== null) throw new ValidationException("Department Id cannot be null");
+         }
     }
 }

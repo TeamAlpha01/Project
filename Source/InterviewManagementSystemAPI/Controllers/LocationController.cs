@@ -29,7 +29,8 @@ public class LocationController : ControllerBase
     [HttpPost]
     public IActionResult CreateNewLocation(string locationName)
     {
-      LocationValidation.IsLocationNameValid(locationName);
+      if (locationName == null)
+            return BadRequest("Location name is required");
      
         try
         {
@@ -57,7 +58,8 @@ public class LocationController : ControllerBase
     [HttpPost]
     public IActionResult RemoveLocation(int locationId)
     {
-       LocationValidation.IsLocationIdValid(locationId);
+       if(locationId<=0)
+        BadRequest("Location id cannot be negative or null");
 
      
         try

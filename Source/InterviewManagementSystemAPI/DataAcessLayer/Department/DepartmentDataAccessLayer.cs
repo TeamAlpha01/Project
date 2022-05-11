@@ -28,7 +28,7 @@ namespace IMS.DataAccessLayer
         public bool AddDepartmentToDatabase(Department department)
         {
             DepartmentValidation.IsDepartmentValid(department);
-            bool departmentNameExists = _db.Departments.Any(x => x.DepartmentName == department.DepartmentName);
+            bool departmentNameExists = _db.Departments.Any(x => x.DepartmentName == department.DepartmentName && x.IsActive == true);
             if (departmentNameExists)
             {
                 throw new ValidationException("Department already exist");
@@ -73,27 +73,24 @@ namespace IMS.DataAccessLayer
         /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool RemoveDepartmentFromDatabase(int departmentId)
         {
-            DepartmentValidation.IsDepartmentValid(departmentId);
+            DepartmentValidation.IsDepartmentIdValid(departmentId);
 
-            bool DeletedepartmentId = _db.Departments.Any(x => x.IsActive == false);
-            if (DeletedepartmentId)
+            bool isDeletedepartmentId = _db.Departments.Any(x =>x.DepartmentId==departmentId && x.IsActive == false);
+            if (isDeletedepartmentId)
             {
-                throw new ValidationException("Department name  already deleted");
+                throw new ValidationException("Department already deleted");
             }
             try
             {
                 var department = _db.Departments.Find(departmentId);
-                if (department.IsActive == false)
-                {
-                    throw new ValidationException("Department name  already deleted");
-                }
-                else
-                {
-                    department.IsActive = false;
-                    _db.Departments.Update(department);
-                    _db.SaveChanges();
-                    return true;
-                }
+                if (department == null) 
+                    throw new ValidationException("No Department  is found with given Department Id");
+               
+                department.IsActive = false;
+                _db.Departments.Update(department);
+                _db.SaveChanges();
+                return true;
+              
             }
             catch (DbUpdateException exception)
             {
@@ -106,6 +103,10 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Department DAL : RemoveDepartmentFromDatabase(int departmentId) : {exception.Message} : {exception.StackTrace}");
                 //LOG   "Opreation cancelled exception"
                 return false;
+            }
+            catch (ValidationException departmentNotFound)
+            {
+                throw departmentNotFound;
             }
             catch (Exception exception)
             {
@@ -248,13 +249,12 @@ namespace IMS.DataAccessLayer
         /// </summary>
         /// <param name="departmentId">int</param>
         /// <returns>Return List otherwise it throw DbUpdateException or OperationCanceledException or Exception</returns>
-        public List<Project> GetProjectsFromDatabase(int departmentId)
+        public List<Project> GetProjectsFromDatabase(int deparmentId)
         {
-            DepartmentValidation.IsDepartmentValid(departmentId);
+            
             try
             {
-                var project1 = (from project in _db.Projects where project.DepartmentId == departmentId select project);
-                return project1.Count() != 0 ? project1.ToList() : throw new ValidationException("No Project is found in this department");
+               throw new Exception();
             }
             catch (DbUpdateException exception)
             {
