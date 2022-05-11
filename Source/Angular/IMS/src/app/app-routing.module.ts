@@ -52,6 +52,7 @@ import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page
 const routes: Routes = [
   //interviewer pages
   { path: '', component: AdminRoleComponent },     //Admin-view-location-page
+  { path: '', component: AdminviewLocationPageComponent },     //Admin-view-location-page
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
