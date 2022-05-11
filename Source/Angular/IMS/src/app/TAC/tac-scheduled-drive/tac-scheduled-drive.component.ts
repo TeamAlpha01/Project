@@ -8,14 +8,19 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class TacScheduledDriveComponent implements OnInit {
 
-  title = 'Current Drive'
+  title = 'Scheduled Drive'
   totalLength: any;
   page: number = 1;
   _dept = '';
   _pool = '';
-  _date = '';
+  _date='';
+
   pool: any[] = [];
   drive: any[] = [];
+
+  driveDetails: any;
+  poolDetails: any;
+  departmentDetails: any;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -23,13 +28,25 @@ export class TacScheduledDriveComponent implements OnInit {
     this.http
       .get<any>('https://localhost:7072/Drive/ViewTodayDrives')
       .subscribe((data) => {
+        this.driveDetails = data;
         this.drive = data;
-        this.totalLength = data.length;
+        console.log(this.driveDetails)
       });
-      
-    for (let item of this.driveDetails) {
-      this.drive.push(item);
-    }
+
+    this.http
+      .get<any>('https://localhost:7072/Pool/ViewPools')
+      .subscribe((data) => {
+        this.poolDetails = data;
+        console.log(this.poolDetails)
+      });
+
+    this.http
+      .get<any>('https://localhost:7072/Deparment/ViewDepartments')
+      .subscribe((data) => {
+        this.departmentDetails = data;
+        console.log(this.departmentDetails)
+      });
+    
   }
 
 
@@ -94,76 +111,76 @@ export class TacScheduledDriveComponent implements OnInit {
 
 
 
-  department: string[] = ['dotnet', 'java', 'lamp']
+  // department: string[] = ['dotnet', 'java', 'lamp']
 
-  poolDetails: any[] = [{
-    departmentName: 'dotnet',
-    poolName: 'Fresher 1'
-  },
-  {
-    departmentName: 'java',
-    poolName: 'Fresher 1'
-  }, {
-    departmentName: 'dotnet',
-    poolName: 'Fresher 2'
-  },
-  {
-    departmentName: 'java',
-    poolName: 'Fresher 3'
-  }]
-
-
+  // poolDetails: any[] = [{
+  //   departmentName: 'dotnet',
+  //   poolName: 'Fresher 1'
+  // },
+  // {
+  //   departmentName: 'java',
+  //   poolName: 'Fresher 1'
+  // }, {
+  //   departmentName: 'dotnet',
+  //   poolName: 'Fresher 2'
+  // },
+  // {
+  //   departmentName: 'java',
+  //   poolName: 'Fresher 3'
+  // }]
 
 
 
-  driveDetails: any[] = [{
-    name: 'freshers 2021',
-    department: 'dotnet',
-    poolName: 'Fresher 1',
-    date: '2022-04-11',
-    mode: 'offline',
-    location: 'chennai'
-  },
-  {
-    name: 'freshers 2022',
-    department: 'java',
-    poolName: 'Technical Lead',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  },
-  {
-    name: 'freshers 2022',
-    department: 'java',
-    poolName: 'Technical Lead',
-    date: '2022-04-13',
-    mode: 'online',
-    location: ''
-  },
-  {
-    name: 'freshers 2021',
-    department: 'dotnet',
-    poolName: 'Fresher 2',
-    date: '2022-04-12',
-    mode: 'offline',
-    location: 'chennai'
-  },
-  {
-    name: 'freshers 2022',
-    department: 'java',
-    poolName: 'Technical Lead',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  },
-  {
-    name: 'freshers 2022',
-    department: 'java',
-    poolName: 'Technical Lead',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  }]
+
+
+  // driveDetails: any[] = [{
+  //   name: 'freshers 2021',
+  //   department: 'dotnet',
+  //   poolName: 'Fresher 1',
+  //   date: '2022-04-11',
+  //   mode: 'offline',
+  //   location: 'chennai'
+  // },
+  // {
+  //   name: 'freshers 2022',
+  //   department: 'java',
+  //   poolName: 'Technical Lead',
+  //   date: '2022-04-12',
+  //   mode: 'online',
+  //   location: ''
+  // },
+  // {
+  //   name: 'freshers 2022',
+  //   department: 'java',
+  //   poolName: 'Technical Lead',
+  //   date: '2022-04-13',
+  //   mode: 'online',
+  //   location: ''
+  // },
+  // {
+  //   name: 'freshers 2021',
+  //   department: 'dotnet',
+  //   poolName: 'Fresher 2',
+  //   date: '2022-04-12',
+  //   mode: 'offline',
+  //   location: 'chennai'
+  // },
+  // {
+  //   name: 'freshers 2022',
+  //   department: 'java',
+  //   poolName: 'Technical Lead',
+  //   date: '2022-04-12',
+  //   mode: 'online',
+  //   location: ''
+  // },
+  // {
+  //   name: 'freshers 2022',
+  //   department: 'java',
+  //   poolName: 'Technical Lead',
+  //   date: '2022-04-12',
+  //   mode: 'online',
+  //   location: ''
+  // }]
 }
 
 

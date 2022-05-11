@@ -11,7 +11,7 @@
                         <select name="Department" id="Department Name" class="form-select " (change)="filterDropdown()"
                             name="dept" [(ngModel)]="_dept">
                             <option value="">Select the Department</option>
-                            <option *ngFor="let item of department" value={{item}}> {{item}} </option>
+                            <option *ngFor="let item of departmentDetails" value={{item.departmentName}}> {{item.departmentName}} </option>
 
                         </select>
                     </div>
@@ -22,11 +22,6 @@
                             <option value="">Select the Pool</option>
                             <option *ngFor="let item of pool" value={{item.poolName}}> {{item.poolName}} </option>
                         </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label" for="Date">Date</label>
-                        <input type="date" class="form-control" (change)="filterDropdown()" name="date"
-                            [(ngModel)]="_date">
                     </div>
                 </div>
             </div>

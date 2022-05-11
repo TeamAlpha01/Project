@@ -13,19 +13,19 @@ import { data } from 'jquery';
   styleUrls: ['./admin-role.component.css']
 })
 export class AdminRoleComponent implements OnInit {
- 
+
   constructor(private http: HttpClient) { }
-  
-_roleName=''
+
+  _roleName = ''
   ngOnInit(): void {
   }
   pageTitle = "Role"
-addRole(){
-  this.http.post<any>(`https://localhost:7072/Role/CreateNewRole?roleName= ${this._roleName}`,this._roleName)
-  .subscribe((data)=>{
-    console.log(data)
-  });
+  addRole() {
+    this.http.post<any>(`https://localhost:7072/Role/CreateNewRole?roleName= ${this._roleName}`, this._roleName)
+      .subscribe((data) => {
+        console.log(data)
+      });
 
-}
+  }
 }
 
