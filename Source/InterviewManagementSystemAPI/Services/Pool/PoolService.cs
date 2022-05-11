@@ -8,12 +8,12 @@ namespace IMS.Services
     public class PoolService : IPoolService
     {
         private IPoolDataAccessLayer _poolDataAccessLayer;
-       
+
         private readonly ILogger _logger;
         public PoolService(ILogger logger)
         {
             _logger = logger;
-             _poolDataAccessLayer= DataFactory.PoolDataFactory.GetPoolDataAccessLayerObject(_logger);
+            _poolDataAccessLayer = DataFactory.PoolDataFactory.GetPoolDataAccessLayerObject(_logger);
         }
 
         /// <summary>
@@ -22,33 +22,33 @@ namespace IMS.Services
         /// <param name="departmentId">int</param>
         /// <param name="poolName">string</param>
         /// <returns>Return True or False to the Pool Controller Layer</returns>
-        public bool CreatePool(int departmentId,string poolName)
-        
+        public bool CreatePool(int departmentId, string poolName)
+
         {
-            
-            Pool _pool=DataFactory.PoolDataFactory.GetPoolObject();
-            PoolValidation.IsCreatePoolValid(departmentId,poolName);
+
+            Pool _pool = DataFactory.PoolDataFactory.GetPoolObject();
+            PoolValidation.IsCreatePoolValid(departmentId, poolName);
 
             try
             {
-               _pool.DepartmentId=departmentId;
-               _pool.PoolName=poolName; 
-               return _poolDataAccessLayer.AddPoolToDatabase(_pool) ? true : false;
-              
+                _pool.DepartmentId = departmentId;
+                _pool.PoolName = poolName;
+                return _poolDataAccessLayer.AddPoolToDatabase(_pool) ? true : false;
+
             }
             catch (ArgumentException exception)
             {
                 _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
                 return false;
             }
-           
-          
+
+
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
                 return false;
             }
-            
+
 
         }
 
@@ -59,11 +59,11 @@ namespace IMS.Services
         /// <returns>Return True or False to the Pool Controller Layer</returns>
         public bool RemovePool(int poolId)
         {
-           PoolValidation.IsRemovePoolValid(poolId);
+            PoolValidation.IsRemovePoolValid(poolId);
 
             try
             {
-                return _poolDataAccessLayer.RemovePoolFromDatabase(poolId) ? true :false; // LOG Error in DAL;
+                return _poolDataAccessLayer.RemovePoolFromDatabase(poolId) ? true : false; // LOG Error in DAL;
             }
             catch (ArgumentException exception)
             {
@@ -75,13 +75,13 @@ namespace IMS.Services
                 _logger.LogInformation($"Pool service : RemovePool(int poolId): {poolNotFound.Message}");
                 throw poolNotFound;
             }
-             
+
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool service : RemovePool(int poolId):{exception.Message}");
                 return false;
             }
-           
+
         }
 
         /// <summary>
@@ -90,16 +90,16 @@ namespace IMS.Services
         /// <param name="poolId">int</param>
         /// <param name="poolName">string</param>
         /// <returns>>Return True or False to the Pool Controller Layer</returns>
-         public bool EditPool(int poolId,string poolName)
+        public bool EditPool(int poolId, string poolName)
         {
-            PoolValidation.IsEditPoolValid(poolId,poolName);
-           
+            PoolValidation.IsEditPoolValid(poolId, poolName);
 
-             try
-             {
-                 return _poolDataAccessLayer.EditPoolFromDatabase(poolId,poolName)? true:false;
-             } 
-             catch (ArgumentException exception)
+
+            try
+            {
+                return _poolDataAccessLayer.EditPoolFromDatabase(poolId, poolName) ? true : false;
+            }
+            catch (ArgumentException exception)
             {
                 _logger.LogInformation($"Pool service : EditPool(int poolId,string poolName) : {exception.Message}");
                 return false;
@@ -109,7 +109,7 @@ namespace IMS.Services
                 _logger.LogInformation($"Pool service :EditPool(int poolId,string poolName): {poolNotFound.Message}");
                 throw poolNotFound;
             }
-              catch (Exception exception)
+            catch (Exception exception)
             {
                 _logger.LogInformation($"Pool service : EditPool(int poolId,string poolName):{exception.Message}");
                 return false;
@@ -121,22 +121,18 @@ namespace IMS.Services
         /// </summary>
         /// <param name="departmentId">int</param>
         /// <returns></returns>
-        public IEnumerable<Pool> ViewPools(int departmentId)
+        public IEnumerable<Pool> ViewPools()
         {
-
-          PoolValidation.IsValidDepartmentId(departmentId);
             try
             {
-            IEnumerable<Pool> pools = new List<Pool>();
-            return pools=from pool in _poolDataAccessLayer.GetPoolsFromDatabase(departmentId) where pool.DepartmentId==departmentId && pool.IsActive == true select pool;
-               
+                return from pool in _poolDataAccessLayer.GetPoolsFromDatabase() where pool.IsActive == true select pool;
             }
             catch (ValidationException departmentNotFound)
             {
                 _logger.LogInformation($"Pool service :EditPool(int poolId,string poolName): {departmentNotFound.Message}");
                 throw departmentNotFound;
             }
-           catch (Exception exception)
+            catch (Exception exception)
             {
                 _logger.LogInformation($"Pool Service:ViewPools(int departmentId): {exception.Message}");
                 throw new Exception();
@@ -149,45 +145,45 @@ namespace IMS.Services
         /// <param name="employeeId">int</param>
         /// <param name="poolId">int</param>
         /// <returns>Return true or false for the Pool controller</returns>
-    
-         public bool AddPoolMembers (int employeeId, int poolId)
+
+        public bool AddPoolMembers(int employeeId, int poolId)
         {
-             PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
-             PoolValidation.IsAddPoolMembersValid(employeeId,poolId);
-            
+            PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
+            PoolValidation.IsAddPoolMembersValid(employeeId, poolId);
+
             try
             {
-                _poolMembers.EmployeeId=employeeId;
+                _poolMembers.EmployeeId = employeeId;
                 _poolMembers.PoolId = poolId;
                 return _poolDataAccessLayer.AddPoolMembersToDatabase(_poolMembers) ? true : false; // LOG Error in DAL;
             }
-           catch (ArgumentException exception)
+            catch (ArgumentException exception)
             {
                 _logger.LogInformation($"Pool service : AddPoolMembers(int employeeId,int poolId) : {exception.Message}");
                 return false;
             }
-           
-            
+
+
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool service : AddPoolMembers(int employeeId,int poolId) : {exception.Message}");
                 return false;
             }
-        
-         }
 
-         /// <summary>
-         /// This method will be implemented when Pool Controller Passes the Pool Member Id to the service Layer to remove a member to the pool. And controll Shifts to Pool DAL.
-         /// </summary>
-         /// <param name="poolMemberId">int</param>
-         /// <returns>Return true or false for the Pool controller</returns>
-         public bool RemovePoolMembers(int poolMemberId)
-         {
-             PoolValidation.IsRemovePoolMembersValid(poolMemberId);
+        }
+
+        /// <summary>
+        /// This method will be implemented when Pool Controller Passes the Pool Member Id to the service Layer to remove a member to the pool. And controll Shifts to Pool DAL.
+        /// </summary>
+        /// <param name="poolMemberId">int</param>
+        /// <returns>Return true or false for the Pool controller</returns>
+        public bool RemovePoolMembers(int poolMemberId)
+        {
+            PoolValidation.IsRemovePoolMembersValid(poolMemberId);
 
             try
             {
-                return _poolDataAccessLayer.RemovePoolMembersFromDatabase(poolMemberId) ? true :false; // LOG Error in DAL;
+                return _poolDataAccessLayer.RemovePoolMembersFromDatabase(poolMemberId) ? true : false; // LOG Error in DAL;
             }
             catch (ArgumentException exception)
             {
@@ -206,31 +202,31 @@ namespace IMS.Services
                 return false;
             }
 
-         }
+        }
 
-         /// <summary>
-         /// This method is implemented when Pool Controller Passes the Pool Id to the service Layer to View all pool members. And controll Shifts to Pool DAL.
-         /// </summary>
-         /// <param name="poolId">int</param>
-         /// <returns></returns>
-         /// 
-       public IEnumerable<PoolMembers> ViewPoolMembers (int poolId)
+        /// <summary>
+        /// This method is implemented when Pool Controller Passes the Pool Id to the service Layer to View all pool members. And controll Shifts to Pool DAL.
+        /// </summary>
+        /// <param name="poolId">int</param>
+        /// <returns></returns>
+        /// 
+        public IEnumerable<PoolMembers> ViewPoolMembers(int poolId)
         {
 
-          PoolValidation.IsValidPoolId(poolId);
+            PoolValidation.IsValidPoolId(poolId);
             try
             {
-            IEnumerable<PoolMembers> poolmembers = new List<PoolMembers>();
-            return poolmembers=from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase(poolId) where poolmember.PoolId==poolId && poolmember.IsActive==true select poolmember;
-                
+                IEnumerable<PoolMembers> poolmembers = new List<PoolMembers>();
+                return poolmembers = from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase(poolId) where poolmember.PoolId == poolId && poolmember.IsActive == true select poolmember;
+
             }
-             catch (ValidationException poolNotFound)
+            catch (ValidationException poolNotFound)
             {
                 _logger.LogInformation($"Pool service :ViewPoolMembers (int poolId): {poolNotFound.Message}");
                 throw poolNotFound;
             }
 
-           catch (Exception exception)
+            catch (Exception exception)
             {
                 _logger.LogInformation($"Pool Service:ViewPoolMembers(int poolId): {exception.Message}");
                 throw new Exception();
@@ -242,13 +238,13 @@ namespace IMS.Services
 
 
 
-         
-        
-
-    
 
 
 
 
-    
+
+
+
+
+
 

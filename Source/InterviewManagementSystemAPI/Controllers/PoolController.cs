@@ -115,13 +115,11 @@ public class PoolController : ControllerBase
      /// 
      
     [HttpGet]
-    public IActionResult ViewPools(int departmentId)
+    public IActionResult ViewPools()
     { 
-        PoolValidation.IsValidDepartmentId(departmentId);
-
         try
         {
-          return Ok(_poolService.ViewPools(departmentId));
+          return Ok(_poolService.ViewPools());
         }
           catch (ValidationException departmentNotFound)
         {
