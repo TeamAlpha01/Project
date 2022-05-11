@@ -5,38 +5,37 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConnectionService {
- 
+
   drive: any;
   totalLength: any;
+  department: any;
+  role: any;
+  baseURL = 'https://localhost:7072/'
+  constructor(private http: HttpClient) { }
 
-  constructor(private http:HttpClient) { }
-
-  GetDepartment()
-  {
+  GetDepartment() {
     this.http
-      .get<any>('https://localhost:7072/Department/ViewDepartments')
+      .get<any>('Department/ViewDepartments')
       .subscribe((data) => {
-        this.drive = data;
-        this.totalLength = data.length;
+        this.department = data;
       });
   }
 
-  GetRole()
-  {
+  GetRole() {
     this.http
-      .get<any>('https://localhost:7072/Role/ViewRoles')
+      .get<any>(this.baseURL + 'Role/ViewRoles')
       .subscribe((data) => {
-        this.drive = data;
-        this.totalLength = data.length;
+        this.role = data;
+        return this.role
       });
   }
-  CreateRole(data:any){
+  CreateRole(data: any) {
     console.log(data)
     let httpHeaders = new Headers();
-    httpHeaders.append('Content-Type','application/json');
+    httpHeaders.append('Content-Type', 'application/json');
     // const body=JSON.stringify(data);
     // console.warn(body);
-    return this.http.post('https://localhost:7072/Role/CreateNewRole',data)
+    return this.http.post('https://localhost:7072/Role/CreateNewRole', data)
   }
 }
 
