@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class InterviewManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220511035504_UPDATED_EMP_PROJ_ROLE_AND_ROLENAME_LENGTH_TO_30")]
+    partial class UPDATED_EMP_PROJ_ROLE_AND_ROLENAME_LENGTH_TO_30
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -435,38 +437,6 @@ namespace Source.Migrations
                     b.HasKey("LocationId");
 
                     b.ToTable("Locations");
-
-                    b.HasData(
-                        new
-                        {
-                            LocationId = 1,
-                            IsActive = true,
-                            LocationName = "Chennai"
-                        },
-                        new
-                        {
-                            LocationId = 2,
-                            IsActive = true,
-                            LocationName = "Bangalore"
-                        },
-                        new
-                        {
-                            LocationId = 3,
-                            IsActive = true,
-                            LocationName = "Mumbai"
-                        },
-                        new
-                        {
-                            LocationId = 4,
-                            IsActive = true,
-                            LocationName = "Delhi"
-                        },
-                        new
-                        {
-                            LocationId = 5,
-                            IsActive = true,
-                            LocationName = "Noida"
-                        });
                 });
 
             modelBuilder.Entity("IMS.Models.Pool", b =>

@@ -17,25 +17,38 @@ namespace IMS.DataAccessLayer
         public DbSet<Project> Projects { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=ASPIREREN032;Database=InterviewManagementSystem;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=ASPIREREN009;Database=InterviewManagementSystem;Trusted_Connection=True;");
         }
+
+        //Seeding Data to DB 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Role>()
                         .HasData(
                          new Role { RoleId = 1, RoleName = "Software Developer" },
                          new Role { RoleId = 2, RoleName = "Senior Software Developer" },
-                         new Role { RoleId = 3, RoleName = "Project Manager" });
+                         new Role { RoleId = 3, RoleName = "Project Manager" },
+                         new Role { RoleId = 4, RoleName = "Module Lead" },
+                         new Role { RoleId = 5, RoleName = "Technical Lead" },
+                         new Role { RoleId = 6, RoleName = "Software Architect" },
+                         new Role { RoleId = 7, RoleName = "Delivery Manager" },
+                         new Role { RoleId = 8, RoleName = "Service Line Owner" },
+                         new Role { RoleId = 9, RoleName = "Talent Acquisition Coordinatior" },
+                         new Role { RoleId = 10, RoleName = "Admin" }
+                         );
             modelBuilder.Entity<Department>()
                        .HasData(
                         new Department { DepartmentId = 1, DepartmentName = ".NET" },
                         new Department { DepartmentId = 2, DepartmentName = "JAVA" },
-                        new Department { DepartmentId = 3, DepartmentName = "ORACLE" });
+                        new Department { DepartmentId = 3, DepartmentName = "ORACLE" },
+                        new Department { DepartmentId = 4, DepartmentName = "Not Applicable" }
+                        );
             modelBuilder.Entity<Project>()
                       .HasData(
                        new Project { ProjectId = 1, ProjectName = "IMS_NET", DepartmentId = 1 },
                        new Project { ProjectId = 2, ProjectName = "IMS_JAVA", DepartmentId = 2 },
-                       new Project { ProjectId = 3, ProjectName = "IMS_ORACLE", DepartmentId = 3 }
+                       new Project { ProjectId = 3, ProjectName = "IMS_ORACLE", DepartmentId = 3 },
+                       new Project { ProjectId = 4, ProjectName = "Not Applicable", DepartmentId = 4 }
                        );
             modelBuilder.Entity<Employee>()
                       .HasData(
@@ -47,8 +60,19 @@ namespace IMS.DataAccessLayer
                        new Employee { EmployeeId = 6, Name = "Kumaresh", DepartmentId = 2, EmailId = "kumaresh@gmail.com", EmployeeAceNumber = "ACE0006", Password = "Pass@12345", ProjectId = 2, RoleId = 3 },
                        new Employee { EmployeeId = 7, Name = "Gokul", DepartmentId = 3, EmailId = "gokul@gmail.com", EmployeeAceNumber = "ACE0007", Password = "Pass@12345", ProjectId = 3, RoleId = 1 },
                        new Employee { EmployeeId = 8, Name = "Deepika", DepartmentId = 3, EmailId = "deepika@gmail.com", EmployeeAceNumber = "ACE0008", Password = "Pass@12345", ProjectId = 3, RoleId = 2 },
-                       new Employee { EmployeeId = 9, Name = "Remuki", DepartmentId = 3, EmailId = "remuki@gmail.com", EmployeeAceNumber = "ACE0009", Password = "Pass@12345", ProjectId = 3, RoleId = 3 }
+                       new Employee { EmployeeId = 9, Name = "Remuki", DepartmentId = 3, EmailId = "remuki@gmail.com", EmployeeAceNumber = "ACE0009", Password = "Pass@12345", ProjectId = 3, RoleId = 3 },
+                       new Employee { EmployeeId = 10, Name = "Vishnu", DepartmentId = 4, EmailId = "vishnu@gmail.com", EmployeeAceNumber = "ACE0010", Password = "Pass@12345", ProjectId = 4, RoleId = 9 },
+                       new Employee { EmployeeId = 11, Name = "Sandhiya", DepartmentId = 4, EmailId = "sandhiya@gmail.com", EmployeeAceNumber = "ACE0011", Password = "Pass@12345", ProjectId = 4, RoleId = 9 },
+                       new Employee { EmployeeId = 12, Name = "Mani", DepartmentId = 4, EmailId = "mani@gmail.com", EmployeeAceNumber = "ACE0012", Password = "Pass@12345", ProjectId = 4, RoleId = 10 }
                        );
+            modelBuilder.Entity<Location>()
+                     .HasData(
+                      new Location { LocationId = 1, LocationName = "Chennai", IsActive=true },
+                      new Location { LocationId = 2, LocationName = "Bangalore", IsActive=true },
+                      new Location { LocationId = 3, LocationName = "Mumbai", IsActive=true },
+                      new Location { LocationId = 4, LocationName = "Delhi", IsActive=true },
+                      new Location { LocationId = 5, LocationName = "Noida", IsActive=true }
+                      );
         }
     }
 }

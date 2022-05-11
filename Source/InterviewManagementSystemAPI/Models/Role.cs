@@ -7,7 +7,7 @@ namespace IMS.Models
         [Key]
         public int RoleId{get; set;}
         [Required]
-        [StringLength(25)]
+        [StringLength(35)]
         public string RoleName  { get; set; }
 
         public bool IsActive { get; set; } = true;
