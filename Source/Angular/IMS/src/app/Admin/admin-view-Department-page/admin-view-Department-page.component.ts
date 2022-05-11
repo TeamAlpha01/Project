@@ -4,7 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-admin-viewDepartment-page',
   templateUrl: './admin-view-Department-page.component.html',
-  styleUrls: ['./admin-view-Department-page.component.css']
+  styleUrls: ['./admin-view-department-page.component.css']
 })
 export class AdminviewDepartmentPageComponent implements OnInit {
   data: any;
@@ -16,9 +16,10 @@ export class AdminviewDepartmentPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('https://localhost:7072/Department/ViewDepartments')
+      .get<any>('https://localhost:7072/Deparment/ViewDepartments')
       .subscribe((data) => {
         this.data = data;
+        console.log(this.data)
         this.totalLength = data.length;
       });
   }

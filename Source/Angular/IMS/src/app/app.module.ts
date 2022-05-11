@@ -53,7 +53,7 @@ import { PerformanceDashboardComponent } from './Shared/performance-dashboard/pe
 
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 import { FormsModule } from '@angular/forms';
-// import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
+import { AdminviewDepartmentPageComponent } from './Admin/admin-view-Department-page/admin-view-department-page.component';
 
 
 
@@ -71,6 +71,7 @@ import { FormsModule } from '@angular/forms';
     AdminRequestsComponent,
     AdminviewProjectPageComponent,
     AdminViewRolePageComponent,
+    AdminviewDepartmentPageComponent,
     AdminviewLocationPageComponent,
     InterviewerHeaderComponent,
     FooterComponent,
