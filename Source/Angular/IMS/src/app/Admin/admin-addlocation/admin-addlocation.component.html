@@ -9,18 +9,22 @@
             <div class="Login">
                 <div class="card-body">
                     <h2 class="text-uppercase text-center">ADD LOCATION</h2>
-                    <form #form="ngForm" (ngSubmit)="addLocation">
+                    <form #form="ngForm" (ngSubmit)="addLocation()">
                         <div class="Location">
                             <div class="form-input">
-                                <label class="form-label" for="ACE Number">Location Name </label>
-                                <input type="text" id="Name" class="form-control form-control-lg" name="locationName" [(ngModel)]="location.locationName">
+                                <label class="form-label" for="Location Name">Location Name </label>
+                                <input type="text" id="Name" class="form-control" name="locationName" [(ngModel)]="_locationName">
                             </div>
                         </div>
-                        <div class="Login-btn">
-                            <a href="Home.html"><button class="btn btn-primary" type="button">Create</button></a>
+                        <!-- <div class="Login-btn">
+                            <a ><button class="btn btn-primary" type="button" (click)="addLocation()">Create</button></a>
+                        </div> -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-back" (click)="addLocation()">Create</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <app-footer></app-footer>
+</div>

@@ -8,16 +8,25 @@ import { HttpClient,HttpClientModule } from '@angular/common/http';
   styleUrls: ['./admin-addlocation.component.css']
 })
 export class AdminAddlocationComponent implements OnInit {
-  title ='Location'
- location: Location={
-   locationName:'',
- }
+  title ='Add Location'
+ 
   constructor(private http: HttpClient) { }
+
+    _locationName='' 
+
   addLocation(){
-    console.log(this.location)
+    const headers = {'content-type':'application/json'}
+  
+    this.http.post<any>(`https://localhost:7072/Location/CreateNewLocation?locationName=${this._locationName}`,this._locationName)
+        .subscribe((data) => {
+          console.log(data)
+        }
+        )
   }
+
   ngOnInit(): void {
   }
   pageTitle="Department"
 
 }
+

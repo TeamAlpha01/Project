@@ -9,18 +9,22 @@ import { Department } from 'src/app/Model/Department';
 })
 export class AdminAdddepartmentComponent implements OnInit {
   title='Add Department'
-  department: Department = {
-    departmentName: '',
-  }
+
+  _department=''
 
 constructor(private http: HttpClient) { }
+
 addDepartment(){
-  console.log(this.department)
+  this.http.post<any>(`https://localhost:7072/Department/CreateNewDepartment?departmentName=${this._department}`,this._department)
+  .subscribe((data) => {
+    console.log(data)
+  }
+  )
 }
 
 ngOnInit(): void {
 }
-pageTitle = "Department"
+
 
 }
 
