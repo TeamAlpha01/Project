@@ -27,6 +27,7 @@ export class TacCurrentDriveComponent implements OnInit {
     //     this.drive = data;
     //     this.totalLength = data.length;
     //   });
+      
     for (let item of this.driveDetails) {
       this.drive.push(item);
     }
@@ -49,7 +50,7 @@ export class TacCurrentDriveComponent implements OnInit {
     for (let item of this.driveDetails) {
       if (this._dept == '' && this._pool == '' && item.date==this._date) {
         this.drive.push(item);
-        console.log("2")
+        console.log("0")
       }
       else if (this._dept == '' && this._date==item.date) {
         this._pool = '';
@@ -68,7 +69,7 @@ export class TacCurrentDriveComponent implements OnInit {
       
       else if (item.department == this._dept && item.poolName == this._pool && this._date=='') {
         this.drive.push(item);
-        console.log("3")
+        console.log("2")
       }
       else if (item.department == this._dept && item.poolName == this._pool && item.date==this._date) {
         this.drive.push(item);
@@ -80,10 +81,8 @@ export class TacCurrentDriveComponent implements OnInit {
       }
       else if (item.department == this._dept && this._pool == '' && this._date == item.date) {
         this.drive.push(item);
-        console.log("4")
+        console.log("5")
       }
-
-      
        else if (item.department == this._dept && item.poolName != this._pool ) {
        }
 
@@ -92,17 +91,7 @@ export class TacCurrentDriveComponent implements OnInit {
   }
 
 
-  // filterButton(){
-  //   console.log(this._dept)
-  //   console.log(this._pool)
-  //   this.drive=[];
-  //   for(let item of this.driveDetails){
-  //     if(item.department==this._dept && item.poolName==this._pool){
-  //       this.drive.push(item);
-  //       console.log("true");
-  //     }
-  //   }
-  // }
+
 
 
 
