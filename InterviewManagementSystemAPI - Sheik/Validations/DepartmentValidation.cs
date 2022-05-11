@@ -1,0 +1,27 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
+using IMS.Models;
+
+namespace IMS.Validation
+{
+    public class DepartmentValidation
+    {
+         public static void IsDepartmentValid(string departmentName)
+        {
+            if(departmentName==null) throw new ValidationException("Department name cannot be null");
+           
+            if(!Regex.IsMatch(departmentName,@"[a-zA-Z ]{3,15}")) throw new ValidationException("Department Name must be alphabets and of lenght of 3 to 15.");
+           
+        }
+        public static void IsDepartmentValid(Department department)
+        {
+            if(department==null) throw new ValidationException("Department object cannot be null");
+            if(!Regex.IsMatch(department.DepartmentName,@"^(?!.([])\1)(?!.([A-Za-z])\2{2})\w[a-zA-Z]*$")) throw new ValidationException("Department Name must be alphabets and of lenght of 3 to 15.");
+           
+        }
+         public static void IsDepartmentIdValid(int deparmentId)
+         {
+             if(deparmentId== null) throw new ValidationException("Department Id cannot be null");
+         }
+    }
+}
