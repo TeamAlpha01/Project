@@ -11,7 +11,7 @@ namespace IMS.Models
         }
         [Key]
         public int DriveId { get; set; }
-        [StringLength(10)]
+        [StringLength(30)]
         public string Name { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
@@ -20,7 +20,7 @@ namespace IMS.Models
         public int LocationId { get; set; }
         public bool IsScheduled { get; set; } = false;
         public bool IsCancelled { get; set; } = false;
-        public string CancelReason { get; set; }
+        public string? CancelReason { get; set; }
         public int AddedBy { get; set; }
         public DateTime AddedOn { get; set; }
         public int UpdatedBy { get; set; }
