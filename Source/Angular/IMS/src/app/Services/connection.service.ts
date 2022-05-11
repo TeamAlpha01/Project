@@ -21,11 +21,12 @@ export class ConnectionService {
       });
   }
 
-  GetRole() {
+  GetRole():any {
     this.http
       .get<any>(this.baseURL + 'Role/ViewRoles')
       .subscribe((data) => {
         this.role = data;
+        console.log(this.role)
         return this.role
       });
   }

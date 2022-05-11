@@ -46,7 +46,7 @@ import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page
 
 const routes: Routes = [
   //interviewer pages
-  { path: '', component: AdminviewLocationPageComponent },     //Admin-view-location-page
+  { path: '', component: AdminRoleComponent },     //Admin-view-location-page
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },

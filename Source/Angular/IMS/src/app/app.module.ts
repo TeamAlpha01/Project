@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -53,6 +52,7 @@ import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.compone
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
+import { FormsModule } from '@angular/forms';
 // import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
 
 

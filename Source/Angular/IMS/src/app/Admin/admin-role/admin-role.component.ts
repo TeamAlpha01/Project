@@ -13,23 +13,19 @@ import { data } from 'jquery';
   styleUrls: ['./admin-role.component.css']
 })
 export class AdminRoleComponent implements OnInit {
-  role: Role = {
-    roleId:0,
-    roleName: '',
-    isActive:true
-  }
-  constructor(private createRole: ConnectionService) { }
-  addRole() {
-    
-    this.createRole.CreateRole(this.role).subscribe((data)=>{
-      // console.log(data)
-    })
-
-  };
-
+ 
+  constructor(private http: HttpClient) { }
+  
+_roleName=''
   ngOnInit(): void {
   }
   pageTitle = "Role"
+addRole(){
+  this.http.post<any>(`https://localhost:7072/Role/CreateNewRole?roleName= ${this._roleName}`,this._roleName)
+  .subscribe((data)=>{
+    console.log(data)
+  });
 
+}
 }
 

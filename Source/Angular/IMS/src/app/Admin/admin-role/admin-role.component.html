@@ -17,7 +17,7 @@
             <form #form="ngForm" (ngSubmit)="addRole()">
                 <div class="form-input">
                     <label class="form-label" for="Name">Role Name </label>
-                    <input type="text" id="Name" class="form-control " name="roleName" [(ngModel)]="role.roleName">
+                    <input type="text" id="Name" class="form-control " name="roleName" [(ngModel)]="_roleName">
                 </div>
 
                 <div class="text-center">
