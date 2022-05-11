@@ -15,7 +15,7 @@ export class ConnectionService {
 
   GetDepartment() {
     this.http
-      .get<any>('Department/ViewDepartments')
+      .get<any>(this.baseURL +'Department/ViewDepartments')
       .subscribe((data) => {
         this.department = data;
       });
@@ -29,6 +29,7 @@ export class ConnectionService {
         return this.role
       });
   }
+
   CreateRole(data: any) {
     console.log(data)
     let httpHeaders = new Headers();
