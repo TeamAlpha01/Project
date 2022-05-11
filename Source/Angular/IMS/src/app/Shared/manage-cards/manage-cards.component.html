@@ -1,1 +1,39 @@
-<p>manage-cards works!</p>
+
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+    <!-- Navbar End -->
+    <section class="wrapper">
+        <div class="container">
+            <div class="row ">
+                <div class="col-xs-12 col-sm-4">
+                    <div class="card-card h-100">
+                        <a class="img-card" [routerLink]="['../tac-current-drive']">
+                            <img src="./assets/Images/Current.jpg" />
+                        </a>
+                        <div class="card-content">
+                            <h4 class="card-title">
+                               Add 
+                            </h4>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="card-card h-100">
+                        <a class="img-card" [routerLink]="['../tac-current-drive']">
+                            <img src="./assets/Images/Current.jpg" />
+                        </a>
+                        <div class="card-content">
+                            <h4 class="card-title">
+                                View
+                            </h4>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+</div>

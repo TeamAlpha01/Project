@@ -37,7 +37,7 @@ import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { NavbarComponent } from './Shared/navbar/navbar.component';
-import { LoginComponent } from './Shared/login/login.component';
+import { LoginComponent } from './TAC/editpool/login/login.component';
 
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
@@ -47,10 +47,11 @@ import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-
 import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming-drive.component';
 import { InterviewerCardDetailsComponent } from './Interviewer/interviewer-card-details/interviewer-card-details.component';
-// import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
+
 import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.component';
 // import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
+
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 // import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
 
@@ -68,8 +69,8 @@ import { PerformanceDashboardComponent } from './Shared/performance-dashboard/pe
     AdminAddprojectComponent,
     AdminDashboardComponent,
     AdminRequestsComponent,
-    AdminViewRolePageComponent,
     // AdminviewProjectPageComponent,
+    AdminViewRolePageComponent,
     // AdminviewLocationPageComponent,
     InterviewerHeaderComponent,
     FooterComponent,

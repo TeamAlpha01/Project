@@ -18,12 +18,12 @@ export class AdminViewRolePageComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    // this.http
-    //   .get<any>('https://localhost:7072/Role/ViewRoles')
-    //   .subscribe((data) => {
-    //     this.data = data;
-    //     this.totalLength = data.length;
-    //   });
+    this.http
+      .get<any>('https://localhost:7072/Role/ViewRoles')
+      .subscribe((data) => {
+        this.data = data;
+        this.totalLength = data.length;
+      });
 
   }
 

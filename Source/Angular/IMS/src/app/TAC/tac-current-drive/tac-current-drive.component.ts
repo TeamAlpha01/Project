@@ -12,8 +12,9 @@ export class TacCurrentDriveComponent implements OnInit {
   title = 'Current Drive'
   totalLength: any;
   page: number = 1;
-  dept = '';
+  _dept = '';
   _pool = '';
+  _date = '';
   pool: any[] = [];
   drive: any[] = [];
   constructor(private http: HttpClient) { }
@@ -26,6 +27,7 @@ export class TacCurrentDriveComponent implements OnInit {
     //     this.drive = data;
     //     this.totalLength = data.length;
     //   });
+      
     for (let item of this.driveDetails) {
       this.drive.push(item);
     }
@@ -34,10 +36,11 @@ export class TacCurrentDriveComponent implements OnInit {
 
   filterDropdown() {
 
+
     //To filter pool based on the department
     this.pool = [];
     for (let item of this.poolDetails) {
-      if (item.departmentName == this.dept) {
+      if (item.departmentName == this._dept) {
         this.pool.push(item);
       }
     }
@@ -45,37 +48,50 @@ export class TacCurrentDriveComponent implements OnInit {
     //To filter cards based on the department and pool selection
     this.drive = [];
     for (let item of this.driveDetails) {
-      if (this.dept == '') {
+      if (this._dept == '' && this._pool == '' && item.date==this._date) {
+        this.drive.push(item);
+        console.log("0")
+      }
+      else if (this._dept == '' && this._date==item.date) {
         this._pool = '';
-      }
-      else if (this.dept == '' && this._pool == '') {
         this.drive.push(item);
+        console.log("true")
       }
-      else if (item.department == this.dept && item.poolName == this._pool) {
+      else if (this._dept == '' && this._date=='') {
+        this._pool = '';
         this.drive.push(item);
+        console.log("false")
       }
-      else if (item.department == this.dept && this._pool == '') {
+      else if (this._dept == '' && this._pool == '' && this._date == '') {
         this.drive.push(item);
+        console.log("1")
       }
-      else if (item.department == this.dept && item.poolName != this._pool) {
+      
+      else if (item.department == this._dept && item.poolName == this._pool && this._date=='') {
+        this.drive.push(item);
+        console.log("2")
       }
+      else if (item.department == this._dept && item.poolName == this._pool && item.date==this._date) {
+        this.drive.push(item);
+        console.log("3")
+      }
+      else if (item.department == this._dept && this._pool == '' && this._date == '') {
+        this.drive.push(item);
+        console.log("4")
+      }
+      else if (item.department == this._dept && this._pool == '' && this._date == item.date) {
+        this.drive.push(item);
+        console.log("5")
+      }
+       else if (item.department == this._dept && item.poolName != this._pool ) {
+       }
 
     }
 
   }
 
 
-  // filterButton(){
-  //   console.log(this.dept)
-  //   console.log(this._pool)
-  //   this.drive=[];
-  //   for(let item of this.driveDetails){
-  //     if(item.department==this.dept && item.poolName==this._pool){
-  //       this.drive.push(item);
-  //       console.log("true");
-  //     }
-  //   }
-  // }
+
 
 
 
@@ -105,10 +121,10 @@ export class TacCurrentDriveComponent implements OnInit {
     name: 'freshers 2021',
     department: 'dotnet',
     poolName: 'Fresher 1',
-    date: '2022-04-12',
+    date: '2022-04-11',
     mode: 'offline',
     location: 'chennai'
-  }, 
+  },
   {
     name: 'freshers 2022',
     department: 'java',
@@ -116,15 +132,15 @@ export class TacCurrentDriveComponent implements OnInit {
     date: '2022-04-12',
     mode: 'online',
     location: ''
-  }, 
+  },
   {
     name: 'freshers 2022',
     department: 'java',
     poolName: 'Technical Lead',
-    date: '2022-04-12',
+    date: '2022-04-13',
     mode: 'online',
     location: ''
-  }, 
+  },
   {
     name: 'freshers 2021',
     department: 'dotnet',
@@ -132,7 +148,7 @@ export class TacCurrentDriveComponent implements OnInit {
     date: '2022-04-12',
     mode: 'offline',
     location: 'chennai'
-  }, 
+  },
   {
     name: 'freshers 2022',
     department: 'java',
@@ -140,7 +156,7 @@ export class TacCurrentDriveComponent implements OnInit {
     date: '2022-04-12',
     mode: 'online',
     location: ''
-  }, 
+  },
   {
     name: 'freshers 2022',
     department: 'java',

@@ -34,9 +34,9 @@ export class ConnectionService {
     console.log(data)
     let httpHeaders = new Headers();
     httpHeaders.append('Content-Type','application/json');
-    const body=JSON.stringify(data);
-    console.warn(body);
-    return this.http.post('https://localhost:7072/Role/CreateNewRole',body)
+    // const body=JSON.stringify(data);
+    // console.warn(body);
+    return this.http.post('https://localhost:7072/Role/CreateNewRole',data)
   }
 }
 

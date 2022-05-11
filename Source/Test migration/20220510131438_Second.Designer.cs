@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class InterviewManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220510131438_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,26 +43,6 @@ namespace Source.Migrations
                     b.HasKey("DepartmentId");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            DepartmentId = 1,
-                            DepartmentName = ".NET",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            DepartmentId = 2,
-                            DepartmentName = "JAVA",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            DepartmentId = 3,
-                            DepartmentName = "ORACLE",
-                            IsActive = true
-                        });
                 });
 
             modelBuilder.Entity("IMS.Models.Drive", b =>
@@ -174,134 +156,6 @@ namespace Source.Migrations
                     b.HasKey("EmployeeId");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            EmployeeId = 1,
-                            DepartmentId = 1,
-                            EmailId = "prithvi@gmail.com",
-                            EmployeeAceNumber = "ACE0001",
-                            IsActive = true,
-                            IsAdminAccepted = false,
-                            IsAdminResponded = false,
-                            Name = "Prithvi",
-                            Password = "Pass@12345",
-                            ProjectId = 1,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            EmployeeId = 2,
-                            DepartmentId = 1,
-                            EmailId = "vinoth@gmail.com",
-                            EmployeeAceNumber = "ACE0002",
-                            IsActive = true,
-                            IsAdminAccepted = false,
-                            IsAdminResponded = false,
-                            Name = "Vinoth",
-                            Password = "Pass@12345",
-                            ProjectId = 1,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            EmployeeId = 3,
-                            DepartmentId = 1,
-                            EmailId = "Sheik@gmail.com",
-                            EmployeeAceNumber = "ACE0003",
-                            IsActive = true,
-                            IsAdminAccepted = false,
-                            IsAdminResponded = false,
-                            Name = "Sheik",
-                            Password = "Pass@12345",
-                            ProjectId = 1,
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            EmployeeId = 4,
-                            DepartmentId = 2,
-                            EmailId = "darshana@gmail.com",
-                            EmployeeAceNumber = "ACE0004",
-                            IsActive = true,
-                            IsAdminAccepted = false,
-                            IsAdminResponded = false,
-                            Name = "Darshana",
-                            Password = "Pass@12345",
-                            ProjectId = 2,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            EmployeeId = 5,
-                            DepartmentId = 2,
-                            EmailId = "aravind@gmail.com",
-                            EmployeeAceNumber = "ACE0005",
-                            IsActive = true,
-                            IsAdminAccepted = false,
-                            IsAdminResponded = false,
-                            Name = "Aravind",
-                            Password = "Pass@12345",
-                            ProjectId = 2,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            EmployeeId = 6,
-                            DepartmentId = 2,
-                            EmailId = "kumaresh@gmail.com",
-                            EmployeeAceNumber = "ACE0006",
-                            IsActive = true,
-                            IsAdminAccepted = false,
-                            IsAdminResponded = false,
-                            Name = "Kumaresh",
-                            Password = "Pass@12345",
-                            ProjectId = 2,
-                            RoleId = 3
-                        },
-                        new
-                        {
-                            EmployeeId = 7,
-                            DepartmentId = 3,
-                            EmailId = "gokul@gmail.com",
-                            EmployeeAceNumber = "ACE0007",
-                            IsActive = true,
-                            IsAdminAccepted = false,
-                            IsAdminResponded = false,
-                            Name = "Gokul",
-                            Password = "Pass@12345",
-                            ProjectId = 3,
-                            RoleId = 1
-                        },
-                        new
-                        {
-                            EmployeeId = 8,
-                            DepartmentId = 3,
-                            EmailId = "deepika@gmail.com",
-                            EmployeeAceNumber = "ACE0008",
-                            IsActive = true,
-                            IsAdminAccepted = false,
-                            IsAdminResponded = false,
-                            Name = "Deepika",
-                            Password = "Pass@12345",
-                            ProjectId = 3,
-                            RoleId = 2
-                        },
-                        new
-                        {
-                            EmployeeId = 9,
-                            DepartmentId = 3,
-                            EmailId = "remuki@gmail.com",
-                            EmployeeAceNumber = "ACE0009",
-                            IsActive = true,
-                            IsAdminAccepted = false,
-                            IsAdminResponded = false,
-                            Name = "Remuki",
-                            Password = "Pass@12345",
-                            ProjectId = 3,
-                            RoleId = 3
-                        });
                 });
 
             modelBuilder.Entity("IMS.Models.EmployeeAvailability", b =>
@@ -462,29 +316,6 @@ namespace Source.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            ProjectId = 1,
-                            DepartmentId = 1,
-                            IsActive = true,
-                            ProjectName = "IMS_NET"
-                        },
-                        new
-                        {
-                            ProjectId = 2,
-                            DepartmentId = 2,
-                            IsActive = true,
-                            ProjectName = "IMS_JAVA"
-                        },
-                        new
-                        {
-                            ProjectId = 3,
-                            DepartmentId = 3,
-                            IsActive = true,
-                            ProjectName = "IMS_ORACLE"
-                        });
                 });
 
             modelBuilder.Entity("IMS.Models.Role", b =>
@@ -506,26 +337,6 @@ namespace Source.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            RoleId = 1,
-                            IsActive = true,
-                            RoleName = "Software Developer"
-                        },
-                        new
-                        {
-                            RoleId = 2,
-                            IsActive = true,
-                            RoleName = "Senior Software Developer"
-                        },
-                        new
-                        {
-                            RoleId = 3,
-                            IsActive = true,
-                            RoleName = "Project Manager"
-                        });
                 });
 
             modelBuilder.Entity("IMS.Models.Drive", b =>
