@@ -20,6 +20,8 @@ export class AdminViewRolePageComponent implements OnInit {
 //  this.data=this.connection.GetRole()
 
      
+
+
   ngOnInit() {
 
     //  this.data=this.connection.GetRole()
