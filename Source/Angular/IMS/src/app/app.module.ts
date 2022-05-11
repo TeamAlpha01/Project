@@ -36,7 +36,7 @@ import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { NavbarComponent } from './Shared/navbar/navbar.component';
-import { LoginComponent } from './TAC/editpool/login/login.component';
+import { LoginComponent } from './Shared/login/login.component';
 
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
