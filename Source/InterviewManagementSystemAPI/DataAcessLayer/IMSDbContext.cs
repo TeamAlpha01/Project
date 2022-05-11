@@ -82,6 +82,24 @@ namespace IMS.DataAccessLayer
                       new Pool { PoolId=5,PoolName="Fresher ORACLE",DepartmentId=3,IsActive=true},                 
                       new Pool { PoolId=6,PoolName="SSE ORACLE",DepartmentId=3,IsActive=true}                 
                       );
+            modelBuilder.Entity<PoolMembers>()
+                    .HasData(
+                      new PoolMembers { PoolMembersId=1,PoolId=1,EmployeeId=1,IsActive=true},
+                      new PoolMembers { PoolMembersId=2,PoolId=1,EmployeeId=2,IsActive=true},
+                      new PoolMembers { PoolMembersId=3,PoolId=2,EmployeeId=2,IsActive=true},
+                      new PoolMembers { PoolMembersId=4,PoolId=2,EmployeeId=3,IsActive=true},
+
+                      new PoolMembers { PoolMembersId=5,PoolId=3,EmployeeId=4,IsActive=true},
+                      new PoolMembers { PoolMembersId=6,PoolId=3,EmployeeId=5,IsActive=true},
+                      new PoolMembers { PoolMembersId=7,PoolId=4,EmployeeId=5,IsActive=true},
+                      new PoolMembers { PoolMembersId=8,PoolId=4,EmployeeId=6,IsActive=true},
+
+                      new PoolMembers { PoolMembersId=9,PoolId=5,EmployeeId=7,IsActive=true},
+                      new PoolMembers { PoolMembersId=10,PoolId=5,EmployeeId=8,IsActive=true},
+                      new PoolMembers { PoolMembersId=11,PoolId=6,EmployeeId=8,IsActive=true},
+                      new PoolMembers { PoolMembersId=12,PoolId=6,EmployeeId=9,IsActive=true}
+                      );
+            
         }
     }
 }
