@@ -67,11 +67,20 @@ namespace IMS.DataAccessLayer
                        );
             modelBuilder.Entity<Location>()
                      .HasData(
-                      new Location { LocationId = 1, LocationName = "Chennai", IsActive=true },
-                      new Location { LocationId = 2, LocationName = "Bangalore", IsActive=true },
-                      new Location { LocationId = 3, LocationName = "Mumbai", IsActive=true },
-                      new Location { LocationId = 4, LocationName = "Delhi", IsActive=true },
-                      new Location { LocationId = 5, LocationName = "Noida", IsActive=true }
+                      new Location { LocationId = 1, LocationName = "Chennai", IsActive = true },
+                      new Location { LocationId = 2, LocationName = "Bangalore", IsActive = true },
+                      new Location { LocationId = 3, LocationName = "Mumbai", IsActive = true },
+                      new Location { LocationId = 4, LocationName = "Delhi", IsActive = true },
+                      new Location { LocationId = 5, LocationName = "Noida", IsActive = true }
+                      );
+            modelBuilder.Entity<Pool>()
+                    .HasData(
+                      new Pool { PoolId=1,PoolName="Fresher .NET",DepartmentId=1,IsActive=true},
+                      new Pool { PoolId=2,PoolName="SSE .NET",DepartmentId=1,IsActive=true},
+                      new Pool { PoolId=3,PoolName="Fresher JAVA",DepartmentId=2,IsActive=true},
+                      new Pool { PoolId=4,PoolName="SSE JAVA",DepartmentId=2,IsActive=true},
+                      new Pool { PoolId=5,PoolName="Fresher ORACLE",DepartmentId=3,IsActive=true},                 
+                      new Pool { PoolId=6,PoolName="SSE ORACLE",DepartmentId=3,IsActive=true}                 
                       );
         }
     }
