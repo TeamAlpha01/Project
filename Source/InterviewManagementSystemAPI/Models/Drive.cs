@@ -27,6 +27,8 @@ namespace IMS.Models
         public DateTime UpdatedOn { get; set; }
         public double SlotTiming { get; set; }
 
+        
+
         [ForeignKey("AddedBy")]
         [InverseProperty("AddedEmployeeDrives")]
         public virtual Employee? AddedEmployee { get; set; }
