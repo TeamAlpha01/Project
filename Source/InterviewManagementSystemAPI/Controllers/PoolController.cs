@@ -93,7 +93,8 @@ public class PoolController : ControllerBase
     [HttpPut]
     public IActionResult EditPool(int poolId,string poolName)
    {
-         PoolValidation.IsEditPoolValid(poolId,poolName);       
+        if(poolId<=0 && poolName==null)
+            BadRequest("Pool Id cannot be negative or null and Pool Name cannot be null");  
       try
         {
              return _poolService.EditPool(poolId,poolName)?Ok("Pool name changed Successfully") : BadRequest("Sorry internal error occured");
