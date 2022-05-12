@@ -60,16 +60,20 @@ export class TacCurrentDriveComponent implements OnInit {
     if (this._dept == '') {
       this._pool = ''
     }
-
-    for (let item of this.departmentDetails) {
-      if (item.departmentName == this._dept) {
-        this.deptId = item.departmentId;
+    else {
+      //To get department id by department name given by the user
+      for (let item of this.departmentDetails) {
+        console.log(this._dept)
+        if (item.departmentName == this._dept) {
+          this.deptId = item.departmentId;
+        }
       }
-    }
 
-    for (let item of this.poolDetails) {
-      if (item.departmentId == this.deptId) {
-        this.pool.push(item);
+      for (let item of this.poolDetails) {
+        if (item.departmentId == this.deptId) {
+          this.pool.push(item);
+          console.log(item)
+        }
       }
     }
 
@@ -95,80 +99,5 @@ export class TacCurrentDriveComponent implements OnInit {
 
   }
 
-
-
-
-
-
-  // department: string[] = ['dotnet', 'java', 'lamp']
-
-  // poolDetails: any[] = [{
-  //   departmentName: 'dotnet',
-  //   poolName: 'Fresher 1'
-  // },
-  // {
-  //   departmentName: 'java',
-  //   poolName: 'Fresher 1'
-  // }, {
-  //   departmentName: 'dotnet',
-  //   poolName: 'Fresher 2'
-  // },
-  // {
-  //   departmentName: 'java',
-  //   poolName: 'Fresher 3'
-  // }]
-
-
-
-
-
-  // driveDetails: any[] = [{
-  //   name: 'freshers 2021',
-  //   department: 'dotnet',
-  //   poolName: 'Fresher 1',
-  //   date: '2022-04-11',
-  //   mode: 'offline',
-  //   location: 'chennai'
-  // },
-  // {
-  //   name: 'freshers 2022',
-  //   department: 'java',
-  //   poolName: 'Technical Lead',
-  //   date: '2022-04-12',
-  //   mode: 'online',
-  //   location: ''
-  // },
-  // {
-  //   name: 'freshers 2022',
-  //   department: 'java',
-  //   poolName: 'Technical Lead',
-  //   date: '2022-04-13',
-  //   mode: 'online',
-  //   location: ''
-  // },
-  // {
-  //   name: 'freshers 2021',
-  //   department: 'dotnet',
-  //   poolName: 'Fresher 2',
-  //   date: '2022-04-12',
-  //   mode: 'offline',
-  //   location: 'chennai'
-  // },
-  // {
-  //   name: 'freshers 2022',
-  //   department: 'java',
-  //   poolName: 'Technical Lead',
-  //   date: '2022-04-12',
-  //   mode: 'online',
-  //   location: ''
-  // },
-  // {
-  //   name: 'freshers 2022',
-  //   department: 'java',
-  //   poolName: 'Technical Lead',
-  //   date: '2022-04-12',
-  //   mode: 'online',
-  //   location: ''
-  // }]
 }
 

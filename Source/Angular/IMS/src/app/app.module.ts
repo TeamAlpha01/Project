@@ -54,6 +54,7 @@ import { PerformanceDashboardComponent } from './Shared/performance-dashboard/pe
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 import { FormsModule } from '@angular/forms';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -117,6 +118,7 @@ import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-
     NgxPaginationModule,
     AppRoutingModule,
     HttpClientModule,
+    Ng2SearchPipeModule,
     
   ],
   providers: [],

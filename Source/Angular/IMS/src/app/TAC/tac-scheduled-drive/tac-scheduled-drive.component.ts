@@ -76,7 +76,9 @@ export class TacScheduledDriveComponent implements OnInit {
     //To filter cards based on the department and pool selection
     this.drive = [];
     for (let item of this.driveDetails) {
-      if (this._dept == '' && this._pool == '' && item.date==this._date) {
+      console.log(item.fromDate)
+      console.warn(this._date)
+      if (this._dept == '' && this._pool == '' && item.fromDate==this._date) {
         this.drive.push(item);
         console.log("0")
       }
