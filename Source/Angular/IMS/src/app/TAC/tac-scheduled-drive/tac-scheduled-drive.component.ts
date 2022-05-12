@@ -13,7 +13,7 @@ export class TacScheduledDriveComponent implements OnInit {
   page: number = 1;
   _dept = '';
   _pool = '';
-  _date='';
+  _date = '';
 
   pool: any[] = [];
   drive: any[] = [];
@@ -47,47 +47,27 @@ export class TacScheduledDriveComponent implements OnInit {
         this.departmentDetails = data;
         console.log(this.departmentDetails)
       });
-    
+
   }
 
 
   filterDropdown() {
-
-
-    //To filter pool based on the department
-    this.pool = [];
-
-    if (this._dept == '') {
-      this._pool = ''
-    }
-
-    for (let item of this.departmentDetails) {
-      if (item.departmentName == this._dept) {
-        this.deptId = item.departmentId;
-      }
-    }
-
-    for (let item of this.poolDetails) {
-      if (item.departmentId == this.deptId) {
-        this.pool.push(item);
-      }
-    }
-
     //To filter cards based on the department and pool selection
     this.drive = [];
     for (let item of this.driveDetails) {
-      console.log(item.fromDate)
-      console.warn(this._date)
-      if (this._dept == '' && this._pool == '' && item.fromDate==this._date) {
+
+      if (this._dept == '' && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
+        console.log(this._date)
+        console.warn(item.toDate)
         this.drive.push(item);
         console.log("0")
       }
-      else if (this._dept == '' && this._date==item.date) {
+      else if (this._dept == '' && this._date == item.date) {
         this._pool = '';
         this.drive.push(item);
         console.log("true")
       }
-      else if (this._dept == '' && this._date=='') {
+      else if (this._dept == '' && this._date == '') {
         this._pool = '';
         this.drive.push(item);
         console.log("false")
@@ -96,25 +76,25 @@ export class TacScheduledDriveComponent implements OnInit {
         this.drive.push(item);
         console.log("1")
       }
-      
-      else if (item.department == this._dept && item.poolName == this._pool && this._date=='') {
+
+      else if (item.driveDepartment == this._dept && item.drivePool == this._pool && this._date == '') {
         this.drive.push(item);
         console.log("2")
       }
-      else if (item.department == this._dept && item.poolName == this._pool && item.date==this._date) {
+      else if (item.driveDepartment == this._dept && item.drivePool == this._pool && item.date == this._date) {
         this.drive.push(item);
         console.log("3")
       }
-      else if (item.department == this._dept && this._pool == '' && this._date == '') {
+      else if (item.driveDepartment == this._dept && this._pool == '' && this._date == '') {
         this.drive.push(item);
         console.log("4")
       }
-      else if (item.department == this._dept && this._pool == '' && this._date == item.date) {
+      else if (item.driveDepartment == this._dept && this._pool == '' && this._date == item.date) {
         this.drive.push(item);
         console.log("5")
       }
-       else if (item.department == this._dept && item.poolName != this._pool ) {
-       }
+      else if (item.driveDepartment == this._dept && item.drivePool != this._pool) {
+      }
 
     }
 
