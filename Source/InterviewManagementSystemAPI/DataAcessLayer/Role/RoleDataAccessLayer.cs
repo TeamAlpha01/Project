@@ -30,7 +30,7 @@ namespace IMS.DataAccessLayer
             {
                 throw new ValidationException("Role already exist");
             }
-           
+
             try
             {
                 _db.Roles.Add(role);
@@ -62,20 +62,34 @@ namespace IMS.DataAccessLayer
         /// <returns>  Returns False when Exception occured in Database Connectivity . Throws ArgumentNullException when Role Id is not passed </returns>
         public bool RemoveRoleFromDatabase(int roleId)
         {
-            if (roleId <= 0)
-                throw new ArgumentNullException("Role Id is not provided to DAL");
-
+            // if (roleId <= 0)
+            //     throw new ArgumentNullException("Role Id is not provided to DAL");
             try
             {
                 var role = _db.Roles.Find(roleId);
-
-                if (role == null) throw new ValidationException("No role is found with given role Id");
-
-                role.IsActive = false;
-                _db.Roles.Update(role);
-                _db.SaveChanges();
-                return true;
+                if (role.IsActive == false)
+                {
+                    throw new ValidationException("There is no employee for this role id");
+                }
+                else
+                {
+                    role.IsActive = false;
+                    _db.Roles.Update(role);
+                    _db.SaveChanges();
+                    return true;
+                }
             }
+            // try
+            // {
+            //     var role = _db.Roles.Find(roleId);
+
+            //     if (role == null) throw new ValidationException("No role is found with given role Id");
+
+            //     role.IsActive = false;
+            //     _db.Roles.Update(role);
+            //     _db.SaveChanges();
+            //     return true;
+            // }
             catch (DbUpdateException exception)
             {
                 _logger.LogInformation($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
@@ -103,7 +117,7 @@ namespace IMS.DataAccessLayer
         /// Role DAL Perform the interaction with Database and Respond to the view all Role request.
         /// </summary>
         /// <returns>Throws Exception when Exception occured in Database Connectivity</returns>
-        
+
         public List<Role> GetRolesFromDatabase()
         {
             try

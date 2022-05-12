@@ -9,11 +9,11 @@ namespace project.Controller;
   public class ProjectController : ControllerBase
   {
     private readonly ILogger _logger;
-    IDepartmentService departmentService1;
+    IDepartmentService departmentService;
     public ProjectController(ILogger<ProjectController> logger)
     {
         _logger = logger;
-         departmentService1 = IMS.DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
+         departmentService = IMS.DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
     }
     /// <summary>
     /// This Method Will Implement When Create New Department Request rises-The Project controller passes the the parameter 
@@ -27,21 +27,21 @@ namespace project.Controller;
     public IActionResult CreateNewProject( int departmentId,string projectName)
     {
         if (departmentId <= 0 || projectName == null) 
-            return BadRequest("Project name and Department  is required");
+            return BadRequest("Department Id cannot be null or negative and Pool Name cannot be null");
 
         try
         {
-            return departmentService1.CreateProject(departmentId,projectName) ? Ok("Project Added Successfully") : Problem("Sorry internal error occured");
+            return departmentService.CreateProject(departmentId,projectName) ? Ok("Project Added Successfully") : Problem("Sorry internal error occured");
         }
-        catch (ValidationException exception)
+        catch (ValidationException projectnameAlreadyExists)
         {
-             _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
+             _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {projectnameAlreadyExists.Message} : {projectnameAlreadyExists.StackTrace}");
+            return BadRequest(projectnameAlreadyExists.Message);
         }
         catch (Exception exception)
         {
              _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
+            return BadRequest("Sorry Internal Error occurred");
         }
     }
     /// <summary>
@@ -57,12 +57,12 @@ namespace project.Controller;
 
         try
         {
-            return departmentService1.RemoveProject(projectId) ? Ok("Project Removed Successfully") : Problem("Sorry internal error occured");
+            return departmentService.RemoveProject(projectId) ? Ok("Project Removed Successfully") : Problem("Sorry internal error occured");
         }
-        catch(ValidationException exception)
+        catch(ValidationException projectNotFound)
         {
-              _logger.LogInformation($"Project Controller : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
+              _logger.LogInformation($"Project Controller : RemoveProject(int projectId) : {projectNotFound.Message} : {projectNotFound.StackTrace}");
+            return BadRequest(projectNotFound.Message);
 
         }
         catch (Exception exception)
@@ -78,12 +78,12 @@ namespace project.Controller;
     /// <param name="departmentId">int</param>
     /// <returns>Return List of Projects  otherwise it returns  Exception when exception thrown in service .</returns>
       [HttpGet]
-    public IActionResult ViewProjects(int departmentId)
+    public IActionResult ViewProjects()
     {
-        if (departmentId <= 0) return BadRequest("Department Id  Should not be zero or less than zero");
+        
         try
         {
-            return Ok(departmentService1.ViewProjects(departmentId));
+            return Ok(departmentService.ViewProjects());
         }
         catch (Exception exception)
         {
