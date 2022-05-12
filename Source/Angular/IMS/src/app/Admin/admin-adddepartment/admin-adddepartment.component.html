@@ -1,18 +1,14 @@
 <app-admin-header></app-admin-header>
-<!-- Content Start -->
+
 <div class="content">
-    <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
-
-    <!-- Navbar End -->
-
     <div class="Register CreatePool">
         <div class="card-body">
             <form #form="ngForm" (ngSubmit)="addDepartment()">
                 
                 <div class="form-input">
                     <label class="form-label" for="Name">Department Name </label>
-                    <input type="text" id="Name" class="form-control " name="departmentName "([(ngModel)]="_department")>
+                    <input type="text" id="Name" class="form-control " name="departmentName" [(ngModel)]="_department">
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-back" (click)="addDepartment()">Create</button>
@@ -21,3 +17,4 @@
         </div>
     </div>
     <app-footer></app-footer>
+</div>

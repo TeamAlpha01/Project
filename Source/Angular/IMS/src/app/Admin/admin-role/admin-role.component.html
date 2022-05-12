@@ -1,29 +1,25 @@
+
 <app-admin-header></app-admin-header>
 <div class="content">
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand bg-light navbar-light sticky-top py-0">
-        <div class="sidebar-toggler flex-shrink-0  collapse-btn ">
-            <i class="fa fa-bars fa-bar"></i>
-        </div>
-        <div class="page-title">
-            <h2>{{pageTitle}}</h2>
-        </div>
-    </nav>
+    <app-navbar [title]="title"></app-navbar>
 
     <!-- Navbar End -->
 
     <div class="Register CreatePool">
         <div class="card-body">
+            
             <form #form="ngForm" (ngSubmit)="addRole()">
                 <div class="form-input">
                     <label class="form-label" for="Name">Role Name </label>
-                    <input type="text" id="Name" class="form-control " name="roleName" [(ngModel)]="_roleName">
+                    <input type="text" id="Name" class="form-control " name="roleName" [(ngModel)]="_roleName">      
+                                  
                 </div>
-
+              
                 <div class="text-center">
-                    <button type="submit" class="btn btn-back">Create</button>
+                    <button type="submit" class="btn btn-back" >Create</button>
                 </div>
             </form>
         </div>
     </div>
-    <app-footer></app-footer>
+<app-footer></app-footer>

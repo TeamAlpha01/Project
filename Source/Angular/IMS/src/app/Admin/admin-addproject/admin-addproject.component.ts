@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/Model/Project';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
 @Component({
   selector: 'app-admin-addproject',
   templateUrl: './admin-addproject.component.html',
@@ -8,12 +9,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class AdminAddprojectComponent implements OnInit {
  title ='Manage Project'
- project: Project={
-   departmentName:'',
-   projectName: '',
+ _department = '';
+ _project = '';
+
+  project: any={
+   departmentName :this._department,
+   projectName : this._project,
    
  }
-  constructor(private http:HttpClientModule) { }
+  constructor(private connectionService:ConnectionService) { }
   addProject(){
     console.log(this.project)
   }
@@ -23,3 +27,4 @@ export class AdminAddprojectComponent implements OnInit {
   department: string[] = ['dotnet', 'java', 'lamp']
 
 }
+
