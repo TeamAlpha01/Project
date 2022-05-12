@@ -246,11 +246,11 @@ public class DriveController : ControllerBase
         }
     }
     [HttpGet]
-    public IActionResult ViewTodaysInterview()
+    public IActionResult ViewTodaysInterview(int employeeId)
     {
         try
         {
-            return Ok(_driveService.ViewTodayInterviews());
+            return Ok(_driveService.ViewTodayInterviews(employeeId));
         }
         catch (Exception viewTodaysInterviewException)
         {
@@ -259,11 +259,11 @@ public class DriveController : ControllerBase
         }
     }
     [HttpGet]
-    public IActionResult ViewScheduledInterview()
+    public IActionResult ViewScheduledInterview(int employeeId)
     {
         try
         {
-            return Ok(_driveService.ViewScheduledInterview());
+            return Ok(_driveService.ViewScheduledInterview(employeeId));
         }
         catch (Exception viewScheduledInterviewException)
         {
@@ -272,11 +272,11 @@ public class DriveController : ControllerBase
         }
     }
     [HttpGet]
-    public IActionResult ViewUpcomingInterview()
+    public IActionResult ViewUpcomingInterview(int employeeId)
     {
         try
         {
-            return Ok(_driveService.ViewUpcomingInterview());
+            return Ok(_driveService.ViewUpcomingInterview(employeeId));
         }
         catch (Exception viewUpcomingInterviewException)
         {
@@ -285,11 +285,11 @@ public class DriveController : ControllerBase
         }
     }
     [HttpGet]
-    public IActionResult ViewAllInterview()
+    public IActionResult ViewAllInterview(int employeeId)
     {
         try
         {
-            return Ok(_driveService.ViewAllInterview());
+            return Ok(_driveService.ViewAllInterview(employeeId));
         }
         catch (Exception viewAllInterviewException)
         {

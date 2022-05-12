@@ -33,7 +33,7 @@ namespace IMS.DataAccessLayer
         public bool AddDriveToDatabase(Drive drive)
         {
             DriveValidation.IsdriveValid(drive);
-            if(_db.Drives.Any(d=>d.Name==drive.Name && d.PoolId==drive.PoolId))throw new ValidationException("Drive Name already exists under this pool");
+            if (_db.Drives.Any(d => d.Name == drive.Name && d.PoolId == drive.PoolId)) throw new ValidationException("Drive Name already exists under this pool");
             try
             {
                 _db.Drives.Add(drive);
@@ -119,7 +119,10 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                if(_db.EmployeeDriveResponse.Any(r=>r.DriveId==response.DriveId && r.EmployeeId==response.EmployeeId)) throw new ValidationException("You have already responded to this drive");
+                if (!_db.Drives.Any(d => d.DriveId == response.DriveId)) throw new ValidationException("Invalid Drive Id");
+                if (!_db.Employees.Any(d => d.EmployeeId == response.EmployeeId)) throw new ValidationException("Invalid Employee Id");
+                if (_db.EmployeeDriveResponse.Any(r => r.DriveId == response.DriveId && r.EmployeeId == response.EmployeeId)) throw new ValidationException("You have already responded to this drive");
+                
                 _db.EmployeeDriveResponse.Add(response);
                 _db.SaveChanges();
                 return true;
@@ -143,7 +146,10 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                var EmployeeResponse = (from responses in _db.EmployeeDriveResponse where responses.EmployeeId == response.EmployeeId && responses.DriveId == response.DriveId select response).First();
+                if (!_db.Drives.Any(d => d.DriveId == response.DriveId)) throw new ValidationException("Invalid Drive Id");
+                if (!_db.Employees.Any(d => d.EmployeeId == response.EmployeeId)) throw new ValidationException("Invalid Employee Id");
+                if (!_db.EmployeeDriveResponse.Any(r => r.DriveId == response.DriveId && r.EmployeeId == response.EmployeeId)) throw new ValidationException("No Response Found! Invalid update");
+                var EmployeeResponse = (from responses in _db.EmployeeDriveResponse where responses.EmployeeId == response.EmployeeId && responses.DriveId == response.DriveId select responses).First();
 
                 if (EmployeeResponse == null) throw new ValidationException("no response is found with given employee id and drive id");
 
@@ -151,6 +157,11 @@ namespace IMS.DataAccessLayer
                 _db.EmployeeDriveResponse.Update(EmployeeResponse);
                 _db.SaveChanges();
                 return true;
+            }
+             catch (ValidationException updateResponseToDatabaseNotValid)
+            {
+                _logger.LogInformation($"ValidationException on Drive DAL :  AddResponseToDatabase(EmployeeDriveResponse response) : {updateResponseToDatabaseNotValid.Message} : {updateResponseToDatabaseNotValid.StackTrace}");
+                throw updateResponseToDatabaseNotValid;
             }
             catch (Exception updateResponseToDatabaseException)
             {
@@ -176,11 +187,11 @@ namespace IMS.DataAccessLayer
                 return false;
             }
         }
-        public List<EmployeeAvailability> ViewInterviewsByStatus(bool status)//int employeeId
+        public List<EmployeeAvailability> ViewInterviewsByStatus(bool status,int employeeId)//int employeeId filter using auth token
         {
             try
             {
-                return (from interview in _db.EmployeeAvailability.Include(d => d.Drive).Include(L => L.Drive.Location).Include(P => P.Drive.Pool) where interview.IsInterviewCancelled == status && interview.Drive.IsCancelled == false select interview).ToList();
+                return (from interview in _db.EmployeeAvailability.Include(d => d.Drive).Include(L => L.Drive.Location).Include(P => P.Drive.Pool) where interview.IsInterviewCancelled == status && interview.Drive.IsCancelled == false && interview.EmployeeId==employeeId select interview ).ToList();
             }
             catch (Exception viewInterviewsByStatusException)
             {
@@ -233,7 +244,7 @@ namespace IMS.DataAccessLayer
             try
             {
                 if (_db.Drives.Find(driveId) == null) throw new ValidationException($"No Drive is Found with driveId : {driveId}");
-                return (from availability in _db.EmployeeAvailability.Include(e => e.Employee) where availability.DriveId == driveId && availability.IsInterviewScheduled == false select availability).ToList();
+                return (from availability in _db.EmployeeAvailability.Include(e => e.Employee).Include(r=>r.Employee.Role).Include(d=>d.Employee.Department) where availability.DriveId == driveId && availability.IsInterviewScheduled == false select availability).ToList();
             }
             catch (Exception viewAvailableMembersForDriveException)
             {

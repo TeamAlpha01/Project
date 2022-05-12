@@ -252,7 +252,7 @@ namespace IMS.Service
             catch (ValidationException updateResponseNotValid)
             {
                 _logger.LogInformation($"EmployeeDriveResponse Service : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
-                return false;
+                throw updateResponseNotValid;
             }
             catch (Exception exception)
             {
@@ -280,17 +280,17 @@ namespace IMS.Service
                 return false;
             }
         }
-        public Object ViewTodayInterviews()
+        public Object ViewTodayInterviews(int employeeId)
         {
             try
             {
-                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date == System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false,employeeId) where interviews.InterviewDate.Date == System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
-                    IntervieDate = e.InterviewDate,
+                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     Mode = "Online",
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
@@ -303,17 +303,17 @@ namespace IMS.Service
                 throw viewTodayInterviews;
             }
         }
-        public Object ViewScheduledInterview()
+        public Object ViewScheduledInterview(int employeeId)
         {
             try
             {
-                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false,employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
-                    IntervieDate = e.InterviewDate,
+                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     Mode = "Online",
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
@@ -327,17 +327,17 @@ namespace IMS.Service
                 throw viewScheduledInterviewException;
             }
         }
-        public Object ViewUpcomingInterview()
+        public Object ViewUpcomingInterview(int employeeId)
         {
             try
             {
-                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == false select interviews)
+                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false,employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == false select interviews)
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
-                    IntervieDate = e.InterviewDate,
+                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     Mode = "Online",
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
@@ -351,17 +351,17 @@ namespace IMS.Service
                 throw viewUpcomingInterview;
             }
         }
-        public Object ViewAllInterview()
+        public Object ViewAllInterview(int employeeId)
         {
             try
             {
-                return ((from interviews in _driveDataAccess.ViewInterviewsByStatus(false) select interviews).Concat((from interviews in _driveDataAccess.ViewInterviewsByStatus(true) select interviews)))
+                return ((from interviews in _driveDataAccess.ViewInterviewsByStatus(false,employeeId) select interviews).Concat((from interviews in _driveDataAccess.ViewInterviewsByStatus(true,employeeId) select interviews)))
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
-                    IntervieDate = e.InterviewDate,
+                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     Mode = "Online",
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
@@ -420,10 +420,10 @@ namespace IMS.Service
                 availability => new
                 {
                     employeeId = availability.EmployeeId,
-                    employeeAceNumber = "ACE0034",
+                    employeeAceNumber = availability.Employee.EmployeeAceNumber,
                     emplyeeName = availability.Employee.Name,
-                    employeeDepartment = ".NET",
-                    employeeRole = "Software Engineer" //ACE ,DEPT NAME,ROLE
+                    employeeDepartment = availability.Employee.Department.DepartmentName,
+                    employeeRole = availability.Employee.Role.RoleName //ACE ,DEPT NAME,ROLE
                 }
             );
             }
