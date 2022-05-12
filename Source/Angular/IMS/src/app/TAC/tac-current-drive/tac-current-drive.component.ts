@@ -54,7 +54,7 @@ export class TacCurrentDriveComponent implements OnInit {
 
 
   filterDropdown() {
-  
+
     //To filter cards based on the department and pool selection
 
     this.drive = [];
