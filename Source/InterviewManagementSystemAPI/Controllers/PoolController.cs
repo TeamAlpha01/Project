@@ -30,13 +30,20 @@ public class PoolController : ControllerBase
     [HttpPost]
     public IActionResult CreateNewPool(int departmentId,string poolName)
     {
-        PoolValidation.IsCreatePoolValid(departmentId,poolName);
+       if(departmentId<=0 || poolName==null)
+        BadRequest("DepartmentId cannot be null or neagtive and Pool Name cannot null");
         
         try
         {
             return _poolService.CreatePool(departmentId,poolName) ? Ok("Pool Added Successfully") : Problem("Sorry internal error occured");
         }
-         
+           
+        catch (ValidationException exception)
+        {
+            _logger.LogInformation($"Pool Service : CreatePool throwed an exception : {exception}");
+            return BadRequest(exception.Message);
+        }
+    
         
         catch (Exception exception)
         {

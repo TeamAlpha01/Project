@@ -22,7 +22,8 @@ namespace IMS.Models
 
         [InverseProperty("department")]
         public ICollection<Project>? Projects { get; set; }
-        
+        [InverseProperty("Department")]
+        public ICollection<Employee> EmployeesUnderDepartment{get;set;}
 
         
     }

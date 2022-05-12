@@ -39,7 +39,7 @@ namespace IMS.Models
         [InverseProperty("Employee")]
         public ICollection<EmployeeAvailability>? EmployeeSlotResponses { get; set; }
         
-        [InverseProperty("Employee")]
+        [InverseProperty("Employees")]
         public ICollection<PoolMembers>? PoolMembers{get;set;}
 
         [ForeignKey("DepartmentId")]

@@ -17,7 +17,7 @@ namespace IMS.DataAccessLayer
         public DbSet<Project> Projects { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=ASPIREREN032;Database=InterviewManagementSystem;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=ASPIREREN025;Database=InterviewManagementSystem1;Trusted_Connection=True;");
         }
 
         //Seeding Data to DB 
@@ -33,7 +33,7 @@ namespace IMS.DataAccessLayer
                          new Role { RoleId = 6, RoleName = "Software Architect" },
                          new Role { RoleId = 7, RoleName = "Delivery Manager" },
                          new Role { RoleId = 8, RoleName = "Service Line Owner" },
-                         new Role { RoleId = 9, RoleName = "Talent Acquisition Coordinatior" },
+                         new Role { RoleId = 9, RoleName = "Talent" },
                          new Role { RoleId = 10, RoleName = "Admin" }
                          );
             modelBuilder.Entity<Department>()
