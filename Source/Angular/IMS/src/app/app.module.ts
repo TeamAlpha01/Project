@@ -121,6 +121,7 @@ import { ViewResponseCardComponent } from './TAC/view-response-card/view-respons
     HttpClientModule,
     Ng2SearchPipeModule,
     
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 /*-------------------------------------Login & Register-----------------------------------------*/
-
+.Sdropdown{
+  height: 50px;
+   overflow: auto;
+}
 .Register {
     margin: 0% 25%;
     padding: 0% 5%;

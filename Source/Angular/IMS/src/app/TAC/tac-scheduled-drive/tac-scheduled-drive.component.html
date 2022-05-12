@@ -7,32 +7,36 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="form-label" for="Department">Department </label>
-                        <select name="Department" id="Department Name" class="form-select " (change)="filterDropdown()"
-                            name="dept" [(ngModel)]="_dept">
-                            <option value="">Select the Department</option>
-                            <option *ngFor="let item of departmentDetails" value={{item.departmentName}}> {{item.departmentName}} </option>
+                            <label class="form-label" for="Department">Department </label>
+                            <select name="Department" id="Department Name" class="form-select" (change)="filterDropdown()"
+                                name="dept" [(ngModel)]="_dept">
+                                <option value="">Select the Department</option>
+                                <option *ngFor="let item of departmentDetails" value={{item.departmentName}}>
+                                    {{item.departmentName}} </option>
 
-                        </select>
+                            </select>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label" for="Pool">Pool </label>
                         <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool"
                             [(ngModel)]="_pool">
                             <option value="">Select the Pool</option>
-                            <option *ngFor="let item of poolDetails | filter:_dept" value={{item.poolName}}> {{item.poolName}} </option>
+                            <option *ngFor="let item of poolDetails | filter:_dept" value={{item.poolName}}>
+                                {{item.poolName}} </option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label" for="Pool">Date </label>
-                        <input type="date" id="Pool" class="form-select" (change)="filterDropdown()" name="_date" [(ngModel)]="_date">
+                        <input type="date" id="Pool" class="form-select" (change)="filterDropdown()" name="_date"
+                            [(ngModel)]="_date">
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <app-card-details [data]=drive ></app-card-details>
+    <app-card-details [data]=drive></app-card-details>
 
 
     <app-footer></app-footer>
