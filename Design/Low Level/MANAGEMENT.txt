@@ -7,8 +7,6 @@ participant Controller
 participant Service layer
 participant Validation layer
 participant Data Access Layer
-
-
 database Database
 
 Management->Presentation Layer:Login with credentials and lands in home page .
