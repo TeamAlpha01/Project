@@ -54,29 +54,7 @@ export class TacCurrentDriveComponent implements OnInit {
 
 
   filterDropdown() {
-    //To filter pool based on the department
-    this.pool = [];
-
-    if (this._dept == '') {
-      this._pool = ''
-    }
-    else {
-      //To get department id by department name given by the user
-      for (let item of this.departmentDetails) {
-        console.log(this._dept)
-        if (item.departmentName == this._dept) {
-          this.deptId = item.departmentId;
-        }
-      }
-
-      for (let item of this.poolDetails) {
-        if (item.departmentId == this.deptId) {
-          this.pool.push(item);
-          console.log(item)
-        }
-      }
-    }
-
+  
     //To filter cards based on the department and pool selection
 
     this.drive = [];

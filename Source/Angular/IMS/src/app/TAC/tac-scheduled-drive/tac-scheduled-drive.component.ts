@@ -57,41 +57,30 @@ export class TacScheduledDriveComponent implements OnInit {
     for (let item of this.driveDetails) {
 
       if (this._dept == '' && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
-        console.log(this._date)
-        console.warn(item.toDate)
         this.drive.push(item);
-        console.log("0")
       }
-      else if (this._dept == '' && this._date == item.date) {
-        this._pool = '';
+      else if (this._dept == '' && item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
-        console.log("true")
       }
-      else if (this._dept == '' && this._date == '') {
-        this._pool = '';
-        this.drive.push(item);
-        console.log("false")
-      }
+     
       else if (this._dept == '' && this._pool == '' && this._date == '') {
         this.drive.push(item);
-        console.log("1")
+      }
+      else if ( this._dept =='' && item.drivePool == this._pool && this._date == '') {
+        this.drive.push(item);
       }
 
       else if (item.driveDepartment == this._dept && item.drivePool == this._pool && this._date == '') {
         this.drive.push(item);
-        console.log("2")
       }
-      else if (item.driveDepartment == this._dept && item.drivePool == this._pool && item.date == this._date) {
+      else if (item.driveDepartment == this._dept && item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
-        console.log("3")
       }
       else if (item.driveDepartment == this._dept && this._pool == '' && this._date == '') {
         this.drive.push(item);
-        console.log("4")
       }
-      else if (item.driveDepartment == this._dept && this._pool == '' && this._date == item.date) {
+      else if (item.driveDepartment == this._dept && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
-        console.log("5")
       }
       else if (item.driveDepartment == this._dept && item.drivePool != this._pool) {
       }
@@ -100,81 +89,6 @@ export class TacScheduledDriveComponent implements OnInit {
 
   }
 
-
-
-
-
-
-  // department: string[] = ['dotnet', 'java', 'lamp']
-
-  // poolDetails: any[] = [{
-  //   departmentName: 'dotnet',
-  //   poolName: 'Fresher 1'
-  // },
-  // {
-  //   departmentName: 'java',
-  //   poolName: 'Fresher 1'
-  // }, {
-  //   departmentName: 'dotnet',
-  //   poolName: 'Fresher 2'
-  // },
-  // {
-  //   departmentName: 'java',
-  //   poolName: 'Fresher 3'
-  // }]
-
-
-
-
-
-  // driveDetails: any[] = [{
-  //   name: 'freshers 2021',
-  //   department: 'dotnet',
-  //   poolName: 'Fresher 1',
-  //   date: '2022-04-11',
-  //   mode: 'offline',
-  //   location: 'chennai'
-  // },
-  // {
-  //   name: 'freshers 2022',
-  //   department: 'java',
-  //   poolName: 'Technical Lead',
-  //   date: '2022-04-12',
-  //   mode: 'online',
-  //   location: ''
-  // },
-  // {
-  //   name: 'freshers 2022',
-  //   department: 'java',
-  //   poolName: 'Technical Lead',
-  //   date: '2022-04-13',
-  //   mode: 'online',
-  //   location: ''
-  // },
-  // {
-  //   name: 'freshers 2021',
-  //   department: 'dotnet',
-  //   poolName: 'Fresher 2',
-  //   date: '2022-04-12',
-  //   mode: 'offline',
-  //   location: 'chennai'
-  // },
-  // {
-  //   name: 'freshers 2022',
-  //   department: 'java',
-  //   poolName: 'Technical Lead',
-  //   date: '2022-04-12',
-  //   mode: 'online',
-  //   location: ''
-  // },
-  // {
-  //   name: 'freshers 2022',
-  //   department: 'java',
-  //   poolName: 'Technical Lead',
-  //   date: '2022-04-12',
-  //   mode: 'online',
-  //   location: ''
-  // }]
 }
 
 

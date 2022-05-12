@@ -41,8 +41,9 @@ import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page
 import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { InterviewerHeaderComponent } from './Interviewer/interviewer-header/interviewer-header.component';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
-import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-project-page.component';
+import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
+import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming-drive.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
@@ -51,7 +52,7 @@ import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page
 
 const routes: Routes = [
   //interviewer pages
-  { path: '', component: TacCurrentDriveComponent },     //Admin-view-location-page
+  { path: '', component: TacHomeComponent },     //Admin-view-location-page
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
@@ -90,6 +91,7 @@ const routes: Routes = [
   { path: 'tac-current-drive', component: TacCurrentDriveComponent },
   { path: 'tac-scheduled-drive', component: TacScheduledDriveComponent },
   { path: 'create-invite', component: CreateInviteComponent },
+  { path: 'tac-upcomingDrives', component: TacUpcomingDriveComponent },
 
   { path: 'createpool', component: CreatepoolComponent },
   { path: 'editpool', component: EditpoolComponent },

@@ -48,13 +48,14 @@ import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming
 import { InterviewerCardDetailsComponent } from './Interviewer/interviewer-card-details/interviewer-card-details.component';
 
 import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.component';
-import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-project-page.component';
+import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 import { FormsModule } from '@angular/forms';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ViewResponseCardComponent } from './TAC/view-response-card/view-response-card.component';
 
 
 
@@ -107,7 +108,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     InterviewerAcceptInvitePageComponent,
     TacUpcomingDriveComponent,   
     InterviewerCardDetailsComponent, ManageCardsComponent,   
-    PerformanceDashboardComponent,   
+    PerformanceDashboardComponent, ViewResponseCardComponent,   
      
 
   ],
