@@ -6,6 +6,11 @@ namespace IMS.Models
 {
     public class Project
     {
+         public Project()
+        {
+           
+            EmployeesUnderProject = new HashSet<Employee>();
+        }
      [Key]
      public int ProjectId{get; set;}
      public string ProjectName {get;set;}
@@ -16,5 +21,9 @@ namespace IMS.Models
      [ForeignKey("DepartmentId")]
      [InverseProperty("Projects")]
      public virtual Department? department { get; set; }
+
+     [InverseProperty("Project")] 
+     public ICollection<Employee> EmployeesUnderProject { get; set; }
+     
     }
 }

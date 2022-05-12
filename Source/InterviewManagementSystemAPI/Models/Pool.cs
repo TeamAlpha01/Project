@@ -4,6 +4,13 @@ namespace IMS.Models
 {
     public class Pool
     {
+        
+         public Pool()
+        {
+           
+            //EmployeesUnderPool = new HashSet<Employee>();
+            PoolMembers= new HashSet<PoolMembers>();
+        }
         [Key]
         public int PoolId { get; set; }
         [Required]
@@ -19,10 +26,13 @@ namespace IMS.Models
 
 
         [InverseProperty("Pools")]
-        public List<PoolMembers> PoolMembers { get; set; }
+        public ICollection<PoolMembers> PoolMembers { get; set; }
 
         [InverseProperty("Pool")]
         public List<Drive> DrivesUnderPool { get; set; }
+
+        // [InverseProperty("Pool")] 
+        // public ICollection<Employee> EmployeesUnderPool { get; set; }
 
 
 

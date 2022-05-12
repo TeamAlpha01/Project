@@ -99,10 +99,12 @@ namespace IMS.DataAccessLayer
         /// </returns>
         public List<Employee> GetEmployeesFromDatabase()
         {
-           try
-            {
+             try
+            {     
+               
+                 
                 _logger.LogInformation("logger DAL");
-                return _db.Employees.ToList();
+                return _db.Employees.ToList();           
             }
             catch (DbUpdateException exception)
             {
@@ -128,12 +130,13 @@ namespace IMS.DataAccessLayer
         /// Return employee details or
         /// Throws an exception when the exception is occured in this method.
         /// </returns>
+        /// 
         public Employee ViewProfile(int employeeId)
         {
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
-                var viewProfile = _db.Employees.Find(employeeId);
+                var viewProfile = (_db.Employees.Include(p=>p.Project).Include(d=>d.Department).Include(p=>p.PoolMembers).Include(p=>p.PoolMembers).Include(r=>r.Role)).FirstOrDefault(x => x.EmployeeId == employeeId);;
                 return viewProfile != null? viewProfile : throw new ValidationException("No Employee is found with given employee Id");
             }
             catch(Exception isEmployeeIdValidException)

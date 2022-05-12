@@ -13,7 +13,7 @@ namespace IMS.Validations
             if (String.IsNullOrEmpty(employee.Name)) throw new ValidationException("Employee Name cannot be null");
 
             else if(!Regex.IsMatch(employee.Name,@"^[A-Z][a-zA-Z]{3,30}$")) throw new ValidationException("Employee Name must contain only alphabets and length of the name should be 3 to 30 char");
-
+            
             if (String.IsNullOrEmpty(employee.EmployeeAceNumber)) throw new ValidationException("EmployeeACEnumber cannot be null");
             
             else if (employee.EmployeeAceNumber.Length != 7) throw new ValidationException("ACE number must be 7 characters");
@@ -34,6 +34,11 @@ namespace IMS.Validations
         public static void IsEmployeeIdValid(int employeeId)
         {
             if(employeeId <= 0)  throw new ValidationException("Employee Id cannot be negative characters and null");
+        }
+
+        public static void IsDepartmentValid(int DepartmentId)
+        {
+            if (DepartmentId <= 0) throw new ValidationException("Department with the given Id is Not found");
         }
     }
 }                                                        

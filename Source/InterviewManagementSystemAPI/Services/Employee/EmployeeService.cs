@@ -61,7 +61,7 @@ namespace IMS.Service
         {
             // if (employeeId <= 0)
             //     throw new ValidationException("Employee Id is not provided");
-            
+
             EmployeeValidation.IsEmployeeIdValid(employeeId);
 
             try
@@ -112,12 +112,23 @@ namespace IMS.Service
         /// Return Employee details or
         /// Throws an exception when exception is occured in ViewProfile method in DAL. 
         /// </returns>
-        public Employee ViewProfile(int employeeId)
+
+        public object ViewProfile(int employeeId)
         {
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
-               return _employeeDataAccessLayer.ViewProfile(employeeId);
+                var _employee = _employeeDataAccessLayer.ViewProfile(employeeId);
+                return new
+                {
+                    EmployeeACEId = _employee.EmployeeAceNumber,
+                    EmployeeName = _employee.Name,
+                    EmployeeDepartment = _employee.Department.DepartmentName,
+                    EmployeeProject = _employee.Project.ProjectName,
+                    EmployeeRole = _employee.Role.RoleName,
+                    EmployeeEmailID = _employee.EmailId
+                    //EmployeePoolName = _employee.PoolMembers.Pools.PoolName,
+                };
             }
             catch (ValidationException viewEmployeeNotValid)
             {
@@ -140,6 +151,7 @@ namespace IMS.Service
         /// </returns>
         public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId)
         {
+            EmployeeValidation.IsDepartmentValid(departmentId);
             try
             {
                 IEnumerable<Employee> employees = new List<Employee>();

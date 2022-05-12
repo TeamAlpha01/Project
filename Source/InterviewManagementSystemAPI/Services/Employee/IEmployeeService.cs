@@ -5,8 +5,8 @@ namespace IMS.Service{
         public  bool CreateNewEmployee(Employee employee);
         public bool RemoveEmployee(int employeeId);
         public IEnumerable<Employee> ViewEmployees();
-        public Employee ViewProfile(int employeeId);
-        public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId);
+        public Object ViewProfile(int employeeId);
+        public IEnumerable<Employee> ViewEmployeesByDepartment(int DepartmentId);
         public IEnumerable<Employee> ViewEmployeeByApprovalStatus(bool isAdminAccepted);
         public IEnumerable<Employee> ViewEmployeeRequest();
 

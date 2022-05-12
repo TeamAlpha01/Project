@@ -38,7 +38,24 @@ namespace IMS.Models
 
         [InverseProperty("Employee")]
         public ICollection<EmployeeAvailability>? EmployeeSlotResponses { get; set; }
-        // [InverseProperty("Employees")]
-        // public PoolMembers PoolMembers{get;set;}
+        
+        [InverseProperty("Employee")]
+        public ICollection<PoolMembers>? PoolMembers{get;set;}
+
+        [ForeignKey("DepartmentId")]
+        [InverseProperty("EmployeesUnderDepartment")] 
+        public virtual Department? Department {get; set;}
+        [ForeignKey("RoleId")]
+        [InverseProperty("EmployeesUnderRole")]
+        public virtual Role? Role{get; set;}
+
+        // [ForeignKey("PoolId")]
+        // [InverseProperty("EmployeesUnderPool")]
+        // public virtual Pool? Pool{get; set;}
+
+        [ForeignKey("ProjectId")]
+        [InverseProperty("EmployeesUnderProject")]
+        public virtual Project? Project {get; set;}
+     
     }
 }
