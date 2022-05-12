@@ -19,7 +19,6 @@ namespace IMS.Service
         public bool CreateDrive(Drive drive)
         {
             DriveValidation.IsdriveValid(drive);
-
             try
             {
                 return _driveDataAccess.AddDriveToDatabase(drive) ? true : false;
@@ -27,7 +26,7 @@ namespace IMS.Service
             catch (ValidationException createDriveNotValid)
             {
                 _logger.LogInformation($"Drive Service : CreateDrive() : {createDriveNotValid.Message} : {createDriveNotValid.StackTrace}");
-                return false;
+                throw createDriveNotValid;
             }
             catch (Exception createDrivexception)
             {
@@ -46,7 +45,7 @@ namespace IMS.Service
             catch (ValidationException cancelDriveNotValid)
             {
                 _logger.LogInformation($"Drive Service : CancelDrive() : {cancelDriveNotValid.Message} : {cancelDriveNotValid.StackTrace}");
-                return false;
+                throw cancelDriveNotValid;
             }
             catch (Exception cancelDriveException)
             {
@@ -64,8 +63,8 @@ namespace IMS.Service
                 .Select(d=>new{
                     DriveId=d.DriveId,
                     DriveName=d.Name,
-                    FromDate=d.FromDate,
-                    ToDate=d.ToDate,
+                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
                     DriveDepartment=d.Pool.department.DepartmentName,
                     DriveLocation=d.Location.LocationName,
                     DrivePool=d.Pool.PoolName,
@@ -85,12 +84,12 @@ namespace IMS.Service
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == true select drive).ToList()
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date > System.DateTime.Now.Date && drive.IsScheduled == true select drive).ToList()
                 .Select(d=>new{
                     DriveId=d.DriveId,
                     DriveName=d.Name,
-                    FromDate=d.FromDate,
-                    ToDate=d.ToDate,
+                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
                     DriveDepartment=d.Pool.department.DepartmentName,
                     DriveLocation=d.Location.LocationName,
                     DrivePool=d.Pool.PoolName,
@@ -114,8 +113,8 @@ namespace IMS.Service
                 .Select(d=>new{
                     DriveId=d.DriveId,
                     DriveName=d.Name,
-                    FromDate=d.FromDate,
-                    ToDate=d.ToDate,
+                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
                     DriveDepartment=d.Pool.department.DepartmentName,
                     DriveLocation=d.Location.LocationName,
                     DrivePool=d.Pool.PoolName,
@@ -131,7 +130,7 @@ namespace IMS.Service
 
         }
 
-        public Object ViewAllScheduledDrives()
+        public Object ViewNonCancelledDrives()
         {
             try
             {
@@ -139,8 +138,8 @@ namespace IMS.Service
                 .Select(d=>new{
                     DriveId=d.DriveId,
                     DriveName=d.Name,
-                    FromDate=d.FromDate,
-                    ToDate=d.ToDate,
+                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
                     DriveDepartment=d.Pool.department.DepartmentName,
                     DriveLocation=d.Location.LocationName,
                     DrivePool=d.Pool.PoolName,
@@ -163,8 +162,8 @@ namespace IMS.Service
                 .Select(d=>new{
                     DriveId=d.DriveId,
                     DriveName=d.Name,
-                    FromDate=d.FromDate,
-                    ToDate=d.ToDate,
+                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
                     DriveDepartment=d.Pool.department.DepartmentName,
                     DriveLocation=d.Location.LocationName,
                     DrivePool=d.Pool.PoolName,
@@ -223,16 +222,18 @@ namespace IMS.Service
         //For Employee Drive Response Entity
         public bool AddResponse(EmployeeDriveResponse response)
         {
-            if (response == null) throw new ValidationException("Response cannnot be null");
+            Validation.EmployeeResponseValidation.IsResponseValid(response);
 
             try
             {
+                response.Drive=null;
+                response.Employee=null;
                 return _driveDataAccess.AddResponseToDatabase(response) ? true : false;
             }
             catch (ValidationException responseNotValid)
             {
                 _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {responseNotValid.Message}");
-                return false;
+                throw responseNotValid;
             }
             catch (Exception exception)
             {
@@ -241,13 +242,12 @@ namespace IMS.Service
             }
         }
 
-        public bool UpdateResponse(int employeeId, int driveId, int responseType)
+        public bool UpdateResponse(EmployeeDriveResponse response )
         {
-            if (driveId <= 0 || employeeId <= 0 || responseType <= 0) throw new ValidationException("DriveId or EmployeeId or Response Type is not valid");
-
+            Validation.EmployeeResponseValidation.IsResponseValid(response);
             try
             {
-                return _driveDataAccess.UpdateResponseToDatabase(employeeId, driveId, responseType) ? true : false;
+                return _driveDataAccess.UpdateResponseToDatabase(response) ? true : false;
             }
             catch (ValidationException updateResponseNotValid)
             {

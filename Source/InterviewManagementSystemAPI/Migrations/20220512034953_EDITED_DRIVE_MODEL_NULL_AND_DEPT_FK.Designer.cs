@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class InterviewManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220512034953_EDITED_DRIVE_MODEL_NULL_AND_DEPT_FK")]
+    partial class EDITED_DRIVE_MODEL_NULL_AND_DEPT_FK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,12 +184,6 @@ namespace Source.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("EmployeeId");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("Employees");
 
@@ -439,8 +435,8 @@ namespace Source.Migrations
 
                     b.Property<string>("LocationName")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("LocationId");
 
@@ -567,8 +563,6 @@ namespace Source.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("PoolMembersId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("PoolId");
 
@@ -729,8 +723,8 @@ namespace Source.Migrations
 
                     b.Property<string>("RoleName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.HasKey("RoleId");
 
@@ -789,7 +783,7 @@ namespace Source.Migrations
                         {
                             RoleId = 9,
                             IsActive = true,
-                            RoleName = "Talent"
+                            RoleName = "Talent Acquisition Coordinatior"
                         },
                         new
                         {
@@ -836,33 +830,6 @@ namespace Source.Migrations
                     b.Navigation("Pool");
 
                     b.Navigation("UpdatedEmployee");
-                });
-
-            modelBuilder.Entity("IMS.Models.Employee", b =>
-                {
-                    b.HasOne("IMS.Models.Department", "Department")
-                        .WithMany("EmployeesUnderDepartment")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IMS.Models.Project", "Project")
-                        .WithMany("EmployeesUnderProject")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IMS.Models.Role", "Role")
-                        .WithMany("EmployeesUnderRole")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-
-                    b.Navigation("Project");
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("IMS.Models.EmployeeAvailability", b =>
@@ -916,19 +883,11 @@ namespace Source.Migrations
 
             modelBuilder.Entity("IMS.Models.PoolMembers", b =>
                 {
-                    b.HasOne("IMS.Models.Employee", "Employees")
-                        .WithMany("PoolMembers")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("IMS.Models.Pool", "Pools")
                         .WithMany("PoolMembers")
                         .HasForeignKey("PoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employees");
 
                     b.Navigation("Pools");
                 });
@@ -946,7 +905,6 @@ namespace Source.Migrations
 
             modelBuilder.Entity("IMS.Models.Department", b =>
                 {
-                    b.Navigation("EmployeesUnderDepartment");
                     b.Navigation("DrivesUnderDepartment");
 
                     b.Navigation("Pools");
@@ -969,8 +927,6 @@ namespace Source.Migrations
 
                     b.Navigation("EmployeeSlotResponses");
 
-                    b.Navigation("PoolMembers");
-
                     b.Navigation("UpdatedEmployeeDrives");
                 });
 
@@ -984,16 +940,6 @@ namespace Source.Migrations
                     b.Navigation("DrivesUnderPool");
 
                     b.Navigation("PoolMembers");
-                });
-
-            modelBuilder.Entity("IMS.Models.Project", b =>
-                {
-                    b.Navigation("EmployeesUnderProject");
-                });
-
-            modelBuilder.Entity("IMS.Models.Role", b =>
-                {
-                    b.Navigation("EmployeesUnderRole");
                 });
 #pragma warning restore 612, 618
         }

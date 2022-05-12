@@ -9,6 +9,7 @@ namespace IMS.Models
         {
             Pools = new HashSet<Pool>();
             Projects = new HashSet<Project>();
+            DrivesUnderDepartment = new HashSet<Drive>();
         }
         [Key]
         public int DepartmentId{get; set;}
@@ -24,6 +25,10 @@ namespace IMS.Models
         public ICollection<Project>? Projects { get; set; }
         [InverseProperty("Department")]
         public ICollection<Employee> EmployeesUnderDepartment{get;set;}
+
+        [InverseProperty("Department")]
+        public ICollection<Drive>? DrivesUnderDepartment { get; set; }
+        
 
         
     }

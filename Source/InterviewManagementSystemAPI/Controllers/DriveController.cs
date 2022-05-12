@@ -25,11 +25,14 @@ public class DriveController : ControllerBase
             return BadRequest("Drive is Invalid");
         try
         {
+            //use authentication and find current user id
+            //drive.AddedBy=
+            //drive.UpdatedBy=
             return _driveService.CreateDrive(drive) ? Ok("Drive Created Successfully") : Problem("Sorry internal error occured");
         }
         catch (ValidationException driveNotValid)
         {
-            _logger.LogInformation($"Drive Controller : CreateDrive(Drive drive) : {driveNotValid.Message} :{driveNotValid.StackTrace}");
+            _logger.LogInformation($"Drive Controller : CreateDrive(Drive drive) : {driveNotValid.Message} : {driveNotValid.StackTrace}");
             return BadRequest(driveNotValid.Message);
         }
         catch (Exception createDriveException)
@@ -43,6 +46,8 @@ public class DriveController : ControllerBase
     [HttpPatch]
     public IActionResult CancelDrive(int driveId, int tacId, string reason)
     {
+        //Tac Id acn be taken using authriozation(remove TacId parameter from controller but not from service and DAL)
+        // int TacID = ....
         if (driveId <= 0 || tacId <= 0 || reason.Length <= 0)
             return BadRequest("Provide proper driveId, tacId and reason");
 
@@ -108,11 +113,11 @@ public class DriveController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult ViewAllScheduledDrives()
+    public IActionResult ViewNonCancelledDrives()
     {
         try
         {
-            return Ok(_driveService.ViewAllScheduledDrives());
+            return Ok(_driveService.ViewNonCancelledDrives());
         }
         catch (Exception viewAllScheduledDrivesException)
         {
@@ -201,13 +206,13 @@ public class DriveController : ControllerBase
         }
     }
     [HttpPatch]
-    public IActionResult UpdateResponse(int employeeId, int driveId, int responseType)
+    public IActionResult UpdateResponse(EmployeeDriveResponse response)
     {
-        if (driveId <= 0 || employeeId <= 0 || responseType <= 0)
-            return BadRequest("provide proper driveId, employeeId and responseType");
+         if (response == null)
+            return BadRequest("Response cannnot be null");
         try
         {
-            return _driveService.UpdateResponse(employeeId, driveId, responseType) ? Ok("Response updated sucessfully") : Problem("Sorry internal error occured");
+            return _driveService.UpdateResponse(response) ? Ok("Response updated sucessfully") : Problem("Sorry internal error occured");
         }
         catch (ValidationException updateResponseNotValid)
         {

@@ -10,7 +10,6 @@ namespace IMS.Service
     public class RoleService : IRoleService
     {
         private IRoleDataAccessLayer _roleDataAccessLayer;
-        private Role _role = DataFactory.RoleDataFactory.GetRoleObject();
         private readonly ILogger _logger;
         public RoleService(ILogger logger)
         {
@@ -30,6 +29,7 @@ namespace IMS.Service
 
             try
             {
+                Role _role = DataFactory.RoleDataFactory.GetRoleObject();
                 _role.RoleName = roleName;
                 return _roleDataAccessLayer.AddRoleToDatabase(_role) ? true : false; // LOG Error in DAL;
             }

@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using IMS.Models;
 using IMS.Validations;
+using System;
 
 namespace IMS.DataAccessLayer
 {
@@ -14,10 +15,25 @@ namespace IMS.DataAccessLayer
         {
             _logger = logger;
         }
+        public void CloseDriveResponse()
+        {
+            var drives = _db.Drives.ToList();
+            foreach (var d in drives)
+            {
+                var da = (DateTime)d.AddedOn;
+                if (DateTime.Now >= da.AddDays(5))
+                {
+                    d.IsScheduled = true;
+                    _db.Drives.Update(d);
+                    _db.SaveChanges();
+                }
+            }
 
+        }
         public bool AddDriveToDatabase(Drive drive)
         {
             DriveValidation.IsdriveValid(drive);
+            if(_db.Drives.Any(d=>d.Name==drive.Name && d.PoolId==drive.PoolId))throw new ValidationException("Drive Name already exists under this pool");
             try
             {
                 _db.Drives.Add(drive);
@@ -37,8 +53,10 @@ namespace IMS.DataAccessLayer
             try
             {
                 Drive? drive = _db.Drives.Find(driveId);
-
+                Employee? tac = _db.Employees.Find(tacId);
                 if (drive == null) throw new ValidationException($"No drive is found with given drive id : {driveId}");
+                if (tac == null) throw new ValidationException($"No employee is found with given tac id : {tacId}");
+                if (drive.IsCancelled == true) throw new ValidationException($"drive is already cancelled : {driveId}");
 
                 drive.IsCancelled = true;
                 drive.CancelReason = reason;
@@ -47,6 +65,11 @@ namespace IMS.DataAccessLayer
                 _db.Drives.Update(drive);
                 _db.SaveChanges();
                 return true;
+            }
+            catch (ValidationException cancelDriveNotValid)
+            {
+                _logger.LogInformation($"ValidationException on Drive DAL : CancelDriveFromDatabase(int driveId, int tacId, string reason) : {cancelDriveNotValid.Message} : {cancelDriveNotValid.StackTrace}");
+                throw cancelDriveNotValid;
             }
             catch (Exception cancelDriveFromDatabaseException)
             {
@@ -58,9 +81,10 @@ namespace IMS.DataAccessLayer
 
         public List<Drive> GetDrivesByStatus(bool status)
         {
+            CloseDriveResponse();
             try
             {
-                return (from drive in _db.Drives.Include(l=>l.Location).Include(p=>p.Pool).Include(d=>d.Pool.department) where drive.IsCancelled == status select drive).ToList();
+                return (from drive in _db.Drives.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool.department) where drive.IsCancelled == status select drive).ToList();
             }
             catch (Exception getDrivesByStatusException)
             {
@@ -77,7 +101,7 @@ namespace IMS.DataAccessLayer
             {
                 var viewDrive = _db.Drives.Find(driveId);    ///use include method
                 //(from drive in _db.Drives where drive.DriveId == driveId select drive).First()
-                return viewDrive != null ? viewDrive : throw new ValidationException("No drive is found");
+                return viewDrive != null ? viewDrive : throw new ValidationException($"No drive is found with id : {driveId}");
             }
             catch (Exception isDriveIdValidException)
             {
@@ -91,13 +115,19 @@ namespace IMS.DataAccessLayer
         //For Employee Drive Response Entity
         public bool AddResponseToDatabase(EmployeeDriveResponse response)
         {
-            //response validation Class
+            Validation.EmployeeResponseValidation.IsResponseValid(response);
 
             try
             {
+                if(_db.EmployeeDriveResponse.Any(r=>r.DriveId==response.DriveId && r.EmployeeId==response.EmployeeId)) throw new ValidationException("You have already responded to this drive");
                 _db.EmployeeDriveResponse.Add(response);
                 _db.SaveChanges();
                 return true;
+            }
+            catch (ValidationException addResponseToDatabaseNotValid)
+            {
+                _logger.LogInformation($"ValidationException on Drive DAL :  AddResponseToDatabase(EmployeeDriveResponse response) : {addResponseToDatabaseNotValid.Message} : {addResponseToDatabaseNotValid.StackTrace}");
+                throw addResponseToDatabaseNotValid;
             }
             catch (Exception addResponseToDatabaseException)
             {
@@ -107,17 +137,17 @@ namespace IMS.DataAccessLayer
         }
 
 
-        public bool UpdateResponseToDatabase(int employeeId, int driveId, int responseType)
+        public bool UpdateResponseToDatabase(EmployeeDriveResponse response)
         {
-            //validation
+            Validation.EmployeeResponseValidation.IsResponseValid(response);
 
             try
             {
-                var EmployeeResponse = (from response in _db.EmployeeDriveResponse where response.EmployeeId == employeeId && response.DriveId == driveId select response).First();
+                var EmployeeResponse = (from responses in _db.EmployeeDriveResponse where responses.EmployeeId == response.EmployeeId && responses.DriveId == response.DriveId select response).First();
 
                 if (EmployeeResponse == null) throw new ValidationException("no response is found with given employee id and drive id");
 
-                EmployeeResponse.ResponseType = responseType;
+                EmployeeResponse.ResponseType = response.ResponseType;
                 _db.EmployeeDriveResponse.Update(EmployeeResponse);
                 _db.SaveChanges();
                 return true;

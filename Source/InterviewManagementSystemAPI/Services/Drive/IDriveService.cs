@@ -9,7 +9,7 @@ namespace IMS.Service
         public Object ViewTodayDrives();
         public Object ViewScheduledDrives();
         public Object ViewUpcommingDrives();
-        public Object ViewAllScheduledDrives();
+        public Object ViewNonCancelledDrives();
         public Object ViewAllCancelledDrives();
         public Dictionary<string,int> ViewTACDashboard(int employeeId);  
         public Drive ViewDrive(int driveId);
@@ -17,7 +17,7 @@ namespace IMS.Service
 
         //For Employee Drive Response Entity
         public bool AddResponse(EmployeeDriveResponse response);
-        public bool UpdateResponse(int employeeId, int driveId, int responseType);
+        public bool UpdateResponse(EmployeeDriveResponse response);
 
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability);

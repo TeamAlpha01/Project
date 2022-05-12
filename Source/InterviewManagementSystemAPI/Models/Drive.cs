@@ -15,16 +15,17 @@ namespace IMS.Models
         public string Name { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
+        public int DepartmentId { get; set; }
         public int PoolId { get; set; }
         public int ModeId { get; set; }
         public int LocationId { get; set; }
-        public bool IsScheduled { get; set; } = false;
-        public bool IsCancelled { get; set; } = false;
+        public bool? IsScheduled { get; set; } = false;
+        public bool? IsCancelled { get; set; } = false;
         public string? CancelReason { get; set; }
-        public int AddedBy { get; set; }
-        public DateTime AddedOn { get; set; }
-        public int UpdatedBy { get; set; }
-        public DateTime UpdatedOn { get; set; }
+        public int? AddedBy { get; set; }
+        public DateTime? AddedOn { get; set; }
+        public int? UpdatedBy { get; set; }
+        public DateTime? UpdatedOn { get; set; }
         public double SlotTiming { get; set; }
 
         
@@ -52,6 +53,9 @@ namespace IMS.Models
         [InverseProperty("DrivesUnderPool")]
         public virtual Pool? Pool { get; set; }
         
+        [ForeignKey("DepartmentId")]
+        [InverseProperty("DrivesUnderDepartment")]
+        public virtual Department? Department { get; set; }
 
     }
 }

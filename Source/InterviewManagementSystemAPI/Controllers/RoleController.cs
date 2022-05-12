@@ -27,7 +27,7 @@ public class RoleController : ControllerBase
     [HttpPost]
     public IActionResult CreateNewRole(string roleName)
     {
-        if(roleName==null)
+        if(String.IsNullOrEmpty(roleName))
             BadRequest("Role Name cannot be null");
         try
         {
