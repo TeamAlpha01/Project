@@ -1,0 +1,103 @@
+title SEQUENCE DIAGRAM FOR MANAGEMENT 
+actor Management
+
+
+participant Presentation Layer
+participant Controller
+participant Service layer
+participant Validation layer
+participant Data Access Layer
+
+
+database Database
+
+Management->Presentation Layer:Login with credentials and lands in home page .
+note over Management,Presentation Layer:Home page displaying Today's Interview, Scheduled interview, Upcoming Interview.
+Management->Presentation Layer:Make a request to view Today's Interview
+Presentation Layer->Controller:"ViewTodayInterview  Request"- Sent to the Drive Controller
+Controller ->Controller:Internal Exception
+Presentation Layer<--Controller:Return problem : Sorry internal error occured
+Controller->Service layer:"View Today's Interview Request"- Sent to Drive service layer.
+Service layer->Service layer: Internal Exception
+Service layer->Data Access Layer:"View Today's Interview Request"- Sent to the Drive Data Access Layer.
+Data Access Layer->Data Access Layer: Internal Exception
+Service layer<--Data Access Layer: Throws Exception.
+Data Access Layer->Database: Interact with database and Fetch the required data to display in the presentation layer.
+Controller<--Service layer:Throws Exception
+Presentation Layer<--Controller: Return Problem: Sorry internal Error Occured
+
+
+
+
+
+Management->Presentation Layer:Make a request to Cancel Availability in Today's Interview
+Presentation Layer ->Controller: "Cancel interview availability Request"- Sent to the Drive Controller
+Controller->Controller: Id validation
+Presentation Layer<--Controller: Return Bad request: provide proper driveId, employeeId and responseType.
+Controller->Service layer: "Cancel interview availability Request"- Sent to Drive service layer if the validation is "True"
+Service layer->Validation layer:EmployeeId and reason validation
+note over Validation layer: This layer validate the emplyee id,respone  and the drive id
+Service layer<--Validation layer:Throw Exception
+Controller<--Service layer:Throw Exception
+Presentation Layer<--Controller:Return Bad request: provide proper driveId, employeeId and responseType.
+Service layer->Data Access Layer:"Cancel interview availability Request"- Sent to Drive Access layer.
+Data Access Layer->Data Access Layer:Null Validation\n
+Service layer<--Data Access Layer:Throw Exception
+Data Access Layer->Data Access Layer:Internal Exception
+Controller<--Service layer:Throw Exception
+Service layer<--Data Access Layer:Throw Exception
+Presentation Layer<--Controller:Return bad Request:Sorry internal error occured
+Controller<--Service layer:Throw Exception
+Data Access Layer->Database:Interact with Database and response
+Presentation Layer<--Controller:Return problem:Sorry internal error occured
+Service layer<--Data Access Layer:Return True
+Controller<--Service layer:Return True\n
+Presentation Layer<--Controller:Return Ok: Avalability Cancelled Successfully
+
+par Make a request to view Scheduled Interview
+==As same as "Today's Interview"==
+end
+
+par Make a request to Cancel Availability in Scheduled Interview.
+==As same as "Today's Interview"==
+end
+
+
+par Make a request to view Upcoming Interview
+==As same as "Today's Interview"==
+end
+
+par Make a request to Cancel Availability in Upcoming Interview
+==As same as "Today's Interview"==
+end
+
+Management->Presentation Layer:Make a request to view "Dashboard"
+note over Management,Presentation Layer:Dashboard displaying My Performance and Pool Members Performance.
+Presentation Layer->Controller:"View Dashboard" request sent to employee controller
+Controller->Service layer:"View Dashboard" request sent to Employee Service
+Service layer->Validation layer:This layer validates Employee id
+note over Validation layer:This Layer validates employeeID 
+Service layer<--Validation layer:If validation fails it throws exception
+Controller<--Service layer:Throws "Validation Exception"
+Service layer->Data Access Layer:if validation is true then the request pass to the Employee data access layer 
+Data Access Layer->Data Access Layer:Internal Exception
+Service layer<--Data Access Layer:Throws Exception
+Presentation Layer<--Controller:Return problem:sorry Internal error Occured
+Data Access Layer->Database:It interacts with the database and fetch the required data to display in the presentation layer 
+Controller<--Service layer:Throws Exception\n
+Presentation Layer<--Controller:Return problem: Sorry internal error occured
+Service layer<--Data Access Layer:Return Employee detail
+Controller<--Service layer:Return Employee detail to the controller
+Presentation Layer<--Controller:Return the Employee detail to the presentation layer
+
+
+par Make a request to view "My performance" on Dashboard
+==As same as "Viewing Dashboard"==
+end
+
+par Make a request to view "Pool Members Performance" on Dashboard
+==As same as "Viewing Dashboard"==
+end
+
+
+
