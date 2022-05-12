@@ -1,0 +1,77 @@
+<app-tac-header></app-tac-header>
+<div class="content">
+        <!-- Navbar Start -->
+        <app-navbar [title]="title"></app-navbar>   
+    
+        <div class="background-img-register1">
+            <div class="Register">
+                <div class="card-body">
+
+                    <form>
+                        <div class="form-input">
+                            <label class="form-label" for="FROM DATE">From Date</label>
+                            <input type="date" id="FROM DATE" class="form-control " />
+
+                        </div>
+                        <div class="form-input">
+                            <label class="form-label" for="TO DATE">To Date</label>
+                            <input type="date" id="TO DATE" class="form-control " />
+                        </div>
+                        <div class="form-input">
+                            <label class="form-label" for="ACE Number"> Drive Name</label>
+                            <input type="text" id="ACE Number" class="form-control " />
+                        </div>
+                        <div class="form-input">
+                            <label class="form-label " for="Department Name">Department</label>
+                            <select name="Department" id="Department Name" class="form-select ">
+                                <option value="">Select the Department</option>
+                                <option value=".Net">.Net</option>
+                                <option value="Java">Java</option>
+                                <option value="BFS">BFS</option>
+                                <option value="LAMP">LAMP</option>
+                            </select>
+                        </div>
+                        <div class="form-input">
+                            <label class="form-label " for="Role">Pool</label>
+                            <select name="Role" id="Role" class="form-select   ">
+                                <option value="">Select the Pool</option>
+                                <option value="Freshers">Freshers</option>
+                                <option value="SE">SE</option>
+                                <option value="SSE">SSE</option>
+                                <option value="PM">PM</option>
+                                <option value="TL">TL</option>
+                            </select>
+                        </div>
+                        <div class="form-input">
+                            <label class="form-label " for="Project">Mode</label>
+                            <select name="Project" id="Project" class="form-select ">
+                                <option value="">Select the Mode</option>
+                                <option value="Online">Online</option>
+                                <option value="Offline">Offline</option>
+
+                            </select>
+                        </div>
+                        <div class="form-input">
+                            <label class="form-label " for="Role">Slot Timing</label>
+                            <select name="Role" id="Role" class="form-select   ">
+                                <option value="">Select the Timing</option>
+                                <option value="SE">30 MINS</option>
+                                <option value="SSE">45 MINS</option>
+                                <option value="PM">1 HOUR</option>
+                                <option value="TL">1 HOUR 30 MINS</option>
+                            </select>
+                        </div>
+                        <div class="Login-btn">
+                            <a href="#"><button class="btn btn-filter" type="button">CREATE</button></a>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+</div>
+<app-footer></app-footer>
+
+

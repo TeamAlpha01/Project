@@ -1,0 +1,33 @@
+<app-interviewer-header></app-interviewer-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar></app-navbar>
+
+    <!-- Navbar End -->
+    <div class="grey-bg container-fluid">
+        <section id="minimal-statistics">
+            <div class="row">
+                <div class="col-12 mt-3 mb-1">
+                    <h4 class="text-uppercase">Interviewer Dashboard</h4>
+                </div>
+            </div>
+            <section class="wrapper-dashboard">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4" *ngFor="let item of card">
+                            <div class="card-card">
+                                <div class="card-content">
+                                    <h1 class="card-title">
+                                        {{item.count}}
+                                    </h1>
+                                    <p class="">
+                                        {{item.name}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </section>

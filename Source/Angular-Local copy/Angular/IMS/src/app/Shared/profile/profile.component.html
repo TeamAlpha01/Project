@@ -1,0 +1,51 @@
+<app-interviewer-header></app-interviewer-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-light navbar-light sticky-top py-0">
+        <div class="sidebar-toggler flex-shrink-0  collapse-btn ">
+            <i class="fa fa-bars fa-bar"></i>
+        </div>
+        <div class="page-title">
+            <h2>Profile</h2>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card mx-auto">
+            <div class="card-body">
+                <div class="row m-b-25"> <img src="/assets/Images/profile_.png" class="profile-img"
+                        alt="User-Profile-Image">
+                </div>
+                <div class="row">
+                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600"><b>INFORMATION</b></h6>
+
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Name </p>
+                        <h6 class="text-muted f-w-400">{{Name}}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">ID </p>
+                        <h6 class="text-muted f-w-400">{{Id}}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Department </p>
+                        <h6 class="text-muted f-w-400">{{Department}}</h6>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Email ID </p>
+                        <h6 class="text-muted f-w-400">{{email}}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Contact No.</p>
+                        <h6 class="text-muted f-w-400">{{Contact}}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="m-b-10 f-w-600">Role</p>
+                        <h6 class="text-muted f-w-400">{{Role}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>

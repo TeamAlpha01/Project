@@ -1,0 +1,47 @@
+<app-admin-header></app-admin-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+    <!-- selection starts-->
+    <section class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="card">
+                        <a class="img-card" [routerLink]="['../Admin-viewlocation-page']">
+                            <img src="./assets/Images/Location.png" />
+                        </a>
+                        <div class="card-content" style="text-align:center ;">
+                            <h4 class="card-title"><br>
+                                Locations
+                            </h4>
+                            <p class="">
+                                View the list of locations here !
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--section 2-->
+                <div class="col-xs-12 col-sm-6">
+                    <div class="card">
+                        <a class="img-card" [routerLink]="['../Admin-addlocation']">
+                            <img src="./assets/Images/AddLocation.PNG" />
+                        </a>
+                        <div class="card-content" style="text-align:center ;">
+                            <h4 class="card-title"><br>
+                                Add Location
+                            </h4>
+                            <p class="">
+                                Add a New Location !
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <app-footer></app-footer>
+</div>
+
+

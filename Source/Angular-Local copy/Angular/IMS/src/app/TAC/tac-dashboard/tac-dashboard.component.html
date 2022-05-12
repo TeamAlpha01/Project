@@ -1,0 +1,45 @@
+<app-tac-header></app-tac-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+    <!--DashBoard selection starts-->
+    <section class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="card">
+                        <a class="img-card" [routerLink]="['../TAC-performance']">
+                            <img src="./assets/Images/Profileicon.png" />
+                        </a>
+                        <div class="card-content" style="text-align:center ;">
+                            <h4 class="card-title"><br>
+                                My Performance
+                            </h4>
+                            <p class="">
+                                Check your performance here !
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--section 2-->
+                <div class="col-xs-12 col-sm-6">
+                    <div class="card">
+                        <a class="img-card" [routerLink]="['../Poolmembers-performance']">
+                            <img src="./assets/Images/Poolmembers.png" />
+                        </a>
+                        <div class="card-content" style="text-align:center ;">
+                            <h4 class="card-title"><br>
+                                Pool Members Performance
+                            </h4>
+                            <p class="">
+                                Check your pool members performance !
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <app-footer></app-footer>
+</div>
