@@ -41,7 +41,12 @@ namespace IMS.Services
                 _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
                 return false;
             }
-
+            catch (ValidationException departmentNotFound)
+            {
+                
+                _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {departmentNotFound.Message}");
+                throw departmentNotFound;
+            }
 
             catch (Exception exception)
             {
@@ -210,14 +215,14 @@ namespace IMS.Services
         /// <param name="poolId">int</param>
         /// <returns></returns>
         /// 
-        public IEnumerable<PoolMembers> ViewPoolMembers(int poolId)
+        public IEnumerable<PoolMembers> ViewPoolMembers()
         {
 
-            PoolValidation.IsValidPoolId(poolId);
+           
             try
             {
                 IEnumerable<PoolMembers> poolmembers = new List<PoolMembers>();
-                return poolmembers = from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase(poolId) where poolmember.PoolId == poolId && poolmember.IsActive == true select poolmember;
+                return poolmembers = from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase() where poolmember.IsActive == true select poolmember;
 
             }
             catch (ValidationException poolNotFound)

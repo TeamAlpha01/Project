@@ -25,8 +25,12 @@ namespace IMS.DataAccessLayer
         {
 
             PoolValidation.IsAddPoolValid(pool);
+            if (_db.Pools.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId)) throw new ValidationException("Pool Name already exists under this pool");
             try
             {
+                var department=_db.Pools.Find(pool.DepartmentId);
+                if(department==null)
+                    throw new ValidationException("Department not found with the given Department Id");
                 _db.Pools.Add(pool);
                 _db.SaveChanges();
                 return true;
@@ -40,6 +44,10 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Pool DAL : AddPoolToDatabase(Pool pool) : {exception.Message}");
                 return false;
+            }
+            catch(ValidationException departmentNotFound)
+            {
+                throw departmentNotFound;
             }
 
             catch (Exception exception)
@@ -61,15 +69,20 @@ namespace IMS.DataAccessLayer
         {
             PoolValidation.IsValidPoolId(poolId);
 
+            bool isDeletePoolId = _db.Pools.Any(x => x.PoolId == poolId && x.IsActive == false);
+            if (isDeletePoolId)
+            {
+                throw new ValidationException("Pool already deleted");
+            }
             try
             {
-                var pool = _db.Pools.Find(poolId);
+                
+                var Pool = _db.Pools.Find(poolId);
+                if (poolId == null)
+                    throw new ValidationException("No Pool  is found with given Pool Id");
 
-                if (pool == null)
-                    throw new ValidationException("No Pool is found with given pool Id");
-
-                pool.IsActive = false;
-                _db.Pools.Update(pool);
+                Pool.IsActive = false;
+                _db.Pools.Update(Pool);
                 _db.SaveChanges();
                 return true;
             }
@@ -271,15 +284,12 @@ namespace IMS.DataAccessLayer
         /// <returns>Return the list of pool members or Throws exception : Pool not found with the given Pool Id
         /// Catches exceptions thorwed by Database if any Misconnections in DB </returns>
 
-        public List<PoolMembers> GetPoolMembersFromDatabase(int poolId)
+        public List<PoolMembers> GetPoolMembersFromDatabase( )
         {
-            PoolValidation.IsPoolIdValid(poolId);
+            
 
             try
             {
-                var member = _db.PoolMembers.Find(poolId);
-                if (member == null)
-                    throw new ValidationException("Pool not found with the given Pool Id");
 
                 return _db.PoolMembers.ToList();
             }
@@ -293,10 +303,7 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
             }
-            catch (ValidationException poolNotFound)
-            {
-                throw poolNotFound;
-            }
+            
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");

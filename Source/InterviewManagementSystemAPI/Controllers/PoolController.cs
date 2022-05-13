@@ -38,10 +38,10 @@ public class PoolController : ControllerBase
             return _poolService.CreatePool(departmentId,poolName) ? Ok("Pool Added Successfully") : Problem("Sorry internal error occured");
         }
            
-        catch (ValidationException exception)
+        catch (ValidationException departmentNotFound)
         {
-            _logger.LogInformation($"Pool Service : CreatePool throwed an exception : {exception}");
-            return BadRequest(exception.Message);
+            _logger.LogInformation($"Pool Service : CreatePool throwed an exception : {departmentNotFound.Message}");
+            return BadRequest(departmentNotFound.Message);
         }
     
         
@@ -204,16 +204,16 @@ public class PoolController : ControllerBase
     /// <returns>Returns a list of pool Members</returns>
 
     [HttpGet]
-    public IActionResult ViewPoolMembers(int poolId)
+    public IActionResult ViewPoolMembers()
     {
-         PoolValidation.IsValidPoolId(poolId);
+       
         try
         {
-            return Ok(_poolService.ViewPoolMembers(poolId));
+            return Ok(_poolService.ViewPoolMembers());
         }
         catch (ValidationException poolNotFound)
         {
-            _logger.LogInformation($"Pool Service : ViewPoolMembers(poolId) : {poolNotFound.Message}");
+            _logger.LogInformation($"Pool Service : ViewPoolMembers() : {poolNotFound.Message}");
             return BadRequest(poolNotFound.Message);
       
         }
