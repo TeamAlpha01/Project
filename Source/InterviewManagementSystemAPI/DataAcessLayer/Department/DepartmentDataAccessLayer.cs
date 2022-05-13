@@ -295,7 +295,13 @@ namespace IMS.DataAccessLayer
         public void CheckDepartmentId(int departmentId)
         {
             if(!_db.Departments.Any(x => x.DepartmentId == departmentId)) 
-                throw new ValidationException("Department does not found");
+                throw new ValidationException("Department was not found");
+            
+        }
+        public void CheckProjectId(int projectId)
+        {
+            if(!_db.Projects.Any(x => x.ProjectId == projectId)) 
+                throw new ValidationException("Project was not found");
             
         }
     }

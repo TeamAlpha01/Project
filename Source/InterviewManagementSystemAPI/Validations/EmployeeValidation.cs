@@ -12,7 +12,8 @@ namespace IMS.Validations
 
             if (String.IsNullOrEmpty(employee.Name)) throw new ValidationException("Employee Name cannot be null");
 
-            else if(!Regex.IsMatch(employee.Name,@"^[A-Z][a-zA-Z]{3,30}$")) throw new ValidationException("Employee Name must contain only alphabets and length of the name should be 3 to 30 char");
+            else if(!Regex.IsMatch(employee.Name,@"^(?!.*([ ])\1)(?!.*([A-Za-z])\2{2})\w[a-zA-Z\s]*$")) throw new ValidationException("Employee Name must contain only alphabets and length of the name should be 3 to 30 char");
+            //@"^[A-Z][a-zA-Z]{3,30}$"
             
             if (String.IsNullOrEmpty(employee.EmployeeAceNumber)) throw new ValidationException("EmployeeACEnumber cannot be null");
             

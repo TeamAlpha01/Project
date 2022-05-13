@@ -142,5 +142,12 @@ namespace IMS.DataAccessLayer
             }
         }
 
+        public void CheckRoleId(int roleId)
+        {
+            if(!_db.Roles.Any(x => x.RoleId == roleId)) 
+                throw new ValidationException("Role was not found");
+            
+        }
+
     }
 }

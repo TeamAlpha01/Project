@@ -8,6 +8,7 @@ namespace IMS.DataAccessLayer{
          public bool RemoveProjectFromDatabase(int projectId);
          public List<Project> GetProjectsFromDatabase();
          public void CheckDepartmentId(int departmentId);
+         public void CheckProjectId(int projectId);
           
     }
 }

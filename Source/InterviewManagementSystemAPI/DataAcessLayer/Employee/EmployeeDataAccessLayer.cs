@@ -29,7 +29,7 @@ namespace IMS.DataAccessLayer
             bool EmployeedetailExists = _db.Employees.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber || x.EmailId == employee.EmailId);
             if (EmployeedetailExists)
             {
-                throw new ValidationException("Department already exist");
+                throw new ValidationException("Email id or ACE number already exists");
             }
             try
             {

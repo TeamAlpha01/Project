@@ -11,13 +11,15 @@ namespace IMS.Service
     {
         private IEmployeeDataAccessLayer _employeeDataAccessLayer;
         private IDepartmentDataAccessLayer _departmentDataAccessLayer;
+        private IRoleDataAccessLayer _roleDataAccessLayer;
         private ILogger _logger;
 
         public EmployeeService(ILogger logger)
         {
             _logger = logger;
             _employeeDataAccessLayer = DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(_logger);
-              _departmentDataAccessLayer = DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(_logger);
+            _departmentDataAccessLayer = DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(_logger);
+            _roleDataAccessLayer = DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
         }
 
         /// <summary>
@@ -34,7 +36,8 @@ namespace IMS.Service
         {
             EmployeeValidation.IsEmployeeValid(employee);
             _departmentDataAccessLayer.CheckDepartmentId(employee.DepartmentId);
-
+            _roleDataAccessLayer.CheckRoleId(employee.RoleId);
+            _departmentDataAccessLayer.CheckProjectId(employee.ProjectId);
             try
             {
                 return _employeeDataAccessLayer.AddEmployeeToDatabase(employee) ? true : false; // LOG Error in DAL;
@@ -42,14 +45,15 @@ namespace IMS.Service
             catch (ValidationException employeeNotValid)
             {
                 _logger.LogInformation($"Employee Service : CreateEmployee() : {employeeNotValid.Message}");
-                return false;
+                throw employeeNotValid;
             }
             catch (Exception exception)
             {
                 _logger.LogInformation($"Employee Service : CreateEmployee() : {exception.Message}");
-                return false;
+                throw exception;
             }
         }
+
         /// <summary>
         /// This method will be implemented when EmployeeController passes the request to this method,then this method calls the RemoveEmployeeFromDatabase method in DAL.
         /// </summary>
@@ -74,7 +78,7 @@ namespace IMS.Service
             catch (ArgumentException exception)
             {
                 _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
-                return false;
+                throw exception;
             }
             catch (ValidationException employeeNotFound)
             {
@@ -84,7 +88,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
-                return false;
+                throw exception;
             }
         }
         /// <summary>
@@ -154,25 +158,25 @@ namespace IMS.Service
         /// </returns>
         public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId)
         {
-           
+
 
             EmployeeValidation.IsDepartmentValid(departmentId);
 
             _departmentDataAccessLayer.CheckDepartmentId(departmentId);
-            
+
             try
             {
-                    IEnumerable<Employee> employees = new List<Employee>();
-                    return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.DepartmentId == departmentId select employee;
+                IEnumerable<Employee> employees = new List<Employee>();
+                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.DepartmentId == departmentId select employee;
             }
             catch (Exception exception)
             {
-                    _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
-                    throw new Exception();
+                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
+                throw new Exception();
             }
 
         }
-        
+
         /// <summary>
         /// This method implements when EmployeeController passes the request to this method,then this method calls the ViewEmployeeByApprovalStatus method in DAL.
         /// </summary>
@@ -194,26 +198,26 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
-/// <summary>
-/// This method implements when EmployeeController passes the request to this method,then this method calls the ViewEmployeeRequest method in DAL.
-/// </summary>
-/// <returns>
-/// Return list of employees who has sent a request to admin and doesn't shows a accepted request or 
-/// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
-/// </returns>
+        /// <summary>
+        /// This method implements when EmployeeController passes the request to this method,then this method calls the ViewEmployeeRequest method in DAL.
+        /// </summary>
+        /// <returns>
+        /// Return list of employees who has sent a request to admin and doesn't shows a accepted request or 
+        /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
+        /// </returns>
 
-public IEnumerable<Employee> ViewEmployeeRequest()
-{
-    try
-    {
-        IEnumerable<Employee> employees = new List<Employee>();
-        return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsAdminAccepted == false && employee.IsAdminResponded == false select employee;
-    }
-    catch (Exception exception)
-    {
-        _logger.LogInformation($"Employee service : ViewTACRequest : Exception occured in DAL :{exception.Message}");
-        throw new Exception();
-    }
-}
+        public IEnumerable<Employee> ViewEmployeeRequest()
+        {
+            try
+            {
+                IEnumerable<Employee> employees = new List<Employee>();
+                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsAdminAccepted == false && employee.IsAdminResponded == false select employee;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Employee service : ViewTACRequest : Exception occured in DAL :{exception.Message}");
+                throw new Exception();
+            }
+        }
     }
 }
