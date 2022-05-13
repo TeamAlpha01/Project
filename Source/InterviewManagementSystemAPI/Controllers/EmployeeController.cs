@@ -113,7 +113,7 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
+            _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
             return BadRequest("Sorry some internal error occured");
         }
     }
@@ -133,11 +133,17 @@ public class EmployeeController : ControllerBase
         {
             return Ok(employeeService.ViewEmployeesByDepartment(departmentId));
         }
+         catch (ValidationException exception1)
+        {
+            _logger.LogInformation($"Service throwed exception while fetching roles : {exception1}");
+            return BadRequest(exception1.Message) ;
+        }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
+            _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
             return BadRequest("Sorry some internal error occured");
         }
+       
     }
     /// <summary>
     /// This method implements when admin want to see their approval status,
@@ -157,7 +163,7 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
+            _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
             return BadRequest("Sorry some internal error occured");
         }
     }
@@ -178,7 +184,7 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
+            _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
             return BadRequest("Sorry some internal error occured");
         }
     }

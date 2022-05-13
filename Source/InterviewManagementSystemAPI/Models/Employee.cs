@@ -45,6 +45,7 @@ namespace IMS.Models
         [ForeignKey("DepartmentId")]
         [InverseProperty("EmployeesUnderDepartment")] 
         public virtual Department? Department {get; set;}
+        
         [ForeignKey("RoleId")]
         [InverseProperty("EmployeesUnderRole")]
         public virtual Role? Role{get; set;}

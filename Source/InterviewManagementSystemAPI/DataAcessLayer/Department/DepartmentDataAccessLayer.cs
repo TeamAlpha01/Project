@@ -157,19 +157,19 @@ namespace IMS.DataAccessLayer
         /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool AddProjectToDatabase(Project project)
         {
-            var department=_db.Projects.Find(project.DepartmentId);
-            if(department==null)
+            var department = _db.Projects.Find(project.DepartmentId);
+            if (department == null)
                 throw new ValidationException("No department Id found with given department id");
-                
+
             try
             {
-               
-                bool projectnameAlreadyExists = _db.Projects.Any(x=>x.ProjectName==project.ProjectName && x.IsActive == true);
-                if(!projectnameAlreadyExists)
+
+                bool projectnameAlreadyExists = _db.Projects.Any(x => x.ProjectName == project.ProjectName && x.IsActive == true);
+                if (!projectnameAlreadyExists)
                 {
-                _db.Projects.Add(project);
-                _db.SaveChanges();
-                return true;
+                    _db.Projects.Add(project);
+                    _db.SaveChanges();
+                    return true;
                 }
                 else
                     throw new ValidationException("Project Name already exists");
@@ -215,18 +215,18 @@ namespace IMS.DataAccessLayer
         {
             ProjectValidation.IsProjectValid(projectId);
 
-            bool isProjectId = _db.Projects.Any(x =>x.ProjectId==projectId && x.IsActive == false);
+            bool isProjectId = _db.Projects.Any(x => x.ProjectId == projectId && x.IsActive == false);
             if (isProjectId)
             {
                 throw new ValidationException("Project already deleted");
             }
-           
+
             try
             {
                 var project = _db.Projects.Find(projectId);
-                if (project == null) 
+                if (project == null)
                     throw new ValidationException("No Project is found with given Project Id");
-               
+
                 project.IsActive = false;
                 _db.Projects.Update(project);
                 _db.SaveChanges();
@@ -246,7 +246,7 @@ namespace IMS.DataAccessLayer
                 //LOG   "Opreation cancelled exception"
                 return false;
             }
-             catch (ValidationException projectNotFound)
+            catch (ValidationException projectNotFound)
             {
                 throw projectNotFound;
             }
@@ -271,7 +271,7 @@ namespace IMS.DataAccessLayer
         public List<Project> GetProjectsFromDatabase()
         {
 
-             try
+            try
             {
                 return _db.Projects.ToList();
             }
@@ -290,6 +290,13 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
+        }
+
+        public void CheckDepartmentId(int departmentId)
+        {
+            if(!_db.Departments.Any(x => x.DepartmentId == departmentId)) 
+                throw new ValidationException("Department does not found");
+            
         }
     }
 }

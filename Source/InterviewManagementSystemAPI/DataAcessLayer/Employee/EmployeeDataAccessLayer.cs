@@ -26,7 +26,7 @@ namespace IMS.DataAccessLayer
         {
             
             EmployeeValidation.IsEmployeeValid(employee);
-            bool EmployeedetailExists = _db.Employees.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber && x.EmailId == employee.EmailId);
+            bool EmployeedetailExists = _db.Employees.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber || x.EmailId == employee.EmailId);
             if (EmployeedetailExists)
             {
                 throw new ValidationException("Department already exist");
@@ -106,8 +106,6 @@ namespace IMS.DataAccessLayer
         {
              try
             {     
-               
-                 
                 _logger.LogInformation("logger DAL");
                 return _db.Employees.ToList();           
             }
