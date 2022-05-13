@@ -1,6 +1,6 @@
 using IMS.Models;
 using IMS.DataAccessLayer;
-using IMS.Validation;
+using IMS.Validations;
 using System.ComponentModel.DataAnnotations;
 
 namespace IMS.Service

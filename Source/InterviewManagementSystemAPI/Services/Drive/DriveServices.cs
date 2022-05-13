@@ -60,15 +60,16 @@ namespace IMS.Service
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(false) where (drive.FromDate.Date <= System.DateTime.Now.Date && drive.ToDate.Date >= System.DateTime.Now.Date) && drive.IsScheduled == true select drive).ToList()
-                .Select(d=>new{
-                    DriveId=d.DriveId,
-                    DriveName=d.Name,
-                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
-                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment=d.Pool.department.DepartmentName,
-                    DriveLocation=d.Location.LocationName,
-                    DrivePool=d.Pool.PoolName,
-                    DriveMode=d.ModeId
+                .Select(d => new
+                {
+                    DriveId = d.DriveId,
+                    DriveName = d.Name,
+                    FromDate = d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.ToDate.ToString("yyyy-MM-dd"),
+                    DriveDepartment = d.Pool.department.DepartmentName,
+                    DriveLocation = d.Location.LocationName,
+                    DrivePool = d.Pool.PoolName,
+                    DriveMode = d.ModeId
                 }
                 );
             }
@@ -85,15 +86,16 @@ namespace IMS.Service
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date > System.DateTime.Now.Date && drive.IsScheduled == true select drive).ToList()
-                .Select(d=>new{
-                    DriveId=d.DriveId,
-                    DriveName=d.Name,
-                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
-                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment=d.Pool.department.DepartmentName,
-                    DriveLocation=d.Location.LocationName,
-                    DrivePool=d.Pool.PoolName,
-                    DriveMode=d.ModeId
+                .Select(d => new
+                {
+                    DriveId = d.DriveId,
+                    DriveName = d.Name,
+                    FromDate = d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.ToDate.ToString("yyyy-MM-dd"),
+                    DriveDepartment = d.Pool.department.DepartmentName,
+                    DriveLocation = d.Location.LocationName,
+                    DrivePool = d.Pool.PoolName,
+                    DriveMode = d.ModeId
                 }
                 );
             }
@@ -110,15 +112,16 @@ namespace IMS.Service
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).ToList()
-                .Select(d=>new{
-                    DriveId=d.DriveId,
-                    DriveName=d.Name,
-                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
-                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment=d.Pool.department.DepartmentName,
-                    DriveLocation=d.Location.LocationName,
-                    DrivePool=d.Pool.PoolName,
-                    DriveMode=d.ModeId
+                .Select(d => new
+                {
+                    DriveId = d.DriveId,
+                    DriveName = d.Name,
+                    FromDate = d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.ToDate.ToString("yyyy-MM-dd"),
+                    DriveDepartment = d.Pool.department.DepartmentName,
+                    DriveLocation = d.Location.LocationName,
+                    DrivePool = d.Pool.PoolName,
+                    DriveMode = d.ModeId
                 }
                 );
             }
@@ -135,15 +138,16 @@ namespace IMS.Service
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(false) select drive).ToList()
-                .Select(d=>new{
-                    DriveId=d.DriveId,
-                    DriveName=d.Name,
-                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
-                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment=d.Pool.department.DepartmentName,
-                    DriveLocation=d.Location.LocationName,
-                    DrivePool=d.Pool.PoolName,
-                    DriveMode=d.ModeId
+                .Select(d => new
+                {
+                    DriveId = d.DriveId,
+                    DriveName = d.Name,
+                    FromDate = d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.ToDate.ToString("yyyy-MM-dd"),
+                    DriveDepartment = d.Pool.department.DepartmentName,
+                    DriveLocation = d.Location.LocationName,
+                    DrivePool = d.Pool.PoolName,
+                    DriveMode = d.ModeId
                 }
                 );
             }
@@ -159,15 +163,16 @@ namespace IMS.Service
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(true) select drive).ToList()
-                .Select(d=>new{
-                    DriveId=d.DriveId,
-                    DriveName=d.Name,
-                    FromDate=d.FromDate.ToString("yyyy-MM-dd"),
-                    ToDate=d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment=d.Pool.department.DepartmentName,
-                    DriveLocation=d.Location.LocationName,
-                    DrivePool=d.Pool.PoolName,
-                    DriveMode=d.ModeId
+                .Select(d => new
+                {
+                    DriveId = d.DriveId,
+                    DriveName = d.Name,
+                    FromDate = d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.ToDate.ToString("yyyy-MM-dd"),
+                    DriveDepartment = d.Pool.department.DepartmentName,
+                    DriveLocation = d.Location.LocationName,
+                    DrivePool = d.Pool.PoolName,
+                    DriveMode = d.ModeId
                 }
                 );
             }
@@ -222,12 +227,12 @@ namespace IMS.Service
         //For Employee Drive Response Entity
         public bool AddResponse(EmployeeDriveResponse response)
         {
-            Validation.EmployeeResponseValidation.IsResponseValid(response);
+            Validations.EmployeeResponseValidation.IsResponseValid(response);
 
             try
             {
-                response.Drive=null;
-                response.Employee=null;
+                response.Drive = null;
+                response.Employee = null;
                 return _driveDataAccess.AddResponseToDatabase(response) ? true : false;
             }
             catch (ValidationException responseNotValid)
@@ -242,9 +247,9 @@ namespace IMS.Service
             }
         }
 
-        public bool UpdateResponse(EmployeeDriveResponse response )
+        public bool UpdateResponse(EmployeeDriveResponse response)
         {
-            Validation.EmployeeResponseValidation.IsResponseValid(response);
+            Validations.EmployeeResponseValidation.IsResponseValid(response);
             try
             {
                 return _driveDataAccess.UpdateResponseToDatabase(response) ? true : false;
@@ -265,14 +270,17 @@ namespace IMS.Service
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability)
         {
             // employeeAvailability Validation Class
+            Validations.EmployeeAvailabilityValidation.IsAvailabilityValid(employeeAvailability);
             try
             {
+                employeeAvailability.From = DateTime.Parse(employeeAvailability.FromTime);//push this lines to validation default values
+                employeeAvailability.To = DateTime.Parse(employeeAvailability.ToTime);
                 return _driveDataAccess.SetTimeSlotToDatabase(employeeAvailability);
             }
-            catch (ValidationException employeeAvailabilityNotVlaid)
+            catch (ValidationException setTimeSlotNotVlaid)
             {
-                _logger.LogInformation($"Drive Service : SetTimeSlot(EmployeeAvailability employeeAvailability) : {employeeAvailabilityNotVlaid.Message} : {employeeAvailabilityNotVlaid.StackTrace}");
-                return false;
+                _logger.LogInformation($"Drive Service : SetTimeSlot(EmployeeAvailability employeeAvailability) : {setTimeSlotNotVlaid.Message} : {setTimeSlotNotVlaid.StackTrace}");
+                throw setTimeSlotNotVlaid;
             }
             catch (Exception setTimeSlotException)
             {
@@ -284,7 +292,7 @@ namespace IMS.Service
         {
             try
             {
-                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false,employeeId) where interviews.InterviewDate.Date == System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date == System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
@@ -307,7 +315,7 @@ namespace IMS.Service
         {
             try
             {
-                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false,employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
@@ -331,7 +339,7 @@ namespace IMS.Service
         {
             try
             {
-                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false,employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == false select interviews)
+                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == false select interviews)
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
@@ -355,7 +363,7 @@ namespace IMS.Service
         {
             try
             {
-                return ((from interviews in _driveDataAccess.ViewInterviewsByStatus(false,employeeId) select interviews).Concat((from interviews in _driveDataAccess.ViewInterviewsByStatus(true,employeeId) select interviews)))
+                return ((from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) select interviews).Concat((from interviews in _driveDataAccess.ViewInterviewsByStatus(true, employeeId) select interviews)))
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
@@ -378,6 +386,7 @@ namespace IMS.Service
 
         public bool ScheduleInterview(int employeeAvailabilityId)
         {
+            Validations.EmployeeAvailabilityValidation.IsAvailabilityIdValid(employeeAvailabilityId);
             try
             {
                 return _driveDataAccess.ScheduleInterview(employeeAvailabilityId);
@@ -423,7 +432,9 @@ namespace IMS.Service
                     employeeAceNumber = availability.Employee.EmployeeAceNumber,
                     emplyeeName = availability.Employee.Name,
                     employeeDepartment = availability.Employee.Department.DepartmentName,
-                    employeeRole = availability.Employee.Role.RoleName //ACE ,DEPT NAME,ROLE
+                    employeeRole = availability.Employee.Role.RoleName, //ACE ,DEPT NAME,ROLE
+                    employeeFromTime = availability.FromTime,
+                    employeeToTime = availability.ToTime
                 }
             );
             }
@@ -445,12 +456,13 @@ namespace IMS.Service
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                DashboardCount.Add("Accepted Interviews", _driveDataAccess.GetResponseCountByStatus(1));
-                DashboardCount.Add("Denied Interviews", _driveDataAccess.GetResponseCountByStatus(2));
-                DashboardCount.Add("Ignored Interviews", _driveDataAccess.GetResponseCountByStatus(3));
-                DashboardCount.Add("Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(true));
-                DashboardCount.Add("Not Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(false));
-                DashboardCount.Add("Total Interviews", DashboardCount["Accepted Interviews"] + DashboardCount["Denied Interviews"] + DashboardCount["Ignored Interviews"]);
+                DashboardCount.Add("Accepted Drives", _driveDataAccess.GetResponseCountByStatus(1, employeeId));
+                DashboardCount.Add("Denied Drives", _driveDataAccess.GetResponseCountByStatus(2, employeeId));
+                DashboardCount.Add("Ignored Drives", _driveDataAccess.GetResponseCountByStatus(3, employeeId));
+                DashboardCount.Add("Total Drives", DashboardCount["Accepted Drives"] + DashboardCount["Denied Drives"] + DashboardCount["Ignored Drives"]);
+                DashboardCount.Add("Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId));
+                DashboardCount.Add("Not Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId));
+                DashboardCount.Add("Total Availability", DashboardCount["Utilized Interviews"] + DashboardCount["Not Utilized Interviews"]);
                 return DashboardCount;
             }
             catch (ValidationException viewEmployeeDashboardNotVlaid)

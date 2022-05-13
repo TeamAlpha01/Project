@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using IMS.Models;
 
-namespace IMS.Validation
+namespace IMS.Validations
 {
     public class DepartmentValidation
     {

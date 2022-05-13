@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class InterviewManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220513055437_ADDED_TIME_IN_EMPAVIL")]
+    partial class ADDED_TIME_IN_EMPAVIL
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -382,8 +384,8 @@ namespace Source.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("From")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("FromTime")
+                        .HasColumnType("time");
 
                     b.Property<DateTime>("InterviewDate")
                         .HasColumnType("datetime2");
@@ -394,8 +396,8 @@ namespace Source.Migrations
                     b.Property<bool>("IsInterviewScheduled")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("To")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("ToTime")
+                        .HasColumnType("time");
 
                     b.HasKey("EmployeeAvailabilityId");
 

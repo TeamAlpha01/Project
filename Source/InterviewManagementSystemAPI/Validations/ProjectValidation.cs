@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using IMS.Models;
 
-namespace IMS.Validation
+namespace IMS.Validations
 {
     public class ProjectValidation
     {

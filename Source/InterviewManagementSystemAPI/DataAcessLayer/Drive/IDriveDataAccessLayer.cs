@@ -20,7 +20,7 @@ namespace IMS.DataAccessLayer
         public List<EmployeeAvailability> ViewAvailableMembersForDrive(int driveId);
         public bool ScheduleInterview(int employeeAvailabilityId);
         public bool CancelInterview(int employeeAvailabilityId);
-        public int GetResponseCountByStatus(int responseType);
-        public int GetResponseUtilizationByStatus(bool isUtilized);
+        public int GetResponseCountByStatus(int responseType,int employeeId);
+        public int GetResponseUtilizationByStatus(bool isUtilized,int employeeId);
     }
 }

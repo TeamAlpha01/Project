@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using IMS.Models;
 using System.ComponentModel.DataAnnotations;
-using IMS.Validation;
+using IMS.Validations;
 
 namespace IMS.DataAccessLayer
 {

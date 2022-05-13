@@ -208,7 +208,7 @@ public class DriveController : ControllerBase
     [HttpPatch]
     public IActionResult UpdateResponse(EmployeeDriveResponse response)
     {
-         if (response == null)
+        if (response == null)
             return BadRequest("Response cannnot be null");
         try
         {
@@ -248,6 +248,8 @@ public class DriveController : ControllerBase
     [HttpGet]
     public IActionResult ViewTodaysInterview(int employeeId)
     {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employee Id");
         try
         {
             return Ok(_driveService.ViewTodayInterviews(employeeId));
@@ -261,6 +263,8 @@ public class DriveController : ControllerBase
     [HttpGet]
     public IActionResult ViewScheduledInterview(int employeeId)
     {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employee Id");
         try
         {
             return Ok(_driveService.ViewScheduledInterview(employeeId));
@@ -274,6 +278,8 @@ public class DriveController : ControllerBase
     [HttpGet]
     public IActionResult ViewUpcomingInterview(int employeeId)
     {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employee Id");
         try
         {
             return Ok(_driveService.ViewUpcomingInterview(employeeId));
@@ -287,6 +293,8 @@ public class DriveController : ControllerBase
     [HttpGet]
     public IActionResult ViewAllInterview(int employeeId)
     {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employee Id");
         try
         {
             return Ok(_driveService.ViewAllInterview(employeeId));
