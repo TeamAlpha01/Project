@@ -167,6 +167,11 @@ namespace IMS.Services
                 _logger.LogInformation($"Pool service : AddPoolMembers(int employeeId,int poolId) : {exception.Message}");
                 return false;
             }
+            catch (ValidationException employeeNotFound)
+            {
+                _logger.LogInformation($"Pool service : AddPoolMembers(int employeeId,int poolId): {employeeNotFound.Message}");
+                throw employeeNotFound;
+            }
 
 
             catch (Exception exception)

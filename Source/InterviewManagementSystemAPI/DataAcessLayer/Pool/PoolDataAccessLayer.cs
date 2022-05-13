@@ -208,6 +208,10 @@ namespace IMS.DataAccessLayer
 
             try
             {
+                var employee=_db.Employees.Find(poolMembers.EmployeeId);
+                var pool =_db.Employees.Find(poolMembers.PoolId);
+                if(employee==null || pool==null)
+                    throw new ValidationException("Employee or pool not found with the given Employee Id and Pool Id");
                 _db.PoolMembers.Add(poolMembers);
                 _db.SaveChanges();
                 return true;
@@ -221,6 +225,10 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers): {exception.Message}");
                 return false;
+            }
+            catch (ValidationException employeeNotFound)
+            {
+                throw employeeNotFound;
             }
 
             catch (Exception exception)

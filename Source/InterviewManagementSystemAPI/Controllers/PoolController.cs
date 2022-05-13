@@ -62,7 +62,8 @@ public class PoolController : ControllerBase
     [HttpPost]
     public IActionResult RemovePool(int poolId)
     {
-        PoolValidation.IsRemovePoolValid(poolId);
+     if(poolId<=0)
+        BadRequest("Pool Id cannot be negative or null");
 
       
         try
@@ -152,15 +153,16 @@ public class PoolController : ControllerBase
     [HttpPost]
     public IActionResult AddPoolMembers(int employeeId,int poolId)
     {
-        PoolValidation.IsAddPoolMembersValid(employeeId,poolId);
+        if(employeeId<=0 && poolId<=0)
+            BadRequest("Employee Id and Pool Id cannot be negative or null");
         try
         {
-            return _poolService.AddPoolMembers(employeeId,poolId) ? Ok("Pool Added Successfully") : Problem("Sorry internal error occured");
+            return _poolService.AddPoolMembers(employeeId,poolId) ? Ok("Pool Member Added Successfully") : Problem("Sorry internal error occured");
         }
-        catch (ValidationException poolMemberNotException)
+        catch (ValidationException employeeNotException)
         {
-            _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {poolMemberNotException.Message}");
-            return BadRequest(poolMemberNotException.Message);
+            _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {employeeNotException.Message}");
+            return BadRequest(employeeNotException.Message);
         }
         catch (Exception exception)
         {
@@ -179,7 +181,8 @@ public class PoolController : ControllerBase
     [HttpPost]
     public IActionResult RemovePoolMembers(int poolMemberId)
     {
-         PoolValidation.IsRemovePoolMembersValid(poolMemberId);
+        if(poolMemberId<=0)
+            BadRequest("PoolMember Id cannot be negative or null");
         try
         {
             return _poolService.RemovePoolMembers(poolMemberId) ? Ok("Pool Member removed  Successfully") : Problem("Sorry internal error occured");
