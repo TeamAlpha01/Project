@@ -18,13 +18,13 @@ namespace IMS.DataAccessLayer
         public void CloseDriveResponse()
         {
             var drives = _db.Drives.ToList();
-            foreach (var d in drives)
+            foreach (var drive in drives)
             {
-                var da = (DateTime)d.AddedOn;
-                if (DateTime.Now >= da.AddDays(5))
+                DateTime addedDate = (DateTime)drive.AddedOn;
+                if (DateTime.Now >= addedDate.AddDays(5))
                 {
-                    d.IsScheduled = true;
-                    _db.Drives.Update(d);
+                    drive.IsScheduled = true;
+                    _db.Drives.Update(drive);
                     _db.SaveChanges();
                 }
             }
@@ -33,7 +33,7 @@ namespace IMS.DataAccessLayer
         public bool AddDriveToDatabase(Drive drive)
         {
             DriveValidation.IsdriveValid(drive);
-            if (_db.Drives.Any(d => d.Name == drive.Name && d.PoolId == drive.PoolId)) throw new ValidationException("Drive Name already exists under this pool");
+            if (_db.Drives.Any(d => d.Name == drive.Name && d.PoolId == drive.PoolId && d.IsCancelled==false && d.ToDate>=drive.FromDate)) throw new ValidationException("Drive Name already exists under this pool");
             try
             {
                 _db.Drives.Add(drive);

@@ -16,7 +16,11 @@ namespace IMS.Validations
 
             if (drive.FromDate.Date < System.DateTime.Now.Date.AddDays(7)) throw new ValidationException($"From date must be greater than {System.DateTime.Now.Date.AddDays(6).ToShortDateString()}");
 
+            if (drive.FromDate.Date >= System.DateTime.Now.Date.AddMonths(1)) throw new ValidationException($"From date must be smaller than {System.DateTime.Now.Date.AddMonths(1).ToShortDateString()}");
+            
             if (drive.ToDate.Date < drive.FromDate.Date) throw new ValidationException("To date must be greater than from date");
+
+            if ((drive.ToDate.Date - drive.FromDate.Date ).Days > 7 ) throw new ValidationException($"The Drive period must be within Seven(7) Days");
 
             //Setting Default values
             drive.IsScheduled = false;
