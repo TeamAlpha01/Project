@@ -102,29 +102,29 @@ namespace IMS.DataAccessLayer
         /// Return list of all employees to the service layer or
         /// Throws an exception when exception is occured in this method.
         /// </returns>
-        public List<Employee> GetEmployeesFromDatabase()
-        {
-             try
-            {     
-                _logger.LogInformation("logger DAL");
-                return _db.Employees.ToList();           
-            }
-            catch (DbUpdateException exception)
-            {
-                _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
-                throw new DbUpdateException();
-            }
-            catch (OperationCanceledException exception)
-            {
-                _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
-                throw new OperationCanceledException();
-            }
-            catch (Exception exception)
-            {
-                _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
-                 throw new Exception();
-            }
-        }
+        // public List<Employee> GetEmployeesFromDatabase()
+        // {
+        //      try
+        //     {     
+        //         _logger.LogInformation("logger DAL");
+        //         return _db.Employees.ToList();           
+        //     }
+        //     catch (DbUpdateException exception)
+        //     {
+        //         _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+        //         throw new DbUpdateException();
+        //     }
+        //     catch (OperationCanceledException exception)
+        //     {
+        //         _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+        //         throw new OperationCanceledException();
+        //     }
+        //     catch (Exception exception)
+        //     {
+        //         _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+        //          throw new Exception();
+        //     }
+        // }
         /// <summary>
         /// This method implements when employee service passes the object to this method,then this method shows the employee details based on parameter(employee id).
         /// </summary>

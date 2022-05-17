@@ -98,19 +98,19 @@ namespace IMS.Service
         /// Returns list of all employees who are in "IsActive==true" or
         /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
         /// </returns>
-        public IEnumerable<Employee> ViewEmployees()
-        {
-            try
-            {
-                IEnumerable<Employee> employees = new List<Employee>();
-                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsActive == true select employee;
-            }
-            catch (Exception exception)
-            {
-                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
-                throw new Exception();
-            }
-        }
+        // public IEnumerable<Employee> ViewEmployees()
+        // {
+        //     try
+        //     {
+        //         IEnumerable<Employee> employees = new List<Employee>();
+        //         return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsActive == true select employee;
+        //     }
+        //     catch (Exception exception)
+        //     {
+        //         _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
+        //         throw new Exception();
+        //     }
+        // }
         /// <summary>
         /// This method implements when EmployeeController passes the request to this method,then this method calls ViewProfile method in DAL.
         /// </summary>
