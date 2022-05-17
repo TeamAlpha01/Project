@@ -17,8 +17,8 @@ namespace IMS.DataAccessLayer
         public DbSet<Project> Projects { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=ASPIREREN009;Database=InterviewManagementSystem;Trusted_Connection=True;");
-            optionsBuilder.UseSqlServer(@"Server=ASPIREREN032;Database=InterviewManagementSystem1;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-8MEB0VH;Database=InterviewManagementSystem;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-8MEB0VH;Database=InterviewManagementSystem1;Trusted_Connection=True;");
         }
 
         //Seeding Data to DB 
