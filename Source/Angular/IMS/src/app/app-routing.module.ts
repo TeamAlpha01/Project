@@ -44,6 +44,8 @@ import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
 import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming-drive.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterPageComponent } from './Shared/register-page/register-page.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
@@ -52,7 +54,7 @@ import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming
 
 const routes: Routes = [
   //interviewer pages
-  { path: '', component: AdminViewRolePageComponent },     //Admin-view-location-page
+  { path: '', component: RegisterPageComponent },     //Admin-view-location-page
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },

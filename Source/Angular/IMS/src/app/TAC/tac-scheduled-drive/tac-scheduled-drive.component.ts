@@ -62,14 +62,12 @@ export class TacScheduledDriveComponent implements OnInit {
       else if (this._dept == '' && item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
       }
-     
       else if (this._dept == '' && this._pool == '' && this._date == '') {
         this.drive.push(item);
       }
-      else if ( this._dept =='' && item.drivePool == this._pool && this._date == '') {
+      else if (this._dept == '' && item.drivePool == this._pool && this._date == '') {
         this.drive.push(item);
       }
-
       else if (item.driveDepartment == this._dept && item.drivePool == this._pool && this._date == '') {
         this.drive.push(item);
       }

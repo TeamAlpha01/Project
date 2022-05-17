@@ -27,5 +27,6 @@ export class RegisterComponent implements OnInit {
       MobileNumber: ['', [Validators.required, Validators.pattern('^[6-9][0-9]{9}$')]],
       Password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$')]],
       ConfirmPassword: ['', [Validators.required, Validators.pattern('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$')]]
-    }}
+    })
+  }
 }

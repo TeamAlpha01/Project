@@ -56,6 +56,7 @@ import { FormsModule } from '@angular/forms';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ViewResponseCardComponent } from './TAC/view-response-card/view-response-card.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -65,7 +66,7 @@ import { ViewResponseCardComponent } from './TAC/view-response-card/view-respons
   declarations: [
     AppComponent,
     AdminHeaderComponent,
-    AdminRoleComponent, 
+    AdminRoleComponent,
     AdminAdddepartmentComponent,
     AdminAddlocationComponent,
     AdminAddprojectComponent,
@@ -106,13 +107,16 @@ import { ViewResponseCardComponent } from './TAC/view-response-card/view-respons
     CreateInviteComponent,
     AdminViewRequestsPageComponent,
     InterviewerAcceptInvitePageComponent,
-    TacUpcomingDriveComponent,   
-    InterviewerCardDetailsComponent, ManageCardsComponent,   
-    PerformanceDashboardComponent, ViewResponseCardComponent,   
-     
+    TacUpcomingDriveComponent,
+    InterviewerCardDetailsComponent, 
+    ManageCardsComponent,
+    PerformanceDashboardComponent, 
+    ViewResponseCardComponent,
+    RegisterComponent,
+
 
   ],
-  
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -120,8 +124,8 @@ import { ViewResponseCardComponent } from './TAC/view-response-card/view-respons
     AppRoutingModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    
-    
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
