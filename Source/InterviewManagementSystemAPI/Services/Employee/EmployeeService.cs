@@ -219,5 +219,12 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
+        // public bool Login(string employeeAceNumber , string password)
+        // {
+        //     try
+        //     {
+        //          return _employeeDataAccessLayer.Login(employeeAceNumber,password? true : false;
+        //     }
+        // }
     }
 }
