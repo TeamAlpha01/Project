@@ -7,12 +7,12 @@ namespace IMS.Controllers;
     
 [ApiController]
 [Route("[controller]/[action]")]
-public class DeparmentController : ControllerBase
+public class DepartmentController : ControllerBase
 {
     private readonly ILogger _logger;
      IDepartmentService departmentService;
 
-    public DeparmentController(ILogger<DeparmentController> logger)
+    public DepartmentController(ILogger<DeparmentController> logger)
     {
         _logger = logger;
          departmentService = DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
@@ -25,7 +25,7 @@ public class DeparmentController : ControllerBase
 /// <param name="departmentName">String</param>
 /// <returns>Return Department Added Successfully when the department is added in the database otherwise return Sorry internal error occured.It returns validation exeption or Exception when exception thrown in service .</returns>
     [HttpPost]
-    public IActionResult CreateNewDeparment(string departmentName)
+    public IActionResult CreateNewDepartment(string departmentName)
     {
         if (departmentName == null)
             return BadRequest("Department name is required");
