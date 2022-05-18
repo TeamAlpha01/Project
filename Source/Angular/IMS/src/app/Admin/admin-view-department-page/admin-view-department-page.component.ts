@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-admin-viewDepartment-page',
@@ -12,16 +13,14 @@ export class AdminviewDepartmentPageComponent implements OnInit {
   page: number = 1;
   title ="View Department";
  
-  constructor(private http: HttpClient) { }
+ 
+  constructor(private http: HttpClient, private connection:ConnectionService) { }
 
   ngOnInit(): void {
-    this.http
-      .get<any>('https://localhost:7072/Deparment/ViewDepartments')
-      .subscribe((data) => {
-        this.data = data;
-        console.log(this.data)
-        this.totalLength = data.length;
-      });
+    this.connection.GetDepartment().subscribe((data: any) => {
+      this.data = data;
+      console.log(this.data)
+    })
   }
 
 }
