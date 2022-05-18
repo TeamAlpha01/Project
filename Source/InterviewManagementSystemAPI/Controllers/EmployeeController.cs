@@ -82,19 +82,19 @@ public class EmployeeController : ControllerBase
     /// Return list of all employees or
     /// Return BadRequest when exception occured in the EmployeeService layer.
     /// </returns>
-    // [HttpGet]
-    // public IActionResult ViewEmployees()
-    // {
-    //     try
-    //     {
-    //         return Ok(employeeService.ViewEmployees());
-    //     }
-    //     catch (Exception exception)
-    //     {
-    //         _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
-    //         return BadRequest("Sorry some internal error occured");
-    //     }
-    // }
+    [HttpGet]
+    public IActionResult ViewEmployees()
+    {
+        try
+        {
+            return Ok(employeeService.ViewEmployees());
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
+            return BadRequest("Sorry some internal error occured");
+        }
+    }
     /// <summary>
     /// This method implements when you want see your profile,this method calls the ViewProfile method 
     /// in servive layer(EmployeeService)
