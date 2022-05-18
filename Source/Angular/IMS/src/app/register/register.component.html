@@ -79,7 +79,7 @@
                 <input type="text"  id="Name" class="form-control " 
                     aria-describedby="Register-name" placeholder="Name"  (change)="validateName()" required />
 
-                <!-- <small id="Register-Name" class="form-text text-muted"></small> -->
+                <small id="Register-Name" class="form-text text-muted"></small>
                  <span class="text-danger"
                     *ngIf="registerForm.controls['Name'].touched ">*ACE
                     Number is Required</span>
@@ -89,9 +89,9 @@
                 <label for="Name">Ace Number</label>
                 <input type="text" formControlName="AceNumber" class="form-control" id="RegisterAceNumber"
                     aria-describedby="Register-AceNumber" placeholder="ACE Number" required/>
-                <!-- <span class="text-danger"
+                <span class="text-danger"
                     *ngIf="registerForm.controls['AceNumber'].dirty && registerForm.hasError('Required','ACENumber')">*ACE
-                    Number is Required</span> -->
+                    Number is Required</span>
             </div>
            
             <div class="form-group">
@@ -105,9 +105,9 @@
                         <option value="LAMP">LAMP</option>
                     </select>
                     <span *ngIf=""></span>
-                <!-- <span class="text-danger"
+                <span class="text-danger"
                     *ngIf="registerForm.controls['Department'].dirty && registerForm.hasError('Required','Department')">*Department is
-                    Required</span> -->
+                    Required</span>
             </div>
             <div class="form-group">
                 <div class="form-input">
@@ -121,9 +121,9 @@
                     </select>
                 </div>
                 
-                <!-- <span class="text-danger"
+                <span class="text-danger"
                     *ngIf="registerForm.controls['Role'].dirty && registerForm.hasError('Required','Role')">*Role is
-                    Required</span> -->
+                    Required</span>
             </div>
             <div class="form-group">
                 <div class="form-input">
@@ -136,18 +136,18 @@
                         <option value="Internal">Internal</option>
                     </select>
                 </div>
-                <!-- <span class="text-danger"
+                <span class="text-danger"
                     *ngIf="registerForm.controls['Project'].dirty && registerForm.hasError('Required','Project')">*Project is
-                    Required</span> -->
+                    Required</span>
             </div>
             <div class="form-input ">
                 <label class="form-label" for="Email">Your Email</label>
                 <input type="email" id="Email" class="form-control"                 
                     aria-describedby="Register-EmailId" placeholder="EMailId" required/>
                 
-                <!-- <span class="text-danger"
+                <span class="text-danger"
                     *ngIf="registerForm.controls['EMailId'].dirty && registerForm.hasError('Required','EMailId')">*EMailId is
-                    Required</span> -->
+                    Required</span>
                 </div>
             </div>
             <div class="form-group">
@@ -155,9 +155,9 @@
                     <label class="form-label" for="Mobile Number">Mobile Number</label>
                     <input type="text" id="Mobile Number" class="form-control "
                         aria-describedby="Register-MobileNumber" placeholder="MobileNumber" required/>
-                <!-- <span class="text-danger"
+                <span class="text-danger"
                     *ngIf="registerForm.controls['MobileNumber'].dirty && registerForm.hasError('Required','MobileNumber')">*MobileNumber is
-                    Required</span> -->
+                    Required</span>
                 </div>
             </div>
             <div class="form-group">
@@ -165,9 +165,9 @@
                     <label class="form-label" for="Password">Password</label>
                     <input type="password" id="Password" class="form-control  " 
                         aria-describedby="Register-Password" placeholder="Password" required/>
-                <!-- <span class="text-danger"
+                <span class="text-danger"
                     *ngIf="registerForm.controls['Password'].dirty && registerForm.hasError('Required','Password')">*Password is
-                    Required</span> -->
+                    Required</span>
                 </div>
             </div>
             <div class="form-group">
@@ -175,12 +175,12 @@
                     <label class="form-label" for="Confirm Password">Confirm password</label>
                     <input type="password" id="Confirm Password" class="form-control  " 
                         aria-describedby="Register-name" placeholder="Confirm password" required/>
-                <!-- <span class="text-danger"
-                    *ngIf="registerForm.controls['ConfirmPassword'].dirty && registerForm.hasError('Required','ConfirmPassword')">*Passwords entered must Match</span> -->
+                <span class="text-danger"
+                    *ngIf="registerForm.controls['ConfirmPassword'].dirty && registerForm.hasError('Required','ConfirmPassword')">*Passwords entered must Match</span>
                 </div>
             </div>
             <div class="d-flex justify-content-center ">
-                <button type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 ">Register</button>
+                <button type="submit" class="btn btn-primary">Register</button>
             </div>
             <p class="text-center text-muted mt-5 mb-0"> already have an account?
                 <a href="Login.html"><button type="button" class="btn btn-outline-danger">Login</button></a>
