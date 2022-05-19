@@ -14,13 +14,30 @@ export class ConnectionService {
   baseURL = 'https://localhost:7072/'
   constructor(private http: HttpClient) { }
 
-  GetDepartment() {
+  //GET methods
+  GetDepartments() {
     return this.http.get<any>(this.baseURL+'Deparment/ViewDepartments');
   }
+  
+  GetEmployeeProfile(){
+    return this.http.get<any>('https://localhost:7072/Employee/ViewProfile?employeeId=1')
+   }
 
-  GetRole(): any {
+  GetLocations(): any {
+    return this.http.get<any>(this.baseURL+'Location/ViewLocations');
+  }
+
+  GetProjects(): any {
+    return this.http.get<any>(this.baseURL+'Project/ViewProjects');
+  }
+
+  GetRoles(): any {
     return this.http.get<any>(this.baseURL+'Role/ViewRoles');
   }
+
+
+
+
 
   CreateRole(data: any) {
     console.log(data)
@@ -31,9 +48,6 @@ export class ConnectionService {
     return this.http.post('https://localhost:7072/Role/CreateNewRole', data)
   }
 
-  GetEmployeeProfile(){
-   return this.http.get<any>('https://localhost:7072/Employee/ViewProfile?employeeId=1')
-    
-  }
+  
 }
 

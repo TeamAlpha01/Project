@@ -18,7 +18,7 @@ export class AdminViewRolePageComponent implements OnInit {
   constructor(private http: HttpClient, private connection: ConnectionService) { }
 
   ngOnInit() {
-    this.connection.GetRole().subscribe((data: any) => {
+    this.connection.GetRoles().subscribe((data: any) => {
       this.role = data;
     })
   }

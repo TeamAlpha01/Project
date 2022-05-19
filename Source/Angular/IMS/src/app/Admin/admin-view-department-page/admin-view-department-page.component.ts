@@ -17,7 +17,7 @@ export class AdminviewDepartmentPageComponent implements OnInit {
   constructor(private http: HttpClient, private connection:ConnectionService) { }
 
   ngOnInit(): void {
-    this.connection.GetDepartment().subscribe((data: any) => {
+    this.connection.GetDepartments().subscribe((data: any) => {
       this.data = data;
       console.log(this.data)
     })

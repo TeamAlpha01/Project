@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-admin-addproject-page',
@@ -12,15 +13,13 @@ export class AdminviewProjectPageComponent implements OnInit {
   page: number = 1;
   title = "View Project";
  
-  constructor(private http: HttpClient) { }
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
-    this.http
-      .get<any>('https://localhost:7072/Project/ViewProjects')
-      .subscribe((data) => {
-        this.data = data;
-        this.totalLength = data.length;
-      });
+    this.connection.GetLocations().subscribe((data: any) => {
+      this.data = data;
+      console.log(this.data)
+    })
   }
 
 }

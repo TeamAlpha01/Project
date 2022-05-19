@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-admin-AddLocation-page',
@@ -12,15 +13,13 @@ export class AdminviewLocationPageComponent implements OnInit {
   page: number = 1;
   title ="View Location";
  
-  constructor(private http: HttpClient) { }
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
-    this.http
-      .get<any>('https://localhost:7072/Location/ViewLocations')
-      .subscribe((data) => {
-        this.data = data;
-        this.totalLength = data.length;
-      });
+    this.connection.GetLocations().subscribe((data: any) => {
+      this.data = data;
+      console.log(this.data)
+    })
   }
 
 }
