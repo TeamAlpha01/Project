@@ -148,12 +148,27 @@ namespace IMS.DataAccessLayer
                 throw isEmployeeIdValidException;
             }
         }
-        // public bool Login(string employeeAceNumber, string password)
-        // {
-        //     try
-        //     {
-        //         _db.Employees.Where(x => x.EmployeeAceNumber == employeeAceNumber && x.Password == password);
-        //     }
-        // }
+        public bool CheckLoginCrendentials(string employeeAceNumber, string password)
+        {
+
+            try
+            {
+                bool checkLogin = _db.Employees.Any(x => x.EmployeeAceNumber == employeeAceNumber && x.Password == password);
+                if (checkLogin)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Exception on Employee DAL : CheckLoginCrendentials(string employeeAceNumber, string password) : {exception.Message}");
+                return false;
+            }
+        }
     }
 }

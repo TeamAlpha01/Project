@@ -188,11 +188,19 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
-    // public IActionResult Login(string employeeAceNumber , string password)
-    // {
-    //     try
-    //     {
-    //         return employeeService.Login(employeeAceNumber,password) ? Ok("Loggin Successfully") : Problem("Invalid ACE Number or Password");
-    //     }
-    // }
+    [HttpGet]
+    public IActionResult Login(string employeeAceNumber, string password)
+    {
+
+        try
+        {
+            return employeeService.Login(employeeAceNumber, password) ? Ok("Login Successfully") : Problem("Invalid ACE Number or Password");
+
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Employee Service : Login throwed an exception : {exception}");
+            return Problem("Sorry some internal error occured");
+        }
+    }
 }

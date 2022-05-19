@@ -5,16 +5,22 @@ namespace IMS.DataAccessLayer
 {
     public class InterviewManagementSystemDbContext : DbContext
     {
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Drive> Drives { get; set; }
-        public DbSet<EmployeeDriveResponse> EmployeeDriveResponse { get; set; }
-        public DbSet<EmployeeAvailability> EmployeeAvailability { get; set; }
-        public DbSet<Location> Locations { get; set; }
-        public DbSet<Pool> Pools { get; set; }
-        public DbSet<PoolMembers> PoolMembers { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Project> Projects { get; set; }
+
+        // public InterviewManagementSystemDbContext(DbContextOptions<InterviewManagementSystemDbContext> options) : base(options)
+        // {
+
+        // }
+
+        public DbSet<Role>? Roles { get; set; }
+        public DbSet<Employee>? Employees { get; set; }
+        public DbSet<Drive>? Drives { get; set; }
+        public DbSet<EmployeeDriveResponse>? EmployeeDriveResponse { get; set; }
+        public DbSet<EmployeeAvailability>? EmployeeAvailability { get; set; }
+        public DbSet<Location>? Locations { get; set; }
+        public DbSet<Pool>? Pools { get; set; }
+        public DbSet<PoolMembers>? PoolMembers { get; set; }
+        public DbSet<Department>? Departments { get; set; }
+        public DbSet<Project>? Projects { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-8MEB0VH;Database=InterviewManagementSystem;Trusted_Connection=True;");
@@ -75,31 +81,31 @@ namespace IMS.DataAccessLayer
                       );
             modelBuilder.Entity<Pool>()
                     .HasData(
-                      new Pool { PoolId=1,PoolName="Fresher .NET",DepartmentId=1,IsActive=true},
-                      new Pool { PoolId=2,PoolName="SSE .NET",DepartmentId=1,IsActive=true},
-                      new Pool { PoolId=3,PoolName="Fresher JAVA",DepartmentId=2,IsActive=true},
-                      new Pool { PoolId=4,PoolName="SSE JAVA",DepartmentId=2,IsActive=true},
-                      new Pool { PoolId=5,PoolName="Fresher ORACLE",DepartmentId=3,IsActive=true},                 
-                      new Pool { PoolId=6,PoolName="SSE ORACLE",DepartmentId=3,IsActive=true}                 
+                      new Pool { PoolId = 1, PoolName = "Fresher .NET", DepartmentId = 1, IsActive = true },
+                      new Pool { PoolId = 2, PoolName = "SSE .NET", DepartmentId = 1, IsActive = true },
+                      new Pool { PoolId = 3, PoolName = "Fresher JAVA", DepartmentId = 2, IsActive = true },
+                      new Pool { PoolId = 4, PoolName = "SSE JAVA", DepartmentId = 2, IsActive = true },
+                      new Pool { PoolId = 5, PoolName = "Fresher ORACLE", DepartmentId = 3, IsActive = true },
+                      new Pool { PoolId = 6, PoolName = "SSE ORACLE", DepartmentId = 3, IsActive = true }
                       );
             modelBuilder.Entity<PoolMembers>()
                     .HasData(
-                      new PoolMembers { PoolMembersId=1,PoolId=1,EmployeeId=1,IsActive=true},
-                      new PoolMembers { PoolMembersId=2,PoolId=1,EmployeeId=2,IsActive=true},
-                      new PoolMembers { PoolMembersId=3,PoolId=2,EmployeeId=2,IsActive=true},
-                      new PoolMembers { PoolMembersId=4,PoolId=2,EmployeeId=3,IsActive=true},
+                      new PoolMembers { PoolMembersId = 1, PoolId = 1, EmployeeId = 1, IsActive = true },
+                      new PoolMembers { PoolMembersId = 2, PoolId = 1, EmployeeId = 2, IsActive = true },
+                      new PoolMembers { PoolMembersId = 3, PoolId = 2, EmployeeId = 2, IsActive = true },
+                      new PoolMembers { PoolMembersId = 4, PoolId = 2, EmployeeId = 3, IsActive = true },
 
-                      new PoolMembers { PoolMembersId=5,PoolId=3,EmployeeId=4,IsActive=true},
-                      new PoolMembers { PoolMembersId=6,PoolId=3,EmployeeId=5,IsActive=true},
-                      new PoolMembers { PoolMembersId=7,PoolId=4,EmployeeId=5,IsActive=true},
-                      new PoolMembers { PoolMembersId=8,PoolId=4,EmployeeId=6,IsActive=true},
+                      new PoolMembers { PoolMembersId = 5, PoolId = 3, EmployeeId = 4, IsActive = true },
+                      new PoolMembers { PoolMembersId = 6, PoolId = 3, EmployeeId = 5, IsActive = true },
+                      new PoolMembers { PoolMembersId = 7, PoolId = 4, EmployeeId = 5, IsActive = true },
+                      new PoolMembers { PoolMembersId = 8, PoolId = 4, EmployeeId = 6, IsActive = true },
 
-                      new PoolMembers { PoolMembersId=9,PoolId=5,EmployeeId=7,IsActive=true},
-                      new PoolMembers { PoolMembersId=10,PoolId=5,EmployeeId=8,IsActive=true},
-                      new PoolMembers { PoolMembersId=11,PoolId=6,EmployeeId=8,IsActive=true},
-                      new PoolMembers { PoolMembersId=12,PoolId=6,EmployeeId=9,IsActive=true}
+                      new PoolMembers { PoolMembersId = 9, PoolId = 5, EmployeeId = 7, IsActive = true },
+                      new PoolMembers { PoolMembersId = 10, PoolId = 5, EmployeeId = 8, IsActive = true },
+                      new PoolMembers { PoolMembersId = 11, PoolId = 6, EmployeeId = 8, IsActive = true },
+                      new PoolMembers { PoolMembersId = 12, PoolId = 6, EmployeeId = 9, IsActive = true }
                       );
-            
+
         }
     }
 }

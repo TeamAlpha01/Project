@@ -12,7 +12,7 @@ public class DepartmentController : ControllerBase
     private readonly ILogger _logger;
      IDepartmentService departmentService;
 
-    public DepartmentController(ILogger<DeparmentController> logger)
+    public DepartmentController(ILogger<DepartmentController> logger)
     {
         _logger = logger;
          departmentService = DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);

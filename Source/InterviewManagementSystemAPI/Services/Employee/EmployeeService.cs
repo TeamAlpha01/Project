@@ -219,12 +219,18 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
-        // public bool Login(string employeeAceNumber , string password)
-        // {
-        //     try
-        //     {
-        //          return _employeeDataAccessLayer.Login(employeeAceNumber,password? true : false;
-        //     }
-        // }
+        public bool Login(string employeeAceNumber, string password)
+        {
+            try
+            {
+                return _employeeDataAccessLayer.CheckLoginCrendentials(employeeAceNumber, password) ? true : false;
+
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
+                throw exception;
+            }
+        }
     }
 }
