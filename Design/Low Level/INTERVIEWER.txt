@@ -13,15 +13,15 @@ entryspacing 1.1
 Interviewer->Presentation Layer: Login with user Credentials & Land in Home page
 note left of Presentation Layer:Home page  display Today interview,Scheduled Interview and Upcoming Interview cards.
 Interviewer->Presentation Layer:Make a request to view Today Interview
-Presentation Layer ->Controller:"ViewTodayInterview  Request"- Sent to the Drive Controller
+Presentation Layer ->Controller:"ViewTodayInterview  Request"- Sent to the call<ViewTodaysInterview()>
 Controller ->Controller:Internal Exception
 Controller -->Presentation Layer:Return problem : Sorry internal error occured
-Controller ->Service Layer:"ViewTodayInterview Request"- Sent to Drive service layer.
+Controller ->Service Layer:"ViewTodayInterview Request"- Sent to call<ViewTodayInterviews()>.
 Service layer
 Service Layer->Service Layer:Internal Exception\n
 Controller<--Service Layer:It Throw Exception
 Presentation Layer<--Controller:Return Problem: Sorry Internal error occured
-Service Layer ->Data Access Layer:"ViewTodayInterview Request"- Sent to the Drive Data Access Layer.
+Service Layer ->Data Access Layer:"ViewTodayInterview Request"- Sent to the call<ViewInterviewsByStatus()>.
 Data Access Layer->Data Access Layer:Internal Exception
 Service Layer<--Data Access Layer:It throw Exception
 Controller<--Service Layer:It throw Exception
@@ -31,19 +31,19 @@ Data Access Layer  -->Service Layer:It return the required field to the drive se
 Service Layer -->Controller:It filters day and status and return the Required field to the controller.
 Controller -->Presentation Layer:It return  Today interview List.
 Interviewer->Presentation Layer:Make a request to Cancel Today Interview availability.
-Presentation Layer ->Controller:"Cancel interview availability Request"- Sent to the Drive Controller
+Presentation Layer ->Controller:"Cancel interview availability Request"- Sent to the call<CancelInterview()>.
 
 
 
 Controller->Controller:Id validation
 Presentation Layer<--Controller:Return Bad request: provide proper driveId, employeeId and responseType.
-Controller->Service Layer:"Cancel interview availability Request"- Sent to Drive service layer if the validation is "True"
+Controller->Service Layer:"Cancel interview availability Request"- Sent to call<CancelInterview()> if the validation is "True"
 Service Layer->Validation Layer:EmployeeId and reason validation
 note over Validation Layer: This Layer validate the emplyee id,respone  and the drive id
 Service Layer<--Validation Layer:Throw Exception
 Controller<--Service Layer:Throw Exception
 Presentation Layer<--Controller:Return Bad request: provide proper driveId, employeeId and responseType.
-Service Layer->Data Access Layer:"Cancel interview availability Request"- Sent to Drive Access layer.
+Service Layer->Data Access Layer:"Cancel interview availability Request"- Sent to call<CancelInterview()>.
 
 Data Access Layer->Data Access Layer:Null Validation\n
 Service Layer<--Data Access Layer:Throw Exception
@@ -68,13 +68,13 @@ par View Upcoming interview Request
 end
 
 Interviewer->Presentation Layer:Make a request to Interviewer Profile
-Presentation Layer->Controller:"View profile" request sent to employee controller
-Controller->Service Layer:"View profile" request sent to Employeee Service
+Presentation Layer->Controller:"View profile" request sent to call<CancelInterview()>.
+Controller->Service Layer:"View profile" request sent to call<CancelInterview()>.
 Service Layer->Validation Layer:This layer validate Employee id
 note over Validation Layer:This Layer validate  the employeeid 
 Service Layer<--Validation Layer:If validation Fails it throw exception
 Controller<--Service Layer:It throw Validation Exception
-Service Layer->Data Access Layer:if validation is true then the request pass to the Employee data access layer 
+Service Layer->Data Access Layer:if validation is true then the request pass to the Call<CancelInterview()>.
 Data Access Layer->Data Access Layer:internal Exception
 Service Layer<--Data Access Layer:It throw Exception
 Presentation Layer<--Controller:Return problem:sorry Internal error Occured
@@ -96,31 +96,31 @@ Controller<--Service Layer:info
 Presentation Layer<--Controller:info
 Interviewer<--Presentation Layer:info
 Interviewer->Presentation Layer:Make a requset to response for the drive
-Presentation Layer->Controller:"Add response request" sent to Drive controller
+Presentation Layer->Controller:"Add response request" sent to Call< AddResponse()>.
 Controller->Controller:Null validation
 Presentation Layer<-Controller:Return bad request: Response cannot be null
-Controller->Service Layer:"Add response" request sent to drive service if the validation is true 
+Controller->Service Layer:"Add response" request sent to Call<AddResponse()> if the validation is true 
 Service Layer->Validation Layer:Response validation
 note over Validation Layer:This Layer validate the Respone
 Service Layer<--Validation Layer:It throw exception
 Controller<--Service Layer:It throw exception 
 Presentation Layer<--Controller:Return Bad request: Response cannot be null
-Service Layer->Data Access Layer:"Add response" request sent to drive data access layer if the validation is true 
+Service Layer->Data Access Layer:"Add response" request sent to drive Call<AddResponseToDatabase()> if the validation is true 
 Data Access Layer->Database:It interact with database and add the response
 Service Layer<--Data Access Layer:Return True
 Controller<--Service Layer:Return True
 Presentation Layer<--Controller:Return Ok : Response added Successfully
 Interviewer->Presentation Layer:Make a request to view Employee dashboard through navigation bar
-Presentation Layer->Controller:"View Dashboard" request sent to drive controller
+Presentation Layer->Controller:"View Dashboard" request sent to Call< ViewEmployeeDashboard()>.
 Controller->Controller:Null validation
 Presentation Layer<-Controller:Return bad request: Provide proper employee id
-Controller->Service Layer:"View Dashboard" request sent to drive Service if the validation is true
+Controller->Service Layer:"View Dashboard" request sent to Call< ViewEmployeeDashboard()> if the validation is true
 Service Layer->Validation Layer:EmployeeId validation
 note over Validation Layer:This Layer validate the EmployeeId
 Service Layer<-Validation Layer:It throw exception if the validation is false
 Controller<-Service Layer:it throw the exception
 Presentation Layer<-Controller:Return Bad request:EmployeeId cannot be null
-Service Layer->Data Access Layer:"View Dashboard" request sent to drive data access layer if the validation is true
+Service Layer->Data Access Layer:"View Dashboard" request sent to Call<GetResponseCountByStatus()>and<GetResponseUtilizationByStatus()> if the validation is true
 Data Access Layer->Database:It interact with  database and fetch the required to display in the presentation layer.
 Service Layer<-Data Access Layer:It return the count for dashboard
 Controller<-Service Layer:it return count for dashboard
