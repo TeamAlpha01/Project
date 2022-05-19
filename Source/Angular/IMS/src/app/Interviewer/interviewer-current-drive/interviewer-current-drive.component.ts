@@ -80,7 +80,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   {
     departmentId: '1',
     poolName: 'Fresher 3'
-  }]
+  },]
 
 
 

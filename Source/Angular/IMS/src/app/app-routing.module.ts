@@ -54,7 +54,7 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
 
 const routes: Routes = [
   //interviewer pages
-  { path: '', component: AdminviewDepartmentPageComponent },     //Admin-view-location-page
+  { path: '', component: InterviewerCurrentDriveComponent },     //Admin-view-location-page
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
