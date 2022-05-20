@@ -5,22 +5,25 @@ namespace IMS.DataAccessLayer
 {
     public class InterviewManagementSystemDbContext : DbContext
     {
+        public InterviewManagementSystemDbContext()
+        {
+        }
 
-        // public InterviewManagementSystemDbContext(DbContextOptions<InterviewManagementSystemDbContext> options) : base(options)
-        // {
+        public InterviewManagementSystemDbContext(DbContextOptions<InterviewManagementSystemDbContext> options) : base(options)
+        {
 
-        // }
+        }
 
-        public DbSet<Role>? Roles { get; set; }
-        public DbSet<Employee>? Employees { get; set; }
-        public DbSet<Drive>? Drives { get; set; }
-        public DbSet<EmployeeDriveResponse>? EmployeeDriveResponse { get; set; }
-        public DbSet<EmployeeAvailability>? EmployeeAvailability { get; set; }
-        public DbSet<Location>? Locations { get; set; }
-        public DbSet<Pool>? Pools { get; set; }
-        public DbSet<PoolMembers>? PoolMembers { get; set; }
-        public DbSet<Department>? Departments { get; set; }
-        public DbSet<Project>? Projects { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Drive> Drives { get; set; }
+        public DbSet<EmployeeDriveResponse> EmployeeDriveResponse { get; set; }
+        public DbSet<EmployeeAvailability> EmployeeAvailability { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Pool> Pools { get; set; }
+        public DbSet<PoolMembers> PoolMembers { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Project> Projects { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-8MEB0VH;Database=InterviewManagementSystem;Trusted_Connection=True;");
