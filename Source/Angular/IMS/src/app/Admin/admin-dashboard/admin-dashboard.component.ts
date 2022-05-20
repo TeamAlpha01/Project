@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
+  data: any;
+  totalLength: any;
+  page: number = 1;
+  // title ="Dashboard";
+  
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
+    this.connection.GetEmployeeProfile().subscribe((data: any) => {
+      this.data = data;
+      console.log(this.data)
+    })
   }
 
 }
