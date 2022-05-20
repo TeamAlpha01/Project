@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/Model/Role';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { data } from 'jquery';
+// import { data } from 'jquery';
 
 // import { url } from 'inspector';
 
