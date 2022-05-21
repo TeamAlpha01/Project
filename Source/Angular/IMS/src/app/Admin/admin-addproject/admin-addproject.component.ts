@@ -20,6 +20,7 @@ export class AdminAddprojectComponent implements OnInit {
    
  }
   constructor(private connection:ConnectionService, private http: HttpClient) { }
+  
   addProject(){
     const headers={'constant-type':'application/json'}
     console.log(this.project)

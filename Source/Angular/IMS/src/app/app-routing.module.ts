@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router'; 
 import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
@@ -54,7 +54,7 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
 
 const routes: Routes = [
   //interviewer pages
-  { path: '', component: InterviewerCurrentDriveComponent },     //Admin-view-location-page
+  { path: 'interviewer-current-drive', component: InterviewerCurrentDriveComponent },     //Admin-view-location-page
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
@@ -70,7 +70,7 @@ const routes: Routes = [
   // { path: '', component: PerformanceDashboardComponent },                        //Admin-addrole-page
   { path: 'Admin-adddepartment ', component: AdminAdddepartmentComponent },          //Admin-adddepartment 
   { path: 'Admin-addlocation ', component: AdminAddlocationComponent },               //Admin-addlocation
-  { path: 'Admin-addproject', component: AdminAddprojectComponent },
+  { path: '', component: AdminAddprojectComponent },   //Admin-addproject
   { path: 'Admin-role', component: AdminRoleComponent },                             //Admin-role
   { path: 'Admin-requests', component: AdminRequestsComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
