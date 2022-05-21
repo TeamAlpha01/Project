@@ -51,7 +51,7 @@ import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.compone
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 
-import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
+import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 import { FormsModule } from '@angular/forms';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
