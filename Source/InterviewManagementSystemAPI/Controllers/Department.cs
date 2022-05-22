@@ -18,12 +18,22 @@ public class DepartmentController : ControllerBase
          departmentService = DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
     }
     
-/// <summary>
-///  This Method Will Implement When Create New Department Request rises-The Department controller passes the  parameter 
-/// to the Department Service.Validating Department Name in this method to pass the parameter to service.
-/// </summary>
-/// <param name="departmentName">String</param>
-/// <returns>Return Department Added Successfully when the department is added in the database otherwise return Sorry internal error occured.It returns validation exeption or Exception when exception thrown in service .</returns>
+    /// <summary>
+    ///  This Method Will Implement When Create New Department Request rises from the Admin.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /CreateNewDepartment
+    ///     {
+    ///        "Department Name": ".net",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="departmentName">String</param>
+    /// <returns>Return Department Added Successfully when the department is added in the database otherwise return Sorry internal error occured.It returns validation exeption or Exception when exception thrown in service .</returns>
     [HttpPost]
     public IActionResult CreateNewDepartment(string departmentName)
     {
@@ -44,12 +54,22 @@ public class DepartmentController : ControllerBase
             return BadRequest(exception.Message);
         }
     }
-/// <summary>
-/// This Method Will Implement When Remove Department Request rises-The Department controller passes the the parameter 
-/// to the Department Service.validating Department Id in this method to pass the parameter to service.
-/// </summary>
-/// <param name="departmentId">int</param>
-/// <returns>Return Department Removed Successfully message when project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
+    /// <summary>
+    /// This Method Will Implement When Remove Department Request rises from the Admin
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /RemoveDepartment
+    ///     {
+    ///        "Department ID": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="departmentId">int</param>
+    /// <returns>Return Department Removed Successfully message when project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
     [HttpPost]
     public IActionResult RemoveDepartment(int departmentId)
     {
@@ -71,9 +91,17 @@ public class DepartmentController : ControllerBase
         }
     }
     /// <summary>
-    /// This Method Will Implement When ViewDepartments Request rises-The Department controller passes the control 
-    /// to the Department Service.
+    /// This Method Will Implement When ViewDepartments Request rises from the Admin
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///     GET /View Department
+    ///     {
+    ///     
+    ///     }
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <returns>Return List of Departments  otherwise it returns  Exception when exception thrown in service.</returns>
     [HttpGet]
     public IActionResult ViewDepartments()

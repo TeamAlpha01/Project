@@ -20,9 +20,19 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Create a New Pool" - Request rises. This method Check the Parameter Validation and
-    /// then Control shifts to Pool Service Layer
+    /// This method will be implemented when "Create a New Pool" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /CreateNewPool
+    ///     {
+    ///        "Location Pool": "Freshers2022",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="departmentId">int</param>
     /// <param name="poolName">string</param>
     /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
@@ -53,9 +63,19 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Remove a Pool" - Request rises. This method Check the Parameter Validation and
-    /// then Control shifts to Pool Service Layer
+    /// This method will be implemented when "Remove a Pool" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Remove Pool
+    ///     {
+    ///        "PoolId": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="poolId">int</param>
     /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
 
@@ -84,9 +104,20 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Rename a Pool" - Request rises. This method Check the Parameter Validation and
-    /// then Control shifts to Pool Service Layer
+    /// This method will be implemented when "Rename a Pool" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Edit Pool
+    ///     {
+    ///        "Pool ID": "1",
+    ///        "Pool Name" : "Freshers2021",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="poolId">int</param>
     /// <param name="poolName">String</param>
     /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
@@ -115,10 +146,20 @@ public class PoolController : ControllerBase
        
      }
 
-     /// <summary>
-     /// This method will be implemented when "View Pools" - Request rises. This method Check the Parameter Validation and
-     /// then Control shifts to Pool Service Layer
-     /// </summary>
+    /// <summary>
+    /// This method will be implemented when "View Pools" - Request rises.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET / ViewPools
+    ///     {
+    ///      
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
      /// <param name="departmentId">int</param>
      /// <returns>Returns a list of pools</returns>
      /// 
@@ -143,9 +184,20 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Add Pool Members" - Request rises. This method Check the Parameter Validation and
-    /// then Control shifts to Pool Service Layer
+    /// This method will be implemented when "Add Pool Members" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /AddPoolMembers
+    ///     {
+    ///        "Employee Id": "1",
+    ///        "Pool Id" : "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="employeeId">int</param>
     /// <param name="poolId">int</param>
     /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
@@ -172,9 +224,19 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Remove Pool Members" - Request rises. This method Check the Parameter Validation and
-    /// then Control shifts to Pool Service Layer
+    /// This method will be implemented when "Remove Pool Members" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /RemovePoolMembers
+    ///     {
+    ///        "Pool Member Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="poolMemberId">int</param>
     /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
     
@@ -200,9 +262,18 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "View Pool Members" - Request rises. This method Check the Parameter Validation and
-    /// then Control shifts to Pool Service Layer
+    /// This method will be implemented when "View Pool Members" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewPoolMembers
+    ///     {
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="poolId">int</param>
     /// <returns>Returns a list of pool Members</returns>
 

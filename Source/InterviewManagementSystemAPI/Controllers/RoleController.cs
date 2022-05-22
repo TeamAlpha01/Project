@@ -21,9 +21,19 @@ public class RoleController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Add a new Role" - Request rises. This method Check the null Validation and
-    /// then Control shifts to Role Service
+    /// This method will be implemented when "Add a new Role" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /CreateNewRole
+    ///     {
+    ///        "Role Name": "SSE",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="roleName">String</param>
     /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
     [HttpPost]
@@ -48,9 +58,19 @@ public class RoleController : ControllerBase
     }
 
     /// <summary>
-    ///  This method will be implemented when "Remove a new Role" - Request rises. This method Check the null Validation and
-    /// then Control shifts to Role Service
+    ///  This method will be implemented when "Remove a new Role" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Remove Role
+    ///     {
+    ///        "Role ID": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="roleId">int</param>
     /// <returns>>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
     /// 
@@ -77,8 +97,18 @@ public class RoleController : ControllerBase
 
     /// <summary>
     /// This method will be implemented when "View Roles" - Request rises.
-    /// The Control shifts to Role Service
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /ViewRoles
+    ///     {
+    ///       
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
     [HttpGet]
     public IActionResult ViewRoles()

@@ -20,9 +20,19 @@ public class LocationController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Add a new Locatioon" - Request rises. This method Check the null Validation and
-    /// then Control shifts to Location Service. 
+    /// This method will be implemented when "Add a new Locatioon" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /CreateNewLocation
+    ///     {
+    ///        "Location Name": "Chennai",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="locationName">String</param>
     /// <returns> Returns Error Message when Exception occured in Location Service. Succsess Message or Internal Error</returns>
     
@@ -49,9 +59,19 @@ public class LocationController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Remove a Location" - Request rises. This method Check the null Validation and
-    /// then Control shifts to Location Service.
+    /// This method will be implemented when "Remove a Location" - Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /RemoveLocation
+    ///     {
+    ///        "Location Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="locationId">int</param>
     /// <returns>Returns Error Message when Exception occured in Location Service. Succsess Message or Internal Error</returns>
 
@@ -81,6 +101,17 @@ public class LocationController : ControllerBase
     /// <summary>
     /// This method will be implemented when "View all Location" - Request rises
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewLocation
+    ///     {
+    ///        
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <returns>Returns Error Message when Exception occured in Location Service. A list contains All locations or Error Message</returns>
     [HttpGet]
     public IActionResult ViewLocations()

@@ -20,9 +20,26 @@ public class EmployeeController : ControllerBase
     }
 
     /// <summary>
-    /// This method will implements when you create or register new employee, this method calls the CreateNewEmployee method 
-    /// in servive layer(EmployeeService)
+    /// This method will implements when you create or register new employee.
     /// </summary>
+    ///  <remarks>
+    /// Sample request:
+    ///
+    ///     POST /CreateNewEmployee
+    ///     {
+    ///        "employeeId": 0,
+    ///        "employeeAceNumber": "ACE0001",
+    ///        "name": "Prithvi",
+    ///        "departmentId": 1,
+    ///        "roleId": 2,
+    ///        "projectId": 3,
+    ///        "emailId": "Prithvi123@gmail.com",
+    ///        "password": "string@90182",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="employee"></param>
     /// <returns>
     /// Return OK when role is added successfully or
@@ -47,9 +64,19 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// This method will implements if you remove any employee, this method calls the RemoveEmployee method 
-    /// in servive layer(EmployeeService)
+    /// This method will implements if Admin wants to remove any Employee.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     PATCH /RemoveEmployee
+    ///     {
+    ///        "Employee ID": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response>
     /// <param name="employeeId"></param>
     /// <returns>
     /// Return OK when employee is removed successfully or
@@ -75,9 +102,16 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// This method implements when you want to see all the employees list, this method calls the ViewEmployees method 
-    /// in servive layer(EmployeeService)
+    /// This method will be implemented when Admin want to see all the Employees list.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployees
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response>
     /// <returns>
     /// Return list of all employees or
     /// Return BadRequest when exception occured in the EmployeeService layer.
@@ -96,9 +130,17 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// This method implements when you want see your profile,this method calls the ViewProfile method 
-    /// in servive layer(EmployeeService)
+    /// This method implements when you want see your profile of an Employee.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///     GET/ViewProfile
+    ///     {
+    ///        "Employee ID": "1",
+    ///     }
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response>
     /// <param name="employeeId"></param>
     /// <returns>
     /// Return Employee details(profile) or
@@ -118,9 +160,18 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// This method implements when you want to see employees list filtered by department id,
-    /// this method calls the ViewEmployeesByDepartment method in servive layer(EmployeeService)
+    /// This method implements when you want to see employees list filtered by Department id.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployeesByDepartment
+    /// {
+    ///        "Department ID": "1",
+    ///     }
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response>
     /// <param name="departmentId"></param>
     /// <returns>
     /// Return list of employees filtered by department id or
@@ -146,9 +197,18 @@ public class EmployeeController : ControllerBase
 
     }
     /// <summary>
-    /// This method implements when admin want to see their approval status,
-    /// this method calls the ViewEmployeeByApprovalStatus method in servive layer(EmployeeService)
+    /// This method implements when admin want to see their Approval status.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployeesByApprovalStatus
+    /// {
+    ///        "isAdminAccepted": "1",
+    ///     }
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response>
     /// <param name="isAdminAccepted"></param>
     /// <returns>
     /// Return list of employees who are approved or rejected by admin based on isAdminAccepted parameter or
@@ -168,9 +228,16 @@ public class EmployeeController : ControllerBase
         }
     }
     /// <summary>
-    /// This method implements when admin want to see who has sent a request to admin,
-    /// this method calls the ViewEmployeeRequest method in servive layer(EmployeeService)
+    /// This method implements when admin want to see who has sent a request to Admin.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployeeRequest
+    /// 
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response>
     /// <returns>
     /// Return list of employees who has sent a request to admin and doesn't shows a accepted request or 
     /// Return BadRequest when exception occured in the EmployeeService layer.
@@ -188,6 +255,25 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+    /// <summary>
+    /// This method implements when a new user logins
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /Login
+    ///     {
+    ///        "Employee Ace no": "ACE0001",
+    ///        "Password" : "String723y9@gmail.com
+    ///     }
+    /// 
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response>
+    /// <returns>
+    /// Return list of employees who has sent a request to admin and doesn't shows a accepted request or 
+    /// Return BadRequest when exception occured in the EmployeeService layer.
+    /// </returns>
     [HttpGet]
     public IActionResult Login(string employeeAceNumber, string password)
     {

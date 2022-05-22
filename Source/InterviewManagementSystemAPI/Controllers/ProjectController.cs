@@ -16,9 +16,19 @@ namespace project.Controller;
          departmentService = IMS.DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
     }
     /// <summary>
-    /// This Method Will Implement When Create New Department Request rises-The Project controller passes the the parameter 
-    /// to the Department Service.
+    /// This Method Will Implement When Create New Department Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /CreateNewProject
+    ///     {
+    ///        "Project Name": ".NET_IMS",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="departmentId">int</param>
     /// <param name="projectName">String</param>
     /// <returns>Return project added successfully message when the project is added in the database  otherwise  return Sorry internal error occured message .it return  validation exeption or Exception when exception thrown in service.</returns>
@@ -45,9 +55,19 @@ namespace project.Controller;
         }
     }
     /// <summary>
-    /// This Method Will Implement When Remove Project Request rises-The Project controller passes the the parameter 
-    /// to the Department Service.
+    /// This Method Will Implement When Remove Project Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /RemoveProject
+    ///     {
+    ///        "Project ID": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="projectId">int</param>
     /// <returns>Return Project Removed Successfully message when the project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
     [HttpPost]
@@ -72,12 +92,22 @@ namespace project.Controller;
         }
     }
     /// <summary>
-    /// This Method Will Implement When View Projects Request rises-The Project controller passes the the parameter 
-    /// to the Department Service.It validate the department Id .
+    /// This Method Will Implement When View Projects Request rises.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     Get /ViewProjcts
+    ///     {
+    ///        "Department ID": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
     /// <param name="departmentId">int</param>
     /// <returns>Return List of Projects  otherwise it returns  Exception when exception thrown in service .</returns>
-      [HttpGet]
+    [HttpGet]
     public IActionResult ViewProjects()
     {
         
