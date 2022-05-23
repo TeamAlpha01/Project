@@ -2,12 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.HttpLogging;
 using IMS.DataAccessLayer;
 using System.Reflection;
+using IMS.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<InterviewManagementSystemDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));
+// builder.Services.AddDbContext<InterviewManagementSystemDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));
 
 
 builder.Services.AddControllers();
@@ -45,6 +46,7 @@ builder.Services.AddControllersWithViews()
 Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
 
+builder.Services.AddTransient<MailService>();
 
 var app = builder.Build();
 

@@ -26,7 +26,7 @@ namespace IMS.DataAccessLayer
         public DbSet<Project> Projects { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-0EL7H73;Database=InterviewManagementSystem;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database=InterviewManagementSystem;Trusted_Connection=True;");
         }
 
         //Seeding Data to DB 
@@ -108,6 +108,28 @@ namespace IMS.DataAccessLayer
                       new PoolMembers { PoolMembersId = 11, PoolId = 6, EmployeeId = 8, IsActive = true },
                       new PoolMembers { PoolMembersId = 12, PoolId = 6, EmployeeId = 9, IsActive = true }
                       );
+            //  modelBuilder.Entity<Drive>()
+            //         .HasData( 
+            //           new Drive {DriveId = 1, Name = "Freshers", FromDate = " ", ToDate = " ", DepartmentId = 1, PoolId = 1, ModeId = 1, LocationId = 1, IsScheduled = 1, IsCancelled = 0, CancelReason = CancelReason, AddedBy = 1, AddedOn = " ", UpdatedBy = 1, UpdatedOn = " "},
+            //           new Drive {DriveId = 2, Name = "Freshers2022", FromDate = " ", ToDate = " ", DepartmentId = 2, PoolId = 2, ModeId = 2, LocationId = 2, IsScheduled = 0, IsCancelled = 1, CancelReason = "Default Reason", AddedBy = 1, AddedOn = " ", UpdatedBy = 1, UpdatedOn = " "}
+            //           );
+            //  modelBuilder.Entity<EmployeeDriveResponse>()
+            //         .HasData(
+            //           new EmployeeDriveResponse { ResponseId = 1, DriveId = 1, EmployeeId = 1, ResponseType = 1 },
+            //           new EmployeeDriveResponse { ResponseId = 2, DriveId = 2, EmployeeId = 2, ResponseType = 1 },
+            //           new EmployeeDriveResponse { ResponseId = 3, DriveId = 3, EmployeeId = 3, ResponseType = 0 },
+            //           new EmployeeDriveResponse { ResponseId = 4, DriveId = 4, EmployeeId = 4, ResponseType = 1 },
+
+            //           new EmployeeDriveResponse { ResponseId = 5, DriveId = 1, EmployeeId = 5, ResponseType = 0 },
+            //           new EmployeeDriveResponse { ResponseId = 6, DriveId = 2, EmployeeId = 6, ResponseType = 1 },
+            //           new EmployeeDriveResponse { ResponseId = 7, DriveId = 3, EmployeeId = 7, ResponseType = 1 },
+            //           new EmployeeDriveResponse { ResponseId = 8, DriveId = 5, EmployeeId = 4, ResponseType = 1 },
+
+            //           new EmployeeDriveResponse { ResponseId = 9, DriveId = 4, EmployeeId = 5, ResponseType = 1 },
+            //           new EmployeeDriveResponse { ResponseId = 10, DriveId = 5, EmployeeId = 2, ResponseType = 1 },
+            //           new EmployeeDriveResponse { ResponseId = 11, DriveId = 6, EmployeeId = 1, ResponseType = 1 },
+            //           new EmployeeDriveResponse { ResponseId = 12, DriveId = 7, EmployeeId = 3, ResponseType = 0 }
+            //           );
 
         }
     }

@@ -9,17 +9,21 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
 </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0"/>
-		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0"/>
-		<PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1"/>
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0"/>
-		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0"/>
-		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5"/>
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5"/>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5"/>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5"/>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5"/>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5"/>
+		<PackageReference Include="AspNetCore.MailKitMailer" Version="1.2.2" />
+		<PackageReference Include="MailKit" Version="3.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+		<PackageReference Include="MimeKit" Version="3.2.0" />
+		<PackageReference Include="NETCore.MailKit" Version="2.1.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+		<PackageReference Include="Serilog.Sinks.Seq" Version="5.1.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5" />
 	</ItemGroup>
 </Project>
