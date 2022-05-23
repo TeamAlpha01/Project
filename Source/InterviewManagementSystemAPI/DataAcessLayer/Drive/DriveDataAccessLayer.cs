@@ -33,7 +33,7 @@ namespace IMS.DataAccessLayer
         public bool AddDriveToDatabase(Drive drive)
         {
             DriveValidation.IsdriveValid(drive);
-            if (_db.Drives.Any(d => d.Name == drive.Name && d.PoolId == drive.PoolId && d.IsCancelled==false && d.ToDate>=drive.FromDate)) throw new ValidationException("Drive Name already exists under this pool");
+            if (_db.Drives.Any(d => d.Name == drive.Name && d.PoolId == drive.PoolId && d.IsCancelled == false && d.ToDate >= drive.FromDate)) throw new ValidationException("Drive Name already exists under this pool");
             try
             {
                 _db.Drives.Add(drive);
@@ -139,6 +139,41 @@ namespace IMS.DataAccessLayer
             }
         }
 
+        public bool IsResponded(int employeeId, int driveId)
+        {
+            try
+            {
+                return _db.EmployeeDriveResponse.Any(a => a.EmployeeId == employeeId && a.DriveId == driveId);
+            }
+            catch (ValidationException IsRespondedNotValid)
+            {
+                _logger.LogInformation($"ValidationException on Drive DAL :  IsResponded(int employeeId, int driveId) : {IsRespondedNotValid.Message} : {IsRespondedNotValid.StackTrace}");
+                throw IsRespondedNotValid;
+            }
+            catch (Exception IsRespondedException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : IsResponded(int employeeId, int driveId) : {IsRespondedException.Message} : {IsRespondedException.StackTrace}");
+                return false;
+            }
+        }
+
+        public List<int> GetEmployeePoolIdsFromDatabase(int employeeId)
+        {
+            try
+            {
+                return (from poolMember in _db.PoolMembers where poolMember.EmployeeId == employeeId select poolMember.PoolId).ToList();
+            }
+            catch (ValidationException getEmployeePoolIdsFromDatabaseNotValid)
+            {
+                _logger.LogInformation($"ValidationException on Drive DAL :  GetEmployeePoolIdsFromDatabase(int employeeId) : {getEmployeePoolIdsFromDatabaseNotValid.Message} : {getEmployeePoolIdsFromDatabaseNotValid.StackTrace}");
+                throw getEmployeePoolIdsFromDatabaseNotValid;
+            }
+            catch (Exception getEmployeePoolIdsFromDatabaseException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : GetEmployeePoolIdsFromDatabase(int employeeId) : {getEmployeePoolIdsFromDatabaseException.Message} : {getEmployeePoolIdsFromDatabaseException.StackTrace}");
+                throw getEmployeePoolIdsFromDatabaseException;
+            }
+        }
 
         // public bool UpdateResponseToDatabase(EmployeeDriveResponse response)
         // {

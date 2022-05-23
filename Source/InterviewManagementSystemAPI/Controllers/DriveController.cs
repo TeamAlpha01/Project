@@ -162,6 +162,12 @@ public class DriveController : ControllerBase
 
     // }
     [HttpGet]
+    public IActionResult ViewInvites(int employeeId)
+    {
+        return Ok(_driveService.ViewDriveInvites(employeeId));
+    }
+    
+    [HttpGet]
     public IActionResult ViewDashboard(int tacId)
     {
         if (tacId <= 0)

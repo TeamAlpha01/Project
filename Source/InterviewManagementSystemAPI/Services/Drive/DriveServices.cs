@@ -240,10 +240,10 @@ namespace IMS.Service
                 _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {responseNotValid.Message}");
                 throw responseNotValid;
             }
-            catch (Exception exception)
+            catch (Exception viewDriveInvitesException)
             {
-                _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {exception.Message}");
-                return false;
+                _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {viewDriveInvitesException.Message}");
+                throw viewDriveInvitesException;
             }
         }
 
@@ -265,6 +265,62 @@ namespace IMS.Service
         //         return false;
         //     }
         // }
+        public object ViewDriveInvites(int employeeId)
+        {
+            try
+            {
+                List<object> driveInvites = new List<object>();
+                var employeePoolIds = GetEmployeePoolIds(employeeId);
+                var upcomingDrives = (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).
+                Select(d => new
+                {
+                    DriveId = d.DriveId,
+                    DriveName = d.Name,
+                    FromDate = d.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.ToDate.ToString("yyyy-MM-dd"),
+                    DriveDepartment = d.Pool.department.DepartmentName,
+                    DriveLocation = d.Location.LocationName,
+                    DrivePool = d.Pool.PoolName,
+                    DriveMode = d.ModeId,
+                    PoolId = d.PoolId
+                }
+                    );
+
+
+                foreach (var drive in upcomingDrives)
+                    if (employeePoolIds.Contains(drive.PoolId) && !_driveDataAccess.IsResponded(employeeId, drive.DriveId))
+                        driveInvites.Add(drive);
+
+                return driveInvites;
+            }
+            catch (ValidationException viewDriveInvitesNotValid)
+            {
+                _logger.LogInformation($"EmployeeDriveResponse Service : ViewDriveInvites(int employeeId) : {viewDriveInvitesNotValid.Message}");
+                throw viewDriveInvitesNotValid;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {exception.Message}");
+                return false;
+            }
+        }
+        private List<int> GetEmployeePoolIds(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.GetEmployeePoolIdsFromDatabase(employeeId);
+            }
+            catch (ValidationException getEmployeePoolIdsNotValid)
+            {
+                _logger.LogInformation($"EmployeeDriveResponse Service :  GetEmployeePoolIds(int employeeId) : {getEmployeePoolIdsNotValid.Message}");
+                throw getEmployeePoolIdsNotValid;
+            }
+            catch (Exception getEmployeePoolIdsException)
+            {
+                _logger.LogInformation($"EmployeeDriveResponse Service :  GetEmployeePoolIds(int employeeId) : {getEmployeePoolIdsException.Message}");
+                throw getEmployeePoolIdsException;
+            }
+        }
 
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability)

@@ -12,6 +12,8 @@ namespace IMS.DataAccessLayer
 
         //For Employee Drive Response Entity
         public bool AddResponseToDatabase(EmployeeDriveResponse response);
+        public bool IsResponded(int employeeId, int driveId);
+        public List<int > GetEmployeePoolIdsFromDatabase(int employeeId);
         //public bool UpdateResponseToDatabase(EmployeeDriveResponse response);
 
         //For Employee Availability Entity
