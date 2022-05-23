@@ -28,5 +28,15 @@ export class AdminAddlocationComponent implements OnInit {
   }
   pageTitle="Department"
 
-}
+  RemoveLocation(locationId:number){
 
+    console.warn("Location Id :" +locationId)
+    if(confirm("Do you want to remove the Location?")==true){
+    this.http
+    .delete(`https://localhost:7072/Location/RemoveLocation?LocationId=${locationId}`)  
+    .subscribe((data)=>{
+      console.log(data);
+    });
+  }
+}
+}
