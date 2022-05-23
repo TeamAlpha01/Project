@@ -140,27 +140,27 @@ public class DriveController : ControllerBase
         }
 
     }
-    [HttpGet]
-    public IActionResult ViewDrive(int driveId)
-    {
-        if (driveId <= 0)
-            return BadRequest($"Provide proper driveId {driveId}");
-        try
-        {
-            return Ok(_driveService.ViewDrive(driveId));
-        }
-        catch (ValidationException viewDriveNotValid)
-        {
-            _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveNotValid.Message} : {viewDriveNotValid.StackTrace}");
-            return BadRequest(viewDriveNotValid.Message);
-        }
-        catch (Exception viewDriveException)
-        {
-            _logger.LogInformation($"Drive Controller : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
-            return Problem("Sorry internal error occured");
-        }
+    // [HttpGet]
+    // public IActionResult ViewDrive(int driveId)
+    // {
+    //     if (driveId <= 0)
+    //         return BadRequest($"Provide proper driveId {driveId}");
+    //     try
+    //     {
+    //         return Ok(_driveService.ViewDrive(driveId));
+    //     }
+    //     catch (ValidationException viewDriveNotValid)
+    //     {
+    //         _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveNotValid.Message} : {viewDriveNotValid.StackTrace}");
+    //         return BadRequest(viewDriveNotValid.Message);
+    //     }
+    //     catch (Exception viewDriveException)
+    //     {
+    //         _logger.LogInformation($"Drive Controller : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
+    //         return Problem("Sorry internal error occured");
+    //     }
 
-    }
+    // }
     [HttpGet]
     public IActionResult ViewDashboard(int tacId)
     {
@@ -205,26 +205,26 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
-    [HttpPatch]
-    public IActionResult UpdateResponse(EmployeeDriveResponse response)
-    {
-        if (response == null)
-            return BadRequest("Response cannnot be null");
-        try
-        {
-            return _driveService.UpdateResponse(response) ? Ok("Response updated sucessfully") : Problem("Sorry internal error occured");
-        }
-        catch (ValidationException updateResponseNotValid)
-        {
-            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message} : {updateResponseNotValid.StackTrace}");
-            return BadRequest(updateResponseNotValid.Message);
-        }
-        catch (Exception updateResponseException)
-        {
-            _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseException.Message} : {updateResponseException.StackTrace}");
-            return Problem("Sorry internal error occured");
-        }
-    }
+    // [HttpPatch]
+    // public IActionResult UpdateResponse(EmployeeDriveResponse response)
+    // {
+    //     if (response == null)
+    //         return BadRequest("Response cannnot be null");
+    //     try
+    //     {
+    //         return _driveService.UpdateResponse(response) ? Ok("Response updated sucessfully") : Problem("Sorry internal error occured");
+    //     }
+    //     catch (ValidationException updateResponseNotValid)
+    //     {
+    //         _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message} : {updateResponseNotValid.StackTrace}");
+    //         return BadRequest(updateResponseNotValid.Message);
+    //     }
+    //     catch (Exception updateResponseException)
+    //     {
+    //         _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseException.Message} : {updateResponseException.StackTrace}");
+    //         return Problem("Sorry internal error occured");
+    //     }
+    // }
     [HttpPost]
     public IActionResult SetTimeSlot(EmployeeAvailability employeeAvailability)
     {

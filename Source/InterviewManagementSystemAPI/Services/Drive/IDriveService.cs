@@ -12,12 +12,12 @@ namespace IMS.Service
         public Object ViewNonCancelledDrives();
         public Object ViewAllCancelledDrives();
         public Dictionary<string,int> ViewTACDashboard(int employeeId);  
-        public Drive ViewDrive(int driveId);
+        //public Drive ViewDrive(int driveId);
 
 
         //For Employee Drive Response Entity
         public bool AddResponse(EmployeeDriveResponse response);
-        public bool UpdateResponse(EmployeeDriveResponse response);
+        //public bool UpdateResponse(EmployeeDriveResponse response);
 
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability);

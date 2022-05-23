@@ -93,22 +93,22 @@ namespace IMS.DataAccessLayer
             }
         }
 
-        public Drive ViewDrive(int driveId)
-        {
-            DriveValidation.IsDriveIdValid(driveId);
+        // public Drive ViewDrive(int driveId)
+        // {
+        //     DriveValidation.IsDriveIdValid(driveId);
 
-            try
-            {
-                var viewDrive = _db.Drives.Find(driveId);    ///use include method
-                //(from drive in _db.Drives where drive.DriveId == driveId select drive).First()
-                return viewDrive != null ? viewDrive : throw new ValidationException($"No drive is found with id : {driveId}");
-            }
-            catch (Exception isDriveIdValidException)
-            {
-                _logger.LogInformation($"Exception on Drive DAL : ViewDrive(int driveId) : {isDriveIdValidException.Message} : {isDriveIdValidException.StackTrace}");
-                throw isDriveIdValidException;
-            }
-        }
+        //     try
+        //     {
+        //         var viewDrive = _db.Drives.Find(driveId);    ///use include method
+        //         //(from drive in _db.Drives where drive.DriveId == driveId select drive).First()
+        //         return viewDrive != null ? viewDrive : throw new ValidationException($"No drive is found with id : {driveId}");
+        //     }
+        //     catch (Exception isDriveIdValidException)
+        //     {
+        //         _logger.LogInformation($"Exception on Drive DAL : ViewDrive(int driveId) : {isDriveIdValidException.Message} : {isDriveIdValidException.StackTrace}");
+        //         throw isDriveIdValidException;
+        //     }
+        // }
 
 
 
@@ -140,37 +140,37 @@ namespace IMS.DataAccessLayer
         }
 
 
-        public bool UpdateResponseToDatabase(EmployeeDriveResponse response)
-        {
-            Validations.EmployeeResponseValidation.IsResponseValid(response);
+        // public bool UpdateResponseToDatabase(EmployeeDriveResponse response)
+        // {
+        //     Validations.EmployeeResponseValidation.IsResponseValid(response);
 
-            try
-            {
-                if (!_db.Drives.Any(d => d.DriveId == response.DriveId)) throw new ValidationException("Invalid Drive Id");
-                if (!_db.Employees.Any(d => d.EmployeeId == response.EmployeeId)) throw new ValidationException("Invalid Employee Id");
-                if (!_db.EmployeeDriveResponse.Any(r => r.DriveId == response.DriveId && r.EmployeeId == response.EmployeeId)) throw new ValidationException("No Response Found! Invalid update");
+        //     try
+        //     {
+        //         if (!_db.Drives.Any(d => d.DriveId == response.DriveId)) throw new ValidationException("Invalid Drive Id");
+        //         if (!_db.Employees.Any(d => d.EmployeeId == response.EmployeeId)) throw new ValidationException("Invalid Employee Id");
+        //         if (!_db.EmployeeDriveResponse.Any(r => r.DriveId == response.DriveId && r.EmployeeId == response.EmployeeId)) throw new ValidationException("No Response Found! Invalid update");
 
 
-                var EmployeeResponse = (from responses in _db.EmployeeDriveResponse where responses.EmployeeId == response.EmployeeId && responses.DriveId == response.DriveId select responses).First();
+        //         var EmployeeResponse = (from responses in _db.EmployeeDriveResponse where responses.EmployeeId == response.EmployeeId && responses.DriveId == response.DriveId select responses).First();
 
-                if (EmployeeResponse == null) throw new ValidationException("no response is found with given employee id and drive id");
+        //         if (EmployeeResponse == null) throw new ValidationException("no response is found with given employee id and drive id");
 
-                EmployeeResponse.ResponseType = response.ResponseType;
-                _db.EmployeeDriveResponse.Update(EmployeeResponse);
-                _db.SaveChanges();
-                return true;
-            }
-            catch (ValidationException updateResponseToDatabaseNotValid)
-            {
-                _logger.LogInformation($"ValidationException on Drive DAL :  AddResponseToDatabase(EmployeeDriveResponse response) : {updateResponseToDatabaseNotValid.Message} : {updateResponseToDatabaseNotValid.StackTrace}");
-                throw updateResponseToDatabaseNotValid;
-            }
-            catch (Exception updateResponseToDatabaseException)
-            {
-                _logger.LogInformation($"Exception on Drive DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {updateResponseToDatabaseException.Message} : {updateResponseToDatabaseException.StackTrace}");
-                return false;
-            }
-        }
+        //         EmployeeResponse.ResponseType = response.ResponseType;
+        //         _db.EmployeeDriveResponse.Update(EmployeeResponse);
+        //         _db.SaveChanges();
+        //         return true;
+        //     }
+        //     catch (ValidationException updateResponseToDatabaseNotValid)
+        //     {
+        //         _logger.LogInformation($"ValidationException on Drive DAL :  AddResponseToDatabase(EmployeeDriveResponse response) : {updateResponseToDatabaseNotValid.Message} : {updateResponseToDatabaseNotValid.StackTrace}");
+        //         throw updateResponseToDatabaseNotValid;
+        //     }
+        //     catch (Exception updateResponseToDatabaseException)
+        //     {
+        //         _logger.LogInformation($"Exception on Drive DAL : UpdateResponseToDatabase(int employeeId, int driveId, int responseType) : {updateResponseToDatabaseException.Message} : {updateResponseToDatabaseException.StackTrace}");
+        //         return false;
+        //     }
+        // }
 
         //For Employee Avalability Entity
         public bool SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability)

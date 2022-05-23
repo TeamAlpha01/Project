@@ -204,25 +204,25 @@ namespace IMS.Service
             return (from drive in _driveDataAccess.GetDrivesByStatus(status) where drive.AddedBy == employeeId select drive).Count();
         }
 
-        public Drive ViewDrive(int driveId)
-        {
-            DriveValidation.IsDriveIdValid(driveId);
+        // public Drive ViewDrive(int driveId)
+        // {
+        //     DriveValidation.IsDriveIdValid(driveId);
 
-            try
-            {
-                return _driveDataAccess.ViewDrive(driveId);
-            }
-            catch (ValidationException viewDriveNotValid)
-            {
-                _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveNotValid.Message} : {viewDriveNotValid.StackTrace}");
-                throw viewDriveNotValid;
-            }
-            catch (Exception viewDriveException)
-            {
-                _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
-                throw viewDriveException;
-            }
-        }
+        //     try
+        //     {
+        //         return _driveDataAccess.ViewDrive(driveId);
+        //     }
+        //     catch (ValidationException viewDriveNotValid)
+        //     {
+        //         _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveNotValid.Message} : {viewDriveNotValid.StackTrace}");
+        //         throw viewDriveNotValid;
+        //     }
+        //     catch (Exception viewDriveException)
+        //     {
+        //         _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
+        //         throw viewDriveException;
+        //     }
+        // }
 
         //For Employee Drive Response Entity
         public bool AddResponse(EmployeeDriveResponse response)
@@ -247,24 +247,24 @@ namespace IMS.Service
             }
         }
 
-        public bool UpdateResponse(EmployeeDriveResponse response)
-        {
-            Validations.EmployeeResponseValidation.IsResponseValid(response);
-            try
-            {
-                return _driveDataAccess.UpdateResponseToDatabase(response) ? true : false;
-            }
-            catch (ValidationException updateResponseNotValid)
-            {
-                _logger.LogInformation($"EmployeeDriveResponse Service : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
-                throw updateResponseNotValid;
-            }
-            catch (Exception exception)
-            {
-                _logger.LogInformation($"EmployeeDriveResponse Service : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
-                return false;
-            }
-        }
+        // public bool UpdateResponse(EmployeeDriveResponse response)
+        // {
+        //     Validations.EmployeeResponseValidation.IsResponseValid(response);
+        //     try
+        //     {
+        //         return _driveDataAccess.UpdateResponseToDatabase(response) ? true : false;
+        //     }
+        //     catch (ValidationException updateResponseNotValid)
+        //     {
+        //         _logger.LogInformation($"EmployeeDriveResponse Service : UpdateResponse(int employeeId, int driveId, int responseType) : {updateResponseNotValid.Message}");
+        //         throw updateResponseNotValid;
+        //     }
+        //     catch (Exception exception)
+        //     {
+        //         _logger.LogInformation($"EmployeeDriveResponse Service : UpdateResponse(int employeeId, int driveId, int responseType) : {exception.Message}");
+        //         return false;
+        //     }
+        // }
 
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability)
