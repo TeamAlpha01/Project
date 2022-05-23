@@ -17,8 +17,10 @@ namespace IMS.Service
 
         //For Employee Drive Response Entity
         public bool AddResponse(EmployeeDriveResponse response);
-        //public bool UpdateResponse(EmployeeDriveResponse response);
         public object ViewDriveInvites(int employeeId);
+        
+        //public bool UpdateResponse(EmployeeDriveResponse response);
+        
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability);
 

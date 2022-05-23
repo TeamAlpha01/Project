@@ -267,6 +267,7 @@ namespace IMS.Service
         // }
         public object ViewDriveInvites(int employeeId)
         {
+            Validations.EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
                 List<object> driveInvites = new List<object>();
@@ -306,6 +307,7 @@ namespace IMS.Service
         }
         private List<int> GetEmployeePoolIds(int employeeId)
         {
+            Validations.EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
                 return _driveDataAccess.GetEmployeePoolIdsFromDatabase(employeeId);

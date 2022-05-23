@@ -164,9 +164,19 @@ public class DriveController : ControllerBase
     [HttpGet]
     public IActionResult ViewInvites(int employeeId)
     {
-        return Ok(_driveService.ViewDriveInvites(employeeId));
+        if (employeeId <= 0)
+            return BadRequest("provide proper employee Id");
+        try
+        {
+            return Ok(_driveService.ViewDriveInvites(employeeId));
+        }
+        catch (Exception viewInvitesException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewInvites(int employeeId) : {viewInvitesException.Message} : {viewInvitesException.StackTrace}");
+            return Problem("Sorry internal error occured");
+        }
     }
-    
+
     [HttpGet]
     public IActionResult ViewDashboard(int tacId)
     {

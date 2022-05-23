@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// builder.Services.AddDbContext<InterviewManagementSystemDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));
+//builder.Services.AddDbContext<InterviewManagementSystemDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbConnection")));
 
 
 builder.Services.AddControllers();

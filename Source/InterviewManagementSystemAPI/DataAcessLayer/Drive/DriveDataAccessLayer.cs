@@ -28,7 +28,6 @@ namespace IMS.DataAccessLayer
                     _db.SaveChanges();
                 }
             }
-
         }
         public bool AddDriveToDatabase(Drive drive)
         {
@@ -38,6 +37,7 @@ namespace IMS.DataAccessLayer
             {
                 _db.Drives.Add(drive);
                 _db.SaveChanges();
+                FillInitialResponseForDrive(drive.DriveId, drive.PoolId);
                 return true;
             }
             catch (Exception addDriveToDatabaseException)
@@ -45,6 +45,21 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
                 return false;
             }
+        }
+        private void FillInitialResponseForDrive(int driveId, int poolId)
+        {
+            var employees = from employee in _db.PoolMembers where employee.PoolId == poolId select employee.EmployeeId;
+            foreach (var employeeId in employees)
+            {
+                EmployeeDriveResponse initialResponse = new EmployeeDriveResponse()
+                {
+                    EmployeeId = employeeId,
+                    DriveId = driveId,
+                    ResponseType = 0
+                };
+                _db.EmployeeDriveResponse.Add(initialResponse);
+            }
+            _db.SaveChanges();
         }
         public bool CancelDriveFromDatabase(int driveId, int tacId, string reason)
         {
@@ -113,17 +128,20 @@ namespace IMS.DataAccessLayer
 
 
         //For Employee Drive Response Entity
-        public bool AddResponseToDatabase(EmployeeDriveResponse response)
+        public bool AddResponseToDatabase(EmployeeDriveResponse userResponse)
         {
-            Validations.EmployeeResponseValidation.IsResponseValid(response);
+            Validations.EmployeeResponseValidation.IsResponseValid(userResponse);
 
             try
             {
-                if (!_db.Drives.Any(d => d.DriveId == response.DriveId)) throw new ValidationException("Invalid Drive Id");
-                if (!_db.Employees.Any(d => d.EmployeeId == response.EmployeeId)) throw new ValidationException("Invalid Employee Id");
-                if (_db.EmployeeDriveResponse.Any(r => r.DriveId == response.DriveId && r.EmployeeId == response.EmployeeId)) throw new ValidationException("You have already responded to this drive");
+                if (!_db.Drives.Any(d => d.DriveId == userResponse.DriveId)) throw new ValidationException("Invalid Drive Id");
+                if (!_db.Employees.Any(d => d.EmployeeId == userResponse.EmployeeId)) throw new ValidationException("Invalid Employee Id");
+                if (_db.EmployeeDriveResponse.Any(r => r.DriveId == userResponse.DriveId && r.EmployeeId == userResponse.EmployeeId && r.ResponseType!=0)) throw new ValidationException("You have already responded to this drive");
 
-                _db.EmployeeDriveResponse.Add(response);
+                EmployeeDriveResponse newResponse = (from responses in _db.EmployeeDriveResponse where responses.EmployeeId==userResponse.EmployeeId && responses.DriveId == userResponse.DriveId select responses).First();
+                newResponse.ResponseType=userResponse.ResponseType;
+                
+                _db.EmployeeDriveResponse.Update(newResponse);
                 _db.SaveChanges();
                 return true;
             }
@@ -159,8 +177,12 @@ namespace IMS.DataAccessLayer
 
         public List<int> GetEmployeePoolIdsFromDatabase(int employeeId)
         {
+            Validations.EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
+                if (!_db.Employees.Any(e => e.EmployeeId == employeeId))
+                    throw new ValidationException($"No Employee Is Found with the id :{employeeId}");
+
                 return (from poolMember in _db.PoolMembers where poolMember.EmployeeId == employeeId select poolMember.PoolId).ToList();
             }
             catch (ValidationException getEmployeePoolIdsFromDatabaseNotValid)
