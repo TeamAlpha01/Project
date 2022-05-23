@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-tac-upcoming-drive',
@@ -16,39 +17,28 @@ export class TacUpcomingDriveComponent implements OnInit {
 
   pool: any[] = [];
   drive: any[] = [];
+  deptId: any;
 
+
+  //To get the details from the db
   driveDetails: any;
   poolDetails: any;
   departmentDetails: any;
-  deptId: any;
-  constructor(private http: HttpClient) { }
+
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
 
-    this.http
-      .get<any>('https://localhost:7072/Drive/ViewScheduledDrives')
-      .subscribe((data) => {
-        this.driveDetails = data;
-        this.drive = data;
-        console.log(this.driveDetails)
-      });
-
-    this.http
-      .get<any>('https://localhost:7072/Pool/ViewPools')
-      .subscribe((data) => {
-        this.poolDetails = data;
-        console.log(this.poolDetails)
-      });
-
-    this.http
-      .get<any>('https://localhost:7072/Deparment/ViewDepartments')
-      .subscribe((data) => {
-        this.departmentDetails = data;
-        console.log(this.departmentDetails)
-      });
-
+    this.connection.GetUpcomingDrives().subscribe((data: any) => {
+      this.driveDetails = data;
+    })
+    this.connection.GetPools().subscribe((data: any) => {
+      this.poolDetails = data;
+    })
+    this.connection.GetDepartments().subscribe((data: any) => {
+      this.departmentDetails = data;
+    })
   }
-
 
   filterDropdown() {
     //To filter cards based on the department and pool selection
@@ -56,41 +46,28 @@ export class TacUpcomingDriveComponent implements OnInit {
     for (let item of this.driveDetails) {
 
       if (this._dept == '' && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
-        console.log(this._date)
-        console.warn(item.toDate)
         this.drive.push(item);
-        console.log("0")
       }
-      else if (this._dept == '' && item.fromDate <= this._date && this._date <= item.toDate) {
-        this._pool = '';
+      else if (this._dept == '' && item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
-        console.log("true")
-      }
-      else if (this._dept == '' && this._date == '') {
-        this._pool = '';
-        this.drive.push(item);
-        console.log("false")
       }
       else if (this._dept == '' && this._pool == '' && this._date == '') {
         this.drive.push(item);
-        console.log("1")
       }
-
+      else if (this._dept == '' && item.drivePool == this._pool && this._date == '') {
+        this.drive.push(item);
+      }
       else if (item.driveDepartment == this._dept && item.drivePool == this._pool && this._date == '') {
         this.drive.push(item);
-        console.log("2")
       }
       else if (item.driveDepartment == this._dept && item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
-        console.log("3")
       }
       else if (item.driveDepartment == this._dept && this._pool == '' && this._date == '') {
         this.drive.push(item);
-        console.log("4")
       }
       else if (item.driveDepartment == this._dept && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
-        console.log("5")
       }
       else if (item.driveDepartment == this._dept && item.drivePool != this._pool) {
       }
@@ -98,5 +75,4 @@ export class TacUpcomingDriveComponent implements OnInit {
     }
 
   }
-
 }

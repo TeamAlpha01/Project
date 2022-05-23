@@ -67,7 +67,7 @@ const routes: Routes = [
 
 
   //admin pages
-  // { path: '', component: PerformanceDashboardComponent },                        //Admin-addrole-page
+  { path: '', component: TacHomeComponent },                        //Admin-addrole-page
   { path: 'Admin-adddepartment ', component: AdminAdddepartmentComponent },          //Admin-adddepartment 
   { path: 'Admin-addlocation ', component: AdminAddlocationComponent },               //Admin-addlocation
   { path: '', component: AdminAddprojectComponent },   //Admin-addproject

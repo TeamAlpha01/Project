@@ -13,15 +13,13 @@ export class TacProfileComponent implements OnInit {
   data: any;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit():void{
-    this.http
-      .get<any>('https://localhost:7072/Employee/ViewProfile?employeeId=4')
-      .subscribe((data) => {
-        this.data = data;
-        console.log(data);
-      });
+    this.connection.GetEmployeeProfile().subscribe((data: any) => {
+      this.data = data;
+      console.log(data);
+    })    
 
   }
 

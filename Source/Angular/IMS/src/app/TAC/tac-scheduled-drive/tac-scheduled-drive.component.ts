@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-tac-scheduled-drive',
@@ -15,40 +16,32 @@ export class TacScheduledDriveComponent implements OnInit {
   _pool = '';
   _date = '';
 
+  //To store the filtered data in the array
   pool: any[] = [];
   drive: any[] = [];
+  deptId: any;
 
+
+  //To get the details from the db
   driveDetails: any;
   poolDetails: any;
   departmentDetails: any;
-  deptId: any;
-  constructor(private http: HttpClient) { }
+
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
 
-    this.http
-      .get<any>('https://localhost:7072/Drive/ViewScheduledDrives')
-      .subscribe((data) => {
-        this.driveDetails = data;
-        this.drive = data;
-        console.log(this.driveDetails)
-      });
-
-    this.http
-      .get<any>('https://localhost:7072/Pool/ViewPools')
-      .subscribe((data) => {
-        this.poolDetails = data;
-        console.log(this.poolDetails)
-      });
-
-    this.http
-      .get<any>('https://localhost:7072/Deparment/ViewDepartments')
-      .subscribe((data) => {
-        this.departmentDetails = data;
-        console.log(this.departmentDetails)
-      });
-
+    this.connection.GetScheduledDrives().subscribe((data: any) => {
+      this.driveDetails = data;
+    })
+    this.connection.GetPools().subscribe((data: any) => {
+      this.poolDetails = data;
+    })
+    this.connection.GetDepartments().subscribe((data: any) => {
+      this.departmentDetails = data;
+    })
   }
+
 
 
   filterDropdown() {

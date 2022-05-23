@@ -15,16 +15,28 @@ export class ConnectionService {
   constructor(private http: HttpClient) { }
 
   //GET methods
-  GetDepartments() {
-    return this.http.get<any>(this.baseURL+'Deparment/ViewDepartments');
-  }
+  GetDepartments(): any {
+    return this.http.get<any>(this.baseURL+'Department/ViewDepartments');
+  }  
   
+  GetTodayDrives(): any {
+    return this.http.get<any>(this.baseURL+'Drive/ViewTodayDrives');
+  }
+
   GetEmployeeProfile(){
-    return this.http.get<any>('https://localhost:7072/Employee/ViewProfile?employeeId=1')
+    return this.http.get<any>(this.baseURL+'Employee/ViewProfile?employeeId=1');
    }
 
   GetLocations(): any {
     return this.http.get<any>(this.baseURL+'Location/ViewLocations');
+  }
+
+  GetPools(): any {
+    return this.http.get<any>(this.baseURL+'Pool/ViewPools');
+  }
+
+  GetProfile(): any {
+    return this.http.get<any>(this.baseURL+'Employee/ViewProfile?employeeId=4');
   }
 
   GetProjects(): any {
@@ -33,6 +45,14 @@ export class ConnectionService {
 
   GetRoles(): any {
     return this.http.get<any>(this.baseURL+'Role/ViewRoles');
+  }
+
+  GetScheduledDrives(): any {
+    return this.http.get<any>(this.baseURL+'Drive/ViewScheduledDrives');
+  }
+
+  GetUpcomingDrives(): any {
+    return this.http.get<any>(this.baseURL+'Drive/ViewUpcommingDrives');
   }
 
 
