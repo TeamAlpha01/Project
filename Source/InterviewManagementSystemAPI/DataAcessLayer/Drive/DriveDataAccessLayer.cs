@@ -161,7 +161,7 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return _db.EmployeeDriveResponse.Any(a => a.EmployeeId == employeeId && a.DriveId == driveId);
+                return _db.EmployeeDriveResponse.Any(a => a.EmployeeId == employeeId && a.DriveId == driveId && a.ResponseType!=0);
             }
             catch (ValidationException IsRespondedNotValid)
             {
