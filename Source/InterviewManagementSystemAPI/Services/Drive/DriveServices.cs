@@ -327,12 +327,9 @@ namespace IMS.Service
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability)
         {
-            // employeeAvailability Validation Class
             Validations.EmployeeAvailabilityValidation.IsAvailabilityValid(employeeAvailability);
             try
             {
-                employeeAvailability.From = DateTime.Parse(employeeAvailability.FromTime);//push this lines to validation default values
-                employeeAvailability.To = DateTime.Parse(employeeAvailability.ToTime);
                 return _driveDataAccess.SetTimeSlotToDatabase(employeeAvailability);
             }
             catch (ValidationException setTimeSlotNotVlaid)

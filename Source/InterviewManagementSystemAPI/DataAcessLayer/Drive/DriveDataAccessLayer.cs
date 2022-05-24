@@ -136,11 +136,11 @@ namespace IMS.DataAccessLayer
             {
                 if (!_db.Drives.Any(d => d.DriveId == userResponse.DriveId)) throw new ValidationException("Invalid Drive Id");
                 if (!_db.Employees.Any(d => d.EmployeeId == userResponse.EmployeeId)) throw new ValidationException("Invalid Employee Id");
-                if (_db.EmployeeDriveResponse.Any(r => r.DriveId == userResponse.DriveId && r.EmployeeId == userResponse.EmployeeId && r.ResponseType!=0)) throw new ValidationException("You have already responded to this drive");
+                if (_db.EmployeeDriveResponse.Any(r => r.DriveId == userResponse.DriveId && r.EmployeeId == userResponse.EmployeeId && r.ResponseType != 0)) throw new ValidationException("You have already responded to this drive");
 
-                EmployeeDriveResponse newResponse = (from responses in _db.EmployeeDriveResponse where responses.EmployeeId==userResponse.EmployeeId && responses.DriveId == userResponse.DriveId select responses).First();
-                newResponse.ResponseType=userResponse.ResponseType;
-                
+                EmployeeDriveResponse newResponse = (from responses in _db.EmployeeDriveResponse where responses.EmployeeId == userResponse.EmployeeId && responses.DriveId == userResponse.DriveId select responses).First();
+                newResponse.ResponseType = userResponse.ResponseType;
+
                 _db.EmployeeDriveResponse.Update(newResponse);
                 _db.SaveChanges();
                 return true;
@@ -161,7 +161,7 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return _db.EmployeeDriveResponse.Any(a => a.EmployeeId == employeeId && a.DriveId == driveId && a.ResponseType!=0);
+                return _db.EmployeeDriveResponse.Any(a => a.EmployeeId == employeeId && a.DriveId == driveId && a.ResponseType != 0);
             }
             catch (ValidationException IsRespondedNotValid)
             {
@@ -232,12 +232,18 @@ namespace IMS.DataAccessLayer
         //For Employee Avalability Entity
         public bool SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability)
         {
-
-            //employeeAvailability validation
+            Validations.EmployeeAvailabilityValidation.IsAvailabilityValid(employeeAvailability);
             try
             {
+
                 if (_db.EmployeeAvailability.Any(a => a.EmployeeId == employeeAvailability.EmployeeId && a.DriveId == employeeAvailability.DriveId && a.InterviewDate == employeeAvailability.InterviewDate && a.To.TimeOfDay <= employeeAvailability.From.TimeOfDay)) //DateTime.Parse(a.ToTime).TimeOfDay<=DateTime.Parse(employeeAvailability.FromTime).TimeOfDay
                     throw new ValidationException("You have already given your availability in same timing!");
+                if (_db.EmployeeDriveResponse.Any(r => r.EmployeeId == employeeAvailability.EmployeeId && r.DriveId == employeeAvailability.DriveId && r.ResponseType == 2))
+                    throw new ValidationException("You Cannot Give Availability Because You Have Denied The Drive Invite");
+                if (!_db.Drives.Any(d => d.DriveId == employeeAvailability.DriveId && d.FromDate <= employeeAvailability.InterviewDate && d.ToDate >= employeeAvailability.InterviewDate))
+                    throw new ValidationException("Interview Date Is Not Between Drives Date Range, Not Valid");
+                if ((employeeAvailability.To - employeeAvailability.From).TotalHours != _db.Drives.Find(employeeAvailability.DriveId).SlotTiming)
+                    throw new ValidationException("Interview Slot Timing Does Not Match With Drive Slot Period");
 
 
                 _db.EmployeeAvailability.Add(employeeAvailability);

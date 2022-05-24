@@ -388,10 +388,10 @@ namespace Source.Migrations
                     b.Property<DateTime>("InterviewDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsInterviewCancelled")
+                    b.Property<bool?>("IsInterviewCancelled")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsInterviewScheduled")
+                    b.Property<bool?>("IsInterviewScheduled")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("To")
@@ -430,92 +430,6 @@ namespace Source.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("EmployeeDriveResponse");
-
-                    b.HasData(
-                        new
-                        {
-                            ResponseId = 1,
-                            DriveId = 1,
-                            EmployeeId = 1,
-                            ResponseType = 1
-                        },
-                        new
-                        {
-                            ResponseId = 2,
-                            DriveId = 2,
-                            EmployeeId = 2,
-                            ResponseType = 1
-                        },
-                        new
-                        {
-                            ResponseId = 3,
-                            DriveId = 3,
-                            EmployeeId = 3,
-                            ResponseType = 0
-                        },
-                        new
-                        {
-                            ResponseId = 4,
-                            DriveId = 4,
-                            EmployeeId = 4,
-                            ResponseType = 1
-                        },
-                        new
-                        {
-                            ResponseId = 5,
-                            DriveId = 1,
-                            EmployeeId = 5,
-                            ResponseType = 0
-                        },
-                        new
-                        {
-                            ResponseId = 6,
-                            DriveId = 2,
-                            EmployeeId = 6,
-                            ResponseType = 1
-                        },
-                        new
-                        {
-                            ResponseId = 7,
-                            DriveId = 3,
-                            EmployeeId = 7,
-                            ResponseType = 1
-                        },
-                        new
-                        {
-                            ResponseId = 8,
-                            DriveId = 5,
-                            EmployeeId = 4,
-                            ResponseType = 1
-                        },
-                        new
-                        {
-                            ResponseId = 9,
-                            DriveId = 4,
-                            EmployeeId = 5,
-                            ResponseType = 1
-                        },
-                        new
-                        {
-                            ResponseId = 10,
-                            DriveId = 5,
-                            EmployeeId = 2,
-                            ResponseType = 1
-                        },
-                        new
-                        {
-                            ResponseId = 11,
-                            DriveId = 6,
-                            EmployeeId = 1,
-                            ResponseType = 1
-                        },
-                        new
-                        {
-                            ResponseId = 12,
-                            DriveId = 7,
-                            EmployeeId = 3,
-                            ResponseType = 0
-                        });
                 });
 
             modelBuilder.Entity("IMS.Models.Location", b =>

@@ -19,8 +19,8 @@ namespace IMS.Models
         public string? FromTime { get; set; }
         [NotMapped]
         public string? ToTime { get; set; }
-        public bool IsInterviewScheduled { get; set; }
-        public bool IsInterviewCancelled { get; set; }
+        public bool? IsInterviewScheduled { get; set; }
+        public bool? IsInterviewCancelled { get; set; }
         public string? CancellationReason { get; set; }
         public string? Comments { get; set; }
 

@@ -9,17 +9,16 @@ namespace IMS.Validations
     {
         public static void IsAvailabilityValid(EmployeeAvailability employeeAvailability)
         {
-            var fromTime = DateTime.Parse(employeeAvailability.FromTime).TimeOfDay;
-            var toTime = DateTime.Parse(employeeAvailability.ToTime).TimeOfDay;
-            if(fromTime>=toTime)
-            {
-                Console.Write("sadaasd");
-            }
+            EmployeeValidation.IsEmployeeIdValid(employeeAvailability.EmployeeId);
+            DriveValidation.IsDriveIdValid(employeeAvailability.DriveId);
+            //Default Values Setting
+            employeeAvailability.From = DateTime.Parse(employeeAvailability.FromTime);
+            employeeAvailability.To = DateTime.Parse(employeeAvailability.ToTime);
         }
 
         public static void IsAvailabilityIdValid(int employeeAvailabilityId)
         {
-            if(employeeAvailabilityId<=0) throw new ValidationException($"Ivalid EmployeeAvailabilityId : {employeeAvailabilityId}");
+            if (employeeAvailabilityId <= 0) throw new ValidationException($"Ivalid EmployeeAvailabilityId : {employeeAvailabilityId}");
         }
     }
 }
