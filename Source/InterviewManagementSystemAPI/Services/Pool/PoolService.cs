@@ -220,14 +220,15 @@ namespace IMS.Services
         /// <param name="poolId">int</param>
         /// <returns></returns>
         /// 
-        public IEnumerable<PoolMembers> ViewPoolMembers()
+        public IEnumerable<PoolMembers> ViewPoolMembers(int poolId)
         {
-
+            PoolValidation.IsPoolIdValid(poolId);
+        
            
             try
             {
                 IEnumerable<PoolMembers> poolmembers = new List<PoolMembers>();
-                return poolmembers = from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase() where poolmember.IsActive == true select poolmember;
+                return poolmembers = from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase() where poolmember.PoolId==poolId && poolmember.IsActive == true select poolmember;
 
             }
             catch (ValidationException poolNotFound)

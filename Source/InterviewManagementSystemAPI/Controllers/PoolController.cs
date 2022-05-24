@@ -178,7 +178,7 @@ public class PoolController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching locations ", exception);
+            _logger.LogInformation("Service throwed exception while fetching Pools ", exception);
             return BadRequest("Sorry some internal error occured");
         }
     }
@@ -278,12 +278,14 @@ public class PoolController : ControllerBase
     /// <returns>Returns a list of pool Members</returns>
 
     [HttpGet]
-    public IActionResult ViewPoolMembers()
+    public IActionResult ViewPoolMembers(int poolId)
     {
+        if(poolId<=0)
+        BadRequest("Pool Id cannot be null or negative");
        
         try
         {
-            return Ok(_poolService.ViewPoolMembers());
+            return Ok(_poolService.ViewPoolMembers(poolId));
         }
         catch (ValidationException poolNotFound)
         {
@@ -297,6 +299,7 @@ public class PoolController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+   
 
 
 
