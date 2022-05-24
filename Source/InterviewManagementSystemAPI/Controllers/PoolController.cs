@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using IMS.Models;
 using IMS.Validations;
 using System.ComponentModel.DataAnnotations;
-using IMS.Services;
+using IMS.Service;
 using System.Net;
 
 namespace IMS.Controllers;

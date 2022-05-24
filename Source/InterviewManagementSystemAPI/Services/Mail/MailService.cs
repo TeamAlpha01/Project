@@ -2,11 +2,11 @@ using MailKit;
 using MimeKit;
 using IMS.Models;
 using Microsoft.Extensions.Options;
-using IMS.Services;
+using IMS.Service;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 
-namespace IMS.Services
+namespace IMS.Service
 {
 
     public class MailService : IMailService

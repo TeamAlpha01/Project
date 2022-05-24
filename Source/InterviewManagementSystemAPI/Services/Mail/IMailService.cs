@@ -1,6 +1,6 @@
 using IMS.Models;
 
-namespace IMS.Services
+namespace IMS.Service
 {
     public interface IMailService
         {

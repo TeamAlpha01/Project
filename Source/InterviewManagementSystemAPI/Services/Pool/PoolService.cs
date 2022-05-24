@@ -3,7 +3,7 @@ using IMS.Validations;
 using IMS.DataAccessLayer;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-namespace IMS.Services
+namespace IMS.Service
 {
     public class PoolService : IPoolService
     {

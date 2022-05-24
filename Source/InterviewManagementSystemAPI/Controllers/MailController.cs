@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
-using IMS.Services;
+using IMS.Service;
 using IMS.Models;
 
 [Route("api/[controller]")]

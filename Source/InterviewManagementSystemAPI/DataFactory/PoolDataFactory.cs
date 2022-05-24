@@ -1,6 +1,6 @@
 using IMS.DataAccessLayer;
 using IMS.Models;
-using IMS.Services;
+using IMS.Service;
 namespace IMS.DataFactory{
     public static class PoolDataFactory
     {

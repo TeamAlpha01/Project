@@ -106,7 +106,6 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                _logger.LogInformation("logger DAL");
                 return _db.Employees.ToList();
             }
             catch (DbUpdateException exception)
@@ -148,26 +147,23 @@ namespace IMS.DataAccessLayer
                 throw isEmployeeIdValidException;
             }
         }
-        public bool CheckLoginCrendentials(string employeeAceNumber, string password)
+        public Employee CheckLoginCrendentials(string employeeAceNumber, string password)
         {
-
             try
             {
-                bool checkLogin = _db.Employees.Any(x => x.EmployeeAceNumber == employeeAceNumber && x.Password == password);
-                if (checkLogin)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                if(!_db.Employees.Any(x => x.EmployeeAceNumber == employeeAceNumber))
+                    throw new ValidationException($"No Employee Found With The ACE Number : {employeeAceNumber}");
 
+                if(!_db.Employees.Any(x => x.EmployeeAceNumber == employeeAceNumber && x.Password == password))
+                    throw new ValidationException($"Wrong Password!");
+
+                var _employee = GetEmployeesFromDatabase().Where(employee => employee.EmployeeAceNumber == employeeAceNumber).First();
+                return _employee;
             }
             catch (Exception exception)
             {
                 _logger.LogInformation($"Exception on Employee DAL : CheckLoginCrendentials(string employeeAceNumber, string password) : {exception.Message}");
-                return false;
+                throw exception;
             }
         }
     }
