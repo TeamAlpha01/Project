@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreatepoolComponent } from './createpool.component';
+import { TacEditPoolMemberComponent } from './tac-edit-pool-member.component';
 
-describe('CreatepoolComponent', () => {
-  let component: CreatepoolComponent;
-  let fixture: ComponentFixture<CreatepoolComponent>;
+describe('TacEditPoolMemberComponent', () => {
+  let component: TacEditPoolMemberComponent;
+  let fixture: ComponentFixture<TacEditPoolMemberComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreatepoolComponent ]
+      declarations: [ TacEditPoolMemberComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreatepoolComponent);
+    fixture = TestBed.createComponent(TacEditPoolMemberComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

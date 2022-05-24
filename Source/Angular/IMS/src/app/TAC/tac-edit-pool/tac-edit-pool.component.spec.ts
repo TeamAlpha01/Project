@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManagepoolmembersComponent } from './managepoolmembers.component';
+import { TacEditPoolComponent } from './tac-edit-pool.component';
 
-describe('ManagepoolmembersComponent', () => {
-  let component: ManagepoolmembersComponent;
-  let fixture: ComponentFixture<ManagepoolmembersComponent>;
+describe('TacEditPoolComponent', () => {
+  let component: TacEditPoolComponent;
+  let fixture: ComponentFixture<TacEditPoolComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManagepoolmembersComponent ]
+      declarations: [ TacEditPoolComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManagepoolmembersComponent);
+    fixture = TestBed.createComponent(TacEditPoolComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

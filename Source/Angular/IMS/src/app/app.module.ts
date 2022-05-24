@@ -11,7 +11,6 @@ import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
-import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InterviewerHeaderComponent } from './Interviewer/interviewer-header/interviewer-header.component';
@@ -30,8 +29,6 @@ import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.compone
 import { PoolmembersPerformanceComponent } from './TAC/poolmembers-performance/poolmembers-performance.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
-import { EditpoolComponent } from './TAC/editpool/editpool.component';
-import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
@@ -57,6 +54,9 @@ import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ViewResponseCardComponent } from './TAC/view-response-card/view-response-card.component';
 import { RegisterComponent } from './register/register.component';
+import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.component';
+import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
+import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
 
 
 
@@ -88,12 +88,12 @@ import { RegisterComponent } from './register/register.component';
     InterviewerScheduledDriveComponent,
     TacHomeComponent,
     TacDashboardComponent,
-    CreatepoolComponent,
+    TacCreatePoolComponent,
     PoolmembersPerformanceComponent,
     MyperformanceComponent,
     DashboardComponent,
-    EditpoolComponent,
-    ManagepoolmembersComponent,
+    TacEditPoolComponent,
+    TacEditPoolMemberComponent,
     TacProfileComponent,
     CardDetailsComponent,
     InterviewerUpcomingDriveComponent,
@@ -113,6 +113,9 @@ import { RegisterComponent } from './register/register.component';
     PerformanceDashboardComponent, 
     ViewResponseCardComponent,
     RegisterComponent,
+    TacCreatePoolComponent,
+    TacEditPoolComponent,
+    TacEditPoolMemberComponent,
 
 
   ],

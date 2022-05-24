@@ -35,6 +35,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL+'Pool/ViewPools');
   }
 
+  GetPoolMembers(): any {
+    return this.http.get<any>(this.baseURL+'Pool/ViewPoolMembers?poolId=1');
+  }
+
   GetProfile(): any {
     return this.http.get<any>(this.baseURL+'Employee/ViewProfile?employeeId=4');
   }

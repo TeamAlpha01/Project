@@ -20,18 +20,13 @@ import { ProfileComponent } from './Shared/profile/profile.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
-
-import { EditpoolComponent } from './TAC/editpool/editpool.component';
-
 import { PoolmembersPerformanceComponent } from './TAC/poolmembers-performance/poolmembers-performance.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
-import { ManagepoolmembersComponent } from './TAC/managepoolmembers/managepoolmembers.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { LoginComponent } from './Shared/login/login.component';
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
-import { CreatepoolComponent } from './TAC/createpool/createpool.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
@@ -46,6 +41,9 @@ import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page
 import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming-drive.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterPageComponent } from './Shared/register-page/register-page.component';
+import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.component';
+import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
+import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
@@ -88,16 +86,14 @@ const routes: Routes = [
   { path: 'TAC-dashboard', component: TacDashboardComponent },
   { path: 'TAC-performance', component: MyperformanceComponent },
   { path: 'Poolmembers-performance', component: PoolmembersPerformanceComponent },
-  { path: 'managepoolmembers', component: ManagepoolmembersComponent },
+  { path: 'managepoolmembers', component: TacEditPoolMemberComponent },
   { path: 'tac-profile', component: TacProfileComponent },
   { path: 'tac-current-drive', component: TacCurrentDriveComponent },
   { path: 'tac-scheduled-drive', component: TacScheduledDriveComponent },
   { path: 'create-invite', component: CreateInviteComponent },
   { path: 'tac-upcomingDrives', component: TacUpcomingDriveComponent },
-
-  { path: 'createpool', component: CreatepoolComponent },
-  { path: 'editpool', component: EditpoolComponent },
-  { path: 'managepoolmembers', component: ManagepoolmembersComponent },
+  { path: 'tac-createPool', component: TacCreatePoolComponent },
+  { path: 'editpool', component: TacEditPoolComponent },
   { path: 'managepool', component: ManagepoolComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboaard', component: DashboardComponent },
