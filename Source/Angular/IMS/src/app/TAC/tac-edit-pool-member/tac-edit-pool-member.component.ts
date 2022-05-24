@@ -17,6 +17,7 @@ export class TacEditPoolMemberComponent implements OnInit {
   //To get the details from the db
   roleDetails: any;
   poolDetails: any;
+  poolMembers: any;
   departmentDetails: any;
 
   constructor(private connection: ConnectionService) { }
@@ -30,6 +31,9 @@ export class TacEditPoolMemberComponent implements OnInit {
     })
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;
+    })
+    this.connection.GetPoolMembers().subscribe((data: any) => {
+      this.poolMembers = data;
     })
   }
   filterDropdown() {

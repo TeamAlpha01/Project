@@ -9,43 +9,67 @@
         <div class="mt-3">
             <div class="card-body">
                 <div class="row">
-
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number">Department </label>
+                        <select name="Department" id="Department Name" class="form-select " (change)="filterDropdown()"
+                            name="dept" [(ngModel)]="_dept">
+                            <option value="">Select the Department</option>
+                            <option *ngFor="let item of departmentDetails" value={{item.departmentName}}>
+                                {{item.departmentName}} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number">Pool </label>
+                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool"
+                            [(ngModel)]="_pool">
+                            <option value="">Select the Pool</option>
+                            <option *ngFor="let item of poolDetails | filter:_dept" value={{item.poolName}}>
+                                {{item.poolName}} </option>
+                        </select>
+                    </div>
                     <div class="col-md-3">
                         <label class="form-label" for="ACE Number">Role </label>
                         <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_role"
                             [(ngModel)]="_role">
                             <option value="">Select the Role</option>
-                            <option *ngFor="let item of roleDetails | filter:_dept" value={{item.roleName}}>
+                            <option *ngFor="let item of roleDetails" value={{item.roleName}}>
                                 {{item.roleName}} </option>
                         </select>
-                    </div>
-                    <div class="col">
+                        <br>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="ACE Number"> Search</label>
                         <input type="text" class="form-control " placeholder="Name or ACE ID">
                     </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-filter filter">
-                            Search</button>
-                    </div>
-
+                    <hr>
+                    <!-- <div class="row">
+                        <div class="col">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label" for="ACE Number"> Search</label>
+                            <input type="text" class="form-control " placeholder="Name or ACE ID">
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-filter filter">
+                                Search</button>
+                        </div>
+                    </div> -->
 
                 </div>
             </div>
         </div>
         <div class=" container row AddMemberPool mt-2 justify-content-evenly">
-
             <div class="card  col-6 ml-5">
                 <div class="">
                     <h3 class="card-header text-cente">Search Results</h3>
                     <div class="container my-box ">
                         <div class="card-body p-1 border-bottom" *ngFor="let item of roleDetails">
                             <div class="d-flex justify-content-evenly align-items-center">
-                                <div class="fw-bolder">{{item.ACE_Number}}</div>
-                                <div class="fw-bolder">{{item.Name}}</div>
-                                <div class="fw-bolder">{{item.Role}}</div>
-                                <div><button class="btn btn-success btn-sm">+</button></div>
+                                <div class="fw-bolder col-md-3">{{item.ACE_Number}}</div>
+                                <div class="fw-bolder col-md-3">{{item.Name}}</div>
+                                <div class="fw-bolder col-md-3">{{item.Role}}</div>
+                                <div><button class="btn btn-success btn-sm  "><i class=" fa-solid fa-plus"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -60,10 +84,11 @@
                         <div class="card-body p-1 border-bottom" *ngFor="let item of roleDetails">
 
                             <div class="d-flex justify-content-evenly align-items-center">
-                                <div class="fw-bolder">{{item.ACE_Number}}</div>
-                                <div class="fw-bolder">{{item.Name}}</div>
-                                <div class="fw-bolder">{{item.Role}}</div>
-                                <div><button class="btn btn-danger btn-sm">x</button></div>
+                                <div class="fw-bolder col-md-3">{{item.ACE_Number}}</div>
+                                <div class="fw-bolder col-md-3">{{item.Name}}</div>
+                                <div class="fw-bolder col-md-3">{{item.Role}}</div>
+                                <div><button class="btn btn-danger btn-sm "><i class="fa-solid fa-xmark"></i></button>
+                                </div>
                             </div>
 
                         </div>
