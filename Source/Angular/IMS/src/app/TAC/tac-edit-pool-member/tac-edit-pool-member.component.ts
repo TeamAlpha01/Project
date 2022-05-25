@@ -13,12 +13,15 @@ export class TacEditPoolMemberComponent implements OnInit {
   _dept = '';
   _pool = '';
   _role = '';
+  _search='';
 
   //To get the details from the db
   roleDetails: any;
   poolDetails: any;
   poolMembers: any;
   departmentDetails: any;
+  employeeDetails: any;
+  pool: any;
 
   constructor(private connection: ConnectionService) { }
 
@@ -32,12 +35,20 @@ export class TacEditPoolMemberComponent implements OnInit {
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;
     })
-    this.connection.GetPoolMembers().subscribe((data: any) => {
+    this.connection.GetEmployees().subscribe((data: any) => {
+      this.employeeDetails = data;
+    })
+
+  }
+  poolMember() {
+    for (let item of this.poolDetails) {
+      if (this._pool == item.poolName) {
+        this.pool = item.poolId;
+      }
+    }
+    this.connection.GetPoolMembers(this.pool).subscribe((data: any) => {
       this.poolMembers = data;
     })
-  }
-  filterDropdown() {
-
   }
 
 }

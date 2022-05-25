@@ -23,6 +23,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL+'Drive/ViewTodayDrives');
   }
 
+  GetEmployees(){
+    return this.http.get<any>(this.baseURL+'Employee/ViewEmployees');
+  }
+
   GetEmployeeProfile(){
     return this.http.get<any>(this.baseURL+'Employee/ViewProfile?employeeId=1');
    }
@@ -35,8 +39,8 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL+'Pool/ViewPools');
   }
 
-  GetPoolMembers(): any {
-    return this.http.get<any>(this.baseURL+'Pool/ViewPoolMembers?poolId=1');
+  GetPoolMembers(pool: any): any {
+    return this.http.get<any>(this.baseURL+`Pool/ViewPoolMembers?poolId=${pool}`);
   }
 
   GetProfile(): any {

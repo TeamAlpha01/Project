@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label class="form-label" for="ACE Number">Department </label>
-                        <select name="Department" id="Department Name" class="form-select " (change)="filterDropdown()"
+                        <select name="Department" id="Department Name" class="form-select "
                             name="dept" [(ngModel)]="_dept">
                             <option value="">Select the Department</option>
                             <option *ngFor="let item of departmentDetails" value={{item.departmentName}}>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="ACE Number">Pool </label>
-                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool"
+                        <select name="Pool" id="Pool" class="form-select" (change)="poolMember()" name="_pool"
                             [(ngModel)]="_pool">
                             <option value="">Select the Pool</option>
                             <option *ngFor="let item of poolDetails | filter:_dept" value={{item.poolName}}>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="ACE Number">Role </label>
-                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_role"
+                        <select name="Pool" id="Pool" class="form-select" name="_role"
                             [(ngModel)]="_role">
                             <option value="">Select the Role</option>
                             <option *ngFor="let item of roleDetails" value={{item.roleName}}>
@@ -39,22 +39,10 @@
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="ACE Number"> Search</label>
-                        <input type="text" class="form-control " placeholder="Name or ACE ID">
+                        <input type="text" class="form-control " placeholder="Name or ACE ID" name="_role"
+                        [(ngModel)]="_search">
                     </div>
                     <hr>
-                    <!-- <div class="row">
-                        <div class="col">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label" for="ACE Number"> Search</label>
-                            <input type="text" class="form-control " placeholder="Name or ACE ID">
-                        </div>
-                        <div class="col-md-1">
-                            <button class="btn btn-filter filter">
-                                Search</button>
-                        </div>
-                    </div> -->
-
                 </div>
             </div>
         </div>
@@ -63,12 +51,12 @@
                 <div class="">
                     <h3 class="card-header text-cente">Search Results</h3>
                     <div class="container my-box ">
-                        <div class="card-body p-1 border-bottom" *ngFor="let item of roleDetails">
+                        <div class="card-body p-1 border-bottom" *ngFor="let item of employeeDetails | filter:_dept | filter:_role | filter:_search">
                             <div class="d-flex justify-content-evenly align-items-center">
-                                <div class="fw-bolder col-md-3">{{item.ACE_Number}}</div>
-                                <div class="fw-bolder col-md-3">{{item.Name}}</div>
-                                <div class="fw-bolder col-md-3">{{item.Role}}</div>
-                                <div><button class="btn btn-success btn-sm  "><i class=" fa-solid fa-plus"></i></button>
+                                <div class="fw-bolder col-md-3">{{item.employeeAceNumber}}</div>
+                                <div class="fw-bolder col-md-3">{{item.name}}</div>
+                                <div class="fw-bolder col-md-3">{{item.roleId}}</div>
+                                <div><button class="btn btn-success btn-sm"><i class=" fa-solid fa-plus"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -81,10 +69,10 @@
                 <div>
                     <h3 class="card-header">Added Members</h3>
                     <div class="container my-box">
-                        <div class="card-body p-1 border-bottom" *ngFor="let item of roleDetails">
+                        <div class="card-body p-1 border-bottom" *ngFor="let item of poolMembers">
 
                             <div class="d-flex justify-content-evenly align-items-center">
-                                <div class="fw-bolder col-md-3">{{item.ACE_Number}}</div>
+                                <div class="fw-bolder col-md-3">{{item.poolMembersId}}</div>
                                 <div class="fw-bolder col-md-3">{{item.Name}}</div>
                                 <div class="fw-bolder col-md-3">{{item.Role}}</div>
                                 <div><button class="btn btn-danger btn-sm "><i class="fa-solid fa-xmark"></i></button>
