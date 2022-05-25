@@ -13,9 +13,11 @@ public class PoolController : ControllerBase
 {
     private readonly ILogger _logger;
     private IPoolService _poolService;
-    public PoolController(ILogger<PoolController> logger)
+    private MailService _mailService;
+    public PoolController(ILogger<PoolController> logger,MailService mailService)
     {
         _logger = logger;
+        _mailService = mailService;
         _poolService = DataFactory.PoolDataFactory.GetPoolServiceObject(_logger);
     }
 

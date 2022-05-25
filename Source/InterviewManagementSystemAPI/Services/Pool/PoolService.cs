@@ -10,6 +10,7 @@ namespace IMS.Service
         private IPoolDataAccessLayer _poolDataAccessLayer;
 
         private readonly ILogger _logger;
+
         public PoolService(ILogger logger)
         {
             _logger = logger;
@@ -27,7 +28,7 @@ namespace IMS.Service
         {
 
             Pool _pool = DataFactory.PoolDataFactory.GetPoolObject();
-          PoolValidation.IsCreatePoolValid(departmentId,poolName);
+            PoolValidation.IsCreatePoolValid(departmentId, poolName);
 
             try
             {
@@ -43,7 +44,7 @@ namespace IMS.Service
             }
             catch (ValidationException departmentNotFound)
             {
-                
+
                 _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {departmentNotFound.Message}");
                 throw departmentNotFound;
             }
@@ -223,12 +224,12 @@ namespace IMS.Service
         public IEnumerable<PoolMembers> ViewPoolMembers(int poolId)
         {
             PoolValidation.IsPoolIdValid(poolId);
-        
-           
+
+
             try
             {
                 IEnumerable<PoolMembers> poolmembers = new List<PoolMembers>();
-                return poolmembers = from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase() where poolmember.PoolId==poolId && poolmember.IsActive == true select poolmember;
+                return poolmembers = from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase() where poolmember.PoolId == poolId && poolmember.IsActive == true select poolmember;
 
             }
             catch (ValidationException poolNotFound)
