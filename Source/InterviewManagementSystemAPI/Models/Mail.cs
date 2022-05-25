@@ -7,6 +7,8 @@ namespace IMS.Models
     public class MailRequest
 {
     public string ToEmail { get; set; }
+
+    public IEnumerable<string> ToEmailList { get; set; }
     public string Subject { get; set; }
     public string Body { get; set; }
 

@@ -13,9 +13,12 @@ public class EmployeeController : ControllerBase
 {
     private readonly ILogger _logger;
     private IEmployeeService employeeService;
-    public EmployeeController(ILogger<EmployeeController> logger)
+
+    private IMailService _mailService;
+    public EmployeeController(ILogger<EmployeeController> logger,MailService mailService)
     {
         _logger = logger;
+        _mailService = mailService;
         employeeService = DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
     }
 
@@ -50,7 +53,12 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            return employeeService.CreateNewEmployee(employee) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");
+            if(employeeService.CreateNewEmployee(employee))
+            {
+                _mailService.SendEmailAsync(_mailService.WelcomeEmployeeMail(employee.EmailId,employee.Name),true);
+                return Ok("Account Created Successfully");
+            }
+            return Problem("Sorry internal error occured");
         }
         catch (ValidationException employeeNameException)
         {
@@ -85,7 +93,6 @@ public class EmployeeController : ControllerBase
     [HttpPatch]
     public IActionResult RemoveEmployee(int employeeId)
     {
-
         try
         {
             return employeeService.RemoveEmployee(employeeId) ? Ok("Employee Removed Successfully") : BadRequest("Sorry internal error occured");
@@ -253,40 +260,6 @@ public class EmployeeController : ControllerBase
         {
             _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
             return BadRequest("Sorry some internal error occured");
-        }
-    }
-    /// <summary>
-    /// This method implements when a new user logins
-    /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /Login
-    ///     {
-    ///        "Employee Ace no": "ACE0001",
-    ///        "Password" : "String723y9@gmail.com
-    ///     }
-    /// 
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response>
-    /// <returns>
-    /// Return list of employees who has sent a request to admin and doesn't shows a accepted request or 
-    /// Return BadRequest when exception occured in the EmployeeService layer.
-    /// </returns>
-    [HttpGet]
-    public IActionResult Login(string employeeAceNumber, string password)
-    {
-
-        try
-        {
-            return employeeService.Login(employeeAceNumber, password) ? Ok("Login Successfully") : Problem("Invalid ACE Number or Password");
-
-        }
-        catch (Exception exception)
-        {
-            _logger.LogInformation($"Employee Service : Login throwed an exception : {exception}");
-            return Problem("Sorry some internal error occured");
         }
     }
 }

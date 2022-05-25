@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using IMS.Validations;
 namespace IMS.DataAccessLayer
 {
-    public class LocationDataAccessLayer:ILocationDataAccessLayer
+    public class LocationDataAccessLayer : ILocationDataAccessLayer
     {
-       private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger _logger;
 
         public LocationDataAccessLayer(ILogger logger)
@@ -28,12 +28,12 @@ namespace IMS.DataAccessLayer
             LocationValidation.IsLocationValid(location);
             try
             {
-                bool locationnameAlreadyExists = _db.Locations.Any(x=>x.LocationName==location.LocationName && x.IsActive == true);
-                if(!locationnameAlreadyExists)
+                bool locationnameAlreadyExists = _db.Locations.Any(x => x.LocationName == location.LocationName && x.IsActive == true);
+                if (!locationnameAlreadyExists)
                 {
-                _db.Locations.Add(location);
-                _db.SaveChanges();
-                return true;
+                    _db.Locations.Add(location);
+                    _db.SaveChanges();
+                    return true;
                 }
                 else
                     throw new ValidationException("Location Name already exists");
@@ -48,7 +48,7 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location) : {exception.Message}");
                 return false;
             }
-            catch(ValidationException locationnameAlreadyExists)
+            catch (ValidationException locationnameAlreadyExists)
             {
                 throw locationnameAlreadyExists;
             }
@@ -66,22 +66,22 @@ namespace IMS.DataAccessLayer
         /// <param name="locationId">int</param>
         /// <returns>Returns False when Exception occured in Database Connectivity.
         /// Throws Argument Null Exception when Location ID is null</returns>
-        
-         public bool RemoveLocationFromDatabase(int locationId)
+
+        public bool RemoveLocationFromDatabase(int locationId)
         {
             LocationValidation.IsLocationIdValid(locationId);
-            bool isLoactiontId = _db.Locations.Any(x =>x.LocationId==locationId && x.IsActive == false);
+            bool isLoactiontId = _db.Locations.Any(x => x.LocationId == locationId && x.IsActive == false);
             if (isLoactiontId)
             {
                 throw new ValidationException("Location already deleted");
             }
-           
+
             try
             {
                 var location = _db.Locations.Find(locationId);
-                if (location == null) 
+                if (location == null)
                     throw new ValidationException("No location is found with given Location Id");
-               
+
                 location.IsActive = false;
                 _db.Locations.Update(location);
                 _db.SaveChanges();
@@ -115,7 +115,7 @@ namespace IMS.DataAccessLayer
         /// </summary>
         /// <returns>Returns a list of Location.
         /// Catches exceptions if any problems in interacting with Database</returns>
-         public List<Location> GetLocationsFromDatabase()
+        public List<Location> GetLocationsFromDatabase()
         {
             try
             {
@@ -139,6 +139,6 @@ namespace IMS.DataAccessLayer
         }
 
 
-        
+
     }
 }

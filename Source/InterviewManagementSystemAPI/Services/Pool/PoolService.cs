@@ -152,7 +152,7 @@ namespace IMS.Service
         /// <param name="poolId">int</param>
         /// <returns>Return true or false for the Pool controller</returns>
 
-        public bool AddPoolMembers(int employeeId, int poolId)
+        public bool AddPoolMember(int employeeId, int poolId)
         {
             PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
             PoolValidation.IsAddPoolMembersValid(employeeId, poolId);
@@ -188,7 +188,7 @@ namespace IMS.Service
         /// </summary>
         /// <param name="poolMemberId">int</param>
         /// <returns>Return true or false for the Pool controller</returns>
-        public bool RemovePoolMembers(int poolMemberId)
+        public bool RemovePoolMember(int poolMemberId)
         {
             PoolValidation.IsRemovePoolMembersValid(poolMemberId);
 

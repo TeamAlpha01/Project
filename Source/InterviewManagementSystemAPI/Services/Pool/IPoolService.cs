@@ -9,9 +9,9 @@ namespace IMS.Service
 
         public bool EditPool(int poolId, string poolName);
         public IEnumerable<Pool> ViewPools();
-        public bool AddPoolMembers(int employeeId, int poolId);
+        public bool AddPoolMember(int employeeId, int poolId);
 
-        public bool RemovePoolMembers(int poolMemberId);
+        public bool RemovePoolMember(int poolMemberId);
 
         public IEnumerable<PoolMembers> ViewPoolMembers(int PoolId);
 

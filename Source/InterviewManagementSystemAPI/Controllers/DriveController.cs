@@ -7,15 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace IMS.Controllers;
 
 
+[Authorize]
 [ApiController]
 [Route("[Controller]/[action]")]
 public class DriveController : ControllerBase
 {
     private readonly ILogger _logger;
     private IDriveService _driveService;
-    public DriveController(ILogger<DriveController> logger)
+    private MailService _mailService;
+    public DriveController(ILogger<DriveController> logger,MailService mailService)
     {
         _logger = logger;
+        _mailService = mailService;
         _driveService = DataFactory.DriveDataFactory.GetDriveServiceObject(logger);
     }
 
@@ -30,7 +33,12 @@ public class DriveController : ControllerBase
             //use authentication and find current user id
             //drive.AddedBy=
             //drive.UpdatedBy=
-            return _driveService.CreateDrive(drive) ? Ok("Drive Created Successfully") : Problem("Sorry internal error occured");
+            if(_driveService.CreateDrive(drive))
+            {
+                _mailService.SendEmailAsync(_mailService.DriveInvites(drive,Convert.ToInt32(User.FindFirst("UserId").Value)),false);
+                return Ok("Drive Created Successfully");
+            }
+            return Problem("Sorry internal error occured");
         }
         catch (ValidationException driveNotValid)
         {
