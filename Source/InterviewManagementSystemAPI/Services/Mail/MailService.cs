@@ -32,7 +32,7 @@ namespace IMS.Service
                     email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
                 else
                 {
-                    foreach(var mailid in mailRequest.ToEmailList)
+                    foreach (var mailid in mailRequest.ToEmailList)
                         email.To.Add(MailboxAddress.Parse(mailid));
                 }
                 email.Subject = mailRequest.Subject;
@@ -46,7 +46,7 @@ namespace IMS.Service
                 await smtp.SendAsync(email);
                 smtp.Disconnect(true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;//make it perfect
             }
@@ -59,6 +59,7 @@ namespace IMS.Service
             mailRequest.Body = $"Hi, {newEmployeeName}.\n\nYour account has been created sucessfully, please wait until Admin verify your account.\nYou will recive a mail when the verification process is done.\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
             return mailRequest;
         }
+
         public MailRequest AddedEmployeeToPool(int employeeId, int poolId, int tacId)
         {
             MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
@@ -70,7 +71,7 @@ namespace IMS.Service
         public MailRequest RemovedEmployeeFromPool(int poolMemberId, int tacId)
         {
             MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
-            var _poolMember = _mailDataAccessLayer.GetPoolMember(poolMemberId);
+            PoolMembers _poolMember = _mailDataAccessLayer.GetPoolMember(poolMemberId);
             mailRequest.ToEmail = _mailDataAccessLayer.GetEmployeeEmail(_poolMember.EmployeeId);
             mailRequest.Subject = "Removed From a Pool - Aspire Interview Management System";
             mailRequest.Body = $"Hi, {_mailDataAccessLayer.GetEmployeeName(_poolMember.EmployeeId)}.\n\nYou have been removed from \"{_mailDataAccessLayer.GetPoolName(_poolMember.PoolId)}\" pool by TAC - {_mailDataAccessLayer.GetEmployeeName(tacId)}.\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
@@ -81,7 +82,36 @@ namespace IMS.Service
             MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
             mailRequest.ToEmailList = _mailDataAccessLayer.GetEmployeeEmailsByPool(drive.PoolId);
             mailRequest.Subject = "New Drive Invite - Aspire Interview Management System";
-            mailRequest.Body = $"Hi,\n\nA {drive.Name} Drive has been scheduled in \"{_mailDataAccessLayer.GetPoolName(drive.PoolId)}\" pool from {drive.FromDate.ToShortDateString()} to {drive.ToDate.ToShortDateString()} by TAC - {_mailDataAccessLayer.GetEmployeeName(tacId)}.\n\nKindly give your response within {DateTime.Now.AddDays(5).ToShortDateString()}\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
+            mailRequest.Body = $"Hi,\n\nA \"{drive.Name}\" Drive has been scheduled in \"{_mailDataAccessLayer.GetPoolName(drive.PoolId)}\" pool from {drive.FromDate.ToShortDateString()} to {drive.ToDate.ToShortDateString()} by TAC - {_mailDataAccessLayer.GetEmployeeName(tacId)}.\n\nKindly give your response within {DateTime.Now.AddDays(5).ToShortDateString()}\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
+            return mailRequest;
+        }
+        public MailRequest DriveCancelled(int driveId, int tacId)
+        {
+            MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
+            Drive drive = _mailDataAccessLayer.GetDrivebyId(driveId);
+            mailRequest.ToEmailList = _mailDataAccessLayer.GetEmployeeEmailsByPool(drive.PoolId);
+            mailRequest.Subject = "Drive Cancelled - Aspire Interview Management System";
+            mailRequest.Body = $"Hi,\n\nA \"{drive.Name}\" Drive in \"{_mailDataAccessLayer.GetPoolName(drive.PoolId)}\" pool has been Cancelled by TAC - {_mailDataAccessLayer.GetEmployeeName(tacId)}.\n\nSorry for the inconvenience.\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
+            return mailRequest;
+        }
+
+        public MailRequest InterviewScheduled(int employeeAvailabilityId, int tacId)
+        {
+            MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
+            EmployeeAvailability employeeAvailability = _mailDataAccessLayer.GetEmployeeAvailability(employeeAvailabilityId);
+            mailRequest.ToEmail = _mailDataAccessLayer.GetEmployeeEmail(employeeAvailability.EmployeeId);
+            mailRequest.Subject = "Interview Scheduled - Aspire Interview Management System";
+            mailRequest.Body = $"Hi, {_mailDataAccessLayer.GetEmployeeName(employeeAvailability.EmployeeId)}\n\nA Interview in \"{employeeAvailability.Drive.Name}\" Drive under \"{_mailDataAccessLayer.GetPoolName(employeeAvailability.Drive.PoolId)}\" pool has been scheduled from {employeeAvailability.From.TimeOfDay} to {employeeAvailability.To.TimeOfDay} on {employeeAvailability.InterviewDate.ToShortDateString()} by TAC - {_mailDataAccessLayer.GetEmployeeName(tacId)}.\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
+            return mailRequest;
+        }
+
+        public MailRequest InterviewCancelled(int employeeAvailabilityId)
+        {
+            MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
+            EmployeeAvailability employeeAvailability = _mailDataAccessLayer.GetEmployeeAvailability(employeeAvailabilityId);
+            mailRequest.ToEmail = _mailDataAccessLayer.GetEmployeeEmail(Convert.ToInt32(employeeAvailability.Drive.AddedBy));
+            mailRequest.Subject = "Interview Cancelled - Aspire Interview Management System";
+            mailRequest.Body = $"Hi, {_mailDataAccessLayer.GetEmployeeName(Convert.ToInt32(employeeAvailability.Drive.AddedBy))}\n\nA Interview in \"{employeeAvailability.Drive.Name}\" Drive under \"{_mailDataAccessLayer.GetPoolName(employeeAvailability.Drive.PoolId)}\" pool from {employeeAvailability.From.TimeOfDay} to {employeeAvailability.To.TimeOfDay} on {employeeAvailability.InterviewDate.ToShortDateString()}  has been cancelled by the interviewer - {_mailDataAccessLayer.GetEmployeeName(employeeAvailability.EmployeeId)}.\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
             return mailRequest;
         }
     }

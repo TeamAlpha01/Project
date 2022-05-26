@@ -31,6 +31,8 @@ namespace IMS.Models
 
         [ForeignKey("EmployeeId")]
         [InverseProperty("EmployeeSlotResponses")]
-        public Employee? Employee { get; set; } 
+        public Employee? Employee { get; set; }
+
+       
     }
 }

@@ -8,5 +8,7 @@ namespace IMS.DataAccessLayer
         public string GetPoolName(int poolId);
         public PoolMembers GetPoolMember(int poolMemberId);
         public List<string> GetEmployeeEmailsByPool(int poolId);
+        public Drive GetDrivebyId(int driveId);
+        public EmployeeAvailability GetEmployeeAvailability(int employeeAvailabilityId);
     }
 }

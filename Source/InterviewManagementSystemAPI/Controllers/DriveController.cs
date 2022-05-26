@@ -15,7 +15,7 @@ public class DriveController : ControllerBase
     private readonly ILogger _logger;
     private IDriveService _driveService;
     private MailService _mailService;
-    public DriveController(ILogger<DriveController> logger,MailService mailService)
+    public DriveController(ILogger<DriveController> logger, MailService mailService)
     {
         _logger = logger;
         _mailService = mailService;
@@ -49,9 +49,9 @@ public class DriveController : ControllerBase
             //use authentication and find current user id
             //drive.AddedBy=
             //drive.UpdatedBy=
-            if(_driveService.CreateDrive(drive))
+            if (_driveService.CreateDrive(drive))
             {
-                _mailService.SendEmailAsync(_mailService.DriveInvites(drive,Convert.ToInt32(User.FindFirst("UserId").Value)),false);
+                _mailService.SendEmailAsync(_mailService.DriveInvites(drive, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
                 return Ok("Drive Created Successfully");
             }
             return Problem("Sorry internal error occured");
@@ -99,7 +99,12 @@ public class DriveController : ControllerBase
 
         try
         {
-            return _driveService.CancelDrive(driveId, tacId, reason) ? Ok("Drive Cancelled Sucessfully") : Problem("Sorry internal error occured");
+            if (_driveService.CancelDrive(driveId, tacId, reason))
+            {
+                _mailService.SendEmailAsync(_mailService.DriveCancelled(driveId, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
+                return Ok("Drive Cancelled Sucessfully");
+            }
+            return Problem("Sorry internal error occured");
         }
         catch (ValidationException cancelDriveNotValid)
         {
@@ -612,7 +617,12 @@ public class DriveController : ControllerBase
             return BadRequest("provide proper employee availability Id");
         try
         {
-            return Ok(_driveService.ScheduleInterview(employeeAvailabilityId));
+            if (_driveService.ScheduleInterview(employeeAvailabilityId))
+            {
+                _mailService.SendEmailAsync(_mailService.InterviewScheduled(employeeAvailabilityId, Convert.ToInt32(User.FindFirst("UserId").Value)), true);
+                return Ok();
+            }
+            return Problem("Sorry internal error occured");
         }
         catch (ValidationException scheduleInterviewNotValid)
         {
@@ -650,7 +660,13 @@ public class DriveController : ControllerBase
             return BadRequest("provide proper driveId, employeeId and responseType");
         try
         {
-            return Ok(_driveService.CancelInterview(employeeAvailabilityId));
+            if (_driveService.CancelInterview(employeeAvailabilityId))
+            {
+                _mailService.SendEmailAsync(_mailService.InterviewCancelled(employeeAvailabilityId), true);
+                return Ok("Availability Cancellerd Sucessfully");
+            }
+            return Problem("Sorry internal error occured");
+
         }
         catch (ValidationException CancelInterviewNotValid)
         {

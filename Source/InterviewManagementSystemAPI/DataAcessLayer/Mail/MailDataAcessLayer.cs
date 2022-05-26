@@ -67,7 +67,42 @@ namespace IMS.DataAccessLayer
 
         public List<string> GetEmployeeEmailsByPool(int poolId)
         {
-            return (from poolMember in _db.PoolMembers.Include(p=>p.Employees) where poolMember.PoolId == poolId select poolMember.Employees.EmailId).ToList();
+            try
+            {
+                return (from poolMember in _db.PoolMembers.Include(p => p.Employees) where poolMember.PoolId == poolId select poolMember.Employees.EmailId).ToList();
+            }
+            catch (Exception getPoolNameException)
+            {
+                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
+                throw getPoolNameException;
+            }
+        }
+
+        public Drive GetDrivebyId(int driveId)
+        {
+            try
+            {
+                return _db.Drives.Find(driveId);
+            }
+            catch (Exception getDrivebyIdException)
+            {
+                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
+                throw getDrivebyIdException;
+            }
+        }
+
+        public EmployeeAvailability GetEmployeeAvailability(int employeeAvailabilityId)
+        {
+            try
+            {
+                //return (from availability in _db.EmployeeAvailability.Include("Drive").Where(e=>e.EmployeeAvailabilityId == employeeAvailabilityId) select availability).First();
+                return _db.EmployeeAvailability.Include("Drive").Include("Employee").FirstOrDefault(e=>e.EmployeeAvailabilityId == employeeAvailabilityId);
+            }
+            catch (Exception getDrivebyIdException)
+            {
+                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
+                throw getDrivebyIdException;
+            }
         }
     }
 }
