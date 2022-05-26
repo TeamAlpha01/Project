@@ -22,7 +22,23 @@ public class DriveController : ControllerBase
         _driveService = DataFactory.DriveDataFactory.GetDriveServiceObject(logger);
     }
 
-
+    /// <summary>
+    /// This method gets invoked when the 'create Drive' request raised by TAC
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Createdrive
+    ///     {
+    ///        "Drive object": "Drive",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="drive"></param>
+    /// <returns>Create a drive </returns>
+    
     [HttpPost]
     public IActionResult CreateDrive(Drive drive)
     {
@@ -53,6 +69,26 @@ public class DriveController : ControllerBase
 
     }
 
+    /// <summary>
+    /// This method gets invoked when the 'Cancel Drive' Request raises by the TAC member
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     Patch/CancelDrive
+    ///     {
+    ///        "Drive ID": "1",
+    ///        "TAC Id" : "2",
+    ///        "Reason" : "Interviewer Not Vailable",
+    ///     }
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="driveId"></param>
+    /// <param name="tacId"></param>
+    /// <param name="reason"></param>
+    /// <returns>Cancel a drive</returns>
+
     [HttpPatch]
     public IActionResult CancelDrive(int driveId, int tacId, string reason)
     {
@@ -78,6 +114,22 @@ public class DriveController : ControllerBase
 
     }
 
+    /// <summary>
+    /// This method gets invoked by the TAC to view the Today's Drive
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewTodaysDrive
+    ///     {
+    ///       
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <returns>Listing down todays drives</returns>
+
     [HttpGet]
     public IActionResult ViewTodayDrives()
     {
@@ -93,6 +145,22 @@ public class DriveController : ControllerBase
 
     }
 
+    /// <summary>
+    /// This method invoked by TAC to view the list of Scheduled drives
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewScheduledDrive
+    ///     {
+    ///       
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <returns>Returns a list of Scheduled drives</returns>
+
     [HttpGet]
     public IActionResult ViewScheduledDrives()
     {
@@ -107,6 +175,22 @@ public class DriveController : ControllerBase
         }
 
     }
+
+    /// <summary>
+    /// This method invoked by TAC to view the list of Upcoming drives
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewUpcomingDrive
+    ///     {
+    ///        
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <returns>Returns a list of Upcoming drives</returns>
     [HttpGet]
     public IActionResult ViewUpcommingDrives()
     {
@@ -122,6 +206,22 @@ public class DriveController : ControllerBase
 
     }
 
+    /// <summary>
+    /// This method is invoked When the 'ViewNonCancelledDrive' request raises.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET/ViewNonCancelledDrive
+    ///     {
+    ///       
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <returns>Returns the list of Non Scheduled Drives</returns>
+
     [HttpGet]
     public IActionResult ViewNonCancelledDrives()
     {
@@ -136,6 +236,23 @@ public class DriveController : ControllerBase
         }
 
     }
+
+    /// <summary>
+    /// This method is invoked when the 'View All cancelled drive' request raises.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET/ViewCancelledDrive
+    ///     {
+    ///       
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <returns>Returns a list of Cancelled drives</returns>
+    
     [HttpGet]
     public IActionResult ViewAllCancelledDrives()
     {
@@ -171,6 +288,24 @@ public class DriveController : ControllerBase
     //     }
 
     // }
+
+    /// <summary>
+    /// This method invokes when the 'viewInvites' request raises
+    /// </summary>
+    /// <param name="employeeId"></param>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewInvites
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <returns>Returns a list of Interview Invites</returns>
+    
     [HttpGet]
     public IActionResult ViewInvites(int employeeId)
     {
@@ -186,6 +321,23 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method invokes when a TAC wants to view their dashboard
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /VioewDashboard
+    ///     {
+    ///        "TAC Id": "9",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="tacId"></param>
+    /// <returns>Returns the dashboard of TAC</returns>
 
     [HttpGet]
     public IActionResult ViewDashboard(int tacId)
@@ -208,8 +360,25 @@ public class DriveController : ControllerBase
         }
 
     }
-
     //For Employee Drive Response Entity
+
+    /// <summary>
+    /// This method invoked when the employee wants to add aresponse
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Employee Drive Response
+    ///     {
+    ///        "Response object": "Response",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="response"></param>
+    /// <returns>Added a Response</returns>
+    
     [HttpPost]
     public IActionResult AddResponse(EmployeeDriveResponse response)
     {
@@ -251,6 +420,23 @@ public class DriveController : ControllerBase
     //         return Problem("Sorry internal error occured");
     //     }
     // }
+
+    /// <summary>
+    /// This method is invoked when the interviewer wants to fill the timeslot
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /CreateNewDepartment
+    ///     {
+    ///        "EmployeeAvailability object": "EmployeeAvailability",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeAvailability"></param>
+    /// <returns>Filled the timeslot</returns>
     [HttpPost]
     public IActionResult SetTimeSlot(EmployeeAvailability employeeAvailability)
     {
@@ -271,6 +457,23 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method invoked when the view today's interviews request raise.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewTodaysInterview
+    ///     {
+    ///        "Employee ID": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns a list of today's interviews</returns>
     [HttpGet]
     public IActionResult ViewTodaysInterview(int employeeId)
     {
@@ -286,6 +489,23 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method is invoked when the 'View Scheduled interviews' request raises
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewScheduledInterviews
+    ///     {
+    ///        "EmployeeId": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns a list of Scheduled Interviews</returns>
     [HttpGet]
     public IActionResult ViewScheduledInterview(int employeeId)
     {
@@ -301,6 +521,24 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method is implemented when the 'ViewUpcomingInterviews' request raises.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewUpcomingDrive
+    ///     {
+    ///        "Employee id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns a list of Upcoming Interviews</returns>
+    
     [HttpGet]
     public IActionResult ViewUpcomingInterview(int employeeId)
     {
@@ -316,6 +554,24 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    /// <summary>
+    /// This Method is invoked when 'ViewAllInterviews' request raise
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewAllInterviews
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns a list of interviews</returns>
+    
     [HttpGet]
     public IActionResult ViewAllInterview(int employeeId)
     {
@@ -331,6 +587,23 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method is invoked when 'view scheduled interview' request
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     Patch /ViewScheduledInterview
+    ///     {
+    ///        "Employeeavailability": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeAvailabilityId"></param>
+    /// <returns>Returns a list of scheduled interviews</returns>
 
     [HttpPatch]
     public IActionResult ScheduleInterview(int employeeAvailabilityId)
@@ -352,6 +625,24 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method invokes when the employee needs to cancel the availability 
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     Patch /CancelInterview
+    ///     {
+    ///        "EmployeeAvailabilityId": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeAvailabilityId"></param>
+    /// <returns>Cancel the interview</returns>
+    
     [HttpPatch]
     public IActionResult CancelInterview(int employeeAvailabilityId)
     {
@@ -372,6 +663,23 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method invoked when the list of members available for the particular drive
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewAvailableMembersForDrive
+    ///     {
+    ///        "DriveId": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="driveId"></param>
+    /// <returns>Returns a list of available members for the particuler drive</returns>
     [HttpGet]
     public IActionResult ViewAvailableMembersForDrive(int driveId)
     {
@@ -392,6 +700,23 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    /// <summary>
+    /// This method invoked when the employee wants to see their dashboard
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployueeDashboard
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns the dashboard of employee</returns>
     [HttpGet]
     public IActionResult ViewEmployeeDashboard(int employeeId)
     {
