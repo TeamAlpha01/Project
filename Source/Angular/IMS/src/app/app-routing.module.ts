@@ -52,7 +52,7 @@ import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-
 
 const routes: Routes = [
   //interviewer pages
-  { path: 'interviewer-current-drive', component: InterviewerCurrentDriveComponent },     //Admin-view-location-page
+  { path: 'interviewer-current-drive', component: InterviewerCurrentDriveComponent },     
   { path: 'interviewer-home', component: InterviewerHomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
@@ -65,10 +65,10 @@ const routes: Routes = [
 
 
   //admin pages
-  { path: '', component: InterviewerCurrentDriveComponent},                        //Admin-addrole-page
+  { path: 'Admin-addrole-page', component: InterviewerCurrentDriveComponent},        //Admin-addrole-page
   { path: 'Admin-adddepartment ', component: AdminAdddepartmentComponent },          //Admin-adddepartment 
-  { path: 'Admin-addlocation ', component: AdminAddlocationComponent },               //Admin-addlocation
-  { path: '', component: AdminAddprojectComponent },   //Admin-addproject
+  { path: 'Admin-addlocation ', component: AdminAddlocationComponent },              //Admin-addlocation
+  { path: '', component: AdminAddprojectComponent },                                 //Admin-addproject
   { path: 'Admin-role', component: AdminRoleComponent },                             //Admin-role
   { path: 'Admin-requests', component: AdminRequestsComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },

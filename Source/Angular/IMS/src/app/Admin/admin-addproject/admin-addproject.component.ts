@@ -39,7 +39,7 @@ export class AdminAddprojectComponent implements OnInit {
   }
 
   
-  // department: string[] = ['dotnet', 'java', 'lamp']
+  department: string[] = ['dotnet', 'java', 'lamp']
 
 }
 
