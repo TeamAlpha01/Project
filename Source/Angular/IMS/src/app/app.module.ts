@@ -57,6 +57,7 @@ import { RegisterComponent } from './register/register.component';
 import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.component';
 import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
+import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
 
 
 
@@ -116,6 +117,7 @@ import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-
     TacCreatePoolComponent,
     TacEditPoolComponent,
     TacEditPoolMemberComponent,
+    TacCancelDriveComponent,
 
 
   ],

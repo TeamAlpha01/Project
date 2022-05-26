@@ -44,6 +44,7 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
 import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.component';
 import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
+import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
@@ -89,6 +90,7 @@ const routes: Routes = [
   { path: 'managepoolmembers', component: TacEditPoolMemberComponent },
   { path: 'tac-profile', component: TacProfileComponent },
   { path: 'tac-current-drive', component: TacCurrentDriveComponent },
+  { path: 'tac-cancel-drive/:driveId', component: TacCancelDriveComponent },
   { path: 'tac-scheduled-drive', component: TacScheduledDriveComponent },
   { path: 'create-invite', component: CreateInviteComponent },
   { path: 'tac-upcomingDrives', component: TacUpcomingDriveComponent },
