@@ -24,7 +24,7 @@ namespace IMS.Controllers
         {
             try
             {
-                var Result = _tokenService.AuthToken(employeeAceNumber, password);
+                var Result = _tokenService.AuthToken(employeeAceNumber, password);                
                 return Ok(Result);
             }
             catch (ValidationException validationException)

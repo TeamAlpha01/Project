@@ -4,6 +4,7 @@ using IMS.Service;
 using IMS.DataFactory;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using IMS.CustomExceptions;
 
 namespace IMS.Controllers;
 
@@ -64,6 +65,11 @@ public class EmployeeController : ControllerBase
         {
             _logger.LogInformation($"Employee Service : CreateNewEmployee() : {employeeNameException.Message}");
             return BadRequest(employeeNameException.Message);
+        }
+        catch (MailException mailException)
+        {
+            _logger.LogInformation($"Employee Controller : CreateNewEmployee() : {mailException.Message} : {mailException.StackTrace}");
+            return Ok("Account Cancelled Successfully but failed to send email");
         }
         catch (Exception exception)
         {

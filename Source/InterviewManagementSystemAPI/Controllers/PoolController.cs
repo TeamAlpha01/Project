@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using IMS.Service;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
+using IMS.CustomExceptions;
 
 namespace IMS.Controllers;
 
@@ -226,6 +227,11 @@ public class PoolController : ControllerBase
             _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {employeeNotException.Message}");
             return BadRequest(employeeNotException.Message);
         }
+        catch (MailException mailException)
+        {
+            _logger.LogInformation($"Pool Controller : AddPoolMembers(int employeeId,int poolId) : {mailException.Message} : {mailException.StackTrace}");
+            return Ok("Pool Member Added Successfully but failed to send email");
+        }
         catch (Exception exception)
         {
             _logger.LogInformation($"Pool Service : AddPoolMembers throwed an exception : {exception}");
@@ -268,6 +274,11 @@ public class PoolController : ControllerBase
         {
             _logger.LogInformation($"Pool Service :RemovePoolMembers(int poolMemberId): {poolMemberNotException.Message}");
             return BadRequest(poolMemberNotException.Message);
+        }
+        catch (MailException mailException)
+        {
+            _logger.LogInformation($"Pool Controller : RemovePoolMembers(int poolMemberId) : {mailException.Message} : {mailException.StackTrace}");
+            return Ok("Pool Member removed Successfully but failed to send email");
         }
         catch (Exception exception)
         {

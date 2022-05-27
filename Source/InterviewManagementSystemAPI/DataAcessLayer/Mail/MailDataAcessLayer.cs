@@ -22,7 +22,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getEmployeeEmailException)
             {
-                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
+                _logger.LogInformation($"Exception on Mail DAL : GetEmployeeEmail(int employeeId) : {getEmployeeEmailException.Message} : {getEmployeeEmailException.StackTrace}");
                 throw getEmployeeEmailException;
             }
         }
@@ -35,7 +35,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getEmployeeNameException)
             {
-                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
+                _logger.LogInformation($"Exception on Mail DAL :GetEmployeeName(int employeeId) : {getEmployeeNameException.Message} : {getEmployeeNameException.StackTrace}");
                 throw getEmployeeNameException;
             }
         }
@@ -48,7 +48,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getPoolNameException)
             {
-                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
+                _logger.LogInformation($"Exception on Mail DAL : GetPoolName(int poolId) : {getPoolNameException.Message} : {getPoolNameException.StackTrace}");
                 throw getPoolNameException;
             }
         }
@@ -60,7 +60,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getPoolMemberException)
             {
-                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
+                _logger.LogInformation($"Exception on Mail DAL : GetPoolMember(int poolMemberId) : {getPoolMemberException.Message} : {getPoolMemberException.StackTrace}");
                 throw getPoolMemberException;
             }
         }
@@ -71,10 +71,10 @@ namespace IMS.DataAccessLayer
             {
                 return (from poolMember in _db.PoolMembers.Include(p => p.Employees) where poolMember.PoolId == poolId select poolMember.Employees.EmailId).ToList();
             }
-            catch (Exception getPoolNameException)
+            catch (Exception getEmployeeEmailsByPoolException)
             {
-                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
-                throw getPoolNameException;
+                _logger.LogInformation($"Exception on Mail DAL : GetEmployeeEmailsByPool(int poolId) : {getEmployeeEmailsByPoolException.Message} : {getEmployeeEmailsByPoolException.StackTrace}");
+                throw getEmployeeEmailsByPoolException;
             }
         }
 
@@ -86,7 +86,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getDrivebyIdException)
             {
-                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
+                _logger.LogInformation($"Exception on Mail DAL : GetDrivebyId(int driveId) : {getDrivebyIdException.Message} : {getDrivebyIdException.StackTrace}");
                 throw getDrivebyIdException;
             }
         }
@@ -95,13 +95,12 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                //return (from availability in _db.EmployeeAvailability.Include("Drive").Where(e=>e.EmployeeAvailabilityId == employeeAvailabilityId) select availability).First();
                 return _db.EmployeeAvailability.Include("Drive").Include("Employee").FirstOrDefault(e=>e.EmployeeAvailabilityId == employeeAvailabilityId);
             }
-            catch (Exception getDrivebyIdException)
+            catch (Exception getEmployeeAvailabilityException)
             {
-                // _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
-                throw getDrivebyIdException;
+                _logger.LogInformation($"Exception on Mail DAL : GetEmployeeAvailability(int employeeAvailabilityId) : {getEmployeeAvailabilityException.Message} : {getEmployeeAvailabilityException.StackTrace}");
+                throw getEmployeeAvailabilityException;
             }
         }
     }
