@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConnectionService } from '../Services/connection.service';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-interviwer-profile',
