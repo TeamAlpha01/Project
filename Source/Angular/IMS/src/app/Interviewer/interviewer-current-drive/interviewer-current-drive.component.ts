@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-interviewer-current-drive',
@@ -15,16 +16,13 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   _pool = '';
   pool: any[] = [];
   drive: any[] = [];
-  constructor(private http: HttpClient) { }
+  interviwerpoolDetails :any;
+  constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
-
-    // this.http
-    //   .get<any>('https://localhost:7072/Drive/ViewTodayDrives')
-    //   .subscribe((data) => {
-    //     this.drive = data;
-    //     this.totalLength = data.length;
-    //   });
+    this.connection.GetPools().subscribe((data: any) => {
+      this.interviwerpoolDetails = data;
+  })
     for (let item of this.driveDetails) {
       this.drive.push(item);
     }

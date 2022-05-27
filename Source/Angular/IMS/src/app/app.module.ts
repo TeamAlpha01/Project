@@ -58,6 +58,7 @@ import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.co
 import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
 import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
+import { InterviwerProfileComponent } from './interviwer-profile/interviwer-profile.component';
 
 
 
@@ -118,6 +119,7 @@ import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive
     TacEditPoolComponent,
     TacEditPoolMemberComponent,
     TacCancelDriveComponent,
+    InterviwerProfileComponent,
 
 
   ],
