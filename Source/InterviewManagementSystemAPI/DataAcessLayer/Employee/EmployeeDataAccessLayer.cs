@@ -173,7 +173,7 @@ namespace IMS.DataAccessLayer
             EmployeeValidation.IsDepartmentValid(departmentId);
             try
             {
-                var viewEmployeesByDepartment = (_db.Employees.Include(p => p.Project).Include(p => p.Department).Include(p => p.PoolMembers).Include(r => r.Role)).ToList();
+                var viewEmployeesByDepartment = (_db.Employees.Include(p => p.Project).Include(p => p.Department).Include(p => p.PoolMembers).Include(r => r.Role)).Where(x => x.DepartmentId == departmentId).ToList();
                 return viewEmployeesByDepartment != null ? viewEmployeesByDepartment : throw new ValidationException("No Department is found with given department Id");
             }
             catch (Exception IsDepartmentValid)

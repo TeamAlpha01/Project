@@ -163,8 +163,24 @@ namespace IMS.Service
 
             try
             {
-                IEnumerable<Employee> employees = new List<Employee>();
-                return employees = (from employee in _employeeDataAccessLayer.ViewEmployeeByDepartment(departmentId) where employee.DepartmentId == departmentId select employee);
+                List<Object> employees = new List<Object>();
+                var employee = _employeeDataAccessLayer.ViewEmployeeByDepartment(departmentId)
+                .Select(e => new
+                {
+                    EmployeeACEId = e.EmployeeAceNumber,
+                    EmployeeName = e.Name,
+                    EmployeeDepartment = e.Department.DepartmentName,
+                    EmployeeProject = e.Project.ProjectName,
+                    EmployeeRole = e.Role.RoleName,
+                    EmployeeEmailID = e.EmailId
+
+                }
+                );
+                foreach (var item in employee)
+                {
+                    employees.Add(item);
+                }
+                return employees;
             }
             catch (Exception exception)
             {
