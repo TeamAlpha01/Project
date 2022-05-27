@@ -156,24 +156,32 @@ namespace IMS.Service
         /// Returns list of employees who's departmentId matches in database table department id or
         /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
         /// </returns>
-        public IEnumerable<Employee> ViewEmployeesByDepartment(int departmentId)
+        public object ViewEmployeesByDepartment(int departmentId)
         {
-
-
             EmployeeValidation.IsDepartmentValid(departmentId);
-
             _departmentDataAccessLayer.CheckDepartmentId(departmentId);
 
             try
             {
                 IEnumerable<Employee> employees = new List<Employee>();
-                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.DepartmentId == departmentId select employee;
+                return employees = (from employee in _employeeDataAccessLayer.ViewEmployeeByDepartment(departmentId) where employee.DepartmentId == departmentId select employee);
             }
             catch (Exception exception)
             {
                 _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
+
+            // try
+            // {
+            //     IEnumerable<Employee> employees = new List<Employee>();
+            //     return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.DepartmentId == departmentId select employee;
+            // }
+            // catch (Exception exception)
+            // {
+            //     _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
+            //     throw new Exception();
+            // }
 
         }
 

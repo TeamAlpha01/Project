@@ -9,6 +9,8 @@ namespace IMS.DataAccessLayer
 
         public Employee ViewProfile(int employeeId);
 
+        public List<Employee> ViewEmployeeByDepartment(int departmentId);
+
         public Employee CheckLoginCrendentials(string employeeAceNumber , string password);
     }
 }

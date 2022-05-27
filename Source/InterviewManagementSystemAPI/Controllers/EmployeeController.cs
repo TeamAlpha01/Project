@@ -3,11 +3,12 @@ using IMS.Models;
 using IMS.Service;
 using IMS.DataFactory;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 using IMS.CustomExceptions;
 
 namespace IMS.Controllers;
-
+//[Authorize]
 [ApiController]
 [Route("[controller]/[action]")]
 public class EmployeeController : ControllerBase
@@ -16,7 +17,7 @@ public class EmployeeController : ControllerBase
     private IEmployeeService employeeService;
 
     private IMailService _mailService;
-    public EmployeeController(ILogger<EmployeeController> logger,MailService mailService)
+    public EmployeeController(ILogger<EmployeeController> logger,MailService mailService) 
     {
         _logger = logger;
         _mailService = mailService;

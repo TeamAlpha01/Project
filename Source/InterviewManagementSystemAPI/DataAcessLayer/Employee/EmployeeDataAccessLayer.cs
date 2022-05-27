@@ -138,7 +138,7 @@ namespace IMS.DataAccessLayer
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
-                var viewProfile = (_db.Employees.Include(p => p.Project).Include(d => d.Department).Include(p => p.PoolMembers).Include(p => p.PoolMembers).Include(r => r.Role)).FirstOrDefault(x => x.EmployeeId == employeeId); ;
+                var viewProfile = (_db.Employees.Include(p => p.Project).Include(d => d.Department).Include(p => p.PoolMembers).Include(r => r.Role)).FirstOrDefault(x => x.EmployeeId == employeeId);
                 return viewProfile != null ? viewProfile : throw new ValidationException("No Employee is found with given employee Id");
             }
             catch (Exception isEmployeeIdValidException)
@@ -147,6 +147,7 @@ namespace IMS.DataAccessLayer
                 throw isEmployeeIdValidException;
             }
         }
+        
         public Employee CheckLoginCrendentials(string employeeAceNumber, string password)
         {
             try
@@ -164,6 +165,21 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Exception on Employee DAL : CheckLoginCrendentials(string employeeAceNumber, string password) : {exception.Message}");
                 throw exception;
+            }
+        }
+
+        public List<Employee> ViewEmployeeByDepartment(int departmentId)
+        {
+            EmployeeValidation.IsDepartmentValid(departmentId);
+            try
+            {
+                var viewEmployeesByDepartment = (_db.Employees.Include(p => p.Project).Include(p => p.Department).Include(p => p.PoolMembers).Include(r => r.Role)).ToList();
+                return viewEmployeesByDepartment != null ? viewEmployeesByDepartment : throw new ValidationException("No Department is found with given department Id");
+            }
+            catch (Exception IsDepartmentValid)
+            {
+                _logger.LogInformation($"Exception on Employee DAL : IsDepartmentValid(int departmnet) : {IsDepartmentValid.Message} : {IsDepartmentValid.StackTrace}");
+                throw IsDepartmentValid;
             }
         }
     }
