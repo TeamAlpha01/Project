@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using IMS.CustomExceptions;
 using IMS.Models;
 using IMS.Service;
 using IMS.Validations;
@@ -15,11 +16,14 @@ public class DriveController : ControllerBase
     private readonly ILogger _logger;
     private IDriveService _driveService;
     private MailService _mailService;
+
+    //private int _currentUserId; 
     public DriveController(ILogger<DriveController> logger, MailService mailService)
     {
         _logger = logger;
         _mailService = mailService;
         _driveService = DataFactory.DriveDataFactory.GetDriveServiceObject(logger);
+        //_currentUserId = Convert.ToInt32(User.FindFirst("UserId").Value);
     }
 
     /// <summary>
@@ -60,6 +64,11 @@ public class DriveController : ControllerBase
         {
             _logger.LogInformation($"Drive Controller : CreateDrive(Drive drive) : {driveNotValid.Message} : {driveNotValid.StackTrace}");
             return BadRequest(driveNotValid.Message);
+        }
+        catch (MailException mailException)
+        {
+            _logger.LogInformation($"Drive Controller : CreateDrive(Drive drive) : {mailException.Message} : {mailException.StackTrace}");
+            return Ok("Drive Created Successfully but failed to send email");
         }
         catch (Exception createDriveException)
         {
@@ -110,6 +119,11 @@ public class DriveController : ControllerBase
         {
             _logger.LogInformation($"Drive Controller : CancelDrive(int driveId, int tacId, string reason) : {cancelDriveNotValid.Message} : {cancelDriveNotValid.StackTrace}");
             return BadRequest(cancelDriveNotValid.Message);
+        }
+        catch (MailException mailException)
+        {
+            _logger.LogInformation($"Drive Controller : CreateDrive(Drive drive) : {mailException.Message} : {mailException.StackTrace}");
+            return Ok("Drive Cancelled Successfully but failed to send email");
         }
         catch (Exception cancelDriveException)
         {
@@ -272,27 +286,27 @@ public class DriveController : ControllerBase
         }
 
     }
-    // [HttpGet]
-    // public IActionResult ViewDrive(int driveId)
-    // {
-    //     if (driveId <= 0)
-    //         return BadRequest($"Provide proper driveId {driveId}");
-    //     try
-    //     {
-    //         return Ok(_driveService.ViewDrive(driveId));
-    //     }
-    //     catch (ValidationException viewDriveNotValid)
-    //     {
-    //         _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveNotValid.Message} : {viewDriveNotValid.StackTrace}");
-    //         return BadRequest(viewDriveNotValid.Message);
-    //     }
-    //     catch (Exception viewDriveException)
-    //     {
-    //         _logger.LogInformation($"Drive Controller : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
-    //         return Problem("Sorry internal error occured");
-    //     }
+    [HttpGet]
+    public IActionResult ViewDrive(int driveId)
+    {
+        if (driveId <= 0)
+            return BadRequest($"Provide proper driveId {driveId}");
+        try
+        {
+            return Ok(_driveService.ViewDrive(driveId));
+        }
+        catch (ValidationException viewDriveNotValid)
+        {
+            _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveNotValid.Message} : {viewDriveNotValid.StackTrace}");
+            return BadRequest(viewDriveNotValid.Message);
+        }
+        catch (Exception viewDriveException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
+            return Problem("Sorry internal error occured");
+        }
 
-    // }
+    }
 
     /// <summary>
     /// This method invokes when the 'viewInvites' request raises
@@ -620,7 +634,7 @@ public class DriveController : ControllerBase
             if (_driveService.ScheduleInterview(employeeAvailabilityId))
             {
                 _mailService.SendEmailAsync(_mailService.InterviewScheduled(employeeAvailabilityId, Convert.ToInt32(User.FindFirst("UserId").Value)), true);
-                return Ok();
+                return Ok("Interview Scheduled Sucessfully");
             }
             return Problem("Sorry internal error occured");
         }
@@ -628,6 +642,11 @@ public class DriveController : ControllerBase
         {
             _logger.LogInformation($"Drive Controller : ScheduleInterview(int employeeAvailabilityId) : {scheduleInterviewNotValid.Message} : {scheduleInterviewNotValid.StackTrace}");
             return BadRequest(scheduleInterviewNotValid.Message);
+        }
+        catch (MailException mailException)
+        {
+            _logger.LogInformation($"Drive Controller : CreateDrive(Drive drive) : {mailException.Message} : {mailException.StackTrace}");
+            return Ok("Interview Scheduled Sucessfully but failed to send email");
         }
         catch (Exception scheduleInterviewException)
         {
@@ -672,6 +691,11 @@ public class DriveController : ControllerBase
         {
             _logger.LogInformation($"Drive Controller : CancelInterview(int employeeAvailabilityId) : {CancelInterviewNotValid.Message} : {CancelInterviewNotValid.StackTrace}");
             return BadRequest(CancelInterviewNotValid.Message);
+        }
+        catch (MailException mailException)
+        {
+            _logger.LogInformation($"Drive Controller : CreateDrive(Drive drive) : {mailException.Message} : {mailException.StackTrace}");
+            return Ok("Availability Cancellerd Sucessfully but failed to send email");
         }
         catch (Exception CancelInterviewException)
         {

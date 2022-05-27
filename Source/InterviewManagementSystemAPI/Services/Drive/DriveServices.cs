@@ -204,25 +204,37 @@ namespace IMS.Service
             return (from drive in _driveDataAccess.GetDrivesByStatus(status) where drive.AddedBy == employeeId select drive).Count();
         }
 
-        // public Drive ViewDrive(int driveId)
-        // {
-        //     DriveValidation.IsDriveIdValid(driveId);
+        public Object ViewDrive(int driveId)
+        {
+            DriveValidation.IsDriveIdValid(driveId);
 
-        //     try
-        //     {
-        //         return _driveDataAccess.ViewDrive(driveId);
-        //     }
-        //     catch (ValidationException viewDriveNotValid)
-        //     {
-        //         _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveNotValid.Message} : {viewDriveNotValid.StackTrace}");
-        //         throw viewDriveNotValid;
-        //     }
-        //     catch (Exception viewDriveException)
-        //     {
-        //         _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
-        //         throw viewDriveException;
-        //     }
-        // }
+            try
+            {
+                var drive = _driveDataAccess.ViewDrive(driveId);
+                return  new
+                {
+                    DriveId = drive.DriveId,
+                    DriveName = drive.Name,
+                    FromDate = drive.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = drive.ToDate.ToString("yyyy-MM-dd"),
+                    DriveDepartment = drive.Pool.department.DepartmentName,
+                    DriveLocation = drive.Location.LocationName,
+                    DrivePool = drive.Pool.PoolName,
+                    DriveMode = drive.ModeId
+                }
+                ;
+            }
+            catch (ValidationException viewDriveNotValid)
+            {
+                _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveNotValid.Message} : {viewDriveNotValid.StackTrace}");
+                throw viewDriveNotValid;
+            }
+            catch (Exception viewDriveException)
+            {
+                _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
+                throw viewDriveException;
+            }
+        }
 
         //For Employee Drive Response Entity
         public bool AddResponse(EmployeeDriveResponse response)

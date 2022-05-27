@@ -12,7 +12,7 @@ namespace IMS.Service
         public Object ViewNonCancelledDrives();
         public Object ViewAllCancelledDrives();
         public Dictionary<string,int> ViewTACDashboard(int employeeId);  
-        //public Drive ViewDrive(int driveId);
+        public Object ViewDrive(int driveId);
 
 
         //For Employee Drive Response Entity

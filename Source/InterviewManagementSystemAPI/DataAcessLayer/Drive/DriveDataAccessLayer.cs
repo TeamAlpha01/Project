@@ -108,22 +108,21 @@ namespace IMS.DataAccessLayer
             }
         }
 
-        // public Drive ViewDrive(int driveId)
-        // {
-        //     DriveValidation.IsDriveIdValid(driveId);
+        public Drive ViewDrive(int driveId)
+        {
+            DriveValidation.IsDriveIdValid(driveId);
 
-        //     try
-        //     {
-        //         var viewDrive = _db.Drives.Find(driveId);    ///use include method
-        //         //(from drive in _db.Drives where drive.DriveId == driveId select drive).First()
-        //         return viewDrive != null ? viewDrive : throw new ValidationException($"No drive is found with id : {driveId}");
-        //     }
-        //     catch (Exception isDriveIdValidException)
-        //     {
-        //         _logger.LogInformation($"Exception on Drive DAL : ViewDrive(int driveId) : {isDriveIdValidException.Message} : {isDriveIdValidException.StackTrace}");
-        //         throw isDriveIdValidException;
-        //     }
-        // }
+            try
+            {
+                var viewDrive = _db.Drives.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool.department).Where(d=>d.DriveId==driveId).First();
+                return viewDrive != null ? viewDrive : throw new ValidationException($"No drive is found with id : {driveId}");
+            }
+            catch (Exception isDriveIdValidException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : ViewDrive(int driveId) : {isDriveIdValidException.Message} : {isDriveIdValidException.StackTrace}");
+                throw isDriveIdValidException;
+            }
+        }
 
 
 
