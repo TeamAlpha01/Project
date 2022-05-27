@@ -221,18 +221,24 @@ namespace IMS.Service
         /// <param name="poolId">int</param>
         /// <returns></returns>
         /// 
-        public IEnumerable<PoolMembers> ViewPoolMembers(int poolId)
+        public Object ViewPoolMembers(int poolId)
         {
             PoolValidation.IsPoolIdValid(poolId);
+       
+        try
+        {
+            return _poolDataAccessLayer.GetPoolMembersFromDatabase(poolId).Select(
+                poolMembers=>new
+                {
+                    employeeAceNumber=poolMembers.Employees.EmployeeAceNumber,
+                    employeeName=poolMembers.Employees.Name,
+                    employeeRole=poolMembers.Employees.Role.RoleName
 
 
-            try
-            {
-                IEnumerable<PoolMembers> poolmembers = new List<PoolMembers>();
-                return poolmembers = from poolmember in _poolDataAccessLayer.GetPoolMembersFromDatabase() where poolmember.PoolId == poolId && poolmember.IsActive == true select poolmember;
-
-            }
-            catch (ValidationException poolNotFound)
+                }
+            );
+        }
+        catch (ValidationException poolNotFound)
             {
                 _logger.LogInformation($"Pool service :ViewPoolMembers (int poolId): {poolNotFound.Message}");
                 throw poolNotFound;

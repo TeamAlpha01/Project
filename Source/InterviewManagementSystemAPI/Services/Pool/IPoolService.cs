@@ -13,7 +13,7 @@ namespace IMS.Service
 
         public bool RemovePoolMember(int poolMemberId);
 
-        public IEnumerable<PoolMembers> ViewPoolMembers(int PoolId);
+        public Object ViewPoolMembers(int PoolId);
 
 
 

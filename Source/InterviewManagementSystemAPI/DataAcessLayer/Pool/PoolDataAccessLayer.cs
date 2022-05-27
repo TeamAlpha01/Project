@@ -212,9 +212,17 @@ namespace IMS.DataAccessLayer
                 var pool =_db.Employees.Find(poolMembers.PoolId);
                 if(employee==null || pool==null)
                     throw new ValidationException("Employee or pool not found with the given Employee Id and Pool Id");
+                bool poolMemberAlreadyExists = _db.PoolMembers.Any(x => x.EmployeeId == poolMembers.EmployeeId && x.PoolId==poolMembers.PoolId && x.IsActive == true);    
+                if(!poolMemberAlreadyExists)
+                {
                 _db.PoolMembers.Add(poolMembers);
                 _db.SaveChanges();
                 return true;
+                }
+                else
+                 throw new ValidationException("Pool Member already exists in the given Pool Id");
+               
+
             }
             catch (DbUpdateException exception)
             {
@@ -249,6 +257,11 @@ namespace IMS.DataAccessLayer
         public bool RemovePoolMembersFromDatabase(int poolMemberId)
         {
             PoolValidation.IsRemovePoolMembersValid(poolMemberId);
+             bool isPoolMemberId = _db.PoolMembers.Any(x => x.PoolMembersId == poolMemberId && x.IsActive == false);
+            if (isPoolMemberId)
+            {
+                throw new ValidationException("PoolMember already deleted");
+            }
 
             try
             {
@@ -292,14 +305,13 @@ namespace IMS.DataAccessLayer
         /// <returns>Return the list of pool members or Throws exception : Pool not found with the given Pool Id
         /// Catches exceptions thorwed by Database if any Misconnections in DB </returns>
 
-        public List<PoolMembers> GetPoolMembersFromDatabase( )
+        public List<PoolMembers> GetPoolMembersFromDatabase(int poolId)
         {
-            
-
             try
             {
+                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Employees.Role) where poolMember.PoolId==poolId select poolMember).ToList();
 
-                return _db.PoolMembers.ToList();
+                //return _db.PoolMembers.ToList();
             }
             catch (DbUpdateException exception)
             {
