@@ -56,6 +56,5 @@ namespace IMS.Models
         [ForeignKey("DepartmentId")]
         [InverseProperty("DrivesUnderDepartment")]
         public virtual Department? Department { get; set; }
-
     }
 }

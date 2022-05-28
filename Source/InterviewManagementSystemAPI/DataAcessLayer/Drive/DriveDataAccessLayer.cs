@@ -326,12 +326,12 @@ namespace IMS.DataAccessLayer
                 throw viewAvailableMembersForDriveException;
             }
         }
-        public int GetResponseCountByStatus(int responseType, int employeeId)// want to filter with Employee ID
+        public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType, int employeeId)// want to filter with Employee ID
         {
             Validations.EmployeeResponseValidation.IsResponseTypeValid(responseType);
             try
             {
-                return (from response in _db.EmployeeDriveResponse where response.ResponseType == responseType && response.EmployeeId == employeeId select response).Count();
+                return (from response in _db.EmployeeDriveResponse.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where response.ResponseType == responseType && response.EmployeeId == employeeId select response).ToList();
             }
             catch (Exception getResponseCountByStatusException)
             {
@@ -340,11 +340,11 @@ namespace IMS.DataAccessLayer
             }
         }
 
-        public int GetResponseUtilizationByStatus(bool isUtilized, int employeeId)
+        public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized, int employeeId)
         {
             try
             {
-                return (from availability in _db.EmployeeAvailability.Include(d => d.Drive) where availability.IsInterviewScheduled == isUtilized && availability.EmployeeId == employeeId && availability.Drive.IsScheduled == true select availability).Count();
+                return (from availability in _db.EmployeeAvailability.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where availability.IsInterviewScheduled == isUtilized && availability.EmployeeId == employeeId && availability.Drive.IsScheduled == true && availability.IsInterviewCancelled != true select availability).ToList();
             }
             catch (Exception getResponseUtilizationByStatusException)
             {

@@ -25,15 +25,24 @@ namespace IMS.DataAccessLayer
         {
 
             PoolValidation.IsAddPoolValid(pool);
-            if (_db.Pools.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId)) throw new ValidationException("Pool Name already exists under this pool");
+            if (_db.Pools.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId && p.IsActive == true)) throw new ValidationException("Pool Name already exists under this pool");
             try
             {
                 var department=_db.Pools.Find(pool.DepartmentId);
                 if(department==null)
                     throw new ValidationException("Department not found with the given Department Id");
+                if(_db.Pools.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId && p.IsActive == false))
+                {
+                pool.IsActive = true;
+                _db.Pools.Update(pool);
+                _db.SaveChanges();
+                return true;
+                }
+                else{
                 _db.Pools.Add(pool);
                 _db.SaveChanges();
                 return true;
+                }
             }
             catch (DbUpdateException exception)
             {
@@ -309,7 +318,7 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Employees.Role) where poolMember.PoolId==poolId select poolMember).ToList();
+                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Employees.Role) where poolMember.PoolId==poolId && poolMember.IsActive ==true select poolMember).ToList();
 
                 //return _db.PoolMembers.ToList();
             }
