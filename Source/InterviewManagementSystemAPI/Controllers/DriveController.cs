@@ -42,7 +42,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="drive"></param>
     /// <returns>Create a drive </returns>
-    
+
     [HttpPost]
     public IActionResult CreateDrive(Drive drive)
     {
@@ -271,7 +271,7 @@ public class DriveController : ControllerBase
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns a list of Cancelled drives</returns>
-    
+
     [HttpGet]
     public IActionResult ViewAllCancelledDrives()
     {
@@ -324,7 +324,7 @@ public class DriveController : ControllerBase
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns a list of Interview Invites</returns>
-    
+
     [HttpGet]
     public IActionResult ViewInvites(int employeeId)
     {
@@ -397,7 +397,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="response"></param>
     /// <returns>Added a Response</returns>
-    
+
     [HttpPost]
     public IActionResult AddResponse(EmployeeDriveResponse response)
     {
@@ -557,7 +557,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns a list of Upcoming Interviews</returns>
-    
+
     [HttpGet]
     public IActionResult ViewUpcomingInterview(int employeeId)
     {
@@ -590,7 +590,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns a list of interviews</returns>
-    
+
     [HttpGet]
     public IActionResult ViewAllInterview(int employeeId)
     {
@@ -671,7 +671,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeAvailabilityId"></param>
     /// <returns>Cancel the interview</returns>
-    
+
     [HttpPatch]
     public IActionResult CancelInterview(int employeeAvailabilityId)
     {
@@ -777,5 +777,110 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+    [HttpGet]
+    public IActionResult ViewToatlDrives(int employeeId)
+    {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employeeId");
+        try
+        {
+            return Ok(_driveService.ViewTotalDrives(employeeId));
+        }
+        catch (Exception viewToatlDrivesException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {viewToatlDrivesException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
 
+    [HttpGet]
+    public IActionResult ViewAcceptedDrives(int employeeId)
+    {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employeeId");
+        try
+        {
+            return Ok(_driveService.ViewAcceptedDrives(employeeId));
+        }
+        catch (Exception viewAcceptedDrivesException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {viewAcceptedDrivesException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewDeniedDrives(int employeeId)
+    {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employeeId");
+        try
+        {
+            return Ok(_driveService.ViewDeniedDrives(employeeId));
+        }
+        catch (Exception viewDeniedDrivesNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDeniedDrives() : {viewDeniedDrivesNotValid.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewIgnoredDrives(int employeeId)
+    {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employeeId");
+        try
+        {
+            return Ok(_driveService.ViewIgnoredDrives(employeeId));
+        }
+        catch (Exception viewIgnoredDrivesNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDeniedDrives() : {viewIgnoredDrivesNotValid.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewUtilizedInterviews(int employeeId)
+    {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employeeId");
+        try
+        {
+            return Ok(_driveService.ViewUtilizedInterviews(employeeId));
+        }
+        catch (Exception viewUtilizedInterviewsNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDeniedDrives() : {viewUtilizedInterviewsNotValid.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewNotUtilizedInterviews(int employeeId)
+    {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employeeId");
+        try
+        {
+            return Ok(_driveService.ViewNotUtilizedInterviews(employeeId));
+        }
+        catch (Exception viewNotUtilizedInterviewsException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDeniedDrives() : {viewNotUtilizedInterviewsException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    [HttpGet]
+    public IActionResult ViewTotalAvailability(int employeeId)
+    {
+        if (employeeId <= 0)
+            return BadRequest("provide proper employeeId");
+        try
+        {
+            return Ok(_driveService.ViewTotalAvailability(employeeId));
+        }
+        catch (Exception viewTotalAvailabilityException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDeniedDrives() : {viewTotalAvailabilityException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
 }

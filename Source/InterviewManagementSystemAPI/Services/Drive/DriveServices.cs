@@ -523,12 +523,12 @@ namespace IMS.Service
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                DashboardCount.Add("Accepted Drives", _driveDataAccess.GetResponseCountByStatus(1, employeeId));
-                DashboardCount.Add("Denied Drives", _driveDataAccess.GetResponseCountByStatus(2, employeeId));
-                DashboardCount.Add("Ignored Drives", _driveDataAccess.GetResponseCountByStatus(3, employeeId));
+                DashboardCount.Add("Accepted Drives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Count());
+                DashboardCount.Add("Denied Drives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId).Count());
+                DashboardCount.Add("Ignored Drives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId).Count());
                 DashboardCount.Add("Total Drives", DashboardCount["Accepted Drives"] + DashboardCount["Denied Drives"] + DashboardCount["Ignored Drives"]);
-                DashboardCount.Add("Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId));
-                DashboardCount.Add("Not Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId));
+                DashboardCount.Add("Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
+                DashboardCount.Add("Not Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
                 DashboardCount.Add("Total Availability", DashboardCount["Utilized Interviews"] + DashboardCount["Not Utilized Interviews"]);
                 return DashboardCount;
             }
@@ -541,6 +541,173 @@ namespace IMS.Service
             {
                 _logger.LogInformation($"Drive Service : ViewEmployeeDashboard(int employeeId) : {viewEmployeeDashboardException.Message} : {viewEmployeeDashboardException.StackTrace}");
                 throw viewEmployeeDashboardException;
+            }
+        }
+        public Object ViewTotalDrives(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Concat(_driveDataAccess.GetResponseDetailsByStatus(2, employeeId)).Concat(_driveDataAccess.GetResponseDetailsByStatus(3, employeeId)).Select(d => new
+                {
+                    EmployeeDriveResponseId = d.ResponseId,
+                    DriveName = d.Drive.Name,
+                    FromDate = d.Drive.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
+                    DriveLocation = d.Drive.Location.LocationName,
+                    DrivePool = d.Drive.Pool.PoolName,
+                    DriveMode = d.Drive.ModeId,
+                    Response = d.ResponseType
+                }
+                );
+            }
+            catch (Exception viewTotalDrivesException)
+            {
+                _logger.LogInformation($"Drive Service : ViewTotalDrives(int employeeId) : {viewTotalDrivesException.Message} : {viewTotalDrivesException.StackTrace}");
+                throw viewTotalDrivesException;
+            }
+
+        }
+        public Object ViewAcceptedDrives(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Select(d => new
+                {
+                    EmployeeDriveResponseId = d.ResponseId,
+                    DriveName = d.Drive.Name,
+                    FromDate = d.Drive.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
+                    DriveLocation = d.Drive.Location.LocationName,
+                    DrivePool = d.Drive.Pool.PoolName,
+                    DriveMode = d.Drive.ModeId,
+                    Response = d.ResponseType
+                }
+                );
+            }
+            catch (Exception viewAcceptedDrivesException)
+            {
+                _logger.LogInformation($"Drive Service : ViewAcceptedDrives() : {viewAcceptedDrivesException.Message} : {viewAcceptedDrivesException.StackTrace}");
+                throw viewAcceptedDrivesException;
+            }
+        }
+        public Object ViewDeniedDrives(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.GetResponseDetailsByStatus(2, employeeId).Select(d => new
+                {
+                    EmployeeDriveResponseId = d.ResponseId,
+                    DriveName = d.Drive.Name,
+                    FromDate = d.Drive.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
+                    DriveLocation = d.Drive.Location.LocationName,
+                    DrivePool = d.Drive.Pool.PoolName,
+                    DriveMode = d.Drive.ModeId,
+                    Response = d.ResponseType
+                }
+                );
+            }
+            catch (Exception viewDeniedDrivesException)
+            {
+                _logger.LogInformation($"Drive Service : ViewDeniedDrives() : {viewDeniedDrivesException.Message} : {viewDeniedDrivesException.StackTrace}");
+                throw viewDeniedDrivesException;
+            }
+        }
+        public Object ViewIgnoredDrives(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.GetResponseDetailsByStatus(3, employeeId).Select(d => new
+                {
+                    EmployeeDriveResponseId = d.ResponseId,
+                    DriveName = d.Drive.Name,
+                    FromDate = d.Drive.FromDate.ToString("yyyy-MM-dd"),
+                    ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
+                    DriveLocation = d.Drive.Location.LocationName,
+                    DrivePool = d.Drive.Pool.PoolName,
+                    DriveMode = d.Drive.ModeId,
+                    Response = d.ResponseType
+                }
+                );
+            }
+            catch (Exception viewIgnoredDrivesException)
+            {
+                _logger.LogInformation($"Drive Service : ViewDeniedDrives() : {viewIgnoredDrivesException.Message} : {viewIgnoredDrivesException.StackTrace}");
+                throw viewIgnoredDrivesException;
+            }
+        }
+        
+        public Object ViewUtilizedInterviews(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Select(e => new
+                {
+                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    DriveName = e.Drive.Name,
+                    PoolName = e.Drive.Pool.PoolName,
+                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
+                    FromTime = e.From.TimeOfDay,
+                    ToTime = e.To.TimeOfDay, 
+                    Mode = e.Drive.ModeId,
+                    LocationName = e.Drive.Location.LocationName,
+                    Status = e.IsInterviewScheduled
+                }
+                );
+            }
+            catch (Exception utilizedInterviewsException)
+            {
+                _logger.LogInformation($"Drive Service : UtilizedInterviews(int employeeId) : {utilizedInterviewsException.Message} : {utilizedInterviewsException.StackTrace}");
+                throw utilizedInterviewsException;
+            }
+        }
+        public Object ViewNotUtilizedInterviews(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Select(e => new
+                {
+                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    DriveName = e.Drive.Name,
+                    PoolName = e.Drive.Pool.PoolName,
+                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
+                    FromTime = e.From.TimeOfDay,
+                    ToTime = e.To.TimeOfDay, 
+                    Mode = e.Drive.ModeId,
+                    LocationName = e.Drive.Location.LocationName,
+                    Status = e.IsInterviewScheduled
+                }
+                );
+            }
+            catch (Exception viewNotUtilizedInterviewsException)
+            {
+                _logger.LogInformation($"Drive Service : ViewNotUtilizedInterviews(int employeeId) : {viewNotUtilizedInterviewsException.Message} : {viewNotUtilizedInterviewsException.StackTrace}");
+                throw viewNotUtilizedInterviewsException;
+            }
+        }
+        public Object ViewTotalAvailability(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Concat(_driveDataAccess.GetResponseUtilizationByStatus(true, employeeId))
+                .Select(e => new
+                {
+                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    DriveName = e.Drive.Name,
+                    PoolName = e.Drive.Pool.PoolName,
+                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
+                    FromTime = e.From.TimeOfDay,
+                    ToTime = e.To.TimeOfDay, 
+                    Mode = e.Drive.ModeId,
+                    LocationName = e.Drive.Location.LocationName,
+                    Status = e.IsInterviewScheduled
+                }
+                );
+            }
+            catch (Exception viewTotalAvailabilityException)
+            {
+                _logger.LogInformation($"Drive Service : ViewTotalAvailability(int employeeId) : {viewTotalAvailabilityException.Message} : {viewTotalAvailabilityException.StackTrace}");
+                throw viewTotalAvailabilityException;
             }
         }
     }
