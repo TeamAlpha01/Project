@@ -95,7 +95,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = d.ModeId
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.ModeId)
                 }
                 );
             }
@@ -121,7 +121,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = d.ModeId
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.ModeId)
                 }
                 );
             }
@@ -147,7 +147,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = d.ModeId
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.ModeId)
                 }
                 );
             }
@@ -172,7 +172,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = d.ModeId
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.ModeId)
                 }
                 );
             }
@@ -220,7 +220,7 @@ namespace IMS.Service
                     DriveDepartment = drive.Pool.department.DepartmentName,
                     DriveLocation = drive.Location.LocationName,
                     DrivePool = drive.Pool.PoolName,
-                    DriveMode = drive.ModeId
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),drive.ModeId)
                 }
                 ;
             }
@@ -294,7 +294,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = d.ModeId,
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.ModeId),
                     PoolId = d.PoolId
                 }
                     );
@@ -366,7 +366,7 @@ namespace IMS.Service
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
-                    Mode = "Online",
+                    Mode = Enum.GetName(typeof(UitilityService.Mode),e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -389,7 +389,7 @@ namespace IMS.Service
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
-                    Mode = "Online",
+                    Mode = Enum.GetName(typeof(UitilityService.Mode),e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -413,7 +413,7 @@ namespace IMS.Service
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
-                    Mode = "Online",
+                    Mode = Enum.GetName(typeof(UitilityService.Mode),e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -437,7 +437,7 @@ namespace IMS.Service
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
-                    Mode = "Online",
+                    Mode = Enum.GetName(typeof(UitilityService.Mode),e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -555,8 +555,8 @@ namespace IMS.Service
                     ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Drive.Location.LocationName,
                     DrivePool = d.Drive.Pool.PoolName,
-                    DriveMode = d.Drive.ModeId,
-                    Response = d.ResponseType
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.Drive.ModeId),
+                    Response =  Enum.GetName(typeof(UitilityService.ResponseType),d.ResponseType)
                 }
                 );
             }
@@ -579,8 +579,8 @@ namespace IMS.Service
                     ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Drive.Location.LocationName,
                     DrivePool = d.Drive.Pool.PoolName,
-                    DriveMode = d.Drive.ModeId,
-                    Response = d.ResponseType
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.Drive.ModeId),
+                    Response = Enum.GetName(typeof(UitilityService.ResponseType),d.ResponseType)
                 }
                 );
             }
@@ -602,8 +602,8 @@ namespace IMS.Service
                     ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Drive.Location.LocationName,
                     DrivePool = d.Drive.Pool.PoolName,
-                    DriveMode = d.Drive.ModeId,
-                    Response = d.ResponseType
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.Drive.ModeId),
+                    Response = Enum.GetName(typeof(UitilityService.ResponseType),d.ResponseType)
                 }
                 );
             }
@@ -625,8 +625,8 @@ namespace IMS.Service
                     ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Drive.Location.LocationName,
                     DrivePool = d.Drive.Pool.PoolName,
-                    DriveMode = d.Drive.ModeId,
-                    Response = d.ResponseType
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.Drive.ModeId),
+                    Response =Enum.GetName(typeof(UitilityService.ResponseType),d.ResponseType)
                 }
                 );
             }
@@ -649,7 +649,7 @@ namespace IMS.Service
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     FromTime = e.From.TimeOfDay,
                     ToTime = e.To.TimeOfDay, 
-                    Mode = e.Drive.ModeId,
+                    Mode = Enum.GetName(typeof(UitilityService.Mode),e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -673,7 +673,7 @@ namespace IMS.Service
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     FromTime = e.From.TimeOfDay,
                     ToTime = e.To.TimeOfDay, 
-                    Mode = e.Drive.ModeId,
+                    Mode = Enum.GetName(typeof(UitilityService.Mode),e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -698,7 +698,7 @@ namespace IMS.Service
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     FromTime = e.From.TimeOfDay,
                     ToTime = e.To.TimeOfDay, 
-                    Mode = e.Drive.ModeId,
+                    Mode = Enum.GetName(typeof(UitilityService.Mode),e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
