@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-interviewer-dashboard',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InterviewerDashboardComponent implements OnInit {
   title='Dashboard';
-  constructor() { }
+  EmployeeDashboardDetails :any;
+  constructor( private connection :ConnectionService) { }
 
   ngOnInit(): void {
+    this.connection.GetDashboard().subscribe((data: any) => {
+      this.EmployeeDashboardDetails = data;
+  });
   }
   card: any[] = [{
     count:10,

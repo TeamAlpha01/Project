@@ -62,8 +62,9 @@ export class ConnectionService {
   GetUpcomingDrives(): any {
     return this.http.get<any>(this.baseURL+'Drive/ViewUpcommingDrives');
   }
-
-
+  GetDashboard() :any{
+    return this .http.get<any>(this.baseURL+'Drive/ViewDashboard');
+  }
 
 
 
