@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ValidationService } from 'src/app/Services/validation.service';
 
 @Component({
   selector: 'app-create-invite',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateInviteComponent implements OnInit {
   title ='Create Invite'
+  driveName='';
 
-  constructor() { }
+  constructor(private validation:ValidationService) { }
 
   ngOnInit(): void {
+  }
+  ValidateUserName(driveName:any){
+    this.validation.ValidateName(driveName);
   }
 
 }

@@ -18,8 +18,9 @@
                             <input type="date" id="TO DATE" class="form-control " />
                         </div>
                         <div class="form-input">
-                            <label class="form-label" for="ACE Number"> Drive Name</label>
-                            <input type="text" id="ACE Number" class="form-control " />
+                            <label class="form-label" for="ACE Number"> Search</label>
+                        <input type="text" class="form-control " placeholder="Name or ACE ID" name="driveName"
+                        [(ngModel)]="driveName" (change)="ValidateUserName(driveName)">
                         </div>
                         <div class="form-input">
                             <label class="form-label " for="Department Name">Department</label>

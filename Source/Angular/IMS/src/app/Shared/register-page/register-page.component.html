@@ -1,77 +1,117 @@
-<div>
+<div class="background-img-register">
     <div class="Register">
         <div class="card-body">
             <h2 class="text-uppercase text-center">Create an account</h2>
-            <form>
+            <form [formGroup]="registerForm">
                 <div class="form-input">
-                    <label class="form-label" for="Name">Name</label>
-                    <input type="text" id="Name" class="form-control "  required/>
+                    <label class="form-label" for="Name">Name </label>
+                    <input id="Name" type="text" placeholder="Username" formControlName="Name" class="form-control">
+                    <div *ngIf="registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched">
+                        <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['required']">Name is
+                            required</span>
+                        <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['pattern']">Name should
+                            contain only characters</span>
+                    </div>
                 </div>
+
                 <div class="form-input">
                     <label class="form-label" for="ACE Number">ACE Number </label>
-                    <input type="text" id="ACE Number" class="form-control " />
+                    <input id="ACE Number" type="text" placeholder="ACE Number" formControlName="ACENumber"
+                        class="form-control">
+                    <div
+                        *ngIf="registerForm.controls['ACENumber'].invalid && registerForm.controls['ACENumber'].touched">
+                        <span class="text-danger" *ngIf="registerForm.controls['ACENumber'].errors?.['required']">Name
+                            is
+                            required</span>
+                        <span class="text-danger" *ngIf="registerForm.controls['ACENumber'].errors?.['pattern']">Name
+                            should
+                            contain only characters</span>
+                    </div>
                 </div>
+
                 <div class="form-input">
                     <label class="form-label " for="Department Name">Department</label>
-                    <select name="Department" id="Department Name" class="form-select ">
+                    <select name="Department" id="Department Name" class="form-select" formControlName="Department"
+                        [(ngModel)]="_dept">
                         <option value="">Select the Department</option>
-                        <option value=".Net">.Net</option>
-                        <option value="Java">Java</option>
-                        <option value="BFS">BFS</option>
-                        <option value="LAMP">LAMP</option>
+                        <option *ngFor="let item of departmentDetails" value={{item.departmentId}}>
+                            {{item.departmentName}} </option>
                     </select>
                 </div>
+
                 <div class="form-input">
-                    <label class="form-label "for="Role">Role</label>
-                    <select name="Role" id="Role" class="form-select   ">
+                    <label class="form-label " for="Role Name">Role</label>
+                    <select name="Role" id="Role Name" class="form-select" name="Role" formControlName="Role">
                         <option value="">Select the Role</option>
-                        <option value="SE">SE</option>
-                        <option value="SSE">SSE</option>
-                        <option value="PM">PM</option>
-                        <option value="TL">TL</option>
+                        <option *ngFor="let item of roleDetails" value={{item.roleId}}>
+                            {{item.roleName}} </option>
                     </select>
                 </div>
+
                 <div class="form-input">
-                    <label class="form-label "for="Project" >Project</label>
-                    <select name="Project" id="Project" class="form-select ">
+                    <label class="form-label " for="Project Name">Project</label>
+                    <select name="Project" id="Project Name" class="form-select" name="Project"
+                        formControlName="Project">
                         <option value="">Select the Project</option>
-                        <option value="HealthCare">HealthCare</option>
-                        <option value="Banking">Banking</option>
-                        <option value="Chemical">Chemical</option>
-                        <option value="Internal">Internal</option>
+                        <option *ngFor="let item of projectDetails |filter:_dept" value={{item.projectId}}>
+                            {{item.projectName}} </option>
                     </select>
                 </div>
-                <div class="form-input ">
-                    <label class="form-label"for="Email" >Your Email</label>
-                    <input type="email" id="Email" class="form-control  " />
-                </div>
+
                 <div class="form-input">
-                    <label class="form-label" for="Mobile Number">Mobile Number</label>
-                    <input type="tel" id="Mobile Number" class="form-control " />
+                    <label class="form-label" for="Email">Email</label>
+                    <input id="Email" type="email" placeholder="Email" formControlName="Email" class="form-control">
+                    <div *ngIf="registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched">
+                        <span class="text-danger" *ngIf="registerForm.controls['Email'].errors?.['required']">Name
+                            is
+                            required</span>
+                        <span class="text-danger" *ngIf="registerForm.controls['Email'].errors?.['pattern']">Name
+                            should
+                            contain only characters</span>
+                    </div>
                 </div>
+
                 <div class="form-input">
                     <label class="form-label" for="Password">Password</label>
-                    <input type="password" id="Password" class="form-control  " />
-
+                    <input id="Password" type="password" placeholder="Password" formControlName="Password"
+                        class="form-control">
+                    <div *ngIf="registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched">
+                        <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['required']">Name
+                            is
+                            required</span>
+                        <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['pattern']">Name
+                            should
+                            contain only characters</span>
+                    </div>
                 </div>
-
                 <div class="form-input">
-                    <label class="form-label" for="Conform Password">Conform password</label>
-                    <input type="password" id="Conform Password" class="form-control  " />
+                    <label class="form-label" for="ConfirmPassword">Confirm Password</label>
+                    <input id="ConfirmPassword" type="password" placeholder="ConfirmPassword"
+                        formControlName="ConfirmPassword" class="form-control">
+                    <div
+                        *ngIf="registerForm.controls['ConfirmPassword'].invalid && registerForm.controls['ConfirmPassword'].touched">
+                        <span class="text-danger"
+                            *ngIf="registerForm.controls['ConfirmPassword'].errors?.['required']">Name
+                            is
+                            required</span>
+                        <span class="text-danger"
+                            *ngIf="registerForm.controls['ConfirmPassword'].errors?.['pattern']">Name
+                            should
+                            contain only characters</span>
+                    </div>
                 </div>
-
 
                 <div class="d-flex justify-content-center ">
-                    <button type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 ">Register</button>
+                    <button type="submit" (click)="submit()"
+                        class="btn btn-primary ">Register</button>
                 </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? 
-                    <a href="Login.html" ><button type="button" class="btn btn-outline-danger">Login</button></a></p>
-
+                <p class="text-center text-muted mt-5 mb-0">Have already an account?
+                    <a href="Login.html"><button type="button" class="btn btn-outline-success">Login</button>
+                    </a>
+                </p>
 
             </form>
-
         </div>
-
     </div>
 </div>

@@ -49,7 +49,7 @@ import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/a
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ViewResponseCardComponent } from './TAC/view-response-card/view-response-card.component';
@@ -59,6 +59,7 @@ import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.componen
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
 import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
 import { InterviwerProfileComponent } from './Interviewer/interviwer-profile/interviwer-profile.component';
+import { RegisterPageComponent } from './Shared/register-page/register-page.component';
 
 
 
@@ -120,7 +121,7 @@ import { InterviwerProfileComponent } from './Interviewer/interviwer-profile/int
     TacEditPoolMemberComponent,
     TacCancelDriveComponent,
     InterviwerProfileComponent,
-
+RegisterPageComponent
 
   ],
 
@@ -131,6 +132,7 @@ import { InterviwerProfileComponent } from './Interviewer/interviwer-profile/int
     AppRoutingModule,
     HttpClientModule,
     Ng2SearchPipeModule,
+    ReactiveFormsModule
 
 
   ],
