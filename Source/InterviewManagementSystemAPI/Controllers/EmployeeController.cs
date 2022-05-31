@@ -17,18 +17,12 @@ public class EmployeeController : ControllerBase
     private IEmployeeService employeeService;
 
     private IMailService _mailService;
-    private IEmployeeService @object;
 
     public EmployeeController(ILogger<EmployeeController> logger,MailService mailService) 
     {
         _logger = logger;
         _mailService = mailService;
         employeeService = DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
-    }
-
-    public EmployeeController(IEmployeeService @object)
-    {
-        this.@object = @object;
     }
 
     /// <summary>

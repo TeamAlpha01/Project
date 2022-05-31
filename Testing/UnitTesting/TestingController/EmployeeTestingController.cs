@@ -11,7 +11,7 @@ namespace UnitTesting;
 
 public class EmployeeTesting
 {
-    private InterviewManagementSystemDbContext _db = IMS.DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+    private IMS.DataAccessLayer.InterviewManagementSystemDbContext _db = IMS.DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
 
     [Fact]
     public void ViewEmployees_ShouldReturn200Status()
