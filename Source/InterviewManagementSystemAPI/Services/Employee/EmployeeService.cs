@@ -19,7 +19,7 @@ namespace IMS.Service
             _logger = logger;
             _employeeDataAccessLayer = DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(_logger);
             _departmentDataAccessLayer = DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(_logger);
-            _roleDataAccessLayer = DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
+            _roleDataAccessLayer = null;//DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
         }
 
         /// <summary>

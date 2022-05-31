@@ -1,3 +1,4 @@
+using System.Linq;
 using FluentAssertions;
 using IMS.Controllers;
 using IMS.DataAccessLayer;

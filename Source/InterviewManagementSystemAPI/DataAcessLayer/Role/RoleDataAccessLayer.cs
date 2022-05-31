@@ -7,12 +7,13 @@ namespace IMS.DataAccessLayer
 {
     public class RoleDataAccessLayer : IRoleDataAccessLayer
     {
-        private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private InterviewManagementSystemDbContext _db;
         private ILogger _logger;
 
-        public RoleDataAccessLayer(ILogger logger)
+        public RoleDataAccessLayer(ILogger<RoleDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
             _logger = logger;
+            _db = dbContext;
         }
 
         /// <summary>

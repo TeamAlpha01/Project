@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="Project\Source\InterviewManagementSystemAPI\Source.csproj" />
+    <ProjectReference Include="..\Source.csproj" />
   </ItemGroup>
 
 </Project>

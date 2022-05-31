@@ -13,11 +13,11 @@ namespace IMS.Controllers;
 public class RoleController : ControllerBase
 {
     private readonly ILogger _logger;
-    private IRoleService roleService;
-    public RoleController(ILogger<RoleController> logger)
+    private IRoleService _roleService;
+    public RoleController(ILogger<RoleController> logger,IRoleService roleService)
     {
         _logger = logger;
-        roleService = DataFactory.RoleDataFactory.GetRoleServiceObject(_logger);
+        _roleService = roleService;//DataFactory.RoleDataFactory.GetRoleServiceObject(_logger);
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public class RoleController : ControllerBase
             BadRequest("Role Name cannot be null");
         try
         {
-            return roleService.CreateRole(roleName) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");
+            return _roleService.CreateRole(roleName) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");
         }
         catch (ValidationException roleNameException)
         {
@@ -81,7 +81,7 @@ public class RoleController : ControllerBase
 
         try
         {
-            return roleService.RemoveRole(roleId) ? Ok("Role Removed Successfully") : BadRequest("Sorry internal error occured");
+            return _roleService.RemoveRole(roleId) ? Ok("Role Removed Successfully") : BadRequest("Sorry internal error occured");
         }
         catch (ValidationException roleNotFound)
         {
@@ -115,12 +115,12 @@ public class RoleController : ControllerBase
     {
         try
         {
-            return Ok(roleService.ViewRoles());
+            return Ok(_roleService.ViewRoles());
         }
         catch (Exception exception)
         {
             _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
     }
 

@@ -11,10 +11,10 @@ namespace IMS.Service
     {
         private IRoleDataAccessLayer _roleDataAccessLayer;
         private readonly ILogger _logger;
-        public RoleService(ILogger logger)
+        public RoleService(ILogger<RoleService> logger,IRoleDataAccessLayer roleDataAccessLayer)
         {
             _logger = logger;
-            _roleDataAccessLayer = DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
+            _roleDataAccessLayer = roleDataAccessLayer;// DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
         }
 
         /// <summary>

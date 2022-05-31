@@ -54,6 +54,13 @@ builder.Services.AddSwaggerGen(options =>
 //JSON Web Token
 builder.Services.AddTransient<TokenService>();
 
+
+//Dependency Injection For Services and Data Access Layer
+builder.Services.AddTransient<InterviewManagementSystemDbContext>();
+
+builder.Services.AddTransient<IRoleService,RoleService>();
+builder.Services.AddTransient<IRoleDataAccessLayer,RoleDataAccessLayer>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;

@@ -5,13 +5,13 @@ using IMS.Service;
 namespace IMS.DataFactory{
     public static class RoleDataFactory
     {
-        public static IRoleDataAccessLayer GetRoleDataAccessLayerObject(ILogger logger)
+        public static IRoleDataAccessLayer GetRoleDataAccessLayerObject(ILogger<RoleDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
-            return new RoleDataAccessLayer(logger);
+            return new RoleDataAccessLayer(logger,dbContext);
         }
-        public static IRoleService GetRoleServiceObject(ILogger logger)
+        public static IRoleService GetRoleServiceObject(ILogger<RoleService> logger,IRoleDataAccessLayer roleDataAccessLayer)
         {            
-            return new RoleService(logger);
+            return new RoleService(logger,roleDataAccessLayer);
         }
         public static Role GetRoleObject()
         {
