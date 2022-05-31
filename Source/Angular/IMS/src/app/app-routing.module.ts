@@ -16,7 +16,6 @@ import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-driv
 import { InterviewerHomeComponent } from './Interviewer/interviewer-home/interviewer-home.component';
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
-import { ProfileComponent } from './Shared/profile/profile.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { DashboardComponent } from './Shared/dashboard/dashboard.component';
@@ -45,6 +44,7 @@ import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.co
 import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
 import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
+import { InterviwerProfileComponent } from './Interviewer/interviwer-profile/interviwer-profile.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
@@ -55,7 +55,7 @@ const routes: Routes = [
   //interviewer pages
   { path: 'interviewer-current-drive', component: InterviewerCurrentDriveComponent },     
   { path: 'interviewer-home', component: InterviewerHomeComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: InterviwerProfileComponent },
   { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
   { path: 'interviewer-currentDrives', component: InterviewerCurrentDriveComponent },
   { path: 'interviewer-scheduledDrives', component: InterviewerScheduledDriveComponent },
@@ -69,7 +69,7 @@ const routes: Routes = [
   { path: 'Admin-addrole-page', component: InterviewerCurrentDriveComponent},        //Admin-addrole-page
   { path: 'Admin-adddepartment ', component: AdminAdddepartmentComponent },          //Admin-adddepartment 
   { path: 'Admin-addlocation ', component: AdminAddlocationComponent },              //Admin-addlocation
-  { path: '', component: RegisterPageComponent},                                 //Admin-addproject
+  { path: '', component: LoginComponent},                                 //Admin-addproject
   { path: 'Admin-role', component: AdminRoleComponent },                             //Admin-role
   { path: 'Admin-requests', component: AdminRequestsComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },

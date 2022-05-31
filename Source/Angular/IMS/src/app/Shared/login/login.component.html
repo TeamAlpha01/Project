@@ -1,16 +1,16 @@
 <div class="Login">
     <div class="card-body">
         <h2 class="text-uppercase text-center">LOGIN</h2>
-        <form #form="ngForm" (ngSubmit)="login()">
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
             <br>
             <p>Please login to your account</p>
             <div class="form-input">
                 <label class="form-label" for="ACE Number">ACE Number </label>
-                <input type="text" id="Name"  class="form-control form-control-lg" name="aceNumber" [(ngModel)]="userDetails.aceNumber"/>
+                <input type="text" id="Name"  class="form-control form-control-lg" name="aceNumber" [(ngModel)]="user.ACENumber"/>
             </div>
             <div class="form-input">
                 <label class="form-label" for="Password">Password</label>
-                <input type="password" id="password" class="form-control form-control-lg" name="password" [(ngModel)]="userDetails.password" />
+                <input type="password" id="password" class="form-control form-control-lg" name="password" [(ngModel)]="user.Password" />
             </div>
 
             <div class="Login-btn">

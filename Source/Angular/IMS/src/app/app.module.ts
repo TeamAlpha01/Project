@@ -17,7 +17,6 @@ import { InterviewerHeaderComponent } from './Interviewer/interviewer-header/int
 import { FooterComponent } from './Shared/footer/footer.component';
 import { BackButtonComponent } from './Shared/back-button/back-button.component';
 import { InterviewerHomeComponent } from './Interviewer/interviewer-home/interviewer-home.component';
-import { ProfileComponent } from './Shared/profile/profile.component';
 import { TacHeaderComponent } from './TAC/tac-header/tac-header.component';
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
@@ -83,7 +82,6 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
     FooterComponent,
     BackButtonComponent,
     InterviewerHomeComponent,
-    ProfileComponent,
     TacHeaderComponent,
     InterviewerCurrentDriveComponent,
     InterviewerDashboardComponent,
@@ -111,9 +109,9 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
     AdminViewRequestsPageComponent,
     InterviewerAcceptInvitePageComponent,
     TacUpcomingDriveComponent,
-    InterviewerCardDetailsComponent, 
+    InterviewerCardDetailsComponent,
     ManageCardsComponent,
-    PerformanceDashboardComponent, 
+    PerformanceDashboardComponent,
     ViewResponseCardComponent,
     RegisterComponent,
     TacCreatePoolComponent,
@@ -121,7 +119,7 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
     TacEditPoolMemberComponent,
     TacCancelDriveComponent,
     InterviwerProfileComponent,
-RegisterPageComponent
+    RegisterPageComponent
 
   ],
 

@@ -16,28 +16,5 @@ export class InterviewerDashboardComponent implements OnInit {
       this.EmployeeDashboardDetails = data;
   });
   }
-  card: any[] = [{
-    count:10,
-    name:'No.Of.Interviews'
-  },
-  {
-    count:10,
-    name:'Availbility Given'
-  },
-  {
-    count:10,
-    name:'Utilized'
-  },
-  {
-    count:10,
-    name:'Not Utilized'
-  },
-  {
-    count:10,
-    name:'Interviews Ignorned'
-  },
-  {
-    count:10,
-    name:'Interviews Denied'
-  }]
+
 }

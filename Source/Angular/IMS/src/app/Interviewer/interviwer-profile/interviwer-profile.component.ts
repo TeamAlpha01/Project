@@ -13,8 +13,9 @@ export class InterviwerProfileComponent implements OnInit {
   constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
-    this.connection.GetProfile().subscribe((data: any) => {
+    this.connection.GetEmployeeProfile().subscribe((data: any) => {
       this.profileDetails = data;
+      console.warn(this.profileDetails)
     }) 
   }
 
