@@ -29,7 +29,7 @@ namespace IMS.Service
         public Object ViewUpcomingInterview(int employeeId);
         public Object ViewAllInterview(int employeeId);
         public bool ScheduleInterview(int employeeAvailabilityId);
-        public bool CancelInterview(int employeeAvailabilityId);
+        public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments);
         public Object ViewAvailableMembersForDrive(int driveId);
         public Dictionary<string,int> ViewEmployeeDashboard(int employeeId); 
         public Object ViewTotalDrives(int employeeId);

@@ -21,7 +21,7 @@ namespace IMS.DataAccessLayer
         public List<EmployeeAvailability> ViewInterviewsByStatus(bool status, int employeeId);//int employeeId
         public List<EmployeeAvailability> ViewAvailableMembersForDrive(int driveId);
         public bool ScheduleInterview(int employeeAvailabilityId);
-        public bool CancelInterview(int employeeAvailabilityId);
+        public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments);
         public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType,int employeeId);
         public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized,int employeeId);
     }

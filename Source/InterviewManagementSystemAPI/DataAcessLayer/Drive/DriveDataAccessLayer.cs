@@ -15,20 +15,6 @@ namespace IMS.DataAccessLayer
         {
             _logger = logger;
         }
-        public void CloseDriveResponse()
-        {
-            var drives = _db.Drives.ToList();
-            foreach (var drive in drives)
-            {
-                DateTime addedDate = (DateTime)drive.AddedOn;
-                if (DateTime.Now >= addedDate.AddDays(5))
-                {
-                    drive.IsScheduled = true;
-                    _db.Drives.Update(drive);
-                    _db.SaveChanges();
-                }
-            }
-        }
         public bool AddDriveToDatabase(Drive drive)
         {
             DriveValidation.IsdriveValid(drive);
@@ -96,7 +82,6 @@ namespace IMS.DataAccessLayer
 
         public List<Drive> GetDrivesByStatus(bool status)
         {
-            CloseDriveResponse();
             try
             {
                 return (from drive in _db.Drives.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool.department) where drive.IsCancelled == status select drive).ToList();
@@ -114,7 +99,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                var viewDrive = _db.Drives.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool.department).Where(d=>d.DriveId==driveId).First();
+                var viewDrive = _db.Drives.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool.department).Where(d => d.DriveId == driveId).First();
                 return viewDrive != null ? viewDrive : throw new ValidationException($"No drive is found with id : {driveId}");
             }
             catch (Exception isDriveIdValidException)
@@ -293,7 +278,7 @@ namespace IMS.DataAccessLayer
                 return false;
             }
         }
-        public bool CancelInterview(int employeeAvailabilityId)
+        public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)
         {
             Validations.EmployeeAvailabilityValidation.IsAvailabilityIdValid(employeeAvailabilityId);
             try
@@ -302,6 +287,8 @@ namespace IMS.DataAccessLayer
                 if (employeeAvailability == null) throw new ValidationException($"No Employe Availability is Found with employeeAvailabilityId : {employeeAvailabilityId}");
 
                 employeeAvailability.IsInterviewCancelled = true;
+                employeeAvailability.CancellationReason = cancellationReason;
+                employeeAvailability.Comments = comments;
                 _db.EmployeeAvailability.Update(employeeAvailability);
                 _db.SaveChanges();
                 return true;

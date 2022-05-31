@@ -17,13 +17,11 @@ public class DriveController : ControllerBase
     private IDriveService _driveService;
     private MailService _mailService;
 
-    //private int _currentUserId; 
     public DriveController(ILogger<DriveController> logger, MailService mailService)
     {
         _logger = logger;
         _mailService = mailService;
         _driveService = DataFactory.DriveDataFactory.GetDriveServiceObject(logger);
-        //_currentUserId = Convert.ToInt32(User.FindFirst("UserId").Value);
     }
 
     /// <summary>
@@ -36,7 +34,6 @@ public class DriveController : ControllerBase
     ///     {
     ///        "Drive object": "Drive",
     ///     }
-    ///
     /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
@@ -673,19 +670,18 @@ public class DriveController : ControllerBase
     /// <returns>Cancel the interview</returns>
 
     [HttpPatch]
-    public IActionResult CancelInterview(int employeeAvailabilityId)
+    public IActionResult CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)
     {
         if (employeeAvailabilityId <= 0)
             return BadRequest("provide proper driveId, employeeId and responseType");
         try
         {
-            if (_driveService.CancelInterview(employeeAvailabilityId))
+            if (_driveService.CancelInterview(employeeAvailabilityId,cancellationReason,comments))
             {
                 _mailService.SendEmailAsync(_mailService.InterviewCancelled(employeeAvailabilityId), true);
                 return Ok("Availability Cancellerd Sucessfully");
             }
             return Problem("Sorry internal error occured");
-
         }
         catch (ValidationException CancelInterviewNotValid)
         {

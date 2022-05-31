@@ -470,11 +470,11 @@ namespace IMS.Service
             }
         }
 
-        public bool CancelInterview(int employeeAvailabilityId)
+        public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)
         {
             try
             {
-                return _driveDataAccess.CancelInterview(employeeAvailabilityId);
+                return _driveDataAccess.CancelInterview(employeeAvailabilityId, cancellationReason, comments);
             }
             catch (ValidationException cancelInterviewNotVlaid)
             {
