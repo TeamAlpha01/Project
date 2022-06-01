@@ -7,7 +7,7 @@ namespace IMS.DataAccessLayer
 {
     public class DepartmentDataAccessLayer : IDepartmentDataAccessLayer
     {
-        private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private InterviewManagementSystemDbContext _db;// = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
 
         /*  Returns False when Exception occured in Database Connectivity
             
@@ -16,9 +16,10 @@ namespace IMS.DataAccessLayer
 
         //private readonly ILogger _logger = new ILogger<RoleDataAccessLayer>();        
         private ILogger _logger;
-        public DepartmentDataAccessLayer(ILogger logger)
+        public DepartmentDataAccessLayer(ILogger<DepartmentDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
             _logger = logger;
+            _db = dbContext;
         }
         /// <summary>
         /// This method will implement when Department service pass the object and it interact with Database.It validate the department name

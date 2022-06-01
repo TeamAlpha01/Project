@@ -7,12 +7,13 @@ namespace IMS.DataAccessLayer
     public class PoolDataAccessLayer : IPoolDataAccessLayer
 
     {
-        private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private InterviewManagementSystemDbContext _db; // = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger _logger;
 
-        public PoolDataAccessLayer(ILogger logger)
+        public PoolDataAccessLayer(ILogger<IPoolDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
             _logger = logger;
+            _db = dbContext;
         }
 
         /// <summary>

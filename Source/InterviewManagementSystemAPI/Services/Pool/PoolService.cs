@@ -11,10 +11,10 @@ namespace IMS.Service
 
         private readonly ILogger _logger;
 
-        public PoolService(ILogger logger)
+        public PoolService(ILogger<IPoolService> logger,IPoolDataAccessLayer poolDataAccessLayer)
         {
             _logger = logger;
-            _poolDataAccessLayer = DataFactory.PoolDataFactory.GetPoolDataAccessLayerObject(_logger);
+            _poolDataAccessLayer = poolDataAccessLayer; //DataFactory.PoolDataFactory.GetPoolDataAccessLayerObject(_logger);
         }
 
         /// <summary>

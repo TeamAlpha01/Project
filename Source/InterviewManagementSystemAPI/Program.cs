@@ -51,6 +51,12 @@ builder.Services.AddSwaggerGen(options =>
  });
 });
 
+//DbContext
+builder.Services.AddDbContext<InterviewManagementSystemDbContext>(options =>
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("IMS"));
+    });
+
 //JSON Web Token
 builder.Services.AddTransient<TokenService>();
 
@@ -60,6 +66,16 @@ builder.Services.AddTransient<InterviewManagementSystemDbContext>();
 
 builder.Services.AddTransient<IRoleService,RoleService>();
 builder.Services.AddTransient<IRoleDataAccessLayer,RoleDataAccessLayer>();
+builder.Services.AddTransient<IDepartmentService,DepartmentService>();
+builder.Services.AddTransient<IDepartmentDataAccessLayer,DepartmentDataAccessLayer>();
+builder.Services.AddTransient<IDriveService,DriveService>();
+builder.Services.AddTransient<IDriveDataAccessLayer,DriveDataAccessLayer>();
+builder.Services.AddTransient<IEmployeeService,EmployeeService>();
+builder.Services.AddTransient<IEmployeeDataAccessLayer,EmployeeDataAccessLayer>();
+builder.Services.AddTransient<ILocationServices,LocationService>();
+builder.Services.AddTransient<ILocationDataAccessLayer,LocationDataAccessLayer>();
+builder.Services.AddTransient<IPoolService,PoolService>();
+builder.Services.AddTransient<IPoolDataAccessLayer,PoolDataAccessLayer>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {

@@ -10,10 +10,10 @@ namespace IMS.Service
         private ILocationDataAccessLayer _locationDataAccessLayer;
         
         private readonly ILogger _logger;
-        public LocationService(ILogger logger)
+        public LocationService(ILogger<LocationService> logger,ILocationDataAccessLayer dataAccessLayer)
         {
             _logger = logger;
-            _locationDataAccessLayer = DataFactory.LocationDataFactory.GetLocationDataAccessLayerObject(_logger);
+            _locationDataAccessLayer = dataAccessLayer;//DataFactory.LocationDataFactory.GetLocationDataAccessLayerObject(_logger);
         }
         
         /// <summary>

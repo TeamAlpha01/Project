@@ -13,10 +13,10 @@ public class LocationController : ControllerBase
 {
     private readonly ILogger _logger;
     private ILocationServices _locationService;
-    public LocationController(ILogger<LocationController> logger)
+    public LocationController(ILogger<LocationController> logger, ILocationServices locationServices)
     {
         _logger = logger;
-        _locationService = DataFactory.LocationDataFactory.GetLocationServiceObject(_logger);
+        _locationService = locationServices;// DataFactory.LocationDataFactory.GetLocationServiceObject(_logger);
     }
 
     /// <summary>
@@ -35,13 +35,13 @@ public class LocationController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="locationName">String</param>
     /// <returns> Returns Error Message when Exception occured in Location Service. Succsess Message or Internal Error</returns>
-    
+
     [HttpPost]
     public IActionResult CreateNewLocation(string locationName)
     {
-      if (locationName == null)
+        if (locationName == null)
             return BadRequest("Location name is required");
-     
+
         try
         {
             return _locationService.CreateLocation(locationName) ? Ok("Location Added Successfully") : Problem("Sorry internal error occured");
@@ -78,15 +78,15 @@ public class LocationController : ControllerBase
     [HttpPost]
     public IActionResult RemoveLocation(int locationId)
     {
-       if(locationId<=0)
-        BadRequest("Location id cannot be negative or null");
+        if (locationId <= 0)
+            BadRequest("Location id cannot be negative or null");
 
-     
+
         try
         {
             return _locationService.RemoveLocation(locationId) ? Ok("Location Removed Successfully") : Problem("Sorry internal error occured");
         }
-         catch (ValidationException locationNotFound)
+        catch (ValidationException locationNotFound)
         {
             _logger.LogInformation($"Location Service : RemoveLocation(int locationId) : {locationNotFound.Message}");
             return BadRequest(locationNotFound.Message);
@@ -96,7 +96,7 @@ public class LocationController : ControllerBase
             _logger.LogInformation($"Location Service : RemoveLocation throwed an exception : {exception}");
             return BadRequest("Sorry some internal error occured");
         }
-      
+
     }
     /// <summary>
     /// This method will be implemented when "View all Location" - Request rises

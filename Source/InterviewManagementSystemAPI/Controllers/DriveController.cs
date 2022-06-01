@@ -17,11 +17,11 @@ public class DriveController : ControllerBase
     private IDriveService _driveService;
     private MailService _mailService;
 
-    public DriveController(ILogger<DriveController> logger, MailService mailService)
+    public DriveController(ILogger<DriveController> logger, MailService mailService,IDriveService driveService)
     {
         _logger = logger;
         _mailService = mailService;
-        _driveService = DataFactory.DriveDataFactory.GetDriveServiceObject(logger);
+        _driveService = driveService;//DataFactory.DriveDataFactory.GetDriveServiceObject(logger);
     }
 
     /// <summary>

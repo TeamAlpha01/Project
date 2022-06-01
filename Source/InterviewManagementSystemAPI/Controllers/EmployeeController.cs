@@ -14,15 +14,15 @@ namespace IMS.Controllers;
 public class EmployeeController : ControllerBase
 {
     private readonly ILogger _logger;
-    private IEmployeeService employeeService;
+    private IEmployeeService _employeeService;
 
     private IMailService _mailService;
 
-    public EmployeeController(ILogger<EmployeeController> logger,MailService mailService) 
+    public EmployeeController(ILogger<EmployeeController> logger,MailService mailService,IEmployeeService employeeService) 
     {
         _logger = logger;
         _mailService = mailService;
-        employeeService = DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
+        _employeeService = employeeService;//DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            if(employeeService.CreateNewEmployee(employee))
+            if(_employeeService.CreateNewEmployee(employee))
             {
                 _mailService.SendEmailAsync(_mailService.WelcomeEmployeeMail(employee.EmailId,employee.Name),true);
                 return Ok("Account Created Successfully");
@@ -103,7 +103,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            return employeeService.RemoveEmployee(employeeId) ? Ok("Employee Removed Successfully") : BadRequest("Sorry internal error occured");
+            return _employeeService.RemoveEmployee(employeeId) ? Ok("Employee Removed Successfully") : BadRequest("Sorry internal error occured");
         }
         catch (ValidationException employeeNotFound)
         {
@@ -136,7 +136,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            return Ok(employeeService.ViewEmployees());
+            return Ok(_employeeService.ViewEmployees());
         }
         catch (Exception exception)
         {
@@ -166,7 +166,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            return Ok(employeeService.ViewProfile(employeeId));
+            return Ok(_employeeService.ViewProfile(employeeId));
         }
         catch (Exception exception)
         {
@@ -197,7 +197,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            return Ok(employeeService.ViewEmployeesByDepartment(departmentId));
+            return Ok(_employeeService.ViewEmployeesByDepartment(departmentId));
         }
         catch (ValidationException exception1)
         {
@@ -234,7 +234,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            return Ok(employeeService.ViewEmployeeByApprovalStatus(isAdminAccepted));
+            return Ok(_employeeService.ViewEmployeeByApprovalStatus(isAdminAccepted));
         }
         catch (Exception exception)
         {
@@ -262,7 +262,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            return Ok(employeeService.ViewEmployeeRequest());
+            return Ok(_employeeService.ViewEmployeeRequest());
         }
         catch (Exception exception)
         {

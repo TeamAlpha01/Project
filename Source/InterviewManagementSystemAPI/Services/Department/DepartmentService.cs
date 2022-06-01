@@ -8,18 +8,18 @@ namespace IMS.Service
     public class DepartmentService : IDepartmentService
     {
 
-        private IDepartmentDataAccessLayer _departmentDataAccessLayer ;
-         private ILogger _logger;
+        private IDepartmentDataAccessLayer _departmentDataAccessLayer;
+        private ILogger _logger;
 
-        public DepartmentService(ILogger logger)
+        public DepartmentService(ILogger<DepartmentService> logger,IDepartmentDataAccessLayer departmentDataAccessLayer)
         {
             _logger = logger;
-         _departmentDataAccessLayer = DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(logger);
+            _departmentDataAccessLayer = departmentDataAccessLayer;//DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(logger);
         }
 
-         
-       
-       
+
+
+
         /*  
             Returns False when Exception occured in Data Access Layer
             
@@ -42,13 +42,13 @@ namespace IMS.Service
             }
             catch (ValidationException departmentExist)
             {
-                 _logger.LogInformation($"Department Service : CreateDepartment(string departmentName) : {departmentExist.Message} : {departmentExist.StackTrace}");
+                _logger.LogInformation($"Department Service : CreateDepartment(string departmentName) : {departmentExist.Message} : {departmentExist.StackTrace}");
                 throw departmentExist;
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department Service : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department Service : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
+
                 // Log "Exception Occured in Data Access Layer"
                 return false;
             }
@@ -59,28 +59,28 @@ namespace IMS.Service
             
             Throws ArgumentNullException when Role Id is not passed to this service method
         */
-       /// <summary>
-       /// This Method will implement when Department controller pass the parameter to this method and it validate the department ID and pass the departmentID to the DAL
-       /// </summary>
-       /// <param name="departmentId">int</param>
-       /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
+        /// <summary>
+        /// This Method will implement when Department controller pass the parameter to this method and it validate the department ID and pass the departmentID to the DAL
+        /// </summary>
+        /// <param name="departmentId">int</param>
+        /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
         public bool RemoveDepartment(int departmentId)
         {
             DepartmentValidation.IsDepartmentIdValid(departmentId);
 
             try
             {
-                return _departmentDataAccessLayer.RemoveDepartmentFromDatabase(departmentId) ? true :false; // LOG Error in DAL;
+                return _departmentDataAccessLayer.RemoveDepartmentFromDatabase(departmentId) ? true : false; // LOG Error in DAL;
             }
-          catch (ValidationException departmentNotFound)
+            catch (ValidationException departmentNotFound)
             {
                 _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {departmentNotFound.Message}");
                 throw departmentNotFound;
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department Service : RemoveDepartment(departmentId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department Service : RemoveDepartment(departmentId) : {exception.Message} : {exception.StackTrace}");
+
                 // Log "Exception Occured in Data Access Layer"
                 return false;
             }
@@ -102,8 +102,8 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department Service : ViewDepartments() : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department Service : ViewDepartments() : {exception.Message} : {exception.StackTrace}");
+
                 //Log "Exception occured in DAL while fetching roles"
                 throw exception;
             }
@@ -114,16 +114,16 @@ namespace IMS.Service
         /// <param name="departmentId">int</param>
         /// <param name="projectName">string</param>
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
-         public bool CreateProject(int departmentId,string projectName)
+        public bool CreateProject(int departmentId, string projectName)
         {
-            ProjectValidation.IsProjectValid(departmentId,projectName);
+            ProjectValidation.IsProjectValid(departmentId, projectName);
 
 
             try
             {
-                 Project _project = DataFactory.DepartmentDataFactory.GetProjectObject();
+                Project _project = DataFactory.DepartmentDataFactory.GetProjectObject();
                 _project.ProjectName = projectName;
-                _project.DepartmentId= departmentId;
+                _project.DepartmentId = departmentId;
                 return _departmentDataAccessLayer.AddProjectToDatabase(_project) ? true : false; // LOG Error in DAL;
             }
             catch (ValidationException projectnameAlreadyExists)
@@ -133,8 +133,8 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department Service : CreateProject(int deparmentId,string projectId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department Service : CreateProject(int deparmentId,string projectId) : {exception.Message} : {exception.StackTrace}");
+
                 // Log "Exception Occured in Data Access Layer"
                 return false;
             }
@@ -156,17 +156,17 @@ namespace IMS.Service
 
             try
             {
-                return _departmentDataAccessLayer.RemoveProjectFromDatabase(projectId) ? true :false; // LOG Error in DAL;
+                return _departmentDataAccessLayer.RemoveProjectFromDatabase(projectId) ? true : false; // LOG Error in DAL;
             }
-            catch(ValidationException projectNotFound)
+            catch (ValidationException projectNotFound)
             {
-                 _logger.LogInformation($"Department Service : RemoveDepartment(int projectId) : {projectNotFound.Message} : {projectNotFound .StackTrace}");
-                throw projectNotFound;  
+                _logger.LogInformation($"Department Service : RemoveDepartment(int projectId) : {projectNotFound.Message} : {projectNotFound.StackTrace}");
+                throw projectNotFound;
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department Service : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department Service : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
+
                 // Log "Exception Occured in Data Access Layer"
                 return false;
             }
@@ -190,8 +190,8 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                 _logger.LogInformation($"Department Service : ViewProjects(int departmentId) : {exception.Message} : {exception.StackTrace}");
-           
+                _logger.LogInformation($"Department Service : ViewProjects(int departmentId) : {exception.Message} : {exception.StackTrace}");
+
                 //Log "Exception occured in DAL while fetching roles"
                 throw exception;
             }

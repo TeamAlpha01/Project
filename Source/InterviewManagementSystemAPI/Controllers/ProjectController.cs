@@ -9,11 +9,11 @@ namespace project.Controller;
   public class ProjectController : ControllerBase
   {
     private readonly ILogger _logger;
-    IDepartmentService departmentService;
-    public ProjectController(ILogger<ProjectController> logger)
+    IDepartmentService _departmentService;
+    public ProjectController(ILogger<ProjectController> logger,IDepartmentService departmentService)
     {
         _logger = logger;
-         departmentService = IMS.DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
+        _departmentService = departmentService;//IMS.DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
     }
     /// <summary>
     /// This Method Will Implement When Create New Department Request rises.
@@ -41,7 +41,7 @@ namespace project.Controller;
 
         try
         {
-            return departmentService.CreateProject(departmentId,projectName) ? Ok("Project Added Successfully") : Problem("Sorry internal error occured");
+            return _departmentService.CreateProject(departmentId,projectName) ? Ok("Project Added Successfully") : Problem("Sorry internal error occured");
         }
         catch (ValidationException projectnameAlreadyExists)
         {
@@ -77,7 +77,7 @@ namespace project.Controller;
 
         try
         {
-            return departmentService.RemoveProject(projectId) ? Ok("Project Removed Successfully") : Problem("Sorry internal error occured");
+            return _departmentService.RemoveProject(projectId) ? Ok("Project Removed Successfully") : Problem("Sorry internal error occured");
         }
         catch(ValidationException projectNotFound)
         {
@@ -113,7 +113,7 @@ namespace project.Controller;
         
         try
         {
-            return Ok(departmentService.ViewProjects());
+            return Ok(_departmentService.ViewProjects());
         }
         catch (Exception exception)
         {

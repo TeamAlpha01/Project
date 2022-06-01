@@ -10,10 +10,10 @@ namespace IMS.Service
         private IDriveDataAccessLayer _driveDataAccess;
         private ILogger _logger;
 
-        public DriveService(ILogger logger)
+        public DriveService(ILogger<DriveService> logger,IDriveDataAccessLayer driveDataAccessLayer)
         {
             _logger = logger;
-            _driveDataAccess = DataFactory.DriveDataFactory.GetDriveDataAccessLayerObject(logger);
+            _driveDataAccess = driveDataAccessLayer;//DataFactory.DriveDataFactory.GetDriveDataAccessLayerObject(logger);
         }
 
         public bool CreateDrive(Drive drive)

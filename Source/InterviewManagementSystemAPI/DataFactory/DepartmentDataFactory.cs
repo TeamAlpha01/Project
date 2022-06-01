@@ -4,14 +4,14 @@ using IMS.Service;
 namespace IMS.DataFactory{
     public static class DepartmentDataFactory
     {
-        public static IDepartmentDataAccessLayer GetDepartmentDataAccessLayerObject(ILogger logger)
-        {
-            return new DepartmentDataAccessLayer(logger);
-        }
-        public static IDepartmentService GetDepartmentServiceObject(ILogger logger)
-        {            
-            return new DepartmentService(logger);
-        }
+        // public static IDepartmentDataAccessLayer GetDepartmentDataAccessLayerObject(ILogger logger)
+        // {
+        //     return new DepartmentDataAccessLayer(logger);
+        // }
+        // public static IDepartmentService GetDepartmentServiceObject(ILogger logger)
+        // {            
+        //     return new DepartmentService(logger);
+        // }
         public static Department GetDepartmentObject()
         {
             return new Department();

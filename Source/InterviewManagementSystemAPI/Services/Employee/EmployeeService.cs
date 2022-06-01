@@ -14,12 +14,12 @@ namespace IMS.Service
         private IRoleDataAccessLayer _roleDataAccessLayer;
         private ILogger _logger;
 
-        public EmployeeService(ILogger logger)
+        public EmployeeService(ILogger<IEmployeeService> logger, IEmployeeDataAccessLayer employeeDataAccessLayer, IDepartmentDataAccessLayer departmentDataAccessLayer, IRoleDataAccessLayer roleDataAccessLayer)
         {
             _logger = logger;
-            _employeeDataAccessLayer = DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(_logger);
-            _departmentDataAccessLayer = DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(_logger);
-            _roleDataAccessLayer = null;//DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
+            _employeeDataAccessLayer = employeeDataAccessLayer;//DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(_logger);
+            _departmentDataAccessLayer = departmentDataAccessLayer; //DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(_logger);
+            _roleDataAccessLayer = roleDataAccessLayer;//DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
         }
 
         /// <summary>

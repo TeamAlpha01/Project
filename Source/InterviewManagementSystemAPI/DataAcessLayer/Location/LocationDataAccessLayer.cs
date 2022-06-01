@@ -6,12 +6,13 @@ namespace IMS.DataAccessLayer
 {
     public class LocationDataAccessLayer : ILocationDataAccessLayer
     {
-        private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private InterviewManagementSystemDbContext _db;// = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger _logger;
 
-        public LocationDataAccessLayer(ILogger logger)
+        public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
             _logger = logger;
+            _db = dbContext;
         }
 
         /// <summary>

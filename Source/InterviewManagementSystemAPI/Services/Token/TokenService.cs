@@ -17,11 +17,11 @@ namespace IMS.Service
         private ILogger<TokenService> _logger;
         private IConfiguration _configuration;
 
-        public TokenService(ILogger<TokenService> logger, IConfiguration configuration)
+        public TokenService(ILogger<TokenService> logger, IConfiguration configuration, IEmployeeDataAccessLayer employeeDataAccessLayer)
         {
             _logger = logger;
             _configuration = configuration;
-            _employeeDataAccessLayer = DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(logger);
+            _employeeDataAccessLayer = employeeDataAccessLayer;// DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(logger);
         }
 
         public object AuthToken(string employeeAceNumber, string password)
@@ -57,7 +57,7 @@ namespace IMS.Service
                 };
 
                 return Result;
-            
+
             }
             catch (ValidationException loginCredentialsNotValid)
             {

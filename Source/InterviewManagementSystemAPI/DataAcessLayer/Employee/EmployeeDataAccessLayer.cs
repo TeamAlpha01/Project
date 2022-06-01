@@ -7,12 +7,13 @@ namespace IMS.DataAccessLayer
 {
     public class EmployeeDataAccessLayer : IEmployeeDataAccessLayer
     {
-        private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private InterviewManagementSystemDbContext _db;// = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger _logger;
 
-        public EmployeeDataAccessLayer(ILogger logger)
+        public EmployeeDataAccessLayer(ILogger<IEmployeeDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
             _logger = logger;
+            _db = dbContext;
         }
         /// <summary>
         /// This method implements when Employee service passes the object to this method,then this method add the employee data to the database.
