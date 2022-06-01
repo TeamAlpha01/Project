@@ -6,12 +6,13 @@ namespace IMS.DataAccessLayer
 {
     public class MailDataAccessLayer : IMailDataAccessLayer
     {
-        private InterviewManagementSystemDbContext _db = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private InterviewManagementSystemDbContext _db;//= DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger<MailService> _logger;
 
-        public MailDataAccessLayer(ILogger<MailService> logger)
+        public MailDataAccessLayer(ILogger<MailService> logger,InterviewManagementSystemDbContext dbContext)
         {
             _logger = logger;
+            _db = dbContext;
         }
 
         public string GetEmployeeEmail(int employeeId)

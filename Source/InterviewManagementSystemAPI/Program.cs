@@ -95,7 +95,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 //SMPT SERVICE
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 //builder.Services.AddSingleton<MailService>();
-builder.Services.AddTransient<MailService>();
+builder.Services.AddTransient<IMailService,MailService>();
+builder.Services.AddTransient<IMailDataAccessLayer,MailDataAccessLayer>();
 
 
 

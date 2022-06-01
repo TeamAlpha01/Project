@@ -17,11 +17,11 @@ namespace IMS.Service
         private readonly MailSettings _mailSettings;
         private ILogger<MailService> _logger;
         private IMailDataAccessLayer _mailDataAccessLayer;
-        public MailService(ILogger<MailService> logger, IOptions<MailSettings> mailSettings)
+        public MailService(ILogger<MailService> logger, IOptions<MailSettings> mailSettings,IMailDataAccessLayer mailDataAccessLayer)
         {
             _logger = logger;
             _mailSettings = mailSettings.Value;
-            _mailDataAccessLayer = DataFactory.MailDataFactory.GetMailDataAccessLayerObject(logger);
+            _mailDataAccessLayer = mailDataAccessLayer; //DataFactory.MailDataFactory.GetMailDataAccessLayerObject(logger);
         }
 
         public async Task SendEmailAsync(MailRequest mailRequest, bool isSingleMail)
