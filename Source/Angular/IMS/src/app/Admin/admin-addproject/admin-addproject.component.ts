@@ -24,7 +24,7 @@ export class AdminAddprojectComponent implements OnInit {
   addProject(){
     const headers={'constant-type':'application/json'}
     console.log(this.project)
-    this.http.post<any>(`https://localhost:7072/Project/AddNewProject?departmentId=1&projectName=web`,this._project)
+    this.http.post<any>(`https://localhost:7072/Project/AddNewProject?departmentId=1&projectName=${this,this._project}`,this._project)
     .subscribe((data) => {
     console.log(data)
     }
