@@ -1,9 +1,11 @@
+using FluentAssertions;
 using IMS.DataAccessLayer;
 using IMS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using UnitTesting.MockData;
+using UnitTesting.Utility;
 using Xunit;
 
 namespace UnitTesting.DataAccessLayer
@@ -12,24 +14,18 @@ namespace UnitTesting.DataAccessLayer
     {
         private readonly IRoleDataAccessLayer _roleDataAccessLayer;
         private readonly Mock<ILogger<RoleDataAccessLayer>> _logger = new Mock<ILogger<RoleDataAccessLayer>>();
-        private readonly InterviewManagementSystemDbContext _db ;//= new InterviewManagementSystemDbContext();
+        private readonly InterviewManagementSystemDbContext _db ;
         public RoleDataAccessLayerTest()
         {
-            var options = new DbContextOptionsBuilder<InterviewManagementSystemDbContext>().UseInMemoryDatabase(databaseName: "Local Db").Options;
-
-            _db = new InterviewManagementSystemDbContext(options);
-
+            _db = DbUtility.GetInMemoryDbContext();
             _roleDataAccessLayer = new RoleDataAccessLayer(_logger.Object,_db);
         }
 
-        
+
         [Fact]
         public void AddRoleToDatabase_ReturnsTrue()
         {
             //Arrange
-            _db.Roles.AddRange(RoleMock.GetRolesMock());
-            _db.SaveChanges();
-
             Role testRole = new Role(){RoleId = 12,RoleName = "LocalDb",IsActive = true};
 
             //Act
@@ -37,6 +33,20 @@ namespace UnitTesting.DataAccessLayer
 
             //Assert
             Assert.True(Result);
+        }
+        
+        [Fact]
+        public void ViewRolesFromDatabase_ReturnsListOfRoles()
+        {
+            //Arrange
+            _db.Roles.AddRange(RoleMock.GetRolesMock());
+            _db.SaveChanges();
+            var role = RoleMock.GetRolesMock();
+            //Act
+            var Result = _roleDataAccessLayer.GetRolesFromDatabase();
+
+            //Assert
+            Result.Should().BeEquivalentTo(role);
         }
     }
 }

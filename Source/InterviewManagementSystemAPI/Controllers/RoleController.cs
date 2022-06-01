@@ -40,7 +40,7 @@ public class RoleController : ControllerBase
     public IActionResult CreateNewRole(string roleName)
     {
         if(String.IsNullOrEmpty(roleName))
-            BadRequest("Role Name cannot be null");
+            return BadRequest("Role Name cannot be null");
         try
         {
             return _roleService.CreateRole(roleName) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");

@@ -25,12 +25,6 @@ namespace UnitTesting.ServiceTests
         [InlineData("Software2")]
         public void CreateRole_ReturnsValidationError(string roleName)
         {
-            //Arrange
-            _roleDataAccessLayer.Setup(roleDataAccessLayer => roleDataAccessLayer.AddRoleToDatabase(new Role())).Returns(true);
-
-            //Act
-            
-
             //Assert
             Assert.Throws<ValidationException>(()=>_roleService.CreateRole(roleName));
         }

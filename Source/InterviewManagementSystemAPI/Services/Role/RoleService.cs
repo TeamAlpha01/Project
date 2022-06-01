@@ -33,14 +33,14 @@ namespace IMS.Service
                 _role.RoleName = roleName;
                 return _roleDataAccessLayer.AddRoleToDatabase(_role) ? true : false; // LOG Error in DAL;
             }
-            catch (ArgumentException exception)
+            catch (ValidationException roleNameValidException)
             {
-                _logger.LogInformation($"Role service : RemoveRole(int roleId) : {exception.Message}");
-                return false;
+                _logger.LogInformation($"Role service : CreateRole(string roleName) : {roleNameValidException.Message}");
+                throw roleNameValidException;
             }
-            catch (Exception exception)
+            catch (Exception roleNameException)
             {
-                _logger.LogInformation($"Role service : CreateRole(string roleName) : {exception.Message}");
+                _logger.LogInformation($"Role service : CreateRole(string roleName) : {roleNameException.Message}");
                 return false;
             }
         }
