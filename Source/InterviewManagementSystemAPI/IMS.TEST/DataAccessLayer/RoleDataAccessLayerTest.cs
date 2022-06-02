@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using FluentAssertions;
 using IMS.DataAccessLayer;
 using IMS.Models;
@@ -22,18 +23,43 @@ namespace UnitTesting.DataAccessLayer
         }
 
 
+        [Fact]        
+        public void AddRoleToDatabase_ThrowsValidationException()
+        {
+            //Arrange
+            DbUtility.SeedInMemoryDb(_db);
+            Role testRole = new Role(){RoleName = "Software Developer",IsActive = true};
+            //Act
+            var Result = ()=> _roleDataAccessLayer.AddRoleToDatabase(testRole);
+            //Assert
+            Result.Should().Throw<ValidationException>();
+        }
+
         [Fact]
         public void AddRoleToDatabase_ReturnsTrue()
         {
             //Arrange
             Role testRole = new Role(){RoleId = 12,RoleName = "LocalDb",IsActive = true};
-
             //Act
             var Result = _roleDataAccessLayer.AddRoleToDatabase(testRole);
-
             //Assert
             Assert.True(Result);
         }
+
+        [Fact]        
+        public void AddRoleToDatabase_ThrowsDbUpdateException()
+        {
+            //Arrange
+
+
+
+            //Act
+            var Result = ()=> _roleDataAccessLayer.AddRoleToDatabase(new Role());
+            //Assert
+            Result.Should().Throw<ValidationException>();
+        }
+
+
         
         [Fact]
         public void ViewRolesFromDatabase_ReturnsListOfRoles()

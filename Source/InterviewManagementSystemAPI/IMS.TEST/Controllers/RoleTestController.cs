@@ -20,12 +20,15 @@ public class RoleControllerTest
         _roleController = new RoleController(_logger.Object, _roleService.Object);
     }
 
+
+    // 1.   Testing CreateNewRole()
     [Theory]
     [InlineData(null)]
     [InlineData("")]
-    public void CreateNewRole_ShouldReturnStatusCode400_WhenRoleNameIsEmpty(string roleName)
+    public void CreateNewRole_ShouldReturnStatusCode400_WhenRoleNameIsEmptyOrNull(string roleName)
     {
         var Result = _roleController.CreateNewRole(roleName) as ObjectResult;
+        
         Result.StatusCode.Should().Be(400);
     }
 
@@ -39,7 +42,7 @@ public class RoleControllerTest
 
         Result.StatusCode.Should().Be(200);
     }
-    
+
     [Fact]
     public void CreateNewRole_ShouldReturnStatusCode500_WithProperRoleName()
     {
@@ -52,7 +55,17 @@ public class RoleControllerTest
     }
 
     [Fact]
-    public void CreateNewRole_ShouldReturnStatusCode200_WhenServiceThrowsValidationException()
+    public void CreateNewRole_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
+    {
+        string roleName = "Software Developer2342";
+        _roleService.Setup(r => r.CreateRole(roleName)).Throws<ValidationException>();
+
+        var Result = _roleController.CreateNewRole(roleName) as ObjectResult;
+
+        Result.StatusCode.Should().Be(400);
+    }
+    [Fact]
+    public void CreateNewRole_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         string roleName = "Software Developer";
         _roleService.Setup(r => r.CreateRole(roleName)).Throws<Exception>();
@@ -61,20 +74,11 @@ public class RoleControllerTest
 
         Result.StatusCode.Should().Be(500);
     }
+
+
+    // 3.   Testing ViewRoles()
     [Fact]
-    public void CreateNewRole_ShouldReturnStatusCode500_WhenServiceThrowsException()
-    {
-        string roleName = "Software Developer";
-        _roleService.Setup(r => r.CreateRole(roleName)).Throws<ValidationException>();
-
-        var Result = _roleController.CreateNewRole(roleName) as ObjectResult;
-
-        Result.StatusCode.Should().Be(400);
-    }
-
-
-    [Fact]
-    public void ViewRole_ShouldReturnStatusCode200()
+    public void ViewRoles_ShouldReturnStatusCode200()
     {
 
         // Arrange
@@ -86,7 +90,7 @@ public class RoleControllerTest
     }
 
     [Fact]
-    public void ViewRole_ShouldReturnStatusCode500()
+    public void ViewRoles_ShouldReturnStatusCode500()
     {
         // Arrange
         _roleService.Setup(roleService => roleService.ViewRoles()).Throws<Exception>();
