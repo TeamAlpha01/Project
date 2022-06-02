@@ -19,8 +19,6 @@ namespace UnitTesting.ServiceTests
             _roleService = new RoleService(_logger.Object, _roleDataAccessLayer.Object);
         }
         
-        
-        
         [Theory]
         [InlineData("Software2")]
         public void CreateRole_ReturnsValidationError(string roleName)
