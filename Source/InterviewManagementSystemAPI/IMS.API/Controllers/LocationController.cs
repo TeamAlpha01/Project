@@ -79,9 +79,7 @@ public class LocationController : ControllerBase
     public IActionResult RemoveLocation(int locationId)
     {
         if (locationId <= 0)
-            BadRequest("Location id cannot be negative or null");
-
-
+           return BadRequest("Location id cannot be negative or null");
         try
         {
             return _locationService.RemoveLocation(locationId) ? Ok("Location Removed Successfully") : Problem("Sorry internal error occured");
@@ -123,7 +121,7 @@ public class LocationController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation("Service throwed exception while fetching locations ", exception);
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
     }
 

@@ -1,4 +1,3 @@
-
 using System;
 using System.ComponentModel.DataAnnotations;
 using FluentAssertions;
@@ -62,6 +61,7 @@ public class RoleControllerTest
 
         Result.StatusCode.Should().Be(500);
     }
+
     [Fact]
     public void CreateNewRole_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
@@ -84,11 +84,11 @@ public class RoleControllerTest
         // Act
         var Result = _roleController.ViewRoles() as ObjectResult;
 
-
         //Assert
         Assert.Equal(200, Result.StatusCode);
 
     }
+
     [Fact]
     public void ViewRole_ShouldReturnStatusCode500()
     {
@@ -103,7 +103,4 @@ public class RoleControllerTest
         Assert.Equal(500, Result.StatusCode);
 
     }
-
-
-
 }

@@ -79,30 +79,20 @@ public class RoleControllerTest
 
         // Arrange
         _roleService.Setup(roleService => roleService.ViewRoles()).Returns(() => null);
-
         // Act
         var Result = _roleController.ViewRoles() as ObjectResult;
-
-
         //Assert
         Assert.Equal(200, Result.StatusCode);
-
     }
+
     [Fact]
     public void ViewRole_ShouldReturnStatusCode500()
     {
-
         // Arrange
         _roleService.Setup(roleService => roleService.ViewRoles()).Throws<Exception>();
-
         // Act
         var Result = _roleController.ViewRoles() as ObjectResult;
-
         //Assert
         Assert.Equal(500, Result.StatusCode);
-
     }
-
-
-
 }
