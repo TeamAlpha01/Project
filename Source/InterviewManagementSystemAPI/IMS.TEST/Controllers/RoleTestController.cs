@@ -17,9 +17,8 @@ public class RoleControllerTest
     private readonly Mock<IRoleService> _roleService = new Mock<IRoleService>();
     public RoleControllerTest()
     {
-        _roleController = new RoleController(_logger.Object, _roleService.Object);
+        _roleController = new RoleController(_logger.Object,_roleService.Object);
     }
-
 
     // 1.   Testing CreateNewRole()
     [Theory]
