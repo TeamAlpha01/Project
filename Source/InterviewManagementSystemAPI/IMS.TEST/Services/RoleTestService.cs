@@ -35,8 +35,8 @@ namespace UnitTesting.ServiceTests
 
         [Fact]
         public void CreateRole_ReturnsTrue_WithValidRoleName()
-        {            
-            _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.Is<Role>(r=>r.RoleName == "Software Tester"))).Returns(true);
+        {
+            _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.IsAny<Role>())).Returns(true);
 
             var Result = _roleService.CreateRole("Software Tester");
             Result.Should().BeTrue();
@@ -45,7 +45,7 @@ namespace UnitTesting.ServiceTests
         [Fact]
         public void CreateRole_ReturnsFalse_WithValidRoleName()
         {            
-            _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.Is<Role>(r=>r.RoleName == "Software Tester"))).Returns(false);
+            _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.IsAny<Role>())).Returns(false);
 
             var Result = _roleService.CreateRole("Software Tester");
             Result.Should().BeFalse();
@@ -54,7 +54,7 @@ namespace UnitTesting.ServiceTests
         [Fact]
         public void CreateRole_ThrowsValidationException_When_DAL_ThrowsValidationException()
         {            
-            _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.Is<Role>(r=>r.RoleName == "Software Tester"))).Throws<ValidationException>();
+            _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.IsAny<Role>())).Throws<ValidationException>();
 
             var Result = () => _roleService.CreateRole("Software Tester");
             Result.Should().Throw<ValidationException>();
@@ -62,7 +62,7 @@ namespace UnitTesting.ServiceTests
         [Fact]
         public void CreateRole_ReturnFalse_When_DAL_ThrowsException()
         {            
-            _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.Is<Role>(r=>r.RoleName == "Software Tester"))).Throws<Exception>();
+            _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.IsAny<Role>())).Throws<Exception>();
 
             var Result = _roleService.CreateRole("Software Tester");
             Result.Should().BeFalse();

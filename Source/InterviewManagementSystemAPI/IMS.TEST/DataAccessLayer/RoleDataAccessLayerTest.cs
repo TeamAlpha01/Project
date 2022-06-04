@@ -50,10 +50,7 @@ namespace UnitTesting.DataAccessLayer
         public void AddRoleToDatabase_ThrowsDbUpdateException()
         {
             //Arrange
-
-
-
-            //Act
+           //Act
             var Result = ()=> _roleDataAccessLayer.AddRoleToDatabase(new Role());
             //Assert
             Result.Should().Throw<ValidationException>();
