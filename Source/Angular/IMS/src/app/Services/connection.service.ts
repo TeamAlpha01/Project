@@ -28,21 +28,11 @@ export class ConnectionService {
     'Content-Type': 'application/json',
   })
 
-  GetEmployeeID(): any {
-    this.GetEmployees().subscribe((data: any) => {
-      this.employeeDetails = data;
-      for (let item of this.employeeDetails) {
-        if (this.employeeACENumber == item.employeeAceNumber) {
-          this.employeeID = item.employeeId   
-          console.warn(this.employeeID)         
-        }
-      }
-    })
-  }
+
 
   //GET methods
   GetDashboard(): any {
-    return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard?employeeId=${this.employeeID}`);
+    return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard`, { headers: this.headers });
   }
 
   GetDepartments(): any {
@@ -51,57 +41,54 @@ export class ConnectionService {
   }
 
   GetEmployees() {
-    return this.http.get<any>(this.baseURL + 'Employee/ViewEmployees');
+    return this.http.get<any>(this.baseURL + 'Employee/ViewEmployees', { headers: this.headers });
   }
 
   GetEmployeeProfile() {
-    console.warn(this.employeeID);
-    return this.http.get<any>(this.baseURL + `Employee/ViewProfile?employeeId=${this.employeeID}`);
+    return this.http.get<any>(this.baseURL + `Employee/ViewProfile`, { headers: this.headers });
   }
 
   GetLocations(): any {
-    return this.http.get<any>(this.baseURL + 'Location/ViewLocations');
+    return this.http.get<any>(this.baseURL + 'Location/ViewLocations', { headers: this.headers });
   }
 
   GetPools(): any {
-    return this.http.get<any>(this.baseURL + 'Pool/ViewPools');
+    return this.http.get<any>(this.baseURL + 'Pool/ViewPools', { headers: this.headers });
   }
 
   GetPoolMembers(pool: any): any {
-    return this.http.get<any>(this.baseURL + `Pool/ViewPoolMembers?poolId=${pool}`);
+    return this.http.get<any>(this.baseURL + `Pool/ViewPoolMembers?poolId=${pool}`, { headers: this.headers });
   }
 
   GetProjects(): any {
-    return this.http.get<any>(this.baseURL + 'Project/ViewProjects');
+    return this.http.get<any>(this.baseURL + 'Project/ViewProjects', { headers: this.headers });
   }
 
   GetRoles(): any {
-    return this.http.get<any>(this.baseURL + 'Role/ViewRoles');
+    return this.http.get<any>(this.baseURL + 'Role/ViewRoles', { headers: this.headers });
   }
 
   GetScheduledDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewScheduledDrives');
+    return this.http.get<any>(this.baseURL + 'Drive/ViewScheduledDrives', { headers: this.headers });
   }
 
   GetTodayDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewTodayDrives');
+    return this.http.get<any>(this.baseURL + 'Drive/ViewTodayDrives', { headers: this.headers });
   }
 
   GetUpcomingDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewUpcommingDrives');
+    return this.http.get<any>(this.baseURL + 'Drive/ViewUpcommingDrives', { headers: this.headers });
   }
 
+
+  //POST methods
   Login(user: any) {
-    this.employeeACENumber=user.ACENumber;
-    this.GetEmployeeID();
     return this.http.post<any>(`https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.header })
   }
 
 
   CreateEmployee(user: any) {
-    console.warn(user);
-    const headers = { 'content-type': 'application/json' }
-    this.http.post<any>('https://localhost:7072/Employee/CreateNewEmployee', user, { headers: headers })
+    this.http.post<any>('https://localhost:7072/Employee/CreateNewEmployee', user, { headers: this.header })
 
   }
 
