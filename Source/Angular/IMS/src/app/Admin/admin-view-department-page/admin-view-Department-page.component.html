@@ -29,10 +29,10 @@
 <div class="content">
 
     <app-navbar [title]="title"></app-navbar>
-    <div class="card-body">
-        <a [routerLink]="['../Admin-adddepartment']"><button class="btn btn-filter">Add Department</button></a>
-    </div>
 
+    <div class="text-center">
+        <a [routerLink]="['../Admin-adddepartment']"><button type="button" class="btn btn-filter">Add Department</button></a>
+    </div>
 
     <div class="mt-3 container shadow  bg-body rounded"
         *ngFor="let item of data| paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">

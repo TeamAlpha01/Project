@@ -69,10 +69,10 @@ const routes: Routes = [
   { path: 'Admin-addrole-page', component: InterviewerCurrentDriveComponent},        //Admin-addrole-page
   { path: 'Admin-adddepartment ', component: AdminAdddepartmentComponent },          //Admin-adddepartment 
   { path: 'Admin-addlocation ', component: AdminAddlocationComponent },              //Admin-addlocation
-  { path: '', component:InterviewerCurrentDriveComponent},                                 //Admin-addproject
+  { path: 'Admin-addproject', component:InterviewerCurrentDriveComponent},           //Admin-addproject
   { path: 'Admin-role', component: AdminRoleComponent },                             //Admin-role
   { path: 'Admin-requests', component: AdminRequestsComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
+  { path: '', component: AdminDashboardComponent },                          //admin-dashboard
   { path: 'admin-view-department', component: AdminviewDepartmentPageComponent },
   { path: 'admin-view-role', component: AdminViewRolePageComponent },
   { path: 'admin-view-project', component: AdminviewProjectPageComponent },
