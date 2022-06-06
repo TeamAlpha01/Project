@@ -25,7 +25,7 @@ public class LocationControllerTest
 
     [Theory]
     [InlineData(null)]
-    public void CreateNewLocation_ShouldReturnStatusCode400_WhenLocationNameIsEmpty(string locationName)
+    public void CreateNewLocation_ShouldReturnStatusCode400_WhenLocationNameIsNull(string locationName)
     {
         var Result = _locationController.CreateNewLocation(locationName) as ObjectResult;
         Result.StatusCode.Should().Be(400);
@@ -115,7 +115,7 @@ public class LocationControllerTest
         Result.StatusCode.Should().Be(400);
     }
 
-    //Test for View Location Method (2 TestCases)
+    // Test for View Location Method (2 TestCases)
 
     [Fact]
     public void Viewlocation_ShouldReturnStatusCode200()

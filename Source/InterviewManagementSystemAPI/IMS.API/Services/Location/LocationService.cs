@@ -25,11 +25,11 @@ namespace IMS.Service
         public bool CreateLocation(string locationName)
 
         {
-            Location _location = DataFactory.LocationDataFactory.GetLocationObject();
             LocationValidation.IsLocationNameValid(locationName);
 
             try
             {
+                Location _location = DataFactory.LocationDataFactory.GetLocationObject();
                 _location.LocationName = locationName;
                 return _locationDataAccessLayer.AddLocationToDatabase(_location) ? true : false; // LOG Error in DAL;
             }
