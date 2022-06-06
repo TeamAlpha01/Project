@@ -72,7 +72,7 @@ const routes: Routes = [
   { path: 'Admin-addproject', component:InterviewerCurrentDriveComponent},           //Admin-addproject
   { path: 'Admin-role', component: AdminRoleComponent },                             //Admin-role
   { path: 'Admin-requests', component: AdminRequestsComponent },
-  { path: '', component: AdminDashboardComponent },                          //admin-dashboard
+  { path: '', component: AdminviewLocationPageComponent },                          //admin-dashboard
   { path: 'admin-view-department', component: AdminviewDepartmentPageComponent },
   { path: 'admin-view-role', component: AdminViewRolePageComponent },
   { path: 'admin-view-project', component: AdminviewProjectPageComponent },
