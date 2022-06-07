@@ -16,7 +16,7 @@ export class AdminViewRequestsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('https://localhost:7072/Role/ViewRequests')
+      .get<any>('https://localhost:7072/Employee/ViewEmployeeRequest')
       .subscribe((data) => {
         this.data = data;
         this.totalLength = data.length;

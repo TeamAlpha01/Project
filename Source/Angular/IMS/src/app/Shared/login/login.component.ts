@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         console.log(AuthenticationService.GetData("TAC"))
 
         if (this.IsAdmin) {
-          this.route.navigateByUrl("/admin-dashboard");  //navigation
+          this.route.navigateByUrl("/Admin-requests");  //navigation
         }
         else if (this.IsTAC) {
           this.route.navigateByUrl("/tac-home");

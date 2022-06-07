@@ -29,6 +29,7 @@
 <div class="content">
 
     <app-navbar [title]="title"></app-navbar>
+    
 
     <div class="text-center">
         <a [routerLink]="['../Admin-adddepartment']"><button type="button" class="btn btn-filter">Add Department</button></a>
@@ -40,7 +41,7 @@
             <div class="card-body">
                 <div class="row rone ">
                     <div class="col-md-10 ">
-                        <p>{{item.departmentName}}</p>
+                        <h3>{{item.departmentName}}</h3>
                     </div>
 
                     <div class="col-md-1 ">

@@ -16,7 +16,7 @@ export class AdminviewProjectPageComponent implements OnInit {
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
-    this.connection.GetLocations().subscribe((data: any) => {
+    this.connection.GetProjects().subscribe((data: any) => {
       this.data = data;
       console.log(this.data)
     })

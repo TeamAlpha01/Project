@@ -6,7 +6,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
 import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-adddepartment.component';
-import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
@@ -73,7 +72,6 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
     AdminAddlocationComponent,
     AdminAddprojectComponent,
     AdminDashboardComponent,
-    AdminRequestsComponent,
     AdminviewProjectPageComponent,
     AdminViewRolePageComponent,
     AdminviewDepartmentPageComponent,

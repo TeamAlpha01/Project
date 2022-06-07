@@ -4,7 +4,6 @@ import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-a
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
 import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
-import { AdminRequestsComponent } from './Admin/admin-requests/admin-requests.component';
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 // import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-Department-page.component';
 //import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
@@ -66,13 +65,13 @@ const routes: Routes = [
 
 
   //admin pages
-  { path: 'Admin-addrole-page', component: InterviewerCurrentDriveComponent},        //Admin-addrole-page
-  { path: 'Admin-adddepartment ', component: AdminAdddepartmentComponent },          //Admin-adddepartment 
-  { path: 'Admin-addlocation ', component: AdminAddlocationComponent },              //Admin-addlocation
-  { path: 'Admin-addproject', component:InterviewerCurrentDriveComponent},           //Admin-addproject
+  { path: 'Admin-addrole-page', component: AdminRoleComponent},        //Admin-addrole-page
+  { path: 'Admin-adddepartment', component: AdminAdddepartmentComponent },          //Admin-adddepartment 
+  { path: 'Admin-addlocation', component: AdminAddlocationComponent },              //Admin-addlocation
+  { path: 'Admin-addProject', component: AdminAddprojectComponent },
+  { path: '', component:LoginComponent},                                 //Admin-addproject
   { path: 'Admin-role', component: AdminRoleComponent },                             //Admin-role
-  { path: 'Admin-requests', component: AdminRequestsComponent },
-  { path: '', component: AdminviewLocationPageComponent },                          //admin-dashboard
+  { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'admin-view-department', component: AdminviewDepartmentPageComponent },
   { path: 'admin-view-role', component: AdminViewRolePageComponent },
   { path: 'admin-view-project', component: AdminviewProjectPageComponent },

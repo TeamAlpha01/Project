@@ -11,7 +11,7 @@ export class AdminDashboardComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
-  // title ="Dashboard";
+  title ="Dashboard";
   
   constructor(private connection: ConnectionService) { }
 
