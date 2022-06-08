@@ -15,9 +15,9 @@ public class DriveController : ControllerBase
 {
     private readonly ILogger _logger;
     private IDriveService _driveService;
-    private MailService _mailService;
+    private IMailService _mailService;
 
-    public DriveController(ILogger<DriveController> logger, MailService mailService,IDriveService driveService)
+    public DriveController(ILogger<DriveController> logger, IMailService mailService,IDriveService driveService)
     {
         _logger = logger;
         _mailService = mailService;

@@ -17,7 +17,7 @@ public class DriveControllerTest
     private readonly DriveController _driveController;
     private readonly Mock<ILogger<DriveController>> _logger = new Mock<ILogger<DriveController>>();
     private readonly Mock<IDriveService> _driveService = new Mock<IDriveService>();
-    private readonly Mock<MailService> _mailService = new Mock<MailService>();
+    private readonly Mock<IMailService> _mailService = new Mock<IMailService>();
 
     public DriveControllerTest()
     {
@@ -29,7 +29,7 @@ public class DriveControllerTest
     public void CreateDrive_ShouldReturnStatusCode400_WhenDriveObjectIsNull(Drive drive)
     {
         var Result = _driveController.CreateDrive(drive) as ObjectResult;
-        Result.StatusCode.Should().Be(500);
+        Result.StatusCode.Should().Be(400);
     }
 
 }
