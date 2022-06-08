@@ -7,7 +7,9 @@ using IMS.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using UnitTesting.MockData;
 using Xunit;
+using UnitTesting.Utility;
 
 namespace UnitTesting.ServiceTests
 {
@@ -15,6 +17,7 @@ namespace UnitTesting.ServiceTests
     {
         private readonly LocationService _locationService;
         private readonly Mock<ILogger<LocationService>> _logger = new Mock<ILogger<LocationService>>();
+        private readonly InterviewManagementSystemDbContext _db ;
         private readonly Mock<ILocationDataAccessLayer> _locationDataAccessLayer = new Mock<ILocationDataAccessLayer>();
 
         public locationTestService()
@@ -140,8 +143,8 @@ namespace UnitTesting.ServiceTests
         public void Viewlocation_ShouldReturnListofLocations()
         {
             _locationDataAccessLayer.Setup(LocationDataAccessLayer => LocationDataAccessLayer.GetLocationsFromDatabase()).Returns(() => null);
-            var Result = () => _locationService.ViewLocations();
-            
+            var Result = _locationService.ViewLocations();
+            Result = null ;
         }
     }
 }
