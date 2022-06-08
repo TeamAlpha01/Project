@@ -16,8 +16,8 @@ public class PoolController : ControllerBase
 {
     private readonly ILogger _logger;
     private IPoolService _poolService;
-    private MailService _mailService;
-    public PoolController(ILogger<PoolController> logger, MailService mailService,IPoolService poolService)
+    private IMailService _mailService;
+    public PoolController(ILogger<PoolController> logger, IMailService mailService,IPoolService poolService)
     {
         _logger = logger;
         _mailService = mailService;
