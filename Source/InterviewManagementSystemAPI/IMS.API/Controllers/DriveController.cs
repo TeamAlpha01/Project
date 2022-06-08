@@ -283,6 +283,24 @@ public class DriveController : ControllerBase
         }
 
     }
+
+    /// <summary>
+    /// This method invokes when the 'ViewDrives' request raises
+    /// </summary>
+    /// <param name="DriveId"></param>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewInvites
+    ///     {
+    ///        "Drive Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <returns>Returns a list of Interview Invites</returns>
+    
     [HttpGet]
     public IActionResult ViewDrive(int driveId)
     {
@@ -773,6 +791,24 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+     /// <summary>
+    /// This method invoked when the employee wants to see their Total list of Drives
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployueeDashboard
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns the dashboard of employee</returns>
+    
     [HttpGet]
     public IActionResult ViewToatlDrives(int employeeId)
     {
@@ -789,6 +825,23 @@ public class DriveController : ControllerBase
         }
     }
 
+     /// <summary>
+    /// This method invoked when the employee wants to see their Accepted Drive
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployueeDashboard
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns the dashboard of employee</returns>
+
     [HttpGet]
     public IActionResult ViewAcceptedDrives(int employeeId)
     {
@@ -804,6 +857,23 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+     /// <summary>
+    /// This method invoked when the employee wants to see their Denied drives
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployueeDashboard
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns the dashboard of employee</returns>
+    
     [HttpGet]
     public IActionResult ViewDeniedDrives(int employeeId)
     {
@@ -819,6 +889,24 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+     /// <summary>
+    /// This method invoked when the employee wants to see their Ignored Drives
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployueeDashboard
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns the dashboard of employee</returns>
+    
+
     [HttpGet]
     public IActionResult ViewIgnoredDrives(int employeeId)
     {
@@ -834,6 +922,24 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+     /// <summary>
+    /// This method invoked when the employee wants to see their Utilized Slots
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployueeDashboard
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns the dashboard of employee</returns>
+    
     [HttpGet]
     public IActionResult ViewUtilizedInterviews(int employeeId)
     {
@@ -849,6 +955,24 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+     /// <summary>
+    /// This method invoked when the employee wants to see their Not Utilized Slots
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployueeDashboard
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns the dashboard of employee</returns>
+    
     [HttpGet]
     public IActionResult ViewNotUtilizedInterviews(int employeeId)
     {
@@ -864,6 +988,24 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+     /// <summary>
+    /// This method invoked when the employee wants to see their Total Availability
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /ViewEmployueeDashboard
+    ///     {
+    ///        "Employee Id": "1",
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="400">If the item is null</response> 
+    /// <param name="employeeId"></param>
+    /// <returns>Returns the dashboard of employee</returns>
+    
     [HttpGet]
     public IActionResult ViewTotalAvailability(int employeeId)
     {

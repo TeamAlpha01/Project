@@ -125,7 +125,7 @@ public class LocationControllerTest
         // Act
         var Result = _locationController.ViewLocations() as ObjectResult;
         //Assert
-        Assert.Equal(200, Result.StatusCode);
+        Result.StatusCode.Should().Be(200);
     }
 
     [Fact]
