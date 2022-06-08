@@ -69,7 +69,7 @@ const routes: Routes = [
   { path: 'Admin-adddepartment', component: AdminAdddepartmentComponent },          //Admin-adddepartment 
   { path: 'Admin-addlocation', component: AdminAddlocationComponent },              //Admin-addlocation
   { path: 'Admin-addproject', component: AdminAddprojectComponent },               //Admin-addproject
-  { path: '', component: AdminDashboardComponent},                                 
+  { path: '', component: LoginComponent},                                 
   { path: 'Admin-role', component: AdminRoleComponent },                             //Admin-role
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'admin-view-department', component: AdminviewDepartmentPageComponent },
