@@ -45,13 +45,13 @@ public class DepartmentController : ControllerBase
         }
          catch (ValidationException departmentnotvalid)
         {
-             _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {departmentnotvalid.Message} : {departmentnotvalid.StackTrace}");
+            _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {departmentnotvalid.Message} : {departmentnotvalid.StackTrace}");
             return BadRequest(departmentnotvalid.Message);
         }
         catch (Exception exception)
         {
             _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
+            return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>

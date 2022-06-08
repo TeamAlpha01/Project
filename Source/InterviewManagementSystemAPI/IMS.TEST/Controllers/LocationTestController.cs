@@ -52,7 +52,7 @@ public class LocationControllerTest
     }
 
     [Fact]
-    public void CreateNewlocation_ShouldReturnStatusCode200_WhenServiceThrowsValidationException()
+    public void CreateNewlocation_ShouldReturnStatusCode500_WhenServiceThrowsValidationException()
     {
         string locationName = "Chennai";
         _locationService.Setup(r => r.CreateLocation(locationName)).Throws<Exception>();

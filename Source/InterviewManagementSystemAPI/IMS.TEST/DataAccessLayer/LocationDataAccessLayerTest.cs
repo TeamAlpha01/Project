@@ -22,6 +22,8 @@ namespace UnitTesting.DataAccessLayer
             _locationDataAccessLayer = new LocationDataAccessLayer(_logger.Object,_db);
         }
 
+        //Testcase for AddLocationToDatabase Method
+
         [Fact]        
         public void AddLocationToDatabase_ThrowsValidationException()
         {
@@ -68,6 +70,19 @@ namespace UnitTesting.DataAccessLayer
 
             //Assert
             Result.Should().BeEquivalentTo(location);
+        }
+
+        //Testcases for RemoveLocationToDatabase Method
+
+        [Fact]
+        public void RemoveLocationFromDatabase_ReturnsTrue()
+        {
+            //Arrange
+            int LocationId = 1;
+            //Act
+            var Result = _locationDataAccessLayer.RemoveLocationFromDatabase(LocationId);
+            //Assert
+            Assert.True(Result);
         }
 
     }

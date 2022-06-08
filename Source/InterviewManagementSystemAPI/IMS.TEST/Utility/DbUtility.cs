@@ -14,6 +14,7 @@ namespace UnitTesting.Utility
         public static void SeedInMemoryDb(InterviewManagementSystemDbContext dbContext)
         {
             dbContext.Roles.AddRange(RoleMock.GetRolesMock());
+            dbContext.Locations.AddRange(LocationMock.GetLocationsMock());
             dbContext.SaveChanges();
         }
     }
