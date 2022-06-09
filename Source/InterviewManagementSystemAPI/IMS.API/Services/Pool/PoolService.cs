@@ -26,7 +26,6 @@ namespace IMS.Service
         public bool CreatePool(int departmentId, string poolName)
 
         {
-
             Pool _pool = DataFactory.PoolDataFactory.GetPoolObject();
             PoolValidation.IsCreatePoolValid(departmentId, poolName);
 

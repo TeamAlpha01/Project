@@ -86,7 +86,6 @@ namespace IMS.DataAccessLayer
             }
             try
             {
-                
                 var Pool = _db.Pools.Find(poolId);
                 if (poolId == null)
                     throw new ValidationException("No Pool  is found with given Pool Id");

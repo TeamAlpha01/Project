@@ -89,8 +89,6 @@ public class PoolController : ControllerBase
     {
         if (poolId <= 0)
             BadRequest("Pool Id cannot be negative or null");
-
-
         try
         {
             return _poolService.RemovePool(poolId) ? Ok("Pool Removed Successfully") : Problem("Sorry internal error occured");
@@ -103,7 +101,7 @@ public class PoolController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation($"Pool Service : RemoveLocation throwed an exception : {exception}");
-            return BadRequest("Sorry some internal error occured");
+            return Problem ("Sorry some internal error occured");
         }
 
     }
@@ -184,7 +182,7 @@ public class PoolController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation("Service throwed exception while fetching Pools ", exception);
-            return BadRequest("Sorry some internal error occured");
+            return Problem ("Sorry some internal error occured");
         }
     }
 
@@ -322,7 +320,7 @@ public class PoolController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation("Service throwed exception while fetching locations ", exception);
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
     }
 
