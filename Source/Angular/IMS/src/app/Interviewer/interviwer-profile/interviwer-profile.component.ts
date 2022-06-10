@@ -18,5 +18,5 @@ export class InterviwerProfileComponent implements OnInit {
       console.warn(this.profileDetails)
     }) 
   }
-
+   
 }
