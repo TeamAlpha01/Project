@@ -135,10 +135,3 @@ namespace IMS.DataAccessLayer
         }
     }
 }
-
-/*
-    NOTE : Change the connection string while using your personal system and also update all migrations.
-    
-    For Aspire System : Server=ASPIREREN009;Database=InterviewManagementSystem;Trusted_Connection=True;
-
-*/
