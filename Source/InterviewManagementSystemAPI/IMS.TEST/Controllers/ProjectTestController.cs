@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using FluentAssertions;
-using IMS.Controllers;
+using IMS.Controller;
 using IMS.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -19,7 +19,7 @@ public class ProjectTestController
 
     public ProjectTestController()
     {
-        _projectController=new ProjectController(_logger.Object,_departmentService.Object);
+        _projectController = new ProjectController(_logger.Object,_departmentService.Object);
 
     }
 
