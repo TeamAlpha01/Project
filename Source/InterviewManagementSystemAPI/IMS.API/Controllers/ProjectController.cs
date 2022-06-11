@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using IMS.Service;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IMS.Controller;
+namespace IMS.Controller; 
 
 [ApiController]
   [Route("[controller]/[action]")]
