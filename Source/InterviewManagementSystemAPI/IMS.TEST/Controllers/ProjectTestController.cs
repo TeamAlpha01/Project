@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
+
 namespace UnitTesting.Controllers;
+
 
 public class ProjectTestController
 {
     private readonly ProjectController _projectController;
-    private readonly Mock<ILogger<ProjectTestController>> _logger =new Mock<ILogger<ProjectTestController>>();
+    private readonly Mock<ILogger<ProjectController>> _logger =new Mock<ILogger<ProjectController>>();
     private readonly Mock<IDepartmentService> _departmentService =new Mock<IDepartmentService>();
 
     public ProjectTestController()
@@ -20,5 +22,6 @@ public class ProjectTestController
         _projectController=new ProjectController(_logger.Object,_departmentService.Object);
 
     }
+
     
 }
