@@ -31,6 +31,9 @@ export class TacUpcomingDriveComponent implements OnInit {
 
     this.connection.GetUpcomingDrives().subscribe((data: any) => {
       this.driveDetails = data;
+      for (let item of this.driveDetails) {
+        this.drive.push(item);
+      }
     })
     this.connection.GetPools().subscribe((data: any) => {
       this.poolDetails = data;
