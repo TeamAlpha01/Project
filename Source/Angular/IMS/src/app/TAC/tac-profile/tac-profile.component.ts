@@ -11,14 +11,14 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class TacProfileComponent implements OnInit {
   title = 'Profile';
   data: any;
+  profileDetails: any;
 
 
   constructor(private connection: ConnectionService) { }
 
   ngOnInit():void{
     this.connection.GetEmployeeProfile().subscribe((data: any) => {
-      this.data = data;
-      console.log(data);
+      this.profileDetails = data;
     })    
 
   }

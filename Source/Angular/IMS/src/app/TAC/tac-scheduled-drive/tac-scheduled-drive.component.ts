@@ -33,6 +33,9 @@ export class TacScheduledDriveComponent implements OnInit {
 
     this.connection.GetScheduledDrives().subscribe((data: any) => {
       this.driveDetails = data;
+      for (let item of this.driveDetails) {
+        this.drive.push(item);
+      }
     })
     this.connection.GetPools().subscribe((data: any) => {
       this.poolDetails = data;
