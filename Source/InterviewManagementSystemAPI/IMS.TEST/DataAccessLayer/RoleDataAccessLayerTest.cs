@@ -50,10 +50,12 @@ namespace UnitTesting.DataAccessLayer
         public void AddRoleToDatabase_ThrowsDbUpdateException()
         {
             //Arrange
+            var DbMock = new Mock<InterviewManagementSystemDbContext>();
            //Act
+           DbMock.Setup(d=>d.SaveChanges()).Throws<DbUpdateException>();
             var Result = ()=> _roleDataAccessLayer.AddRoleToDatabase(new Role());
             //Assert
-            Result.Should().Throw<ValidationException>();
+            Result.Should().Throw<DbUpdateException>();
         }
 
 
