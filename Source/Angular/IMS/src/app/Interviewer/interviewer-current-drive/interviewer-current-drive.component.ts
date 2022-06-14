@@ -12,20 +12,36 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   title = 'Current Drive'
   totalLength: any;
   page: number = 1;
-  dept = 'dotnet';
+
+  dept = '';
   _pool = '';
+
   pool: any[] = [];
   drive: any[] = [];
-  interviwerpoolDetails :any;
+
+  departmentDetails : any;
+  driveDetails: any;
+  poolDetails: any;
+  // interviwerpoolDetails :any;
+
   constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
     this.connection.GetPools().subscribe((data: any) => {
-      this.interviwerpoolDetails = data;
+      this.poolDetails = data;
+      // for (let item of this.interviwerpoolDetails) {
+      //   this.drive.push(item);
+      // }
   })
+  this.connection.GetTodayDrives().subscribe((data: any) => {
+    this.driveDetails = data;
     for (let item of this.driveDetails) {
       this.drive.push(item);
     }
+  })
+  this.connection.GetDepartments().subscribe((data: any) => {
+    this.departmentDetails = data;
+  })
   }
 
 
@@ -53,90 +69,90 @@ export class InterviewerCurrentDriveComponent implements OnInit {
 
   }
 
-
-
-
-
-
-  department: any[] = [{
-    departmentId: '1',
-    departmentName: 'dotnet'
-  }]
-
-  poolDetails: any[] = [{
-    departmentId: '1',
-    poolName: 'Fresher'
-  },
-  {
-    departmentId: '1',
-    poolName: 'Fresher 1'
-  }, 
-  {
-    departmentId: '1',
-    poolName: 'Fresher 2'
-  },
-  {
-    departmentId: '1',
-    poolName: 'Fresher 3'
-  },]
-
-
-
-
-
-  driveDetails: any[] = [{
-    name: 'freshers 2021',
-    department: 'dotnet',
-    poolName: 'Fresher 1',
-    date: '2022-04-12',
-    fromTime: '4.00',
-    toTime: '5.00',
-    mode: 'offline',
-    location: 'chennai'
-  }, {
-    name: 'freshers 2022',
-    department: 'dotnet',
-    poolName: 'Fresher 2',
-    fromTime: '4.00',
-    toTime: '5.00',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  }, {
-    name: 'freshers 2022',
-    department: 'dotnet',
-    poolName: 'Fresher 3',
-    fromTime: '4.00',
-    toTime: '5.00',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  }, {
-    name: 'freshers 2021',
-    department: 'dotnet',
-    poolName: 'Fresher 2',
-    fromTime: '4.00',
-    toTime: '5.00',
-    date: '2022-04-12',
-    mode: 'offline',
-    location: 'chennai'
-  }, {
-    name: 'freshers 2022',
-    department: 'dotnet',
-    poolName: 'Fresher 1',
-    fromTime: '4.00',
-    toTime: '5.00',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  }, {
-    name: 'freshers 2022',
-    department: 'dotnet',
-    poolName: 'Fresher',
-    fromTime: '4.00',
-    toTime: '5.00',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  }]
 }
+
+
+
+
+//   department: any[] = [{
+//     departmentId: '1',
+//     departmentName: 'dotnet'
+//   }]
+
+//   poolDetails: any[] = [{
+//     departmentId: '1',
+//     poolName: 'Fresher'
+//   },
+//   {
+//     departmentId: '1',
+//     poolName: 'Fresher 1'
+//   }, 
+//   {
+//     departmentId: '1',
+//     poolName: 'Fresher 2'
+//   },
+//   {
+//     departmentId: '1',
+//     poolName: 'Fresher 3'
+//   },]
+
+
+
+
+
+//   driveDetails: any[] = [{
+//     name: 'freshers 2021',
+//     department: 'dotnet',
+//     poolName: 'Fresher 1',
+//     date: '2022-04-12',
+//     fromTime: '4.00',
+//     toTime: '5.00',
+//     mode: 'offline',
+//     location: 'chennai'
+//   }, {
+//     name: 'freshers 2022',
+//     department: 'dotnet',
+//     poolName: 'Fresher 2',
+//     fromTime: '4.00',
+//     toTime: '5.00',
+//     date: '2022-04-12',
+//     mode: 'online',
+//     location: ''
+//   }, {
+//     name: 'freshers 2022',
+//     department: 'dotnet',
+//     poolName: 'Fresher 3',
+//     fromTime: '4.00',
+//     toTime: '5.00',
+//     date: '2022-04-12',
+//     mode: 'online',
+//     location: ''
+//   }, {
+//     name: 'freshers 2021',
+//     department: 'dotnet',
+//     poolName: 'Fresher 2',
+//     fromTime: '4.00',
+//     toTime: '5.00',
+//     date: '2022-04-12',
+//     mode: 'offline',
+//     location: 'chennai'
+//   }, {
+//     name: 'freshers 2022',
+//     department: 'dotnet',
+//     poolName: 'Fresher 1',
+//     fromTime: '4.00',
+//     toTime: '5.00',
+//     date: '2022-04-12',
+//     mode: 'online',
+//     location: ''
+//   }, {
+//     name: 'freshers 2022',
+//     department: 'dotnet',
+//     poolName: 'Fresher',
+//     fromTime: '4.00',
+//     toTime: '5.00',
+//     date: '2022-04-12',
+//     mode: 'online',
+//     location: ''
+//   }]
+// }
