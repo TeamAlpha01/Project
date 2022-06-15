@@ -17,7 +17,7 @@ public class EmployeeController : ControllerBase
     private IEmployeeService _employeeService;
     private IMailService _mailService;
 
-    public EmployeeController(ILogger<EmployeeController> logger,MailService mailService,IEmployeeService employeeService) //
+    public EmployeeController(ILogger<EmployeeController> logger,IMailService mailService,IEmployeeService employeeService) //
     {
         _logger = logger;
         _mailService = mailService;
@@ -102,7 +102,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            return _employeeService.RemoveEmployee(employeeId) ? Ok("Employee Removed Successfully") : BadRequest("Sorry internal error occured");
+            return _employeeService.RemoveEmployee(employeeId) ? Ok("Employee Removed Successfully") : Problem("Sorry internal error occured");
         }
         catch (ValidationException employeeNotFound)
         {
@@ -112,7 +112,7 @@ public class EmployeeController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation($"Employee Service : RemoveEmployee throwed an exception : {exception}");
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
@@ -140,7 +140,7 @@ public class EmployeeController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
@@ -170,7 +170,7 @@ public class EmployeeController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
@@ -206,7 +206,7 @@ public class EmployeeController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
 
     }
@@ -226,7 +226,7 @@ public class EmployeeController : ControllerBase
     /// <param name="isAdminAccepted"></param>
     /// <returns>
     /// Return list of employees who are approved or rejected by admin based on isAdminAccepted parameter or
-    /// Return BadRequest when exception occured in the EmployeeService layer.
+    /// Return Problem when exception occured in the EmployeeService layer.
     /// </returns>
     [HttpGet]
     public IActionResult ViewEmployeeByApprovalStatus(bool isAdminAccepted)
@@ -238,7 +238,7 @@ public class EmployeeController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
