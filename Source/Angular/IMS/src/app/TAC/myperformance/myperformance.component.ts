@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./myperformance.component.css']
 })
 export class MyperformanceComponent implements OnInit {
+  title='My Performance'
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

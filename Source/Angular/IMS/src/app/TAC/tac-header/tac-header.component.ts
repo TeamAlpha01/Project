@@ -19,9 +19,11 @@ export class TacHeaderComponent implements OnInit {
   constructor(private service:AuthenticationService) { }
 
   ngOnInit(): void {
+    this.SetCurrentPage(this.CurrentNavigationPage);
   }
 
   SetCurrentPage(CurrentNavigationPage: string) {
+    console.warn(CurrentNavigationPage);
     switch (CurrentNavigationPage) {
       case 'HomePage': {
         this.IsHomePage = true;
