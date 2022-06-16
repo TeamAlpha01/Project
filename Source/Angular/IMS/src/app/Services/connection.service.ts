@@ -45,7 +45,7 @@ export class ConnectionService {
   }
 
   GetEmployeeProfile() {
-    return this.http.get<any>(this.baseURL + `Employee/ViewProfile`, { headers: this.headers });
+    return this.http.get<any>(this.baseURL + `Employee/ViewProfile?employeeId=11`, { headers: this.headers });
   }
 
   GetLocations(): any {
