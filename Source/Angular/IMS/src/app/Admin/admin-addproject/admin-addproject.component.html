@@ -1,29 +1,5 @@
-<div class="sidebar d-flex flex-column justify-content-between">
-    <nav class="navbar bg-custom navbar-dark">
-        <div class="user-profile">
-            <div>
-                <img src="./assets/Images/profile_.png" class="profile-img" alt="">
-            </div>
-            <p class="username">Admin</p>
-        </div>
 
-
-        <div class="navbar-nav w-100">
-            <a [routerLink]="['../admin-dashboard']" class="nav-item nav-link"><i class="fa fa-info-circle"></i> Dashboard</a>
-            <a [routerLink]="['../admin-view-department']" class="nav-item nav-link"><i class="fa fa-people-carry"></i> Manage Department</a>
-            <a [routerLink]="['../admin-view-role']" class="nav-item nav-link"><i class='fa fa-user'></i> Manage Role</a>
-            <a [routerLink]="['../admin-view-project']" class="nav-item nav-link"><i class="fa fa-box-open"></i> Manage Project</a>
-            <a [routerLink]="['../admin-view-location']" class="nav-item nav-link"><i class="fa fa-location-pin"></i> Manage Location</a>
-            <a [routerLink]="['../admin-view-requests']" class="nav-item nav-link"><i class="fa fa-users"></i> Requests from TAC </a>
-        </div>
-    </nav>
-    <footer class="navbar navbar-light">
-        <div class="navbar-nav w-100">
-            <a href="Login.html" class="nav-item nav-link mb-md-2" id="logout"><a [routerLink]="['../login']"><i
-                    class="fa fa-solid fa-right-from-bracket"></i> Logout</a></a>
-        </div>
-    </footer>
-</div>
+<app-admin-header [CurrentNavigationPage]="'ProjectPage'"></app-admin-header>
 <!-- Sidebar End -->
 
 <div class="content">

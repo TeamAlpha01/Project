@@ -42,7 +42,9 @@ export class AuthenticationService {
   }
   
 
-  static Logout() {
+   ClearToken() {
+    console.log(localStorage.length);
     localStorage.clear();
+    console.log(localStorage.length);
   }
 }
