@@ -7,15 +7,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
   providedIn: 'root'
 })
 export class ConnectionService {
-
-  drive: any;
-  totalLength: any;
-  department: any;
-  role: any;
-  profile: any;
-  employeeDetails: any;
-  employeeACENumber = ''
-  employeeID = '1'
+ 
   baseURL = 'https://localhost:7072/'
   constructor(private http: HttpClient) { }
 
@@ -86,14 +78,10 @@ export class ConnectionService {
     return this.http.post<any>(`https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.header })
   }
 
-
   CreateEmployee(user: any) {
     this.http.post<any>('https://localhost:7072/Employee/CreateNewEmployee', user, { headers: this.header })
 
   }
-
-
-
 
 }
 

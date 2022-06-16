@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-tac-header',
@@ -6,10 +7,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tac-header.component.css']
 })
 export class TacHeaderComponent implements OnInit {
+  @Input() CurrentNavigationPage: string = '';
 
-  constructor() { }
+
+  IsHomePage: boolean = false;
+  IsProfilePage: boolean = false;
+  IsDashboardPage: boolean = false;
+  IsManagePoolPage: boolean = false;
+  IsCreateInvitePage: boolean = false;
+
+  constructor(private service:AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
+  SetCurrentPage(CurrentNavigationPage: string) {
+    switch (CurrentNavigationPage) {
+      case 'HomePage': {
+        this.IsHomePage = true;
+        break;
+      }
+      case 'ProfilePage': {
+        this.IsProfilePage = true;
+        break;
+      }
+      case 'DashboardPage': {
+        this.IsDashboardPage = true;
+        break;
+      }
+      case 'ManagePoolPage': {
+        this.IsManagePoolPage = true;
+        break;
+      }
+      case 'CreateInvitePage': {
+        this.IsCreateInvitePage = true;
+        break;
+      }
+    }
+  }
+
+  logout(){
+    this.service.ClearToken();
+  }
 }

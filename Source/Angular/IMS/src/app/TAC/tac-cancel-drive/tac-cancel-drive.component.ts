@@ -15,7 +15,6 @@ export class TacCancelDriveComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.driveId = params['driveId']
-      console.warn(this.driveId)
     })
     
   }
