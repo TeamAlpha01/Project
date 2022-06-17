@@ -115,15 +115,63 @@ namespace UnitTesting.ServiceTests
             //Assert
             result.Should().BeFalse();
         }
-        // [Theory]
-        // [InlineData(1)]
-        // public void RemoveEmployee_ThorwsArgumentException(int employeeId)
-        // {
-        //     //Arrange
-        //     //Act
-        //     var result = () => _employeeService.RemoveEmployee(employeeId);
-        //     //Assert
-        //     result.Should().Throw<ArgumentException>();
-        // }
+        [Theory]
+        [InlineData(1)]
+        public void RemoveEmployee_ThorwsArgumentException(int employeeId)
+        {
+            //Arrange
+            _employeeDataAccessLayer.Setup(e => e.RemoveEmployeeFromDatabase(employeeId)).Throws<ArgumentException>();
+            //Act
+            var result = () => _employeeService.RemoveEmployee(employeeId);
+            //Assert
+            result.Should().Throw<ArgumentException>();
+        }
+        [Theory]
+        [InlineData(1)]
+        public void RemoveEmployee_ThorwsValidationException(int employeeId)
+        {
+            //Arrange
+            _employeeDataAccessLayer.Setup(e => e.RemoveEmployeeFromDatabase(employeeId)).Throws<ValidationException>();
+            //Act
+            var result = () => _employeeService.RemoveEmployee(employeeId);
+            //Assert
+            result.Should().Throw<ValidationException>();
+        }
+        [Theory]
+        [InlineData(1)]
+        public void RemoveEmployee_ThorwsException(int employeeId)
+        {
+            //Arrange
+            _employeeDataAccessLayer.Setup(e => e.RemoveEmployeeFromDatabase(employeeId)).Throws<Exception>();
+            //Act
+            var result = () => _employeeService.RemoveEmployee(employeeId);
+            //Assert
+            result.Should().Throw<Exception>();
+        }
+
+
+        //Test Cases For ViewProfile
+        [Theory]
+        [InlineData(0)]
+        public void ViewProfile_ThorwsValidationException_WhenEmployeeIdIsZero(int employeeId)
+        {
+            //Arrange
+            //Act
+            var result = () => _employeeService.ViewProfile(employeeId);
+            //Assert
+            result.Should().Throw<ValidationException>();
+        }
+        [Theory]
+        [InlineData(1)]
+        public void ViewProfile_ReturnsEmployeeDetails(int employeeId)
+        {
+            //Arrange
+            List<Employee> employee = EmployeeMock.GetEmployeesMock();
+            _employeeDataAccessLayer.Setup(e => e.ViewProfile(employeeId)).Returns(employee[0]);
+            //Act
+            var result = _employeeService.ViewProfile(employeeId);
+            //Assert
+            result.Should().BeEquivalentTo(employee[0]);
+        }
     }
 }

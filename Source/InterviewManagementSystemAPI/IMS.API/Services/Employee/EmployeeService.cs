@@ -144,7 +144,7 @@ namespace IMS.Service
             }
             catch (Exception viewEmployeeException)
             {
-                _logger.LogInformation($"Drive Service : ViewProfile(int employeeId) : {viewEmployeeException.Message} : {viewEmployeeException.StackTrace}");
+                _logger.LogInformation($"Employee Service : ViewProfile(int employeeId) : {viewEmployeeException.Message} : {viewEmployeeException.StackTrace}");
                 throw viewEmployeeException;
             }
         }

@@ -37,7 +37,6 @@ public class EmployeeControllerTest
         var result = _employeeController.CreateNewEmployee(employee[0]) as ObjectResult;
         //Assert
         result.StatusCode.Should().Be(200);
-        
     }
     [Fact]
     public void CreateNewEmployee_ShouldReturnStatusCode500()
