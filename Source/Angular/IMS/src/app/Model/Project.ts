@@ -1,4 +1,8 @@
 export interface Project{
-    departmentName:string,   
-    projectName:string
+    projectId: number,
+    projectName: string,
+    isActive: boolean,
+    departmentId: number,
+    department: string,
+    employeesUnderProject: []
 }

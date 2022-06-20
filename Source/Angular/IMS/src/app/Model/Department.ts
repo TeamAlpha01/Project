@@ -1,3 +1,5 @@
 export interface Department{
-    departmentName:string;
+    departmentId:number,
+    departmentName:string,
+    isActive:boolean;
 }

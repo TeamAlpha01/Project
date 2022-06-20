@@ -1,5 +1,6 @@
 export interface Role{
-    roleId:0
-    roleName:string;
-    isActive:boolean
+    roleId:number,
+    roleName:string,
+    isActive:boolean,
+    employeesUnderRole:[]
 }

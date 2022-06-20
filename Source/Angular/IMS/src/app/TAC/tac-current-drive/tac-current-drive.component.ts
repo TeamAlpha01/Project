@@ -36,7 +36,6 @@ export class TacCurrentDriveComponent implements OnInit {
 
     this.connection.GetTodayDrives().subscribe((data: any) => {
       this.driveDetails = data;
-      console.log(this.driveDetails);
       for (let item of this.driveDetails) {
         this.drive.push(item);
       }

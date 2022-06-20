@@ -51,7 +51,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ViewResponseCardComponent } from './TAC/view-response-card/view-response-card.component';
-import { RegisterComponent } from './register/register.component';
 import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.component';
 import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
@@ -111,7 +110,6 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
     ManageCardsComponent,
     PerformanceDashboardComponent,
     ViewResponseCardComponent,
-    RegisterComponent,
     TacCreatePoolComponent,
     TacEditPoolComponent,
     TacEditPoolMemberComponent,

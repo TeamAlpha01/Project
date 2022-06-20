@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
           this.route.navigateByUrl("/Admin-role");  //navigation
         }
         else if (this.IsTAC) {
-          this.route.navigateByUrl("/tac-home");
+          this.route.navigateByUrl("/tac");
         }
         else {
           this.route.navigateByUrl("/interviewer-home");

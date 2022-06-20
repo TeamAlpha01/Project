@@ -1,3 +1,6 @@
 export interface Location{
-    locationName:string
+    locationId:number,
+    locationName:string,
+    isActive:boolean,
+    drivesUnderLocation:[]
 }
