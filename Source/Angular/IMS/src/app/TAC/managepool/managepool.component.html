@@ -1,4 +1,4 @@
-<app-tac-header [CurrentNavigationPage]="'ManagePoolPage'"></app-tac-header>
+<app-tac-header></app-tac-header>
 <div class="content">
     <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-4">
                     <div class="card-card ">
-                        <a class="img-card" [routerLink]="['../tac-createPool']">
+                        <a class="img-card" [routerLink]="['/tac/createPool']">
                             <img src="./assets/Images/Current.jpg" />
                         </a>
                         <div class="card-content">
@@ -26,7 +26,7 @@
                 <!--section 2-->
                 <div class="col-xs-12 col-sm-4">
                     <div class="card-card ">
-                        <a class="img-card" [routerLink]="['../editpool']">
+                        <a class="img-card" [routerLink]="['/tac/editpool']">
                             <img src="./assets/Images/Scheduled.jpg" />
                         </a>
                         <div class="card-content">
@@ -42,7 +42,7 @@
                 <div class="col-xs-12 col-sm-4">
                     <div class="card-card ">
 
-                        <a class="img-card" [routerLink]="['../managepoolmembers']">
+                        <a class="img-card" [routerLink]="['/tac/managepoolmembers']">
                             <img src="./assets/Images/Upcoming.jpg" />
                         </a>
                         <div class="card-content">

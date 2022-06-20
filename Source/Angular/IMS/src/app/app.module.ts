@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+// import { NgxSpinnerService } from 'ngx-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
@@ -26,7 +29,6 @@ import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.compone
 
 import { PoolmembersPerformanceComponent } from './TAC/poolmembers-performance/poolmembers-performance.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
-import { DashboardComponent } from './Shared/dashboard/dashboard.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
@@ -47,7 +49,6 @@ import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/a
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ViewResponseCardComponent } from './TAC/view-response-card/view-response-card.component';
@@ -89,7 +90,6 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
     TacCreatePoolComponent,
     PoolmembersPerformanceComponent,
     MyperformanceComponent,
-    DashboardComponent,
     TacEditPoolComponent,
     TacEditPoolMemberComponent,
     TacProfileComponent,
@@ -121,12 +121,13 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
 
   imports: [
     BrowserModule,
-    FormsModule,
     NgxPaginationModule,
     AppRoutingModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    
 
 
   ],
