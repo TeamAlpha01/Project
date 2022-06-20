@@ -11,7 +11,7 @@ namespace IMS.DataAccessLayer
 
         public InterviewManagementSystemDbContext(DbContextOptions<InterviewManagementSystemDbContext> options) : base(options)
         {
-
+            
         }
 
         public DbSet<Role> Roles { get; set; }

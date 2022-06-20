@@ -15,6 +15,7 @@ namespace UnitTesting.Utility
         {
             dbContext.Roles.AddRange(RoleMock.GetRolesMock());
             dbContext.Locations.AddRange(LocationMock.GetLocationsMock());
+            dbContext.Employees.AddRange(EmployeeMock.GetEmployeesMock());
             dbContext.SaveChanges();
         }
     }

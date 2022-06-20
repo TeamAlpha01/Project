@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using FluentAssertions;
 using IMS.DataAccessLayer;
 using IMS.Models;
@@ -73,5 +74,28 @@ namespace UnitTesting.DataAccessLayer
             //Assert
             Result.Should().BeEquivalentTo(role);
         }
+    }
+
+    public class RoleDataAccessLayerTestForExceptions
+    {
+       private readonly IRoleDataAccessLayer _roleDataAccessLayer;
+        private readonly Mock<ILogger<RoleDataAccessLayer>> _logger = new Mock<ILogger<RoleDataAccessLayer>>();
+        
+        private readonly Mock<InterviewManagementSystemDbContext> _db = new Mock<InterviewManagementSystemDbContext>(new DbContextOptionsBuilder<InterviewManagementSystemDbContext>().UseInMemoryDatabase(databaseName: "Local Db").Options) ;
+        public RoleDataAccessLayerTestForExceptions()
+        {
+            _roleDataAccessLayer = new RoleDataAccessLayer(_logger.Object,_db.Object);
+        }
+
+        [Fact]        
+        public void AddRoleToDatabase_ThrowsDbUpdateException()
+        {
+            _db.Object.Roles.AddRange(RoleMock.GetRolesMock());
+            _db.Setup(d=>d.SaveChanges()).Throws<DbUpdateException>();
+            var Result = ()=> _roleDataAccessLayer.AddRoleToDatabase(new Role());
+            //Assert
+            Result.Should().Throw<DbUpdateException>();
+        }
+ 
     }
 }

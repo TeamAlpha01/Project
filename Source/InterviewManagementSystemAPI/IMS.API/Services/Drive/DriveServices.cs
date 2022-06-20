@@ -69,7 +69,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = d.ModeId
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.ModeId)
                 }
                 );
             }
@@ -314,7 +314,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {exception.Message}");
-                return false;
+                throw exception;
             }
         }
         private List<int> GetEmployeePoolIds(int employeeId)
