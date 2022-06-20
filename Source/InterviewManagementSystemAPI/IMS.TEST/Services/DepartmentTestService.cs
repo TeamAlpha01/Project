@@ -145,6 +145,96 @@ namespace UnitTesting.ServiceTests
         //     var Result = _DepartmentService.ViewDepartments();
         //     Result = null ;
         // }
+        [Theory]
+        [InlineData(0,"#Internal123")]
+        public void Createproject_ThrowsValidationException_WithInvalidCredintials(int departmentId, string projectName)
+        {
+            var Result = () => _DepartmentService.CreateProject(departmentId,projectName);
+
+            Result.Should().Throw<ValidationException>();
+        }
+        
+        [Fact]
+        public void Createproject_ReturnsTrue_WithValidpoolName()
+        {            
+            _DepartmentDataAccessLayer.Setup(r=>r.AddProjectToDatabase(It.Is<Project>(r=>r.ProjectName == "Internal"))).Returns(true);
+
+            var Result = _DepartmentService.CreateProject(1,"Internal");
+            Result.Should().BeTrue();
+        }
+           
+        [Fact]
+        public void Createpool_ReturnsFalse_WithValidpoolName()
+        {            
+            _DepartmentDataAccessLayer.Setup(r=>r.AddProjectToDatabase(It.Is<Project>(r=>r.ProjectName == "Internal"))).Returns(false);
+
+            var Result = _DepartmentService.CreateProject(1,"Internal");
+            Result.Should().BeFalse();
+        }
+         [Theory]
+        [InlineData(0,"#Internal123")]
+        public void Createproject_ThrowsException_WithInvalidCredintials(int departmentId, string projectName)
+        {
+            var Result = () => _DepartmentService.CreateProject(departmentId,projectName);
+
+            Result.Should().Throw<Exception>();
+        }
+        
+        [Theory]
+        [InlineData(0)]
+        public void Removeproject_ThrowsValidationException_WithInvalidCredintials(int projectId)
+        {
+            var Result = () => _DepartmentService.RemoveProject(projectId);
+
+            Result.Should().Throw<ValidationException>();
+        }
+          [Fact]
+        public void Removeproject_ReturnsTrue_WithValidprojectId()
+        {            
+            int projectId = 1;
+           _DepartmentDataAccessLayer.Setup(r => r.RemoveProjectFromDatabase(projectId)).Returns(true);
+            var Result = _DepartmentService.RemoveProject(projectId);
+            Result.Should().BeTrue();
+        }
+         [Fact]
+        public void Removeproject_ReturnsFalse_WithValidprojectId()
+        {            
+            int projectId = 1;
+           _DepartmentDataAccessLayer.Setup(r => r.RemoveProjectFromDatabase(projectId)).Returns(false);
+            var Result = _DepartmentService.RemoveProject(projectId);
+            Result.Should().BeFalse();
+        }
+      
+        [Fact]
+        public void Removeproject_ReturnFalse_When_DAL_ThrowsValidationException()
+        {            
+            int projectId = 1;
+            _DepartmentDataAccessLayer.Setup(r=>r.RemoveProjectFromDatabase(projectId)).Throws<ValidationException>();
+            var Result = () => _DepartmentService.RemoveProject(projectId);
+            Result.Should().Throw<ValidationException>();
+        }
+          [Fact]
+        public void Viewproject_ThrowsException_When_DAL_ThrowsException()
+        { 
+            _DepartmentDataAccessLayer.Setup(r=>r.GetProjectsFromDatabase()).Throws<Exception>();
+            var Result = () => _DepartmentService.ViewProjects();
+            Result.Should().Throw<Exception>();
+        }
+        // [Fact]
+        // public void Viewproject_ShouldReturnListofProjects()
+        // {
+        //     _DepartmentDataAccessLayer.Setup(DepartmentDataAccessLayer => DepartmentDataAccessLayer.GetProjectsFromDatabase()).Returns(() => null);
+        //     var Result = _DepartmentService.ViewProjects();
+        //     Result = null ;
+        // }
+
+
+
+
+
+        
+
+
     }
 }
  

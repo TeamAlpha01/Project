@@ -45,7 +45,7 @@ public class ProjectTestController
 
         var Result = _projectController.CreateNewProject(departmentId,projectName) as ObjectResult;
 
-        Result.StatusCode.Should().Be(400);
+        Result.StatusCode.Should().Be(500);
     }
 
     [Fact]
@@ -71,7 +71,7 @@ public class ProjectTestController
 
         var Result = _projectController.CreateNewProject(departmentId,projectName ) as ObjectResult;
 
-        Result.StatusCode.Should().Be(500);
+        Result.StatusCode.Should().Be(400);
     }
 
     
