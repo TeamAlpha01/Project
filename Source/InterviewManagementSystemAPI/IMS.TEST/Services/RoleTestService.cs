@@ -67,5 +67,67 @@ namespace UnitTesting.ServiceTests
             var Result = _roleService.CreateRole("Software Tester");
             Result.Should().BeFalse();
         }
+        [Theory]
+        [InlineData(0)]
+        public void Removerole_ThrowsValidationException_WithInvalidroleId(int roleId)
+        {
+            var Result = () => _roleService.RemoveRole(roleId);
+
+            Result.Should().Throw<ValidationException>();
+        }
+         [Fact]
+        public void Removerole_ReturnsTrue_WithValidroleId()
+        {            
+            int roleId = 1;
+           _roleDataAccessLayer.Setup(r => r.RemoveRoleFromDatabase(roleId)).Returns(true);
+            var Result = _roleService.RemoveRole(roleId);
+            Result.Should().BeTrue();
+        }
+          [Fact]
+        public void Removerole_ReturnsFalse_WithValidroleId()
+        {            
+            int roleId = 1;
+           _roleDataAccessLayer.Setup(r => r.RemoveRoleFromDatabase(roleId)).Returns(false);
+            var Result = _roleService.RemoveRole(roleId);
+            Result.Should().BeFalse();
+        }
+          
+        [Fact]
+        public void Removerole_ReturnFalse_When_DAL_ThrowsArgumentException()
+        {            
+            int roleId = 1;
+            _roleDataAccessLayer.Setup(r=>r.RemoveRoleFromDatabase(roleId)).Throws<ArgumentException>();
+            var Result = _roleService.RemoveRole(roleId);
+            Result.Should().BeFalse();
+        }
+         [Fact]
+        public void Removerole_ReturnFalse_When_DAL_ThrowsValidationException()
+        {            
+            int roleId = 1;
+            _roleDataAccessLayer.Setup(r=>r.RemoveRoleFromDatabase(roleId)).Throws<ValidationException>();
+            var Result = () => _roleService.RemoveRole(roleId);
+            Result.Should().Throw<ValidationException>();
+        }
+          [Fact]
+        public void Removerole_ReturnFalse_When_DAL_ThrowsException()
+        {            
+            int roleId = 1;
+            _roleDataAccessLayer.Setup(r=>r.RemoveRoleFromDatabase(roleId)).Throws<Exception>();
+            var Result = _roleService.RemoveRole(roleId);
+            Result.Should().BeFalse();
+        }
+          [Fact]
+        public void Viewrole_ThrowsException_When_DAL_ThrowsException()
+        { 
+            _roleDataAccessLayer.Setup(r=>r.GetRolesFromDatabase()).Throws<Exception>();
+            var Result = () => _roleService.ViewRoles();
+            Result.Should().Throw<Exception>();
+        }
+       
+
+
+        
+
+
     }
 }
