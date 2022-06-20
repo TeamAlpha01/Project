@@ -1,27 +1,4 @@
-<div class="sidebar d-flex flex-column justify-content-between">
-    <nav class="navbar bg-custom navbar-dark">
-        <div class="user-profile">
-            <div>
-                <img src="./assets/Images/profile_.png" class="profile-img" alt="">
-            </div>
-            <p class="username">Interviewer</p>
-        </div>
-
-        <div class="navbar-nav w-100">
-            <a [routerLink]="['../interviewer-home']"class="nav-item nav-link"><i class="fa fa-home"></i> Home</a>
-            <a [routerLink]="['../profile']" class="nav-item nav-link active"><i class='fa fa-user-circle'></i> Profile</a>
-            <a [routerLink]="['../interviewer-dashboard']" class="nav-item nav-link"><i class="fa fa-info-circle"></i> Dashboard</a>
-            <a [routerLink]="['../interviewer-driveInvites']" class="nav-item nav-link"><i class="fa fa-calendar-week"></i>Drive Invites</a>
-        </div>
-    </nav>
-    <footer class="navbar navbar-light  ">
-        <div class="navbar-nav w-100">
-            <a [routerLink]="['../interviewer-home']" class="nav-item nav-link mb-md-2" id="logout"><i
-                    class="fa fa-solid fa-right-from-bracket"></i> Logout</a>
-        </div>
-    </footer>
-</div>
-<!-- Sidebar End -->
+<app-interviewer-header [CurrentNavigationPage]="'ProfilePage'"></app-interviewer-header>
 
 <div class="content">
     <!-- Navbar Start -->

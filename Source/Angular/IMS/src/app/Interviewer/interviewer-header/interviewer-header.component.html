@@ -8,15 +8,15 @@
         </div>
 
         <div class="navbar-nav w-100">
-            <a [routerLink]="['../interviewer-home']"class="nav-item nav-link"><i class="fa fa-home"></i> Home</a>
-            <a [routerLink]="['../profile']" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
-            <a [routerLink]="['../interviewer-dashboard']" class="nav-item nav-link"><i class="fa fa-info-circle"></i> Dashboard</a>
-            <a [routerLink]="['../interviewer-driveInvites']" class="nav-item nav-link"><i class="fa fa-calendar-week"></i>Drive Invites</a>
+            <a [routerLink]="['../interviewer-home']" class="nav-item nav-link" routerLinkActive="nav-item nav-link active"><i class="fa fa-home"></i> Home</a>
+            <a [routerLink]="['../profile']" [ngClass]="IsProfilePage?'active':''" class="nav-item nav-link"><i class='fa fa-user-circle'></i> Profile</a>
+            <a [routerLink]="['../interviewer-dashboard']" [ngClass]="IsDashboardPage?'active':''" class="nav-item nav-link"><i class="fa fa-info-circle"></i> Dashboard</a>
+            <a [routerLink]="['../interviewer-driveInvites']" [ngClass]="IsDriveInvitesPage?'active':''" class="nav-item nav-link"><i class="fa fa-calendar-week"></i>Drive Invites</a>
         </div>
     </nav>
     <footer class="navbar navbar-light  ">
         <div class="navbar-nav w-100">
-            <a [routerLink]="['../interviewer-home']" class="nav-item nav-link mb-md-2" id="logout"><i
+            <a (click)="logout()" [routerLink]="['']" class="nav-item nav-link mb-md-2" id="logout"><i
                     class="fa fa-solid fa-right-from-bracket"></i> Logout</a>
         </div>
     </footer>

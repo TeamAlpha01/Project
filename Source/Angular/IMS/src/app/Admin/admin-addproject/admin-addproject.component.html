@@ -1,24 +1,22 @@
-
 <app-admin-header [CurrentNavigationPage]="'ProjectPage'"></app-admin-header>
 <!-- Sidebar End -->
 
 <div class="content">
     <app-navbar [title]="title"></app-navbar>
 
-
      <div class="Register CreatePool">
         <div class="card-body">
             <form #form="ngForm" (ngSubmit)="addProject()" >
                 <div class="form-input">
                     <label class="form-label" for="Department">Department </label>
-                    <select name="Department" id="Department Name" class="form-select " name="departmentName" [(ngModel)]="project.departmentName">
+                    <select name="Department" id="Department Name" class="form-select " name="departmentName" [(ngModel)]="departmentName">
                         <option value="">Select the Department</option>
-                        <option *ngFor="let item of department" value={{item}}> {{item}} </option>
+                        <option *ngFor="let item of departmentValue" value={{item}}> {{item}} </option>
                     </select>
                 </div>
                 <div class="form-input">
                     <label class="form-label" for="Name">Project Name </label>
-                    <input type="text" id="Name" class="form-control " name="projectName" [(ngModel)]="project.projectName" >
+                    <input type="text" id="Name" class="form-control " name="projectName" [(ngModel)]="ProjectName" >
                 </div>
               
                 <div class="text-center">

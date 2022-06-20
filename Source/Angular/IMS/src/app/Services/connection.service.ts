@@ -78,6 +78,11 @@ export class ConnectionService {
     return this.http.post<any>(`https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.header })
   }
 
+  CreateNewProject(user: any) {
+    this.http.post<any>('https://localhost:7072/Project/CreateNewProject', user, { headers: this.header })
+
+  }
+
   CreateEmployee(user: any) {
     this.http.post<any>('https://localhost:7072/Employee/CreateNewEmployee', user, { headers: this.header })
 

@@ -9,7 +9,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class InterviewerCurrentDriveComponent implements OnInit {
 
-  title = 'Current Drive'
+  title = 'Todays Interviews'
   totalLength: any;
   page: number = 1;
 
