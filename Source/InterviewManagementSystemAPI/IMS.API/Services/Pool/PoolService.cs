@@ -126,11 +126,18 @@ namespace IMS.Service
         /// </summary>
         /// <param name="departmentId">int</param>
         /// <returns></returns>
-        public IEnumerable<Pool> ViewPools()
+        public object ViewPools()
         {
             try
             {
-                return from pool in _poolDataAccessLayer.GetPoolsFromDatabase() where pool.IsActive == true select pool;
+                return (from pool in _poolDataAccessLayer.GetPoolsFromDatabase() where pool.IsActive == true select pool).Select(
+                    p => new{
+                        poolId=p.PoolId,
+                        poolName=p.PoolName,
+                        departmentId=p.DepartmentId,
+                        departmentName=p.department.DepartmentName
+                    }
+                );
             }
             catch (ValidationException departmentNotFound)
             {

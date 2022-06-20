@@ -182,7 +182,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                return _db.Pools.ToList();
+                return _db.Pools.Include(p=>p.department).ToList();
             }
             catch (DbUpdateException exception)
             {
