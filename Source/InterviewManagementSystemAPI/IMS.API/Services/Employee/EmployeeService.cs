@@ -230,12 +230,20 @@ namespace IMS.Service
         /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
         /// </returns>
 
-        public IEnumerable<Employee> ViewEmployeeRequest()
+        public object ViewEmployeeRequest()
         {
             try
             {
-                IEnumerable<Employee> employees = new List<Employee>();
-                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsAdminAccepted == false && employee.IsAdminResponded == false select employee;
+                return (from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsAdminAccepted == false && employee.IsAdminResponded == false select employee)
+                .Select(
+                    e => new{
+                        employeeId = e.EmployeeId,
+                        employeeAceNumber = e.EmployeeAceNumber,
+                        employeeName = e.Name,
+                        employeeDepartment= e.Department.DepartmentName,
+                        employeeRole=e.Role.RoleName
+                    }
+                );
             }
             catch (Exception exception)
             {
@@ -247,8 +255,21 @@ namespace IMS.Service
         {
             try
             {
-                return true;// _employeeDataAccessLayer.CheckLoginCrendentials(employeeAceNumber, password) ? true : false;
+                return true;
 
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
+                throw exception;
+            }
+        }
+
+        public bool RespondEmployeeRequest(int employeeId, bool response)
+        {
+            try
+            {
+                return _employeeDataAccessLayer.RespondEmployeeRequest(employeeId,response);
             }
             catch (Exception exception)
             {

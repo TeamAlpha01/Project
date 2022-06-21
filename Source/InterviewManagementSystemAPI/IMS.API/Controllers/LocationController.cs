@@ -44,7 +44,7 @@ public class LocationController : ControllerBase
 
         try
         {
-            return _locationService.CreateLocation(locationName) ? Ok("Location Added Successfully") : Problem("Sorry internal error occured");
+            return _locationService.CreateLocation(locationName) ? Ok(UitilityService.Response("Location Added Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException locationnameAlreadyExists)
         {
@@ -75,14 +75,14 @@ public class LocationController : ControllerBase
     /// <param name="locationId">int</param>
     /// <returns>Returns Error Message when Exception occured in Location Service. Succsess Message or Internal Error</returns>
 
-    [HttpPost]
+    [HttpPatch]
     public IActionResult RemoveLocation(int locationId)
     {
         if (locationId <= 0)
            return BadRequest("Location id cannot be negative or null");
         try
-        {
-            return _locationService.RemoveLocation(locationId) ? Ok("Location Removed Successfully") : Problem("Sorry internal error occured");
+        {            
+            return _locationService.RemoveLocation(locationId) ? Ok(UitilityService.Response("Location Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException locationNotFound)
         {

@@ -269,4 +269,18 @@ public class EmployeeController : ControllerBase
             return BadRequest("Sorry some internal error occured");
         }
     }
+    [HttpPatch]
+    public IActionResult RespondEmployeeRequest(int employeeId,bool response)
+    {
+        try
+        {
+            return Ok(_employeeService.RespondEmployeeRequest(employeeId,response));
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
+            return BadRequest("Sorry some internal error occured");
+        }
+    }
+    
 }

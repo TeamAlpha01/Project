@@ -107,7 +107,7 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return _db.Employees.ToList();
+                return _db.Employees.Include(d=>d.Department).Include(r=>r.Role).ToList();
             }
             catch (DbUpdateException exception)
             {
@@ -182,6 +182,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Employee DAL : IsDepartmentValid(int departmnet) : {IsDepartmentValid.Message} : {IsDepartmentValid.StackTrace}");
                 throw IsDepartmentValid;
             }
+        }
+
+        public bool RespondEmployeeRequest(int employeeId, bool response)
+        {
+            var employee = _db.Employees.Find(employeeId);
+            employee.IsAdminResponded=true; 
+            employee.IsAdminAccepted=response;
+            _db.Employees.Update(employee);
+            _db.SaveChanges(); 
+            return true;
         }
     }
 }

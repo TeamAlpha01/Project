@@ -22,5 +22,10 @@ namespace IMS.Service
             
             return "Candidate not available";
         }
+
+        public static object Response(string responseMessage)
+        {
+            return new{message = responseMessage};
+        }
     }
 }

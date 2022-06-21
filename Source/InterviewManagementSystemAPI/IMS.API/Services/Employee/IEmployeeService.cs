@@ -9,8 +9,8 @@ namespace IMS.Service
         public Object ViewProfile(int employeeId);
         public Object ViewEmployeesByDepartment(int DepartmentId);
         public IEnumerable<Employee> ViewEmployeeByApprovalStatus(bool isAdminAccepted);
-        public IEnumerable<Employee> ViewEmployeeRequest();
+        public Object ViewEmployeeRequest();
         public bool Login(string employeeAceNumber, string password);
-
+        public bool RespondEmployeeRequest(int employeeId, bool response);
     }
 }
