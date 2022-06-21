@@ -11,7 +11,7 @@ namespace IMS.Service
         private IDepartmentDataAccessLayer _departmentDataAccessLayer;
         private ILogger _logger;
 
-        public DepartmentService(ILogger<DepartmentService> logger,IDepartmentDataAccessLayer departmentDataAccessLayer)
+        public DepartmentService(ILogger<DepartmentService> logger, IDepartmentDataAccessLayer departmentDataAccessLayer)
         {
             _logger = logger;
             _departmentDataAccessLayer = departmentDataAccessLayer;//DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(logger);
@@ -181,12 +181,19 @@ namespace IMS.Service
         /// </summary>
         /// <param name="departmentId">int</param>
         /// <returns>Return list otherwise throw exception when exception occur in DAL</returns>
-        public IEnumerable<Project> ViewProjects()
+        public Object ViewProjects()
         {
             try
             {
-                IEnumerable<Project> projects = new List<Project>();
-                return projects = from project in _departmentDataAccessLayer.GetProjectsFromDatabase() where project.IsActive == true select project;
+                return (from project in _departmentDataAccessLayer.GetProjectsFromDatabase() where project.IsActive == true select project).
+                Select(
+                    project => new
+                    {
+                        projectId = project.ProjectId,
+                        projectName = project.ProjectName,
+                        departmentName =project.department.DepartmentName
+                    }
+                );
             }
             catch (Exception exception)
             {

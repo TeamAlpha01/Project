@@ -41,7 +41,7 @@ public class RoleController : ControllerBase
             return BadRequest("Role Name cannot be null");
         try
         {
-            return _roleService.CreateRole(roleName) ? Ok("Role Added Successfully") : Problem("Sorry internal error occured");
+            return _roleService.CreateRole(roleName) ? Ok(UitilityService.Response("Role Added Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException roleNameException)
         {

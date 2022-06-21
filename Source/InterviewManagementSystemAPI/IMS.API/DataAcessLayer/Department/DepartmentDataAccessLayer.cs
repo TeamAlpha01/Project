@@ -274,7 +274,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                return _db.Projects.ToList();
+                return _db.Projects.Include(p=>p.department).ToList();
             }
             catch (DbUpdateException exception)
             {

@@ -41,7 +41,7 @@ namespace IMS.Controller;
 
         try
         {
-            return _departmentService.CreateProject(departmentId,projectName) ? Ok("Project Added Successfully") : Problem("Sorry internal error occured");
+            return _departmentService.CreateProject(departmentId,projectName) ? Ok(UitilityService.Response("Project Added Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException projectnameAlreadyExists)
         {
@@ -70,14 +70,14 @@ namespace IMS.Controller;
     /// <response code="400">If the item is null</response> 
     /// <param name="projectId">int</param>
     /// <returns>Return Project Removed Successfully message when the project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
-    [HttpPost]
+    [HttpPatch]
     public IActionResult RemoveProject(int projectId)
     {
         if (projectId <= 0) return BadRequest("Project Id is Should not be zero or less than zero");
 
         try
         {
-            return _departmentService.RemoveProject(projectId) ? Ok("Project Removed Successfully") : Problem("Sorry internal error occured");
+            return _departmentService.RemoveProject(projectId) ? Ok(UitilityService.Response("Project Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch(ValidationException projectNotFound)
         {
