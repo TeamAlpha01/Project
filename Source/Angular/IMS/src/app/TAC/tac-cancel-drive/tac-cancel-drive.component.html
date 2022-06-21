@@ -9,13 +9,14 @@
             <div class="card-body">
                 <div class="row rone mt-4">
                     <div class="col-md-6">
-                        <p><b>Date :</b> 10/04/2022</p>
-                        <p><b>Drive Name :</b> Freshers2022</p>
-                        <p><b>Role :</b> SSE</p>
+                        <p><b>From Date : </b>{{driveDetails.fromDate}}</p>
+                        <p><b>To Date :  </b>{{driveDetails.toDate}} </p>
+                        <p><b>Drive Name :</b>{{driveDetails.driveName}} </p>
                     </div>
                     <div class="col-md-6">
-                        <p><b>Department :</b> .NET</p>
-                        <p><b>Mode :</b> Online</p>
+                        <p><b>Pool Name : </b>{{driveDetails.drivePool}}</p>
+                        <p><b>Department : </b>{{driveDetails.driveDepartment}} </p>
+                        <p><b>Mode : </b>{{driveDetails.driveMode}}</p>
                     </div>
                 </div>
 
@@ -23,14 +24,13 @@
                 <div>
                     <div class="container "><br>
                         <h6><b>Cancellation Reason :</b></h6><BR>
-                        <div class="form-outline">
-               
-                            <textarea class="textinput" name="Reason" ></textarea>
+                        <div class="form-outline">               
+                            <textarea class="textinput" name="Reason" [(ngModel)]="Reason" ></textarea>
                             <br>
                         </div>
 
                         <div class="text-center">
-                            <button type="button" class="btn btn-filter">Submit</button>
+                            <button type="button" (click)="CancelDrive(Reason)" class="btn btn-filter">Submit</button>
                         </div>
                         <br>
                     </div>

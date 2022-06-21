@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,8 +30,10 @@ export class TacCurrentDriveComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
   departmentDetails: any;
+  error: any;
+  showErrorMessage: boolean=false;
 
-  constructor(private connection: ConnectionService) { }
+  constructor(private connection: ConnectionService, private route:Router) { }
 
   ngOnInit(): void {
 
@@ -42,6 +45,14 @@ export class TacCurrentDriveComponent implements OnInit {
     })
     this.connection.GetPools().subscribe((data: any) => {
       this.poolDetails = data;
+    },
+    (error:any)=>{
+      this.showErrorMessage=true;
+      console.warn("1");
+      console.warn(error);
+      if(error.status==404){
+        this.route.navigateByUrl("errorPage");        
+      }
     })
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;

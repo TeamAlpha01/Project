@@ -16,10 +16,6 @@ export class ConnectionService {
     'Authorization': `Bearer ${AuthenticationService.GetData("token")}`
   })
 
-  private header = new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-
 
 
   //GET methods
@@ -28,9 +24,12 @@ export class ConnectionService {
   }
 
   GetDepartments(): any {
-
     return this.http.get<any>(this.baseURL + 'Department/ViewDepartments', { headers: this.headers });
   }
+
+  GetDrive(driveId:number): any {
+    return this.http.get<any>(this.baseURL + `Drive/ViewDrive?driveId=${driveId}`, { headers: this.headers });
+  }  
 
   GetEmployees() {
     return this.http.get<any>(this.baseURL + 'Employee/ViewEmployees', { headers: this.headers });
@@ -75,7 +74,7 @@ export class ConnectionService {
 
   //POST methods
   Login(user: any) {
-    return this.http.post<any>(`https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.header })
+    return this.http.post<any>(`https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.headers })
   }
 
   CreateNewProject(user: any) {
@@ -84,8 +83,12 @@ export class ConnectionService {
   }
 
   CreateEmployee(user: any) {
-    this.http.post<any>('https://localhost:7072/Employee/CreateNewEmployee', user, { headers: this.header })
+    this.http.post<any>('https://localhost:7072/Employee/CreateNewEmployee', user, { headers: this.headers })
 
+  }
+
+  CancelDrive(driveId:number, reason:string){
+    this.http.patch<any>(this.baseURL+`Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
   }
 
 }

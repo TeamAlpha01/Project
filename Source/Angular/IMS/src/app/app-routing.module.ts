@@ -36,6 +36,7 @@ import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.componen
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
 import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
 import { InterviwerProfileComponent } from './Interviewer/interviwer-profile/interviwer-profile.component';
+import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
@@ -89,7 +90,9 @@ const routes: Routes = [
   { path: 'tac/editpool', component: TacEditPoolComponent },
   { path: 'tac/managepool', component: ManagepoolComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'tac', component: TacHomeComponent },
+  { path: 'tac/home', component: TacHomeComponent },
+  { path: 'errorPage', component: ErrorPageComponent },
+
 ];
 
 @NgModule({
