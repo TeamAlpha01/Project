@@ -15,6 +15,7 @@ export class TacCancelDriveComponent implements OnInit {
   driveDetails: any;
   Reason = '';
   errorMessage: string='';
+  data: any;
 
 
   constructor(private route: ActivatedRoute, private connection: ConnectionService) { }
@@ -23,22 +24,19 @@ export class TacCancelDriveComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.driveId = params['driveId']
     })
+    
     this.connection.GetDrive(this.driveId).subscribe({
       next:(data: any)=> this.driveDetails=data,
       error:(errorMessage:any )=>this.errorMessage=errorMessage.message
-    })
-    console.log(this.driveDetails);
-    console.warn(this.errorMessage);
+    },console.log(this.driveDetails),
+    console.warn(this.errorMessage))
+    
 
   }
 
   CancelDrive(reason: string) {
     this.connection.CancelDrive(this.driveId, reason).subscribe({
-      // next:(data)=> this.data=data,
-      // error:(errorMessage)=>this.errorMessage=errorMessage.message
+     
     })
-    console.log(this.errorMessage);
-
-    // this.connection.CancelDrive(this.driveId, reason).Observable<any>
   }
 }
