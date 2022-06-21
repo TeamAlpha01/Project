@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { data } from 'jquery';
 import { Observable } from 'rxjs';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
@@ -13,7 +14,8 @@ export class TacCancelDriveComponent implements OnInit {
   driveId: number = 0;
   driveDetails: any;
   Reason = '';
-  errorMessage: any;
+  errorMessage: string='';
+
 
   constructor(private route: ActivatedRoute, private connection: ConnectionService) { }
 
@@ -21,15 +23,21 @@ export class TacCancelDriveComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.driveId = params['driveId']
     })
-    this.connection.GetDrive(this.driveId).subscribe((data: any) => {
-      this.driveDetails = data;
-      console.log(this.driveDetails);
+    this.connection.GetDrive(this.driveId).subscribe({
+      next:(data: any)=> this.driveDetails=data,
+      error:(errorMessage:any )=>this.errorMessage=errorMessage.message
     })
+    console.log(this.driveDetails);
+    console.warn(this.errorMessage);
 
   }
 
   CancelDrive(reason: string) {
-    this.connection.CancelDrive(this.driveId, reason)
+    this.connection.CancelDrive(this.driveId, reason).subscribe({
+      // next:(data)=> this.data=data,
+      // error:(errorMessage)=>this.errorMessage=errorMessage.message
+    })
+    console.log(this.errorMessage);
 
     // this.connection.CancelDrive(this.driveId, reason).Observable<any>
   }

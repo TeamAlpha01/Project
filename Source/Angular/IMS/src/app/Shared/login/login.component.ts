@@ -26,10 +26,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private http: HttpClient, private route: Router, private connection: ConnectionService, private FB: FormBuilder) { }
-  user: any = {
-    ACENumber: this.loginForm.value['ACENumber'],
-    Password: this.loginForm.value['Password'],
-  }
+  
 
 
 
@@ -40,9 +37,14 @@ export class LoginComponent implements OnInit {
 
   submit() {
 
+
     if (this.loginForm.valid) {
-      console.log(this.user)
-      this.connection.Login(this.user).subscribe((data: any) => {
+      const user = {
+        ACENumber: this.loginForm.value['ACENumber'],
+        Password: this.loginForm.value['Password'],
+      }
+      console.log(user)
+      this.connection.Login(user).subscribe((data: any) => {
 
         this.IsAdmin = data.isAdmin
         this.IsTAC = data.isTAC

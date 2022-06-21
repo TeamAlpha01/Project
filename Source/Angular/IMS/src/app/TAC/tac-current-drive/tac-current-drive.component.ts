@@ -17,7 +17,7 @@ export class TacCurrentDriveComponent implements OnInit {
   page: number = 1;
 
   //To get the inputs from the user
-  _dept = ''; 
+  _dept = '';
   _pool = '';
 
   //To store the filtered data in the array
@@ -31,29 +31,47 @@ export class TacCurrentDriveComponent implements OnInit {
   poolDetails: any;
   departmentDetails: any;
   error: any;
-  showErrorMessage: boolean=false;
+  showErrorMessage: boolean = false;
 
-  constructor(private connection: ConnectionService, private route:Router) { }
+  constructor(private connection: ConnectionService, private route: Router) { }
 
   ngOnInit(): void {
 
-    this.connection.GetTodayDrives().subscribe((data: any) => {
-      this.driveDetails = data;
-      for (let item of this.driveDetails) {
-        this.drive.push(item);
+    // this.connection.GetTodayDrives().subscribe((data: any) => {
+    //   this.driveDetails = data;
+    //   for (let item of this.driveDetails) {
+    //     this.drive.push(item);
+    //   }
+    // })
+
+    this.connection.GetTodayDrives().subscribe({
+      next: (data: any) => {
+        this.driveDetails = data;
+        for (let item of this.driveDetails) {
+          this.drive.push(item);
+        }
+      },
+      error: (error: any) => {
+        if (error.status == 404) {
+          this.route.navigateByUrl("errorPage");
+        }
       }
     })
+
+
     this.connection.GetPools().subscribe((data: any) => {
       this.poolDetails = data;
     },
-    (error:any)=>{
-      this.showErrorMessage=true;
-      console.warn("1");
-      console.warn(error);
-      if(error.status==404){
-        this.route.navigateByUrl("errorPage");        
-      }
-    })
+      (error: any) => {
+        this.showErrorMessage = true;
+        console.warn("1");
+        console.warn(error);
+        if (error.status == 404) {
+          this.route.navigateByUrl("errorPage");
+        }
+      })
+
+
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;
     })

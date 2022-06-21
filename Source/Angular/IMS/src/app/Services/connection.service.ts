@@ -92,7 +92,7 @@ export class ConnectionService {
   }
 
   CancelDrive(driveId:number, reason:string){
-    this.http.patch<any>(this.baseURL+`Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
+    return this.http.patch<any>(this.baseURL+`Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
     
   }
   //Admin
