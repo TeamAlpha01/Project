@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-interviewer-current-drive',
@@ -13,7 +14,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
-  dept = '';
+  _dept = '';
   _pool = '';
 
   pool: any[] = [];
@@ -22,23 +23,52 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   departmentDetails : any;
   driveDetails: any;
   poolDetails: any;
-  // interviwerpoolDetails :any;
+  interviewerpoolDetails :any;
+  showErrorMessage: boolean = false;
 
-  constructor(private connection :ConnectionService) { }
+  constructor(private connection :ConnectionService,private route: Router) { }
 
   ngOnInit(): void {
-    this.connection.GetPools().subscribe((data: any) => {
-      this.poolDetails = data;
-      // for (let item of this.interviwerpoolDetails) {
-      //   this.drive.push(item);
-      // }
-  })
-  this.connection.GetTodayDrives().subscribe((data: any) => {
-    this.driveDetails = data;
-    for (let item of this.driveDetails) {
-      this.drive.push(item);
-    }
-  })
+  //   this.connection.GetPools().subscribe((data: any) => {
+  //     this.poolDetails = data;
+  //     for (let item of this.interviewerpoolDetails) {
+  //       this.drive.push(item);
+  //     }
+  // })
+
+  this.connection.GetPools().subscribe((data: any) => {
+    this.poolDetails = data;
+  },
+    (error: any) => {
+      this.showErrorMessage = true;
+      console.warn("1");
+      console.warn(error);
+      if (error.status == 404) {
+        this.route.navigateByUrl("errorPage");
+      }
+    })
+
+  // this.connection.GetTodayDrives().subscribe((data: any) => {
+  //   this.driveDetails = data;
+  //   for (let item of this.driveDetails) {
+  //     this.drive.push(item);
+  //   }
+  // })
+
+  this.connection.GetTodayDrives().subscribe({
+      next: (data: any) => {
+        this.driveDetails = data;
+        for (let item of this.driveDetails) {
+          this.drive.push(item);
+        }
+      },
+      error: (error: any) => {
+        if (error.status == 404) {
+          this.route.navigateByUrl("errorPage");
+        }
+      }
+    })
+
   this.connection.GetDepartments().subscribe((data: any) => {
     this.departmentDetails = data;
   })
@@ -50,19 +80,19 @@ export class InterviewerCurrentDriveComponent implements OnInit {
     //To filter cards based on the department and pool selection
     this.drive = [];
     for (let item of this.driveDetails) {
-      if (this.dept == '') {
+      if (this._dept == '') {
         this._pool = '';
       }
-      else if (this.dept == '' && this._pool == '') {
+      else if (this._dept == '' && this._pool == '') {
         this.drive.push(item);
       }
-      else if (item.department == this.dept && item.poolName == this._pool) {
+      else if (item.department == this._dept && item.poolName == this._pool) {
         this.drive.push(item);
       }
-      else if (item.department == this.dept && this._pool == '') {
+      else if (item.department == this._dept && this._pool == '') {
         this.drive.push(item);
       }
-      else if (item.department == this.dept && item.poolName != this._pool) {
+      else if (item.department == this._dept && item.poolName != this._pool) {
       }
 
     }
