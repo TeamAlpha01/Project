@@ -9,19 +9,30 @@
             <div class="Login">
                 <div class="card-body">
                     <h2 class="text-uppercase text-center">ADD LOCATION</h2>
-                    <form #form="ngForm" (ngSubmit)="addLocation()">
+                    <form [formGroup]="AddLocationForm" (ngSubmit)="addLocation()">
                         <div class="Location">
                             <div class="form-input">
                                 <label class="form-label" for="Location Name">Location Name </label>
-                                <input type="text" id="Name" class="form-control" name="locationName" [(ngModel)]="_locationName">
+                                <input type="text" id="Name" class="form-control" formControlName="locationName">
                             </div>
+                            <div *ngIf="AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched">
+                                <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['required']">Location name is
+                                    required</span>
+                                    <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['minlength']">Location name is too short</span>
+                                    <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['pattern'] && !AddLocationForm.controls['locationName'].errors?.['minlength']">Location name cannot contain numbers or symbols</span>
+                                </div>
+                        </div>
+                            
+                        <div [hidden]="response.length==0">
+                            <h6 class="alert alert-success" >{{response}}</h6>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-back" (click)="addLocation()">Create</button>
+                            <button type="submit" class="btn btn-back">Add</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        
         <app-footer></app-footer>
 </div>

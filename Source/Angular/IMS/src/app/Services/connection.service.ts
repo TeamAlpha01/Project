@@ -70,6 +70,10 @@ export class ConnectionService {
   GetUpcomingDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUpcommingDrives', { headers: this.headers });
   }
+  GetEmployeeRequests(): any{
+    return this.http.get<any>('https://localhost:7072/Employee/ViewEmployeeRequest')
+    
+  }
 
 
   //POST methods
@@ -78,7 +82,7 @@ export class ConnectionService {
   }
 
   CreateNewProject(user: any) {
-    this.http.post<any>('https://localhost:7072/Project/CreateNewProject', user, { headers: this.header })
+    this.http.post<any>('https://localhost:7072/Project/CreateNewProject', user, { headers: this.headers })
 
   }
 
@@ -89,7 +93,24 @@ export class ConnectionService {
 
   CancelDrive(driveId:number, reason:string){
     this.http.patch<any>(this.baseURL+`Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
+    
+  }
+  //Admin
+  AddLocation(locationName:string)
+  {
+    return this.http.post<any>(`https://localhost:7072/Location/CreateNewLocation?locationName=${locationName}`,  null, { headers: this.headers })
   }
 
+  //Patch Methods
+  //Admin
+  RespondEmployeeRequest(employeeId:number,response:boolean)
+  {
+    return this.http.patch<any>(`https://localhost:7072/Employee/RespondEmployeeRequest?employeeId=${employeeId}&response=${response}`,null,{ headers: this.headers })
+  }
+  
+  RemoveLocation(employeeId:number)
+  {
+    return this.http.patch<any>(`https://localhost:7072/Location/RemoveLocation?locationId=${employeeId}`,null,{ headers: this.headers })
+  }
 }
 

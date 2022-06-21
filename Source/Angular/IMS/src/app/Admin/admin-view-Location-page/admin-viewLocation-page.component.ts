@@ -11,13 +11,22 @@ export class AdminviewLocationPageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
-  title ="View Location";
+  title ="Locations";
  
-  constructor(private connection: ConnectionService) { }
+  constructor(private service: ConnectionService) { }
 
   ngOnInit(): void {
-    this.connection.GetLocations().subscribe((data: any) => {
+   this.GetLocations();
+  }
+
+  removeLocation(employeeId:number){
+    this.service.RemoveLocation(employeeId).subscribe(()=> this.GetLocations());
+  }
+
+  GetLocations(){
+    this.service.GetLocations().subscribe((data: any) => {
       this.data = data;
+      this.totalLength = data.length;
       console.log(this.data)
     })
   }

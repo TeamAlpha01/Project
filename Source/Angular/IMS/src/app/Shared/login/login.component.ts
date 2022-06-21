@@ -31,6 +31,7 @@ user: any = {
   ACENumber: '',
   Password: '',
 
+
 }
 
 
@@ -57,7 +58,7 @@ onSubmit() {
     console.log(AuthenticationService.GetData("TAC"))
 
     if (this.IsAdmin) {
-      this.route.navigateByUrl("/Admin-role");  //navigation
+      this.route.navigateByUrl("/admin-view-requests");  //navigation
     }
     else if (this.IsTAC) {
       this.route.navigateByUrl("/tac/home");
@@ -74,9 +75,6 @@ onSubmit() {
     if(error.status==404){
       this.route.navigateByUrl("errorPage");        
     }
-  }
-  )
-
-
+  });
 }
 }

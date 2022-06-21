@@ -1,42 +1,38 @@
+import { data } from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { Location } from 'src/app/Model/Location';
-import { HttpClient,HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-addlocation',
   templateUrl: './admin-addlocation.component.html',
-  styleUrls: ['./admin-addlocation.component.css']
+  styleUrls: ['./admin-addlocation.component.css'],
 })
 export class AdminAddlocationComponent implements OnInit {
-  title ='Add Location'
- 
-  constructor(private http: HttpClient) { }
+  title = 'Add Location';
+  response:string = '';
 
-    _locationName='' 
+  constructor(private service: ConnectionService,private fb : FormBuilder) {}
 
-  addLocation(){
-    const headers = {'content-type':'application/json'}
-  
-    this.http.post<any>(`https://localhost:7072/Location/CreateNewLocation?locationName=${this._locationName}`,this._locationName)
-        .subscribe((data) => {
-          console.log(data)
-        }
-        )
+  AddLocationForm = this.fb.group(
+    {
+      locationName:['',[Validators.required,Validators.minLength(3),Validators.pattern('[A-Za-z\\s]*')]]
+    }
+  );
+
+  getLocationName(){
+    return this.AddLocationForm.get('locationName');
   }
+  ngOnInit(): void {}
+  pageTitle = 'Department';
 
-  ngOnInit(): void {
+  addLocation() 
+  {
+    if(this.getLocationName()?.valid)
+    {
+      this.service.AddLocation(this.getLocationName()?.value).subscribe((data)=> this.response=data.message);
+    }
   }
-  pageTitle="Department"
-
-  RemoveLocation(locationId:number){
-
-    console.warn("Location Id :" +locationId)
-    if(confirm("Do you want to remove the Location?")==true){
-    this.http
-    .delete(`https://localhost:7072/Location/RemoveLocation?LocationId=${locationId}`)  
-    .subscribe((data)=>{
-      console.log(data);
-    });
-  }
-}
 }

@@ -64,6 +64,7 @@ import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -117,7 +118,7 @@ import { ErrorPageComponent } from './Shared/error-page/error-page.component';
     TacCancelDriveComponent,
     InterviwerProfileComponent,
     RegisterPageComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
 
   ],
 

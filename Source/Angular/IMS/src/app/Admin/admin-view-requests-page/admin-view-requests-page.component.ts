@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-admin-view-requests-page',
@@ -7,20 +8,27 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrls: ['./admin-view-requests-page.component.css']
 })
 export class AdminViewRequestsPageComponent implements OnInit {
-  data: any;
+  data: any[]=[];
   totalLength: any;
   page: number = 1;
-  title="View Request";
+  title="Employee Requests";
+  result: any;
  
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private service:ConnectionService) { }
 
   ngOnInit(): void {
-    this.http
-      .get<any>('https://localhost:7072/Employee/ViewEmployeeRequest')
-      .subscribe((data) => {
-        this.data = data;
-        this.totalLength = data.length;
-      });
+    this.GetEmployeeRequests();
+  }
+  RespondEmployeeRequest(employeeId:number,responese:boolean){
+    this.service.RespondEmployeeRequest(employeeId,responese).subscribe(() => this.GetEmployeeRequests());   
+
+  }
+  GetEmployeeRequests(){
+    this.service.GetEmployeeRequests()
+    .subscribe((data:any) => {
+      this.data = data;
+      this.totalLength = data.length;
+    });
   }
 
 }

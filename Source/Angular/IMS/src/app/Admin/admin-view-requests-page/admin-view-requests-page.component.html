@@ -7,17 +7,31 @@
 
     <!-- Navbar End -->
 
-    <div class="mt-3 container shadow  bg-body rounded" *ngFor="let item of data| paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
+    <div class="mt-3 container shadow  bg-body rounded" *ngFor="let item of data| paginate: { itemsPerPage: 7, currentPage: page,totalItems:totalLength }">
         <div class>
             <div class="card-body">
-                <div class="row rone ">
-                    <div class="col-md-10 ">
-                        <p>{{item.requestsName}}</p>
+                <div class="row rone">
+                    <div class="col-md-2 ">
+                        <h6><strong>ACE Number :</strong> {{item.employeeAceNumber}}</h6>
+                    </div>
+                    <div class="col-md-2 ">
+                        <h6><strong>Name :</strong> {{item.employeeName}}</h6>
+                    </div>
+                    <div class="col-md-2 ">
+                        <h6><strong>Department :</strong> {{item.employeeDepartment}}</h6>
+                    </div>
+                    <div class="col-md-3 ">
+                        <h6><strong>Role :</strong> {{item.employeeRole}}</h6>
                     </div>
                     
-                    <div class="col-md-1 ">
+                    <div class="col-md-1 " >
                         <div class="row">
-                            <a href="#"><i class="fa fa-solid fa-trash"></i></a>
+                            <button class="btn btn-success" (click)="RespondEmployeeRequest(item.employeeId,true)">Accept</button>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="row">
+                            <button class="btn btn-danger" (click)="RespondEmployeeRequest(item.employeeId,false)">Reject</button>
                         </div>
                     </div>
                 </div>
