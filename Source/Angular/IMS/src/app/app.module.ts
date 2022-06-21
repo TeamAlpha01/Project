@@ -59,6 +59,9 @@ import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive
 import { InterviwerProfileComponent } from './Interviewer/interviwer-profile/interviwer-profile.component';
 import { RegisterPageComponent } from './Shared/register-page/register-page.component';
 import { ErrorPageComponent } from './Shared/error-page/error-page.component';
+import { TacScheduledDriveHistoryComponent } from './TAC/tac-scheduled-drive-history/tac-scheduled-drive-history.component';
+import { TacCancelledDriveHistoryComponent } from './TAC/tac-cancelled-drive-history/tac-cancelled-drive-history.component';
+import { HistoryCardComponent } from './Shared/history-card/history-card.component';
 
 
 
@@ -119,6 +122,9 @@ import { ErrorPageComponent } from './Shared/error-page/error-page.component';
     InterviwerProfileComponent,
     RegisterPageComponent,
     ErrorPageComponent,
+    TacScheduledDriveHistoryComponent,
+    TacCancelledDriveHistoryComponent,
+    HistoryCardComponent,
 
   ],
 

@@ -1,23 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-card-details',
-  templateUrl: './card-details.component.html',
-  styleUrls: ['./card-details.component.css']
+  selector: 'app-history-card',
+  templateUrl: './history-card.component.html',
+  styleUrls: ['./history-card.component.css']
 })
-export class CardDetailsComponent implements OnInit {
+export class HistoryCardComponent implements OnInit {
+
   page: number = 1;
   totalLength:any;
 
   @Input()
   data!: any[];
 
-  
   constructor() { }
 
   ngOnInit(): void {
-    
   }
-
 
 }

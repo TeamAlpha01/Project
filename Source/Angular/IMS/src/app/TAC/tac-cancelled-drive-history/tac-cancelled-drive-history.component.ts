@@ -1,18 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ConnectionService } from 'src/app/Services/connection.service';
 import { Router } from '@angular/router';
-
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
-  selector: 'app-tac-current-drive',
-  templateUrl: './tac-current-drive.component.html',
-  styleUrls: ['./tac-current-drive.component.css']
+  selector: 'app-tac-cancelled-drive-history',
+  templateUrl: './tac-cancelled-drive-history.component.html',
+  styleUrls: ['./tac-cancelled-drive-history.component.css']
 })
+export class TacCancelledDriveHistoryComponent implements OnInit {
 
-export class TacCurrentDriveComponent implements OnInit {
-
-  title = 'Current Drive'
+  title = 'cancelled Drive History'
   totalLength: any;
   page: number = 1;
 
@@ -38,7 +35,7 @@ export class TacCurrentDriveComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.connection.GetTodayDrives().subscribe({
+    this.connection.GetCancelledDrives().subscribe({
       next: (data: any) => {
         this.driveDetails = data;
         for (let item of this.driveDetails) {
@@ -103,6 +100,4 @@ export class TacCurrentDriveComponent implements OnInit {
     }
 
   }
-
 }
-

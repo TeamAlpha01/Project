@@ -19,6 +19,11 @@ export class ConnectionService {
 
 
   //GET methods
+
+  GetCancelledDrives(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewAllCancelledDrives', { headers: this.headers });
+  }
+
   GetDashboard(): any {
     return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard`, { headers: this.headers });
   }
@@ -43,6 +48,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Location/ViewLocations', { headers: this.headers });
   }
 
+  GetNonCancelledDrives(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewNonCancelledDrives', { headers: this.headers });
+  }
+
   GetPools(): any {
     return this.http.get<any>(this.baseURL + 'Pool/ViewPools', { headers: this.headers });
   }
@@ -63,6 +72,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewScheduledDrives', { headers: this.headers });
   }
 
+  GetTACDashboard(): any {
+    return this.http.get<any>(this.baseURL + `Drive/ViewDashboard?tacId=11`, { headers: this.headers });
+  }
+
   GetTodayDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewTodayDrives', { headers: this.headers });
   }
@@ -70,9 +83,10 @@ export class ConnectionService {
   GetUpcomingDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUpcommingDrives', { headers: this.headers });
   }
+
   GetEmployeeRequests(): any{
     return this.http.get<any>('https://localhost:7072/Employee/ViewEmployeeRequest')
-    
+
   }
 
 
