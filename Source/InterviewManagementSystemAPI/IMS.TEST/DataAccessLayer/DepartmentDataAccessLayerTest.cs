@@ -59,6 +59,22 @@ namespace UnitTesting.DataAccessLayer
             //Assert
             Result.Should().Throw<DbUpdateException>();
         }
+        [Fact]
+        public void AddProjectToDatabase_ReturnsTrue()
+        {
+            Project testProject=new Project(){ProjectId=10,DepartmentId= 10,ProjectName="Test",IsActive=true};
+            var Result=_departmentDataAccessLayer.AddProjectToDatabase(testProject);
+            Assert.True(Result);
+        }
+        [Fact]
+        public void AddProjectToDatabase_ThrowsDbUpdateException()
+        {
+            var DbMock=new Mock<InterviewManagementSystemDbContext>();
+            DbMock.Setup(p=>p.SaveChanges()).Throws<DbUpdateException>();
+            var Result=()=>_departmentDataAccessLayer.AddProjectToDatabase(new Project());
+            Result.Should().Throw<DbUpdateException>();
+        }
+        
         
 
 
