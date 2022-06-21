@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-// import { NgxSpinnerService } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
@@ -58,6 +58,7 @@ import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-
 import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
 import { InterviwerProfileComponent } from './Interviewer/interviwer-profile/interviwer-profile.component';
 import { RegisterPageComponent } from './Shared/register-page/register-page.component';
+import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 
 
 
@@ -115,7 +116,8 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
     TacEditPoolMemberComponent,
     TacCancelDriveComponent,
     InterviwerProfileComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    ErrorPageComponent
 
   ],
 
@@ -127,6 +129,7 @@ import { RegisterPageComponent } from './Shared/register-page/register-page.comp
     Ng2SearchPipeModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxSpinnerModule
     
 
 
