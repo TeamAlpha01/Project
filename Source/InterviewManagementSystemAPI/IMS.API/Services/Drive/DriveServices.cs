@@ -189,8 +189,8 @@ namespace IMS.Service
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                DashboardCount.Add("Scheduled Drives", DriveCountForTacByStatus(false, employeeId));
-                DashboardCount.Add("Cancelled Drives", DriveCountForTacByStatus(true, employeeId));
+                DashboardCount.Add("ScheduledDrives", DriveCountForTacByStatus(false, employeeId));
+                DashboardCount.Add("CancelledDrives", DriveCountForTacByStatus(true, employeeId));
                 return DashboardCount;
             }
             catch (Exception viewTACDashboardException)
@@ -523,13 +523,13 @@ namespace IMS.Service
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                DashboardCount.Add("Accepted Drives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Count());
-                DashboardCount.Add("Denied Drives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId).Count());
-                DashboardCount.Add("Ignored Drives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId).Count());
-                DashboardCount.Add("Total Drives", DashboardCount["Accepted Drives"] + DashboardCount["Denied Drives"] + DashboardCount["Ignored Drives"]);
-                DashboardCount.Add("Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
-                DashboardCount.Add("Not Utilized Interviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
-                DashboardCount.Add("Total Availability", DashboardCount["Utilized Interviews"] + DashboardCount["Not Utilized Interviews"]);
+                DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Count());
+                DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId).Count());
+                DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId).Count());
+                DashboardCount.Add("TotalDrives", DashboardCount["Accepted Drives"] + DashboardCount["Denied Drives"] + DashboardCount["Ignored Drives"]);
+                DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
+                DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
+                DashboardCount.Add("TotalAvailability", DashboardCount["Utilized Interviews"] + DashboardCount["Not Utilized Interviews"]);
                 return DashboardCount;
             }
             catch (ValidationException viewEmployeeDashboardNotVlaid)

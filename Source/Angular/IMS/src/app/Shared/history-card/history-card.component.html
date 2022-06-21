@@ -1,0 +1,33 @@
+<div *ngIf="data.length>0; else ArrayEmpty">
+    <div *ngFor="let item of data | paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
+        <div class="mt-3 container shadow  bg-body rounded">
+            <div class>
+                <div class="card-body">
+                    <div class="row rone mt-4">
+                        <div class="col-md-4">
+                            <p><b>Drive Name :</b> {{item.driveName}} </p>                            
+                            <p><b>Date :</b> {{item.fromDate}} to {{item.toDate}} </p>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <p><b>Pool Name:</b> {{item.drivePool}}</p>
+                            <p><b>Department :</b> {{item.driveDepartment}} </p>
+                        </div> 
+                        <div class="col-md-4">
+                            <p><b>Mode :</b> {{item.driveMode}} </p>
+                            <p><b>Location :</b> {{item.driveLocation}} </p>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
+<ng-template #ArrayEmpty>
+    <div class="text-center">
+        No records found.
+    </div>
+</ng-template>

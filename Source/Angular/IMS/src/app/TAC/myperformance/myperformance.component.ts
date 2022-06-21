@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-myperformance',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyperformanceComponent implements OnInit {
   title='My Performance'
+  dashBoard: any;
 
-  constructor() { }
+  constructor(private connection : ConnectionService) { }
 
   ngOnInit(): void {
+
+    this.connection.GetTACDashboard().subscribe((data: any) => {
+      this.dashBoard = data;
+    })
     
   }
 
