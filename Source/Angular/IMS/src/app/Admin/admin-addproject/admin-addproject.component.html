@@ -9,14 +9,14 @@
             <form #form="ngForm" (ngSubmit)="addProject()" >
                 <div class="form-input">
                     <label class="form-label" for="Department">Department </label>
-                    <select name="Department" id="Department Name" class="form-select " name="departmentName" [(ngModel)]="departmentValue">
+                    <select name="Department" id="Department Name" class="form-select " name="departmentName" [(ngModel)]="_department">
                         <option value="">Select the Department</option>
-                        <option *ngFor="let item of departmentValue" value={{item}}> {{item}} </option>
+                        <option *ngFor="let item of departmentValue" value={{item.departmentName}}> {{item.departmentName}} </option>
                     </select>
                 </div>
                 <div class="form-input">
                     <label class="form-label" for="Name">Project Name </label>
-                    <input type="text" id="Name" class="form-control " name="projectName" [(ngModel)]="ProjectName" >
+                    <input type="text" id="Name" class="form-control " name="projectName" [(ngModel)]="_project" >
                 </div>
               
                 <div class="text-center">

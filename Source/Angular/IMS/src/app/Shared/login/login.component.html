@@ -1,22 +1,30 @@
 <div class="Login">
     <div class="card-body">
         <h2 class="text-uppercase text-center">LOGIN</h2>
-        <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (ngSubmit)="submit()">
             <br>
             <p>Please login to your account</p>
             <div class="form-input">
                 <label class="form-label" for="ACE Number">ACE Number </label>
-                <input type="text" id="Name" class="form-control form-control-lg" name="aceNumber"
-                    [(ngModel)]="user.ACENumber" />
+                <input id="ACE Number" type="text" placeholder="ACE Number" formControlName="ACENumber"
+                    class="form-control">
+                <div *ngIf="loginForm.controls['ACENumber'].invalid && loginForm.controls['ACENumber'].touched">
+                    <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['required']">*ACE Number is required</span>
+                    <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['pattern']">*ACE Number should starts with ACE and followed by 4 digits</span>
+                </div>
             </div>
             <div class="form-input">
                 <label class="form-label" for="Password">Password</label>
-                <input type="password" id="password" class="form-control form-control-lg" name="password"
-                    [(ngModel)]="user.Password" />
+                <input id="Password" type="password" placeholder="Password" formControlName="Password"
+                    class="form-control">
+                <div *ngIf="loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched">
+                    <span class="text-danger" *ngIf="loginForm.controls['Password'].errors?.['required']">*Password is required</span>
+
+                </div>
             </div>
 
             <div class="Login-btn">
-                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log in</button>
+                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log in </button>
             </div>
 
             

@@ -16,12 +16,12 @@ export class RegisterPageComponent implements OnInit {
 
 
   registerForm = this.FB.group({
-    Name: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+    Name: ['', [Validators.required, Validators.maxLength(20), Validators.pattern("^[A-Za-z ]+$")]],
     ACENumber: ['', [Validators.required]],
     Department: ['', [Validators.required, Validators.pattern('[a-zA-Z][*@#.]*')]],
     Role: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
     Project: ['', [Validators.required, Validators.pattern('[a-zA-Z][20]*')]],
-    Email: ['', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
+    Email: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]+)@(aspiresys.com)")]],
     Password: ['', [Validators.required, Validators.pattern('')]],
     ConfirmPassword: ['', [Validators.required, Validators.pattern('')]]
 

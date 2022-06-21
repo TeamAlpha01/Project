@@ -46,8 +46,8 @@ export class AdminAddprojectComponent implements OnInit {
 
   ngOnInit(): void {
     this.connection.GetDepartments().subscribe((data: any) => {
-      this.data = data;
-      console.log(this.data)
+      this.departmentValue = data;
+      console.log(this.departmentValue)
     })
   }
 
