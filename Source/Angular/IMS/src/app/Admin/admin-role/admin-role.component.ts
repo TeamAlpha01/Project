@@ -1,36 +1,53 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/Model/Role';
 import { ConnectionService } from 'src/app/Services/connection.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-// import { data } from 'jquery';
-
-// import { url } from 'inspector';
-
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-role',
   templateUrl: './admin-role.component.html',
-  styleUrls: ['./admin-role.component.css']
+  styleUrls: ['./admin-role.component.css'],
 })
 export class AdminRoleComponent implements OnInit {
-  title ='Add Role'
+  title = 'Add Role';
+  response: string = '';
+  submitted: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private service: ConnectionService, private fb: FormBuilder) {}
 
-  _roleName='' 
+  ngOnInit(): void {    
+  }
 
-addRole(){
-  const headers = {'content-type':'application/json'}
+  AddRoleForm = this.fb.group({
+    roleName: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern('[A-Za-z\\s]*')
+      ],
+    ],
+  });
 
-  this.http.post<any>(`https://localhost:7072/Role/CreateNewRole?roleName=${this._roleName}`,this._roleName)
-      .subscribe((data) => {
-        console.log(data)
-      }
-      )
-}
+  getRoleName(){
+    return this.AddRoleForm.get('roleName');
+  }
 
-ngOnInit(): void {
-}
-pageTitle="Department"
+  addRole() {
+    this.submitted = true;
+    if (this.AddRoleForm.valid) {
+      this.service
+        .AddRole(this.getRoleName()?.value)
+        .subscribe((data) => (this.response = data.message));
 
+      setTimeout(() => {
+        this.response = '';
+        this.AddRoleForm.reset();
+      }, 1000);
+
+      this.submitted = false;
+    }
+  }
+
+  pageTitle = 'Department';
 }

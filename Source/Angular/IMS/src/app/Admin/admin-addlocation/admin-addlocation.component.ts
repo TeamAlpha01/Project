@@ -13,6 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AdminAddlocationComponent implements OnInit {
   title = 'Add Location';
   response:string = '';
+  submitted:boolean=false;
 
   constructor(private service: ConnectionService,private fb : FormBuilder) {}
 
@@ -30,9 +31,14 @@ export class AdminAddlocationComponent implements OnInit {
 
   addLocation() 
   {
+    this.submitted=true;
+
     if(this.getLocationName()?.valid)
     {
-      this.service.AddLocation(this.getLocationName()?.value).subscribe((data)=> this.response=data.message);
+      this.service.AddLocation(this.getLocationName()?.value).subscribe((data)=> {this.response=data.message});
+      setTimeout(()=>{this.response = '';this.AddLocationForm.reset()}, 1000);
+      this.submitted=false;
     }
+
   }
 }

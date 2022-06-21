@@ -6,21 +6,20 @@
     <app-navbar [title]="title"></app-navbar>
         <!-- Navbar End -->
         <div class="container">
-            <div class="Login">
+            <div class="Register CreatePool">
                 <div class="card-body">
-                    <h2 class="text-uppercase text-center">ADD LOCATION</h2>
                     <form [formGroup]="AddLocationForm" (ngSubmit)="addLocation()">
                         <div class="Location">
                             <div class="form-input">
-                                <label class="form-label" for="Location Name">Location Name </label>
+                                <label class="form-label" for="locationName">Location Name </label>
                                 <input type="text" id="Name" class="form-control" formControlName="locationName">
                             </div>
-                            <div *ngIf="AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched">
+                            <div *ngIf="(submitted)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched">
                                 <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['required']">Location name is
                                     required</span>
                                     <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['minlength']">Location name is too short</span>
                                     <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['pattern'] && !AddLocationForm.controls['locationName'].errors?.['minlength']">Location name cannot contain numbers or symbols</span>
-                                </div>
+                            </div>
                         </div>
                             
                         <div [hidden]="response.length==0">

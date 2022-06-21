@@ -16,10 +16,15 @@ export class AdminviewProjectPageComponent implements OnInit {
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
+    this.GetProjects()
+  }
+  
+  GetProjects(){
     this.connection.GetProjects().subscribe((data: any) => {
       this.data = data;
-      console.log(this.data)
     })
   }
-
+  RemoveProject(projectId:number){
+    this.connection.RemoveProject(projectId).subscribe(()=>this.GetProjects());
+  }
 }

@@ -1,3 +1,4 @@
+import { Department } from './../Model/Department';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
@@ -114,6 +115,15 @@ export class ConnectionService {
   {
     return this.http.post<any>(`https://localhost:7072/Location/CreateNewLocation?locationName=${locationName}`,  null, { headers: this.headers })
   }
+  AddProject(projectName:string,departmentId:number)
+  {     
+   return this.http.post<any>(`https://localhost:7072/Project/CreateNewProject?departmentId=${departmentId}&projectName=${projectName}`,null,{ headers: this.headers })
+  }
+  AddRole(roleName:string){
+    return this.http.post<any>(`https://localhost:7072/Role/CreateNewRole?roleName=${roleName}`,null,{ headers: this.headers })
+
+  }
+
 
   //Patch Methods
   //Admin
@@ -122,9 +132,15 @@ export class ConnectionService {
     return this.http.patch<any>(`https://localhost:7072/Employee/RespondEmployeeRequest?employeeId=${employeeId}&response=${response}`,null,{ headers: this.headers })
   }
   
-  RemoveLocation(employeeId:number)
+  RemoveLocation(locationId:number)
   {
-    return this.http.patch<any>(`https://localhost:7072/Location/RemoveLocation?locationId=${employeeId}`,null,{ headers: this.headers })
+    return this.http.patch<any>(`https://localhost:7072/Location/RemoveLocation?locationId=${locationId}`,null,{ headers: this.headers })
   }
+  
+  RemoveProject(projectId:number)
+  {
+    return this.http.patch<any>(`https://localhost:7072/Project/RemoveProject?projectId=${projectId}`,null,{ headers: this.headers })
+  }
+
 }
 
