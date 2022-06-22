@@ -11,17 +11,33 @@ export class TacEditPoolComponent implements OnInit {
 
   poolDetails: any;
   departmentDetails: any;
-  _dept = ''; 
+  _dept = '';
   _pool = '';
+  page: number = 1;
+  totalLength: any;
+
+
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
+    this.GetPools();
+    this.GetDepartments();
+  }
+
+  GetPools() {
     this.connection.GetPools().subscribe((data: any) => {
       this.poolDetails = data;
     })
+  }
+
+  GetDepartments() {
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;
     })
+  }
+
+  RemovePool(poolId: number) {
+    this.connection.RemovePool(poolId).subscribe(() => this.GetPools());
   }
 
 }

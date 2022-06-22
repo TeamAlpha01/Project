@@ -12,20 +12,7 @@ export class AdminAddprojectComponent implements OnInit {
  title ='Add Project'
  data:any;
  response:string='';
-//  _department = '';
-//  _project = '';
-//  Department:any;
-//  ProjectName:string='';
-//  projectValue:Project[]=[];
-//  departmentValue:Department[]=[];
-//  ProjectId:number=0;
-//  DepartmentValue:number=0;
 
-//   project: any={
-//    departmentName :this._department,
-//    projectName : this._project,
-   
-//  }
 
   constructor(private connection:ConnectionService, private fb: FormBuilder) { }
   submitted:boolean=false;

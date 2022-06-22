@@ -117,6 +117,17 @@ export class ConnectionService {
     return this.http.patch<any>( this.baseURL+`Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
     
   }
+
+  AddPool(pooltName:string,departmentId:number)
+  {     
+   return this.http.post<any>( this.baseURL + `Pool/CreateNewPool?departmentId=${departmentId}&poolName=${pooltName}`,null,{ headers: this.headers })
+  }
+  
+  RemovePool(poolId:number)
+  {     
+   return this.http.post<any>( this.baseURL + `Pool/RemovePool?poolId=${poolId}`,null,{ headers: this.headers })
+  }
+
   //Admin
   AddLocation(locationName:string)
   {

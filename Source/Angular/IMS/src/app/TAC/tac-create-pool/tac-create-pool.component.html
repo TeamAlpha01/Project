@@ -1,36 +1,43 @@
 <app-tac-header></app-tac-header>
 
 <div class="content">
-
-    <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
 
+     <div class="Register CreatePool">
+        <div class="card-body">
+            <form [formGroup]="AddPoolForm" (ngSubmit)="addPool()" >
+                <div class="form-input">
+                    <label class="form-label" for="Department">Department Name</label>
+                    <select name="Department" id="Department Name" class="form-select " formControlName="departmentId">
+                        <option value="">Select the Department</option>
+                        <ng-container *ngFor="let item of data">
+                            <option *ngIf="item.departmentId!=4" value={{item.departmentId}}> {{item.departmentName}} </option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div *ngIf="(submitted)||AddPoolForm.controls['departmentId'].invalid && AddPoolForm.controls['departmentId'].touched">
+                    <span class="text-danger" *ngIf="AddPoolForm.controls['departmentId'].errors?.['required']">*Choose a Department</span>
+                </div>
+                
+                <div class="form-input">
+                    <label class="form-label" for="Name">Pool Name </label>
+                    <input type="text" id="Name" class="form-control " formControlName="poolName" >
+                </div>
+                <div *ngIf="(submitted)||AddPoolForm.controls['poolName'].invalid && AddPoolForm.controls['poolName'].touched">
+                    <span class="text-danger" *ngIf="AddPoolForm.controls['poolName'].errors?.['required']">*Pool name is required</span>
+                    <span class="text-danger" *ngIf="AddPoolForm.controls['poolName'].errors?.['minlength']">*Pool name is too short</span>
+                    <span class="text-danger" *ngIf="AddPoolForm.controls['poolName'].errors?.['pattern'] && !AddPoolForm.controls['poolName'].errors?.['minlength']">*Pool name cannot contain numbers or symbols</span>
+                </div>
 
-    <div>
-        <div class="Register CreatePool">
-            <div class="card-body">
-                <form>
-                    <div class="form-input">
-                        <label class="form-label" for="Name">Department</label>
-                        <select name="Department" id="Department Name" class="form-select " name="dept"
-                            [(ngModel)]="_dept">
-                            <option value="">Select the Department</option>
-                            <option *ngFor="let item of departmentDetails" value={{item.departmentName}}>
-                                {{item.departmentName}} </option>
-                        </select>
-                    </div>
-                    <div class="form-input">
-                        <label class="form-label" for="Name">Pool Name </label>
-                        <input type="text" id="Name" class="form-control " />
-                    </div>
-
-                    <div class="text-center">
-                        <button type="button" class="btn btn-back">Create</button>
-                    </div>
-                </form>
-            </div>
+                <div [hidden]="response.length==0">
+                    <h6 class="alert alert-success" >{{response}}</h6>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-back"> Add </button>
+                </div>
+            </form>
         </div>
-    </div>
-
+     </div>
     <app-footer></app-footer>
-</div>
+ </div>
