@@ -526,10 +526,10 @@ namespace IMS.Service
                 DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Count());
                 DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId).Count());
                 DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId).Count());
-                DashboardCount.Add("TotalDrives", DashboardCount["Accepted Drives"] + DashboardCount["Denied Drives"] + DashboardCount["Ignored Drives"]);
+                DashboardCount.Add("TotalDrives", DashboardCount["AcceptedDrives"] + DashboardCount["DeniedDrives"] + DashboardCount["IgnoredDrives"]);
                 DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
                 DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
-                DashboardCount.Add("TotalAvailability", DashboardCount["Utilized Interviews"] + DashboardCount["Not Utilized Interviews"]);
+                DashboardCount.Add("TotalAvailability", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"]);
                 return DashboardCount;
             }
             catch (ValidationException viewEmployeeDashboardNotVlaid)

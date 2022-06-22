@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
-  selector: 'app-tac-edit-pool-member',
-  templateUrl: './tac-edit-pool-member.component.html',
-  styleUrls: ['./tac-edit-pool-member.component.css']
+  selector: 'app-tac-employee-dashboard',
+  templateUrl: './tac-employee-dashboard.component.html',
+  styleUrls: ['./tac-employee-dashboard.component.css']
 })
-export class TacEditPoolMemberComponent implements OnInit {
-  title = 'Current Drive'
+export class TacEmployeeDashboardComponent implements OnInit {
+  title = 'Employee Dashboard'
 
   //To get the inputs from the user
   _dept = '';
@@ -22,37 +22,27 @@ export class TacEditPoolMemberComponent implements OnInit {
   departmentDetails: any;
   employeeDetails: any;
   pool: any;
+  employeeDashboardDetails: any;
 
+  
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
-    this.GetRoles();
-    this.GetPools();
-    this.GetDepartment();
-    this.GetEmployees();
-  }
-  GetRoles() {
     this.connection.GetRoles().subscribe((data: any) => {
       this.roleDetails = data;
-      console.log(this.roleDetails)
     })
-  }
-  GetPools() {
     this.connection.GetPools().subscribe((data: any) => {
       this.poolDetails = data;
     })
-  }
-  GetDepartment() {
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;
     })
-  }
-  GetEmployees() {
     this.connection.GetEmployees().subscribe((data: any) => {
       this.employeeDetails = data;
+      console.warn(this.employeeDetails);
     })
   }
-
+  
   poolMember() {
     for (let item of this.poolDetails) {
       if (this._pool == item.poolName) {
@@ -64,4 +54,12 @@ export class TacEditPoolMemberComponent implements OnInit {
     })
   }
 
+  
+
+  GetEmployeeDashboard(employeeId: number) {
+    this.connection.GetEmployeesDashboard(employeeId).subscribe((data: any) => {
+      this.employeeDashboardDetails = data;
+      console.log(this.employeeDashboardDetails);
+    })
+  }
 }

@@ -41,6 +41,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Employee/ViewEmployees', { headers: this.headers });
   }
 
+  GetEmployeesDashboard(employeeId:number) {
+    return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard?employeeId=${employeeId}`, { headers: this.headers });
+  }
+
   GetEmployeeProfile() {
     return this.http.get<any>(this.baseURL + `Employee/ViewProfile?employeeId=11`, { headers: this.headers });
   }

@@ -62,6 +62,7 @@ import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 import { TacScheduledDriveHistoryComponent } from './TAC/tac-scheduled-drive-history/tac-scheduled-drive-history.component';
 import { TacCancelledDriveHistoryComponent } from './TAC/tac-cancelled-drive-history/tac-cancelled-drive-history.component';
 import { HistoryCardComponent } from './Shared/history-card/history-card.component';
+import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-employee-dashboard.component';
 
 
 
@@ -125,6 +126,7 @@ import { HistoryCardComponent } from './Shared/history-card/history-card.compone
     TacScheduledDriveHistoryComponent,
     TacCancelledDriveHistoryComponent,
     HistoryCardComponent,
+    TacEmployeeDashboardComponent,
 
   ],
 

@@ -39,6 +39,7 @@ import { InterviwerProfileComponent } from './Interviewer/interviwer-profile/int
 import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 import { TacScheduledDriveHistoryComponent } from './TAC/tac-scheduled-drive-history/tac-scheduled-drive-history.component';
 import { TacCancelledDriveHistoryComponent } from './TAC/tac-cancelled-drive-history/tac-cancelled-drive-history.component';
+import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-employee-dashboard.component';
 // import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
 
 
@@ -80,7 +81,8 @@ const routes: Routes = [
   { path: 'tac/dashboard/performance', component: MyperformanceComponent },
   { path: 'tac/dashboard/performance/scheduled-drive-history', component: TacScheduledDriveHistoryComponent },
   { path: 'tac/dashboard/performance/cancelled-drive-history', component: TacCancelledDriveHistoryComponent },
-  { path: 'tac/dashboard/Poolmembers-performance', component: PoolmembersPerformanceComponent },
+  { path: 'tac/dashboard/poolmembers-performance', component: PoolmembersPerformanceComponent },
+  { path: 'tac/dashboard/employee-dashboard', component: TacEmployeeDashboardComponent },
   { path: 'tac/managepoolmembers', component: TacEditPoolMemberComponent },
   { path: 'tac/myProfile', component: TacProfileComponent },
   { path: 'tac/current-drive', component: TacCurrentDriveComponent },

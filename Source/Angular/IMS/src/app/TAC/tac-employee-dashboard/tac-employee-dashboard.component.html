@@ -1,0 +1,134 @@
+<app-tac-header></app-tac-header>
+
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+
+    <!-- Navbar End -->
+    <div class=" container shadow  bg-body rounded">
+        <div class="mt-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number">Department </label>
+                        <select name="Department" id="Department Name" class="form-select " name="dept"
+                            [(ngModel)]="_dept">
+                            <option value="">Select the Department</option>
+                            <option *ngFor="let item of departmentDetails" value={{item.departmentName}}>
+                                {{item.departmentName}} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number">Pool </label>
+                        <select name="Pool" id="Pool" class="form-select" (change)="poolMember()" name="_pool"
+                            [(ngModel)]="_pool">
+                            <option value="">Select the Pool</option>
+                            <option *ngFor="let item of poolDetails | filter:_dept" value={{item.poolName}}>
+                                {{item.poolName}} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number">Role </label>
+                        <select name="Pool" id="Pool" class="form-select" name="_role" [(ngModel)]="_role">
+                            <option value="">Select the Role</option>
+                            <option *ngFor="let item of roleDetails" value={{item.roleName}}>
+                                {{item.roleName}} </option>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number"> Search</label>
+                        <input type="text" class="form-control " placeholder="Name or ACE ID" name="_role"
+                            [(ngModel)]="_search">
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class=" container row AddMemberPool mt-2 justify-content-evenly">
+            <div class="card col-12 ml-5">
+                <div class="">
+                    <h3 class="card-header text-center">Search Results</h3>
+                    <div class="container my-box ">
+                        <div class="card-body p-2 border-bottom"
+                            *ngFor="let item of employeeDetails | filter:_dept | filter:_role | filter:_pool | filter:_search">
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="fw-bolder col-md-2">{{item.employeeAceNumber}}</div>
+                                <div class="fw-bolder col-md-3">{{item.name}}</div>
+                                <div class="fw-bolder col-md-4">{{item.role.roleName}}</div>
+                                <div><button class="btn btn-outline-primary btn-sm" (click)="GetEmployeeDashboard(item.employeeId)" value="{{item.employeeId}}">view</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="card col-6 ">
+                <div>
+                    <h3 class="card-header text-center" >DashBoard</h3>
+                    <div class="container my-box " >
+                        <div class="card-body p-2 border-bottom">
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="fw-bolder col-md-5">AcceptedDrives</div>
+                                <div class="fw-bolder col-md-3">{{employeeDashboardDetails.AcceptedDrives}}</div>
+                                <div><button class="btn btn-outline-secondary btn-sm">View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-2 border-bottom">
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="fw-bolder col-md-5">DeniedDrives</div>
+                                <div class="fw-bolder col-md-3">{{employeeDashboardDetails.DeniedDrives}}</div>
+                                <div><button class="btn btn-outline-secondary btn-sm">View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-2 border-bottom">
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="fw-bolder col-md-5">IgnoredDrives</div>
+                                <div class="fw-bolder col-md-3">{{employeeDashboardDetails.IgnoredDrives}}</div>
+                                <div><button class="btn btn-outline-secondary btn-sm">View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-2 border-bottom">
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="fw-bolder col-md-5">TotalDrives</div>
+                                <div class="fw-bolder col-md-3">{{employeeDashboardDetails.TotalDrives}}</div>
+                                <div><button class="btn btn-outline-secondary btn-sm">View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-2 border-bottom">
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="fw-bolder col-md-5">UtilizedInterviews</div>
+                                <div class="fw-bolder col-md-3">{{employeeDashboardDetails.UtilizedInterviews}}</div>
+                                <div><button class="btn btn-outline-secondary btn-sm">View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-2 border-bottom">
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="fw-bolder col-md-5">NotUtilizedInterviews</div>
+                                <div class="fw-bolder col-md-3">{{employeeDashboardDetails.NotUtilizedInterviews}}</div>
+                                <div><button class="btn btn-outline-secondary btn-sm">View</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body p-2 border-bottom">
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="fw-bolder col-md-5">TotalAvailability</div>
+                                <div class="fw-bolder col-md-3">{{employeeDashboardDetails.TotalAvailability}}</div>
+                                <div><button class="btn btn-outline-secondary btn-sm">View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <app-footer></app-footer>
+</div>
