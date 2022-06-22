@@ -90,6 +90,9 @@ export class ConnectionService {
 
   }
 
+  GetTodaysInterview(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewTodaysInterview', { headers: this.headers });
+  }
 
   //POST methods
   Login(user: any) {

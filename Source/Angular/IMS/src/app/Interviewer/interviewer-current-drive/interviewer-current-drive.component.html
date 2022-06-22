@@ -6,15 +6,7 @@
     <div class=" mt-3 mb-5 container shadow  bg-body rounded">
         <div class="">
             <div class="card-body">
-                <div class="row">  
-                    <div class="col-md-4">
-                        <label class="form-label" for="Department">Department </label>
-                        <select name="Department" id="Department Name" class="form-select " (change)="filterDropdown()"
-                            name="dept" [(ngModel)]="_dept">
-                            <option value="">Select the Department</option>
-                            <option *ngFor="let item of departmentDetails" value={{item.departmentName}}> {{item.departmentName}} </option>
-                        </select>
-                    </div>                 
+                <div class="row">                   
                     <div class="col-md-4">
                         <label class="form-label" for="Pool">Pool </label>
                         <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool" [(ngModel)]="_pool">

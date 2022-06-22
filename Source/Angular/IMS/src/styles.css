@@ -90,7 +90,7 @@
     position: fixed;
     width: 250px;
     max-height: 100vh;
-    background: #b57ae6;
+    background: #8D599F;
     transition: all .5s ease;
     text-decoration: none;
   }
@@ -105,7 +105,7 @@
     color: #000000;
     line-height: 30px;
     text-align: center;
-    background: #b57ae6;
+    background: #8D599F;
     user-select: none;
     border-bottom: 1px solid black;
   }
@@ -382,7 +382,7 @@
   }
   
   .background {
-    background: #b57ae6;
+    background: #8D599F;
   }
   
   
@@ -390,7 +390,7 @@
   .btn-filter {
     margin-top: 30px!important;
     color: white!important;
-    background-color: #b57ae6!important;
+    background-color: #8D599F!important;
   }
   
   .btn-back {
@@ -398,7 +398,7 @@
     margin-left: 10px;
     margin-bottom: 10px;
     color: white!important;
-    background-color: #b57ae6!important;
+    background-color: #8D599F!important;
   }
   .btn-back:hover{
     color: white!important;
@@ -441,11 +441,11 @@
   
   .filter-btn:hover {
     background-color: white;
-    border: 1px solid #b57ae6;
+    border: 1px solid #8D599F;
   }
   
   .text-custom:hover {
-    color: #b57ae6;
+    color: #8D599F;
   }
   
   .text-custom {
@@ -454,7 +454,7 @@
   
   i.far {
     margin-right: 13px;
-    color: #b57ae6
+    color: #8D599F
   }
   
   .container.kl {
@@ -496,7 +496,7 @@
   }
   
   .btn.btn-lg {
-    background: #b57ae6
+    background: #8D599F
   }
   
   .btn.btn-lg span {
@@ -818,7 +818,7 @@
   /*--------------------------CurrentDrives-end------------------------*/
   /********** Template CSS **********/
   :root {
-    --primary: #b57ae6;
+    --primary: #8D599F;
     --light: #F3F6F9;
     --dark: #231924;
   }
@@ -836,7 +836,7 @@
     text-align: center;
     display: block;
     color: white;
-    background-color: #b57ae6;
+    background-color: #8D599F;
     padding: 2.5px;
     width: 100%;
     height: 44px;
@@ -1170,7 +1170,7 @@
     border-radius: 0%;
     height: 44px;
     width: 44px;
-    background-color: rgb(178, 123, 228);
+    background-color: rgb(18, 18, 19);
   }
   
   .logout-btn {
@@ -1265,7 +1265,7 @@
     border-radius: 0% !important;
     height: 44px !important;
     width: 44px !important;
-    background-color: rgb(178, 123, 228) !important;
+    background-color: #8D599F !important;
   }
   
   
@@ -1509,7 +1509,7 @@
   .card-title {
     margin-top: 0px;
     font-weight: 700;
-    font-size: 1.65em;
+    font-size:1.2em;
   }
   
   .card-title a {
@@ -1587,7 +1587,7 @@
   }
   
   .bg-custom {
-    background-color: #b57ae6;
+    background-color: #8D599F;
   }
   
     .wrapper-dashboard {

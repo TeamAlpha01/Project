@@ -38,6 +38,9 @@ export class InterviewerCurrentDriveComponent implements OnInit {
 
   this.connection.GetPools().subscribe((data: any) => {
     this.poolDetails = data;
+    for (let item of this.interviewerpoolDetails) {
+         this.drive.push(item);
+         }
   },
     (error: any) => {
       this.showErrorMessage = true;
@@ -48,14 +51,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
       }
     })
 
-  // this.connection.GetTodayDrives().subscribe((data: any) => {
-  //   this.driveDetails = data;
-  //   for (let item of this.driveDetails) {
-  //     this.drive.push(item);
-  //   }
-  // })
-
-  this.connection.GetTodayDrives().subscribe({
+  this.connection.GetTodaysInterview().subscribe({
       next: (data: any) => {
         this.driveDetails = data;
         for (let item of this.driveDetails) {
@@ -69,9 +65,6 @@ export class InterviewerCurrentDriveComponent implements OnInit {
       }
     })
 
-  this.connection.GetDepartments().subscribe((data: any) => {
-    this.departmentDetails = data;
-  })
   }
 
 
@@ -80,25 +73,27 @@ export class InterviewerCurrentDriveComponent implements OnInit {
     //To filter cards based on the department and pool selection
     this.drive = [];
     for (let item of this.driveDetails) {
-      if (this._dept == '') {
-        this._pool = '';
-      }
-      else if (this._dept == '' && this._pool == '') {
+      if (this._pool == '') {
         this.drive.push(item);
-      }
-      else if (item.department == this._dept && item.poolName == this._pool) {
-        this.drive.push(item);
-      }
-      else if (item.department == this._dept && this._pool == '') {
-        this.drive.push(item);
-      }
-      else if (item.department == this._dept && item.poolName != this._pool) {
-      }
+      //   this._pool = '';
+      // }
+      // else if (this._dept == '' && this._pool == '') {
+      //   this.drive.push(item);
+      // }
+      // else if (item.department == this._dept && item.poolName == this._pool) {
+      //   this.drive.push(item);
+      // }
+      // else if (item.department == this._dept && this._pool == '') {
+      //   this.drive.push(item);
+      // }
+      // else if (item.department == this._dept && item.poolName != this._pool) {
+      // }
 
     }
 
   }
 
+}
 }
 
 
