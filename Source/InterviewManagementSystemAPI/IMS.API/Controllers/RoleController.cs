@@ -72,14 +72,14 @@ public class RoleController : ControllerBase
     /// <param name="roleId">int</param>
     /// <returns>>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
     /// 
-    [HttpPost]
+    [HttpPatch]
     public IActionResult RemoveRole(int roleId)
     {
         if (roleId == 0) return BadRequest("Role Id is not provided");
 
         try
         {
-            return _roleService.RemoveRole(roleId) ? Ok("Role Removed Successfully") : BadRequest("Sorry internal error occured");
+            return _roleService.RemoveRole(roleId) ? Ok(UitilityService.Response("Role Removed Successfully")) : BadRequest("Sorry internal error occured");
         }
         catch (ValidationException roleNotFound)
         {

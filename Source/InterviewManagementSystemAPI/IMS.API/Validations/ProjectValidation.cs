@@ -16,7 +16,7 @@ namespace IMS.Validations
             if(projectName==null) throw new ValidationException("project name cannot be null");
             if (String.IsNullOrEmpty(projectName)) throw new ValidationException("Project Name cannot be Empty or Null");
             if(projectName.Length<=2) throw new ValidationException("Project Name is too short.It cannot be less than or equql to two");
-            if(!Regex.IsMatch(projectName,@"^[a-zA-Z ]{3,25}$")) throw new ValidationException("Project Name must contain only alphabets and of lenght 3 to 25");
+            if(!Regex.IsMatch(@projectName,@"^[a-zA-Z ]{3,25}$")) throw new ValidationException("Project Name must contain only alphabets and of lenght 3 to 25");
             
         }
         public static void IsProjectValid(int projectId)

@@ -68,8 +68,8 @@ namespace IMS.Controller;
     /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
-    /// <param name="projectId">int</param>
-    /// <returns>Return Project Removed Successfully message when the project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
+        /// <param name="projectId">int</param>
+/// <returns>Return Project Removed Successfully message when the project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
     [HttpPatch]
     public IActionResult RemoveProject(int projectId)
     {

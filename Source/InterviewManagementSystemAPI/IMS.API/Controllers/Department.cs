@@ -41,7 +41,7 @@ public class DepartmentController : ControllerBase
             return BadRequest("Department name is required");
         try
         {
-            return _departmentService.CreateDepartment(departmentName) ? Ok("Department Added Successfully") : Problem("Sorry internal error occured");
+            return _departmentService.CreateDepartment(departmentName) ? Ok(UitilityService.Response("Department Added Successfully")) : Problem("Sorry internal error occured");
         }
          catch (ValidationException departmentnotvalid)
         {
@@ -70,14 +70,14 @@ public class DepartmentController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="departmentId">int</param>
     /// <returns>Return Department Removed Successfully message when project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
-    [HttpPost]
+    [HttpPatch]
     public IActionResult RemoveDepartment(int departmentId)
     {
         if (departmentId <= 0) return BadRequest("Department Id  Should not be zero or less than zero");
 
         try
         {
-            return _departmentService.RemoveDepartment(departmentId) ? Ok("Department Removed Successfully") : Problem("Sorry internal error occured");
+            return _departmentService.RemoveDepartment(departmentId) ? Ok(UitilityService.Response("Department Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException departmentNotFound)
         {
