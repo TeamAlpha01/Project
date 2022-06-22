@@ -60,18 +60,16 @@ const routes: Routes = [
 
 
   //admin pages
-  { path: 'Admin-addrole-page', component: AdminRoleComponent},        //Admin-addrole-page
-  { path: 'Admin-adddepartment', component: AdminAdddepartmentComponent },          //Admin-adddepartment 
-  { path: 'Admin-addlocation', component: AdminAddlocationComponent },              //Admin-addlocation
-  { path: 'Admin-addproject', component: AdminAddprojectComponent },               //Admin-addproject
-  { path: '', component: LoginComponent},                                 
-  { path: 'Admin-role', component: AdminRoleComponent },                             //Admin-role
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'admin-view-department', component: AdminviewDepartmentPageComponent },
-  { path: 'admin-view-role', component: AdminViewRolePageComponent },
-  { path: 'admin-view-project', component: AdminviewProjectPageComponent },
-  { path: 'admin-view-location', component: AdminviewLocationPageComponent },
-  { path: 'admin-view-requests', component: AdminViewRequestsPageComponent },
+  { path: '', component: LoginComponent},                               
+  { path: 'admin/requests', component: AdminViewRequestsPageComponent },
+  { path: 'admin/role', component: AdminViewRolePageComponent },
+  { path: 'admin/role/add', component: AdminRoleComponent},        
+  { path: 'admin/location', component: AdminviewLocationPageComponent },
+  { path: 'admin/location/add', component: AdminAddlocationComponent },
+  { path: 'admin/department', component: AdminviewDepartmentPageComponent },
+  { path: 'admin/department/add', component: AdminAdddepartmentComponent },
+  { path: 'admin/project', component: AdminviewProjectPageComponent },
+  { path: 'admin/project/add', component: AdminAddprojectComponent },
   
 
 
@@ -93,7 +91,6 @@ const routes: Routes = [
   { path: 'tac/createPool', component: TacCreatePoolComponent },
   { path: 'tac/editpool', component: TacEditPoolComponent },
   { path: 'tac/managepool', component: ManagepoolComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'tac/home', component: TacHomeComponent },
   { path: 'errorPage', component: ErrorPageComponent },
 

@@ -45,12 +45,7 @@ export class AdminAddprojectComponent implements OnInit {
   }
   GetDepartments(){
     this.connection.GetDepartments().subscribe((data: any) => {
-<<<<<<< Updated upstream
-      this.departmentValue = data;
-      console.log(this.departmentValue)
-=======
       this.data = data;
->>>>>>> Stashed changes
     })
   }
   addProject(){

@@ -11,7 +11,7 @@ export class AdminviewProjectPageComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
-  title = "View Project";
+  title = "Projects";
  
   constructor(private connection: ConnectionService) { }
 

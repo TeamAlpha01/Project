@@ -86,7 +86,7 @@ export class ConnectionService {
   }
 
   GetEmployeeRequests(): any{
-    return this.http.get<any>('https://localhost:7072/Employee/ViewEmployeeRequest')
+    return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeeRequest')
 
   }
 
@@ -96,35 +96,37 @@ export class ConnectionService {
 
   //POST methods
   Login(user: any) {
-    return this.http.post<any>(`https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.headers })
+    return this.http.post<any>( this.baseURL + `Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.headers })
   }
 
   CreateNewProject(user: any) {
-    this.http.post<any>('https://localhost:7072/Project/CreateNewProject', user, { headers: this.headers })
+    this.http.post<any>( this.baseURL + '/Project/CreateNewProject', user, { headers: this.headers })
 
   }
 
   CreateEmployee(user: any) {
-    this.http.post<any>('https://localhost:7072/Employee/CreateNewEmployee', user, { headers: this.headers })
+    this.http.post<any>( this.baseURL + '/Employee/CreateNewEmployee', user, { headers: this.headers })
 
   }
 
   CancelDrive(driveId:number, reason:string){
-    return this.http.patch<any>(this.baseURL+`Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
+    return this.http.patch<any>( this.baseURL+`Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
     
   }
   //Admin
   AddLocation(locationName:string)
   {
-    return this.http.post<any>(`https://localhost:7072/Location/CreateNewLocation?locationName=${locationName}`,  null, { headers: this.headers })
+    return this.http.post<any>( this.baseURL + `Location/CreateNewLocation?locationName=${locationName}`,  null, { headers: this.headers })
   }
   AddProject(projectName:string,departmentId:number)
   {     
-   return this.http.post<any>(`https://localhost:7072/Project/CreateNewProject?departmentId=${departmentId}&projectName=${projectName}`,null,{ headers: this.headers })
+   return this.http.post<any>( this.baseURL + `Project/CreateNewProject?departmentId=${departmentId}&projectName=${projectName}`,null,{ headers: this.headers })
   }
   AddRole(roleName:string){
-    return this.http.post<any>(`https://localhost:7072/Role/CreateNewRole?roleName=${roleName}`,null,{ headers: this.headers })
-
+    return this.http.post<any>( this.baseURL + `Role/CreateNewRole?roleName=${roleName}`,null,{ headers: this.headers })
+  }
+  AddDepartment(departmentName:string){
+    return this.http.post<any>( this.baseURL + `Department/CreateNewDepartment?departmentName=${departmentName}`,null,{ headers: this.headers })
   }
 
 
@@ -132,17 +134,25 @@ export class ConnectionService {
   //Admin
   RespondEmployeeRequest(employeeId:number,response:boolean)
   {
-    return this.http.patch<any>(`https://localhost:7072/Employee/RespondEmployeeRequest?employeeId=${employeeId}&response=${response}`,null,{ headers: this.headers })
+    return this.http.patch<any>( this.baseURL + `Employee/RespondEmployeeRequest?employeeId=${employeeId}&response=${response}`,null,{ headers: this.headers })
   }
   
   RemoveLocation(locationId:number)
   {
-    return this.http.patch<any>(`https://localhost:7072/Location/RemoveLocation?locationId=${locationId}`,null,{ headers: this.headers })
+    return this.http.patch<any>( this.baseURL + `Location/RemoveLocation?locationId=${locationId}`,null,{ headers: this.headers })
   }
   
   RemoveProject(projectId:number)
   {
-    return this.http.patch<any>(`https://localhost:7072/Project/RemoveProject?projectId=${projectId}`,null,{ headers: this.headers })
+    return this.http.patch<any>( this.baseURL + `Project/RemoveProject?projectId=${projectId}`,null,{ headers: this.headers })
+  }
+  RemoveRole(projectId:number)
+  {
+    return this.http.patch<any>( this.baseURL + `Role/RemoveRole?roleId=${projectId}`,null,{ headers: this.headers })
+  }
+  RemoveDepartment(departmentId:number)
+  {
+    return this.http.patch<any>( this.baseURL + `Department/RemoveDepartment?departmentId=${departmentId}`,null,{ headers: this.headers })
   }
 
 }

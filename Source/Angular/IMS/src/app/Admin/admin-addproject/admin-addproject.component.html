@@ -8,19 +8,12 @@
         <div class="card-body">
             <form [formGroup]="AddProjectForm" (ngSubmit)="addProject()" >
                 <div class="form-input">
-<<<<<<< Updated upstream
-                    <label class="form-label" for="Department">Department </label>
-                    <select name="Department" id="Department Name" class="form-select " name="departmentName" [(ngModel)]="_department">
-                        <option value="">Select the Department</option>
-                        <option *ngFor="let item of departmentValue" value={{item.departmentName}}> {{item.departmentName}} </option>
-=======
                     <label class="form-label" for="Department">Department Name</label>
                     <select name="Department" id="Department Name" class="form-select " formControlName="departmentId">
                         <option value="">Select the Department</option>
                         <ng-container *ngFor="let item of data">
                             <option *ngIf="item.departmentId!=4" value={{item.departmentId}}> {{item.departmentName}} </option>
                         </ng-container>
->>>>>>> Stashed changes
                     </select>
                 </div>
                 <div *ngIf="(submitted)||AddProjectForm.controls['departmentId'].invalid && AddProjectForm.controls['departmentId'].touched">
@@ -29,9 +22,6 @@
                 
                 <div class="form-input">
                     <label class="form-label" for="Name">Project Name </label>
-<<<<<<< Updated upstream
-                    <input type="text" id="Name" class="form-control " name="projectName" [(ngModel)]="_project" >
-=======
                     <input type="text" id="Name" class="form-control " formControlName="projectName" >
                 </div>
                 <div *ngIf="(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched">
@@ -43,10 +33,9 @@
 
                 <div [hidden]="response.length==0">
                     <h6 class="alert alert-success" >{{response}}</h6>
->>>>>>> Stashed changes
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-back"> Create </button>
+                    <button type="submit" class="btn btn-back"> Add </button>
                 </div>
             </form>
         </div>

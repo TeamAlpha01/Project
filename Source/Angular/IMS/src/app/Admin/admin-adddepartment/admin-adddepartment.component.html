@@ -3,14 +3,24 @@
     <app-navbar [title]="title"></app-navbar>
     <div class="Register CreatePool">
         <div class="card-body">
-            <form #form="ngForm" (ngSubmit)="addDepartment()">
+            <form [formGroup]="AddDepartmentForm" (ngSubmit)="addDepartment()">
                 
                 <div class="form-input">
                     <label class="form-label" for="Name">Department Name </label>
-                    <input type="text" id="Name" class="form-control " name="departmentName" [(ngModel)]="_department">
+                    <input type="text" id="Name" class="form-control " formControlName="departmentName" >
                 </div>
+                <div *ngIf="(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched">
+                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['required']">Department name is required</span>
+                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name is too short</span>
+                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['pattern'] && !AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name cannot contain numbers or symbols</span>
+                </div>
+
+                <div [hidden]="response.length==0">
+                    <h6 class="alert alert-success" >{{response}}</h6>
+                </div>
+                
                 <div class="text-center">
-                    <button type="submit" class="btn btn-back" (click)="addDepartment()">Create</button>
+                    <button type="submit" class="btn btn-back">Add</button>
                 </div>
             </form>
         </div>

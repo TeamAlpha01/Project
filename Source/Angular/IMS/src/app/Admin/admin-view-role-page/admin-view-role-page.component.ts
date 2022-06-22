@@ -5,22 +5,26 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 @Component({
   selector: 'app-admin-view-role-page',
   templateUrl: './admin-view-role-page.component.html',
-  styleUrls: ['./admin-view-role-page.component.css']
+  styleUrls: ['./admin-view-role-page.component.css'],
 })
 export class AdminViewRolePageComponent implements OnInit {
-  data: any;
+  title: string = 'Roles';
   totalLength: any;
   page: number = 1;
-  title: string = 'View Role';
-  role!: any[]
+  role: any;
 
-
-  constructor(private http: HttpClient, private connection: ConnectionService) { }
+  constructor(private http: HttpClient, private service: ConnectionService) {}
 
   ngOnInit() {
-    this.connection.GetRoles().subscribe((data: any) => {
-      this.role = data;
-    })
+    this.GetRoles();
   }
-
+  removeRole(roleId: number) {
+    this.service.RemoveRole(roleId).subscribe(() => this.GetRoles());
+  }
+  GetRoles() {
+    this.service.GetRoles().subscribe((data: any) => {
+      this.role = data;
+      this.totalLength = this.role.length;
+    });
+  }
 }
