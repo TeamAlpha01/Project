@@ -204,6 +204,32 @@ namespace IMS.DataAccessLayer
                 throw new Exception();
             }
         }
+       public List<PoolMembers> GetPoolsFromDatabase(int employeeID)
+        {
+            try
+            {
+                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Pools) where poolMember.EmployeeId==employeeID  select poolMember).ToList();
+
+                //return _db.PoolMembers.ToList();
+            }
+            catch (DbUpdateException exception)
+            {
+                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                throw new DbUpdateException();
+            }
+            catch (OperationCanceledException exception)
+            {
+                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                throw new OperationCanceledException();
+            }
+            
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                throw new Exception();
+            }
+
+        }
 
         /// <summary>
         /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 

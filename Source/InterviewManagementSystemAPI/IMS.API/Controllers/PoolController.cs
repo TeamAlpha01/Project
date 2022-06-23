@@ -185,6 +185,28 @@ public class PoolController : ControllerBase
             return Problem ("Sorry some internal error occured");
         }
     }
+    [HttpGet]
+    public IActionResult ViewPoolsByID(int employeeId)
+    {
+        if (employeeId <= 0)
+            BadRequest("Employee Id cannot be null or negative");
+
+        try
+        {
+            return Ok(_poolService.ViewPoolsByID(employeeId));
+        }
+        catch (ValidationException employeeNotFound)
+        {
+            _logger.LogInformation($"Pool Service : ViewPools(employeeID) : {employeeNotFound.Message}");
+            return BadRequest(employeeNotFound.Message);
+
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation("Service throwed exception while fetching locations ", exception);
+            return Problem("Sorry some internal error occured");
+        }
+    }
 
     /// <summary>
     /// This method will be implemented when "Add Pool Members" - Request rises.

@@ -120,6 +120,7 @@ namespace IMS.Service
                 return false;
             }
         }
+        
 
         /// <summary>
         /// This method will be implemented when Pool Controller Passes the Department Id to the service Layer to view all pools. And controll Shifts to Pool DAL.
@@ -150,6 +151,36 @@ namespace IMS.Service
                 throw new Exception();
             }
         }
+        public object ViewPoolsByID(int employeeId)
+        {
+            try
+            {
+                 return _poolDataAccessLayer.GetPoolsFromDatabase(employeeId).Select(
+                poolMembers=>new
+                {
+                     employeePool=poolMembers.Pools.PoolName
+                    // employeeAceNumber=poolMembers.Employees.EmployeeAceNumber,
+                    // employeeName=poolMembers.Employees.Name,
+                    // employeeRole=poolMembers.Employees.Role.RoleName
+
+
+                }
+                 );
+            }
+            catch (ValidationException departmentNotFound)
+            {
+                _logger.LogInformation($"Pool service :EditPool(int poolId,string poolName): {departmentNotFound.Message}");
+                throw departmentNotFound;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Pool Service:ViewPools(int departmentId): {exception.Message}");
+                throw new Exception();
+            }
+        }
+        
+
+        
 
         /// <summary>
         /// This method will be implemented when Pool Controller Passes the Employee Id, PoolId to the service Layer to add a member to the pool. And controll Shifts to Pool DAL.
