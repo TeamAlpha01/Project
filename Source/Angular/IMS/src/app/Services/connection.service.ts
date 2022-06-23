@@ -94,7 +94,7 @@ export class ConnectionService {
 
   }
 
-  GetTodaysInterview(): any {
+  GetTodaysInterviews(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewTodaysInterview', { headers: this.headers });
   }
 

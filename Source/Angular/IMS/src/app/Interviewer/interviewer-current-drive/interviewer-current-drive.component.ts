@@ -20,7 +20,6 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   pool: any[] = [];
   drive: any[] = [];
 
-  departmentDetails : any;
   driveDetails: any;
   poolDetails: any;
   interviewerpoolDetails :any;
@@ -51,7 +50,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
       }
     })
 
-  this.connection.GetTodaysInterview().subscribe({
+  this.connection.GetTodaysInterviews().subscribe({
       next: (data: any) => {
         this.driveDetails = data;
         for (let item of this.driveDetails) {

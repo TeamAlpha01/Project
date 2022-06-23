@@ -48,15 +48,14 @@ import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-
 
 const routes: Routes = [
   //interviewer pages
-  { path: 'interviewer-current-drive', component: InterviewerCurrentDriveComponent },     
-  { path: 'interviewer-home', component: InterviewerHomeComponent },
-  { path: 'profile', component: InterviwerProfileComponent },
-  { path: 'interviewer-dashboard', component: InterviewerDashboardComponent },
-  { path: 'interviewer-currentDrives', component: InterviewerCurrentDriveComponent },
-  { path: 'interviewer-scheduledDrives', component: InterviewerScheduledDriveComponent },
-  { path: 'interviewer-upcomingDrives', component: InterviewerUpcomingDriveComponent },
-  { path: 'interviewer-driveInvites', component: InterviewerDriveInvitesComponent },
-  { path: 'interviewer-accept-invite-page', component: InterviewerAcceptInvitePageComponent },
+  { path: 'interviewer/home', component: InterviewerHomeComponent },
+  { path: 'interviewer/profile', component: InterviwerProfileComponent },
+  { path: 'interviewer/dashboard', component: InterviewerDashboardComponent },
+  { path: 'interviewer/currentDrives', component: InterviewerCurrentDriveComponent },
+  { path: 'interviewer/scheduledDrives', component: InterviewerScheduledDriveComponent },
+  { path: 'interviewer/upcomingDrives', component: InterviewerUpcomingDriveComponent },
+  { path: 'interviewer/driveInvites', component: InterviewerDriveInvitesComponent },
+  { path: 'interviewer/driveInvites/accept-invite', component: InterviewerAcceptInvitePageComponent },
   { path: 'interviewer-cancelInterview', component: InterviewerCancelInterviewPageComponent },
 
 
