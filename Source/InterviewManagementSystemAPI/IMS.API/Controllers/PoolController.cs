@@ -126,13 +126,13 @@ public class PoolController : ControllerBase
     /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
 
     [HttpPut]
-    public IActionResult EditPool(int poolId, string poolName)
+    public IActionResult EditPool(int poolId, string poolName,int departmentId)
     {
-        if (poolId <= 0 && poolName == null)
-            BadRequest("Pool Id cannot be negative or null and Pool Name cannot be null");
+        if (poolId <= 0 && poolName == null && departmentId<=0)
+            BadRequest("Pool Id cannot be negative or null , Pool Name cannot be null and Department Id cannot be negative or null");
         try
         {
-            return _poolService.EditPool(poolId, poolName) ? Ok("Pool name changed Successfully") : BadRequest("Sorry internal error occured");
+            return _poolService.EditPool(poolId, poolName,departmentId) ? Ok("Pool name changed Successfully") : BadRequest("Sorry internal error occured");
 
         }
         catch (ValidationException poolNotFound)

@@ -126,7 +126,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Return true or Throws Exception : No pool is found with given Pool Id or The given pool Id is inactive,so unable to rename the pool</returns>
         /// Catches exceptions thorwed by Database if any Misconnections in DB
 
-        public bool EditPoolFromDatabase(int poolId, string poolName)
+        public bool EditPoolFromDatabase(int poolId, string poolName,int departmentId)
         {
             PoolValidation.IsEditPoolValid(poolId, poolName);
             try
@@ -137,11 +137,19 @@ namespace IMS.DataAccessLayer
                     throw new ValidationException("No pool is found with given Pool Id");
                 else if (edit.IsActive == false)
                     throw new ValidationException("The given pool Id is inactive,so unable to rename the pool");
+                if(_db.Pools.Any(p => p.PoolId == poolId && p.DepartmentId == departmentId && p.IsActive == true))
+                {
 
                 edit.PoolName = poolName;
                 _db.Pools.Update(edit);
                 _db.SaveChanges();
-                return true;
+                 return true;
+                }
+                else{
+                   throw new ValidationException("No pool is found with the given Department Id");
+                }
+               
+
 
             }
             catch (DbUpdateException exception)

@@ -7,7 +7,7 @@ namespace IMS.Service
         public bool CreatePool(int departmentId, string poolName);
         public bool RemovePool(int poolId);
 
-        public bool EditPool(int poolId, string poolName);
+        public bool EditPool(int poolId, string poolName,int departmentId);
         public object ViewPools();
         public object ViewPoolsByID(int employeeID);
         public bool AddPoolMember(int employeeId, int poolId);

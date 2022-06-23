@@ -95,14 +95,14 @@ namespace IMS.Service
         /// <param name="poolId">int</param>
         /// <param name="poolName">string</param>
         /// <returns>>Return True or False to the Pool Controller Layer</returns>
-        public bool EditPool(int poolId, string poolName)
+        public bool EditPool(int poolId, string poolName,int departmentId)
         {
             PoolValidation.IsEditPoolValid(poolId, poolName);
 
 
             try
             {
-                return _poolDataAccessLayer.EditPoolFromDatabase(poolId, poolName) ? true : false;
+                return _poolDataAccessLayer.EditPoolFromDatabase(poolId, poolName,departmentId) ? true : false;
             }
             catch (ArgumentException exception)
             {
@@ -158,7 +158,7 @@ namespace IMS.Service
                  return _poolDataAccessLayer.GetPoolsFromDatabase(employeeId).Select(
                 poolMembers=>new
                 {
-                     employeePool=poolMembers.Pools.PoolName
+                     employeesUnderPool=poolMembers.Pools.PoolName
                     // employeeAceNumber=poolMembers.Employees.EmployeeAceNumber,
                     // employeeName=poolMembers.Employees.Name,
                     // employeeRole=poolMembers.Employees.Role.RoleName
