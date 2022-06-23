@@ -107,7 +107,7 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return _db.Employees.Include(d=>d.Department).Include(r=>r.Role).ToList();
+                return _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project).ToList();
             }
             catch (DbUpdateException exception)
             {

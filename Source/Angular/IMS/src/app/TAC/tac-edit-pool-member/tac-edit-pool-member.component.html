@@ -51,11 +51,11 @@
                 <div class="">
                     <h3 class="card-header text-cente">Search Results</h3>
                     <div class="container my-box ">
-                        <div class="card-body p-1 border-bottom" *ngFor="let item of employeeDetails | filter:_dept | filter:_role | filter:_search">
+                        <div class="card-body p-1 border-bottom" *ngFor="let item of employeeDetails |filter:_dept |filter:_role |filter:_search">
                             <div class="d-flex justify-content-evenly align-items-center">
-                                <div class="fw-bolder col-md-3">{{item.employeeAceNumber}}</div>
-                                <div class="fw-bolder col-md-3">{{item.name}}</div>
-                                <div class="fw-bolder col-md-3">{{item.role}}</div>
+                                <div class="fw-bolder col-md-3">{{item.employeeACEId}}</div>
+                                <div class="fw-bolder col-md-3">{{item.employeeName}}</div>
+                                <div class="fw-bolder col-md-3">{{item.employeeRole}}</div>
                                 <div><button class="btn btn-success btn-sm"><i class=" fa-solid fa-plus"></i></button>
                                 </div>
                             </div>

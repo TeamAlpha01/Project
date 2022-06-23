@@ -7,7 +7,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./tac-edit-pool-member.component.css']
 })
 export class TacEditPoolMemberComponent implements OnInit {
-  title = 'Current Drive'
+  title = 'Manage Pool Member'
 
   //To get the inputs from the user
   _dept = '';
@@ -50,6 +50,7 @@ export class TacEditPoolMemberComponent implements OnInit {
   GetEmployees() {
     this.connection.GetEmployees().subscribe((data: any) => {
       this.employeeDetails = data;
+      console.warn(this.employeeDetails);
     })
   }
 

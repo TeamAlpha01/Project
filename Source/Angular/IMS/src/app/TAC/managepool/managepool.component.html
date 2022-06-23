@@ -3,60 +3,72 @@
     <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
 
+
+
     <!-- Navbar End -->
 
-    <section class="wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-4">
-                    <div class="card-card ">
-                        <a class="img-card" [routerLink]="['/tac/createPool']">
-                            <img src="./assets/Images/Current.jpg" />
-                        </a>
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                Create Pool
-                            </h4>
-                            <p>
-                                Create a new pool
-                            </p>
-                        </div>
+    <div class=" container shadow  bg-body rounded">
+        <div class="mt-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <label class="form-label" for="ACE Number">Department </label>
+                        <select name="Department" id="Department Name" class="form-select " name="_dept"
+                            [(ngModel)]="_dept">
+                            <option value="">Select the Department</option>
+                            <option *ngFor="let item of departmentDetails" value={{item.departmentName}}>
+                                {{item.departmentName}} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label" for="ACE Number">Pool </label>
+                        <select name="Pool" id="Pool" class="form-select" name="_pool" [(ngModel)]="_pool">
+                            <option value="">Select the Pool</option>
+                            <option *ngFor="let item of poolDetails | filter:_dept" value={{item.poolName}}>
+                                {{item.poolName}} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 text-center mt-4">
+                        <a routerLink="/tac/createPool"> <button class="btn btn-back">Create Pool</button></a>
                     </div>
                 </div>
-                <!--section 2-->
-                <div class="col-xs-12 col-sm-4">
-                    <div class="card-card ">
-                        <a class="img-card" [routerLink]="['/tac/editpool']">
-                            <img src="./assets/Images/Scheduled.jpg" />
-                        </a>
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                Edit Pool
-                            </h4>
-                            <p>
-                                You can view or remove a particular pool
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="card-card ">
+            </div>
+        </div>
+    </div>
 
-                        <a class="img-card" [routerLink]="['/tac/managepoolmembers']">
-                            <img src="./assets/Images/Upcoming.jpg" />
-                        </a>
-                        <div class="card-content">
-                            <h4 class="card-title">
-                                Manage Pool Member
-                            </h4>
-                            <p>
-                                You can add or remove pool members
-                            </p>
+    <div class="mt-3 container shadow  bg-body rounded"
+        *ngFor="let item of poolDetails | filter:_dept | filter:_pool | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength }">
+        <div class>
+            <div class="card-body">
+                <div class="row rone ">
+                    <div class="col-md-5 mt-2">
+                        <p class=""><b>Pool Name :</b> {{item.poolName}} </p>
+                    </div>
+                    <div class="col-md-4  mt-2">
+                        <p class=""><b>Department :</b> {{item.departmentName}} </p>
+                    </div>
+                    <div class="col-md-1 ">
+                        <div class="row" title="Manage Pool Members">
+                            <a routerLink="/tac/managepool/managepoolmembers" class="btn"><i class="fa fa-solid fa-user-pen "></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-1 ">
+                        <div class="row" title="Edit Pool">
+                            <a routerLink="/tac/managepool/editpool/{{item.poolId}}" class="btn"><i class="fa fa-solid fa-pen "></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-1 ">
+                        <div class="row" title="Remove Pool">
+                            <button (click)="RemovePool(item.poolId)" class="btn"><i
+                                    class="fa fa-solid fa-trash "></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    <div class="mt-3 sticky-pagination">
+        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    </div>
     <app-footer></app-footer>
 </div>

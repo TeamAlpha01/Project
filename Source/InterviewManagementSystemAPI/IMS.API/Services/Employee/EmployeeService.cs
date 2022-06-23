@@ -98,12 +98,23 @@ namespace IMS.Service
         /// Returns list of all employees who are in "IsActive==true" or
         /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
         /// </returns>
-        public IEnumerable<Employee> ViewEmployees()
+        public Object ViewEmployees()
         {
             try
             {
-                IEnumerable<Employee> employees = new List<Employee>();
-                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsActive == true select employee;
+                // IEnumerable<Employee> employees = new List<Employee>();
+                return (from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsActive == true select employee).Select(
+                    e => new
+                    {
+                        EmployeeId=e.EmployeeId,
+                        EmployeeACEId = e.EmployeeAceNumber,
+                        EmployeeName = e.Name,
+                        EmployeeDepartment = e.Department.DepartmentName,
+                        EmployeeProject = e.Project.ProjectName,
+                        EmployeeRole = e.Role.RoleName,
+                        EmployeeEmailID = e.EmailId
+
+                });
             }
             catch (Exception exception)
             {
@@ -156,7 +167,7 @@ namespace IMS.Service
         /// Returns list of employees who's departmentId matches in database table department id or
         /// Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
         /// </returns>
-        public object ViewEmployeesByDepartment(int departmentId)
+        public Object ViewEmployeesByDepartment(int departmentId)
         {
             EmployeeValidation.IsDepartmentValid(departmentId);
             _departmentDataAccessLayer.CheckDepartmentId(departmentId);
@@ -242,7 +253,7 @@ namespace IMS.Service
                         employeeName = e.Name,
                         employeeDepartment= e.Department.DepartmentName,
                         employeeRole=e.Role.RoleName
-                    }
+                    } 
                 );
             }
             catch (Exception exception)
@@ -270,7 +281,7 @@ namespace IMS.Service
             try
             {
                 return _employeeDataAccessLayer.RespondEmployeeRequest(employeeId,response);
-            }
+            } 
             catch (Exception exception)
             {
                 _logger.LogInformation($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
