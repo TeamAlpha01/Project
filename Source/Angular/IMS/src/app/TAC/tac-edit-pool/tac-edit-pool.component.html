@@ -5,32 +5,26 @@
 
      <div class="Register CreatePool">
         <div class="card-body">
-            <form [formGroup]="AddPoolForm" (ngSubmit)="addPool()" >
+            <form [formGroup]="EditPoolForm" (ngSubmit)="EditPool()" >
                 <div class="form-input">
                     <label class="form-label" for="Department">Department Name</label>
-                    <select name="Department" id="Department Name" class="form-select " formControlName="departmentId">
-                        <option value="">Select the Department</option>
-                        <ng-container *ngFor="let item of data">
-                            <option *ngIf="item.departmentId!=4" value={{item.departmentId}}> {{item.departmentName}} </option>
-                        </ng-container>
+                    <select name="Department" id="Department Name" class="form-select "  disabled>
+                        <option value="">{{_dept}}</option>
                     </select>
                 </div>
-                <div *ngIf="(submitted)||AddPoolForm.controls['departmentId'].invalid && AddPoolForm.controls['departmentId'].touched">
-                    <span class="text-danger" *ngIf="AddPoolForm.controls['departmentId'].errors?.['required']">*Choose a Department</span>
-                </div>
-                
+               
                 <div class="form-input">
                     <label class="form-label" for="Name">Pool Name </label>
-                    <input type="text" id="Name" class="form-control " formControlName="poolName" >
+                    <input [class.is-invalid]="(error.length)||(submitted)||EditPoolForm.controls['poolName'].invalid && EditPoolForm.controls['poolName'].touched" type="text" id="Name" class="form-control " formControlName="poolName" value="{{_pool}}">
                 </div>
-                <div *ngIf="(submitted)||AddPoolForm.controls['poolName'].invalid && AddPoolForm.controls['poolName'].touched">
-                    <span class="text-danger" *ngIf="AddPoolForm.controls['poolName'].errors?.['required']">*Pool name is required</span>
-                    <span class="text-danger" *ngIf="AddPoolForm.controls['poolName'].errors?.['minlength']">*Pool name is too short</span>
-                    <span class="text-danger" *ngIf="AddPoolForm.controls['poolName'].errors?.['pattern'] && !AddPoolForm.controls['poolName'].errors?.['minlength']">*Pool name cannot contain numbers or symbols</span>
+                <div *ngIf="(submitted)||EditPoolForm.controls['poolName'].invalid && EditPoolForm.controls['poolName'].touched">
+                    <span class="text-danger" *ngIf="EditPoolForm.controls['poolName'].errors?.['required']">*Pool name is required</span>
+                    <span class="text-danger" *ngIf="EditPoolForm.controls['poolName'].errors?.['minlength']">*Pool name is too short</span>
+                    <span class="text-danger" *ngIf="EditPoolForm.controls['poolName'].errors?.['pattern'] && !EditPoolForm.controls['poolName'].errors?.['minlength']">*Pool name cannot contain numbers or symbols</span>
                 </div>
 
-                <div [hidden]="response.length==0">
-                    <h6 class="alert alert-success" >{{response}}</h6>
+                <div *ngIf="response.length!=0">
+                    <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                 </div>
                 
                 <div class="text-center">

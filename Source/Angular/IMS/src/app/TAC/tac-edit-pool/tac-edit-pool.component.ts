@@ -13,36 +13,69 @@ export class TacEditPoolComponent implements OnInit {
   data: any;
   response: string = '';
   poolId: any;
-  
-
-
-  constructor(private connection: ConnectionService, private fb: FormBuilder, private route:ActivatedRoute) { }
+  poolDetails: any;
+  _pool = '';
+  _dept = '';
+  error: string = '';
   submitted: boolean = false;
-  AddPoolForm = this.fb.group({
-    poolName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\\s]*')]],
-    departmentId: ['', [Validators.required]]
+
+
+
+  constructor(private connection: ConnectionService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { }
+
+
+  EditPoolForm = this.fb.group({
+    poolName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z.0-9\\s]*')]],
   });
- 
+
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.poolId = params['poolId']});
+      this.poolId = params['poolId']
+    });
+    this.GetPools();
   }
-  
+
+  GetPools() {
+    this.connection.GetPools().subscribe((data: any) => {
+      this.poolDetails = data;
+      for (let item of this.poolDetails) {
+        if (this.poolId == item.poolId) {
+          this._pool = item.poolName;
+          console.log(this._pool);
+          this._dept = item.departmentName;
+        }
+      }
+    })
+  }
+
+
   getpoolName() {
-    return this.AddPoolForm.get('poolName')
+    return this.EditPoolForm.get('poolName')
   }
-  getdepartmentId() {
-    return this.AddPoolForm.get('departmentId')
-  }
-  addPool() {
-    this.submitted = true
-    if (this.AddPoolForm.valid) {
+
+
+  EditPool() {
+    this.submitted = true;
+    this.error = '';
+    if (this.EditPoolForm.valid) {
       console.log(true)
-      this.connection.AddPool(this.getpoolName()?.value, this.getdepartmentId()?.value).subscribe((data) => this.response = data.message);
-      setTimeout(() => { this.response = ''; this.AddPoolForm.reset() }, 1000);
-      this.submitted = false;
+      this.connection.EditPool(this.poolId, this.getpoolName()?.value).subscribe({
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message,
+        complete: () => this.clearInputFields(),
+      });
     }
+  }
+
+  clearInputFields() 
+  {    
+      this.submitted = false;
+      setTimeout(() => {
+        this.response = '';
+        this.router.navigateByUrl("/tac/managepool");
+      }, 2000);
+    
   }
 
 }

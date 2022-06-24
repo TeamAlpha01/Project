@@ -125,11 +125,27 @@ export class ConnectionService {
     
   }
 
-  AddPool(pooltName:string,departmentId:number)
+  AddPool(poolName:string,departmentId:number)
   {     
-   return this.http.post<any>( this.baseURL + `Pool/CreateNewPool?departmentId=${departmentId}&poolName=${pooltName}`,null,{ headers: this.headers })
+   return this.http.post<any>( this.baseURL + `Pool/CreateNewPool?departmentId=${departmentId}&poolName=${poolName}`,null,{ headers: this.headers })
   }
-  
+
+  AddPoolMember(employeeId:number,poolId:number)
+  {     
+   return this.http.post<any>( this.baseURL + `Pool/AddPoolMember?employeeId=${employeeId}&poolId=${poolId}`,null,{ headers: this.headers })
+  }
+
+  EditPool(poolId:number,poolName:string){
+    return this.http.put<any>( this.baseURL + `Pool/EditPool?poolId=${poolId}&poolName=${poolName}`,null,{ headers: this.headers })
+  }
+
+  RemovePoolMember(poolMemberId:number)
+  {     
+   return this.http.post<any>( this.baseURL + `Pool/RemovePoolMember?poolMemberId=${poolMemberId}`,null,{ headers: this.headers })
+  }
+
+
+
   RemovePool(poolId:number)
   {     
    return this.http.post<any>( this.baseURL + `Pool/RemovePool?poolId=${poolId}`,null,{ headers: this.headers })
