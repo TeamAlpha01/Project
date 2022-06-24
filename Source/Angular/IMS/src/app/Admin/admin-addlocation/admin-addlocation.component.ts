@@ -12,33 +12,53 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AdminAddlocationComponent implements OnInit {
   title = 'Add Location';
-  response:string = '';
-  submitted:boolean=false;
+  response: string = '';
+  error: string = '';
+  submitted: boolean = false;
 
-  constructor(private service: ConnectionService,private fb : FormBuilder) {}
+  constructor(private service: ConnectionService, private fb: FormBuilder) {}
 
-  AddLocationForm = this.fb.group(
-    {
-      locationName:['',[Validators.required,Validators.minLength(3),Validators.pattern('[A-Za-z\\s]*')]]
-    }
-  );
+  AddLocationForm = this.fb.group({
+    locationName: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern('[A-Za-z\\s]*'),
+      ],
+    ],
+  });
 
-  getLocationName(){
+  getLocationName() {
     return this.AddLocationForm.get('locationName');
   }
   ngOnInit(): void {}
   pageTitle = 'Department';
 
-  addLocation() 
-  {
-    this.submitted=true;
-
-    if(this.getLocationName()?.valid)
-    {
-      this.service.AddLocation(this.getLocationName()?.value).subscribe((data)=> {this.response=data.message});
-      setTimeout(()=>{this.response = '';this.AddLocationForm.reset()}, 1000);
-      this.submitted=false;
+  addLocation() {
+    this.submitted = true;
+    console.log(this.submitted);
+    this.error = '';
+    if (this.getLocationName()?.valid) {
+      this.service.AddLocation(this.getLocationName()?.value).subscribe({
+        next: (data) => {
+          this.response = data.message;
+        },
+        error: (error) => {
+          this.error = error.error.message;
+        },
+        complete: () => this.clearFields(),
+      });
     }
+    this.submitted = false;
+  }
 
+  clearFields() {
+    if (this.error.length == 0) {
+      setTimeout(() => {
+        this.response = '';
+        this.AddLocationForm.reset();
+      }, 2000);
+    }
   }
 }

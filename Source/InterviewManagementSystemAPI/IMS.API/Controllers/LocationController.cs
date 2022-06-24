@@ -49,7 +49,7 @@ public class LocationController : ControllerBase
         catch (ValidationException locationnameAlreadyExists)
         {
             _logger.LogInformation($"Location Service : CreateNewLocation(string locationName) : {locationnameAlreadyExists.Message}");
-            return BadRequest(locationnameAlreadyExists.Message);
+            return BadRequest(UitilityService.Response(locationnameAlreadyExists.Message));
         }
         catch (Exception exception)
         {

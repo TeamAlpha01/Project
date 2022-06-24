@@ -1,7 +1,8 @@
-import { Department } from './../Model/Department';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { HttpClientModule, HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
+import { catchError, throwError } from 'rxjs';
 
 
 @Injectable({
@@ -16,7 +17,6 @@ export class ConnectionService {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${AuthenticationService.GetData("token")}`
   })
-
 
 
   //GET methods
@@ -131,7 +131,7 @@ export class ConnectionService {
   //Admin
   AddLocation(locationName:string)
   {
-    return this.http.post<any>( this.baseURL + `Location/CreateNewLocation?locationName=${locationName}`,  null, { headers: this.headers })
+    return this.http.post<any>( this.baseURL + `Location/CreateNewLocation?locationName=${locationName}`,  null, { headers: this.headers });
   }
   AddProject(projectName:string,departmentId:number)
   {     

@@ -102,19 +102,17 @@ namespace IMS.Service
         {
             try
             {
-                // IEnumerable<Employee> employees = new List<Employee>();
-                return (from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsActive == true select employee).Select(
-                    e => new
-                    {
-                        EmployeeId=e.EmployeeId,
-                        EmployeeACEId = e.EmployeeAceNumber,
-                        EmployeeName = e.Name,
-                        EmployeeDepartment = e.Department.DepartmentName,
-                        EmployeeProject = e.Project.ProjectName,
-                        EmployeeRole = e.Role.RoleName,
-                        EmployeeEmailID = e.EmailId
-
-                });
+                return  (from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsActive == true select employee).
+                Select(
+                    employee => new{
+                        employeeId=employee.EmployeeId,
+                        employeeName=employee.Name,
+                        employeeAceNumber=employee.EmployeeAceNumber,
+                        employeeDepartmentName=employee.Department.DepartmentName,
+                        employeeProjectName=employee.Project.ProjectName,
+                        employeeRoleName=employee.Role.RoleName,
+                    }
+                );
             }
             catch (Exception exception)
             {

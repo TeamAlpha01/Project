@@ -12,7 +12,7 @@
                         <div class="Location">
                             <div class="form-input">
                                 <label class="form-label" for="locationName">Location Name </label>
-                                <input type="text" id="Name" class="form-control" formControlName="locationName">
+                                <input [class.is-invalid]="(error.length)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched" type="text" id="Name" class="form-control" formControlName="locationName">
                             </div>
                             <div *ngIf="(submitted)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched">
                                 <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['required']">Location name is
@@ -25,8 +25,12 @@
                         <div [hidden]="response.length==0">
                             <h6 class="alert alert-success" >{{response}}</h6>
                         </div>
+                        
                         <div class="text-center">
                             <button type="submit" class="btn btn-back">Add</button>
+                        </div>
+                        <div >
+                            <h6 class="text-center text-danger" >{{error}}</h6>
                         </div>
                     </form>
                 </div>
