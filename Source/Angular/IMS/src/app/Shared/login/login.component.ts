@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
             this.route.navigateByUrl("/tac/home");
           }
           else {
-            this.route.navigateByUrl("/interviewer-home");
+            this.route.navigateByUrl("/interviewer/home");
           }
           console.log(data)
 
