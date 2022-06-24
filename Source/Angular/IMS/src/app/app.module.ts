@@ -1,3 +1,4 @@
+import { SnackBarComponent } from './Shared/SnackBar/snack-bar/snack-bar.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -65,7 +66,8 @@ import { HistoryCardComponent } from './Shared/history-card/history-card.compone
 import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-employee-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -130,6 +132,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
     TacCancelledDriveHistoryComponent,
     HistoryCardComponent,
     TacEmployeeDashboardComponent,
+    SnackBarComponent
 
   ],
 
@@ -145,6 +148,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatSnackBarModule
         
 
 

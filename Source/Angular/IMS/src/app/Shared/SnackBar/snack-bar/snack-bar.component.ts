@@ -12,12 +12,14 @@ export class SnackBarComponent implements OnInit {
   @Input() snackBarAction:string='';
   constructor(private _snackBar: MatSnackBar) {}
   ngOnInit(): void {
+    
     this.openSnackBar();
   }
   
   openSnackBar() {
     this._snackBar.open(this.snackBarMessage,this.snackBarAction, {
-      duration: 1000,
+      duration: 3000,    
+      
     });
   }
 }
