@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/Services/connection.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-interviewer-upcoming-drive',
@@ -8,26 +10,46 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./interviewer-upcoming-drive.component.css']
 })
 export class InterviewerUpcomingDriveComponent implements OnInit {
+
+  title='Upcoming Interviews';
+
   totalLength: any;
   page: number = 1;
-  _dept = 'dotnet';
+
   _pool = '';
-  _date='';
+  _date ='';
+
   pool: any[] = [];
   drive: any[] = [];
-  title='Upcoming Drive';
-  interviwerpoolDetails :any;
-  constructor(private connection :ConnectionService) { }
+  
+  driveDetails: any;
+  poolDetails: any;
+  showErrorMessage: boolean = false;
+
+  constructor(private connection :ConnectionService,private route: Router) { }
 
   ngOnInit(): void {
     this.connection.GetPools().subscribe((data: any) => {
-      this.interviwerpoolDetails = data;
+      this.poolDetails = data;
   })
-    
-    for (let item of this.driveDetails) {
-      this.drive.push(item);
-    }
-  }filterDropdown() {
+
+    this.connection.GetUpcomingInterviews().subscribe({
+      next: (data: any) => {
+        this.driveDetails = data;
+        for (let item of this.driveDetails) {
+          this.drive.push(item);
+        }
+      },
+      error: (error: any) => {
+        if (error.status == 404) {
+          this.route.navigateByUrl("errorPage");
+        }
+      }
+    })
+  }
+  
+  
+  filterDropdown() {
 
     //To filter cards based on the date and pool selection
     this.drive = [];
@@ -49,85 +71,84 @@ export class InterviewerUpcomingDriveComponent implements OnInit {
         this.drive.push(item);
       }
     }
-
   }
-
-
-  department: string[] = ['dotnet']
-
-  poolDetails: any[] = [{
-    departmentName: 'dotnet',
-    poolName: 'Fresher'
-  },
-  {
-    departmentName: 'dotnet',
-    poolName: 'Fresher 1'
-  }, {
-    departmentName: 'dotnet',
-    poolName: 'Fresher 2'
-  },
-  {
-    departmentName: 'dotnet',
-    poolName: 'Fresher 3'
-  }]
-
-
-
-
-
-  driveDetails: any[] = [{
-    name: 'freshers 2021',
-    department: 'dotnet',
-    poolName: 'Fresher 1',
-    date: '2022-04-13',
-    fromTime:'4.00',
-    toTime:'5.00',
-    mode: 'offline',
-    location: 'chennai'
-  }, {
-    name: 'freshers 2022',
-    department: 'dotnet',
-    poolName: 'Fresher 2',
-    fromTime:'4.00',
-    toTime:'5.00',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  }, {
-    name: 'freshers 2022',
-    department: 'dotnet',
-    poolName: 'Fresher 3',
-    fromTime:'4.00',
-    toTime:'5.00',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  }, {
-    name: 'freshers 2021',
-    department: 'dotnet',
-    poolName: 'Fresher 2',
-    fromTime:'4.00',
-    toTime:'5.00',
-    date: '2022-04-12',
-    mode: 'offline',
-    location: 'chennai'
-  }, {
-    name: 'freshers 2022',
-    department: 'dotnet',
-    poolName: 'Fresher 1',
-    fromTime:'4.00',
-    toTime:'5.00',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  }, {
-    name: 'freshers 2022',
-    department: 'dotnet',
-    poolName: 'Fresher',
-    fromTime:'4.00',
-    toTime:'5.00',
-    date: '2022-04-12',
-    mode: 'online',
-    location: ''
-  }]
 }
+
+//   department: string[] = ['dotnet']
+
+//   poolDetails: any[] = [{
+//     departmentName: 'dotnet',
+//     poolName: 'Fresher'
+//   },
+//   {
+//     departmentName: 'dotnet',
+//     poolName: 'Fresher 1'
+//   }, {
+//     departmentName: 'dotnet',
+//     poolName: 'Fresher 2'
+//   },
+//   {
+//     departmentName: 'dotnet',
+//     poolName: 'Fresher 3'
+//   }]
+
+
+
+
+
+//   driveDetails: any[] = [{
+//     name: 'freshers 2021',
+//     department: 'dotnet',
+//     poolName: 'Fresher 1',
+//     date: '2022-04-13',
+//     fromTime:'4.00',
+//     toTime:'5.00',
+//     mode: 'offline',
+//     location: 'chennai'
+//   }, {
+//     name: 'freshers 2022',
+//     department: 'dotnet',
+//     poolName: 'Fresher 2',
+//     fromTime:'4.00',
+//     toTime:'5.00',
+//     date: '2022-04-12',
+//     mode: 'online',
+//     location: ''
+//   }, {
+//     name: 'freshers 2022',
+//     department: 'dotnet',
+//     poolName: 'Fresher 3',
+//     fromTime:'4.00',
+//     toTime:'5.00',
+//     date: '2022-04-12',
+//     mode: 'online',
+//     location: ''
+//   }, {
+//     name: 'freshers 2021',
+//     department: 'dotnet',
+//     poolName: 'Fresher 2',
+//     fromTime:'4.00',
+//     toTime:'5.00',
+//     date: '2022-04-12',
+//     mode: 'offline',
+//     location: 'chennai'
+//   }, {
+//     name: 'freshers 2022',
+//     department: 'dotnet',
+//     poolName: 'Fresher 1',
+//     fromTime:'4.00',
+//     toTime:'5.00',
+//     date: '2022-04-12',
+//     mode: 'online',
+//     location: ''
+//   }, {
+//     name: 'freshers 2022',
+//     department: 'dotnet',
+//     poolName: 'Fresher',
+//     fromTime:'4.00',
+//     toTime:'5.00',
+//     date: '2022-04-12',
+//     mode: 'online',
+//     location: ''
+//   }]
+// }

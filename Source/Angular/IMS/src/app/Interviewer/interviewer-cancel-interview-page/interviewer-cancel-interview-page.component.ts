@@ -7,6 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InterviewerCancelInterviewPageComponent implements OnInit {
 
+  title='Cancel Interview'
+
   @Input() name!: any[];
   page:number=1
   totalLength:any

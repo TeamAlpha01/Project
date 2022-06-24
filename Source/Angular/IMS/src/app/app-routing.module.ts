@@ -40,11 +40,6 @@ import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 import { TacScheduledDriveHistoryComponent } from './TAC/tac-scheduled-drive-history/tac-scheduled-drive-history.component';
 import { TacCancelledDriveHistoryComponent } from './TAC/tac-cancelled-drive-history/tac-cancelled-drive-history.component';
 import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-employee-dashboard.component';
-// import { AdminviewLocationPageComponent } from './Admin/admin-view-location-page/admin-viewLocation-page.component';
-
-
-
-
 
 const routes: Routes = [
   //interviewer pages
@@ -56,7 +51,7 @@ const routes: Routes = [
   { path: 'interviewer/upcomingDrives', component: InterviewerUpcomingDriveComponent },
   { path: 'interviewer/driveInvites', component: InterviewerDriveInvitesComponent },
   { path: 'interviewer/driveInvites/accept-invite', component: InterviewerAcceptInvitePageComponent },
-  { path: 'interviewer-cancelInterview', component: InterviewerCancelInterviewPageComponent },
+  { path: 'interviewer/cancelInterview', component: InterviewerCancelInterviewPageComponent },
 
 
   //admin pages
@@ -72,8 +67,6 @@ const routes: Routes = [
   { path: 'admin/project/add', component: AdminAddprojectComponent },
   
 
-
-               
 
   //tac pages
   { path: 'tac/dashboard', component: TacDashboardComponent },

@@ -98,6 +98,13 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewTodaysInterview', { headers: this.headers });
   }
 
+  GetScheduledInterviews(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewScheduledInterview', { headers: this.headers });
+  }
+
+  GetUpcomingInterviews(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewUpcomingInterview', { headers: this.headers });
+  }
   //POST methods
   Login(user: any) {
     return this.http.post<any>( this.baseURL + `Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.headers })
