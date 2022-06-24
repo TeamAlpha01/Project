@@ -267,6 +267,7 @@ namespace IMS.Service
             return _poolDataAccessLayer.GetPoolMembersFromDatabase(poolId).Select(
                 poolMembers=>new
                 {
+                    poolId=poolMembers.PoolMembersId,
                     employeeAceNumber=poolMembers.Employees.EmployeeAceNumber,
                     employeeName=poolMembers.Employees.Name,
                     employeeRole=poolMembers.Employees.Role.RoleName

@@ -132,7 +132,7 @@ public class PoolController : ControllerBase
             BadRequest("Pool Id cannot be negative or null , Pool Name cannot be null  cannot be negative or null");
         try
         {
-            return _poolService.EditPool(poolId, poolName) ? Ok("Pool name changed Successfully") : BadRequest("Sorry internal error occured");
+            return _poolService.EditPool(poolId, poolName) ? Ok(UitilityService.Response("Pool name changed Successfully")) : BadRequest("Sorry internal error occured");
 
         }
         catch (ValidationException poolNotFound)
@@ -241,8 +241,8 @@ public class PoolController : ControllerBase
         {
             if (_poolService.AddPoolMember(employeeId, poolId))
             {
-                _mailService.SendEmailAsync(_mailService.AddedEmployeeToPool(employeeId, poolId, Convert.ToInt32(User.FindFirst("UserId").Value)),true);
-                return Ok("Pool Member Added Successfully");
+                //_mailService.SendEmailAsync(_mailService.AddedEmployeeToPool(employeeId, poolId, Convert.ToInt32(User.FindFirst("UserId").Value)),true);
+                return Ok(UitilityService.Response("Pool Member Added Successfully"));
             }
 
             return Problem("Sorry internal error occured");
@@ -290,8 +290,8 @@ public class PoolController : ControllerBase
         {
             if(_poolService.RemovePoolMember(poolMemberId))
             {
-                _mailService.SendEmailAsync(_mailService.RemovedEmployeeFromPool(poolMemberId,Convert.ToInt32(User.FindFirst("UserId").Value)),true);
-                return Ok("Pool Member removed  Successfully");
+                //_mailService.SendEmailAsync(_mailService.RemovedEmployeeFromPool(poolMemberId,Convert.ToInt32(User.FindFirst("UserId").Value)),true);
+                return Ok(UitilityService.Response("Pool Member removed  Successfully"));
             }
             return Problem("Sorry internal error occured");
         }

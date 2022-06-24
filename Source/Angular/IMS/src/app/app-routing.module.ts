@@ -75,7 +75,7 @@ const routes: Routes = [
   { path: 'tac/dashboard/performance/cancelled-drive-history', component: TacCancelledDriveHistoryComponent },
   { path: 'tac/dashboard/poolmembers-performance', component: PoolmembersPerformanceComponent },
   { path: 'tac/dashboard/employee-dashboard', component: TacEmployeeDashboardComponent },
-  { path: 'tac/managepool/managepoolmembers', component: TacEditPoolMemberComponent },
+  { path: 'tac/managepool/managepoolmembers/:poolId', component: TacEditPoolMemberComponent },
   { path: 'tac/myProfile', component: TacProfileComponent },
   { path: 'tac/current-drive', component: TacCurrentDriveComponent },
   { path: 'tac/cancel-drive/:driveId', component: TacCancelDriveComponent },
