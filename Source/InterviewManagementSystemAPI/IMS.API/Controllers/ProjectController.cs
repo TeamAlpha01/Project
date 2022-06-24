@@ -46,7 +46,7 @@ namespace IMS.Controller;
         catch (ValidationException projectnameAlreadyExists)
         {
              _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {projectnameAlreadyExists.Message} : {projectnameAlreadyExists.StackTrace}");
-            return BadRequest(projectnameAlreadyExists.Message);
+            return BadRequest(UitilityService.Response(projectnameAlreadyExists.Message));
         }
         catch (Exception exception)
         {

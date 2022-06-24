@@ -12,6 +12,7 @@ export class AdminAddprojectComponent implements OnInit {
  title ='Add Project'
  data:any;
  response:string='';
+error: string='';
 
 
   constructor(private connection:ConnectionService, private fb: FormBuilder) { }
@@ -36,14 +37,28 @@ export class AdminAddprojectComponent implements OnInit {
     })
   }
   addProject(){
-    this.submitted=true
+    this.submitted=true;
+    this.error = '';
+    
     if(this.AddProjectForm.valid)
-    {
-      console.log(true)
-      this.connection.AddProject(this.getProjectName()?.value,this.getdepartmentId()?.value).subscribe((data)=>this.response = data.message);
-      setTimeout(()=>{this.response = '';this.AddProjectForm.reset()}, 1000);
-      this.submitted=false;
+    {      
+      this.connection.AddProject(this.getProjectName()?.value,this.getdepartmentId()?.value).subscribe({
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message,
+        complete: () => this.clearInputFields(),
+      });
     }
+  }
+
+  clearInputFields() 
+  {
+    
+      this.submitted = false;
+      setTimeout(() => {
+        this.response = '';
+        this.AddProjectForm.reset();
+      }, 1000);
+    
   }
 
 }

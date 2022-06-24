@@ -165,7 +165,7 @@ namespace IMS.DataAccessLayer
             try
             {
 
-                bool projectnameAlreadyExists = _db.Projects.Any(x => x.ProjectName == project.ProjectName && x.IsActive == true);
+                bool projectnameAlreadyExists = _db.Projects.Any(x => x.ProjectName == project.ProjectName && x.IsActive == true && x.DepartmentId==project.DepartmentId);
                 if (!projectnameAlreadyExists)
                 {
                     _db.Projects.Add(project);

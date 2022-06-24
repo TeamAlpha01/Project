@@ -32,33 +32,34 @@ export class AdminAddlocationComponent implements OnInit {
   getLocationName() {
     return this.AddLocationForm.get('locationName');
   }
-  ngOnInit(): void {}
-  pageTitle = 'Department';
 
-  addLocation() {
+  ngOnInit(): void {}
+
+
+  addLocation() 
+  {
     this.submitted = true;
-    console.log(this.submitted);
     this.error = '';
-    if (this.getLocationName()?.valid) {
+
+    if (this.AddLocationForm.valid)
+     {
       this.service.AddLocation(this.getLocationName()?.value).subscribe({
-        next: (data) => {
-          this.response = data.message;
-        },
-        error: (error) => {
-          this.error = error.error.message;
-        },
-        complete: () => this.clearFields(),
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message,
+        complete: () => this.clearInputFields(),
       });
     }
-    this.submitted = false;
-  }
 
-  clearFields() {
-    if (this.error.length == 0) {
+  }
+  
+  clearInputFields() 
+  {
+    
+      this.submitted = false;
       setTimeout(() => {
         this.response = '';
         this.AddLocationForm.reset();
       }, 2000);
-    }
+    
   }
 }

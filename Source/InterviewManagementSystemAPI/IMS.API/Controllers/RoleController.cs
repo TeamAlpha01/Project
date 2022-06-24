@@ -46,7 +46,7 @@ public class RoleController : ControllerBase
         catch (ValidationException roleNameException)
         {
             _logger.LogInformation($"Role Service : CreateNewRole() : {roleNameException.Message}");
-            return BadRequest(roleNameException.Message);
+            return BadRequest(UitilityService.Response(roleNameException.Message));
         }
         catch (Exception exception)
         {

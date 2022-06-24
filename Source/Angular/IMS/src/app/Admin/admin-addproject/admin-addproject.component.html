@@ -9,7 +9,7 @@
             <form [formGroup]="AddProjectForm" (ngSubmit)="addProject()" >
                 <div class="form-input">
                     <label class="form-label" for="Department">Department Name</label>
-                    <select name="Department" id="Department Name" class="form-select " formControlName="departmentId">
+                    <select [class.is-invalid]="(submitted)||AddProjectForm.controls['departmentId'].invalid && AddProjectForm.controls['departmentId'].touched" name="Department" id="Department Name" class="form-select " formControlName="departmentId">
                         <option value="">Select the Department</option>
                         <ng-container *ngFor="let item of data">
                             <option *ngIf="item.departmentId!=4" value={{item.departmentId}}> {{item.departmentName}} </option>
@@ -22,7 +22,7 @@
                 
                 <div class="form-input">
                     <label class="form-label" for="Name">Project Name </label>
-                    <input type="text" id="Name" class="form-control " formControlName="projectName" >
+                    <input [class.is-invalid]="(error.length)||(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched" type="text" id="Name" class="form-control " formControlName="projectName" >
                 </div>
                 <div *ngIf="(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched">
                     <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['required']">Project name is required</span>
@@ -31,11 +31,15 @@
                 </div>
 
 
-                <div [hidden]="response.length==0">
-                    <h6 class="alert alert-success" >{{response}}</h6>
+                <div *ngIf="response.length!=0">
+                    <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                 </div>
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-back"> Add </button>
+                </div>
+                <div >
+                    <h3 class="text-center text-danger" >{{error}}</h3>
                 </div>
             </form>
         </div>

@@ -7,7 +7,7 @@
                 
                 <div class="form-input">
                     <label class="form-label" for="Name">Department Name </label>
-                    <input type="text" id="Name" class="form-control " formControlName="departmentName" >
+                    <input [class.is-invalid]="(error.length)||(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched" type="text" id="Name" class="form-control " formControlName="departmentName" >
                 </div>
                 <div *ngIf="(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched">
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['required']">Department name is required</span>
@@ -15,12 +15,15 @@
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['pattern'] && !AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name cannot contain numbers or symbols</span>
                 </div>
 
-                <div [hidden]="response.length==0">
-                    <h6 class="alert alert-success" >{{response}}</h6>
+                <div *ngIf="response.length!=0">
+                    <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                 </div>
-                
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-back">Add</button>
+                </div>
+                <div >
+                    <h3 class="text-center text-danger" >{{error}}</h3>
                 </div>
             </form>
         </div>

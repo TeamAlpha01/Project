@@ -12,6 +12,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class AdminAdddepartmentComponent implements OnInit {
   title = 'Add Department';
   response: string = '';
+  error:string='';
   submitted: boolean = false;
 
   constructor(private service: ConnectionService, private fb: FormBuilder) {}
@@ -32,23 +33,30 @@ export class AdminAdddepartmentComponent implements OnInit {
   }
 
   addDepartment() {
-    //this.http.post<any>(`https://localhost:7072/Deparment/CreateNewDeparment?departmentName=${this._department}`,this._department)
     this.submitted = true;
+    this.error = '';
 
-    if (this.getDepartmentName()?.valid) 
-    {
-      this.service
-        .AddDepartment(this.getDepartmentName()?.value)
-        .subscribe((data) => {
-          this.response = data.message;
-        });
+    if (this.AddDepartmentForm.valid)
+     {
+      this.service.AddDepartment(this.getDepartmentName()?.value).subscribe({
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message,
+        complete: () => this.clearInputFields(),
+      });
+    }
+
+  }
+
+
+  clearInputFields() 
+  {
+    
+      this.submitted = false;
       setTimeout(() => {
         this.response = '';
         this.AddDepartmentForm.reset();
-      }, 1000);
-      this.submitted = false;
-    }
+      }, 2000);
+    
   }
-
   ngOnInit(): void {}
 }

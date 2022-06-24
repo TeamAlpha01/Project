@@ -11,6 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AdminRoleComponent implements OnInit {
   title = 'Add Role';
   response: string = '';
+  error: string='';
   submitted: boolean = false;
 
   constructor(private service: ConnectionService, private fb: FormBuilder) {}
@@ -35,18 +36,27 @@ export class AdminRoleComponent implements OnInit {
 
   addRole() {
     this.submitted = true;
-    if (this.AddRoleForm.valid) {
-      this.service
-        .AddRole(this.getRoleName()?.value)
-        .subscribe((data) => (this.response = data.message));
+    this.error = '';
 
+    if (this.AddRoleForm.valid)
+     {
+      this.service.AddRole(this.getRoleName()?.value).subscribe({
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message,
+        complete: () => this.clearInputFields(),
+      });
+    }
+  }
+
+  clearInputFields() 
+  {
+    
+      this.submitted = false;
       setTimeout(() => {
         this.response = '';
         this.AddRoleForm.reset();
-      }, 1000);
-
-      this.submitted = false;
-    }
+      }, 2000);
+    
   }
 
   pageTitle = 'Department';

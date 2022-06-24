@@ -46,7 +46,7 @@ public class DepartmentController : ControllerBase
          catch (ValidationException departmentnotvalid)
         {
             _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {departmentnotvalid.Message} : {departmentnotvalid.StackTrace}");
-            return BadRequest(departmentnotvalid.Message);
+            return BadRequest(UitilityService.Response(departmentnotvalid.Message));
         }
         catch (Exception exception)
         {

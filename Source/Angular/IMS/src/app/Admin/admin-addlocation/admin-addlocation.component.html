@@ -12,18 +12,17 @@
                         <div class="Location">
                             <div class="form-input">
                                 <label class="form-label" for="locationName">Location Name </label>
-                                <input [class.is-invalid]="(error.length)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched" type="text" id="Name" class="form-control" formControlName="locationName">
+                                <input [class.is-invalid]="(error.length)||(submitted)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched" type="text" id="Name" class="form-control" formControlName="locationName">
                             </div>
                             <div *ngIf="(submitted)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched">
-                                <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['required']">Location name is
-                                    required</span>
-                                    <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['minlength']">Location name is too short</span>
-                                    <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['pattern'] && !AddLocationForm.controls['locationName'].errors?.['minlength']">Location name cannot contain numbers or symbols</span>
+                                <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['required']">Location name is required</span>
+                                <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['minlength']">Location name is too short</span>
+                                <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['pattern'] && !AddLocationForm.controls['locationName'].errors?.['minlength']">Location name cannot contain numbers or symbols</span>
                             </div>
                         </div>
                             
                         <div *ngIf="response.length!=0">
-                            <app-snack-bar snackBarMessage="Loaction Added Successfully" snackBarAction="Done"></app-snack-bar>
+                            <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                         </div>
                         
                         
