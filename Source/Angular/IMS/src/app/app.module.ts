@@ -63,6 +63,9 @@ import { TacScheduledDriveHistoryComponent } from './TAC/tac-scheduled-drive-his
 import { TacCancelledDriveHistoryComponent } from './TAC/tac-cancelled-drive-history/tac-cancelled-drive-history.component';
 import { HistoryCardComponent } from './Shared/history-card/history-card.component';
 import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-employee-dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 
 
@@ -138,8 +141,11 @@ import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-
     Ng2SearchPipeModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxSpinnerModule
-    
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+        
 
 
   ],

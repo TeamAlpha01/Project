@@ -22,7 +22,11 @@
 
                 </div>
             </div>
-
+            <div *ngIf="loading">
+                <mat-spinner></mat-spinner>
+            </div>
+            
+            
             <div class="Login-btn">
                 <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log in </button>
             </div>

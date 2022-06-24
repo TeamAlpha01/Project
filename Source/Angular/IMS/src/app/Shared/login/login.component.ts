@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ConnectionService } from 'src/app/Services/connection.service';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,8 @@ export class LoginComponent implements OnInit {
   employeeID = '';
   employeeACENumber: any;
 
+  loading: boolean = false;
+
 
   loginForm = this.FB.group({
     ACENumber: ['', [Validators.required, Validators.pattern("ACE+[0-9]{4}")]],
@@ -26,7 +29,7 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private http: HttpClient, private route: Router, private connection: ConnectionService, private FB: FormBuilder) { }
-  
+
 
 
 
@@ -36,7 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-
+    this.loading=true
 
     if (this.loginForm.valid) {
       const user = {
@@ -44,41 +47,46 @@ export class LoginComponent implements OnInit {
         Password: this.loginForm.value['Password'],
       }
       console.log(user)
-      this.connection.Login(user).subscribe((data: any) => {
+      this.connection.Login(user).subscribe({
+        next: (data: any) => {
 
-        this.IsAdmin = data.isAdmin
-        this.IsTAC = data.isTAC
+          this.IsAdmin = data.isAdmin
+          this.IsTAC = data.isTAC
 
-        AuthenticationService.SetDateWithExpiry("token", data.token, data.expiryInMinutes)
-        AuthenticationService.SetDateWithExpiry("Admin", data.isAdmin, data.expiryInMinutes)
-        AuthenticationService.SetDateWithExpiry("TAC", data.isReviewer, data.expiryInMinutes)
+          AuthenticationService.SetDateWithExpiry("token", data.token, data.expiryInMinutes)
+          AuthenticationService.SetDateWithExpiry("Admin", data.isAdmin, data.expiryInMinutes)
+          AuthenticationService.SetDateWithExpiry("TAC", data.isReviewer, data.expiryInMinutes)
 
-        console.log(AuthenticationService.GetData("token"))
-        console.log(AuthenticationService.GetData("Admin"))
-        console.log(AuthenticationService.GetData("TAC"))
+          console.log(AuthenticationService.GetData("token"))
+          console.log(AuthenticationService.GetData("Admin"))
+          console.log(AuthenticationService.GetData("TAC"))
 
-        if (this.IsAdmin) {
-          this.route.navigateByUrl("/admin/requests");  //navigation
+          if (this.IsAdmin) {
+            this.route.navigateByUrl("/admin/requests");  //navigation
+          }
+          else if (this.IsTAC) {
+            this.route.navigateByUrl("/tac/home");
+          }
+          else {
+            this.route.navigateByUrl("/interviewer-home");
+          }
+          console.log(data)
+
+        },
+        error: (error: any) => {
+          console.warn("1");
+          console.warn(error);
+          if (error.status == 404) {
+            this.route.navigateByUrl("errorPage");
+          }
+        },
+        complete: () => {
+          console.log("1");
+          return this.loading = false;
         }
-        else if (this.IsTAC) {
-          this.route.navigateByUrl("/tac/home");
-        }
-        else {
-          this.route.navigateByUrl("/interviewer-home");
-        }
-        console.log(data)
-
-      },
-        //  (error:any)=>{
-        //   console.warn("1");
-        //   console.warn(error);
-        //   if(error.status==404){
-        //     this.route.navigateByUrl("errorPage");        
-        //   }
-        // }
-      )
+      })
     }
-
-
   }
 }
+
+
