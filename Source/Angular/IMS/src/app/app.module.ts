@@ -68,6 +68,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DialogBoxComponent } from './Shared/DialogBox/dialog-box/dialog-box.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 
@@ -132,7 +135,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     TacCancelledDriveHistoryComponent,
     HistoryCardComponent,
     TacEmployeeDashboardComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    DialogBoxComponent
 
   ],
 
@@ -148,8 +152,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     MatButtonModule,
-    MatSnackBarModule
-        
+    MatSnackBarModule,
+    MatDialogModule
 
 
   ],

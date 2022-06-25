@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogBoxComponent } from 'src/app/Shared/DialogBox/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-admin-addproject-page',
@@ -13,7 +15,7 @@ export class AdminviewProjectPageComponent implements OnInit {
   page: number = 1;
   title = "Projects";
  
-  constructor(private connection: ConnectionService) { }
+  constructor(private connection: ConnectionService,private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.GetProjects()
@@ -25,6 +27,12 @@ export class AdminviewProjectPageComponent implements OnInit {
     })
   }
   RemoveProject(projectId:number){
-    this.connection.RemoveProject(projectId).subscribe(()=>this.GetProjects());
+    let dialogRef = this.dialog.open(DialogBoxComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == 'confirm') {
+        this.connection.RemoveProject(projectId).subscribe(()=>this.GetProjects());
+      }
+    });
+   
   }
 }

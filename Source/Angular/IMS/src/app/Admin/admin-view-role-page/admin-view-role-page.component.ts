@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogBoxComponent } from 'src/app/Shared/DialogBox/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-admin-view-role-page',
@@ -13,13 +15,18 @@ export class AdminViewRolePageComponent implements OnInit {
   page: number = 1;
   role: any;
 
-  constructor(private http: HttpClient, private service: ConnectionService) {}
+  constructor(private service: ConnectionService,private dialog: MatDialog) {}
 
   ngOnInit() {
     this.GetRoles();
   }
   removeRole(roleId: number) {
-    this.service.RemoveRole(roleId).subscribe(() => this.GetRoles());
+    let dialogRef = this.dialog.open(DialogBoxComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == 'confirm') {
+        this.service.RemoveRole(roleId).subscribe(() => this.GetRoles());
+      }
+    });
   }
   GetRoles() {
     this.service.GetRoles().subscribe((data: any) => {
