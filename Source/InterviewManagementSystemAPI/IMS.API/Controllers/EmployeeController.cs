@@ -173,6 +173,20 @@ public class EmployeeController : ControllerBase
             return Problem("Sorry some internal error occured");
         }
     }
+    [HttpGet]
+    public IActionResult ViewEmployeeProfile()
+    {
+        try
+        {
+            int currentUser=Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_employeeService.ViewProfile(currentUser));
+        }
+        catch (Exception exception)
+        {
+            _logger.LogInformation($"Service throwed exception while fetching employees : {exception}");
+            return Problem("Sorry some internal error occured");
+        }
+    }
     /// <summary>
     /// This method implements when you want to see employees list filtered by Department id.
     /// </summary>
