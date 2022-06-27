@@ -355,6 +355,22 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+    [HttpGet]
+    public IActionResult ViewInvitesByID()
+    {
+        int currentUser=Convert.ToInt32(User.FindFirst("UserId").Value);
+        if ( currentUser<= 0)
+            return BadRequest("provide proper employee Id");
+        try
+        {
+            return Ok(_driveService.ViewDriveInvites(currentUser));
+        }
+        catch (Exception viewInvitesException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewInvites(int employeeId) : {viewInvitesException.Message} : {viewInvitesException.StackTrace}");
+            return Problem("Sorry internal error occured");
+        }
+    }
 
     /// <summary>
     /// This method invokes when a TAC wants to view their dashboard

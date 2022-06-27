@@ -111,7 +111,7 @@ namespace IMS.DataAccessLayer
                       );
             //  modelBuilder.Entity<Drive>()
             //         .HasData( 
-            //           new Drive {DriveId = 1, Name = "Freshers", FromDate = " ", ToDate = " ", DepartmentId = 1, PoolId = 1, ModeId = 1, LocationId = 1, IsScheduled = 1, IsCancelled = 0, CancelReason = CancelReason, AddedBy = 1, AddedOn = " ", UpdatedBy = 1, UpdatedOn = " "},
+            //           new Drive {DriveId = 1, Name = "Freshers", FromDate = " 2022-", ToDate = " ", DepartmentId = 1, PoolId = 1, ModeId = 1, LocationId = 1, IsScheduled = 1, IsCancelled = 0, CancelReason = CancelReason, AddedBy = 1, AddedOn = " ", UpdatedBy = 1, UpdatedOn = " "},
             //           new Drive {DriveId = 2, Name = "Freshers2022", FromDate = " ", ToDate = " ", DepartmentId = 2, PoolId = 2, ModeId = 2, LocationId = 2, IsScheduled = 0, IsCancelled = 1, CancelReason = "Default Reason", AddedBy = 1, AddedOn = " ", UpdatedBy = 1, UpdatedOn = " "}
             //           );
             //  modelBuilder.Entity<EmployeeDriveResponse>()

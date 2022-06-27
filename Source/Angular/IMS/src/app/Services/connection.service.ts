@@ -105,6 +105,13 @@ export class ConnectionService {
   GetUpcomingInterviews(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUpcomingInterview', { headers: this.headers });
   }
+
+  GetDriveInvites(employeeId:any){
+    return this.http.get<any>(this.baseURL + `Drive/ViewInvites?employeeId=${employeeId}`, { headers: this.headers});
+  }
+  GetDriveInvitesById(){
+    return this.http.get<any>(this.baseURL + `Drive/ViewInvitesByID`, { headers: this.headers});
+  }
   //POST methods
   Login(user: any) {
     return this.http.post<any>( this.baseURL + `Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.headers })

@@ -4,28 +4,28 @@
     <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
 
-    <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of driveInvites| paginate: { itemsPerPage: 1, currentPage: page,totalItems:totalLength }">
+    <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of Invites| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
         <div class>
             <div class="card-body">
                 <h3 class="card-title"><b>{{item.driveName}}</b></h3>
                 <hr>
                 <div class="row rone mt-4">
                     <div class="col-md-5">
-                        <p ><b>ROLE : </b> {{item.role}}</p>
-                        <p ><b>DATE : </b> {{item.date}}</p>
-                        <p ><b>INTERVIEW TIMING : </b>{{item.slot}}</p>
+                        <!-- <p ><b>ROLE : </b> {{item.role}}</p> -->
+                        <p ><b>FROM DATE : </b> {{item.fromDate}}</p>
+                        <p ><b>TO DATE : </b> {{item.toDate}}</p>
                     </div>
                     <div class="col-md-5">
-                        <p ><b>DEPARTMENT : </b>{{item.department}}</p>
-                        <p ><b>MODE : </b>{{item.mode}}</p>
-                        <p ><b>LOCATION : </b>{{item.location}}</p>
+                        <!-- <p ><b>DEPARTMENT : </b>{{item.department}}</p> -->
+                        <p ><b>MODE : </b> {{item.driveMode}}</p>
+                        <p ><b>LOCATION : </b> {{item.driveLocation}}</p>
                     </div>
                     <div class="col-md-2">
                         <div class="row mt-3">
-                            <a [routerLink]="['../interviewer-acceptInvite']"> <button class="btn btn-success">Accept</button></a>
+                            <a [routerLink]="['/interviewer/acceptInvite']"> <button class="btn btn-success">Accept</button></a>
                         </div>
                         <div class="row mt-3">
-                            <a href="#"><button class="btn btn-danger">Reject</button></a>
+                            <a href="['/interviewer/cancelInvite']"> <button class="btn btn-danger">Reject</button></a>
                         </div>
                     </div>
                 </div>
