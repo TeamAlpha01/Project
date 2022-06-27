@@ -1,8 +1,6 @@
+import { DialogueBoxService } from './../../Services/dialogue-box.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogBoxComponent } from 'src/app/Shared/DialogBox/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-admin-addproject-page',
@@ -15,7 +13,7 @@ export class AdminviewProjectPageComponent implements OnInit {
   page: number = 1;
   title = "Projects";
  
-  constructor(private connection: ConnectionService,private dialog: MatDialog) { }
+  constructor(private connection: ConnectionService,private dialogueService:DialogueBoxService) { }
 
   ngOnInit(): void {
     this.GetProjects()
@@ -26,13 +24,15 @@ export class AdminviewProjectPageComponent implements OnInit {
       this.data = data;
     })
   }
-  RemoveProject(projectId:number){
-    let dialogRef = this.dialog.open(DialogBoxComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == 'confirm') {
-        this.connection.RemoveProject(projectId).subscribe(()=>this.GetProjects());
-      }
+
+  async RemoveProject(projectId: number) {
+  
+    await this.dialogueService.IsDeleteConfirmed().then((value)=> {
+
+      if(value)
+      this.connection.RemoveProject(projectId).subscribe(()=>this.GetProjects());
+    
     });
-   
   }
+
 }

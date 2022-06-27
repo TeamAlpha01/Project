@@ -1,7 +1,4 @@
-import { data } from 'jquery';
 import { Component, OnInit } from '@angular/core';
-import { Location } from 'src/app/Model/Location';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { FormBuilder, Validators } from '@angular/forms';
 

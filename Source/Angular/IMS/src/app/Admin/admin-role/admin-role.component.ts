@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Role } from 'src/app/Model/Role';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { FormBuilder, Validators } from '@angular/forms';
 

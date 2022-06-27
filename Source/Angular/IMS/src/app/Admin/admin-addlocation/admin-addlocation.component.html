@@ -1,5 +1,5 @@
 
-<app-admin-header [CurrentNavigationPage]="'LocationPage'"></app-admin-header>
+<app-admin-header></app-admin-header>
 <!-- Content Start -->
 <div class="content">
     <!-- Navbar Start -->
@@ -36,6 +36,8 @@
                 </div>
             </div>
         </div>
-        
+        <div>
+            <a [routerLink]="['/admin/location']"> <button class="btn btn-back">BACK</button></a>
+        </div>
         <app-footer></app-footer>
 </div>

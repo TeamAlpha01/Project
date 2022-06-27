@@ -1,4 +1,4 @@
-<app-admin-header [CurrentNavigationPage]="'DepartmentPage'"></app-admin-header>
+<app-admin-header></app-admin-header>
 <div class="content">
     <app-navbar [title]="title"></app-navbar>
     <div class="Register CreatePool">
@@ -27,6 +27,9 @@
                 </div>
             </form>
         </div>
+    </div>
+    <div>
+        <a [routerLink]="['/admin/department']"> <button class="btn btn-back">BACK</button></a>
     </div>
     <app-footer></app-footer>
 </div>

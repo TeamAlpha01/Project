@@ -1,8 +1,6 @@
+import { DialogueBoxService } from './../../Services/dialogue-box.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogBoxComponent } from 'src/app/Shared/DialogBox/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-admin-view-role-page',
@@ -15,19 +13,23 @@ export class AdminViewRolePageComponent implements OnInit {
   page: number = 1;
   role: any;
 
-  constructor(private service: ConnectionService,private dialog: MatDialog) {}
+  constructor(private service: ConnectionService,private dialogueService:DialogueBoxService) {}
 
   ngOnInit() {
     this.GetRoles();
   }
-  removeRole(roleId: number) {
-    let dialogRef = this.dialog.open(DialogBoxComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == 'confirm') {
-        this.service.RemoveRole(roleId).subscribe(() => this.GetRoles());
-      }
+
+  
+  async removeRole(roleId: number) {
+  
+    await this.dialogueService.IsDeleteConfirmed().then((value)=> {
+
+      if(value)
+      this.service.RemoveRole(roleId).subscribe(() => this.GetRoles());
+    
     });
   }
+
   GetRoles() {
     this.service.GetRoles().subscribe((data: any) => {
       this.role = data;

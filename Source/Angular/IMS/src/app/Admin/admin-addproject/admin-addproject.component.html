@@ -1,4 +1,4 @@
-<app-admin-header [CurrentNavigationPage]="'ProjectPage'"></app-admin-header>
+<app-admin-header></app-admin-header>
 <!-- Sidebar End -->
 
 <div class="content">
@@ -44,5 +44,8 @@
             </form>
         </div>
      </div>
+     <div>
+        <a [routerLink]="['/admin/project']"> <button class="btn btn-back">BACK</button></a>
+    </div>
     <app-footer></app-footer>
  </div>

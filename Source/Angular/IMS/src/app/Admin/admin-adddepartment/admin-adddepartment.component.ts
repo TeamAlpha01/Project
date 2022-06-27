@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Department } from 'src/app/Model/Department';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({

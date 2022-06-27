@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
-import { DialogBoxComponent } from 'src/app/Shared/DialogBox/dialog-box/dialog-box.component';
-import { MatDialog } from '@angular/material/dialog';
+import { DialogueBoxService } from 'src/app/Services/dialogue-box.service';
 
 @Component({
   selector: 'app-admin-AddLocation-page',
@@ -15,22 +13,21 @@ export class AdminviewLocationPageComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
-  constructor(private service: ConnectionService,private dialog: MatDialog) {}
+  constructor(private service: ConnectionService,private dialogueService:DialogueBoxService) {}
 
   ngOnInit(): void {
     this.GetLocations();
   }
+  async removeLocation(employeeId: number) {
+  
+    await this.dialogueService.IsDeleteConfirmed().then((value)=> {
 
-  removeLocation(employeeId: number) {
-    let dialogRef = this.dialog.open(DialogBoxComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result == 'confirm') {
-        this.service
-          .RemoveLocation(employeeId)
-          .subscribe(() => this.GetLocations());
-      }
+      if(value)
+      this.service.RemoveLocation(employeeId).subscribe(() => this.GetLocations());
+    
     });
   }
+
 
   GetLocations() {
     this.service.GetLocations().subscribe((data: any) => {
