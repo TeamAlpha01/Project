@@ -57,7 +57,6 @@ import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.co
 import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
 import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
-import { InterviwerProfileComponent } from './Interviewer/interviwer-profile/interviwer-profile.component';
 import { RegisterPageComponent } from './Shared/register-page/register-page.component';
 import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 import { TacScheduledDriveHistoryComponent } from './TAC/tac-scheduled-drive-history/tac-scheduled-drive-history.component';
@@ -70,6 +69,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DialogBoxComponent } from './Shared/DialogBox/dialog-box/dialog-box.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/interviewer-profile.component';
 
 
 
@@ -128,7 +128,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     TacEditPoolComponent,
     TacEditPoolMemberComponent,
     TacCancelDriveComponent,
-    InterviwerProfileComponent,
+    InterviewerProfileComponent,
     RegisterPageComponent,
     ErrorPageComponent,
     TacScheduledDriveHistoryComponent,
@@ -136,7 +136,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     HistoryCardComponent,
     TacEmployeeDashboardComponent,
     SnackBarComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    InterviewerProfileComponent
 
   ],
 
