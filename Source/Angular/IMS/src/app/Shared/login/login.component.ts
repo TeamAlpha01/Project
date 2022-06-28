@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
 
           AuthenticationService.SetDateWithExpiry("token", data.token, data.expiryInMinutes)
           AuthenticationService.SetDateWithExpiry("Admin", data.isAdmin, data.expiryInMinutes)
-          AuthenticationService.SetDateWithExpiry("TAC", data.isReviewer, data.expiryInMinutes)
+          AuthenticationService.SetDateWithExpiry("TAC", data.isTAC, data.expiryInMinutes)
 
           console.log(AuthenticationService.GetData("token"))
           console.log(AuthenticationService.GetData("Admin"))

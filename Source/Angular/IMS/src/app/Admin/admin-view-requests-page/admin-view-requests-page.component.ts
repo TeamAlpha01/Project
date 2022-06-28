@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-admin-view-requests-page',
@@ -8,27 +9,28 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./admin-view-requests-page.component.css']
 })
 export class AdminViewRequestsPageComponent implements OnInit {
-  data: any[]=[];
+  data: any[] = [];
   totalLength: any;
   page: number = 1;
-  title="Employee Requests";
+  title = "Employee Requests";
   result: any;
- 
-  constructor(private http: HttpClient,private service:ConnectionService) { }
+
+  constructor(private http: HttpClient, private service: ConnectionService) { }
 
   ngOnInit(): void {
+    console.log(AuthenticationService.GetData("Admin"))
     this.GetEmployeeRequests();
   }
-  RespondEmployeeRequest(employeeId:number,responese:boolean){
-    this.service.RespondEmployeeRequest(employeeId,responese).subscribe(() => this.GetEmployeeRequests());   
+  RespondEmployeeRequest(employeeId: number, responese: boolean) {
+    this.service.RespondEmployeeRequest(employeeId, responese).subscribe(() => this.GetEmployeeRequests());
 
   }
-  GetEmployeeRequests(){
+  GetEmployeeRequests() {
     this.service.GetEmployeeRequests()
-    .subscribe((data:any) => {
-      this.data = data;
-      this.totalLength = data.length;
-    });
+      .subscribe((data: any) => {
+        this.data = data;
+        this.totalLength = data.length;
+      });
   }
 
 }

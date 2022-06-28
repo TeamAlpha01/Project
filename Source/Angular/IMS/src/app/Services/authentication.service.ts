@@ -33,16 +33,15 @@ export class AuthenticationService {
   }
 
   static IsAdmin(): boolean {
-
     return this.GetData("Admin")?.includes("true") ? true : false;
 
   }
   static IsTAC(): boolean {
     return this.GetData("TAC")?.includes("true") ? true : false;
   }
-  
 
-   ClearToken() {
+
+  ClearToken() {
     console.log(localStorage.length);
     localStorage.clear();
     console.log(localStorage.length);
