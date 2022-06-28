@@ -41,6 +41,30 @@ public class DriveControllerTest
         var Result=_driveController.CreateDrive(drive)as ObjectResult;
         Result.StatusCode.Should().Be(200);
     }
+    [Fact]
+    public void CreateDrive_ShouldReturn500_WithInvalidData()
+    {
+        Drive drive=DriveMock.CreateValidDrive();
+        _driveService.Setup(d=>d.CreateDrive(drive)).Returns(false);
+        var Result=_driveController.CreateDrive(drive) as ObjectResult;
+        Result.StatusCode.Should().Be(500);
+    }
+    [Fact]
+    public void CreateDrive_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
+    {
+        Drive drive=DriveMock.CreateValidDrive();
+        _driveService.Setup(v=>v.CreateDrive(drive)).Throws<ValidationException>();
+        var Result=_driveController.CreateDrive(drive)as ObjectResult;
+        Result.StatusCode.Should().Be(400);
+    }
+    [Fact]
+    public void CreateDrive_ShouldReturnStatusCode500_WhenServiceThrowsException()
+    {
+        Drive drive=DriveMock.CreateValidDrive();
+        _driveService.Setup(e=>e.CreateDrive(drive)).Throws<Exception>();
+        var Result=_driveController.CreateDrive(drive) as ObjectResult;
+        Result.StatusCode.Should().Be(500);
+    }
 
     // [Theory]
     // [InlineData("")]
@@ -59,11 +83,33 @@ public class DriveControllerTest
     [InlineData(0,1,"TestReason")]
     [InlineData(1,0,"TestReason")]
     [InlineData(0,0,"TestReason")]
+    [InlineData(0,0,null)]
+   
 
     public void CancelDrive_ShouldReturnStatusCode400_WhenNoProperInputs(int driveId, int tacId, string reason)
     {
         var Result = _driveController.CancelDrive(driveId,tacId,reason) as ObjectResult;
         Result.StatusCode.Should().Be(400);
+    }
+    [Fact]
+    public void CancelDrive_ShouldReturnStatusCode200_WithProperInputs()
+    {
+        int driveId=1;
+        int tacId=1;
+        string reason="Testing";
+        _driveService.Setup(c=>c.CancelDrive(driveId,tacId,reason)).Returns(true);
+        var Result=_driveController.CancelDrive(driveId,tacId,reason)as ObjectResult;
+        Result.StatusCode.Should().Be(200);
+    }
+    [Fact]
+    public void CancelDrive_ShouldReturnStatusCode500_WithInvalidInputs()
+    {
+        int driveId=1;
+        int tacId=1;
+        string reason="Testing";
+        _driveService.Setup(c=>c.CancelDrive(driveId,tacId,reason)).Returns(false);
+        var Result=_driveController.CancelDrive(driveId,tacId,reason) as ObjectResult;
+        Result.StatusCode.Should().Be(500);
     }
 
     // Include Mail Service for Status code 200
@@ -81,23 +127,8 @@ public class DriveControllerTest
 
     //     Result.StatusCode.Should().Be(200);
     // }
-
     [Fact]
-    public void CancelDrive_ShouldReturnProblem_WithProperInputs()
-    {
-        int driveId = 1; 
-        int tacId = 1; 
-        string reason = "TestReason";
-
-        _driveService.Setup(r => r.CancelDrive(driveId,tacId,reason)).Returns(false);
-
-        var Result = _driveController.CancelDrive(driveId,tacId,reason) as ObjectResult;
-
-        Result.StatusCode.Should().Be(500);
-    }
-
-    [Fact]
-    public void CancelDrive_ShouldReturnBadRequest_WithImProperInputs()
+    public void CancelDrive_ShouldReturnStatusCode400_WhenServiceThrowsValidation()
     {
         int driveId = 1; 
         int tacId = 1; 
@@ -113,7 +144,7 @@ public class DriveControllerTest
     // Add one more case for Drive cancelled but mail not triggered
 
     [Fact]
-    public void CancelDrive_ShouldReturnStatusCode500_WithProperInputs()
+    public void CancelDrive_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int driveId = 1; 
         int tacId = 1; 
@@ -132,23 +163,21 @@ public class DriveControllerTest
     public void ViewTodayDrive_ShouldReturnStatusCode200()
     {
         // Arrange
-        _driveService.Setup(driveService => driveService.ViewTodayDrives()).Returns(() => null);
+        _driveService.Setup(driveService => driveService.ViewTodayDrives()).Returns(new Object());
         // Act
         var Result = _driveController.ViewTodayDrives() as ObjectResult;
         //Assert
         Assert.Equal(200, Result.StatusCode);
     }
-
     [Fact]
-    public void ViewTdayDrive_ShouldReturnStatusCode500()
+    public void ViewTodayDrive_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
-        // Arrange
-        _driveService.Setup(driveService => driveService.ViewTodayDrives()).Throws<Exception>();
-        // Act
-        var Result = _driveController.ViewTodayDrives() as ObjectResult;
-        //Assert
-        Assert.Equal(500, Result.StatusCode);
+        _driveService.Setup(d=>d.ViewTodayDrives()).Throws<Exception>();
+        var Result=_driveController.ViewTodayDrives()as ObjectResult;
+        Result.StatusCode.Should().Be(500);
     }
+
+   
 
     // View Scheduled Drive
 
