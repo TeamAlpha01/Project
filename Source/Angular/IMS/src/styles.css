@@ -524,7 +524,7 @@
   #cancelinvitealign {
     text-align: center;
     font-size: 20px;
-  
+    background-color: #d2b0dd;
   }
   
   #cancelinvitebutton {
@@ -1730,3 +1730,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* :host ::ng-deep .custom-spinner circle{   
   stroke: #8D599F;
 } */
+
+#innercard{
+  background-color: rgb(212, 163, 235);
+}

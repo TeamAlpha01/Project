@@ -13,6 +13,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   Invites: any;
   dept=''
   department:any[]=[]
+  
   constructor(private connection :ConnectionService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
