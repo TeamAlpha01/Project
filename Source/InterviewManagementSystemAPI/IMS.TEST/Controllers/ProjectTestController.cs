@@ -6,7 +6,9 @@ using IMS.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using UnitTesting.MockData;
 using Xunit;
+
 
 namespace UnitTesting.Controllers;
 
@@ -34,9 +36,17 @@ public class ProjectTestController
 
         Result.StatusCode.Should().Be(200);
     }
+    [Theory]
+    [InlineData(0,null)]
+    public void CreateProject_ShouldReturnStatusCode400_WhenDepartmentIdAndProjectNameIsNull(int departmentId,string projectName)
+    {
+        var Result=_projectController.CreateNewProject(departmentId,projectName) as ObjectResult;
+        Result.StatusCode.Should().Be(400);
+
+    }
 
     [Fact]
-    public void CreateProject_ShouldReturnStatusCode500_WithProperInputs()
+    public void CreateProject_ShouldReturnStatusCode500_WithImProperInputs()
     {
         int departmentId = 1; 
         string projectName = "TestProject";
@@ -49,7 +59,7 @@ public class ProjectTestController
     }
 
     [Fact]
-    public void CreateProject_ShouldReturnBadRequest_WithImProperInputs()
+    public void CreateProject_ShouldReturnStatusCode400_WhenServiveThrowsValidationException()
     {
         int departmentId = 1; 
         string projectName = "TestProject";
@@ -62,7 +72,7 @@ public class ProjectTestController
     }
 
     [Fact]
-    public void CreateProject_ShouldReturnProblem_WithImProperInputs()
+    public void CreateProject_ShouldReturnProblem_WhenServiceThrowsException()
     {
         int departmentId = 1; 
         string projectName = "TestProject";
@@ -71,7 +81,7 @@ public class ProjectTestController
 
         var Result = _projectController.CreateNewProject(departmentId,projectName ) as ObjectResult;
 
-        Result.StatusCode.Should().Be(400);
+        Result.StatusCode.Should().Be(500);
     }
 
     
@@ -95,7 +105,7 @@ public class ProjectTestController
     }
 
     [Fact]
-    public void RemoveProject_ShouldReturnStatusCode500_WithProperprojectId()
+    public void RemoveProject_ShouldReturnStatusCode500_WithInvalidprojectId()
     {
         int projectId = 1;
         _departmentService.Setup(r => r.RemoveProject(projectId)).Returns(false);
@@ -104,16 +114,16 @@ public class ProjectTestController
     }
 
     [Fact]
-    public void RemoveProject_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
+    public void RemoveProject_ShouldReturnStatusCode400_WhenServiceThrowsException()
     {
         int projectId = 1;
         _departmentService.Setup(r => r.RemoveProject(projectId)).Throws<Exception>();
         var Result = _projectController.RemoveProject(projectId) as ObjectResult;
-        Result.StatusCode.Should().Be(400);
+        Result.StatusCode.Should().Be(500);
     }
 
     [Fact]
-    public void RemoveProject_ShouldReturnStatusCode500_WhenServiceThrowsException()
+    public void RemoveProject_ShouldReturnStatusCode500_WhenServiceThrowsValidationException()
     {
         int projectId = 0;
         _departmentService.Setup(r => r.RemoveProject(projectId)).Throws<ValidationException>();
@@ -125,23 +135,24 @@ public class ProjectTestController
     [Fact]
     public void Viewprojects_ShouldReturnStatusCode200()
     {
+        var projects=ProjectMock.ListOfProjects();
         // Arrange
-        _departmentService.Setup(departmentService => departmentService.ViewProjects()).Returns(() => null);
+        _departmentService.Setup(departmentService => departmentService.ViewProjects()).Returns(projects);
         // Act
         var Result = _projectController.ViewProjects() as ObjectResult;
         //Assert
-        Result.StatusCode.Should().Be(200);
+        Assert.Equal(projects,Result?.Value);
     }
 
     [Fact]
-    public void ViewProject_ShouldReturnStatusCode400()
+    public void ViewProject_ShouldReturnStatusCode400_WhenServiceThrowsException()
     {
         // Arrange
         _departmentService.Setup(departmentService => departmentService.ViewProjects()).Throws<Exception>();
         // Act
         var Result = _projectController.ViewProjects() as ObjectResult;
         //Assert
-        Assert.Equal(400, Result.StatusCode);
+        Assert.Equal(500, Result.StatusCode);
     }
 
 

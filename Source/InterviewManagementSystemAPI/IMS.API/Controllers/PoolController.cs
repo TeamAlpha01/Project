@@ -62,7 +62,7 @@ public class PoolController : ControllerBase
 
         catch (Exception exception)
         {
-            _logger.LogInformation($"Pool Service : CreatePool throwed an exception : {exception}");
+            _logger.LogInformation($"Pool Service : CreatePool throwed an exception : {exception.Message}");
             return Problem("Sorry some internal error occured");
         }
     }
@@ -129,7 +129,7 @@ public class PoolController : ControllerBase
     public IActionResult EditPool(int poolId, string poolName)
     {
         if (poolId <= 0 && poolName == null )
-            BadRequest("Pool Id cannot be negative or null , Pool Name cannot be null  cannot be negative or null");
+            return BadRequest("Pool Id cannot be negative or null , Pool Name cannot be null  cannot be negative or null");
         try
         {
             return _poolService.EditPool(poolId, poolName) ? Ok(UitilityService.Response("Pool name changed Successfully")) : BadRequest("Sorry internal error occured");
@@ -285,7 +285,7 @@ public class PoolController : ControllerBase
     public IActionResult RemovePoolMember(int poolMemberId)
     {
         if (poolMemberId <= 0)
-            BadRequest("PoolMember Id cannot be negative or null");
+            return BadRequest("PoolMember Id cannot be negative or null");
         try
         {
             if(_poolService.RemovePoolMember(poolMemberId))
@@ -332,7 +332,7 @@ public class PoolController : ControllerBase
     public IActionResult ViewPoolMembers(int poolId)
     {
         if (poolId <= 0)
-            BadRequest("Pool Id cannot be null or negative");
+           return BadRequest("Pool Id cannot be null or negative");
 
         try
         {

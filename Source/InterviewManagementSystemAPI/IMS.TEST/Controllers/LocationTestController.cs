@@ -6,6 +6,7 @@ using IMS.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using UnitTesting.MockData;
 using Xunit;
 
 namespace UnitTesting.Controllers;
@@ -52,7 +53,7 @@ public class LocationControllerTest
     }
 
     [Fact]
-    public void CreateNewlocation_ShouldReturnStatusCode500_WhenServiceThrowsValidationException()
+    public void CreateNewlocation_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         string locationName = "Chennai";
         _locationService.Setup(r => r.CreateLocation(locationName)).Throws<Exception>();
@@ -61,7 +62,7 @@ public class LocationControllerTest
     }
 
     [Fact]
-    public void CreateNewlocation_ShouldReturnStatusCode500_WhenServiceThrowsException()
+    public void CreateNewlocation_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         string locationName = "Chennai";
         _locationService.Setup(r => r.CreateLocation(locationName)).Throws<ValidationException>();
@@ -98,16 +99,16 @@ public class LocationControllerTest
     }
 
     [Fact]
-    public void Removelocation_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
+    public void Removelocation_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int locationId = 1;
         _locationService.Setup(r => r.RemoveLocation(locationId)).Throws<Exception>();
         var Result = _locationController.RemoveLocation(locationId) as ObjectResult;
-        Result.StatusCode.Should().Be(400);
+        Result.StatusCode.Should().Be(500);
     }
 
     [Fact]
-    public void Removelocation_ShouldReturnStatusCode500_WhenServiceThrowsException()
+    public void Removelocation_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int locationId = 0;
         _locationService.Setup(r => r.RemoveLocation(locationId)).Throws<ValidationException>();
@@ -120,12 +121,14 @@ public class LocationControllerTest
     [Fact]
     public void Viewlocation_ShouldReturnStatusCode200()
     {
+          var locations=LocationMock.GetLocationsMock();
+
         // Arrange
-        _locationService.Setup(locationService => locationService.ViewLocations()).Returns(() => null);
+        _locationService.Setup(locationService => locationService.ViewLocations()).Returns(locations);
         // Act
         var Result = _locationController.ViewLocations() as ObjectResult;
         //Assert
-        Result.StatusCode.Should().Be(200);
+         Assert.Equal(locations,Result?.Value);
     }
 
     [Fact]

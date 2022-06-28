@@ -20,16 +20,7 @@ public class PoolControllerTest
         _poolController = new PoolController(_logger.Object,_mailService.Object,_poolService.Object);
     }
   
-   //Test cases for create pool
-
-    // [Theory]
-    // [InlineData(0, null)]
-
-    // public void CreatePool_ShouldReturnStatusCode400_WhenNoProperInputs(int departmentId, string poolName)
-    // {
-    //     var Result = _poolController.CreateNewPool(departmentId,poolName) as ObjectResult;
-    //     Result.StatusCode.Should().Be(400);
-    // }
+   
 
     [Fact]
     public void CreatePool_ShouldReturnStatusCode200_WithProperInputs()
@@ -45,7 +36,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void CreatePool_ShouldReturnStatusCode500_WithProperInputs()
+    public void CreatePool_ShouldReturnStatusCode500_WithImProperInputs()
     {
         int departmentId = 1; 
         string poolName = "TestPool";
@@ -58,7 +49,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void Createpool_ShouldReturnBadRequest_WithImProperInputs()
+    public void CreateNewPool_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int departmentId = 1; 
         string poolName = "TestPool";
@@ -71,7 +62,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void Createpool_ShouldReturnProblem_WithImProperInputs()
+    public void CreateNewPool_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int departmentId = 1; 
         string poolName = "TestPool";
@@ -83,16 +74,7 @@ public class PoolControllerTest
         Result.StatusCode.Should().Be(500);
     }
 
-    // Remove Pool
-
-    // [Theory]
-    // [InlineData(0)]
-
-    // public void RemovePool_ShouldReturnStatusCode400_WhenNoProperInputs(int poolId)
-    // {
-    //     var Result = _poolController.RemovePool(poolId) as ObjectResult;
-    //     Result.StatusCode.Should().Be(400);
-    // }
+   
 
     [Fact]
     public void RemovePool_ShouldReturnStatusCode200_WithProperInputs()
@@ -107,7 +89,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void RemovePool_ShouldReturnStatusCode500_WithProperInputs()
+    public void RemovePool_ShouldReturnStatusCode500_WithImProperInputs()
     {
         int poolId = 1; 
 
@@ -119,7 +101,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void Removepool_ShouldReturnBadRequest_WithImProperInputs()
+    public void  RemovePool_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int poolId = 1;
 
@@ -131,7 +113,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void Removepool_ShouldReturnProblem_WithImProperInputs()
+    public void RemovePool_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int poolId = 1;
 
@@ -141,12 +123,56 @@ public class PoolControllerTest
 
         Result.StatusCode.Should().Be(500);
     }
+    [Fact]
+    public void EditPool_ShoulReturnBadRequest_WhenPoolIdAndPoolNameIsNull()
+    {
+        int poolId=0;
+        string poolName=null;
+        var Result=_poolController.EditPool(poolId,poolName) as ObjectResult;
+        Result.StatusCode.Should().Be(400);
+    }
+    [Fact]
+    public void EditPool_ShouldReturnStatus400_WhenServiceThrowsValidationException()
+    {
+        int poolId=1;
+        string poolName="Freshers";
+        _poolService.Setup(e=>e.EditPool(poolId,poolName)).Throws<ValidationException>();
+        var Result=_poolController.EditPool(poolId,poolName) as ObjectResult;
+        Result.StatusCode.Should().Be(400);
+    }
+    [Fact]
+    public void EditPool_ShouldReturnStatusCode500_WhenServiceThrowsException()
+    {
+        int poolId=1;
+        string poolName="Freshers";
+        _poolService.Setup(e=>e.EditPool(poolId,poolName)).Throws<Exception>();
+        var Result=_poolController.EditPool(poolId,poolName) as ObjectResult;
+        Result.StatusCode.Should().Be(400);
+     }
+     [Fact]
+     public void EditPool_ShouldReturnStatusCode200_WithProperInput()
+     {
+        int poolId=1;
+        string poolName="Freshers";
+        _poolService.Setup(e=>e.EditPool(poolId,poolName)).Returns(true);
+        var Result=_poolController.EditPool(poolId,poolName)as ObjectResult;
+        Result.StatusCode.Should().Be(200);
+     }
+     [Fact]
+     public void EditPool_ShouldReturnStatusCode500_withImProperInput()
+     {
+        int poolId=1;
+        string poolName="Freshers";
+        _poolService.Setup(e=>e.EditPool(poolId,poolName)).Returns(false);
+        var Result=_poolController.EditPool(poolId,poolName)as ObjectResult;
+        Result.StatusCode.Should().Be(400);
+     }
 
     [Fact]
     public void Viewpool_ShouldReturnStatusCode200()
     {
         // Arrange
-        _poolService.Setup(poolService => poolService.ViewPools()).Returns(() => null);
+        _poolService.Setup(poolService => poolService.ViewPools()).Returns(new Object());
         // Act
         var Result = _poolController.ViewPools() as ObjectResult;
         //Assert
@@ -154,7 +180,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void Viewpool_ShouldReturnStatusCode400()
+    public void Viewpool_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         // Arrange
         _poolService.Setup(poolService => poolService.ViewPools()).Throws<ValidationException>();
@@ -165,7 +191,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void Viewpool_ShouldReturnStatusCode500()
+    public void Viewpool_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         // Arrange
         _poolService.Setup(poolService => poolService.ViewPools()).Throws<Exception>();
@@ -199,9 +225,19 @@ public class PoolControllerTest
 
     //     Result.StatusCode.Should().Be(200);
     // }
+    [Fact]
+    public void AddPoolMember_ShouldReturnStatusCode200_WithProperInputs()
+    {
+        int poolId=1;
+        int employeeId=1;
+        _poolService.Setup(p=>p.AddPoolMember(poolId,employeeId)).Returns(true);
+        var Result=_poolController.AddPoolMember(poolId,employeeId)as ObjectResult;
+        Result.StatusCode.Should().Be(200);
+
+    }
 
     [Fact]
-    public void AddPoolMember_ShouldReturnProblem_WithProperInputs()
+    public void AddPoolMember_ShouldReturnStatusCode500_WithImProperInputs()
     {
         int poolId = 1; 
         int employeeId = 1; 
@@ -214,7 +250,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void AddPoolMembers_ShouldReturnBadRequest_WithImProperInputs()
+    public void AddPoolMembers_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int poolId = 1; 
         int employeeId = 1; 
@@ -229,7 +265,7 @@ public class PoolControllerTest
     // Add one more case for pool cancelled but mail not triggered
 
     [Fact]
-    public void AddPoolMembers_ShouldReturnBadRequest_WithProperInputs()
+    public void AddPoolMembers_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int poolId = 1; 
         int employeeId = 1; 
@@ -241,31 +277,27 @@ public class PoolControllerTest
         Result.StatusCode.Should().Be(500);
     }
 
-    // [Fact]
-    // public void RemovePoolMembers_ShouldReturnStatusCode400_WhenNoProperInputs()
-    // {
-    //     int poolMemberId = 0; 
-    //     var Result = _poolController.RemovePoolMember(poolMemberId) as ObjectResult;
-    //     Result.StatusCode.Should().Be(400);
-    // }
+   
 
     // Include Mail Service for Status code 200
-
-    // [Fact]
-    // public void AddPoolMember_ShouldReturnStatusCode200_WithProperInputs()
-    // {
-    //     int poolId = 1; 
-    //     int employeeId = 1; 
-    //     
-    //     _poolService.Setup(r => r.AddPoolMember(poolId,employeeId)).Returns(true);
-
-    //     var Result = _poolController.AddPoolMember(poolId,employeeId) as ObjectResult;
-
-    //     Result.StatusCode.Should().Be(200);
-    // }
+    [Theory]
+    [InlineData(0)]
+    public void RemovePoolMember_ShouldReturnStatusCode400_WhenPoolMemberIdIsZero(int poolMemberId)
+    {
+    var Result=_poolController.RemovePoolMember(poolMemberId) as ObjectResult;
+    Result.StatusCode.Should().Be(400);
+    }
+    [Fact]
+    public void RemovePoolMember_ShouldReturnStatusCode200_WithProperInputs()
+    {
+        int poolMemberId=1;
+        _poolService.Setup(p => p.RemovePoolMember(poolMemberId)).Returns(true);
+        var Result=_poolController.RemovePoolMember(poolMemberId)as ObjectResult;
+        Result.StatusCode.Should().Be(200);
+    }
 
     [Fact]
-    public void RemovePoolMember_ShouldReturnProblem_WithProperInputs()
+    public void RemovePoolMember_ShouldReturnStatusCode500_WithImProperInputs()
     {
         int poolmemberId = 1;
         
@@ -277,7 +309,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void RemovePoolMembers_ShouldReturnBadRequest_WithImProperInputs()
+    public void RemovePoolMembers_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int poolmemberId = 1; 
         
@@ -291,7 +323,7 @@ public class PoolControllerTest
     // Add one more case for pool cancelled but mail not triggered
 
     [Fact]
-    public void RemovePoolMembers_ShouldReturnBadRequest_WithProperInputs()
+    public void RemovePoolMembers_ShouldReturnStatusCode500_WhenServiceThrowException()
     {
         int poolmemberId = 1; 
         
@@ -302,28 +334,29 @@ public class PoolControllerTest
         Result.StatusCode.Should().Be(500);
     }
 
-    // [Fact]
-    // public void ViewPoolMembers_ShouldReturnStatusCode400_WhenNoProperInputs()
-    // {
-    //     int poolId = 0; 
-    //     var Result = _poolController.ViewPoolMembers(poolId) as ObjectResult;
-    //     Result.StatusCode.Should().Be(400);
-    // }
+    [Theory]
+    [InlineData(0)]
+    public void ViewPoolMembers_ShouldReturnStatusCode400_WhenPoolIdIsNull(int poolId)
+    {
+     
+        var Result = _poolController.ViewPoolMembers(poolId) as ObjectResult;
+        Result.StatusCode.Should().Be(400);
+    }
 
     [Fact]
     public void ViewPoolMembers_ShouldReturnStatusCode200_WithProperpoolId()
     {
         int poolId = 1; 
 
-        _poolService.Setup(r => r.ViewPoolMembers(poolId)).Returns(true);
+        _poolService.Setup(r => r.ViewPoolMembers(poolId)).Returns(new Object());
 
         var Result = _poolController.ViewPoolMembers(poolId) as ObjectResult;
 
         Result.StatusCode.Should().Be(200);
     }
-
+   
     [Fact]
-    public void ViewpoolMembers_ShouldReturn_ValidationException_WithProperpoolId()
+    public void ViewpoolMembers_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int poolId = 1; 
 
@@ -335,7 +368,7 @@ public class PoolControllerTest
     }
 
     [Fact]
-    public void ViewpoolMembers_ShouldReturnStatusCode500_WithProperpoolId()
+    public void ViewpoolMembers_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int poolId = 1; 
 

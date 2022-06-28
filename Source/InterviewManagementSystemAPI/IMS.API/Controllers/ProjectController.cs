@@ -51,7 +51,7 @@ namespace IMS.Controller;
         catch (Exception exception)
         {
              _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest("Sorry Internal Error occurred");
+          return Problem("Sorry some internal error occured ");
         }
     }
     /// <summary>
@@ -88,7 +88,7 @@ namespace IMS.Controller;
         catch (Exception exception)
         {
              _logger.LogInformation($"Project Controller : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
+            return Problem("Sorry some internal error occured ");
         }
     }
     /// <summary>
@@ -118,7 +118,7 @@ namespace IMS.Controller;
         catch (Exception exception)
         {
             _logger.LogInformation($"Project Controller : ViewProjects() : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
+            return Problem("Sorry some internal error occured ");
         }
     }
   }

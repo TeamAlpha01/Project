@@ -6,6 +6,7 @@ using IMS.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using UnitTesting.MockData;
 using Xunit;
 
 namespace UnitTesting.Controllers;
@@ -30,11 +31,11 @@ public class RoleControllerTest
         
         Result.StatusCode.Should().Be(400);
     }
-
-    [Fact]
-    public void CreateNewRole_ShouldReturnStatusCode200_WithProperRoleName()
+    [Theory]
+    [InlineData("Software Developer")]
+    public void CreateNewRole_ShouldReturnStatusCode200_WithProperRoleName(string roleName)
     {
-        string roleName = "Software Developer";
+      
         _roleService.Setup(r => r.CreateRole(roleName)).Returns(true);
 
         var Result = _roleController.CreateNewRole(roleName) as ObjectResult;
@@ -43,7 +44,7 @@ public class RoleControllerTest
     }
 
     [Fact]
-    public void CreateNewRole_ShouldReturnStatusCode500_WithProperRoleName()
+    public void CreateNewRole_ShouldReturnStatusCode500_WithInvalidRoleName()
     {
         string roleName = "Software Developer";
         _roleService.Setup(r => r.CreateRole(roleName)).Returns(false);
@@ -80,16 +81,18 @@ public class RoleControllerTest
     public void ViewRoles_ShouldReturnStatusCode200()
     {
 
-        // Arrange
-        _roleService.Setup(roleService => roleService.ViewRoles()).Returns(() => null);
+        var roles=RoleMock.GetRolesMock();
+        _roleService.Setup(v=>v.ViewRoles()).Returns(roles);
+        
+       
         // Act
         var Result = _roleController.ViewRoles() as ObjectResult;
         //Assert
-        Assert.Equal(200, Result.StatusCode);
+         Assert.Equal(roles,Result?.Value);
     }
 
     [Fact]
-    public void ViewRoles_ShouldReturnStatusCode500()
+    public void ViewRoles_ShouldReturnServiceThrowsException()
     {
         // Arrange
         _roleService.Setup(roleService => roleService.ViewRoles()).Throws<Exception>();

@@ -101,7 +101,7 @@ public class departmentControllerTest
     public void Removedepartment_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int departmentId = 1;
-        _departmentService.Setup(r => r.RemoveDepartment(departmentId)).Throws<Exception>();
+        _departmentService.Setup(r => r.RemoveDepartment(departmentId)).Throws<ValidationException>();
         var Result = _departmentController.RemoveDepartment(departmentId) as ObjectResult;
         Result.StatusCode.Should().Be(400);
     }
@@ -109,10 +109,10 @@ public class departmentControllerTest
     [Fact]
     public void Removedepartment_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
-        int departmentId = 0;
-        _departmentService.Setup(r => r.RemoveDepartment(departmentId)).Throws<ValidationException>();
+        int departmentId = 1;
+        _departmentService.Setup(r => r.RemoveDepartment(departmentId)).Throws<Exception>();
         var Result = _departmentController.RemoveDepartment(departmentId) as ObjectResult;
-        Result.StatusCode.Should().Be(400);
+       Result.StatusCode.Should().Be(500);
     }
 
     // Test for View department Method (2 TestCases)
@@ -129,14 +129,14 @@ public class departmentControllerTest
     }
 
     [Fact]
-    public void ViewDepartmrnt_ShouldReturnStatusCode400()
+    public void ViewDepartmrnt_ShouldReturnStatusCode500()
     {
         // Arrange
         _departmentService.Setup(departmentService => departmentService.ViewDepartments()).Throws<Exception>();
         // Act
         var Result = _departmentController.ViewDepartments() as ObjectResult;
         //Assert
-        Assert.Equal(400, Result.StatusCode);
+        Assert.Equal(500, Result.StatusCode);
     }
 
 }
