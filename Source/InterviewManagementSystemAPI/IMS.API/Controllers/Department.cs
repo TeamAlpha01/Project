@@ -79,15 +79,15 @@ public class DepartmentController : ControllerBase
         {
             return _departmentService.RemoveDepartment(departmentId) ? Ok(UitilityService.Response("Department Removed Successfully")) : Problem("Sorry internal error occured");
         }
-        catch (ValidationException departmentNotFound)
+        catch (ValidationException departmentExist)
         {
-            _logger.LogInformation($"Location Service : RemoveLocation(int locationId) : {departmentNotFound.Message}");
-            return BadRequest(departmentNotFound.Message);
+            _logger.LogInformation($"Department Controller : RemoveDepartment(int departmentId) : {departmentExist.Message}");
+            return BadRequest(departmentExist.Message);
         }
         catch (Exception exception)
         {
          _logger.LogInformation($"Department Controller : RemoveDepartment(int departmentId) : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
+           return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
@@ -113,7 +113,7 @@ public class DepartmentController : ControllerBase
         catch (Exception exception)
         {
            _logger.LogInformation($"Department Controller : ViewDepartment() : {exception.Message} : {exception.StackTrace}");
-            return BadRequest(exception.Message);
+            return Problem("Sorry some internal error occured");
         }
     }
 

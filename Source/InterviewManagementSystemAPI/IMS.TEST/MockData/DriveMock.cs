@@ -6,6 +6,24 @@ namespace UnitTesting.MockData
 {
     public static class DriveMock
     {
+        public static Drive CreateValidDrive()
+        {
+            return new Drive()
+            {
+                Name = "Todays Drive 1",
+                FromDate = System.DateTime.Now, 
+                ToDate = System.DateTime.Now, 
+                DepartmentId = 1,
+                PoolId = 1, 
+                ModeId = 2,
+                LocationId = 1,
+                AddedBy = 10, 
+                UpdatedBy = 10,
+                IsCancelled=false,
+                IsScheduled=true,
+                SlotTiming=30
+            };
+        }
         public static List<Drive> GetDriveMockForNonCancelled()
         {
             List<Drive> mockDrives = new List<Drive>();

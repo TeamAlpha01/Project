@@ -19,10 +19,11 @@
                         <!-- <p ><b>DEPARTMENT : </b>{{item.department}}</p> -->
                         <p ><b>MODE : </b> {{item.driveMode}}</p>
                         <p ><b>LOCATION : </b> {{item.driveLocation}}</p>
+
                     </div>
                     <div class="col-md-2">
                         <div class="row mt-3">
-                            <a [routerLink]="['/interviewer/acceptInvite']"> <button class="btn btn-success">Accept</button></a>
+                            <a [routerLink]="['/interviewer/driveInvites/accept-invite',item.driveId]"> <button class="btn btn-success">Accept</button></a>
                         </div>
                         <div class="row mt-3">
                             <a href="['/interviewer/cancelInvite']"> <button class="btn btn-danger">Reject</button></a>

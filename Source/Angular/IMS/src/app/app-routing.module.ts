@@ -50,7 +50,7 @@ const routes: Routes = [
   { path: 'interviewer/scheduledDrives', component: InterviewerScheduledDriveComponent },
   { path: 'interviewer/upcomingDrives', component: InterviewerUpcomingDriveComponent },
   { path: 'interviewer/driveInvites', component: InterviewerDriveInvitesComponent },
-  { path: 'interviewer/driveInvites/accept-invite', component: InterviewerAcceptInvitePageComponent },
+  { path: 'interviewer/driveInvites/accept-invite/:driveId', component: InterviewerAcceptInvitePageComponent },
   { path: 'interviewer/cancelInterview', component: InterviewerCancelInterviewPageComponent },
 
 

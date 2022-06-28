@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 using IMS.Models;
-
+using UnitTesting.MockData;
 
 namespace UnitTesting.Controllers;
 
@@ -32,6 +32,14 @@ public class DriveControllerTest
     {
         var Result = _driveController.CreateDrive(drive) as ObjectResult;
         Result.StatusCode.Should().Be(400);
+    }
+    [Fact]
+    public void CreateDrive_ShouldReturn200_WithProperData()
+    {
+        Drive drive=DriveMock.CreateValidDrive();
+        _driveService.Setup(d=>d.CreateDrive(drive)).Returns(true);
+        var Result=_driveController.CreateDrive(drive)as ObjectResult;
+        Result.StatusCode.Should().Be(200);
     }
 
     // [Theory]

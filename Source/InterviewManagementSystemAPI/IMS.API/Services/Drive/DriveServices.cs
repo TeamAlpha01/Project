@@ -217,9 +217,11 @@ namespace IMS.Service
                     DriveName = drive.Name,
                     FromDate = drive.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = drive.ToDate.ToString("yyyy-MM-dd"),
+                    SlotTiming=drive.SlotTiming,
                     DriveDepartment = drive.Pool.department.DepartmentName,
                     DriveLocation = drive.Location.LocationName,
                     DrivePool = drive.Pool.PoolName,
+
                     DriveMode = Enum.GetName(typeof(UitilityService.Mode),drive.ModeId)
                 }
                 ;

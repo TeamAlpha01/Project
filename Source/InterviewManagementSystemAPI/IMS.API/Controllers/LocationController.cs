@@ -92,7 +92,7 @@ public class LocationController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogInformation($"Location Service : RemoveLocation throwed an exception : {exception}");
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
 
     }

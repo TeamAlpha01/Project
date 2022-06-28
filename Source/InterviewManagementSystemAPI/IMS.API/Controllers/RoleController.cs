@@ -88,8 +88,8 @@ public class RoleController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Role Service : RemoveRole throwed an exception : {exception}");
-            return BadRequest("Sorry some internal error occured");
+            _logger.LogInformation($"Role Service : RemoveRole throwed an exception : {exception.Message}");
+            return Problem("Sorry some internal error occured ");
         }
     }
 

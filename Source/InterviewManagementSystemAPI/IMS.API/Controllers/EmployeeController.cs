@@ -64,12 +64,12 @@ public class EmployeeController : ControllerBase
         }
         catch (ValidationException employeeNameException)
         {
-            _logger.LogInformation($"Employee Service : CreateNewEmployee() : {employeeNameException.Message}");
+            _logger.LogInformation($"Employee Service : CreateNewEmployee(Employee employee) : {employeeNameException.Message}");
             return BadRequest(employeeNameException.Message);
         }
         catch (MailException mailException)
         {
-            _logger.LogInformation($"Employee Controller : CreateNewEmployee() : {mailException.Message} : {mailException.StackTrace}");
+            _logger.LogInformation($"Employee Controller : CreateNewEmployee(Employee employee) : {mailException.Message} : {mailException.StackTrace}");
             return Ok("Account Cancelled Successfully but failed to send email");
         }
         catch (Exception exception)
@@ -106,7 +106,7 @@ public class EmployeeController : ControllerBase
         }
         catch (ValidationException employeeNotFound)
         {
-            _logger.LogInformation($"Employee Service : RemoveEmployee() : {employeeNotFound.Message}");
+            _logger.LogInformation($"Employee Service : RemoveEmployee(int employeeId) : {employeeNotFound.Message}");
             return BadRequest(employeeNotFound.Message);
         }
         catch (Exception exception)
