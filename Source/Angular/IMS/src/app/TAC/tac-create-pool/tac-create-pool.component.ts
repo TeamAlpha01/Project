@@ -11,6 +11,7 @@ export class TacCreatePoolComponent implements OnInit {
   title = 'Add Pool'
   data: any;
   response: string = '';
+  error: any;
 
 
   constructor(private connection: ConnectionService, private fb: FormBuilder) { }
@@ -19,7 +20,7 @@ export class TacCreatePoolComponent implements OnInit {
     poolName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\\s]*')]],
     departmentId: ['', [Validators.required]]
   });
- 
+
 
   ngOnInit(): void {
     this.GetDepartments();
@@ -36,13 +37,26 @@ export class TacCreatePoolComponent implements OnInit {
     return this.AddPoolForm.get('departmentId')
   }
   addPool() {
-    this.submitted = true
+    this.submitted = true;
+    this.error = '';
     if (this.AddPoolForm.valid) {
-      console.log(true)
-      this.connection.AddPool(this.getpoolName()?.value, this.getdepartmentId()?.value).subscribe((data) => this.response = data.message);
-      setTimeout(() => { this.response = ''; this.AddPoolForm.reset() }, 1000);
-      this.submitted = false;
-    }
+      this.connection.AddPool(this.getpoolName()?.value, this.getdepartmentId()?.value).subscribe({
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message,
+        complete: () => this.clearInputFields(),
+      })
+    };
   }
 
+  clearInputFields() {
+    console.log("1");
+    this.submitted = false;
+    setTimeout(() => {
+      this.response = '';
+      this.AddPoolForm.reset();
+    }, 2000);
+
+  }
 }
+
+

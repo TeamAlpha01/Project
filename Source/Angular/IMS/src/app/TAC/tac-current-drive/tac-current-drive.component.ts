@@ -44,39 +44,18 @@ export class TacCurrentDriveComponent implements OnInit {
         for (let item of this.driveDetails) {
           this.drive.push(item);
         }
-      },
-      error: (error: any) => {
-        if (error.status == 404) {
-          this.route.navigateByUrl("errorPage");
-        }
       }
     })
 
 
     this.connection.GetPools().subscribe((data: any) => {
       this.poolDetails = data;
-    },
-      (error: any) => {
-        this.showErrorMessage = true;
-        console.warn("1");
-        console.warn(error);
-        if (error.status == 404) {
-          this.route.navigateByUrl("errorPage");
-        }
-      })
+    })
 
 
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;
-    },
-      (error: any) => {
-        this.showErrorMessage = true;
-        console.warn("1");
-        console.warn(error);
-        if (error.status == 404) {
-          this.route.navigateByUrl("errorPage");
-        }
-      })
+    })
   }
 
 

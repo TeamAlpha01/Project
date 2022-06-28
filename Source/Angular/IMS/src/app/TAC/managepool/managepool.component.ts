@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/Services/connection.service';
+import { DialogBoxComponent } from 'src/app/Shared/DialogBox/dialog-box/dialog-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-managepool',
@@ -17,7 +19,7 @@ export class ManagepoolComponent implements OnInit {
   totalLength: any;
 
 
-  constructor(private connection: ConnectionService) { }
+  constructor(private connection: ConnectionService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.GetPools();
@@ -37,7 +39,12 @@ export class ManagepoolComponent implements OnInit {
   }
 
   RemovePool(poolId: number) {
-    this.connection.RemovePool(poolId).subscribe(() => this.GetPools());
+    let dialogRef = this.dialog.open(DialogBoxComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == 'confirm') {
+        this.connection.RemovePool(poolId).subscribe(() => this.GetPools());
+      }
+    });
   }
 
 

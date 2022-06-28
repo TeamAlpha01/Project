@@ -37,6 +37,9 @@
                     <button type="submit" class="btn btn-back"> Add </button>
                 </div>
             </form>
+            <div *ngIf="response.length!=0">
+                <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+            </div>
         </div>
      </div>
     <app-footer></app-footer>

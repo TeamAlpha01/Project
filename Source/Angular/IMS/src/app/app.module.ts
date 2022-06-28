@@ -70,6 +70,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DialogBoxComponent } from './Shared/DialogBox/dialog-box/dialog-box.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/interviewer-profile.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -154,11 +155,12 @@ import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/i
     MatProgressSpinnerModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    
 
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

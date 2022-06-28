@@ -17,7 +17,7 @@ public class DriveController : ControllerBase
     private IDriveService _driveService;
     private IMailService _mailService;
 
-    public DriveController(ILogger<DriveController> logger, IMailService mailService,IDriveService driveService)
+    public DriveController(ILogger<DriveController> logger, IMailService mailService, IDriveService driveService)
     {
         _logger = logger;
         _mailService = mailService;
@@ -52,15 +52,15 @@ public class DriveController : ControllerBase
             //drive.UpdatedBy=
             if (_driveService.CreateDrive(drive))
             {
-                _mailService.SendEmailAsync(_mailService.DriveInvites(drive, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
-                return Ok("Drive Created Successfully");
+                // _mailService.SendEmailAsync(_mailService.DriveInvites(drive, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
+                return Ok(UitilityService.Response( "Drive Created Successfully"));
             }
             return Problem("Sorry internal error occured");
         }
         catch (ValidationException driveNotValid)
         {
             _logger.LogInformation($"Drive Controller : CreateDrive(Drive drive) : {driveNotValid.Message} : {driveNotValid.StackTrace}");
-            return BadRequest(driveNotValid.Message);
+            return BadRequest(UitilityService.Response(driveNotValid.Message));
         }
         catch (MailException mailException)
         {
@@ -300,7 +300,7 @@ public class DriveController : ControllerBase
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns a list of Interview Invites</returns>
-    
+
     [HttpGet]
     public IActionResult ViewDrive(int driveId)
     {
@@ -710,7 +710,7 @@ public class DriveController : ControllerBase
             return BadRequest("provide proper driveId, employeeId and responseType");
         try
         {
-            if (_driveService.CancelInterview(employeeAvailabilityId,cancellationReason,comments))
+            if (_driveService.CancelInterview(employeeAvailabilityId, cancellationReason, comments))
             {
                 _mailService.SendEmailAsync(_mailService.InterviewCancelled(employeeAvailabilityId), true);
                 return Ok("Availability Cancellerd Sucessfully");
@@ -808,7 +808,7 @@ public class DriveController : ControllerBase
         }
     }
 
-     /// <summary>
+    /// <summary>
     /// This method invoked when the employee wants to see their Total list of Drives
     /// </summary>
     /// <remarks>
@@ -824,7 +824,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns the dashboard of employee</returns>
-    
+
     [HttpGet]
     public IActionResult ViewToatlDrives(int employeeId)
     {
@@ -841,7 +841,7 @@ public class DriveController : ControllerBase
         }
     }
 
-     /// <summary>
+    /// <summary>
     /// This method invoked when the employee wants to see their Accepted Drive
     /// </summary>
     /// <remarks>
@@ -873,7 +873,7 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
-     /// <summary>
+    /// <summary>
     /// This method invoked when the employee wants to see their Denied drives
     /// </summary>
     /// <remarks>
@@ -889,7 +889,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns the dashboard of employee</returns>
-    
+
     [HttpGet]
     public IActionResult ViewDeniedDrives(int employeeId)
     {
@@ -905,7 +905,7 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
-     /// <summary>
+    /// <summary>
     /// This method invoked when the employee wants to see their Ignored Drives
     /// </summary>
     /// <remarks>
@@ -921,7 +921,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns the dashboard of employee</returns>
-    
+
 
     [HttpGet]
     public IActionResult ViewIgnoredDrives(int employeeId)
@@ -939,7 +939,7 @@ public class DriveController : ControllerBase
         }
     }
 
-     /// <summary>
+    /// <summary>
     /// This method invoked when the employee wants to see their Utilized Slots
     /// </summary>
     /// <remarks>
@@ -955,7 +955,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns the dashboard of employee</returns>
-    
+
     [HttpGet]
     public IActionResult ViewUtilizedInterviews(int employeeId)
     {
@@ -972,7 +972,7 @@ public class DriveController : ControllerBase
         }
     }
 
-     /// <summary>
+    /// <summary>
     /// This method invoked when the employee wants to see their Not Utilized Slots
     /// </summary>
     /// <remarks>
@@ -988,7 +988,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns the dashboard of employee</returns>
-    
+
     [HttpGet]
     public IActionResult ViewNotUtilizedInterviews(int employeeId)
     {
@@ -1005,7 +1005,7 @@ public class DriveController : ControllerBase
         }
     }
 
-     /// <summary>
+    /// <summary>
     /// This method invoked when the employee wants to see their Total Availability
     /// </summary>
     /// <remarks>
@@ -1021,7 +1021,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns the dashboard of employee</returns>
-    
+
     [HttpGet]
     public IActionResult ViewTotalAvailability(int employeeId)
     {

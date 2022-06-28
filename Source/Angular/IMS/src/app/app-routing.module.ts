@@ -56,6 +56,7 @@ const routes: Routes = [
 
   //admin pages
   { path: '', component: LoginComponent},                               
+  // { path: '**', component: ErrorPageComponent},                               
   { path: 'admin/requests', component: AdminViewRequestsPageComponent },
   { path: 'admin/role', component: AdminViewRolePageComponent },
   { path: 'admin/role/add', component: AdminRoleComponent},        
