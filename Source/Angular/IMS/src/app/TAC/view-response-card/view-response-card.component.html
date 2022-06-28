@@ -10,16 +10,22 @@
                             <p><b>Department :</b> {{item.driveDepartment}} </p>
                             <p><b>Pool :</b> {{item.drivePool}}</p>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <p><b>Date :</b> {{item.fromDate}} to {{item.toDate}} </p>
                             <p><b>Mode :</b> {{item.mode}} </p>
                             <p><b>Location :</b> {{item.driveLocation}} </p>
 
                         </div>
-                        <div class="col-md-2 ">
+                        <div class="col-md-2">
                             <div class="row mt-3">
                                 <a [routerLink]="['../interviewer-cancelInterview']"><button type="button"
                                         class="btn btn-success">View Response</button></a>
+                            </div>
+                        </div>
+                        <div class="col-md-1 ">
+                            <div class="row mt-3">
+                                <a [routerLink]="['/tac/cancel-drive',item.driveId]"><button type="button"
+                                        class="btn btn-danger">Cancel</button></a>
                             </div>
                         </div>
                     </div>

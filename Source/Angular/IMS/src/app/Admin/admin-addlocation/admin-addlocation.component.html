@@ -25,7 +25,6 @@
                             <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                         </div>
                         
-                        
                         <div class="text-center">
                             <button type="submit" class="btn btn-back">Add</button>
                         </div>
@@ -36,8 +35,5 @@
                 </div>
             </div>
         </div>
-        <div>
-            <a [routerLink]="['/admin/location']"> <button class="btn btn-back">BACK</button></a>
-        </div>
-        <app-footer></app-footer>
+        <app-footer [BackBtn]=true></app-footer>
 </div>

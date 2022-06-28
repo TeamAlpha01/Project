@@ -1,7 +1,7 @@
 <footer class="sticky-footer">
-    <!-- <div>
-        <button class="btn btn-back ">BACK</button>
-    </div> -->
+    <div *ngIf="BackBtn">
+        <button class="btn btn-back" (click)="Back()">BACK</button>
+    </div>
     <div class="container-fluid text-light " style="background: #8D599F;">
         <div class="container">
             <div class="row g-0">

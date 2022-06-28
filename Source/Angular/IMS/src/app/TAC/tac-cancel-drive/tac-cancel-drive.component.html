@@ -2,7 +2,7 @@
 <div class="content">
     <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
-    
+
 
     <div class="container">
         <div class="card mx-auto">
@@ -10,7 +10,7 @@
                 <div class="row rone mt-4">
                     <div class="col-md-6">
                         <p><b>From Date : </b>{{driveDetails.fromDate}}</p>
-                        <p><b>To Date :  </b>{{driveDetails.toDate}} </p>
+                        <p><b>To Date : </b>{{driveDetails.toDate}} </p>
                         <p><b>Drive Name :</b>{{driveDetails.driveName}} </p>
                     </div>
                     <div class="col-md-6">
@@ -22,22 +22,40 @@
 
                 <br>
                 <div>
-                    <div class="container "><br>
-                        <h6><b>Cancellation Reason :</b></h6><BR>
-                        <div class="form-outline">               
-                            <textarea class="textinput" name="Reason" [(ngModel)]="Reason" ></textarea>
+                    <form [formGroup]="CancelDriveForm" (ngSubmit)="CancelDrive()">
+                        <div class="container "><br>
+                            <div class="form-input">
+                                <label class="form-label" for="Name">Cancel Reason </label>
+                                <input
+                                    [class.is-invalid]="(error.length)||(submitted)||CancelDriveForm.controls['cancelReason'].invalid && CancelDriveForm.controls['cancelReason'].touched"
+                                    type="text" id="Name" class="form-control " formControlName="cancelReason">
+                            </div>
+                            <div
+                                *ngIf="(submitted)||CancelDriveForm.controls['cancelReason'].invalid && CancelDriveForm.controls['cancelReason'].touched">
+                                <span class="text-danger"
+                                    *ngIf="CancelDriveForm.controls['cancelReason'].errors?.['required']">*Cancel Reason
+                                    is
+                                    required</span>
+                                <span class="text-danger"
+                                    *ngIf="CancelDriveForm.controls['cancelReason'].errors?.['minlength']">*Cancel
+                                    Reason is
+                                    too short</span>
+                            </div>
+
+                            <div *ngIf="response.length!=0">
+                                <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-filter">Submit</button>
+                            </div>
                             <br>
                         </div>
-
-                        <div class="text-center">
-                            <button type="button" (click)="CancelDrive(Reason)" class="btn btn-filter">Submit</button>
-                        </div>
-                        <br>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    
-    <app-footer></app-footer>
+
+    <app-footer [BackBtn]=true></app-footer>
 </div>
