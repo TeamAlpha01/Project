@@ -3,6 +3,7 @@ import { HttpClientModule, HttpClient, HttpHeaders, HttpErrorResponse } from '@a
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { catchError, throwError } from 'rxjs';
+// import { threadId } from 'worker_threads';
 
 
 @Injectable({
@@ -105,7 +106,10 @@ export class ConnectionService {
   GetUpcomingInterviews(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUpcomingInterview', { headers: this.headers });
   }
-
+  GetDriveById(driveId:any)
+  {
+    return this.http.get<any>(this.baseURL+ `Drive/ViewDrive?driveId=${driveId}`,{headers:this.headers});
+  }
   GetDriveInvites(employeeId:any){
     return this.http.get<any>(this.baseURL + `Drive/ViewInvites?employeeId=${employeeId}`, { headers: this.headers});
   }
