@@ -39,7 +39,7 @@ import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-curr
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
-import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
+import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-cancel-invite-page/interviewer-cancel-invite-page.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -51,7 +51,7 @@ const routes: Routes = [
   { path: 'interviewer/upcomingDrives', component: InterviewerUpcomingDriveComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/driveInvites', component: InterviewerDriveInvitesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/driveInvites/accept-invite/:driveId', component: InterviewerAcceptInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
-  { path: 'interviewer/cancelInterview', component: InterviewerCancelInterviewPageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  { path: 'interviewer/driveInvites/cancel-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
 
 
   //admin pages
@@ -68,10 +68,6 @@ const routes: Routes = [
   { path: 'admin/project', component: AdminviewProjectPageComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   { path: 'admin/project/add', component: AdminAddprojectComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   
-
-
-
-
 
 
   //tac pages

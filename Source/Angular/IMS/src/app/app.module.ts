@@ -157,7 +157,6 @@ import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-
     MatDialogModule,
 
 
-
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
