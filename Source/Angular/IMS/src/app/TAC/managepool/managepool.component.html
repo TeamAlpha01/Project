@@ -16,18 +16,12 @@
                         <select name="Department" id="Department Name" class="form-select " name="_dept"
                             [(ngModel)]="_dept">
                             <option value="">Select the Department</option>
-                            <option *ngFor="let item of departmentDetails" value={{item.departmentName}}>
-                                {{item.departmentName}} </option>
+                            <ng-container *ngFor="let item of departmentDetails">
+                                <option *ngIf="!(item.departmentName=='TAC' || item.departmentName=='ADMIN')"  value={{item.departmentName}}> {{item.departmentName}} </option>
+                            </ng-container>
                         </select>
                     </div>
-                    <div class="col-md-5">
-                        <label class="form-label" for="ACE Number">Pool </label>
-                        <select name="Pool" id="Pool" class="form-select" name="_pool" [(ngModel)]="_pool">
-                            <option value="">Select the Pool</option>
-                            <option *ngFor="let item of poolDetails | filter:_dept" value={{item.poolName}}>
-                                {{item.poolName}} </option>
-                        </select>
-                    </div>
+                    <div class="col-md-5"></div>
                     <div class="col-md-2 text-center mt-4">
                         <a routerLink="/tac/createPool"> <button class="btn btn-back">Create Pool</button></a>
                     </div>

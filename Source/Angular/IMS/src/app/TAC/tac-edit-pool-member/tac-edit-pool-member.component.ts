@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+  import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ConnectionService } from 'src/app/Services/connection.service';
@@ -72,6 +72,7 @@ export class TacEditPoolMemberComponent implements OnInit {
   }
 
   AddPoolMember(employeeId: number) {
+    console.warn('added emp member id : '+employeeId);
     this.connection.AddPoolMember(employeeId, this.poolId).subscribe({
       next: (data) => {
         this.response = data.message
@@ -86,7 +87,7 @@ export class TacEditPoolMemberComponent implements OnInit {
   }
 
   RemovePoolMember(poolMemberId: number) {
-    console.log(poolMemberId);
+    console.warn('removed pool member id : '+poolMemberId);
     this.connection.RemovePoolMember(poolMemberId).subscribe({
       next: (data) => {
         this.response = data.message;

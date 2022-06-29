@@ -3,10 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { DatePipe } from '@angular/common'
 
-
-
-
-
 @Component({
   selector: 'app-create-invite',
   templateUrl: './create-invite.component.html',
@@ -24,10 +20,7 @@ export class CreateInviteComponent implements OnInit {
   maxDate: Date = new Date();
   toDate: Date = new Date();
   toDateActive: boolean = true;
-
-
-
-
+  
   constructor(private connection: ConnectionService, private fb: FormBuilder, private datepipe: DatePipe) { }
 
   submitted: boolean = false;
@@ -90,7 +83,7 @@ export class CreateInviteComponent implements OnInit {
   }
 
   locationEnabler() {
-    if (this.getModeId()?.value == '1' || '') { { this.CreateInviteForm.controls['locationId'].disable() }; this.CreateInviteForm.controls['locationId'].setValue('1') }
+    if (this.getModeId()?.value == '1' || '') { { this.CreateInviteForm.controls['locationId'].disable() }; this.CreateInviteForm.controls['locationId'].setValue('9') }
     else { { this.CreateInviteForm.controls['locationId'].enable() } }
   }
 

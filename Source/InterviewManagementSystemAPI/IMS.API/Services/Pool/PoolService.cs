@@ -268,6 +268,7 @@ namespace IMS.Service
                 poolMembers=>new
                 {
                     poolId=poolMembers.PoolId,
+                    poolMemberId=poolMembers.PoolMembersId,
                     employeeAceNumber=poolMembers.Employees.EmployeeAceNumber,
                     employeeName=poolMembers.Employees.Name,
                     employeeRole=poolMembers.Employees.Role.RoleName

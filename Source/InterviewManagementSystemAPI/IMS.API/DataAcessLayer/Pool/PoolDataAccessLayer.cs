@@ -26,7 +26,7 @@ namespace IMS.DataAccessLayer
         {
 
             PoolValidation.IsAddPoolValid(pool);
-            if (_db.Pools.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId && p.IsActive == true)) throw new ValidationException("Pool Name already exists under this pool");
+            if (_db.Pools.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId && p.IsActive == true)) throw new ValidationException("Pool Name already exists under this department");
             try
             {
                 var department=_db.Pools.Find(pool.DepartmentId);

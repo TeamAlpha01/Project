@@ -8,7 +8,7 @@
             <form [formGroup]="AddPoolForm" (ngSubmit)="addPool()" >
                 <div class="form-input">
                     <label class="form-label" for="Department">Department Name</label>
-                    <select name="Department" id="Department Name" class="form-select " formControlName="departmentId">
+                    <select [class.is-invalid]="(submitted)||AddPoolForm.controls['departmentId'].invalid && AddPoolForm.controls['departmentId'].touched" name="Department" id="Department Name" class="form-select " formControlName="departmentId">
                         <option value="">Select the Department</option>
                         <ng-container *ngFor="let item of data">
                             <option *ngIf="item.departmentId!=4" value={{item.departmentId}}> {{item.departmentName}} </option>
@@ -21,7 +21,7 @@
                 
                 <div class="form-input">
                     <label class="form-label" for="Name">Pool Name </label>
-                    <input type="text" id="Name" class="form-control " formControlName="poolName" >
+                    <input [class.is-invalid]="(submitted)||AddPoolForm.controls['poolName'].invalid && AddPoolForm.controls['poolName'].touched" type="text" id="Name" class="form-control " formControlName="poolName" >
                 </div>
                 <div *ngIf="(submitted)||AddPoolForm.controls['poolName'].invalid && AddPoolForm.controls['poolName'].touched">
                     <span class="text-danger" *ngIf="AddPoolForm.controls['poolName'].errors?.['required']">*Pool name is required</span>
@@ -29,8 +29,8 @@
                     <span class="text-danger" *ngIf="AddPoolForm.controls['poolName'].errors?.['pattern'] && !AddPoolForm.controls['poolName'].errors?.['minlength']">*Pool name cannot contain numbers or symbols</span>
                 </div>
 
-                <div [hidden]="response.length==0">
-                    <h6 class="alert alert-success" >{{response}}</h6>
+                <div class="span12 text-center">
+                    <span class="text-danger">{{error}}</span>
                 </div>
                 
                 <div class="text-center">

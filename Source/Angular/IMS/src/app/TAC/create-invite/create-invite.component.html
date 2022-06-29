@@ -109,8 +109,9 @@
                             [class.is-invalid]="(submitted)||CreateInviteForm.controls['locationId'].invalid && CreateInviteForm.controls['locationId'].touched"
                             name="locationId" id="locationId" class="form-select " formControlName="locationId">
                             <option value="">Select the Location</option>
-                            <option *ngFor="let item of locationDetails" value={{item.locationId}}>
-                                {{item.locationName}} </option>
+                            <ng-container *ngFor="let item of locationDetails">
+                                <option *ngIf="!(item.locationId==9 && CreateInviteForm.controls['modeId'].value==2)"   value={{item.locationId}}> {{item.locationName}} </option>
+                            </ng-container>
                         </select>
                     </div>
                     <div

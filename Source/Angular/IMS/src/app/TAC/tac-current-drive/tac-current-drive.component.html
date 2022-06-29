@@ -11,7 +11,9 @@
                         <select name="Department" id="Department Name" class="form-select " (change)="filterDropdown()"
                             name="dept" [(ngModel)]="_dept">
                             <option value="">Select the Department</option>
-                            <option *ngFor="let item of departmentDetails" value={{item.departmentName}}> {{item.departmentName}} </option>
+                            <ng-container *ngFor="let item of departmentDetails">
+                                <option *ngIf="!(item.departmentName=='TAC' || item.departmentName=='ADMIN')"  value={{item.departmentName}}> {{item.departmentName}} </option>
+                            </ng-container>
                         </select>
                     </div>
                     <div class="col-md-4">

@@ -108,7 +108,7 @@ public class DriveController : ControllerBase
             if (_driveService.CancelDrive(driveId, tacId, reason))
             {
                 //_mailService.SendEmailAsync(_mailService.DriveCancelled(driveId, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
-                return Ok("Drive Cancelled Sucessfully");
+                return Ok(UitilityService.Response("Drive Cancelled Sucessfully"));
             }
             return Problem("Sorry internal error occured");
         }

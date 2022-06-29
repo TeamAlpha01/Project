@@ -1,8 +1,8 @@
+
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { data } from 'jquery';
-import { Observable } from 'rxjs';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class TacCancelDriveComponent implements OnInit {
   response: string='';
 
 
-  constructor(private route: ActivatedRoute, private connection: ConnectionService, private fb: FormBuilder, private router: Router) { }
+  constructor(private route: ActivatedRoute, private connection: ConnectionService, private fb: FormBuilder, private location:Location) { }
 
   CancelDriveForm = this.fb.group({
     cancelReason: ['', [Validators.required, Validators.minLength(5)]],
@@ -62,7 +62,7 @@ export class TacCancelDriveComponent implements OnInit {
         this.submitted = false;
         setTimeout(() => {
           this.response = '';
-          this.router.navigateByUrl("tac/home");
+          this.location.back();
         }, 2000);
       
     }

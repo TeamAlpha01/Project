@@ -50,13 +50,13 @@ public class PoolController : ControllerBase
 
         try
         {
-            return _poolService.CreatePool(departmentId, poolName) ? Ok("Pool Added Successfully") : Problem("Sorry internal error occured");
+            return _poolService.CreatePool(departmentId, poolName) ? Ok(UitilityService.Response("Pool Added Successfully")) : Problem("Sorry internal error occured");
         }
 
         catch (ValidationException departmentNotFound)
         {
             _logger.LogInformation($"Pool Service : CreatePool throwed an exception : {departmentNotFound.Message}");
-            return BadRequest(departmentNotFound.Message);
+            return BadRequest(UitilityService.Response(departmentNotFound.Message));
         }
 
 
@@ -91,7 +91,7 @@ public class PoolController : ControllerBase
             BadRequest("Pool Id cannot be negative or null");
         try
         {
-            return _poolService.RemovePool(poolId) ? Ok("Pool Removed Successfully") : Problem("Sorry internal error occured");
+            return _poolService.RemovePool(poolId) ? Ok(UitilityService.Response("Pool Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException poolNotFound)
         {

@@ -1,6 +1,6 @@
 import { DialogueBoxService } from './../../Services/dialogue-box.service';
 import { Component, OnInit } from '@angular/core';
-import { ConnectionService } from 'src/app/Services/connection.service';
+import { ConnectionService } from 'src/app/Services/connection.service';  
 
 @Component({
   selector: 'app-admin-view-role-page',
