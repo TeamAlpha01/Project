@@ -9,8 +9,12 @@ export class CardDetailsComponent implements OnInit {
   page: number = 1;
   totalLength:any;
 
-  @Input()
-  data!: any[];
+  @Input()  test!:boolean
+  @Input()  data!: any[];
+  
+
+  
+
 
   
   constructor() { }
