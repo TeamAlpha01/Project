@@ -8,13 +8,11 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
   styleUrls: ['./tac-home.component.css']
 })
 export class TacHomeComponent implements OnInit {
-   
-  title ='Home'
-  constructor(private route:Router) { }
+
+  title = 'Home'
+  constructor(private route: Router, private auth: AuthenticationService) { }
 
   ngOnInit(): void {
-    console.log(AuthenticationService.GetData("TAC"));
-    (!AuthenticationService.GetData("TAC")) && this.route.navigateByUrl("errorPage");
   }
 
 }

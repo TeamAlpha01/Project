@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConnectionService } from './connection.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private service : ConnectionService) { }
+
+  constructor(private service: ConnectionService, private route: Router) { }
   static GetData(key: string): string | null {
     const itemStr = localStorage.getItem(key)
     if (!itemStr) {
@@ -34,14 +37,32 @@ export class AuthenticationService {
   }
 
   static IsAdmin(): boolean {
-    return this.GetData("Admin")?.includes("true") ? true : false;
+    return this.GetData("Admin") ? true : false;
 
   }
   static IsTAC(): boolean {
-    return this.GetData("TAC")?.includes("true") ? true : false;
+    return this.GetData("TAC") ? true : false;
   }
 
-   ClearToken() {
+  static GetUser(): string {
+    if (AuthenticationService.GetData("TAC")) {
+      return "TAC";
+    }
+    else if(AuthenticationService.GetData("Admin")){
+      return "Admin";
+    }
+    else if(AuthenticationService.GetData("token")){
+      return "Interviewer";
+    }
+    else{
+      return " ";
+    }
+  }
+
+
+
+
+  ClearToken() {
     localStorage.clear();
   }
 }

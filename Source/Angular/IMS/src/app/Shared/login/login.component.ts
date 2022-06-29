@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
 
 
           this.connection.initializeTokenHeader(AuthenticationService.GetData("token"))
+          
           if (this.IsAdmin) {
             this.route.navigateByUrl("/admin/requests");  //navigation
           }
