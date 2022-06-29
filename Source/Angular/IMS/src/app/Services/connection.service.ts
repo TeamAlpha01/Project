@@ -14,11 +14,18 @@ export class ConnectionService {
   baseURL = 'https://localhost:7072/'
   constructor(private http: HttpClient) { }
 
-  private headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${AuthenticationService.GetData("token")}`
-  })
+  public headers = new HttpHeaders();
+  
+  initializeTokenHeader(token:string|null){
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+  }
 
+  logout(){
+    this.headers=new HttpHeaders();
+  }
 
   //GET methods
 
@@ -90,9 +97,8 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUpcommingDrives', { headers: this.headers });
   }
 
-  GetEmployeeRequests(): any {
-    return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeeRequest')
-
+  GetEmployeeRequests(): any{
+    return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeeRequest', { headers: this.headers })
   }
 
   GetTodaysInterviews(): any {
@@ -126,9 +132,8 @@ export class ConnectionService {
   }
 
   CreateEmployee(user: any) {
-    this.http.post<any>(this.baseURL + '/Employee/CreateNewEmployee', user, { headers: this.headers })
+    return this.http.post<any>( this.baseURL + 'Employee/CreateNewEmployee', user, { headers: this.headers })
   }
-
   CancelDrive(driveId: number, reason: string) {
     return this.http.patch<any>(this.baseURL + `Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
   }

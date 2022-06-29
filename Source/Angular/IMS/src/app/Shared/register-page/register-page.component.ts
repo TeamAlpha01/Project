@@ -1,6 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ConnectionService } from 'src/app/Services/connection.service';
+import { AlertBoxComponent } from '../AlertBox/alert-box/alert-box.component';
 
 @Component({
   selector: 'app-register-page',
@@ -13,24 +16,32 @@ export class RegisterPageComponent implements OnInit {
   roleDetails:any;
   projectDetails: any;
   _dept='';
+  error:string='';
+
+  registerForm:FormGroup;
 
 
-  registerForm = this.FB.group({
-    Name: ['', [Validators.required, Validators.maxLength(20), Validators.pattern("^[A-Za-z ]+$")]],
-    ACENumber: ['', [Validators.required]],
-    Department: ['', [Validators.required, Validators.pattern('[a-zA-Z][*@#.]*')]],
-    Role: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
-    Project: ['', [Validators.required, Validators.pattern('[a-zA-Z][20]*')]],
-    Email: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]+)@(aspiresys.com)")]],
-    Password: ['', [Validators.required, Validators.pattern('')]],
-    ConfirmPassword: ['', [Validators.required, Validators.pattern('')]]
-
-
-  });
-
-  constructor(private FB: FormBuilder, private connection:ConnectionService) { }
+  constructor(private FB: FormBuilder, private connection:ConnectionService,private dialog: MatDialog,private router:Router) { 
+    this.registerForm=this.FB.group({});
+  }
 
   ngOnInit(): void {
+
+    this.registerForm = this.FB.group({
+      Name: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(25),Validators.pattern("^[A-Za-z ]+$")]],
+      ACENumber: ['', [Validators.required,Validators.pattern("^[ACE]+[\\d]{4}$")]],
+      Department: ['', [Validators.required]],
+      Role: ['', [Validators.required]],
+      Project: ['', [Validators.required]],
+      Email: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]{5,22})@(aspiresys.com)")]],
+      Password: ['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]],
+      ConfirmPassword: ['', [Validators.required,this.ValidateConfirmPassword]]
+    },
+    
+    );
+
+
+
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;
     })
@@ -43,17 +54,38 @@ export class RegisterPageComponent implements OnInit {
   }
 
   submit(){
-   const user={
-    employeeId: 0,
-    employeeAceNumber: this.registerForm.value['ACENumber'],
-    name: this.registerForm.value['Name'],
-    departmentId: this.registerForm.value['Department'],
-    roleId: this.registerForm.value['Role'],
-    projectId: this.registerForm.value['Project'],
-    emailId: this.registerForm.value['Email'],
-    password: this.registerForm.value['Password'],
-   }
-    console.log(user);
-    this.connection.CreateEmployee(user)
+    this.formSubmitted=true;
+    var dialogRef=this.dialog.open(AlertBoxComponent);
+    dialogRef.afterClosed().subscribe((result)=>{
+      console.log(result)
+      if(result=='confirm' || result==undefined)
+       this.router.navigateByUrl('');
+    })
+
+    if(this.registerForm.valid)
+    {
+      const user={
+        employeeId: 0,
+        employeeAceNumber: this.registerForm.value['ACENumber'],
+        name: this.registerForm.value['Name'],
+        departmentId: this.registerForm.value['Department'],
+        roleId: this.registerForm.value['Role'],
+        projectId: this.registerForm.value['Project'],
+        emailId: this.registerForm.value['Email'],
+        password: this.registerForm.value['Password'],
+       }
+        this.connection.CreateEmployee(user).subscribe({
+          next:(data)=>console.log(data),
+          error:(error)=>this.error=error.error
+        });
+    }
   }
+
+
+  ValidateConfirmPassword(control: AbstractControl) {
+  if (control.value != control.parent?.get('Password')?.value) {
+    return { passwordNotMatched: true };
+  }
+  return null;
+}
 }

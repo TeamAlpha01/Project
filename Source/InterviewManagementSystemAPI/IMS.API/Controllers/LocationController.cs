@@ -4,9 +4,11 @@ using IMS.Validations;
 using System.ComponentModel.DataAnnotations;
 using IMS.Service;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IMS.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]/[action]")]
 public class LocationController : ControllerBase

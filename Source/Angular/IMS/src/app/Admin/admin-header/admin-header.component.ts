@@ -16,6 +16,8 @@ export class AdminHeaderComponent implements OnInit {
   
   }
   logout(){
+    console.log(this.service)
     this.service.ClearToken();
+    console.log(this.service)
   }
 }

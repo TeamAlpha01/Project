@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using IMS.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IMS.Controller; 
-
+[Authorize]
 [ApiController]
   [Route("[controller]/[action]")]
   public class ProjectController : ControllerBase
@@ -107,6 +108,7 @@ namespace IMS.Controller;
     /// <response code="400">If the item is null</response> 
     /// <param name="departmentId">int</param>
     /// <returns>Return List of Projects  otherwise it returns  Exception when exception thrown in service .</returns>
+    [AllowAnonymous]
     [HttpGet]
     public IActionResult ViewProjects()
     {

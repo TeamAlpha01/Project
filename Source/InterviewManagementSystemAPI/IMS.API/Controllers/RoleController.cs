@@ -3,9 +3,11 @@ using IMS.Models;
 using IMS.Service;
 using System.Net;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IMS.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]/[action]")]
 public class RoleController : ControllerBase
@@ -108,6 +110,7 @@ public class RoleController : ControllerBase
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
+    [AllowAnonymous]
     [HttpGet]
     public IActionResult ViewRoles()
     {

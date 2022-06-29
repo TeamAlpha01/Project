@@ -40,6 +40,7 @@ import { TacScheduledDriveHistoryComponent } from './TAC/tac-scheduled-drive-his
 import { TacCancelledDriveHistoryComponent } from './TAC/tac-cancelled-drive-history/tac-cancelled-drive-history.component';
 import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-employee-dashboard.component';
 import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/interviewer-profile.component';
+import { RegisterPageComponent } from './Shared/register-page/register-page.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -57,6 +58,7 @@ const routes: Routes = [
   //admin pages
   { path: '', component: LoginComponent},                               
   // { path: '**', component: ErrorPageComponent},                               
+  { path: 'register', component: RegisterPageComponent},                               
   { path: 'admin/requests', component: AdminViewRequestsPageComponent },
   { path: 'admin/role', component: AdminViewRolePageComponent },
   { path: 'admin/role/add', component: AdminRoleComponent},        

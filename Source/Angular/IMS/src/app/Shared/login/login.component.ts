@@ -18,8 +18,10 @@ export class LoginComponent implements OnInit {
   employeeDetails: any;
   employeeID = '';
   employeeACENumber: any;
-
+  error:string='';
+  isCommanError:boolean=false;
   loading: boolean = false;
+  submitted: boolean=false;
 
 
   loginForm = this.FB.group({
@@ -39,14 +41,15 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    this.loading=true
-
+    
+    this.submitted=true;
     if (this.loginForm.valid) {
+      this.loading=true
       const user = {
         ACENumber: this.loginForm.value['ACENumber'],
         Password: this.loginForm.value['Password'],
       }
-      console.log(user)
+
       this.connection.Login(user).subscribe({
         next: (data: any) => {
 
@@ -57,10 +60,8 @@ export class LoginComponent implements OnInit {
           AuthenticationService.SetDateWithExpiry("Admin", data.isAdmin, data.expiryInMinutes)
           AuthenticationService.SetDateWithExpiry("TAC", data.isTAC, data.expiryInMinutes)
 
-          console.log(AuthenticationService.GetData("token"))
-          console.log(AuthenticationService.GetData("Admin"))
-          console.log(AuthenticationService.GetData("TAC"))
 
+          this.connection.initializeTokenHeader(AuthenticationService.GetData("token"))
           if (this.IsAdmin) {
             this.route.navigateByUrl("/admin/requests");  //navigation
           }
@@ -70,18 +71,26 @@ export class LoginComponent implements OnInit {
           else {
             this.route.navigateByUrl("/interviewer/home");
           }
-          console.log(data)
+
+
 
         },
         error: (error: any) => {
-          console.warn("1");
-          console.warn(error);
+
           if (error.status == 404) {
             this.route.navigateByUrl("errorPage");
           }
+          if(!(error.error.toString().includes('ACE') || error.error.toString().includes('Password')))
+          {
+            this.isCommanError=true;
+          }
+          console.log('Ace error : '+error.error.toString().includes('ACE'))
+          console.log('Pass error : '+error.error.toString().includes('Password'))
+          this.error=error.error;
+          this.loading=false;
         },
         complete: () => {
-          console.log("1");
+
           return this.loading = false;
         }
       })

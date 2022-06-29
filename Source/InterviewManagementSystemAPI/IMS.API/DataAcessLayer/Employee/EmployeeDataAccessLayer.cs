@@ -27,11 +27,10 @@ namespace IMS.DataAccessLayer
         {
 
             EmployeeValidation.IsEmployeeValid(employee);
-            bool EmployeedetailExists = _db.Employees.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber || x.EmailId == employee.EmailId);
-            if (EmployeedetailExists)
-            {
-                throw new ValidationException("Email id or ACE number already exists");
-            }
+            
+            if ( _db.Employees.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber ))throw new ValidationException("ACE number already exists");
+            if ( _db.Employees.Any(x => x.EmailId == employee.EmailId))throw new ValidationException("Email id  already exists");
+            
             try
             {
                 _db.Employees.Add(employee);
@@ -159,6 +158,10 @@ namespace IMS.DataAccessLayer
                 if(!_db.Employees.Any(x => x.EmployeeAceNumber == employeeAceNumber && x.Password == password))
                     throw new ValidationException($"Wrong Password!");
 
+                if(!_db.Employees.Any(x => x.EmployeeAceNumber == employeeAceNumber && x.Password == password && x.IsActive==true))
+                    throw new ValidationException($"Your account has been deactivated! Please Contact Admin");
+                if(!_db.Employees.Any(x =>x.EmployeeAceNumber == employeeAceNumber && x.Password == password && x.IsAdminAccepted==true))
+                    throw new ValidationException($"Please wait untill Admin verfies your account");
                 var _employee = GetEmployeesFromDatabase().Where(employee => employee.EmployeeAceNumber == employeeAceNumber).First();
                 return _employee;
             }

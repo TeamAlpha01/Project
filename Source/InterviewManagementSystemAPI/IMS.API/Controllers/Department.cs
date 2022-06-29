@@ -1,10 +1,11 @@
 using IMS.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 namespace IMS.Controllers;
 
-    
+[Authorize]
 [ApiController]
 [Route("[controller]/[action]")]
 public class DepartmentController : ControllerBase
@@ -103,6 +104,7 @@ public class DepartmentController : ControllerBase
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Return List of Departments  otherwise it returns  Exception when exception thrown in service.</returns>
+    [AllowAnonymous]
     [HttpGet]
     public IActionResult ViewDepartments()
     {

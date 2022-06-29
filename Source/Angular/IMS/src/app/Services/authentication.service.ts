@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { ConnectionService } from './connection.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private service : ConnectionService) { }
   static GetData(key: string): string | null {
     const itemStr = localStorage.getItem(key)
     if (!itemStr) {
@@ -40,10 +41,7 @@ export class AuthenticationService {
     return this.GetData("TAC")?.includes("true") ? true : false;
   }
 
-
-  ClearToken() {
-    console.log(localStorage.length);
+   ClearToken() {
     localStorage.clear();
-    console.log(localStorage.length);
   }
 }

@@ -71,6 +71,7 @@ import { DialogBoxComponent } from './Shared/DialogBox/dialog-box/dialog-box.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/interviewer-profile.component';
 import { DatePipe } from '@angular/common';
+import { AlertBoxComponent } from './Shared/AlertBox/alert-box/alert-box.component';
 
 
 
@@ -138,7 +139,8 @@ import { DatePipe } from '@angular/common';
     TacEmployeeDashboardComponent,
     SnackBarComponent,
     DialogBoxComponent,
-    InterviewerProfileComponent
+    InterviewerProfileComponent,
+    AlertBoxComponent
 
   ],
 

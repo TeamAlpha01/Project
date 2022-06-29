@@ -6,26 +6,28 @@
             <p>Please login to your account</p>
             <div class="form-input">
                 <label class="form-label" for="ACE Number">ACE Number </label>
-                <input id="ACE Number" type="text" placeholder="ACE Number" formControlName="ACENumber"
-                    class="form-control">
-                <div *ngIf="loginForm.controls['ACENumber'].invalid && loginForm.controls['ACENumber'].touched">
-                    <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['required']">*ACE Number is required</span>
-                    <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['pattern']">*ACE Number should starts with ACE and followed by 4 digits</span>
-                </div>
+                <input  [class.is-invalid]="(error.includes('ACE')||submitted && loginForm.controls['ACENumber'].invalid)||loginForm.controls['ACENumber'].invalid && loginForm.controls['ACENumber'].touched" id="ACE Number" type="text" placeholder="ACE Number" formControlName="ACENumber" class="form-control">
             </div>
+            <div *ngIf="(submitted)||loginForm.controls['ACENumber'].invalid && loginForm.controls['ACENumber'].touched">
+                <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['required']">ACE Number is required</span>
+                <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['pattern']">ACE Number should starts with ACE and followed by 4 digits</span>
+                <span *ngIf="error.includes('ACE')" class="text-danger">{{error}}</span>
+            </div>
+
             <div class="form-input">
                 <label class="form-label" for="Password">Password</label>
-                <input id="Password" type="password" placeholder="Password" formControlName="Password"
-                    class="form-control">
-                <div *ngIf="loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched">
-                    <span class="text-danger" *ngIf="loginForm.controls['Password'].errors?.['required']">*Password is required</span>
-
-                </div>
+                <input [class.is-invalid]="(error.includes('Password')||submitted && loginForm.controls['Password'].invalid)||loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched" id="Password" type="password" placeholder="Password" formControlName="Password" class="form-control">
+            </div>
+            <div *ngIf="(submitted)||loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched">
+                <span class="text-danger" *ngIf="loginForm.controls['Password'].errors?.['required']">Password is required</span>
+                <span *ngIf="error.includes('Password')" class="text-danger">{{error}}</span>
             </div>
             <div *ngIf="loading" diameter="40" class="spinner">
                 <mat-spinner></mat-spinner>
             </div>
-            
+            <div *ngIf="isCommanError" class="span12 text-center">
+                <span class="text-center text-danger">{{error}}</span>
+            </div>
             
             <div class="Login-btn">
                 <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log in </button>
@@ -33,9 +35,10 @@
 
             
             <div class="d-flex align-items-center justify-content-center pb-4">
-                <p class="mb-0 me-2">Don't have an account?</p>
-                <a href="Register.html"><button type="button" class="btn btn-outline-danger">Create new</button></a>
+                <p class="text-center text-muted  mb-0 me-2">Don't have an account?</p>
+                <a routerLink="/register">Create new</a>
             </div>
+
 
         </form>
     </div>
