@@ -55,13 +55,6 @@ export class RegisterPageComponent implements OnInit {
 
   submit(){
     this.formSubmitted=true;
-    var dialogRef=this.dialog.open(AlertBoxComponent);
-    dialogRef.afterClosed().subscribe((result)=>{
-      console.log(result)
-      if(result=='confirm' || result==undefined)
-       this.router.navigateByUrl('');
-    })
-
     if(this.registerForm.valid)
     {
       const user={
@@ -74,8 +67,9 @@ export class RegisterPageComponent implements OnInit {
         emailId: this.registerForm.value['Email'],
         password: this.registerForm.value['Password'],
        }
+
         this.connection.CreateEmployee(user).subscribe({
-          next:(data)=>console.log(data),
+          next:(data)=>{this.OpenAlertBox()},
           error:(error)=>this.error=error.error
         });
     }
@@ -83,9 +77,19 @@ export class RegisterPageComponent implements OnInit {
 
 
   ValidateConfirmPassword(control: AbstractControl) {
-  if (control.value != control.parent?.get('Password')?.value) {
-    return { passwordNotMatched: true };
+    if (control.value != control.parent?.get('Password')?.value) {
+      return { passwordNotMatched: true };
+    }
+    return null;
   }
-  return null;
-}
+
+  OpenAlertBox()
+  {
+    var dialogRef=this.dialog.open(AlertBoxComponent);
+      dialogRef.afterClosed().subscribe((result)=>{
+        console.log(result)
+        if(result=='confirm' || result==undefined)
+         this.router.navigateByUrl('');
+      })
+  }
 }

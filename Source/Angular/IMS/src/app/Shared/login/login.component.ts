@@ -84,8 +84,6 @@ export class LoginComponent implements OnInit {
           {
             this.isCommanError=true;
           }
-          console.log('Ace error : '+error.error.toString().includes('ACE'))
-          console.log('Pass error : '+error.error.toString().includes('Password'))
           this.error=error.error;
           this.loading=false;
         },

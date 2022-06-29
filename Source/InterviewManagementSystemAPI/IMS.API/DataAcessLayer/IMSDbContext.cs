@@ -43,7 +43,7 @@ namespace IMS.DataAccessLayer
                          new Role { RoleId = 6, RoleName = "Software Architect" },
                          new Role { RoleId = 7, RoleName = "Delivery Manager" },
                          new Role { RoleId = 8, RoleName = "Service Line Owner" },
-                         new Role { RoleId = 9, RoleName = "Talent" },
+                         new Role { RoleId = 9, RoleName = "TAC" },
                          new Role { RoleId = 10, RoleName = "Admin" }
                          );
             modelBuilder.Entity<Department>()
@@ -51,29 +51,55 @@ namespace IMS.DataAccessLayer
                         new Department { DepartmentId = 1, DepartmentName = ".NET" },
                         new Department { DepartmentId = 2, DepartmentName = "JAVA" },
                         new Department { DepartmentId = 3, DepartmentName = "ORACLE" },
-                        new Department { DepartmentId = 4, DepartmentName = "Not Applicable" }
+                        new Department { DepartmentId = 4, DepartmentName = "LAMP" },
+                        new Department { DepartmentId = 5, DepartmentName = "BFS" },
+                        new Department { DepartmentId = 6, DepartmentName = "TAC" },
+                        new Department { DepartmentId = 7, DepartmentName = "ADMIN" }
                         );
             modelBuilder.Entity<Project>()
                       .HasData(
-                       new Project { ProjectId = 1, ProjectName = "IMS_NET", DepartmentId = 1 },
-                       new Project { ProjectId = 2, ProjectName = "IMS_JAVA", DepartmentId = 2 },
-                       new Project { ProjectId = 3, ProjectName = "IMS_ORACLE", DepartmentId = 3 },
-                       new Project { ProjectId = 4, ProjectName = "Not Applicable", DepartmentId = 4 }
+
+                       new Project { ProjectId = 1, ProjectName = "Interview_Management_NET", DepartmentId = 1 },
+                       new Project { ProjectId = 2, ProjectName = "Employee_Management_NET", DepartmentId = 1 },
+                       new Project { ProjectId = 3, ProjectName = "Profile_Management_NET", DepartmentId = 1 },
+                       new Project { ProjectId = 4, ProjectName = "Banking_NET", DepartmentId = 1 },
+
+                       new Project { ProjectId = 5, ProjectName = "Interview_Management_JAVA", DepartmentId = 2 },
+                       new Project { ProjectId = 6, ProjectName = "Employee_Management_JAVA", DepartmentId = 2 },
+                       new Project { ProjectId = 7, ProjectName = "Profile_Management_JAVA", DepartmentId = 2 },
+                       new Project { ProjectId = 8, ProjectName = "Banking_JAVA", DepartmentId = 2 },
+
+                       new Project { ProjectId = 9, ProjectName = "Interview_Management_ORACLE", DepartmentId = 3 },
+                       new Project { ProjectId = 10, ProjectName = "Employee_Management_ORACLE", DepartmentId = 3 },
+                       new Project { ProjectId = 11, ProjectName = "Profile_Management_ORACLE", DepartmentId = 3 },
+                       new Project { ProjectId = 12, ProjectName = "Banking_ORACLE", DepartmentId = 3 },
+
+                       new Project { ProjectId = 13, ProjectName = "Interview_Management_LAMP", DepartmentId = 4 },
+                       new Project { ProjectId = 14, ProjectName = "Employee_Management_LAMP", DepartmentId = 4 },
+                       new Project { ProjectId = 15, ProjectName = "Profile_Management_LAMP", DepartmentId = 4},
+                       new Project { ProjectId = 16, ProjectName = "Banking_LAMP", DepartmentId = 4 },
+
+                       new Project { ProjectId = 17, ProjectName = "Interview_Management_BFS", DepartmentId = 5 },
+                       new Project { ProjectId = 18, ProjectName = "Employee_Management_BFS", DepartmentId = 5 },
+                       new Project { ProjectId = 19, ProjectName = "Profile_Management_BFS", DepartmentId = 5 },
+                       new Project { ProjectId = 20, ProjectName = "Banking_BFS", DepartmentId = 5 },
+                       new Project { ProjectId = 21, ProjectName = "Not Applicable", DepartmentId = 6 }
                        );
+                       
             modelBuilder.Entity<Employee>()
                       .HasData(
-                       new Employee { EmployeeId = 1, Name = "Prithvi", DepartmentId = 1, EmailId = "prithvi@gmail.com", EmployeeAceNumber = "ACE0001", Password = "Pass@12345", ProjectId = 1, RoleId = 1 },
-                       new Employee { EmployeeId = 2, Name = "Vinoth", DepartmentId = 1, EmailId = "vinoth@gmail.com", EmployeeAceNumber = "ACE0002", Password = "Pass@12345", ProjectId = 1, RoleId = 2 },
-                       new Employee { EmployeeId = 3, Name = "Sheik", DepartmentId = 1, EmailId = "Sheik@gmail.com", EmployeeAceNumber = "ACE0003", Password = "Pass@12345", ProjectId = 1, RoleId = 3 },
-                       new Employee { EmployeeId = 4, Name = "Darshana", DepartmentId = 2, EmailId = "darshana@gmail.com", EmployeeAceNumber = "ACE0004", Password = "Pass@12345", ProjectId = 2, RoleId = 1 },
-                       new Employee { EmployeeId = 5, Name = "Aravind", DepartmentId = 2, EmailId = "aravind@gmail.com", EmployeeAceNumber = "ACE0005", Password = "Pass@12345", ProjectId = 2, RoleId = 2 },
-                       new Employee { EmployeeId = 6, Name = "Kumaresh", DepartmentId = 2, EmailId = "kumaresh@gmail.com", EmployeeAceNumber = "ACE0006", Password = "Pass@12345", ProjectId = 2, RoleId = 3 },
-                       new Employee { EmployeeId = 7, Name = "Gokul", DepartmentId = 3, EmailId = "gokul@gmail.com", EmployeeAceNumber = "ACE0007", Password = "Pass@12345", ProjectId = 3, RoleId = 1 },
-                       new Employee { EmployeeId = 8, Name = "Deepika", DepartmentId = 3, EmailId = "deepika@gmail.com", EmployeeAceNumber = "ACE0008", Password = "Pass@12345", ProjectId = 3, RoleId = 2 },
-                       new Employee { EmployeeId = 9, Name = "Remuki", DepartmentId = 3, EmailId = "remuki@gmail.com", EmployeeAceNumber = "ACE0009", Password = "Pass@12345", ProjectId = 3, RoleId = 3 },
-                       new Employee { EmployeeId = 10, Name = "Vishnu", DepartmentId = 4, EmailId = "vishnu@gmail.com", EmployeeAceNumber = "ACE0010", Password = "Pass@12345", ProjectId = 4, RoleId = 9 },
-                       new Employee { EmployeeId = 11, Name = "Sandhiya", DepartmentId = 4, EmailId = "sandhiya@gmail.com", EmployeeAceNumber = "ACE0011", Password = "Pass@12345", ProjectId = 4, RoleId = 9 },
-                       new Employee { EmployeeId = 12, Name = "Mani", DepartmentId = 4, EmailId = "mani@gmail.com", EmployeeAceNumber = "ACE0012", Password = "Pass@12345", ProjectId = 4, RoleId = 10 }
+                       new Employee { EmployeeId = 1, Name = "Prithvi", DepartmentId = 1, EmailId = "prithvi.palani@aspiresys.com", EmployeeAceNumber = "ACE0001", Password = "Pass@12345", ProjectId = 1, RoleId = 1 },
+                       new Employee { EmployeeId = 2, Name = "Vinoth", DepartmentId = 1, EmailId = "vinoth.jayakumar@aspiresys.com", EmployeeAceNumber = "ACE0002", Password = "Pass@12345", ProjectId = 1, RoleId = 2 },
+                       new Employee { EmployeeId = 3, Name = "Sheik", DepartmentId = 1, EmailId = "sheik.farid@aspiresys.com", EmployeeAceNumber = "ACE0003", Password = "Pass@12345", ProjectId = 1, RoleId = 3 },
+                       new Employee { EmployeeId = 4, Name = "Darshana", DepartmentId = 2, EmailId = "darshana@aspiresys.com", EmployeeAceNumber = "ACE0004", Password = "Pass@12345", ProjectId = 2, RoleId = 1 },
+                       new Employee { EmployeeId = 5, Name = "Aravind", DepartmentId = 2, EmailId = "aravind@aspiresys.com", EmployeeAceNumber = "ACE0005", Password = "Pass@12345", ProjectId = 2, RoleId = 2 },
+                       new Employee { EmployeeId = 6, Name = "Kumaresh", DepartmentId = 2, EmailId = "kumaresh@aspiresys.com", EmployeeAceNumber = "ACE0006", Password = "Pass@12345", ProjectId = 2, RoleId = 3 },
+                       new Employee { EmployeeId = 7, Name = "Gokul", DepartmentId = 3, EmailId = "gokul@aspiresys.com", EmployeeAceNumber = "ACE0007", Password = "Pass@12345", ProjectId = 3, RoleId = 1 },
+                       new Employee { EmployeeId = 8, Name = "Deepika", DepartmentId = 3, EmailId = "deepika@aspiresys.com", EmployeeAceNumber = "ACE0008", Password = "Pass@12345", ProjectId = 3, RoleId = 2 },
+                       new Employee { EmployeeId = 9, Name = "Remuki", DepartmentId = 3, EmailId = "remuki@aspiresys.com", EmployeeAceNumber = "ACE0009", Password = "Pass@12345", ProjectId = 3, RoleId = 3 },
+                       new Employee { EmployeeId = 10, Name = "Vishnu", DepartmentId = 6, EmailId = "vishnu@aspiresys.com", EmployeeAceNumber = "ACE0010", Password = "Pass@12345", ProjectId = 4, RoleId = 9 },
+                       new Employee { EmployeeId = 11, Name = "Sandhiya", DepartmentId = 6, EmailId = "sandhiya@aspiresys.com", EmployeeAceNumber = "ACE0011", Password = "Pass@12345", ProjectId = 4, RoleId = 9 },
+                       new Employee { EmployeeId = 12, Name = "Mani", DepartmentId = 7, EmailId = "mani@aspiresys.com", EmployeeAceNumber = "ACE0012", Password = "Pass@12345", ProjectId = 4, RoleId = 10 }
                        );
             modelBuilder.Entity<Location>()
                      .HasData(
@@ -81,16 +107,33 @@ namespace IMS.DataAccessLayer
                       new Location { LocationId = 2, LocationName = "Bangalore", IsActive = true },
                       new Location { LocationId = 3, LocationName = "Mumbai", IsActive = true },
                       new Location { LocationId = 4, LocationName = "Delhi", IsActive = true },
-                      new Location { LocationId = 5, LocationName = "Noida", IsActive = true }
+                      new Location { LocationId = 5, LocationName = "Noida", IsActive = true },
+                      new Location { LocationId = 6, LocationName = "Hyderabad", IsActive = true },
+                      new Location { LocationId = 7, LocationName = "Kochin", IsActive = true },
+                      new Location { LocationId = 8, LocationName = "Coimbatore", IsActive = true },
+                      new Location { LocationId = 9, LocationName = "Not Applicable", IsActive = true }
                       );
             modelBuilder.Entity<Pool>()
                     .HasData(
                       new Pool { PoolId = 1, PoolName = "Fresher .NET", DepartmentId = 1, IsActive = true },
                       new Pool { PoolId = 2, PoolName = "SSE .NET", DepartmentId = 1, IsActive = true },
-                      new Pool { PoolId = 3, PoolName = "Fresher JAVA", DepartmentId = 2, IsActive = true },
-                      new Pool { PoolId = 4, PoolName = "SSE JAVA", DepartmentId = 2, IsActive = true },
-                      new Pool { PoolId = 5, PoolName = "Fresher ORACLE", DepartmentId = 3, IsActive = true },
-                      new Pool { PoolId = 6, PoolName = "SSE ORACLE", DepartmentId = 3, IsActive = true }
+                      new Pool { PoolId = 3, PoolName = "SLO .NET", DepartmentId = 1, IsActive = true },
+
+                      new Pool { PoolId = 4, PoolName = "Fresher JAVA", DepartmentId = 2, IsActive = true },
+                      new Pool { PoolId = 5, PoolName = "SSE JAVA", DepartmentId = 2, IsActive = true },
+                      new Pool { PoolId = 6, PoolName = "SLO JAVA", DepartmentId = 2, IsActive = true },
+
+                      new Pool { PoolId = 7, PoolName = "Fresher ORACLE", DepartmentId = 3, IsActive = true },
+                      new Pool { PoolId = 8, PoolName = "SSE ORACLE", DepartmentId = 3, IsActive = true },
+                      new Pool { PoolId = 9, PoolName = "SLO ORACLE", DepartmentId = 3, IsActive = true },
+
+                      new Pool { PoolId = 10, PoolName = "Fresher LAMP", DepartmentId = 4, IsActive = true },
+                      new Pool { PoolId = 11, PoolName = "SSE LAMP", DepartmentId = 4, IsActive = true },
+                      new Pool { PoolId = 12, PoolName = "SLO LAMP", DepartmentId = 4, IsActive = true },
+
+                      new Pool { PoolId = 13, PoolName = "Fresher BFS", DepartmentId = 5, IsActive = true },
+                      new Pool { PoolId = 14, PoolName = "SSE BFS", DepartmentId = 5, IsActive = true },
+                      new Pool { PoolId = 15, PoolName = "SLO BFS", DepartmentId = 5, IsActive = true }
                       );
             modelBuilder.Entity<PoolMembers>()
                     .HasData(
@@ -109,11 +152,40 @@ namespace IMS.DataAccessLayer
                       new PoolMembers { PoolMembersId = 11, PoolId = 6, EmployeeId = 8, IsActive = true },
                       new PoolMembers { PoolMembersId = 12, PoolId = 6, EmployeeId = 9, IsActive = true }
                       );
-            //  modelBuilder.Entity<Drive>()
-            //         .HasData( 
-            //           new Drive {DriveId = 1, Name = "Freshers", FromDate = " 2022-", ToDate = " ", DepartmentId = 1, PoolId = 1, ModeId = 1, LocationId = 1, IsScheduled = 1, IsCancelled = 0, CancelReason = CancelReason, AddedBy = 1, AddedOn = " ", UpdatedBy = 1, UpdatedOn = " "},
-            //           new Drive {DriveId = 2, Name = "Freshers2022", FromDate = " ", ToDate = " ", DepartmentId = 2, PoolId = 2, ModeId = 2, LocationId = 2, IsScheduled = 0, IsCancelled = 1, CancelReason = "Default Reason", AddedBy = 1, AddedOn = " ", UpdatedBy = 1, UpdatedOn = " "}
-            //           );
+             modelBuilder.Entity<Drive>()
+                    .HasData( 
+                      new Drive {DriveId = 1, Name = "Freshers .Net Drive T", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now.AddDays(1), DepartmentId = 1, PoolId = 1, ModeId = 2, LocationId = 1, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 2, Name = "Freshers .Net Drive S", FromDate = System.DateTime.Now.AddDays(3), ToDate = System.DateTime.Now.AddDays(4), DepartmentId = 1, PoolId = 1, ModeId = 2, LocationId = 1, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 3, Name = "Freshers .Net Drive U", FromDate = System.DateTime.Now.AddDays(6), ToDate = System.DateTime.Now.AddDays(7), DepartmentId = 1, PoolId = 1, ModeId = 2, LocationId = 1, IsScheduled = false, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 4, Name = "Freshers .Net Drive C", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now.AddDays(1), DepartmentId = 1, PoolId = 1, ModeId = 2, LocationId = 1, IsScheduled = true, IsCancelled = true, CancelReason = "Cancelled For Testing", AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+
+                      new Drive {DriveId = 5, Name = "SSE .Net Drive T", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now, DepartmentId = 1, PoolId = 2, ModeId = 1, LocationId = 9, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 6, Name = "SSE .Net Drive S", FromDate = System.DateTime.Now.AddDays(3), ToDate = System.DateTime.Now, DepartmentId = 1, PoolId = 2, ModeId = 2, LocationId = 3, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 7, Name = "SSE .Net Drive U", FromDate = System.DateTime.Now.AddDays(6), ToDate = System.DateTime.Now, DepartmentId = 1, PoolId = 2, ModeId = 1, LocationId = 9, IsScheduled = false, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 8, Name = "SSE .Net Drive C", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now, DepartmentId = 1, PoolId = 2, ModeId = 1, LocationId = 9, IsScheduled = true, IsCancelled = true, CancelReason = "Cancelled For Testing", AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      
+                      new Drive {DriveId = 9, Name = "SLO .Net Drive T", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now.AddDays(1), DepartmentId = 1, PoolId = 2, ModeId = 1, LocationId = 9, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 10, Name = "SLO .Net Drive S", FromDate = System.DateTime.Now.AddDays(3), ToDate = System.DateTime.Now.AddDays(4), DepartmentId = 1, PoolId = 2, ModeId = 2, LocationId = 5, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 11, Name = "SLO .Net Drive U", FromDate = System.DateTime.Now.AddDays(6), ToDate = System.DateTime.Now.AddDays(7), DepartmentId = 1, PoolId = 2, ModeId = 2, LocationId = 5, IsScheduled = false, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 12, Name = "SLO .Net Drive C", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now.AddDays(1), DepartmentId = 1, PoolId = 2, ModeId = 1, LocationId = 5, IsScheduled = true, IsCancelled = true, CancelReason = "Cancelled For Testing", AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+
+
+                      // JAVA
+                      new Drive {DriveId = 13, Name = "Freshers JAVA Drive T", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now.AddDays(1), DepartmentId = 2, PoolId = 4, ModeId = 2, LocationId = 1, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 14, Name = "Freshers JAVA Drive S", FromDate = System.DateTime.Now.AddDays(3), ToDate = System.DateTime.Now.AddDays(4), DepartmentId = 2, PoolId = 4, ModeId = 2, LocationId = 1, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 15, Name = "Freshers JAVA Drive U", FromDate = System.DateTime.Now.AddDays(6), ToDate = System.DateTime.Now.AddDays(7), DepartmentId = 2, PoolId = 4, ModeId = 2, LocationId = 1, IsScheduled = false, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 16, Name = "Freshers JAVA Drive C", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now.AddDays(1), DepartmentId = 2, PoolId = 4, ModeId = 2, LocationId = 1, IsScheduled = true, IsCancelled = true, CancelReason = "Cancelled For Testing", AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 17, Name = "SSE JAVA Drive T", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now, DepartmentId = 2, PoolId = 5, ModeId = 1, LocationId = 9, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 18, Name = "SSE JAVA Drive S", FromDate = System.DateTime.Now.AddDays(3), ToDate = System.DateTime.Now, DepartmentId = 2, PoolId = 5, ModeId = 2, LocationId = 3, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 19, Name = "SSE JAVA Drive U", FromDate = System.DateTime.Now.AddDays(6), ToDate = System.DateTime.Now, DepartmentId = 2, PoolId = 5, ModeId = 1, LocationId = 9, IsScheduled = false, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 20, Name = "SSE JAVA Drive C", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now, DepartmentId = 2, PoolId = 5, ModeId = 1, LocationId = 9, IsScheduled = true, IsCancelled = true, CancelReason = "Cancelled For Testing", AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                    
+                      new Drive {DriveId = 21, Name = "SLO JAVA Drive T", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now.AddDays(1), DepartmentId = 2, PoolId = 6, ModeId = 1, LocationId = 9, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 22, Name = "SLO JAVA Drive S", FromDate = System.DateTime.Now.AddDays(3), ToDate = System.DateTime.Now.AddDays(4), DepartmentId = 2, PoolId = 6, ModeId = 2, LocationId = 5, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 23, Name = "SLO JAVA Drive U", FromDate = System.DateTime.Now.AddDays(6), ToDate = System.DateTime.Now.AddDays(7), DepartmentId = 2, PoolId = 6, ModeId = 2, LocationId = 5, IsScheduled = false, IsCancelled = false, CancelReason = null, AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
+                      new Drive {DriveId = 24, Name = "SLO JAVA Drive C", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now.AddDays(1), DepartmentId = 2, PoolId = 6, ModeId = 1, LocationId = 5, IsScheduled = true, IsCancelled = true, CancelReason = "Cancelled For Testing", AddedBy = 9, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now}
+                      );
+
             //  modelBuilder.Entity<EmployeeDriveResponse>()
             //         .HasData(
             //           new EmployeeDriveResponse { ResponseId = 1, DriveId = 1, EmployeeId = 1, ResponseType = 1 },

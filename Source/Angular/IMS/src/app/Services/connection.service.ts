@@ -14,7 +14,10 @@ export class ConnectionService {
   baseURL = 'https://localhost:7072/'
   constructor(private http: HttpClient) { }
 
-  public headers = new HttpHeaders();
+  public headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${AuthenticationService.GetData('token')}`
+  })
   
   initializeTokenHeader(token:string|null){
     this.headers = new HttpHeaders({

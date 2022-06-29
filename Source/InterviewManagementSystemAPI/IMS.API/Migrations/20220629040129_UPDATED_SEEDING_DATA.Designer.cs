@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class InterviewManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220629040129_UPDATED_SEEDING_DATA")]
+    partial class UPDATED_SEEDING_DATA
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,12 +79,6 @@ namespace Source.Migrations
                         {
                             DepartmentId = 6,
                             DepartmentName = "TAC",
-                            IsActive = true
-                        },
-                        new
-                        {
-                            DepartmentId = 7,
-                            DepartmentName = "ADMIN",
                             IsActive = true
                         });
                 });
@@ -155,446 +151,6 @@ namespace Source.Migrations
                     b.HasIndex("UpdatedBy");
 
                     b.ToTable("Drives");
-
-                    b.HasData(
-                        new
-                        {
-                            DriveId = 1,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9787),
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9771),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 1,
-                            ModeId = 2,
-                            Name = "Freshers .Net Drive T",
-                            PoolId = 1,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 30, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9781),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9791)
-                        },
-                        new
-                        {
-                            DriveId = 2,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9794),
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 2, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9792),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 1,
-                            ModeId = 2,
-                            Name = "Freshers .Net Drive S",
-                            PoolId = 1,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 3, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9792),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9794)
-                        },
-                        new
-                        {
-                            DriveId = 3,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9796),
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 5, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9795),
-                            IsCancelled = false,
-                            IsScheduled = false,
-                            LocationId = 1,
-                            ModeId = 2,
-                            Name = "Freshers .Net Drive U",
-                            PoolId = 1,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9796),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9797)
-                        },
-                        new
-                        {
-                            DriveId = 4,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9799),
-                            CancelReason = "Cancelled For Testing",
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9798),
-                            IsCancelled = true,
-                            IsScheduled = true,
-                            LocationId = 1,
-                            ModeId = 2,
-                            Name = "Freshers .Net Drive C",
-                            PoolId = 1,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 30, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9798),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9800)
-                        },
-                        new
-                        {
-                            DriveId = 5,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9802),
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9800),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 9,
-                            ModeId = 1,
-                            Name = "SSE .Net Drive T",
-                            PoolId = 2,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9801),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9802)
-                        },
-                        new
-                        {
-                            DriveId = 6,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9804),
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 2, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9803),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 3,
-                            ModeId = 2,
-                            Name = "SSE .Net Drive S",
-                            PoolId = 2,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9803),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9805)
-                        },
-                        new
-                        {
-                            DriveId = 7,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9807),
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 5, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9806),
-                            IsCancelled = false,
-                            IsScheduled = false,
-                            LocationId = 9,
-                            ModeId = 1,
-                            Name = "SSE .Net Drive U",
-                            PoolId = 2,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9806),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9807)
-                        },
-                        new
-                        {
-                            DriveId = 8,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9809),
-                            CancelReason = "Cancelled For Testing",
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9808),
-                            IsCancelled = true,
-                            IsScheduled = true,
-                            LocationId = 9,
-                            ModeId = 1,
-                            Name = "SSE .Net Drive C",
-                            PoolId = 2,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9808),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9810)
-                        },
-                        new
-                        {
-                            DriveId = 9,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9812),
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9811),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 9,
-                            ModeId = 1,
-                            Name = "SLO .Net Drive T",
-                            PoolId = 2,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 30, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9811),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9812)
-                        },
-                        new
-                        {
-                            DriveId = 10,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9815),
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 2, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9813),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 5,
-                            ModeId = 2,
-                            Name = "SLO .Net Drive S",
-                            PoolId = 2,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 3, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9814),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9815)
-                        },
-                        new
-                        {
-                            DriveId = 11,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9817),
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 5, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9816),
-                            IsCancelled = false,
-                            IsScheduled = false,
-                            LocationId = 5,
-                            ModeId = 2,
-                            Name = "SLO .Net Drive U",
-                            PoolId = 2,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9816),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9818)
-                        },
-                        new
-                        {
-                            DriveId = 12,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9820),
-                            CancelReason = "Cancelled For Testing",
-                            DepartmentId = 1,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9819),
-                            IsCancelled = true,
-                            IsScheduled = true,
-                            LocationId = 5,
-                            ModeId = 1,
-                            Name = "SLO .Net Drive C",
-                            PoolId = 2,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 30, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9819),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9821)
-                        },
-                        new
-                        {
-                            DriveId = 13,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9823),
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9821),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 1,
-                            ModeId = 2,
-                            Name = "Freshers JAVA Drive T",
-                            PoolId = 4,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 30, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9822),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9823)
-                        },
-                        new
-                        {
-                            DriveId = 14,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9825),
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 2, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9824),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 1,
-                            ModeId = 2,
-                            Name = "Freshers JAVA Drive S",
-                            PoolId = 4,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 3, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9824),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9826)
-                        },
-                        new
-                        {
-                            DriveId = 15,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9828),
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 5, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9827),
-                            IsCancelled = false,
-                            IsScheduled = false,
-                            LocationId = 1,
-                            ModeId = 2,
-                            Name = "Freshers JAVA Drive U",
-                            PoolId = 4,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9827),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9828)
-                        },
-                        new
-                        {
-                            DriveId = 16,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9831),
-                            CancelReason = "Cancelled For Testing",
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9829),
-                            IsCancelled = true,
-                            IsScheduled = true,
-                            LocationId = 1,
-                            ModeId = 2,
-                            Name = "Freshers JAVA Drive C",
-                            PoolId = 4,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 30, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9830),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9831)
-                        },
-                        new
-                        {
-                            DriveId = 17,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9833),
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9832),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 9,
-                            ModeId = 1,
-                            Name = "SSE JAVA Drive T",
-                            PoolId = 5,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9832),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9834)
-                        },
-                        new
-                        {
-                            DriveId = 18,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9836),
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 2, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9835),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 3,
-                            ModeId = 2,
-                            Name = "SSE JAVA Drive S",
-                            PoolId = 5,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9835),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9836)
-                        },
-                        new
-                        {
-                            DriveId = 19,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9838),
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 5, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9837),
-                            IsCancelled = false,
-                            IsScheduled = false,
-                            LocationId = 9,
-                            ModeId = 1,
-                            Name = "SSE JAVA Drive U",
-                            PoolId = 5,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9837),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9839)
-                        },
-                        new
-                        {
-                            DriveId = 20,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9841),
-                            CancelReason = "Cancelled For Testing",
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9840),
-                            IsCancelled = true,
-                            IsScheduled = true,
-                            LocationId = 9,
-                            ModeId = 1,
-                            Name = "SSE JAVA Drive C",
-                            PoolId = 5,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9840),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9841)
-                        },
-                        new
-                        {
-                            DriveId = 21,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9843),
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9842),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 9,
-                            ModeId = 1,
-                            Name = "SLO JAVA Drive T",
-                            PoolId = 6,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 30, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9843),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9844)
-                        },
-                        new
-                        {
-                            DriveId = 22,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9846),
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 2, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9845),
-                            IsCancelled = false,
-                            IsScheduled = true,
-                            LocationId = 5,
-                            ModeId = 2,
-                            Name = "SLO JAVA Drive S",
-                            PoolId = 6,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 3, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9845),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9847)
-                        },
-                        new
-                        {
-                            DriveId = 23,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9849),
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 5, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9847),
-                            IsCancelled = false,
-                            IsScheduled = false,
-                            LocationId = 5,
-                            ModeId = 2,
-                            Name = "SLO JAVA Drive U",
-                            PoolId = 6,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9848),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9849)
-                        },
-                        new
-                        {
-                            DriveId = 24,
-                            AddedBy = 9,
-                            AddedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9856),
-                            CancelReason = "Cancelled For Testing",
-                            DepartmentId = 2,
-                            FromDate = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9855),
-                            IsCancelled = true,
-                            IsScheduled = true,
-                            LocationId = 5,
-                            ModeId = 1,
-                            Name = "SLO JAVA Drive C",
-                            PoolId = 6,
-                            SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 6, 30, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9855),
-                            UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 6, 29, 11, 44, 22, 650, DateTimeKind.Local).AddTicks(9857)
-                        });
                 });
 
             modelBuilder.Entity("IMS.Models.Employee", b =>
@@ -779,7 +335,7 @@ namespace Source.Migrations
                         new
                         {
                             EmployeeId = 10,
-                            DepartmentId = 6,
+                            DepartmentId = 4,
                             EmailId = "vishnu@aspiresys.com",
                             EmployeeAceNumber = "ACE0010",
                             IsActive = true,
@@ -793,7 +349,7 @@ namespace Source.Migrations
                         new
                         {
                             EmployeeId = 11,
-                            DepartmentId = 6,
+                            DepartmentId = 4,
                             EmailId = "sandhiya@aspiresys.com",
                             EmployeeAceNumber = "ACE0011",
                             IsActive = true,
@@ -807,7 +363,7 @@ namespace Source.Migrations
                         new
                         {
                             EmployeeId = 12,
-                            DepartmentId = 7,
+                            DepartmentId = 4,
                             EmailId = "mani@aspiresys.com",
                             EmployeeAceNumber = "ACE0012",
                             IsActive = true,
