@@ -22,11 +22,11 @@
 
                     </div>
                     <div class="col-md-2">
-                        <div class="row mt-3">
+                        <div class="row mt-1">
                             <a [routerLink]="['/interviewer/driveInvites/accept-invite',item.driveId]"> <button class="btn btn-success">Accept</button></a>
                         </div>
-                        <div class="row mt-3">
-                            <a href="['/interviewer/cancelInvite']"> <button class="btn btn-danger">Reject</button></a>
+                        <div class="row mt-1">
+                            <a [routerLink]="['/interviewer/driveInvites/cancel-invite',item.driveId]"> <button class="btn btn-danger">Reject&nbsp;</button></a>
                         </div>
                     </div>
                 </div>
@@ -37,3 +37,4 @@
         <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
     </div>
     <app-footer></app-footer>
+</div>

@@ -14,6 +14,7 @@ export class InterviewerDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.connection.GetDashboard().subscribe((data: any) => {
       this.EmployeeDashboardDetails = data;
+      console.warn(this.EmployeeDashboardDetails);
   });
   }
 

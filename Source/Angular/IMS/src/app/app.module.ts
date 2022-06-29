@@ -72,11 +72,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/interviewer-profile.component';
 import { DatePipe } from '@angular/common';
 import { AlertBoxComponent } from './Shared/AlertBox/alert-box/alert-box.component';
-
-
-
-
-
+import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-cancel-invite-page/interviewer-cancel-invite-page.component';
 
 
 @NgModule({
@@ -140,7 +136,8 @@ import { AlertBoxComponent } from './Shared/AlertBox/alert-box/alert-box.compone
     SnackBarComponent,
     DialogBoxComponent,
     InterviewerProfileComponent,
-    AlertBoxComponent
+    AlertBoxComponent,
+    InterviewerCancelInvitePageComponent
 
   ],
 
