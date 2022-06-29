@@ -28,8 +28,9 @@ namespace UnitTesting.ServiceTests
         //TestCases for Create Department Method
 
         [Theory]
-        [InlineData("")]
+        [InlineData("ss")]
         [InlineData(null)]
+        [InlineData("Freshers2022")]
         public void CreateDepartment_ThrowsValidationException_WithInvalidDepartmentName(string departmentName)
         {
             var Result = () => _DepartmentService.CreateDepartment (departmentName);
@@ -54,7 +55,7 @@ namespace UnitTesting.ServiceTests
             var Result = _DepartmentService.CreateDepartment("Chennai");
             Result.Should().BeFalse();
         }
-
+       
         [Fact]
         public void CreateDepartment_ThrowsValidationException_When_DAL_ThrowsValidationException()
         {            
@@ -93,7 +94,7 @@ namespace UnitTesting.ServiceTests
         }
 
          [Fact]
-        public void RemoveDepartment_ReturnsFalse_WithValidDepartmentId()
+        public void RemoveDepartment_ReturnsFalse_WithInValidDepartmentId()
         {            
             int DepartmentId = 1;
            _DepartmentDataAccessLayer.Setup(r => r.RemoveDepartmentFromDatabase(DepartmentId)).Returns(false);
