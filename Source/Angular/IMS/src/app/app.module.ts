@@ -48,11 +48,9 @@ import { InterviewerCardDetailsComponent } from './Interviewer/interviewer-card-
 import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
-
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { ViewResponseCardComponent } from './TAC/view-response-card/view-response-card.component';
 import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.component';
 import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
@@ -121,7 +119,6 @@ import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-
     InterviewerCardDetailsComponent,
     ManageCardsComponent,
     PerformanceDashboardComponent,
-    ViewResponseCardComponent,
     TacCreatePoolComponent,
     TacEditPoolComponent,
     TacEditPoolMemberComponent,
