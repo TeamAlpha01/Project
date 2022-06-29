@@ -185,7 +185,7 @@ public class DriveControllerTest
     public void ViewScheduledDrive_ShouldReturnStatusCode200()
     {
         // Arrange
-        _driveService.Setup(driveService => driveService.ViewScheduledDrives()).Returns(() => null);
+        _driveService.Setup(driveService => driveService.ViewScheduledDrives()).Returns(new Object());
         // Act
         var Result = _driveController.ViewScheduledDrives() as ObjectResult;
         //Assert
@@ -193,7 +193,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewScheduledDrive_ShouldReturnStatusCode500()
+    public void ViewScheduledDrive_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         // Arrange
         _driveService.Setup(driveService => driveService.ViewScheduledDrives()).Throws<Exception>();
@@ -209,7 +209,7 @@ public class DriveControllerTest
     public void ViewUpcomingDrive_ShouldReturnStatusCode200()
     {
         // Arrange
-        _driveService.Setup(driveService => driveService.ViewUpcommingDrives()).Returns(() => null);
+        _driveService.Setup(driveService => driveService.ViewUpcommingDrives()).Returns(new Object());
         // Act
         var Result = _driveController.ViewScheduledDrives() as ObjectResult;
         //Assert
@@ -217,7 +217,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewUpcomingDrive_ShouldReturnStatusCode500()
+    public void ViewUpcomingDrive_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         // Arrange
         _driveService.Setup(driveService => driveService.ViewUpcommingDrives()).Throws<Exception>();
@@ -233,7 +233,7 @@ public class DriveControllerTest
     public void ViewNonCancelledDrive_ShouldReturnStatusCode200()
     {
         // Arrange
-        _driveService.Setup(driveService => driveService.ViewNonCancelledDrives()).Returns(() => null);
+        _driveService.Setup(driveService => driveService.ViewNonCancelledDrives()).Returns(new Object()) ;
         // Act
         var Result = _driveController.ViewNonCancelledDrives() as ObjectResult;
         //Assert
@@ -241,7 +241,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewNonCancelledDrive_ShouldReturnStatusCode500()
+    public void ViewNonCancelledDrive_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         // Arrange
         _driveService.Setup(driveService => driveService.ViewNonCancelledDrives()).Throws<Exception>();
@@ -257,7 +257,7 @@ public class DriveControllerTest
     public void ViewAllCancelledDrive_ShouldReturnStatusCode200()
     {
         // Arrange
-        _driveService.Setup(driveService => driveService.ViewAllCancelledDrives()).Returns(() => null);
+        _driveService.Setup(driveService => driveService.ViewAllCancelledDrives()).Returns(new Object());
         // Act
         var Result = _driveController.ViewAllCancelledDrives() as ObjectResult;
         //Assert
@@ -265,7 +265,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewAllCancelledDrive_ShouldReturnStatusCode500()
+    public void ViewAllCancelledDrive_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         // Arrange
         _driveService.Setup(driveService => driveService.ViewAllCancelledDrives()).Throws<Exception>();
@@ -309,9 +309,9 @@ public class DriveControllerTest
 
         Result.StatusCode.Should().Be(400);
     }
-
+   
     [Fact]
-    public void ViewDrive_ShouldReturnStatusCode500_WithProperDriveId()
+    public void ViewDrive_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int driveId = 1; 
 
@@ -346,7 +346,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewInvites_ShouldReturn_Exception_WithProperEmployeeId()
+    public void ViewInvites_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -367,21 +367,22 @@ public class DriveControllerTest
         var Result = _driveController.ViewDashboard(tacId) as ObjectResult;
         Result.StatusCode.Should().Be(400);
     }
+    
+
+    // [Fact]
+    // public void ViewDashboard_ShouldReturnStatusCode200_WithProperTACId()
+    // {
+    //     int tacId = 1; 
+
+    //     _driveService.Setup(r => r.ViewTACDashboard(tacId)).Returns(new Object());
+
+    //     var Result = _driveController.ViewDashboard(tacId) as ObjectResult;
+
+    //     Result.StatusCode.Should().Be(200);
+    // }
 
     [Fact]
-    public void ViewDashboard_ShouldReturnStatusCode200_WithProperTACId()
-    {
-        int tacId = 1; 
-
-        _driveService.Setup(r => r.ViewTACDashboard(tacId)).Returns(() => null);
-
-        var Result = _driveController.ViewDashboard(tacId) as ObjectResult;
-
-        Result.StatusCode.Should().Be(200);
-    }
-
-    [Fact]
-    public void ViewDashboard_ShouldReturn_Exception_WithProperTACId()
+    public void ViewDashboard_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int tacId = 1; 
 
@@ -393,7 +394,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewDashboard_ShouldReturn_ValidationException_WithProperTACId()
+    public void ViewDashboard_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int tacId = 1; 
 
@@ -403,8 +404,89 @@ public class DriveControllerTest
 
         Result.StatusCode.Should().Be(400);
     }
+    //Add Response
+   [Theory]
+   [InlineData(null)]
+   public void AddResponse_ShouldReturnStatusCode400_WhenResponseObjectIsNull(EmployeeDriveResponse response)
+   {
+   var Result=_driveController.AddResponse(response) as ObjectResult;
+   Result.StatusCode.Should().Be(400);
+   }
+   [Fact]
+   public void AddResponse_ShouldReturnStatusCode200_WithValidInput()
+   {
+    EmployeeDriveResponse employeeDriveResponse=EmployeeResponseMock.AddResponse();
+    _driveService.Setup(e=>e.AddResponse(employeeDriveResponse)).Returns(true);
+    var Result=_driveController.AddResponse(employeeDriveResponse) as ObjectResult;
+    Result.StatusCode.Should().Be(200);
 
-    // Add Response
+
+   }
+   [Fact]
+   public void AddResponse_ShouldReturnStatusCode500_WithInValidInput()
+   {
+    EmployeeDriveResponse employeeDriveResponse=EmployeeResponseMock.AddResponse();
+    _driveService.Setup(e=>e.AddResponse(employeeDriveResponse)).Returns(false);
+    var Result=_driveController.AddResponse(employeeDriveResponse) as ObjectResult;
+    Result.StatusCode.Should().Be(500);
+   }
+   [Fact]
+   public void AddResponse_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
+   {
+    EmployeeDriveResponse employeeDriveResponse=EmployeeResponseMock.AddResponse();
+    _driveService.Setup(e=>e.AddResponse(employeeDriveResponse)).Throws<ValidationException>();
+    var Result=_driveController.AddResponse(employeeDriveResponse) as ObjectResult;
+    Result.StatusCode.Should().Be(400);
+   }
+   [Fact]
+   public void AddResponse_ShouldReturnStatusCode500_WhenServiceThrowsException()
+   {
+    EmployeeDriveResponse employeeDriveResponse=EmployeeResponseMock.AddResponse();
+    _driveService.Setup(e=>e.AddResponse(employeeDriveResponse)).Throws<Exception>();
+    var Result=_driveController.AddResponse(employeeDriveResponse)as ObjectResult;
+    Result.StatusCode.Should().Be(500); 
+   }
+   //SetTimeSlot
+   [Theory]
+   [InlineData(null)]
+   public void SetTimeSlot_ShouldReturnStatusCode400_WhenEmployeeAvaliabilityIsNull(EmployeeAvailability employeeAvailability)
+   {
+    var Result=_driveController.SetTimeSlot(employeeAvailability) as ObjectResult;
+    Result.StatusCode.Should().Be(400);
+   }
+    [Fact]
+    public void SetTimeSlot_ShouldReturnStatusCode200_WithValidInputs()
+    {
+        EmployeeAvailability employeeAvailability=EmployeeAvailabilityMock.SetTimeSlotWithValidData();
+        _driveService.Setup(s=>s.SetTimeSlot(employeeAvailability)).Returns(true);
+        var Result=_driveController.SetTimeSlot(employeeAvailability) as ObjectResult;
+        Result.StatusCode.Should().Be(200);
+    }
+     [Fact]
+    public void SetTimeSlot_ShouldReturnStatusCode500_WhenServiceReturnsFalse()
+    {
+        EmployeeAvailability employeeAvailability=EmployeeAvailabilityMock.SetTimeSlotWithValidData();
+        _driveService.Setup(s=>s.SetTimeSlot(employeeAvailability)).Returns(false);
+        var Result=_driveController.SetTimeSlot(employeeAvailability) as ObjectResult;
+        Result.StatusCode.Should().Be(500);
+    }
+    [Fact]
+    public void SetTimeSlot_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
+    {
+        EmployeeAvailability employeeAvailability=EmployeeAvailabilityMock.SetTimeSlotWithValidData();
+        _driveService.Setup(s=>s.SetTimeSlot(employeeAvailability)).Throws<ValidationException>();
+        var Result=_driveController.SetTimeSlot(employeeAvailability) as ObjectResult;
+        Result.StatusCode.Should().Be(400);
+    }
+    [Fact]
+    public void SetTimeSlot_ShouldReturnStatusCode500_WhenServiceThrowsException()
+    {
+        EmployeeAvailability employeeAvailability=EmployeeAvailabilityMock.SetTimeSlotWithValidData();
+        _driveService.Setup(s=>s.SetTimeSlot(employeeAvailability)).Throws<Exception>();
+        var Result=_driveController.SetTimeSlot(employeeAvailability) as ObjectResult;
+        Result.StatusCode.Should().Be(500);
+    }
+
     // Set Time Slot
 
     //View Todays Interview
@@ -423,7 +505,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewTodayInterviews(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewTodayInterviews(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewTodaysInterview(employeeId) as ObjectResult;
 
@@ -431,7 +513,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewTodayInterview_ShouldReturnStatusCode500_WithProperEmployeeId()
+    public void ViewTodayInterview_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -458,7 +540,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewScheduledInterview(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewScheduledInterview(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewScheduledInterview(employeeId) as ObjectResult;
 
@@ -466,7 +548,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewScheduledInterview_ShouldReturnStatusCode500_WithProperEmployeeId()
+    public void ViewScheduledInterview_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -493,7 +575,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewUpcomingInterview(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewUpcomingInterview(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewUpcomingInterview(employeeId) as ObjectResult;
 
@@ -501,7 +583,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewUpcomingInterview_ShouldReturnStatusCode500_WithProperEmployeeId()
+    public void ViewUpcomingInterview_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -528,7 +610,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewAllInterview(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewAllInterview(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewAllInterview(employeeId) as ObjectResult;
 
@@ -536,7 +618,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void ViewAllInterview_ShouldReturnStatusCode500_WithProperEmployeeId()
+    public void ViewAllInterview_ShouldReturnStatusCode500_WhenServiceThrowsExcception()
     {
         int employeeId = 1; 
 
@@ -585,7 +667,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ScheduleInterview_Should_Return_ValidationException()
+   public void  ScheduleInterview_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
        int employeeAvailabilityId = 1; 
 
@@ -599,7 +681,7 @@ public class DriveControllerTest
     // Add one more case for Drive cancelled but mail not triggered
 
    [Fact]
-   public void  ScheduleInterview_ShouldReturn_Exception_WithImProperEmployeeAvailabilityID()
+   public void  ScheduleInterview_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeAvailabilityId = 1; 
 
@@ -639,7 +721,7 @@ public class DriveControllerTest
     // }
 
     [Fact]
-    public void CancelInterview_ShouldReturnStatusCode500_WithProperInputs()
+    public void CancelInterview_ShouldReturnStatusCode500_WithImProperInputs()
     {
         int employeeAvailabilityId = 1;
         string Cancellationreason = "Reason"; 
@@ -653,7 +735,7 @@ public class DriveControllerTest
     }
 
     [Fact]
-    public void CancelInterview_ShouldReturnStatusCode400_WithProperInputs()
+    public void CancelInterview_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int employeeAvailabilityId = 1;
         string Cancellationreason = "Reason"; 
@@ -669,7 +751,7 @@ public class DriveControllerTest
      // Add one more case for Drive cancelled but mail not triggered
 
      [Fact]
-    public void CancelInterview_ShouldThrows_Exception_WithProperInputs()
+    public void CancelInterview_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeAvailabilityId = 1;
         string Cancellationreason = "Reason"; 
@@ -705,7 +787,7 @@ public class DriveControllerTest
     }
 
      [Fact]
-   public void  ViewAvailableMemeberForDrive_ShouldReturnStatusCode400_WhenProperDriveId()
+   public void  ViewAvailableMemeberForDrive_ShouldReturnStatusCode400_WhenImProperDriveId()
     {
        int driveId = 1; 
 
@@ -717,7 +799,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ViewAvailableMemeberForDrive_ShouldReturnStatusCode500_WhenProperDriveId()
+   public void  ViewAvailableMemeberForDrive_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int driveId = 1; 
 
@@ -738,20 +820,20 @@ public class DriveControllerTest
         Result.StatusCode.Should().Be(400);
     }
 
+    //  [Fact]
+    // public void ViewEmployeeDashboard_ShouldReturnStatusCode200_WhenProperEmployeeId()
+    // {
+    //     int employeeId = 1; 
+
+    //     _driveService.Setup(r => r.ViewEmployeeDashboard(employeeId)).Returns(new Object());
+
+    //     var Result = _driveController.ViewEmployeeDashboard(employeeId) as ObjectResult;
+
+    //     Result.StatusCode.Should().Be(200);
+    // }
+
      [Fact]
-    public void ViewEmployeeDashboard_ShouldReturnStatusCode200_WhenProperEmployeeId()
-    {
-        int employeeId = 1; 
-
-        _driveService.Setup(r => r.ViewEmployeeDashboard(employeeId)).Returns(() => null);
-
-        var Result = _driveController.ViewEmployeeDashboard(employeeId) as ObjectResult;
-
-        Result.StatusCode.Should().Be(200);
-    }
-
-     [Fact]
-   public void  VViewEmployeeDashboard_ShouldReturnStatusCode400_WhenProperEmployeeId()
+   public void  VViewEmployeeDashboard_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
        int employeeId = 1; 
 
@@ -763,7 +845,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ViewEmployeeDashboard_ShouldReturnStatusCode500_WhenProperEmployeeId()
+   public void  ViewEmployeeDashboard_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -789,7 +871,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewTotalDrives(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewTotalDrives(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewToatlDrives(employeeId) as ObjectResult;
 
@@ -797,7 +879,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ViewTotalDrives_ShouldReturnStatusCode500_WhenProperEmployeeId()
+   public void  ViewTotalDrives_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -823,7 +905,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewAcceptedDrives(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewAcceptedDrives(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewAcceptedDrives(employeeId) as ObjectResult;
 
@@ -831,7 +913,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ViewAcceptedDrives_ShouldReturnStatusCode500_WhenProperEmployeeId()
+   public void  ViewAcceptedDrives_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -857,7 +939,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewDeniedDrives(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewDeniedDrives(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewDeniedDrives(employeeId) as ObjectResult;
 
@@ -865,7 +947,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ViewDeniedDrives_ShouldReturnStatusCode500_WhenProperEmployeeId()
+   public void  ViewDeniedDrives_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -891,7 +973,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewIgnoredDrives(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewIgnoredDrives(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewIgnoredDrives(employeeId) as ObjectResult;
 
@@ -899,7 +981,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ViewIgnoredDrives_ShouldReturnStatusCode500_WhenProperEmployeeId()
+   public void  ViewIgnoredDrives_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -925,7 +1007,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewUtilizedInterviews(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewUtilizedInterviews(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewUtilizedInterviews(employeeId) as ObjectResult;
 
@@ -933,7 +1015,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ViewUtilizedInterviews_ShouldReturnStatusCode500_WhenProperEmployeeId()
+   public void  ViewUtilizedInterviews_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -959,7 +1041,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewNotUtilizedInterviews(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewNotUtilizedInterviews(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewNotUtilizedInterviews(employeeId) as ObjectResult;
 
@@ -967,7 +1049,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ViewNotUtilizedInterviews_ShouldReturnStatusCode500_WhenProperEmployeeId()
+   public void  ViewNotUtilizedInterviews_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
@@ -993,7 +1075,7 @@ public class DriveControllerTest
     {
         int employeeId = 1; 
 
-        _driveService.Setup(r => r.ViewTotalAvailability(employeeId)).Returns(() => null);
+        _driveService.Setup(r => r.ViewTotalAvailability(employeeId)).Returns(new Object());
 
         var Result = _driveController.ViewTotalAvailability(employeeId) as ObjectResult;
 
@@ -1001,7 +1083,7 @@ public class DriveControllerTest
     }
 
    [Fact]
-   public void  ViewTotalAvailability_ShouldReturnStatusCode500_WhenProperEmployeeId()
+   public void  ViewTotalAvailability_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         int employeeId = 1; 
 
