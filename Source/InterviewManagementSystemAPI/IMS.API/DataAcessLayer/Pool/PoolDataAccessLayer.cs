@@ -131,7 +131,11 @@ namespace IMS.DataAccessLayer
             PoolValidation.IsEditPoolValid(poolId, poolName);
             try
             {
-
+                   bool poolNameExists = _db.Pools.Any(x => x.PoolName == poolName && x.IsActive == true);
+                   if(poolNameExists)
+                   {
+                    throw new ValidationException("Pool Name already Exists");
+                   }
                 var edit = _db.Pools.Find(poolId);
                 if (edit == null)
                     throw new ValidationException("No pool is found with given Pool Id");
