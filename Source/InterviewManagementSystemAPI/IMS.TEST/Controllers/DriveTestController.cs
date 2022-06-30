@@ -9,6 +9,7 @@ using Moq;
 using Xunit;
 using IMS.Models;
 using UnitTesting.MockData;
+using System.Collections.Generic;
 
 namespace UnitTesting.Controllers;
 
@@ -359,27 +360,21 @@ public class DriveControllerTest
 
     // View Dashboard
 
-    [Theory]
-    [InlineData(0)]
-
-    public void Viewdashboard_ShouldReturnStatusCode400_WhenTACIdIsZero(int tacId)
-    {
-        var Result = _driveController.ViewDashboard(tacId) as ObjectResult;
-        Result.StatusCode.Should().Be(400);
-    }
+ 
     
 
-    // [Fact]
-    // public void ViewDashboard_ShouldReturnStatusCode200_WithProperTACId()
-    // {
-    //     int tacId = 1; 
+    [Fact]
+    public void ViewDashboard_ShouldReturnStatusCode200_WithProperTACId()
+    {
+        Dictionary<string,int> TACDashboard=DriveMock.ViewTACDashboarrd();
+        int tacId = 1; 
 
-    //     _driveService.Setup(r => r.ViewTACDashboard(tacId)).Returns(new Object());
+        _driveService.Setup(r => r.ViewTACDashboard(tacId)).Returns(TACDashboard);
 
-    //     var Result = _driveController.ViewDashboard(tacId) as ObjectResult;
+        var Result = _driveController.ViewDashboard() as ObjectResult;
 
-    //     Result.StatusCode.Should().Be(200);
-    // }
+        Result.StatusCode.Should().Be(200);
+    }
 
     [Fact]
     public void ViewDashboard_ShouldReturnStatusCode500_WhenServiceThrowsException()
@@ -388,19 +383,19 @@ public class DriveControllerTest
 
         _driveService.Setup(r => r.ViewTACDashboard(tacId)).Throws<Exception>();
 
-        var Result = _driveController.ViewDashboard(tacId) as ObjectResult;
+        var Result = _driveController.ViewDashboard() as ObjectResult;
 
         Result.StatusCode.Should().Be(500);
     }
 
-    [Fact]
+   [Fact]
     public void ViewDashboard_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         int tacId = 1; 
 
         _driveService.Setup(r => r.ViewTACDashboard(tacId)).Throws<ValidationException>();
 
-        var Result = _driveController.ViewDashboard(tacId) as ObjectResult;
+        var Result = _driveController.ViewDashboard() as ObjectResult;
 
         Result.StatusCode.Should().Be(400);
     }

@@ -10,6 +10,7 @@ using Moq;
 using UnitTesting.MockData;
 using Xunit;
 using UnitTesting.Utility;
+using System.Linq;
 
 namespace UnitTesting.ServiceTests
 {
@@ -138,6 +139,14 @@ namespace UnitTesting.ServiceTests
             var Result = () => _DepartmentService.ViewDepartments();
             Result.Should().Throw<Exception>();
         }
+        [Fact]
+        public void ViewDepartments_SholudReturnListOfDepartments()
+        {
+            var departments=DepartmentMock.ListOfDepartments();
+            _DepartmentDataAccessLayer.Setup(v=>v.GetDepartmentsFromDatabase()).Returns(departments);
+            var Result=_DepartmentService.ViewDepartments();
+            Assert.Equal(departments.Count(),Result.Count());
+        }
 
         // [Fact]
         // public void ViewDepartment_ShouldReturnListofDepartments()
@@ -221,6 +230,15 @@ namespace UnitTesting.ServiceTests
             var Result = () => _DepartmentService.ViewProjects();
             Result.Should().Throw<Exception>();
         }
+         [Fact]
+        public void ViewProjects_SholudReturnListOfProjects()
+        {
+            var projects=ProjectMock.ListOfProjects();
+            _DepartmentDataAccessLayer.Setup(v=>v.GetProjectsFromDatabase()).Returns(projects);
+            var Result=_DepartmentService.ViewProjects();
+            Assert.Equal(projects.Count(),Result.Count());
+        }
+       
         // [Fact]
         // public void Viewproject_ShouldReturnListofProjects()
         // {

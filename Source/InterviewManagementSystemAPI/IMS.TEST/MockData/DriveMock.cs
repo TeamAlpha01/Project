@@ -78,6 +78,7 @@ namespace UnitTesting.MockData
                 ExpectedDashboardCount.Add("Cancelled Drives", 1);
                 return ExpectedDashboardCount;
         }
+     
 
         internal static object GetExpectedDriveMock()
         {
@@ -96,6 +97,13 @@ namespace UnitTesting.MockData
             mockDrives.Add(new { DriveId = 5, DriveName = "Upcomming Drive 1", FromDate = System.DateTime.Now.AddDays(10).ToString("yyyy-MM-dd"), ToDate = System.DateTime.Now.AddDays(10).ToString("yyyy-MM-dd"),  DrivePool="TestPool",DriveDepartment="testDepartment",DriveLocation="TestLocation",DriveMode="Offline"});
             mockDrives.Add(new { DriveId = 6, DriveName = "Upcomming Drive 2", FromDate = System.DateTime.Now.AddDays(10).ToString("yyyy-MM-dd"), ToDate = System.DateTime.Now.AddDays(10).ToString("yyyy-MM-dd"),  DrivePool="TestPool",DriveDepartment="testDepartment",DriveLocation="TestLocation",DriveMode="Offline"});
             return mockDrives;
+        }
+           public static Dictionary<string,int> ViewTACDashboarrd()
+        {
+            var TACDashboard=new Dictionary<string,int>();
+            TACDashboard.Add("Scheduled Drives",2);
+            TACDashboard.Add("Cancelled Drives",3);
+            return TACDashboard;
         }
     }
 }

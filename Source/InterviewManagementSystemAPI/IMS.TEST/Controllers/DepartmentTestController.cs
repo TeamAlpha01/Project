@@ -6,6 +6,7 @@ using IMS.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using UnitTesting.MockData;
 using Xunit;
 
 namespace UnitTesting.Controllers;
@@ -120,12 +121,12 @@ public class departmentControllerTest
     [Fact]
     public void Viewdepartment_ShouldReturnStatusCode200()
     {
-        // Arrange
-        _departmentService.Setup(departmentService => departmentService.ViewDepartments()).Returns(() => null);
-        // Act
-        var Result = _departmentController.ViewDepartments() as ObjectResult;
-        //Assert
-        Assert.Equal(200, Result.StatusCode);
+        var departments=DepartmentMock.ListOfDepartments();
+        _departmentService.Setup(v=>v.ViewDepartments()).Returns(departments);
+        var Result=_departmentController.ViewDepartments() as ObjectResult;
+        Result.StatusCode.Should().Be(200);
+
+
     }
 
     [Fact]
