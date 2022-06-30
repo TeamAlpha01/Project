@@ -21,8 +21,8 @@ export class AdminViewRequestsPageComponent implements OnInit {
     console.log(AuthenticationService.GetData("Admin"))
     this.GetEmployeeRequests();
   }
-  RespondEmployeeRequest(employeeId: number, responese: boolean) {
-    this.service.RespondEmployeeRequest(employeeId, responese).subscribe(() => this.GetEmployeeRequests());
+  RespondEmployeeRequest(employeeId: number, response: boolean) {
+    this.service.RespondEmployeeRequest(employeeId, response).subscribe(() => this.GetEmployeeRequests());
 
   }
   GetEmployeeRequests() {

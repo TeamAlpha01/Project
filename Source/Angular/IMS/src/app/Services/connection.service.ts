@@ -101,7 +101,7 @@ export class ConnectionService {
   }
 
   GetEmployeeRequests(): any{
-    return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeeRequest', { headers: this.headers })
+    return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeeRequest', { headers: this.headers });
   }
 
   GetTodaysInterviews(): any {
@@ -115,16 +115,25 @@ export class ConnectionService {
   GetUpcomingInterviews(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUpcomingInterview', { headers: this.headers });
   }
+
   GetDriveById(driveId:any)
   {
     return this.http.get<any>(this.baseURL+ `Drive/ViewDrive?driveId=${driveId}`,{headers:this.headers});
   }
+
   GetDriveInvites(employeeId:any){
     return this.http.get<any>(this.baseURL + `Drive/ViewInvites?employeeId=${employeeId}`, { headers: this.headers});
   }
+
   GetDriveInvitesById(){
-    return this.http.get<any>(this.baseURL + `Drive/ViewInvitesByID`, { headers: this.headers});
+    return this.http.get<any>(this.baseURL + `Drive/ViewInvitesByID`, { headers: this.headers });
   }
+
+  AddResponse(driveId:any)
+  {
+    return this.http.post<any>(this.baseURL + `Drive/AddResponse`, driveId ,{ headers: this.headers });
+  }
+
   //POST methods
   Login(user: any) {
     return this.http.post<any>(this.baseURL + `Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.headers })
@@ -137,6 +146,7 @@ export class ConnectionService {
   CreateEmployee(user: any) {
     return this.http.post<any>( this.baseURL + 'Employee/CreateNewEmployee', user, { headers: this.headers })
   }
+
   CancelDrive(driveId: number, reason: string) {
     return this.http.patch<any>(this.baseURL + `Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
   }
@@ -160,8 +170,6 @@ export class ConnectionService {
   RemovePoolMember(poolMemberId: number) {
     return this.http.post<any>(this.baseURL + `Pool/RemovePoolMember?poolMemberId=${poolMemberId}`, null, { headers: this.headers })
   }
-
-
 
   RemovePool(poolId: number) {
     return this.http.post<any>(this.baseURL + `Pool/RemovePool?poolId=${poolId}`, null, { headers: this.headers })

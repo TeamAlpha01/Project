@@ -31,4 +31,11 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
     }) 
   }
 
+  AddResponse()
+  {
+    this.connection.AddResponse(this.driveId).subscribe((data: any) => {
+      this.Invites = data;
+      console.warn(this.Invites);
+    }) 
+  }
 }

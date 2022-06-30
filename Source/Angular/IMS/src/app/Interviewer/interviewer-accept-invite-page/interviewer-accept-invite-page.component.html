@@ -26,14 +26,15 @@
                                 <br>
                                 <input type = "date" min="{{Invites.fromDate}}" max="{{Invites.toDate}}">
                             </div>
-                                <div class="col-md-4">
-                                    <label class="text"><b>Select Timing </b></label>
-                                    <input type="time" class="form-control" id="appt" name="appt" min="09:00" max="18:00" required>
-                                </div>
 
-                                <div class="col-md-2 ">
-                                    <a [routerLink]="['']"><button type="button" class="btn btn-back">Add</button></a>
-                                </div>
+                            <div class="col-md-4">
+                                <label class="text"><b>Select Timing </b></label>
+                                <input type="time" class="form-control" id="appt" name="appt" min="09:00" max="18:00" required>
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <a [routerLink]="['']"><button type="button" class="btn btn-back" (ngSubmit)="AddResponse()">Add</button></a>
+                            </div>
                         </div>
                     </div>
                 </div>

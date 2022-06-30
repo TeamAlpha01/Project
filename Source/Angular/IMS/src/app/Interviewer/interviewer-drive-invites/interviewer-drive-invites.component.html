@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="row mt-1">
-                            <a [routerLink]="['/interviewer/driveInvites/accept-invite',item.driveId]"> <button class="btn btn-success">Accept</button></a>
+                            <a [routerLink]="['/interviewer/driveInvites/accept-invite',item.driveId]"> <button class="btn btn-success" (click)="AddResponse(item.employeeId,true)">Accept</button></a>
                         </div>
                         <div class="row mt-1">
                             <a [routerLink]="['/interviewer/driveInvites/cancel-invite',item.driveId]"> <button class="btn btn-danger">Reject&nbsp;</button></a>

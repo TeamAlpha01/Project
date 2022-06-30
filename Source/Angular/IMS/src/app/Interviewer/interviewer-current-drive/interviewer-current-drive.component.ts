@@ -20,10 +20,11 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   pool: any[] = [];
   drive: any[] = [];
 
-  driveDetails: any;
+  interviewDetails: any;
   poolDetails: any;
   interviewerpoolDetails :any;
   showErrorMessage: boolean = false;
+  error: any;
 
   constructor(private connection :ConnectionService,private route: Router) { }
 
@@ -40,60 +41,39 @@ export class InterviewerCurrentDriveComponent implements OnInit {
     for (let item of this.interviewerpoolDetails) {
          this.drive.push(item);
          }
-  },
-    (error: any) => {
-      this.showErrorMessage = true;
-      console.warn("1");
-      console.warn(error);
-      if (error.status == 404) {
-        this.route.navigateByUrl("errorPage");
-      }
-    })
+  })
 
   this.connection.GetTodaysInterviews().subscribe({
       next: (data: any) => {
-        this.driveDetails = data;
-        for (let item of this.driveDetails) {
+        this.interviewDetails = data;
+        for (let item of this.interviewDetails) {
           this.drive.push(item);
         }
-      },
-      error: (error: any) => {
-        if (error.status == 404) {
-          this.route.navigateByUrl("errorPage");
-        }
       }
-    })
+  })
 
-  }
-
+}
 
   filterDropdown() {
 
     //To filter cards based on the department and pool selection
+    
     this.drive = [];
-    for (let item of this.driveDetails) {
+
+    for (let item of this.interviewDetails) {
       if (this._pool == '') {
         this.drive.push(item);
-      //   this._pool = '';
-      // }
-      // else if (this._dept == '' && this._pool == '') {
-      //   this.drive.push(item);
-      // }
-      // else if (item.department == this._dept && item.poolName == this._pool) {
-      //   this.drive.push(item);
-      // }
-      // else if (item.department == this._dept && this._pool == '') {
-      //   this.drive.push(item);
-      // }
-      // else if (item.department == this._dept && item.poolName != this._pool) {
-      // }
-
+      }
+      else if(item.pool == this._pool)
+      {
+        this.drive.push(item);
+      }
     }
 
   }
 
 }
-}
+
 
 
 

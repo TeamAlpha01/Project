@@ -12,7 +12,7 @@ export class InterviewerDriveInvitesComponent implements OnInit {
   totalLength: any;
   page: number = 1;
   Invites: any;
-
+  driveId: any;
   constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
@@ -21,21 +21,14 @@ export class InterviewerDriveInvitesComponent implements OnInit {
       console.warn(this.Invites)
     }) 
   }
-}
 
-  // driveInvites: any[] = [{
-  //   driveName: 'freshers 2021',
-  //   department: 'asd',
-  //   poolName: '',
-  //   date: 0,
-  //   mode: '',
-  //   location: ''
-  // }, {
-  //   driveName: 'freshers 2022',
-  //   department: 'fgh',
-  //   poolName: '',
-  //   date: 0,
-  //   mode: '',
-  //   location: ''
-  // }]
+  AddResponse(driveId: number, response: boolean)
+  {
+    this.connection.AddResponse(this.driveId).subscribe((data: any) => {
+      this.Invites = data;
+      console.warn(this.Invites);
+    }) 
+  }
+
+}
 

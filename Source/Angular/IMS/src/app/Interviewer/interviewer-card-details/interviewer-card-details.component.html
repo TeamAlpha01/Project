@@ -4,16 +4,16 @@
             <div class="card-body">
                 <div class="row rone mt-4">
                     <div class="col-md-5">
-                        <p><b>Drive Name :</b> {{item.name}} </p>
+                        <p><b>Drive Name :</b> {{item.driveName}} </p>
                         <p><b>Time :</b> {{item.fromTime}} to {{item.toTime}} </p>
-                        <p><b>Pool Name:</b> {{item.poolName}}</p>
+                        <p><b>Pool Name:</b> {{item.drivePool}}</p>
                     </div>
                     <div class="col-md-5">
                         <p><b>Date :</b> {{item.date}} </p>
-                        <p><b>Mode :</b> {{item.mode}} </p>
-                        <p><b>Location :</b> {{item.location}} </p>
+                        <p><b>Mode :</b> {{item.driveMode}} </p>
+                        <p><b>Location :</b> {{item.driveLocation}} </p>
                     </div>
-                    <div class="col-md-2 ">
+                    <div class="col-md-2">
                         <div class="row mt-3">
                             <a  [routerLink]="['../interviewer/cancelInterview']" ><button type="button" class="btn btn-danger">Cancel</button></a>
                         </div>
