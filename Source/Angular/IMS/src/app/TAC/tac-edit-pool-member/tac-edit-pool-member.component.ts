@@ -1,5 +1,6 @@
   import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { data } from 'jquery';
 
 import { ConnectionService } from 'src/app/Services/connection.service';
 
@@ -26,7 +27,7 @@ export class TacEditPoolMemberComponent implements OnInit {
   employeeDetails: any;
   pool: any;
   poolEnabler: boolean = true;
-  response: any;
+  response: string='';
   error: any;
   poolId: number = 0;
 
@@ -39,7 +40,7 @@ export class TacEditPoolMemberComponent implements OnInit {
     this.GetRoles();
     this.GetPools();
     this.GetEmployees();
-    this.PoolMember();
+    this.PoolMember();    
   }
   GetRoles() {
     this.connection.GetRoles().subscribe((data: any) => {
@@ -63,6 +64,7 @@ export class TacEditPoolMemberComponent implements OnInit {
     this.connection.GetEmployees().subscribe((data: any) => {
       this.employeeDetails = data;
     })
+    
   }
 
   PoolMember() {
@@ -72,7 +74,7 @@ export class TacEditPoolMemberComponent implements OnInit {
   }
 
   AddPoolMember(employeeId: number) {
-    console.warn('added emp member id : '+employeeId);
+    this.response=''
     this.connection.AddPoolMember(employeeId, this.poolId).subscribe({
       next: (data) => {
         this.response = data.message
@@ -80,14 +82,15 @@ export class TacEditPoolMemberComponent implements OnInit {
       },
       error: (error) => {
         this.error = error.error.message;
+        setTimeout(() => { this.error = ''}, 2000);
       },
       //complete: () => this.clearFields(),
     });
-
+    
   }
-
+  
   RemovePoolMember(poolMemberId: number) {
-    console.warn('removed pool member id : '+poolMemberId);
+    this.response=''
     this.connection.RemovePoolMember(poolMemberId).subscribe({
       next: (data) => {
         this.response = data.message;
@@ -96,7 +99,7 @@ export class TacEditPoolMemberComponent implements OnInit {
       error: (error) => {
         this.error = error.error.message;
       },
-      //complete: () => this.PoolMember(),
+      //complete: () => thiindex.es.PoolMember(),
     });
     
 
@@ -110,4 +113,5 @@ export class TacEditPoolMemberComponent implements OnInit {
       }, 2000);
     }
   }
+
 }

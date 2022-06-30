@@ -391,13 +391,11 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of TAC</returns>
 
     [HttpGet]
-    public IActionResult ViewDashboard(int tacId)
+    public IActionResult ViewDashboard()
     {
-        if (tacId <= 0)
-            return BadRequest($"Provide proper Tac Id {tacId}");
         try
         {
-            return Ok(_driveService.ViewTACDashboard(tacId));
+            return Ok(_driveService.ViewTACDashboard(Convert.ToInt32(User.FindFirst("UserId").Value)));
         }
         catch (ValidationException viewDashboardNotValid)
         {

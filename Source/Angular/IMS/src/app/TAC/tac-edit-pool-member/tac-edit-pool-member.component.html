@@ -38,7 +38,7 @@
         <div class=" container row AddMemberPool mt-2 justify-content-evenly">
             <div class="card col-6 ">
                 <div>
-                    <h3 class="card-header">Pool Members</h3>
+                    <h3 class="card-header">{{_pool}} Poll Members</h3>
                     <div class="container my-box" *ngIf="_dept!='';else ArrayEmpty">
                         <div class="card-body p-1 border-bottom" *ngFor="let item of poolMembers">
                             <div class="d-flex justify-content-evenly align-items-center">
@@ -61,7 +61,7 @@
 
             <div class="card  col-6 ml-5">
                 <div class="">
-                    <h3 class="card-header text-cente">Search Results</h3>
+                    <h3 class="card-header text-cente">{{_dept}} Employees</h3>
                     <div class="container my-box " *ngIf="_dept!='';else ArrayEmpty">
                         <div class="card-body p-1 border-bottom"
                             *ngFor="let item of employeeDetails |filter:_dept |filter:_role |filter:_search">
@@ -81,6 +81,12 @@
                         </div>
                     </ng-template>
                 </div>
+            </div>
+            <div *ngIf="response.length!=0">
+                <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+            </div>
+            <div >
+                <h3 class="text-center text-danger" >{{error}}</h3>
             </div>
             
             

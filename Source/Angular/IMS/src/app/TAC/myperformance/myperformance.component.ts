@@ -8,14 +8,16 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class MyperformanceComponent implements OnInit {
   title='My Performance'
-  dashBoard: any;
+  ScheduledDrives:number=0
+  CancelledDrives:number=0
 
   constructor(private connection : ConnectionService) { }
 
   ngOnInit(): void {
 
     this.connection.GetTACDashboard().subscribe((data: any) => {
-      this.dashBoard = data;
+      this.ScheduledDrives=data.ScheduledDrives
+      this.CancelledDrives=data.CancelledDrives
     })
     
   }

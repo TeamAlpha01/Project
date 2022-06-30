@@ -8,7 +8,7 @@
 
                 <div class="form-input">
                     <label class="form-label" for="Name">Name </label>
-                    <input [class.is-invalid]="(formSubmitted && registerForm.controls['Name'].invalid )||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched" id="Name" type="text" placeholder="Username" formControlName="Name" class="form-control">
+                    <input [class.is-invalid]="(formSubmitted && registerForm.controls['Name'].invalid )||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched" id="Name" type="text" placeholder="Name" formControlName="Name" class="form-control">
                 </div>
                 <div *ngIf="(formSubmitted)||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched">
                     <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['required']">Name is required</span>

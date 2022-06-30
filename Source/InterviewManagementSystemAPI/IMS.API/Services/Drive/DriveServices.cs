@@ -172,7 +172,8 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.ModeId)
+                    DriveMode = Enum.GetName(typeof(UitilityService.Mode),d.ModeId),
+                    CancellationReason=d.CancelReason
                 }
                 );
             }

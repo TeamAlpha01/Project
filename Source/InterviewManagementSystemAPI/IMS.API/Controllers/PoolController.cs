@@ -250,7 +250,7 @@ public class PoolController : ControllerBase
         catch (ValidationException employeeNotException)
         {
             _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {employeeNotException.Message}");
-            return BadRequest(employeeNotException.Message);
+            return BadRequest(UitilityService.Response(employeeNotException.Message));
         }
         catch (MailException mailException)
         {
@@ -298,7 +298,7 @@ public class PoolController : ControllerBase
         catch (ValidationException poolMemberNotException)
         {
             _logger.LogInformation($"Pool Service :RemovePoolMembers(int poolMemberId): {poolMemberNotException.Message}");
-            return BadRequest(poolMemberNotException.Message);
+            return BadRequest(UitilityService.Response(poolMemberNotException.Message));
         }
         catch (MailException mailException)
         {

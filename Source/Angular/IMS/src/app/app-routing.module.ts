@@ -54,10 +54,10 @@ const routes: Routes = [
   { path: 'interviewer/driveInvites/cancel-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
 
 
-  //admin pages
+  //admin pages 
   { path: '', component: LoginComponent},                               
   // { path: '**', component: ErrorPageComponent},                               
-  { path: 'register', component: RegisterPageComponent,canActivate:[AuthorizationService], data:{User:"Admin"}},                               
+  { path: 'register', component: RegisterPageComponent},                               
   { path: 'admin/requests', component: AdminViewRequestsPageComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   { path: 'admin/role', component: AdminViewRolePageComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   { path: 'admin/role/add', component: AdminRoleComponent,canActivate:[AuthorizationService], data:{User:"Admin"}},        
@@ -71,10 +71,10 @@ const routes: Routes = [
 
 
   //tac pages
-  { path: 'tac/dashboard', component: TacDashboardComponent,canActivate:[AuthorizationService], data:{User:"TAC"}},
-  { path: 'tac/dashboard/performance', component: MyperformanceComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
-  { path: 'tac/dashboard/performance/scheduled-drive-history', component: TacScheduledDriveHistoryComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
-  { path: 'tac/dashboard/performance/cancelled-drive-history', component: TacCancelledDriveHistoryComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
+  //{ path: 'tac/dashboard', component: TacDashboardComponent,canActivate:[AuthorizationService], data:{User:"TAC"}},
+  { path: 'tac/dashboard', component: MyperformanceComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
+  { path: 'tac/dashboard/scheduled-drive-history', component: TacScheduledDriveHistoryComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
+  { path: 'tac/dashboard/cancelled-drive-history', component: TacCancelledDriveHistoryComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/dashboard/poolmembers-performance', component: PoolmembersPerformanceComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/dashboard/employee-dashboard', component: TacEmployeeDashboardComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/managepool/managepoolmembers/:poolId', component: TacEditPoolMemberComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },

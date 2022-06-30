@@ -17,13 +17,16 @@
                             <p><b>Mode :</b> {{item.driveMode}} </p>
                             <p><b>Location :</b> {{item.driveLocation}} </p>
                         </div>   
+                        <div class="col-md-4" *ngIf="item.cancellationReason!=null">
+                            <p><b>Reason :</b> {{item.cancellationReason}} </p>
+                        </div>   
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mt-5">
-            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
-        </div>
+    </div>
+    <div class="mt-5">
+        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
     </div>
 </div>
 <ng-template #ArrayEmpty>

@@ -9,7 +9,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class TacCancelledDriveHistoryComponent implements OnInit {
 
-  title = 'cancelled Drive History'
+  title = 'Cancelled Drive History'
   totalLength: any;
   page: number = 1;
 
