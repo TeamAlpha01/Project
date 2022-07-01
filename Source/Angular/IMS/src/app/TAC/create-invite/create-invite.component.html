@@ -10,12 +10,12 @@
                     <div class="form-input">
                         <label class="form-label" for="fromDate">From Date</label>
                         <input type="date"
-                            [class.is-invalid]="(submitted)||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched"
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['fromDate'].invalid)||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched"
                             name="fromDate" id="fromDate" class="form-control " formControlName="fromDate" (change)="toDateEnabler(CreateInviteForm.controls['fromDate'].value)"
                             [min]="minDate|date:'yyyy-MM-dd'" [max]="maxDate|date:'yyyy-MM-dd'">
                     </div>
                     <div
-                        *ngIf="(submitted)||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched">
+                        *ngIf="(submitted )||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched">
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['fromDate'].errors?.['required']">Choose a
                             Date</span>
@@ -23,7 +23,7 @@
                     <div class="form-input">
                         <label class="form-label" for="toDate">To Date</label>
                         <input type="date"
-                            [class.is-invalid]="(submitted)||CreateInviteForm.controls['toDate'].invalid && CreateInviteForm.controls['toDate'].touched"
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['toDate'].invalid)||CreateInviteForm.controls['toDate'].invalid && CreateInviteForm.controls['toDate'].touched"
                             name="toDate" id="toDate" class="form-control " formControlName="toDate"
                             [min]="CreateInviteForm.controls['fromDate'].value" [max]="toDate|date:'yyyy-MM-dd'">
                     </div>
@@ -36,7 +36,7 @@
                     <div class="form-input">
                         <label class="form-label" for="driveName"> Drive Name</label>
                         <input type="text"
-                            [class.is-invalid]="(error.length)||(submitted)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched"
+                            [class.is-invalid]="(error.length)||(submitted && CreateInviteForm.controls['driveName'].invalid)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched"
                             type="text" id="driveName" class="form-control " formControlName="driveName">
                     </div>
                     <div
@@ -51,11 +51,14 @@
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['driveName'].errors?.['pattern'] && !CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive
                             name cannot contain numbers or symbols</span>
+                            <div *ngIf="error.toString().includes('Name')">
+                                <span class="text-center text-danger">{{error}}</span>
+                            </div>
                     </div>
                     <div class="form-input">
                         <label class="form-label " for="departmentId">Department</label>
                         <select
-                            [class.is-invalid]="(submitted)||CreateInviteForm.controls['departmentId'].invalid && CreateInviteForm.controls['departmentId'].touched"
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['departmentId'].invalid )||CreateInviteForm.controls['departmentId'].invalid && CreateInviteForm.controls['departmentId'].touched"
                             name="departmentId" id="departmentId" class="form-select" formControlName="departmentId" (change)="poolEnabler()">
                             <option value="">Select the Department</option>
                             <option *ngFor="let item of departmentDetails" value={{item.departmentId}}>
@@ -71,7 +74,7 @@
                     <div class="form-input">
                         <label class="form-label " for="poolId">Pool</label>
                         <select
-                            [class.is-invalid]="(submitted)||CreateInviteForm.controls['poolId'].invalid && CreateInviteForm.controls['poolId'].touched"
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['poolId'].invalid)||CreateInviteForm.controls['poolId'].invalid && CreateInviteForm.controls['poolId'].touched"
                             name="poolId" id="poolId" class="form-select " formControlName="poolId">
                             <option value="">Select the Pool</option>
                             <option
@@ -89,7 +92,7 @@
                     <div class="form-input">
                         <label class="form-label " for="modeId">Mode</label>
                         <select
-                            [class.is-invalid]="(submitted)||CreateInviteForm.controls['modeId'].invalid && CreateInviteForm.controls['modeId'].touched"
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['modeId'].invalid)||CreateInviteForm.controls['modeId'].invalid && CreateInviteForm.controls['modeId'].touched"
                             name="modeId" id="modeId" class="form-select " formControlName="modeId" (change)="locationEnabler()">
                             <option value="">Select the Mode</option>
                             <option value=1>Online</option>
@@ -106,7 +109,7 @@
                     <div class="form-input">
                         <label class="form-label " for="locationId">Location</label>
                         <select
-                            [class.is-invalid]="(submitted)||CreateInviteForm.controls['locationId'].invalid && CreateInviteForm.controls['locationId'].touched"
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['locationId'].invalid)||CreateInviteForm.controls['locationId'].invalid && CreateInviteForm.controls['locationId'].touched"
                             name="locationId" id="locationId" class="form-select " formControlName="locationId">
                             <option value="">Select the Location</option>
                             <ng-container *ngFor="let item of locationDetails">
@@ -124,7 +127,7 @@
                     <div class="form-input">
                         <label class="form-label " for="slotTiming">Slot Timing</label>
                         <select
-                            [class.is-invalid]="(submitted)||CreateInviteForm.controls['slotTiming'].invalid && CreateInviteForm.controls['slotTiming'].touched"
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['slotTiming'].invalid)||CreateInviteForm.controls['slotTiming'].invalid && CreateInviteForm.controls['slotTiming'].touched"
                             name="slotTiming" id="slotTiming" class="form-select " formControlName="slotTiming">
                             <option value="">Select the Timing</option>
                             <option value=0.5>30 MINS</option>
@@ -144,7 +147,7 @@
                     <div *ngIf="response.length!=0">
                         <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                     </div>
-                    <div>
+                    <div *ngIf="!error.toString().includes('Name')">
                         <h3 class="text-center text-danger">{{error}}</h3>
                     </div>
 

@@ -524,13 +524,12 @@ public class DriveController : ControllerBase
     /// <param name="employeeId"></param>
     /// <returns>Returns a list of today's interviews</returns>
     [HttpGet]
-    public IActionResult ViewTodaysInterview(int employeeId)
+    public IActionResult ViewTodaysInterview()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employee Id");
         try
         {
-            return Ok(_driveService.ViewTodayInterviews(employeeId));
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_driveService.ViewTodayInterviews(currentUser));
         }
         catch (Exception viewTodaysInterviewException)
         {

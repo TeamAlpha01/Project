@@ -126,7 +126,7 @@ export class CreateInviteComponent implements OnInit {
     if (this.CreateInviteForm.valid) {
       this.connection.CreateDrive(drive).subscribe({
         next: (data) => this.response = data.message,
-        error: (error) => this.error = error.error.message,
+        error: (error) => {this.error = error.error.message;this.isNameError(error.error.message)},
         complete: () => this.clearInputFields(),
       });
     }
@@ -140,6 +140,13 @@ export class CreateInviteComponent implements OnInit {
       this.CreateInviteForm.reset();
     }, 1000);
 
+  }
+  isNameError(error:string):boolean
+  {
+    if(error.toString().includes('Name'))
+    return true;
+
+    return false;
   }
 
 }

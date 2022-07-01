@@ -3,23 +3,19 @@
     <app-navbar [title]="title"></app-navbar>
     <div class="grey-bg container-fluid ">
         <section id="minimal-statistics">
-            <div class="row">
-                <div class="col-12 mt-3 mb-1">
-                    <h2 class="text-uppercase">Dashboard</h2>
-                </div>
-            </div>
-            <section class="wrapper-dashboard">
+            <section class="wrapper-dashboard d-flex align-items-center ">
                 <div class="container">
                     <div class="row d-flex align-items-center justify-content-center" >
                         <div class="col-xs-12 col-sm-4">
                             <a [routerLink]="['/tac/dashboard/scheduled-drive-history']" class="link">
                                 <div class="card-card">
+                                        <img class="img-card" src="./assets/Images/ScheduledHistory.jpg" />
                                     <div class="card-content">
                                         <h1 class="card-title">
                                             {{ScheduledDrives}}
                                         </h1>
-                                        <p class="">
-                                            Scheduled Drives </p>
+                                        <h2 class="">Scheduled Drives </h2>
+                                        <p>Just take a look at all scheduled drive for your refference</p>
                                     </div>
                                 </div>
                             </a>
@@ -28,13 +24,15 @@
                         <div class="col-xs-12 col-sm-4">
                             <a [routerLink]="['/tac/dashboard/cancelled-drive-history']" class="link">
                                 <div class="card-card">
+                                    <img class="img-card" src="./assets/Images/CancelledHistory.jpg" />
                                     <div class="card-content">
                                         <h1 class="card-title">
                                             {{CancelledDrives}}
                                         </h1>
-                                        <p class="">
+                                        <h2 class="">
                                             Cancelled Drives
-                                        </p>
+                                        </h2>
+                                        <p>Just take a look at all cancelled drive and reasons for your refference</p>
                                     </div>
                                 </div>
                             </a>
