@@ -37,13 +37,13 @@ public class RoleController : ControllerBase
     /// <param name="roleName">String</param>
     /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
     [HttpPost]
-    public IActionResult CreateNewRole(string roleName)
+    public IActionResult CreateNewRole(string roleName,bool isManagement)
     {
         if(String.IsNullOrEmpty(roleName))
             return BadRequest("Role Name cannot be null");
         try
         {
-            return _roleService.CreateRole(roleName) ? Ok(UtilityService.Response("Role Added Successfully")) : Problem("Sorry internal error occured");
+            return _roleService.CreateRole(roleName,isManagement) ? Ok(UtilityService.Response("Role Added Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException roleNameException)
         {

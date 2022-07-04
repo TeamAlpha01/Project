@@ -23,7 +23,7 @@ namespace IMS.Service
         /// <param name="roleName">String</param>
         /// <returns> Returns False when Exception occured in Data Access Layer. Throws ArgumentNullException when Role Name is not passed to this service method</returns>
         
-        public bool CreateRole(string roleName)
+        public bool CreateRole(string roleName,bool isManagement)
         {
             RoleValidation.IsRoleNameValid(roleName);
 
@@ -31,6 +31,7 @@ namespace IMS.Service
             {
                 Role _role = DataFactory.RoleDataFactory.GetRoleObject();
                 _role.RoleName = roleName;
+                _role.IsManagement=isManagement;
                 return _roleDataAccessLayer.AddRoleToDatabase(_role) ? true : false; // LOG Error in DAL;
             }
             catch (ValidationException roleNameValidException)
