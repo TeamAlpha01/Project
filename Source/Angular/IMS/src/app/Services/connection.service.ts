@@ -36,6 +36,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewAllCancelledDrives', { headers: this.headers });
   }
 
+  GetAllInterviews(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewAllInterview', { headers: this.headers });
+  }
+
   GetDashboard(): any {
     return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard`, { headers: this.headers });
   }

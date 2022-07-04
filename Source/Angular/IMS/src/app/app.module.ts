@@ -134,7 +134,7 @@ import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-
     DialogBoxComponent,
     InterviewerProfileComponent,
     AlertBoxComponent,
-    InterviewerCancelInvitePageComponent
+    InterviewerCancelInvitePageComponent,
 
   ],
 
