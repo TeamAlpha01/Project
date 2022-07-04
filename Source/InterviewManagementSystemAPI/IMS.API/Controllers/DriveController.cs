@@ -53,14 +53,14 @@ public class DriveController : ControllerBase
             if (_driveService.CreateDrive(drive))
             {
                 //_mailService.SendEmailAsync(_mailService.DriveInvites(drive, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
-                return Ok(UitilityService.Response( "Drive Created Successfully"));
+                return Ok(UtilityService.Response( "Drive Created Successfully"));
             }
             return Problem("Sorry internal error occured");
         }
         catch (ValidationException driveNotValid)
         {
             _logger.LogInformation($"Drive Controller : CreateDrive(Drive drive) : {driveNotValid.Message} : {driveNotValid.StackTrace}");
-            return BadRequest(UitilityService.Response(driveNotValid.Message));
+            return BadRequest(UtilityService.Response(driveNotValid.Message));
         }
         catch (MailException mailException)
         {
@@ -108,7 +108,7 @@ public class DriveController : ControllerBase
             if (_driveService.CancelDrive(driveId, tacId, reason))
             {
                 //_mailService.SendEmailAsync(_mailService.DriveCancelled(driveId, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
-                return Ok(UitilityService.Response("Drive Cancelled Sucessfully"));
+                return Ok(UtilityService.Response("Drive Cancelled Sucessfully"));
             }
             return Problem("Sorry internal error occured");
         }

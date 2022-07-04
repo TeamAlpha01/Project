@@ -43,12 +43,12 @@ public class RoleController : ControllerBase
             return BadRequest("Role Name cannot be null");
         try
         {
-            return _roleService.CreateRole(roleName) ? Ok(UitilityService.Response("Role Added Successfully")) : Problem("Sorry internal error occured");
+            return _roleService.CreateRole(roleName) ? Ok(UtilityService.Response("Role Added Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException roleNameException)
         {
             _logger.LogInformation($"Role Service : CreateNewRole() : {roleNameException.Message}");
-            return BadRequest(UitilityService.Response(roleNameException.Message));
+            return BadRequest(UtilityService.Response(roleNameException.Message));
         }
         catch (Exception exception)
         {
@@ -81,7 +81,7 @@ public class RoleController : ControllerBase
 
         try
         {
-            return _roleService.RemoveRole(roleId) ? Ok(UitilityService.Response("Role Removed Successfully")) : BadRequest("Sorry internal error occured");
+            return _roleService.RemoveRole(roleId) ? Ok(UtilityService.Response("Role Removed Successfully")) : BadRequest("Sorry internal error occured");
         }
         catch (ValidationException roleNotFound)
         {

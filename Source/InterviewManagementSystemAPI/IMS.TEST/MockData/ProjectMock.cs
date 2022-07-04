@@ -13,6 +13,15 @@ namespace UnitTesting.MockData
             mockProject.Add( new Project { ProjectId = 3, ProjectName = "IMS_ORACLE", DepartmentId = 3 });
             return mockProject;
         } 
+        public static Project CreateValidProject()
+        {
+            return new Project()
+            {
+                ProjectName="IMS_NET",
+                DepartmentId=1,
+                IsActive=true
+            };
+        }
 
         }
     }

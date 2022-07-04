@@ -63,6 +63,7 @@ namespace UnitTesting.ServiceTests
 
         [Theory]
         [InlineData(0,"#Freshers2022")]
+        [InlineData(1,"Freshers")]
         public void Createpool_ThrowsException_WithInvalidCredintials(int departmentId, string poolName)
         {
             var Result = () => _poolService.CreatePool(departmentId,poolName);

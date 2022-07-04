@@ -42,12 +42,12 @@ namespace IMS.Controller;
 
         try
         {
-            return _departmentService.CreateProject(departmentId,projectName) ? Ok(UitilityService.Response("Project Added Successfully")) : Problem("Sorry internal error occured");
+            return _departmentService.CreateProject(departmentId,projectName) ? Ok(UtilityService.Response("Project Added Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException projectnameAlreadyExists)
         {
              _logger.LogInformation($"Project Controller : CreateProject(int departmentId,string projectName) : {projectnameAlreadyExists.Message} : {projectnameAlreadyExists.StackTrace}");
-            return BadRequest(UitilityService.Response(projectnameAlreadyExists.Message));
+            return BadRequest(UtilityService.Response(projectnameAlreadyExists.Message));
         }
         catch (Exception exception)
         {
@@ -78,7 +78,7 @@ namespace IMS.Controller;
 
         try
         {
-            return _departmentService.RemoveProject(projectId) ? Ok(UitilityService.Response("Project Removed Successfully")) : Problem("Sorry internal error occured");
+            return _departmentService.RemoveProject(projectId) ? Ok(UtilityService.Response("Project Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch(ValidationException projectNotFound)
         {

@@ -11,7 +11,7 @@ namespace IMS.Controllers;
 public class DepartmentController : ControllerBase
 {
     private readonly ILogger _logger;
-     IDepartmentService _departmentService;
+     private IDepartmentService _departmentService;
 
     public DepartmentController(ILogger<DepartmentController> logger,IDepartmentService departmentService)
     {
@@ -42,12 +42,12 @@ public class DepartmentController : ControllerBase
             return BadRequest("Department name is required");
         try
         {
-            return _departmentService.CreateDepartment(departmentName) ? Ok(UitilityService.Response("Department Added Successfully")) : Problem("Sorry internal error occured");
+            return _departmentService.CreateDepartment(departmentName) ? Ok(UtilityService.Response("Department Added Successfully")) : Problem("Sorry internal error occured");
         }
          catch (ValidationException departmentnotvalid)
         {
             _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {departmentnotvalid.Message} : {departmentnotvalid.StackTrace}");
-            return BadRequest(UitilityService.Response(departmentnotvalid.Message));
+            return BadRequest(UtilityService.Response(departmentnotvalid.Message));
         }
         catch (Exception exception)
         {
@@ -78,7 +78,7 @@ public class DepartmentController : ControllerBase
 
         try
         {
-            return _departmentService.RemoveDepartment(departmentId) ? Ok(UitilityService.Response("Department Removed Successfully")) : Problem("Sorry internal error occured");
+            return _departmentService.RemoveDepartment(departmentId) ? Ok(UtilityService.Response("Department Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException departmentExist)
         {

@@ -10,6 +10,7 @@ using Moq;
 using UnitTesting.MockData;
 using Xunit;
 using UnitTesting.Utility;
+using System.Linq;
 
 namespace UnitTesting.ServiceTests
 {
@@ -142,9 +143,10 @@ namespace UnitTesting.ServiceTests
         [Fact]
         public void Viewlocation_ShouldReturnListofLocations()
         {
-            _locationDataAccessLayer.Setup(LocationDataAccessLayer => LocationDataAccessLayer.GetLocationsFromDatabase()).Returns(() => null);
+            var location=LocationMock.GetLocationsMock();
+            _locationDataAccessLayer.Setup(LocationDataAccessLayer => LocationDataAccessLayer.GetLocationsFromDatabase()).Returns(location);
             var Result = _locationService.ViewLocations();
-            Result = null ;
+            Assert.Equal(location.Count(),Result.Count());
         }
     }
 }

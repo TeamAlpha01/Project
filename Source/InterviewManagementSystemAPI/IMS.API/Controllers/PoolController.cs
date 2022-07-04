@@ -50,13 +50,13 @@ public class PoolController : ControllerBase
 
         try
         {
-            return _poolService.CreatePool(departmentId, poolName) ? Ok(UitilityService.Response("Pool Added Successfully")) : Problem("Sorry internal error occured");
+            return _poolService.CreatePool(departmentId, poolName) ? Ok(UtilityService.Response("Pool Added Successfully")) : Problem("Sorry internal error occured");
         }
 
         catch (ValidationException departmentNotFound)
         {
             _logger.LogInformation($"Pool Service : CreatePool throwed an exception : {departmentNotFound.Message}");
-            return BadRequest(UitilityService.Response(departmentNotFound.Message));
+            return BadRequest(UtilityService.Response(departmentNotFound.Message));
         }
 
 
@@ -91,7 +91,7 @@ public class PoolController : ControllerBase
             BadRequest("Pool Id cannot be negative or null");
         try
         {
-            return _poolService.RemovePool(poolId) ? Ok(UitilityService.Response("Pool Removed Successfully")) : Problem("Sorry internal error occured");
+            return _poolService.RemovePool(poolId) ? Ok(UtilityService.Response("Pool Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException poolNotFound)
         {
@@ -132,7 +132,7 @@ public class PoolController : ControllerBase
             return BadRequest("Pool Id cannot be negative or null , Pool Name cannot be null  cannot be negative or null");
         try
         {
-            return _poolService.EditPool(poolId, poolName) ? Ok(UitilityService.Response("Pool name changed Successfully")) : BadRequest("Sorry internal error occured");
+            return _poolService.EditPool(poolId, poolName) ? Ok(UtilityService.Response("Pool name changed Successfully")) : BadRequest("Sorry internal error occured");
 
         }
         catch (ValidationException poolNotFound)
@@ -242,7 +242,7 @@ public class PoolController : ControllerBase
             if (_poolService.AddPoolMember(employeeId, poolId))
             {
                 //_mailService.SendEmailAsync(_mailService.AddedEmployeeToPool(employeeId, poolId, Convert.ToInt32(User.FindFirst("UserId").Value)),true);
-                return Ok(UitilityService.Response("Pool Member Added Successfully"));
+                return Ok(UtilityService.Response("Pool Member Added Successfully"));
             }
 
             return Problem("Sorry internal error occured");
@@ -250,7 +250,7 @@ public class PoolController : ControllerBase
         catch (ValidationException employeeNotException)
         {
             _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {employeeNotException.Message}");
-            return BadRequest(UitilityService.Response(employeeNotException.Message));
+            return BadRequest(UtilityService.Response(employeeNotException.Message));
         }
         catch (MailException mailException)
         {
@@ -291,14 +291,14 @@ public class PoolController : ControllerBase
             if(_poolService.RemovePoolMember(poolMemberId))
             {
                 //_mailService.SendEmailAsync(_mailService.RemovedEmployeeFromPool(poolMemberId,Convert.ToInt32(User.FindFirst("UserId").Value)),true);
-                return Ok(UitilityService.Response("Pool Member removed  Successfully"));
+                return Ok(UtilityService.Response("Pool Member removed  Successfully"));
             }
             return Problem("Sorry internal error occured");
         }
         catch (ValidationException poolMemberNotException)
         {
             _logger.LogInformation($"Pool Service :RemovePoolMembers(int poolMemberId): {poolMemberNotException.Message}");
-            return BadRequest(UitilityService.Response(poolMemberNotException.Message));
+            return BadRequest(UtilityService.Response(poolMemberNotException.Message));
         }
         catch (MailException mailException)
         {

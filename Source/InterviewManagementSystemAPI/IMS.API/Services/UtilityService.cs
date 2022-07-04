@@ -1,6 +1,6 @@
 namespace IMS.Service
 {
-    public static class UitilityService 
+    public static class UtilityService 
     {
         public enum Mode
         {

@@ -76,14 +76,7 @@ namespace UnitTesting.ServiceTests
 
         //TestCases for Remove Department Method
 
-        // [Theory]
-        // [InlineData(null)]
-        // public void RemoveDepartment_ThrowsValidationException_WithInvalidDepartmentId(int departmentId)
-        // {
-        //     var Result = () => _DepartmentService.RemoveDepartment(departmentId);
-
-        //     Result.Should().Throw<ValidationException>();
-        // }
+        
 
         [Fact]
         public void RemoveDepartment_ReturnsTrue_WithValidDepartmentId()
@@ -148,15 +141,12 @@ namespace UnitTesting.ServiceTests
             Assert.Equal(departments.Count(),Result.Count());
         }
 
-        // [Fact]
-        // public void ViewDepartment_ShouldReturnListofDepartments()
-        // {
-        //     _DepartmentDataAccessLayer.Setup(DepartmentDataAccessLayer => DepartmentDataAccessLayer.GetDepartmentsFromDatabase()).Returns(() => null);
-        //     var Result = _DepartmentService.ViewDepartments();
-        //     Result = null ;
-        // }
+       
         [Theory]
         [InlineData(0,"#Internal123")]
+        [InlineData(1,null)]
+        [InlineData(0,null)]
+        [InlineData(1,"")]
         public void Createproject_ThrowsValidationException_WithInvalidCredintials(int departmentId, string projectName)
         {
             var Result = () => _DepartmentService.CreateProject(departmentId,projectName);
@@ -165,7 +155,7 @@ namespace UnitTesting.ServiceTests
         }
         
         [Fact]
-        public void Createproject_ReturnsTrue_WithValidpoolName()
+        public void Createproject_ReturnsTrue_WithValidProjectName()
         {            
             _DepartmentDataAccessLayer.Setup(r=>r.AddProjectToDatabase(It.Is<Project>(r=>r.ProjectName == "Internal"))).Returns(true);
 
@@ -174,7 +164,7 @@ namespace UnitTesting.ServiceTests
         }
            
         [Fact]
-        public void Createpool_ReturnsFalse_WithValidpoolName()
+        public void Createpool_ReturnsFalse_WithInValidProjectName()
         {            
             _DepartmentDataAccessLayer.Setup(r=>r.AddProjectToDatabase(It.Is<Project>(r=>r.ProjectName == "Internal"))).Returns(false);
 
@@ -207,7 +197,7 @@ namespace UnitTesting.ServiceTests
             Result.Should().BeTrue();
         }
          [Fact]
-        public void Removeproject_ReturnsFalse_WithValidprojectId()
+        public void Removeproject_ReturnsFalse_WithInValidprojectId()
         {            
             int projectId = 1;
            _DepartmentDataAccessLayer.Setup(r => r.RemoveProjectFromDatabase(projectId)).Returns(false);
@@ -230,22 +220,19 @@ namespace UnitTesting.ServiceTests
             var Result = () => _DepartmentService.ViewProjects();
             Result.Should().Throw<Exception>();
         }
-         [Fact]
-        public void ViewProjects_SholudReturnListOfProjects()
-        {
-            var projects=ProjectMock.ListOfProjects();
-            _DepartmentDataAccessLayer.Setup(v=>v.GetProjectsFromDatabase()).Returns(projects);
-            var Result=_DepartmentService.ViewProjects();
-            Assert.Equal(projects.Count(),Result.Count());
-        }
-       
-        // [Fact]
-        // public void Viewproject_ShouldReturnListofProjects()
+        //  [Fact]
+        // public void ViewProjects_SholudReturnListOfProjects()
         // {
-        //     _DepartmentDataAccessLayer.Setup(DepartmentDataAccessLayer => DepartmentDataAccessLayer.GetProjectsFromDatabase()).Returns(() => null);
-        //     var Result = _DepartmentService.ViewProjects();
-        //     Result = null ;
+        //     var projects=ProjectMock.ListOfProjects();
+        //     _DepartmentDataAccessLayer.Setup(v=>v.GetProjectsFromDatabase()).Returns(projects);
+        //     var Result=_DepartmentService.ViewProjects();
+        //     Assert.Equal(projects.Count(),Result.Count());
         // }
+       
+        
+
+  
+
 
 
 

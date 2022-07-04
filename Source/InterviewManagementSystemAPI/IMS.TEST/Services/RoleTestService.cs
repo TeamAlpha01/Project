@@ -1,11 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using FluentAssertions;
 using IMS.DataAccessLayer;
 using IMS.Models;
 using IMS.Service;
 using Microsoft.Extensions.Logging;
 using Moq;
+using UnitTesting.MockData;
 using Xunit;
 
 namespace UnitTesting.ServiceTests
@@ -122,6 +124,15 @@ namespace UnitTesting.ServiceTests
             _roleDataAccessLayer.Setup(r=>r.GetRolesFromDatabase()).Throws<Exception>();
             var Result = () => _roleService.ViewRoles();
             Result.Should().Throw<Exception>();
+        }
+        [Fact]
+        public void Viewrole_ShouldReturn_ListOfProjects()
+        {
+            var role=RoleMock.GetRolesMock();
+            _roleDataAccessLayer.Setup(v=>v.GetRolesFromDatabase()).Returns(role);
+            var Result=_roleService.ViewRoles();
+            Assert.Equal(role.Count(),Result.Count());
+
         }
        
 

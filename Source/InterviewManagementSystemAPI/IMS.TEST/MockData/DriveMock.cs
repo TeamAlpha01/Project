@@ -98,12 +98,29 @@ namespace UnitTesting.MockData
             mockDrives.Add(new { DriveId = 6, DriveName = "Upcomming Drive 2", FromDate = System.DateTime.Now.AddDays(10).ToString("yyyy-MM-dd"), ToDate = System.DateTime.Now.AddDays(10).ToString("yyyy-MM-dd"),  DrivePool="TestPool",DriveDepartment="testDepartment",DriveLocation="TestLocation",DriveMode="Offline"});
             return mockDrives;
         }
-           public static Dictionary<string,int> ViewTACDashboarrd()
+           public static Dictionary<string,int> ViewTACDashboard()
         {
             var TACDashboard=new Dictionary<string,int>();
             TACDashboard.Add("Scheduled Drives",2);
             TACDashboard.Add("Cancelled Drives",3);
             return TACDashboard;
         }
+        public static Dictionary<string,int> ViewEmployeeDashboard()
+        {
+            var EmployeeDashbaord=new Dictionary<string,int>();
+            EmployeeDashbaord.Add("AcceptedDrives",5);
+            EmployeeDashbaord.Add("DeniedDrives",6);
+            EmployeeDashbaord.Add("IgnoredDrives",3);
+            EmployeeDashbaord.Add("TotalDrives",3);
+            EmployeeDashbaord.Add("UtilizedInterviews",1);
+            EmployeeDashbaord.Add("NotUtilizedInterviews",2);
+            EmployeeDashbaord.Add("TotalAvailability",3);
+            return EmployeeDashbaord;
+
+
+
+        }
+
+       
     }
 }

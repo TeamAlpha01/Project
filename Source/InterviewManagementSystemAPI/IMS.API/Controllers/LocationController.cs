@@ -46,12 +46,12 @@ public class LocationController : ControllerBase
 
         try
         {
-            return _locationService.CreateLocation(locationName) ? Ok(UitilityService.Response("Location Added Successfully")) : Problem("Sorry internal error occured");
+            return _locationService.CreateLocation(locationName) ? Ok(UtilityService.Response("Location Added Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException locationnameAlreadyExists)
         {
             _logger.LogInformation($"Location Service : CreateNewLocation(string locationName) : {locationnameAlreadyExists.Message}");
-            return BadRequest(UitilityService.Response(locationnameAlreadyExists.Message));
+            return BadRequest(UtilityService.Response(locationnameAlreadyExists.Message));
         }
         catch (Exception exception)
         {
@@ -84,7 +84,7 @@ public class LocationController : ControllerBase
            return BadRequest("Location id cannot be negative or null");
         try
         {            
-            return _locationService.RemoveLocation(locationId) ? Ok(UitilityService.Response("Location Removed Successfully")) : Problem("Sorry internal error occured");
+            return _locationService.RemoveLocation(locationId) ? Ok(UtilityService.Response("Location Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException locationNotFound)
         {
