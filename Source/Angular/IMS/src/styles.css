@@ -1896,3 +1896,7 @@ body {
 #innercard {
   background-color: rgb(212, 163, 235);
 }
+
+#cards-align{
+  padding-top: 10%;
+}
