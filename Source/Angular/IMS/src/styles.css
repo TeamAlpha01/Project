@@ -390,6 +390,7 @@ body {
 
 .btn-filter {
   margin-top: 30px !important;
+  margin-right: -74% !important;
   color: white !important;
   background-color: #8D599F !important;
 }
@@ -499,6 +500,7 @@ span.nrate {
 
 .btn.btn-lg {
   background: #8D599F
+
 }
 
 .btn.btn-lg span {
@@ -1900,3 +1902,4 @@ body {
 #cards-align{
   padding-top: 10%;
 }
+

@@ -8,7 +8,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./tac-upcoming-drive.component.css']
 })
 export class TacUpcomingDriveComponent implements OnInit {
-  title = 'UpComing Drive'
+  title = 'Upcoming Drive'
   totalLength: any;
   page: number = 1;
   _dept = '';
