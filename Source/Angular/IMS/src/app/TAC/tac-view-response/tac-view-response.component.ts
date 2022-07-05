@@ -12,12 +12,22 @@ export class TacViewResponseComponent implements OnInit {
   title = 'View Drive Response';
   driveId: number = 3;
   driveDetails: any;
-  drive: any;
   errorMessage: any;
   driveResponses: any[] = [];
   response: any;
   error: any;
 
+  drive = {
+    driveDepartment: "",
+    driveId: 0,
+    driveLocation: "",
+    driveMode: "",
+    driveName: "",
+    drivePool: "",
+    fromDate: "",
+    slotTiming: 0,
+    toDate: ""
+  }
 
   constructor(private connection: ConnectionService) { }
 
@@ -36,7 +46,7 @@ export class TacViewResponseComponent implements OnInit {
   }
   GetDrive() {
     this.connection.GetDrive(this.driveId).subscribe({
-      next: (data: any) => this.driveDetails = data,
+      next: (data: any) => this.drive = data,
       error: (errorMessage: any) => this.errorMessage = errorMessage.message
     });
   }

@@ -13,16 +13,27 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class TacCancelDriveComponent implements OnInit {
   title = 'Cancel Drive';
   driveId: number = 0;
-  driveDetails: any;
   Reason = '';
   errorMessage: string = '';
   data: any;
   error: string = '';
   submitted: boolean = false;
-  response: string='';
+  response: string = '';
+
+  drive = {
+    driveDepartment: "",
+    driveId: 0,
+    driveLocation: "",
+    driveMode: "",
+    driveName: "",
+    drivePool: "",
+    fromDate: "",
+    slotTiming: 0,
+    toDate: ""
+  }
 
 
-  constructor(private route: ActivatedRoute, private connection: ConnectionService, private fb: FormBuilder, private location:Location) { }
+  constructor(private route: ActivatedRoute, private connection: ConnectionService, private fb: FormBuilder, private location: Location) { }
 
   CancelDriveForm = this.fb.group({
     cancelReason: ['', [Validators.required, Validators.minLength(5)]],
@@ -36,37 +47,33 @@ export class TacCancelDriveComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.driveId = params['driveId']
     })
-this.connection.GetDrive(this.driveId).subscribe({
-      next: (data: any) => this.driveDetails = data,
-      error: (errorMessage: any) => this.errorMessage = errorMessage.message
-    });
     this.connection.GetDrive(this.driveId).subscribe({
-      next: (data: any) => this.driveDetails = data,
+      next: (data: any) => this.drive = data,
       error: (errorMessage: any) => this.errorMessage = errorMessage.message
     });
+
 
   }
 
   CancelDrive() {
-      this.submitted = true;
-      this.error = '';
-      if (this.CancelDriveForm.valid) {
-        console.log(this.getCancelReason()?.value)
-        this.connection.CancelDrive(this.driveId, this.getCancelReason()?.value).subscribe({
-          next: (data) => this.response = data.message,
-          error: (error) => this.error = error.error.message,
-          complete: () => this.clearInputFields(),
-        });
-      }
+    this.submitted = true;
+    this.error = '';
+    if (this.CancelDriveForm.valid) {
+      console.log(this.getCancelReason()?.value)
+      this.connection.CancelDrive(this.driveId, this.getCancelReason()?.value).subscribe({
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message,
+        complete: () => this.clearInputFields(),
+      });
     }
-  
-    clearInputFields() 
-    {    
-        this.submitted = false;
-        setTimeout(() => {
-          this.response = '';
-          this.location.back();
-        }, 2000);
-      
-    }
+  }
+
+  clearInputFields() {
+    this.submitted = false;
+    setTimeout(() => {
+      this.response = '';
+      this.location.back();
+    }, 2000);
+
+  }
 }
