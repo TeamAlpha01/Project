@@ -20,13 +20,12 @@ export class InterviewerDashboardComponent implements OnInit {
   ngOnInit(): void {
     
     this.connection.GetDashboard().subscribe((data: any) =>{
-       this.Alldrives=data.TotalDrives
-       this.AvailabilityGiven=data.AcceptedDrives
-       this.Utilized=data.UtilizedInterviews
-       this.NotUtilized=data.NotUtilizedInterviews
-       this.InterviewsIgnored=data.IgnoredDrives
-       this.InterviewsDenied=data.DeniedDrives
-console.warn(this.Alldrives);
+       this.Alldrives = data.TotalDrives
+       this.AvailabilityGiven = data.AcceptedDrives
+       this.Utilized = data.UtilizedInterviews
+       this.NotUtilized = data.NotUtilizedInterviews
+       this.InterviewsIgnored = data.IgnoredDrives
+       this.InterviewsDenied = data.DeniedDrives
     })
   }
 
