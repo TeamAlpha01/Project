@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { Router } from '@angular/router';
 
@@ -36,8 +35,6 @@ export class TacCurrentDriveComponent implements OnInit {
   constructor(private connection: ConnectionService, private route: Router) { }
 
   ngOnInit(): void {
-
-
     this.connection.GetTodayDrives().subscribe({
       next: (data: any) => {
         this.driveDetails = data;
@@ -47,25 +44,22 @@ export class TacCurrentDriveComponent implements OnInit {
       }
     })
 
+    this.connection.GetPools().subscribe((data: any) => this.poolDetails = data)
 
-    this.connection.GetPools().subscribe((data: any) => {
-      this.poolDetails = data;
-    })
-
-
-    this.connection.GetDepartments().subscribe((data: any) => {
-      this.departmentDetails = data;
-    })
+    this.connection.GetDepartments().subscribe((data: any) => this.departmentDetails = data)
   }
 
 
   filterDropdown() {
+    // console.warn(this.poolDetails);
+
+    console.log("Department Name : " + this._dept);
+    console.log("Pool Name : " + this._pool);
 
     //To filter cards based on the department and pool selection
 
     this.drive = [];
-    console.warn(this._dept);
-    console.warn(this._pool);
+
     for (let item of this.driveDetails) {
       if (this._dept == '' && this._pool == '') {
         this.drive.push(item);
@@ -80,8 +74,18 @@ export class TacCurrentDriveComponent implements OnInit {
       }
     }
     if (this._dept != '') {
-      this._pool = ''
+      this._pool='';
+      // console.warn("1")
     }
+
+    this.pool=[];
+    for(let item of this.poolDetails){
+      if(item.departmentName==this._dept){
+        this.pool.push(item);
+      }
+    }
+    console.warn("Department Name : " + this._dept);
+    console.warn("Pool Name : " + this._pool);
   }
 
 }

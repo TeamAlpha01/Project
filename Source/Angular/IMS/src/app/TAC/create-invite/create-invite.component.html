@@ -25,7 +25,7 @@
                         <input type="date"
                             [class.is-invalid]="(submitted && CreateInviteForm.controls['toDate'].invalid)||CreateInviteForm.controls['toDate'].invalid && CreateInviteForm.controls['toDate'].touched"
                             name="toDate" id="toDate" class="form-control " formControlName="toDate"
-                            [min]="CreateInviteForm.controls['fromDate'].value" [max]="toDate|date:'yyyy-MM-dd'">
+                            [min]="CreateInviteForm.controls['fromDate'].value">
                     </div>
                     <div *ngIf="(submitted)||CreateInviteForm.controls['toDate'].invalid &&
                         CreateInviteForm.controls['toDate'].touched">
