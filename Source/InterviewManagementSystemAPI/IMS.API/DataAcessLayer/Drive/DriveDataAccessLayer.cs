@@ -340,6 +340,47 @@ namespace IMS.DataAccessLayer
                 throw getResponseUtilizationByStatusException;
             }
         }
+
+        public object GetDefaulters(int poolId)
+        {
+            try
+            {
+                var poolMembers = (from members in _db.PoolMembers where members.PoolId==poolId && members.IsActive==true select members.EmployeeId).ToList();
+                List<int> DefaultersList=new List<int>();
+                foreach(var members in poolMembers)
+                {
+                    int employeeId=IsDefaulter(members,poolId);
+                    if( employeeId!=0)
+                    DefaultersList.Add(employeeId);
+                }
+                return DefaultersList;
+            }
+            catch (Exception getResponseUtilizationByStatusException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : GetResponseUtilizationByStatus(bool isUtilized) : {getResponseUtilizationByStatusException.Message} : {getResponseUtilizationByStatusException.StackTrace}");
+                throw getResponseUtilizationByStatusException;
+            }
+        }
+        private int IsDefaulter(int employeeId,int poolId){
+
+                
+                var Drives = (from employee in _db.EmployeeAvailability.Include(e=>e.Drive) where employee.EmployeeId==employeeId && employee.Drive.PoolId==poolId && employee.IsInterviewScheduled==true && employee.IsInterviewCancelled==false && employee.InterviewDate>=System.DateTime.Now.AddMonths(-1) && employee.InterviewDate<=System.DateTime.Now select employee.InterviewDate).ToList();
+                Dictionary<string,int> AttendedDriveCount = new Dictionary<string, int>();
+                AttendedDriveCount.Add("WeekdaysCount",0);
+                AttendedDriveCount.Add("WeekendCount",0);
+                foreach(var date in Drives)
+                {
+                    if(date.DayOfWeek == DayOfWeek.Sunday || date.DayOfWeek == DayOfWeek.Saturday)
+                    AttendedDriveCount["WeekendCount"]+=1;
+                    else
+                    AttendedDriveCount["WeekdaysCount"]+=1;
+                }
+                if(AttendedDriveCount["WeekendCount"]<=1 || AttendedDriveCount["WeekdaysCount"]<=1)
+                {
+                    return employeeId;   
+                }
+                return 0;
+        }
     }
 }
 

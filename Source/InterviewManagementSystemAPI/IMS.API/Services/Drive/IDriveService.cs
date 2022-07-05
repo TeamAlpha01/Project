@@ -39,6 +39,7 @@ namespace IMS.Service
         public Object ViewUtilizedInterviews(int employeeId);
         public Object ViewNotUtilizedInterviews(int employeeId);
         public Object ViewTotalAvailability(int employeeId);
+        public Object ViewDefaulters(int poolId);
         
     }
 }

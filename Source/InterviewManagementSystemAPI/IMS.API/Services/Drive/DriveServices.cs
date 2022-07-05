@@ -720,6 +720,19 @@ namespace IMS.Service
                 throw viewTotalAvailabilityException;
             }
         }
+
+        public Object ViewDefaulters(int poolId)
+        {
+            try
+            {
+                return _driveDataAccess.GetDefaulters(poolId);
+            }
+            catch (Exception viewDefaultersException)
+            {
+                _logger.LogInformation($"Drive Service : ViewTotalAvailability(int employeeId) : {viewDefaultersException.Message} : {viewDefaultersException.StackTrace}");
+                throw;
+            }
+        }
     }
 }
 

@@ -1035,4 +1035,20 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+
+    [HttpGet]
+    public IActionResult ViewDefaulters(int poolId)
+    {
+        if (poolId <= 0)
+            return BadRequest("provide proper poolId");
+        try
+        {
+            return Ok(_driveService.ViewDefaulters(poolId));
+        }
+        catch (Exception viewTotalAvailabilityException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDeniedDrives() : {viewTotalAvailabilityException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
 }
