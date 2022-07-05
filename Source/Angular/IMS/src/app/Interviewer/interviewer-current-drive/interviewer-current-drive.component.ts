@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class InterviewerCurrentDriveComponent implements OnInit {
 
-  title = 'Todays Interviews'
+  title = 'Today\'s Interviews'
   totalLength: any;
   page: number = 1;
 
@@ -57,7 +57,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   filterDropdown() {
 
     //To filter cards based on the department and pool selection
-    
+
     this.drive = [];
 
     for (let item of this.interviewDetails) {
@@ -90,7 +90,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
 //   {
 //     departmentId: '1',
 //     poolName: 'Fresher 1'
-//   }, 
+//   },
 //   {
 //     departmentId: '1',
 //     poolName: 'Fresher 2'

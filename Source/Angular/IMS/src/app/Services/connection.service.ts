@@ -18,7 +18,7 @@ export class ConnectionService {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${AuthenticationService.GetData('token')}`
   })
-  
+
   initializeTokenHeader(token:string|null){
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -157,6 +157,10 @@ export class ConnectionService {
 
   CancelDrive(driveId: number, reason: string) {
     return this.http.patch<any>(this.baseURL + `Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
+  }
+  CancelInterview(employeeAvailabilityId: number, cancellationReason: string,comments:string) {
+    console.log('service called')
+    return this.http.patch<any>(this.baseURL + `Drive/CancelInterview?employeeAvailabilityId=${employeeAvailabilityId}&cancellationReason=${cancellationReason}&comments=${comments}`, null, { headers: this.headers });
   }
 
   CreateDrive(drive:any){

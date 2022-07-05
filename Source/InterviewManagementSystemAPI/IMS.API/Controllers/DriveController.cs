@@ -493,6 +493,7 @@ public class DriveController : ControllerBase
             return BadRequest("Invalid employee availability");
         try
         {
+            employeeAvailability.EmployeeId=Convert.ToInt32(User.FindFirst("UserId"));
             return _driveService.SetTimeSlot(employeeAvailability) ? Ok("Availability recorded sucessfully") : Problem("Sorry internal error occured");
         }
         catch (ValidationException setTimeSlotNotValid)
@@ -555,13 +556,12 @@ public class DriveController : ControllerBase
     /// <param name="employeeId"></param>
     /// <returns>Returns a list of Scheduled Interviews</returns>
     [HttpGet]
-    public IActionResult ViewScheduledInterview(int employeeId)
+    public IActionResult ViewScheduledInterview()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employee Id");
         try
         {
-            return Ok(_driveService.ViewScheduledInterview(employeeId));
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_driveService.ViewScheduledInterview(currentUser));
         }
         catch (Exception viewScheduledInterviewException)
         {
@@ -588,13 +588,12 @@ public class DriveController : ControllerBase
     /// <returns>Returns a list of Upcoming Interviews</returns>
 
     [HttpGet]
-    public IActionResult ViewUpcomingInterview(int employeeId)
+    public IActionResult ViewUpcomingInterview()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employee Id");
         try
         {
-            return Ok(_driveService.ViewUpcomingInterview(employeeId));
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_driveService.ViewUpcomingInterview(currentUser));
         }
         catch (Exception viewUpcomingInterviewException)
         {
@@ -710,15 +709,15 @@ public class DriveController : ControllerBase
         {
             if (_driveService.CancelInterview(employeeAvailabilityId, cancellationReason, comments))
             {
-                _mailService.SendEmailAsync(_mailService.InterviewCancelled(employeeAvailabilityId), true);
-                return Ok("Availability Cancellerd Sucessfully");
+                //_mailService.SendEmailAsync(_mailService.InterviewCancelled(employeeAvailabilityId), true);
+                return Ok(UtilityService.Response("Availability Cancellerd Sucessfully"));
             }
             return Problem("Sorry internal error occured");
         }
         catch (ValidationException CancelInterviewNotValid)
         {
             _logger.LogInformation($"Drive Controller : CancelInterview(int employeeAvailabilityId) : {CancelInterviewNotValid.Message} : {CancelInterviewNotValid.StackTrace}");
-            return BadRequest(CancelInterviewNotValid.Message);
+            return BadRequest(UtilityService.Response(CancelInterviewNotValid.Message));
         }
         catch (MailException mailException)
         {
