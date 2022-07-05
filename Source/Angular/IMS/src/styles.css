@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 /*-------------------------------------Login & Register-----------------------------------------*/
-
+:root {
+  --primary: #8D599F;
+  --light: #ffffff;
+  --dark: #231924;
+}
 .Sdropdown {
   height: 50px;
   overflow: auto;
@@ -11,7 +15,7 @@
   padding: 0% 5%;
   border: 1px solid black;
   border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.915);
+  background-color: var(--light);
 }
 
 .form-input {
@@ -91,7 +95,7 @@ body {
   position: fixed;
   width: 250px;
   max-height: 100vh;
-  background: #8D599F;
+  background: var(--primary);
   transition: all .5s ease;
   text-decoration: none;
 }
@@ -106,7 +110,7 @@ body {
   color: #000000;
   line-height: 30px;
   text-align: center;
-  background: #8D599F;
+  background: var(--primary);
   user-select: none;
   border-bottom: 1px solid black;
 }
@@ -282,7 +286,7 @@ body {
 .footer {
   text-align: center;
   padding-bottom: .6rem;
-  color: white;
+  color: var(--light);
 }
 
 
@@ -383,7 +387,7 @@ body {
 }
 
 .background {
-  background: #8D599F;
+  background: var(--primary);
 }
 
 
@@ -391,29 +395,40 @@ body {
 .btn-filter {
   margin-top: 30px !important;
   margin-right: -74% !important;
-  color: white !important;
-  background-color: #8D599F !important;
+  color: var(--light) !important;
+  background-color: var(--primary) !important;
+}
+
+.btn-create{
+  color: var(--light) !important;
+  background-color: var(--primary) !important;
+}
+
+.btn-create:hover {
+  color: var(--light)!important;
+  background-color: #9d63b0!important;
 }
 
 .btn-back {
   margin-top: 5px;
   margin-left: 10px;
   margin-bottom: 30px;
-  color: white !important;
-  background-color: #8D599F !important;
+  color: var(--light) !important;
+  background-color: var(--primary) !important;
 }
 
 .btn-back:hover {
-  color: white !important;
+  color: var(--light) !important;
   background-color: #431c54 !important;
 }
 
 
 
 .btn-filter:hover {
-  color: white;
+  color: var(--light);
   background-color: #aa60e7;
 }
+
 
 .textinput {
   float: left;
@@ -439,25 +454,25 @@ body {
 
 .next-pagination {
   background-color: #cf11cf;
-  color: white;
+  color: var(--light);
 }
 
 .filter-btn:hover {
-  background-color: white;
-  border: 1px solid #8D599F;
+  background-color: var(--light);
+  border: 1px solid var(--primary);
 }
 
 .text-custom:hover {
-  color: #8D599F;
+  color: var(--primary);
 }
 
 .text-custom {
-  color: white;
+  color: var(--light);
 }
 
 i.far {
   margin-right: 13px;
-  color: #8D599F
+  color: var(--primary)
 }
 
 .container.kl {
@@ -499,7 +514,7 @@ span.nrate {
 }
 
 .btn.btn-lg {
-  background: #8D599F
+  background: var(--primary)
 
 }
 
@@ -576,7 +591,7 @@ body {
 }
 
 .bg-c-lite-green {
-  background: white;
+  background: var(--light);
   /* -webkit-gradient(linear, left top, right top, from(#b112d1), to(#9b4b9e));
       background: linear-gradient(to right, #ee5ac2, #d893e5) */
 
@@ -705,7 +720,7 @@ h6 {
   margin-left: 3rem;
   height: 8rem;
   width: 19rem;
-  background-color: white;
+  background-color: var(--light);
   color: black;
   border-color: black;
   border-radius: 20px;
@@ -775,7 +790,7 @@ h6 {
 }
 
 .btn-light-custom:hover {
-  background-color: white;
+  background-color: var(--light);
 }
 
 .home {
@@ -825,11 +840,7 @@ h6 {
 
 /*--------------------------CurrentDrives-end------------------------*/
 /********** Template CSS **********/
-:root {
-  --primary: #8D599F;
-  --light: #F3F6F9;
-  --dark: #231924;
-}
+
 
 .back-to-top {
   position: fixed;
@@ -843,8 +854,8 @@ h6 {
   text-decoration: none;
   text-align: center;
   display: block;
-  color: white;
-  background-color: #8D599F;
+  color: var(--light);
+  background-color: var(--primary);
   padding: 2.5px;
   width: 100%;
   height: 44px;
@@ -860,7 +871,7 @@ h6 {
   /* left: -250px; */
   width: 250px;
   height: 100%;
-  background: white;
+  background: var(--light);
   /*   b295c0      8958a0 */
   transition: all .5s ease;
   text-decoration: none;
@@ -876,7 +887,7 @@ h6 {
   color: #000000;
   line-height: 30px;
   text-align: center;
-  background: white;
+  background: var(--light);
   user-select: none;
   border-bottom: 1px solid black;
 }
@@ -1005,9 +1016,9 @@ h6 {
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
   color: var(--primary);
-  background: white;
+  background: var(--light);
   /* border-color: var(--primary); */
-  border-color: black;
+  /* border-color: black; */
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
@@ -1016,7 +1027,7 @@ h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: var(--light);
   border-radius: 40px;
 }
 
@@ -1064,7 +1075,7 @@ h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #FFFFFF;
+  background: white;
   border-radius: 40px;
 }
 
@@ -1187,7 +1198,7 @@ body {
   /* font-style: italic; */
   font-weight: bold;
   display: block;
-  color: white;
+  color: var(--light);
   padding-bottom: 10%;
 }
 
@@ -1208,7 +1219,7 @@ a.logout-btn:hover {
   font-weight: bold;
   font-size: large;
   margin: auto;
-  color: white;
+  color: var(--light);
 }
 
 .fa {
@@ -1273,7 +1284,7 @@ a.logout-btn:hover {
   border-radius: 0% !important;
   height: 44px !important;
   width: 44px !important;
-  background-color: #8D599F !important;
+  background-color: var(--primary) !important;
 }
 
 
@@ -1375,7 +1386,7 @@ h1.heading {
 #ManagementButton {
   margin-top: 5rem;
   height: 8rem;
-  background-color: white;
+  background-color: var(--light);
   color: black;
   border-color: black;
   border-radius: 20px;
@@ -1423,7 +1434,7 @@ h1.heading {
 
 #CPdropdown {
   background-color: #b295c0;
-  text-decoration-color: white;
+  text-decoration-color: var(--light);
 }
 
 /* Create Pool Ends */
@@ -1469,11 +1480,11 @@ h1.heading {
 
 .next-pagination {
   background-color: #cf11cf;
-  color: white;
+  color: var(--light);
 }
 
 .button-admin {
-  color: white;
+  color: var(--light);
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
@@ -1683,11 +1694,11 @@ h1.heading {
 }
 
 .fa-bar {
-  color: white;
+  color: var(--light);
 }
 
 .bg-custom {
-  background-color: #8D599F;
+  background-color: var(--primary);
 }
 
 .wrapper-dashboard {
@@ -1892,7 +1903,7 @@ body {
 }
 
 /* :host ::ng-deep .custom-spinner circle{   
-  stroke: #8D599F;
+  stroke: var(--primary);
 } */
 
 #innercard {
