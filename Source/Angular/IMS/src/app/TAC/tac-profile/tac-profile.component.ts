@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ConnectionService } from 'src/app/Services/connection.service';
 
+import { Profile } from 'src/app/Model/Profile';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-tac-profile',
@@ -9,17 +10,24 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class TacProfileComponent implements OnInit {
   title = 'Profile';
-  data: any;
-  profileDetails: any;
 
+  data: any;  
+  public profile: Profile = {
+    employeeACEId: '',
+    employeeDepartment: '',
+    employeeEmailID: '',
+    employeeName: '',
+    employeeProject: '',
+    employeeRole: ''
+  };
 
 
   constructor(private connection: ConnectionService) { }
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.connection.GetEmployeeProfile().subscribe((data: any) => {
-      console.warn(data)
-    })    
+      this.profile = data;
+    })
 
   }
 

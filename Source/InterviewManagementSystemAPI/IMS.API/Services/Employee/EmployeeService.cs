@@ -115,7 +115,7 @@ namespace IMS.Service
                 );
             }
             catch (Exception exception)
-            {
+            {   
                 _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }

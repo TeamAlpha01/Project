@@ -142,7 +142,7 @@ import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-ut
     TacViewResponseComponent,
     InterviewerTotalDrivesComponent,
     InterviewerAvailabilityGivenComponent,
-    InterviewerUtilizedDrivesComponent
+    InterviewerUtilizedDrivesComponent,
 
   ],
 
