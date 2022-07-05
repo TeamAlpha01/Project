@@ -50,6 +50,11 @@ export class TacScheduledDriveComponent implements OnInit {
   filterDropdown() {
     //To filter cards based on the department and pool selection
     this.drive = [];
+
+    if (this._dept == '') {
+      this._pool = ''
+    }
+
     for (let item of this.driveDetails) {
 
       if (this._dept == '' && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {

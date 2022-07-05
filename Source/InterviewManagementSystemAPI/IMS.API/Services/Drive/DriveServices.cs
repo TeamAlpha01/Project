@@ -504,9 +504,10 @@ namespace IMS.Service
                 return _driveDataAccess.ViewAvailableMembersForDrive(driveId).Select(
                 availability => new
                 {
+                    employeeAvailabilityId=availability.EmployeeAvailabilityId,
                     employeeId = availability.EmployeeId,
                     employeeAceNumber = availability.Employee.EmployeeAceNumber,
-                    emplyeeName = availability.Employee.Name,
+                    employeeName = availability.Employee.Name,
                     employeeDepartment = availability.Employee.Department.DepartmentName,
                     employeeRole = availability.Employee.Role.RoleName, //ACE ,DEPT NAME,ROLE
                     employeeFromTime = availability.FromTime,

@@ -36,7 +36,10 @@ export class TacCancelDriveComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.driveId = params['driveId']
     })
-
+this.connection.GetDrive(this.driveId).subscribe({
+      next: (data: any) => this.driveDetails = data,
+      error: (errorMessage: any) => this.errorMessage = errorMessage.message
+    });
     this.connection.GetDrive(this.driveId).subscribe({
       next: (data: any) => this.driveDetails = data,
       error: (errorMessage: any) => this.errorMessage = errorMessage.message

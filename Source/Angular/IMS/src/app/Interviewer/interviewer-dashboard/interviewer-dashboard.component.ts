@@ -8,24 +8,27 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class InterviewerDashboardComponent implements OnInit {
   title='Dashboard';
-  allinterviews : any;
-  totalLength: any;
-  EmployeeDashboardDetails :any;
+  Alldrives :number=0;
+  AvailabilityGiven : number=0;
+  Utilized : number=0;
+  NotUtilized : number=0;
+  InterviewsIgnored : number=0;
+  InterviewsDenied : number=0;
 
-  constructor( private service :ConnectionService) { }
+  constructor( private connection :ConnectionService) { }
 
   ngOnInit(): void {
-    this.service.GetDashboard().subscribe((data: any) => {
-      this.EmployeeDashboardDetails = data;
-      console.warn(this.EmployeeDashboardDetails);
-  });
+    
+    this.connection.GetDashboard().subscribe((data: any) =>{
+       this.Alldrives=data.TotalDrives
+       this.AvailabilityGiven=data.AcceptedDrives
+       this.Utilized=data.UtilizedInterviews
+       this.NotUtilized=data.NotUtilizedInterviews
+       this.InterviewsIgnored=data.IgnoredDrives
+       this.InterviewsDenied=data.DeniedDrives
+console.warn(this.Alldrives);
+    })
   }
 
-  GetAllInterviews() {
-    this.service.GetAllInterviews().subscribe((data: any) => {
-      this.allinterviews = data;
-      this.totalLength = data.length;
-    });
-  }
 
 }

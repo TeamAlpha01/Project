@@ -3,7 +3,7 @@
 <!-- Sidebar End -->
 
 <div class="content">
-
+    
     <app-navbar [title]="title"></app-navbar>
     <!-- Navbar End -->
 
@@ -13,11 +13,10 @@
                     <div class="card-card">
                         <div class="card-body">
                             <h1 class="card-title">
-                               15
-                                <!-- {{item.allinterviews}} -->
+                               {{Alldrives}}
                             </h1>
                             <h3 class="">
-                                <b>Total No. of Interviews</b>
+                                <b>Total No. of Drives</b>
                             </h3>
                         </div>
                     </div>
@@ -25,10 +24,10 @@
 
                 <div class="col-xs-12 col-sm-4">
                     <div class="card-card">
-
+                        
                         <div class="card-content">
                             <h1 class="card-title">
-                                10
+                                {{AvailabilityGiven}}
                             </h1>
                             <h3 class="">
                                 <b>Availability Given</b>
@@ -39,10 +38,10 @@
 
                 <div class="col-xs-12 col-sm-4">
                     <div class="card-card">
-
+                        
                         <div class="card-content">
                             <h1 class="card-title">
-                                8
+                                {{Utilized}}
                             </h1>
                             <h3 class="">
                                 <b>Utilized</b>
@@ -53,10 +52,10 @@
 
                 <div class="col-xs-12 col-sm-4">
                   <div class="card-card">
-
+                      
                       <div class="card-content">
                           <h1 class="card-title">
-                              2
+                              {{NotUtilized}}
                           </h1>
                           <h3 class="">
                               <b>Not Utilized</b>
@@ -67,10 +66,10 @@
 
               <div class="col-xs-12 col-sm-4">
                 <div class="card-card">
-
+                    
                     <div class="card-content">
                         <h1 class="card-title">
-                            3
+                            {{InterviewsIgnored}}
                         </h1>
                         <h3 class="">
                             <b>Interviews Ignored</b>
@@ -81,11 +80,11 @@
 
             <div class="col-xs-12 col-sm-4">
               <div class="card-card">
-
+                  
                   <div class="card-content">
                       <h1 class="card-title">
-                          2
-                      </h1>
+                          {{InterviewsDenied}}
+                      </h1> 
                       <h3 class="">
                           <b>Interviews Denied</b>
                       </h3>
@@ -96,4 +95,3 @@
     </div>
     <app-footer></app-footer>
 </div>
-

@@ -64,7 +64,8 @@ export class TacCurrentDriveComponent implements OnInit {
     //To filter cards based on the department and pool selection
 
     this.drive = [];
-
+    console.warn(this._dept);
+    console.warn(this._pool);
     for (let item of this.driveDetails) {
       if (this._dept == '' && this._pool == '') {
         this.drive.push(item);
@@ -72,15 +73,15 @@ export class TacCurrentDriveComponent implements OnInit {
       else if (item.driveDepartment == this._dept && item.drivePool == this._pool) {
         this.drive.push(item);
       }
-
       else if (item.driveDepartment == this._dept && this._pool == '') {
         this.drive.push(item);
       }
       else if (item.driveDepartment == this._dept && item.drivePool != this._pool) {
       }
-
     }
-
+    if (this._dept != '') {
+      this._pool = ''
+    }
   }
 
 }

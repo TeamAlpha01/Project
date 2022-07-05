@@ -45,6 +45,10 @@ export class TacUpcomingDriveComponent implements OnInit {
 
   filterDropdown() {
     //To filter cards based on the department and pool selection
+    if (this._dept == '') {
+      this._pool = ''
+    }
+    
     this.drive = [];
     for (let item of this.driveDetails) {
 

@@ -36,7 +36,7 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewAllCancelledDrives', { headers: this.headers });
   }
 
-  GetAllInterviews(): any {
+  GetTotalDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewAllInterview', { headers: this.headers });
   }
 
@@ -50,6 +50,10 @@ export class ConnectionService {
 
   GetDrive(driveId: number): any {
     return this.http.get<any>(this.baseURL + `Drive/ViewDrive?driveId=${driveId}`, { headers: this.headers });
+  }
+
+  GetDriveResponse(driveId:number){
+    return this.http.get<any>(this.baseURL + `Drive/ViewAvailableMembersForDrive?driveId=${driveId}`, { headers: this.headers });
   }
 
   GetEmployees() {
@@ -182,6 +186,12 @@ export class ConnectionService {
   RemovePool(poolId: number) {
     return this.http.post<any>(this.baseURL + `Pool/RemovePool?poolId=${poolId}`, null, { headers: this.headers })
   }
+
+  ScheduleInterview(driveId: number) {
+    return this.http.patch<any>(this.baseURL + `Drive/ScheduleInterview?employeeAvailabilityId=${driveId}`, null, { headers: this.headers })
+  }
+
+
 
   //Admin
   AddLocation(locationName: string) {

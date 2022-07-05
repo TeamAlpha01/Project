@@ -1,5 +1,5 @@
 <div *ngIf="data.length>0; else ArrayEmpty">
-    <div *ngFor="let item of data | paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
+    <div *ngFor="let item of data | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength }">
         <div class="mt-3 container shadow  bg-body rounded">
             <div class>
                 <div class="card-body">
