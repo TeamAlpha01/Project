@@ -71,6 +71,7 @@ import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/i
 import { DatePipe } from '@angular/common';
 import { AlertBoxComponent } from './Shared/AlertBox/alert-box/alert-box.component';
 import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-cancel-invite-page/interviewer-cancel-invite-page.component';
+import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-response.component';
 
 
 @NgModule({
@@ -135,6 +136,7 @@ import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-
     InterviewerProfileComponent,
     AlertBoxComponent,
     InterviewerCancelInvitePageComponent,
+    TacViewResponseComponent
 
   ],
 

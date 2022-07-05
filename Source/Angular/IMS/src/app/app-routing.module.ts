@@ -40,6 +40,7 @@ import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upc
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-cancel-invite-page/interviewer-cancel-invite-page.component';
+import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-response.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -84,6 +85,7 @@ const routes: Routes = [
   { path: 'tac/scheduled-drive', component: TacScheduledDriveComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/create-invite', component: CreateInviteComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/upcomingDrives', component: TacUpcomingDriveComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
+  { path: 'tac/upcomingDrives/viewResponse', component: TacViewResponseComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/createPool', component: TacCreatePoolComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/managepool/editpool/:poolId', component: TacEditPoolComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/managepool', component: ManagepoolComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },

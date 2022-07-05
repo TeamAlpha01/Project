@@ -19,7 +19,7 @@ export class MyperformanceComponent implements OnInit {
       this.ScheduledDrives=data.ScheduledDrives
       this.CancelledDrives=data.CancelledDrives
     })
-    
+   
   }
 
 }

@@ -1,4 +1,4 @@
-  import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { data } from 'jquery';
 
@@ -11,7 +11,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class TacEditPoolMemberComponent implements OnInit {
 
-  title = 'Current Drive'
+  title = 'Edit Pool Member'
 
   //To get the inputs from the user
   _dept = '';
@@ -27,7 +27,7 @@ export class TacEditPoolMemberComponent implements OnInit {
   employeeDetails: any;
   pool: any;
   poolEnabler: boolean = true;
-  response: string='';
+  response: string = '';
   error: any;
   poolId: number = 0;
 
@@ -36,12 +36,13 @@ export class TacEditPoolMemberComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.poolId = params['poolId']
-    })
+    });
     this.GetRoles();
     this.GetPools();
     this.GetEmployees();
-    this.PoolMember();    
+    this.PoolMember();
   }
+
   GetRoles() {
     this.connection.GetRoles().subscribe((data: any) => {
       this.roleDetails = data;
@@ -57,24 +58,24 @@ export class TacEditPoolMemberComponent implements OnInit {
           this._dept = item.departmentName;
         }
       }
-    })
+    });
   }
 
   GetEmployees() {
     this.connection.GetEmployees().subscribe((data: any) => {
       this.employeeDetails = data;
-    })
-    
+    });
+
   }
 
   PoolMember() {
     this.connection.GetPoolMembers(this.poolId).subscribe((data: any) => {
       this.poolMembers = data;
-    })
+    });
   }
 
   AddPoolMember(employeeId: number) {
-    this.response=''
+    this.response = ''
     this.connection.AddPoolMember(employeeId, this.poolId).subscribe({
       next: (data) => {
         this.response = data.message
@@ -82,31 +83,23 @@ export class TacEditPoolMemberComponent implements OnInit {
       },
       error: (error) => {
         this.error = error.error.message;
-        setTimeout(() => { this.error = ''}, 2000);
+        setTimeout(() => { this.error = '' }, 2000);
       },
-      //complete: () => this.clearFields(),
     });
-    
   }
-  
+
   RemovePoolMember(poolMemberId: number) {
-    this.response=''
+    this.response = ''
     this.connection.RemovePoolMember(poolMemberId).subscribe({
       next: (data) => {
         this.response = data.message;
         this.PoolMember()
       },
-      error: (error) => {
-        this.error = error.error.message;
-      },
-      //complete: () => thiindex.es.PoolMember(),
+      error: (error) => this.error = error.error.message
     });
-    
-
   }
 
   clearFields() {
-
     if (this.error.length == 0) {
       setTimeout(() => {
         this.response = '';
