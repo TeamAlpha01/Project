@@ -10,25 +10,34 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class InterviewerCancelInvitePageComponent implements OnInit {
   driveId:any;
+  employeeAvailabilityId:number=0;
   title='Cancel Invite';
   Invites: any;
-  constructor(private connection :ConnectionService,private route: ActivatedRoute,private Fb: FormBuilder) { }
+  response: string='';
+  error: string='';
+  constructor(private service :ConnectionService,private route: ActivatedRoute,private Fb: FormBuilder) { }
   CancelInterviewForm:FormGroup=this.Fb.group({
     CancelInterviewReason:['',Validators.required],
     Comments:['',Validators.required]
   });
 
+  getCancellationReason(){
+    return this.CancelInterviewForm.get('CancelInterviewReason')?.value;
+  }
+  getComments(){
+    return this.CancelInterviewForm.get('Comments')?.value;
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.driveId = params['driveId'];
-      console.log('drive id : '+this.driveId);
+      this.employeeAvailabilityId = params['employeeAvailabilityId'];
     })
-    this.GetDriveById(this.driveId);
+    // this.GetDriveById(this.driveId);
   }
 
   GetDriveById(driveId:any)
   {
-    this.connection.GetDriveById(driveId).subscribe((data: any) => {
+    this.service.GetDriveById(driveId).subscribe((data: any) => {
       this.Invites = data;
       console.warn(this.Invites);
     })
@@ -37,9 +46,13 @@ export class InterviewerCancelInvitePageComponent implements OnInit {
   CancellInterview(){
     if(this.CancelInterviewForm.valid)
     {
-      console.log('test')
-      console.log('radio '+this.CancelInterviewForm.get('CancelInterviewReason')?.value)
-      console.log('radio '+this.CancelInterviewForm.get('Comments')?.value)
+      console.log('employeeAvailabilitd : '+this.employeeAvailabilityId);
+      console.log('radio '+this.getCancellationReason())
+      console.log('radio '+this.getComments())
+      this.service.CancelInterview(this.employeeAvailabilityId,this.getCancellationReason(),this.getComments()).subscribe({
+        next :(data)=>this.response=data,
+        error: (error)=>this.error=error.error.message
+      });
     }
   }
 }

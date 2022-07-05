@@ -10,7 +10,7 @@
                 <div class="row rone mt-4">
                     <div class="col-md-6">
                         <p ><b>FROM DATE : </b> {{Invites.fromDate}}</p>
-                        <p ><b>TO DATE : </b> {{Invites.toDate}}</p>                 
+                        <p ><b>TO DATE : </b> {{Invites.toDate}}</p>
                         <p><b>INTERVIEW TIMING : </b>{{Invites.slotTiming}} minutes</p>
                     </div>
                     <div class="col-md-6">
@@ -19,24 +19,26 @@
                     </div>
                 </div>
                 <div class="card mx-auto">
-                    <div class="card-body">
-                        <div class="row rone mt-4">
-                            <div class="col-md-6">
-                                <label class="text"><b>Availability</b></label>
+                  <form [formGroup]="AcceptInvitePage" (ngSubmit)="AddResponse()">
+                  <div class="card-body">
+                    <div class="row rone mt-4">
+                      <div class="col-md-6">
+                        <label class="text"><b>Availability</b></label>
                                 <br>
-                                <input type = "date" min="{{Invites.fromDate}}" max="{{Invites.toDate}}">
+                                <input formControlName="InterviewDate"type = "date" min="{{Invites.fromDate}}" max="{{Invites.toDate}}">
                             </div>
 
                             <div class="col-md-4">
                                 <label class="text"><b>Select Timing </b></label>
-                                <input type="time" class="form-control" id="appt" name="appt" min="09:00" max="18:00" required>
+                                <input type="time" class="form-control" id="appt" formControlName="SlotTime" min="09:00" max="22:00" required>
                             </div>
 
                             <div class="col-md-2 ">
-                                <a [routerLink]="['']"><button type="button" class="btn btn-back" (ngSubmit)="AddResponse()">Add</button></a>
+                                <a><button type="submit" class="btn btn-back" >Add</button></a>
                             </div>
                         </div>
                     </div>
+                  </form>
                 </div>
             </div>
         </div>

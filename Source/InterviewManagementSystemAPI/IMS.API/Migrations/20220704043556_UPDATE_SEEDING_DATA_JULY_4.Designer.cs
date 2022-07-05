@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class InterviewManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220704043556_UPDATE_SEEDING_DATA_JULY_4")]
+    partial class UPDATE_SEEDING_DATA_JULY_4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,9 +163,9 @@ namespace Source.Migrations
                         {
                             DriveId = 1,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8981),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3732),
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8966),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3712),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 1,
@@ -171,17 +173,17 @@ namespace Source.Migrations
                             Name = "Freshers .Net Drive T",
                             PoolId = 1,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8976),
+                            ToDate = new DateTime(2022, 7, 5, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3725),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8984)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3735)
                         },
                         new
                         {
                             DriveId = 2,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8987),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3740),
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 8, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8985),
+                            FromDate = new DateTime(2022, 7, 7, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3737),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 1,
@@ -189,17 +191,17 @@ namespace Source.Migrations
                             Name = "Freshers .Net Drive S",
                             PoolId = 1,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 9, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8986),
+                            ToDate = new DateTime(2022, 7, 8, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3738),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8988)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3741)
                         },
                         new
                         {
                             DriveId = 3,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8991),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3744),
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 11, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8989),
+                            FromDate = new DateTime(2022, 7, 10, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3742),
                             IsCancelled = false,
                             IsScheduled = false,
                             LocationId = 1,
@@ -207,18 +209,18 @@ namespace Source.Migrations
                             Name = "Freshers .Net Drive U",
                             PoolId = 1,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 12, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8990),
+                            ToDate = new DateTime(2022, 7, 11, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3742),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8991)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3744)
                         },
                         new
                         {
                             DriveId = 4,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8993),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3747),
                             CancelReason = "Cancelled For Testing",
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8992),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3745),
                             IsCancelled = true,
                             IsScheduled = true,
                             LocationId = 1,
@@ -226,17 +228,17 @@ namespace Source.Migrations
                             Name = "Freshers .Net Drive C",
                             PoolId = 1,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8992),
+                            ToDate = new DateTime(2022, 7, 5, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3746),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8994)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3747)
                         },
                         new
                         {
                             DriveId = 5,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8996),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3750),
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8995),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3749),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 9,
@@ -244,17 +246,17 @@ namespace Source.Migrations
                             Name = "SSE .Net Drive T",
                             PoolId = 2,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8995),
+                            ToDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3749),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8997)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3751)
                         },
                         new
                         {
                             DriveId = 6,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8999),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3753),
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 8, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8998),
+                            FromDate = new DateTime(2022, 7, 7, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3752),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 3,
@@ -262,17 +264,17 @@ namespace Source.Migrations
                             Name = "SSE .Net Drive S",
                             PoolId = 2,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8998),
+                            ToDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3752),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(8999)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3754)
                         },
                         new
                         {
                             DriveId = 7,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9002),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3757),
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 11, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9000),
+                            FromDate = new DateTime(2022, 7, 10, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3755),
                             IsCancelled = false,
                             IsScheduled = false,
                             LocationId = 9,
@@ -280,18 +282,18 @@ namespace Source.Migrations
                             Name = "SSE .Net Drive U",
                             PoolId = 2,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9001),
+                            ToDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3756),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9002)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3758)
                         },
                         new
                         {
                             DriveId = 8,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9004),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3760),
                             CancelReason = "Cancelled For Testing",
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9003),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3759),
                             IsCancelled = true,
                             IsScheduled = true,
                             LocationId = 9,
@@ -299,17 +301,17 @@ namespace Source.Migrations
                             Name = "SSE .Net Drive C",
                             PoolId = 2,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9004),
+                            ToDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3759),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9005)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3761)
                         },
                         new
                         {
                             DriveId = 9,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9010),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3763),
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9008),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3762),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 9,
@@ -317,17 +319,17 @@ namespace Source.Migrations
                             Name = "SLO .Net Drive T",
                             PoolId = 2,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9009),
+                            ToDate = new DateTime(2022, 7, 5, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3762),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9010)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3764)
                         },
                         new
                         {
                             DriveId = 10,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9014),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3766),
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 8, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9012),
+                            FromDate = new DateTime(2022, 7, 7, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3765),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 5,
@@ -335,17 +337,17 @@ namespace Source.Migrations
                             Name = "SLO .Net Drive S",
                             PoolId = 2,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 9, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9012),
+                            ToDate = new DateTime(2022, 7, 8, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3765),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9015)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3767)
                         },
                         new
                         {
                             DriveId = 11,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9017),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3770),
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 11, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9016),
+                            FromDate = new DateTime(2022, 7, 10, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3768),
                             IsCancelled = false,
                             IsScheduled = false,
                             LocationId = 5,
@@ -353,18 +355,18 @@ namespace Source.Migrations
                             Name = "SLO .Net Drive U",
                             PoolId = 2,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 12, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9016),
+                            ToDate = new DateTime(2022, 7, 11, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3769),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9018)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3771)
                         },
                         new
                         {
                             DriveId = 12,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9020),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3773),
                             CancelReason = "Cancelled For Testing",
                             DepartmentId = 1,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9018),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3772),
                             IsCancelled = true,
                             IsScheduled = true,
                             LocationId = 5,
@@ -372,17 +374,17 @@ namespace Source.Migrations
                             Name = "SLO .Net Drive C",
                             PoolId = 2,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9019),
+                            ToDate = new DateTime(2022, 7, 5, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3772),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9020)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3774)
                         },
                         new
                         {
                             DriveId = 13,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9022),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3777),
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9021),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3775),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 1,
@@ -390,17 +392,17 @@ namespace Source.Migrations
                             Name = "Freshers JAVA Drive T",
                             PoolId = 4,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9021),
+                            ToDate = new DateTime(2022, 7, 5, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3775),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9023)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3778)
                         },
                         new
                         {
                             DriveId = 14,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9025),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3781),
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 8, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9024),
+                            FromDate = new DateTime(2022, 7, 7, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3779),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 1,
@@ -408,17 +410,17 @@ namespace Source.Migrations
                             Name = "Freshers JAVA Drive S",
                             PoolId = 4,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 9, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9024),
+                            ToDate = new DateTime(2022, 7, 8, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3780),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9026)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3781)
                         },
                         new
                         {
                             DriveId = 15,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9028),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3784),
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 11, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9026),
+                            FromDate = new DateTime(2022, 7, 10, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3782),
                             IsCancelled = false,
                             IsScheduled = false,
                             LocationId = 1,
@@ -426,18 +428,18 @@ namespace Source.Migrations
                             Name = "Freshers JAVA Drive U",
                             PoolId = 4,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 12, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9027),
+                            ToDate = new DateTime(2022, 7, 11, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3783),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9028)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3785)
                         },
                         new
                         {
                             DriveId = 16,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9030),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3787),
                             CancelReason = "Cancelled For Testing",
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9029),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3786),
                             IsCancelled = true,
                             IsScheduled = true,
                             LocationId = 1,
@@ -445,17 +447,17 @@ namespace Source.Migrations
                             Name = "Freshers JAVA Drive C",
                             PoolId = 4,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9029),
+                            ToDate = new DateTime(2022, 7, 5, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3786),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9031)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3788)
                         },
                         new
                         {
                             DriveId = 17,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9033),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3790),
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9032),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3789),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 9,
@@ -463,17 +465,17 @@ namespace Source.Migrations
                             Name = "SSE JAVA Drive T",
                             PoolId = 5,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9032),
+                            ToDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3789),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9033)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3791)
                         },
                         new
                         {
                             DriveId = 18,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9070),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3794),
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 8, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9068),
+                            FromDate = new DateTime(2022, 7, 7, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3792),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 3,
@@ -481,17 +483,17 @@ namespace Source.Migrations
                             Name = "SSE JAVA Drive S",
                             PoolId = 5,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9069),
+                            ToDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3793),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9071)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3794)
                         },
                         new
                         {
                             DriveId = 19,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9073),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3802),
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 11, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9072),
+                            FromDate = new DateTime(2022, 7, 10, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3796),
                             IsCancelled = false,
                             IsScheduled = false,
                             LocationId = 9,
@@ -499,18 +501,18 @@ namespace Source.Migrations
                             Name = "SSE JAVA Drive U",
                             PoolId = 5,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9072),
+                            ToDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3801),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9074)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3803)
                         },
                         new
                         {
                             DriveId = 20,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9076),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3805),
                             CancelReason = "Cancelled For Testing",
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9075),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3804),
                             IsCancelled = true,
                             IsScheduled = true,
                             LocationId = 9,
@@ -518,17 +520,17 @@ namespace Source.Migrations
                             Name = "SSE JAVA Drive C",
                             PoolId = 5,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9075),
+                            ToDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3804),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9076)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3806)
                         },
                         new
                         {
                             DriveId = 21,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9079),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3809),
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9077),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3807),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 9,
@@ -536,17 +538,17 @@ namespace Source.Migrations
                             Name = "SLO JAVA Drive T",
                             PoolId = 6,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9078),
+                            ToDate = new DateTime(2022, 7, 5, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3807),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9079)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3809)
                         },
                         new
                         {
                             DriveId = 22,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9081),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3812),
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 8, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9080),
+                            FromDate = new DateTime(2022, 7, 7, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3810),
                             IsCancelled = false,
                             IsScheduled = true,
                             LocationId = 5,
@@ -554,17 +556,17 @@ namespace Source.Migrations
                             Name = "SLO JAVA Drive S",
                             PoolId = 6,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 9, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9080),
+                            ToDate = new DateTime(2022, 7, 8, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3811),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9082)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3813)
                         },
                         new
                         {
                             DriveId = 23,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9084),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3816),
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 11, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9083),
+                            FromDate = new DateTime(2022, 7, 10, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3814),
                             IsCancelled = false,
                             IsScheduled = false,
                             LocationId = 5,
@@ -572,18 +574,18 @@ namespace Source.Migrations
                             Name = "SLO JAVA Drive U",
                             PoolId = 6,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 12, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9083),
+                            ToDate = new DateTime(2022, 7, 11, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3814),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9084)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3816)
                         },
                         new
                         {
                             DriveId = 24,
                             AddedBy = 10,
-                            AddedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9087),
+                            AddedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3819),
                             CancelReason = "Cancelled For Testing",
                             DepartmentId = 2,
-                            FromDate = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9085),
+                            FromDate = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3817),
                             IsCancelled = true,
                             IsScheduled = true,
                             LocationId = 5,
@@ -591,9 +593,9 @@ namespace Source.Migrations
                             Name = "SLO JAVA Drive C",
                             PoolId = 6,
                             SlotTiming = 0.0,
-                            ToDate = new DateTime(2022, 7, 6, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9086),
+                            ToDate = new DateTime(2022, 7, 5, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3818),
                             UpdatedBy = 9,
-                            UpdatedOn = new DateTime(2022, 7, 5, 8, 50, 51, 798, DateTimeKind.Local).AddTicks(9087)
+                            UpdatedOn = new DateTime(2022, 7, 4, 10, 5, 56, 279, DateTimeKind.Local).AddTicks(3819)
                         });
                 });
 
@@ -1376,9 +1378,6 @@ namespace Source.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsManagement")
-                        .HasColumnType("bit");
-
                     b.Property<string>("RoleName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -1393,70 +1392,60 @@ namespace Source.Migrations
                         {
                             RoleId = 1,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "Software Developer"
                         },
                         new
                         {
                             RoleId = 2,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "Senior Software Developer"
                         },
                         new
                         {
                             RoleId = 3,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "Project Manager"
                         },
                         new
                         {
                             RoleId = 4,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "Module Lead"
                         },
                         new
                         {
                             RoleId = 5,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "Technical Lead"
                         },
                         new
                         {
                             RoleId = 6,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "Software Architect"
                         },
                         new
                         {
                             RoleId = 7,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "Delivery Manager"
                         },
                         new
                         {
                             RoleId = 8,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "Service Line Owner"
                         },
                         new
                         {
                             RoleId = 9,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "TAC"
                         },
                         new
                         {
                             RoleId = 10,
                             IsActive = true,
-                            IsManagement = false,
                             RoleName = "Admin"
                         });
                 });

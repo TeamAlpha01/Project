@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router'; 
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Shared/login/login.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { AuthorizationService } from './Services/authorization.service';
@@ -51,23 +51,24 @@ const routes: Routes = [
   { path: 'interviewer/upcomingDrives', component: InterviewerUpcomingDriveComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/driveInvites', component: InterviewerDriveInvitesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/driveInvites/accept-invite/:driveId', component: InterviewerAcceptInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
-  { path: 'interviewer/driveInvites/cancel-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  //{ path: 'interviewer/driveInvites/reject-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  { path: 'interviewer/cancel-interview/:employeeAvailabilityId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
 
 
-  //admin pages 
-  { path: '', component: LoginComponent},                               
-  // { path: '**', component: ErrorPageComponent},                               
-  { path: 'register', component: RegisterPageComponent},                               
+  //admin pages
+  { path: '', component: LoginComponent},
+  // { path: '**', component: ErrorPageComponent},
+  { path: 'register', component: RegisterPageComponent},
   { path: 'admin/requests', component: AdminViewRequestsPageComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   { path: 'admin/role', component: AdminViewRolePageComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
-  { path: 'admin/role/add', component: AdminRoleComponent,canActivate:[AuthorizationService], data:{User:"Admin"}},        
+  { path: 'admin/role/add', component: AdminRoleComponent,canActivate:[AuthorizationService], data:{User:"Admin"}},
   { path: 'admin/location', component: AdminviewLocationPageComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   { path: 'admin/location/add', component: AdminAddlocationComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   { path: 'admin/department', component: AdminviewDepartmentPageComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   { path: 'admin/department/add', component: AdminAdddepartmentComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   { path: 'admin/project', component: AdminviewProjectPageComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
   { path: 'admin/project/add', component: AdminAddprojectComponent,canActivate:[AuthorizationService], data:{User:"Admin"} },
-  
+
 
 
   //tac pages
@@ -96,8 +97,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
-    
+export class AppRoutingModule {
+
 
 }
 

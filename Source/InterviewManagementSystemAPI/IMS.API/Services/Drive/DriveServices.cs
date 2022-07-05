@@ -366,6 +366,8 @@ namespace IMS.Service
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    FromTime=e.From.ToShortTimeString(),
+                    ToTime=e.To.ToShortTimeString(),
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
@@ -389,6 +391,8 @@ namespace IMS.Service
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    FromTime=e.From.ToShortTimeString(),
+                    ToTime=e.To.ToShortTimeString(),
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
@@ -413,6 +417,8 @@ namespace IMS.Service
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    FromTime=e.From.ToShortTimeString(),
+                    ToTime=e.To.ToShortTimeString(),
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
