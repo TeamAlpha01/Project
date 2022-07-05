@@ -93,7 +93,7 @@ export class ConnectionService {
   }
 
   GetTACDashboard(): any {
-    return this.http.get<any>(this.baseURL + `Drive/ViewDashboard`, { headers: this.headers });
+    return this.http.get<any>(this.baseURL + `Drive/ViewDas hboard`, { headers: this.headers });
   }
 
   GetTodayDrives(): any {
