@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class InterviewerTotalDrivesComponent implements OnInit {
 
   title='Total No. Of Drives';
+  drive:any[]=[];
 
   constructor() { }
 

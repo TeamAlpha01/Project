@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 
@@ -14,11 +13,12 @@ export class TacProfileComponent implements OnInit {
   profileDetails: any;
 
 
+
   constructor(private connection: ConnectionService) { }
 
   ngOnInit():void{
     this.connection.GetEmployeeProfile().subscribe((data: any) => {
-      this.profileDetails = data;
+      console.warn(data)
     })    
 
   }

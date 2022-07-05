@@ -51,10 +51,9 @@ export class TacCurrentDriveComponent implements OnInit {
 
 
   filterDropdown() {
-    // console.warn(this.poolDetails);
 
-    console.log("Department Name : " + this._dept);
-    console.log("Pool Name : " + this._pool);
+    // console.log("Department Name : " + this._dept);
+    // console.log("Pool Name : " + this._pool);
 
     //To filter cards based on the department and pool selection
 
@@ -84,8 +83,8 @@ export class TacCurrentDriveComponent implements OnInit {
         this.pool.push(item);
       }
     }
-    console.warn("Department Name : " + this._dept);
-    console.warn("Pool Name : " + this._pool);
+    // console.warn("Department Name : " + this._dept);
+    // console.warn("Pool Name : " + this._pool);
   }
 
 }
