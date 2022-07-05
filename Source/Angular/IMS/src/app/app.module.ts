@@ -73,7 +73,7 @@ import { AlertBoxComponent } from './Shared/AlertBox/alert-box/alert-box.compone
 import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-cancel-invite-page/interviewer-cancel-invite-page.component';
 import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-response.component';
 import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total-drives/interviewer-total-drives.component';
-import { InterviewerAvailabilityGivenComponent } from './interviewer-availability-given/interviewer-availability-given.component';
+import { InterviewerAvailabilityGivenComponent } from './Interviewer/interviewer-availability-given/interviewer-availability-given.component';
 import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-utilized-drives/interviewer-utilized-drives.component';
 
 
