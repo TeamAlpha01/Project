@@ -86,7 +86,7 @@ const routes: Routes = [
   { path: 'tac/home/scheduled-drive', component: TacScheduledDriveComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/create-invite', component: CreateInviteComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/home/upcomingDrives', component: TacUpcomingDriveComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
-  { path: 'tac/home/upcomingDrives/viewResponse', component: TacViewResponseComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
+  { path: 'tac/home/upcomingDrives/viewResponse/:driveId', component: TacViewResponseComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/createPool', component: TacCreatePoolComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/managepool/editpool/:poolId', component: TacEditPoolComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/managepool', component: ManagepoolComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },

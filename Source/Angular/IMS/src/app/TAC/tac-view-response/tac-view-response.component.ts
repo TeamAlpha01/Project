@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -10,8 +11,7 @@ export class TacViewResponseComponent implements OnInit {
   totalLength: any;
   page: number = 1;
   title = 'View Drive Response';
-  driveId: number = 3;
-  driveDetails: any;
+  driveId: number = 0;
   errorMessage: any;
   driveResponses: any[] = [];
   response: any;
@@ -29,21 +29,23 @@ export class TacViewResponseComponent implements OnInit {
     toDate: ""
   }
 
-  constructor(private connection: ConnectionService) { }
+  constructor(private connection: ConnectionService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.driveId = params['driveId']
+    })
     this.GetDriveResponse();
     this.GetDrive();
   }
 
   GetDriveResponse() {
     this.connection.GetDriveResponse(this.driveId).subscribe({
-      next: (data: any) => {
-        this.driveResponses = data, console.warn(this.driveResponses);
-      },
+      next: (data: any) => this.driveResponses = data,
       error: (errorMessage: any) => this.errorMessage = errorMessage.message
     });
   }
+  
   GetDrive() {
     this.connection.GetDrive(this.driveId).subscribe({
       next: (data: any) => this.drive = data,
