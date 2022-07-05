@@ -36,7 +36,7 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewAllCancelledDrives', { headers: this.headers });
   }
 
-  GetAllInterviews(): any {
+  GetTotalDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewAllInterview', { headers: this.headers });
   }
 
@@ -97,7 +97,7 @@ export class ConnectionService {
   }
 
   GetTACDashboard(): any {
-    return this.http.get<any>(this.baseURL + `Drive/ViewDashboard`, { headers: this.headers });
+    return this.http.get<any>(this.baseURL + `Drive/ViewDas hboard`, { headers: this.headers });
   }
 
   GetTodayDrives(): any {

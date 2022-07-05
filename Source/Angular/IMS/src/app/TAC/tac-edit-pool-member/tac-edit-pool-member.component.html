@@ -36,17 +36,19 @@
             </div>
         </div>
         <div class=" container row AddMemberPool mt-2 justify-content-evenly">
-            <div class="card col-6 ">
-                <div>
-                    <h3 class="card-header">{{_pool}} Poll Members</h3>
-                    <div class="container my-box" *ngIf="_dept!='';else ArrayEmpty">
-                        <div class="card-body p-1 border-bottom" *ngFor="let item of poolMembers">
+            
+            <div class="card  col-6 ml-5">
+                <div class="">
+                    <h3 class="card-header text-cente">{{_dept}} Employees</h3>
+                    <div class="container my-box " *ngIf="_dept!='';else ArrayEmpty">
+                        <div class="card-body p-1 border-bottom"
+                            *ngFor="let item of employeeDetails |filter:_dept |filter:_role |filter:_search">
                             <div class="d-flex justify-content-evenly align-items-center">
                                 <div class="col-md-3">{{item.employeeAceNumber}}</div>
                                 <div class="col-md-3">{{item.employeeName}}</div>
-                                <div class="col-md-3">{{item.employeeRole}}</div>
-                                <div><button class="btn btn-danger btn-sm" (click)="RemovePoolMember(item.poolMemberId)"><i
-                                            class="fa-solid fa-xmark"></i></button>
+                                <div class="col-md-3">{{item.employeeRoleName}}</div>
+                                <div><button class="btn btn-success btn-sm" (click)="AddPoolMember(item.employeeId)">
+                                    <i class="fa-solid fa-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -59,18 +61,17 @@
                 </div>
             </div>
 
-            <div class="card  col-6 ml-5">
-                <div class="">
-                    <h3 class="card-header text-cente">{{_dept}} Employees</h3>
-                    <div class="container my-box " *ngIf="_dept!='';else ArrayEmpty">
-                        <div class="card-body p-1 border-bottom"
-                            *ngFor="let item of employeeDetails |filter:_dept |filter:_role |filter:_search">
+            <div class="card col-6 ">
+                <div>
+                    <h3 class="card-header">{{_pool}} Poll Members</h3>
+                    <div class="container my-box" *ngIf="_dept!='';else ArrayEmpty">
+                        <div class="card-body p-1 border-bottom" *ngFor="let item of poolMembers">
                             <div class="d-flex justify-content-evenly align-items-center">
                                 <div class="col-md-3">{{item.employeeAceNumber}}</div>
                                 <div class="col-md-3">{{item.employeeName}}</div>
-                                <div class="col-md-3">{{item.employeeRoleName}}</div>
-                                <div><button class="btn btn-success btn-sm" (click)="AddPoolMember(item.employeeId)"><i
-                                            class=" fa-solid fa-plus"></i></button>
+                                <div class="col-md-3">{{item.employeeRole}}</div>
+                                <div><button class="btn btn-danger btn-sm" (click)="RemovePoolMember(item.poolMemberId)">
+                                    <i class="fa-solid fa-arrow-left"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -82,6 +83,7 @@
                     </ng-template>
                 </div>
             </div>
+
             <div *ngIf="response.length!=0">
                 <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
             </div>
