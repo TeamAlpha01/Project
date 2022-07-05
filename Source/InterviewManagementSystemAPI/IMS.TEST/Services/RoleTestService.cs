@@ -25,12 +25,12 @@ namespace UnitTesting.ServiceTests
         
         // 1.   Testing CreateRole(string roleName)
         [Theory]
-        [InlineData("Software2#$%")]
-        [InlineData("So")]
-        [InlineData(null)]
-        public void CreateRole_ThrowsValidationException_WithInvalidRoleName(string roleName)
+        [InlineData("Software2#$%",true)]
+        [InlineData("So",false)]
+        [InlineData(null,null)]
+        public void CreateRole_ThrowsValidationException_WithInvalidRoleName(string roleName,bool isManagement)
         {
-            var Result = () => _roleService.CreateRole(roleName);
+            var Result = () => _roleService.CreateRole(roleName,isManagement);
 
             Result.Should().Throw<ValidationException>();
         }
@@ -40,7 +40,7 @@ namespace UnitTesting.ServiceTests
         {
             _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.IsAny<Role>())).Returns(true);
 
-            var Result = _roleService.CreateRole("Software Tester");
+            var Result = _roleService.CreateRole("Software Tester",true);
             Result.Should().BeTrue();
         }
         
@@ -49,7 +49,7 @@ namespace UnitTesting.ServiceTests
         {            
             _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.IsAny<Role>())).Returns(false);
 
-            var Result = _roleService.CreateRole("Software Tester");
+            var Result = _roleService.CreateRole("Software Tester",false);
             Result.Should().BeFalse();
         }
 
@@ -58,7 +58,7 @@ namespace UnitTesting.ServiceTests
         {            
             _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.IsAny<Role>())).Throws<ValidationException>();
 
-            var Result = () => _roleService.CreateRole("Software Tester");
+            var Result = () => _roleService.CreateRole("Software Tester",true);
             Result.Should().Throw<ValidationException>();
         }
         [Fact]
@@ -66,7 +66,7 @@ namespace UnitTesting.ServiceTests
         {            
             _roleDataAccessLayer.Setup(r=>r.AddRoleToDatabase(It.IsAny<Role>())).Throws<Exception>();
 
-            var Result = _roleService.CreateRole("Software Tester");
+            var Result = _roleService.CreateRole("Software Tester",false);
             Result.Should().BeFalse();
         }
         [Theory]

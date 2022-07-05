@@ -23,22 +23,22 @@ public class RoleControllerTest
 
     // 1.   Testing CreateNewRole()
     [Theory]
-    [InlineData(null)]
-    [InlineData("")]
-    public void CreateNewRole_ShouldReturnStatusCode400_WhenRoleNameIsEmptyOrNull(string roleName)
+    [InlineData(null,true)]
+    [InlineData("",true)]
+    public void CreateNewRole_ShouldReturnStatusCode400_WhenRoleNameIsEmptyOrNull(string roleName,bool isManagement)
     {
-        var Result = _roleController.CreateNewRole(roleName) as ObjectResult;
+        var Result = _roleController.CreateNewRole(roleName,isManagement) as ObjectResult;
         
         Result.StatusCode.Should().Be(400);
     }
     [Theory]
-    [InlineData("Software Developer")]
-    public void CreateNewRole_ShouldReturnStatusCode200_WithProperRoleName(string roleName)
+    [InlineData("Software Developer",true)]
+    public void CreateNewRole_ShouldReturnStatusCode200_WithProperRoleName(string roleName,bool isManagement)
     {
       
-        _roleService.Setup(r => r.CreateRole(roleName)).Returns(true);
+        _roleService.Setup(r => r.CreateRole(roleName,isManagement)).Returns(true);
 
-        var Result = _roleController.CreateNewRole(roleName) as ObjectResult;
+        var Result = _roleController.CreateNewRole(roleName,isManagement) as ObjectResult;
 
         Result.StatusCode.Should().Be(200);
     }
@@ -47,9 +47,10 @@ public class RoleControllerTest
     public void CreateNewRole_ShouldReturnStatusCode500_WithInvalidRoleName()
     {
         string roleName = "Software Developer";
-        _roleService.Setup(r => r.CreateRole(roleName)).Returns(false);
+        bool isManagement=true;
+        _roleService.Setup(r => r.CreateRole(roleName,isManagement)).Returns(false);
 
-        var Result = _roleController.CreateNewRole(roleName) as ObjectResult;
+        var Result = _roleController.CreateNewRole(roleName,isManagement) as ObjectResult;
 
         Result.StatusCode.Should().Be(500);
     }
@@ -58,9 +59,10 @@ public class RoleControllerTest
     public void CreateNewRole_ShouldReturnStatusCode400_WhenServiceThrowsValidationException()
     {
         string roleName = "Software Developer2342";
-        _roleService.Setup(r => r.CreateRole(roleName)).Throws<ValidationException>();
+        bool isManagement=true;
+        _roleService.Setup(r => r.CreateRole(roleName,isManagement)).Throws<ValidationException>();
 
-        var Result = _roleController.CreateNewRole(roleName) as ObjectResult;
+        var Result = _roleController.CreateNewRole(roleName,isManagement) as ObjectResult;
 
         Result.StatusCode.Should().Be(400);
     }
@@ -68,9 +70,10 @@ public class RoleControllerTest
     public void CreateNewRole_ShouldReturnStatusCode500_WhenServiceThrowsException()
     {
         string roleName = "Software Developer";
-        _roleService.Setup(r => r.CreateRole(roleName)).Throws<Exception>();
+        bool isManagement=false;
+        _roleService.Setup(r => r.CreateRole(roleName,isManagement)).Throws<Exception>();
 
-        var Result = _roleController.CreateNewRole(roleName) as ObjectResult;
+        var Result = _roleController.CreateNewRole(roleName,isManagement) as ObjectResult;
 
         Result.StatusCode.Should().Be(500);
     }
