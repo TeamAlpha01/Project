@@ -149,6 +149,59 @@ namespace IMS.DataAccessLayer
 
                       new PoolMembers { PoolMembersId = 9, PoolId = 5, EmployeeId = 7, IsActive = true }
                       );
+                      modelBuilder.Entity<EmployeeDriveResponse>()
+                      .HasData(
+                        new EmployeeDriveResponse{ResponseId=5,DriveId=1,EmployeeId=1,ResponseType=1 },
+                        new EmployeeDriveResponse{ResponseId=6,DriveId=2,EmployeeId=2,ResponseType=2},
+                        new EmployeeDriveResponse{ResponseId=3,DriveId=2,EmployeeId=1,ResponseType=1},
+                        new EmployeeDriveResponse{ ResponseId=4,DriveId=1,EmployeeId=2,ResponseType=1}
+                        
+
+                      );
+                      modelBuilder.Entity<EmployeeAvailability>()
+                      .HasData(
+                        new EmployeeAvailability{EmployeeAvailabilityId=1,DriveId=1,EmployeeId=2,InterviewDate=Convert.ToDateTime("2022-07-05"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-07-07 09:00"),To=Convert.ToDateTime("2022-05-07 09:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=2,DriveId=2,EmployeeId=2,InterviewDate=Convert.ToDateTime("2022-07-05"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 10:00"),To=Convert.ToDateTime("2022-05-07 10:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=3,DriveId=5,EmployeeId=2,InterviewDate=Convert.ToDateTime("2022-07-06"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 09:00"),To=Convert.ToDateTime("2022-05-07 10:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=4,DriveId=5,EmployeeId=3,InterviewDate=Convert.ToDateTime("2022-07-07"),IsInterviewScheduled=true,IsInterviewCancelled=true,CancellationReason="For Testing",Comments="Testing comment",From=Convert.ToDateTime("2022-05-07 10:00"),To=Convert.ToDateTime("2022-05-07 11:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=5,DriveId=6,EmployeeId=2,InterviewDate=Convert.ToDateTime("2022-07-05"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 09:00"),To=Convert.ToDateTime("2022-05-07 09:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=6,DriveId=6,EmployeeId=3,InterviewDate=Convert.ToDateTime("2022-07-08"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 09:00"),To=Convert.ToDateTime("2022-05-07 09:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=7,DriveId=7,EmployeeId=2,InterviewDate=Convert.ToDateTime("2022-07-09"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 8:30"),To=Convert.ToDateTime("2022-05-07 09:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=8,DriveId=7,EmployeeId=2,InterviewDate=Convert.ToDateTime("2022-07-09"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime(" 2022-05-07 10:00"),To=Convert.ToDateTime("2022-05-07 11:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=9,DriveId=7,EmployeeId=3,InterviewDate=Convert.ToDateTime("2022-07-09"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 09:00"),To=Convert.ToDateTime("2022-05-07 10:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=10,DriveId=8,EmployeeId=3,InterviewDate=Convert.ToDateTime("2022-07-08"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 09:30"),To=Convert.ToDateTime("2022-05-07 10:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=11,DriveId=8,EmployeeId=3,InterviewDate=Convert.ToDateTime("2022-07-08"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 10:30"),To=Convert.ToDateTime("2022-05-07 11:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=12,DriveId=9,EmployeeId=2,InterviewDate=Convert.ToDateTime("2022-07-07"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime(" 2022-05-07 09:00"),To=Convert.ToDateTime("2022-05-07 10:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=13,DriveId=9,EmployeeId=3,InterviewDate=Convert.ToDateTime("2022-07-07"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 09:00"),To=Convert.ToDateTime("2022-05-07 10:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=14,DriveId=10,EmployeeId=2,InterviewDate=Convert.ToDateTime("2022-05-07"),IsInterviewScheduled=true,IsInterviewCancelled=true,CancellationReason="Testing",Comments="Testing Comment",From=Convert.ToDateTime("2022-05-07 09:00"),To=Convert.ToDateTime("2022-05-07 09:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=15,DriveId=10,EmployeeId=3,InterviewDate=Convert.ToDateTime("2022-05-07"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 11:00"),To=Convert.ToDateTime("2022-05-07 11:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=16,DriveId=10,EmployeeId=3,InterviewDate=Convert.ToDateTime("2022-05-07"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 12:00"),To=Convert.ToDateTime("2022-05-07 12:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=17,DriveId=13,EmployeeId=5,InterviewDate=Convert.ToDateTime("2022-08-12"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 10:00"),To=Convert.ToDateTime("2022-05-07 10:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=18,DriveId=13,EmployeeId=6,InterviewDate=Convert.ToDateTime("2022-08-13"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 12:00"),To=Convert.ToDateTime("2022-05-07 12:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=19,DriveId=14,EmployeeId=5,InterviewDate=Convert.ToDateTime("2022-08-07"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 11:00"),To=Convert.ToDateTime("2022-05-07 11:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=20,DriveId=14,EmployeeId=6,InterviewDate=Convert.ToDateTime("2022-08-07"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 12:00"),To=Convert.ToDateTime("2022-05-07 12:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=21,DriveId=15,EmployeeId=5,InterviewDate=Convert.ToDateTime("2022-08-10"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 09:00"),To=Convert.ToDateTime("2022-05-07 10:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=22,DriveId=15,EmployeeId=5,InterviewDate=Convert.ToDateTime("2022-09-11"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 10:00"),To=Convert.ToDateTime("2022-05-07 11:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=23,DriveId=15,EmployeeId=6,InterviewDate=Convert.ToDateTime("2022-09-11"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 10:00"),To=Convert.ToDateTime("2022-05-07 11:00")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=24,DriveId=16,EmployeeId=6,InterviewDate=Convert.ToDateTime("2022-09-15"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 10:00"),To=Convert.ToDateTime("2022-05-07 10:30")},
+                        new EmployeeAvailability{EmployeeAvailabilityId=25,DriveId=16,EmployeeId=6,InterviewDate=Convert.ToDateTime("2022-09-16"),IsInterviewScheduled=true,IsInterviewCancelled=false,CancellationReason=null,Comments=null,From=Convert.ToDateTime("2022-05-07 11:00"),To=Convert.ToDateTime("2022-05-07 11:30")}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
+                      );
              modelBuilder.Entity<Drive>()
                     .HasData( 
                       new Drive {DriveId = 1, Name = "Freshers .Net Drive T", FromDate = System.DateTime.Now, ToDate = System.DateTime.Now.AddDays(1), DepartmentId = 1, PoolId = 1, ModeId = 2, LocationId = 1, IsScheduled = true, IsCancelled = false, CancelReason = null, AddedBy = 10, AddedOn = System.DateTime.Now, UpdatedBy = 9, UpdatedOn =System.DateTime.Now},
