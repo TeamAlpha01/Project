@@ -83,7 +83,7 @@ export class TacEditPoolMemberComponent implements OnInit {
       },
       error: (error) => {
         this.error = error.error.message;
-        setTimeout(() => { this.error = '' }, 2000);
+        setTimeout(() => { this.error = '' }, 4000);
       },
     });
   }

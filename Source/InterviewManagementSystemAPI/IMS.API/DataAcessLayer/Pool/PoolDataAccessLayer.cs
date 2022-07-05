@@ -251,37 +251,17 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                var employee=_db.Employees.Find(poolMembers.EmployeeId);
-                var pool =_db.Employees.Find(poolMembers.PoolId);
-                if(employee==null || pool==null)
-                    throw new ValidationException("Employee or pool not found with the given Employee Id and Pool Id");
-                bool poolMemberAlreadyExists = _db.PoolMembers.Any(x => x.EmployeeId == poolMembers.EmployeeId && x.PoolId==poolMembers.PoolId && x.IsActive == true);    
-                if(!poolMemberAlreadyExists)
-                {
+                isPoolMemberValid(poolMembers);
                 _db.PoolMembers.Add(poolMembers);
                 _db.SaveChanges();
                 return true;
-                }
-                else
-                 throw new ValidationException("Pool Member already exists in the given Pool Id");
                
 
-            }
-            catch (DbUpdateException exception)
-            {
-                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers) : {exception.Message}");
-                return false;
-            }
-            catch (OperationCanceledException exception)
-            {
-                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers): {exception.Message}");
-                return false;
             }
             catch (ValidationException employeeNotFound)
             {
                 throw employeeNotFound;
             }
-
             catch (Exception exception)
             {
                 _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers)  : {exception.Message}");
@@ -289,6 +269,24 @@ namespace IMS.DataAccessLayer
             }
 
 
+        }
+        private bool isPoolMemberValid(PoolMembers poolMembers)
+        {
+            var employee=_db.Employees.Include(e=>e.Role).FirstOrDefault(e=>e.EmployeeId==poolMembers.EmployeeId);
+            var pool =_db.Employees.Find(poolMembers.PoolId);
+            if(employee==null || pool==null)
+                throw new ValidationException("Employee or pool not found with the given Employee Id and Pool Id");
+            var poolCount =_db.PoolMembers.Where(p=>p.PoolId==poolMembers.PoolId && p.IsActive==true).ToList().Count;
+            if(poolCount==0 && employee.Role.IsManagement==false)       
+            {
+                var dummy=employee.Role.IsManagement;
+                throw new ValidationException("A Pool must contain minimum one Management Employee, Try adding a Management Employee First");
+            }              
+            bool poolMemberAlreadyExists = _db.PoolMembers.Any(x => x.EmployeeId == poolMembers.EmployeeId && x.PoolId==poolMembers.PoolId && x.IsActive == true);    
+            if(poolMemberAlreadyExists)
+             throw new ValidationException("Pool Member already exists in the given Pool Id");
+
+            return true;
         }
 
         /// <summary>

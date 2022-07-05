@@ -133,11 +133,11 @@ namespace IMS.Service
 
         }
 
-        public Object ViewNonCancelledDrives()
+        public Object ViewNonCancelledDrives(int tacId)
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) select drive).ToList()
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false).Where(d=>d.AddedBy==tacId) select drive).ToList()
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -158,11 +158,11 @@ namespace IMS.Service
             }
         }
 
-        public Object ViewAllCancelledDrives()
+        public Object ViewAllCancelledDrives(int tacId)
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(true) select drive).ToList()
+                return (from drive in _driveDataAccess.GetDrivesByStatus(true).Where(d=>d.AddedBy==tacId) select drive).ToList()
                 .Select(d => new
                 {
                     DriveId = d.DriveId,

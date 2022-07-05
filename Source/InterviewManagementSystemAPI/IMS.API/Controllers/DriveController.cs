@@ -243,7 +243,8 @@ public class DriveController : ControllerBase
     {
         try
         {
-            return Ok(_driveService.ViewNonCancelledDrives());
+            int tacId=Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_driveService.ViewNonCancelledDrives(tacId));
         }
         catch (Exception viewAllScheduledDrivesException)
         {
@@ -274,7 +275,8 @@ public class DriveController : ControllerBase
     {
         try
         {
-            return Ok(_driveService.ViewAllCancelledDrives());
+            int tacId=Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_driveService.ViewAllCancelledDrives(tacId));
         }
         catch (Exception viewAllCancelledDrivesException)
         {
@@ -785,12 +787,11 @@ public class DriveController : ControllerBase
     /// <param name="employeeId"></param>
     /// <returns>Returns the dashboard of employee</returns>
     [HttpGet]
-    public IActionResult ViewEmployeeDashboard(int employeeId)
+    public IActionResult ViewEmployeeDashboard()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employeeId");
         try
         {
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewEmployeeDashboard(employeeId));
         }
         catch (ValidationException ViewEmployeeDashboardNotValid)
