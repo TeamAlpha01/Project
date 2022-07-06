@@ -22,7 +22,7 @@
                 
                 <div class="form-input">
                     <label class="form-label" for="Name">Project Name </label>
-                    <input [class.is-invalid]="(error.length)||(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched" type="text" id="Name" class="form-control " formControlName="projectName" >
+                    <input type="text" maxlength="15" [class.is-invalid]="(error.length)||(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched" type="text" id="Name" class="form-control " formControlName="projectName" >
                 </div>
                 <div *ngIf="(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched">
                     <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['required']">Project name is required</span>

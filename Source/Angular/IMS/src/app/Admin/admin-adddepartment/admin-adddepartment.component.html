@@ -6,8 +6,8 @@
             <form [formGroup]="AddDepartmentForm" (ngSubmit)="addDepartment()">
                 
                 <div class="form-input">
-                    <label class="form-label" for="Name">Department Name </label>
-                    <input [class.is-invalid]="(error.length)||(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched" type="text" id="Name" class="form-control " formControlName="departmentName" >
+                    <label class="form-label " for="Name" >Department Name </label>
+                    <input type="text" maxlength="15" [class.is-invalid]="(error.length)||(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched" type="text" id="Name" class="form-control " formControlName="departmentName" >
                 </div>
                 <div *ngIf="(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched">
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['required']">Department name is required</span>
