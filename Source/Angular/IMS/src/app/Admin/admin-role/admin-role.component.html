@@ -14,7 +14,7 @@
             <form [formGroup]="AddRoleForm" (ngSubmit)="addRole()">
                 <div class="form-input">
                     <label class="form-label" for="Name">Role Name </label>
-                    <input  [class.is-invalid]="(error.length)||(submitted)||AddRoleForm.controls['roleName'].invalid && AddRoleForm.controls['roleName'].touched" type="text" id="Name" class="form-control " formControlName="roleName">                    
+                    <input type="text" maxlength="15" [class.is-invalid]="(error.length)||(submitted)||AddRoleForm.controls['roleName'].invalid && AddRoleForm.controls['roleName'].touched" type="text" id="Name" class="form-control " formControlName="roleName">                    
                 </div>
                 <div *ngIf="(submitted)||AddRoleForm.controls['roleName'].invalid && AddRoleForm.controls['roleName'].touched">
                     <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['required']">Role name is required</span>
