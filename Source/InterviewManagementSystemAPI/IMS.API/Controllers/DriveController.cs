@@ -495,7 +495,7 @@ public class DriveController : ControllerBase
             return BadRequest("Invalid employee availability");
         try
         {
-            employeeAvailability.EmployeeId=Convert.ToInt32(User.FindFirst("UserId"));
+            employeeAvailability.EmployeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return _driveService.SetTimeSlot(employeeAvailability) ? Ok("Availability recorded sucessfully") : Problem("Sorry internal error occured");
         }
         catch (ValidationException setTimeSlotNotValid)
