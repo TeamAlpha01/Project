@@ -75,6 +75,7 @@ import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-respo
 import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total-drives/interviewer-total-drives.component';
 import { InterviewerAvailabilityGivenComponent } from './Interviewer/interviewer-availability-given/interviewer-availability-given.component';
 import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-utilized-drives/interviewer-utilized-drives.component';
+import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer-not-utilized-drives/interviewer-not-utilized-drives.component';
 
 
 @NgModule({
@@ -143,6 +144,7 @@ import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-ut
     InterviewerTotalDrivesComponent,
     InterviewerAvailabilityGivenComponent,
     InterviewerUtilizedDrivesComponent,
+    InterviewerNotUtilizedDrivesComponent,
 
   ],
 

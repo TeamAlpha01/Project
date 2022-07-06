@@ -1,1 +1,38 @@
-<p>interviewer-utilized-drives works!</p>
+<app-interviewer-header [CurrentNavigationPage]="'DashboardPage'"></app-interviewer-header>
+
+<!-- Sidebar End -->
+
+<div class="content">
+    
+    <app-navbar [title]="title"></app-navbar>
+
+    <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of Utilized| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
+        <div class>
+            <div class="card-body">
+                <h3 class="card-title"><b>{{item.driveName}}</b></h3>
+                <hr>
+                <div class="row rone mt-4">
+                    <div class="col-md-4">
+                        <p ><b>Pool name : </b> {{item.poolName}}</p>
+                        <p ><b>Interview Date : </b> {{item.intervieDate}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p ><b>FROM TIME : </b> {{item.fromTime}}</p>
+                        <p ><b>TO TIME : </b> {{item.toTime}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p ><b>MODE : </b> {{item.mode}}</p>
+                        <p ><b>LOCATION : </b> {{item.locationName}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div >
+        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    </div>
+
+    <app-footer [BackBtn]=true></app-footer>
+
+</div>
+

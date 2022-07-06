@@ -33,9 +33,9 @@ export class ConnectionService {
   //GET methods
 
   GetAcceptedDrives():any{
-    return this.http.get<any>(this.baseURL + 'Drive/ViewAcceptedDrives?employeeId=7', { headers: this.headers });
+    return this.http.get<any>(this.baseURL + 'Drive/ViewAcceptedDrives', { headers: this.headers });
   }
-  
+
   GetCancelledDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewAllCancelledDrives', { headers: this.headers });
   }
@@ -80,6 +80,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewNonCancelledDrives', { headers: this.headers });
   }
 
+  GetNotUtilizedInterviews(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewNotUtilizedInterviews', { headers: this.headers });
+  }
+
   GetPools(): any {
     return this.http.get<any>(this.baseURL + 'Pool/ViewPools', { headers: this.headers });
   }
@@ -109,9 +113,13 @@ export class ConnectionService {
   }
 
   GetTotalDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewToatlDrives?employeeId=7', { headers: this.headers });
+    return this.http.get<any>(this.baseURL + 'Drive/ViewToatlDrives', { headers: this.headers });
   }
 
+  GetTotalAvailability(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewTotalAvailability', { headers: this.headers });
+  }
+  
   GetTodaysInterviews(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewTodaysInterview', { headers: this.headers });
   }
@@ -126,6 +134,10 @@ export class ConnectionService {
 
   GetUpcomingInterviews(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUpcomingInterview', { headers: this.headers });
+  }
+
+  GetUtilizedInterviews(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewUtilizedInterviews', { headers: this.headers });
   }
 
   GetDriveById(driveId:any)

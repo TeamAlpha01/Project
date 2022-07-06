@@ -42,6 +42,9 @@ import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-
 import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-cancel-invite-page/interviewer-cancel-invite-page.component';
 import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-response.component';
 import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total-drives/interviewer-total-drives.component';
+import { InterviewerAvailabilityGivenComponent } from './Interviewer/interviewer-availability-given/interviewer-availability-given.component';
+import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-utilized-drives/interviewer-utilized-drives.component';
+import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer-not-utilized-drives/interviewer-not-utilized-drives.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -56,6 +59,10 @@ const routes: Routes = [
   //{ path: 'interviewer/driveInvites/reject-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/cancel-interview/:employeeAvailabilityId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/totaldrives', component: InterviewerTotalDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  { path: 'interviewer/dashboard/availabilitygiven', component: InterviewerAvailabilityGivenComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  { path: 'interviewer/dashboard/utilizedinterviews', component: InterviewerUtilizedDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  { path: 'interviewer/dashboard/notutilizedinterviews', component: InterviewerNotUtilizedDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+
 
   //admin pages
   { path: '', component: LoginComponent},

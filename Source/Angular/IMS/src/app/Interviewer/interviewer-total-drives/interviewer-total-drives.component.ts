@@ -9,7 +9,6 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class InterviewerTotalDrivesComponent implements OnInit {
 
   title='Total No. Of Drives';
-  // drive:any[]=[];
   Drives: any;
   totalLength: any;
   page: number = 1;

@@ -10,51 +10,53 @@
         <div class="container">
             <div class="row" style="padding-top: 15%;">
                 <div class="col-xs-12 col-sm-4">
-                    <div class="card-card">
-                        <div class="card-body">
-                            <h1 class="card-title">
-                               {{Alldrives}}
-                            </h1>
-                            <h3>
-                                <a [routerLink]="['/interviewer/dashboard/totaldrives']">
+                    <a [routerLink]="['/interviewer/dashboard/totaldrives']" class="link">
+                        <div class="card-card">
+                            <div class="card-body">
+                                <h1 class="card-title">
+                                    {{Alldrives}}
+                                 </h1>
+                                 <h3>
                                     <b>Total No. of Drives</b>
-                                </a>
-                            </h3>
+                                 </h3>
+                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
+                    <a [routerLink]="['/interviewer/dashboard/availabilitygiven']" class="link">
                     <div class="card-card">
-                        
                         <div class="card-content">
                             <h1 class="card-title">
                                 {{AvailabilityGiven}}
                             </h1>
-                            <h3 class="">
+                            <h3>
                                 <b>Availability Given</b>
                             </h3>
                         </div>
                     </div>
+                     </a>
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
+                    <a [routerLink]="['/interviewer/dashboard/utilizedinterviews']" class="link">
                     <div class="card-card">
-                        
                         <div class="card-content">
                             <h1 class="card-title">
                                 {{Utilized}}
                             </h1>
-                            <h3 class="">
+                            <h3>
                                 <b>Utilized</b>
                             </h3>
                         </div>
                     </div>
+                     </a>
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
+                  <a [routerLink]="['/interviewer/dashboard/notutilizedinterviews']" class="link">
                   <div class="card-card">
-                      
                       <div class="card-content">
                           <h1 class="card-title">
                               {{NotUtilized}}
@@ -64,6 +66,7 @@
                           </h3>
                       </div>
                   </div>
+                </a>
               </div>
 
               <div class="col-xs-12 col-sm-4">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-interviewer-availability-given',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interviewer-availability-given.component.css']
 })
 export class InterviewerAvailabilityGivenComponent implements OnInit {
+  title='Availability Given';
+  Availability: any;
+  totalLength: any;
+  page: number = 1;
 
-  constructor() { }
+  constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
+    this.connection.GetTotalAvailability().subscribe((data: any) => {
+      this.Availability = data;
+      console.warn(this.Availability)
+    }) 
+
   }
 
 }

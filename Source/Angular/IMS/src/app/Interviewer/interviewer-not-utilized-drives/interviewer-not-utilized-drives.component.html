@@ -6,7 +6,7 @@
     
     <app-navbar [title]="title"></app-navbar>
 
-    <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of Availability| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
+    <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of NotUtilized| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
         <div class>
             <div class="card-body">
                 <h3 class="card-title"><b>{{item.driveName}}</b></h3>

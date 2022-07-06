@@ -5,6 +5,13 @@
   --light: #ffffff;
   --dark: #231924;
 }
+.link{
+  text-decoration: none;
+  color: black;
+}
+.link :hover{
+  color:#aa60e7;
+}
 .Sdropdown {
   height: 50px;
   overflow: auto;
