@@ -41,6 +41,7 @@ import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-sc
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
 import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-cancel-invite-page/interviewer-cancel-invite-page.component';
 import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-response.component';
+import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total-drives/interviewer-total-drives.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -54,7 +55,7 @@ const routes: Routes = [
   { path: 'interviewer/driveInvites/accept-invite/:driveId', component: InterviewerAcceptInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   //{ path: 'interviewer/driveInvites/reject-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/cancel-interview/:employeeAvailabilityId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
-
+  { path: 'interviewer/dashboard/totaldrives', component: InterviewerTotalDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
 
   //admin pages
   { path: '', component: LoginComponent},

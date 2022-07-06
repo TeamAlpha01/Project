@@ -6,23 +6,30 @@
     
     <app-navbar [title]="title"></app-navbar>
 
-    <div class=" mt-3 mb-5 container shadow  bg-body rounded">
-        <!-- <div class="">
+    <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of Drives| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
+        <div class>
             <div class="card-body">
-                <div class="row">                   
-                    <div class="col-md-4">
-                        <label class="form-label" for="Pool">Pool </label>
-                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool" [(ngModel)]="_pool">
-                            <option value="" >Select the Pool</option>
-                            <option *ngFor="let item of poolDetails | filter:_pool" value={{item.poolName}}> {{item.poolName}}</option>
-                        </select>
+                <h3 class="card-title"><b>{{item.driveName}}</b></h3>
+                <hr>
+                <div class="row rone mt-4">
+                    <div class="col-md-6">
+                        <!-- <p ><b>ROLE : </b> {{item.role}}</p> -->
+                        <p ><b>FROM DATE : </b> {{item.fromDate}}</p>
+                        <p ><b>TO DATE : </b> {{item.toDate}}</p>
+                        <p ><b>RESPONSE : </b> {{item.response}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- <p ><b>DEPARTMENT : </b>{{item.department}}</p> -->
+                        <p ><b>MODE : </b> {{item.driveMode}}</p>
+                        <p ><b>LOCATION : </b> {{item.driveLocation}}</p>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
-    
-    <!-- <app-interviewer-card-details [data]=drive ></app-interviewer-card-details> -->
+    <div >
+        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    </div>
 
     <app-footer [BackBtn]=true></app-footer>
 

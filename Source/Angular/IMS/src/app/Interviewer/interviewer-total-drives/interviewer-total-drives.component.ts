@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-interviewer-total-drives',
@@ -8,11 +9,19 @@ import { Component, OnInit } from '@angular/core';
 export class InterviewerTotalDrivesComponent implements OnInit {
 
   title='Total No. Of Drives';
-  drive:any[]=[];
+  // drive:any[]=[];
+  Drives: any;
+  totalLength: any;
+  page: number = 1;
 
-  constructor() { }
+  constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
+    this.connection.GetTotalDrives().subscribe((data: any) => {
+      this.Drives = data;
+      console.warn(this.Drives)
+    }) 
+
   }
 
 }
