@@ -12,29 +12,46 @@ import { Router } from '@angular/router';
 export class TacCurrentDriveComponent implements OnInit {
 
   title = 'Current Drive'
+
+  //PAGINATION
   totalLength: any;
   page: number = 1;
 
-  //To get the inputs from the user
+  //TO GET INPUT FROM THE USER
   _dept = '';
   _pool = '';
 
-  //To store the filtered data in the array
+  //TO STORE THE FILTERED DATA
   pool: any[] = [];
   drive: any[] = [];
-  deptId: any;
 
 
-  //To get the details from the db
+  //TO STORE THE DATA FROM THE DATABASE
   driveDetails: any;
   poolDetails: any;
   departmentDetails: any;
+
+  //TO STORE THE HTTP RESPONSE
   error: any;
   showErrorMessage: boolean = false;
 
   constructor(private connection: ConnectionService, private route: Router) { }
 
   ngOnInit(): void {
+    this.GetPools();
+    this.GetDepartments();
+    this.GetTodaysDrives();
+  }
+
+  GetPools() {
+    this.connection.GetPools().subscribe({ next: (data: any) => this.poolDetails = data });
+  }
+
+  GetDepartments() {
+    this.connection.GetDepartments().subscribe({ next: (data: any) => this.departmentDetails = data });
+  }
+
+  GetTodaysDrives() {
     this.connection.GetTodayDrives().subscribe({
       next: (data: any) => {
         this.driveDetails = data;
@@ -42,23 +59,16 @@ export class TacCurrentDriveComponent implements OnInit {
           this.drive.push(item);
         }
       }
-    })
-
-    this.connection.GetPools().subscribe((data: any) => this.poolDetails = data)
-
-    this.connection.GetDepartments().subscribe((data: any) => this.departmentDetails = data)
+    });
   }
-
 
   filterDropdown() {
 
-    // console.log("Department Name : " + this._dept);
-    // console.log("Pool Name : " + this._pool);
+    console.log("Department Name : " + this._dept);
+    console.log("Pool Name : " + this._pool);
 
-    //To filter cards based on the department and pool selection
-
+    //TO FILTER DRIVE BASED ON THE DEPARTMENT AND POOL SELECTION
     this.drive = [];
-
     for (let item of this.driveDetails) {
       if (this._dept == '' && this._pool == '') {
         this.drive.push(item);
@@ -72,19 +82,21 @@ export class TacCurrentDriveComponent implements OnInit {
       else if (item.driveDepartment == this._dept && item.drivePool != this._pool) {
       }
     }
+
+    //TO CLEAR POOL SELECTION ONCE THE DEPARTMENT SELECTION IS CHANGED
     if (this._dept != '') {
-      this._pool='';
-      // console.warn("1")
+      this._pool = '';
     }
 
-    this.pool=[];
-    for(let item of this.poolDetails){
-      if(item.departmentName==this._dept){
+    // TO FILTER POOL BASED ON DEPARTMENT SELECTION
+    this.pool = [];
+    for (let item of this.poolDetails) {
+      if (item.departmentName == this._dept) {
         this.pool.push(item);
       }
     }
-    // console.warn("Department Name : " + this._dept);
-    // console.warn("Pool Name : " + this._pool);
+    console.warn("Department Name : " + this._dept);
+    console.warn("Pool Name : " + this._pool);
   }
 
 }

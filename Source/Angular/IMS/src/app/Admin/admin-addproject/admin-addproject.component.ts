@@ -9,40 +9,39 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 
 export class AdminAddprojectComponent implements OnInit {
- title ='Add Project'
- data:any;
- response:string='';
-error: string='';
+  title = 'Add Project'
+  data: any;
+  response: string = '';
+  error: string = '';
 
 
-  constructor(private connection:ConnectionService, private fb: FormBuilder) { }
-  submitted:boolean=false;
+  constructor(private connection: ConnectionService, private fb: FormBuilder) { }
+  submitted: boolean = false;
   AddProjectForm = this.fb.group({
-    projectName :['',[Validators.required,Validators.minLength(3),Validators.pattern('[A-Za-z\\s]*')]],
-    departmentId :['',[Validators.required]]
+    projectName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern('[A-Za-z\\s]*')]],
+    departmentId: ['', [Validators.required]]
   });
-  getProjectName(){
+  getProjectName() {
     return this.AddProjectForm.get('projectName')
   }
-  getdepartmentId(){
+  getdepartmentId() {
     return this.AddProjectForm.get('departmentId')
   }
-  
+
   ngOnInit(): void {
     this.GetDepartments();
   }
-  GetDepartments(){
+  GetDepartments() {
     this.connection.GetDepartments().subscribe((data: any) => {
       this.data = data;
     })
   }
-  addProject(){
-    this.submitted=true;
+  addProject() {
+    this.submitted = true;
     this.error = '';
-    
-    if(this.AddProjectForm.valid)
-    {      
-      this.connection.AddProject(this.getProjectName()?.value,this.getdepartmentId()?.value).subscribe({
+
+    if (this.AddProjectForm.valid) {
+      this.connection.AddProject(this.getProjectName()?.value, this.getdepartmentId()?.value).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,
         complete: () => this.clearInputFields(),
@@ -50,15 +49,14 @@ error: string='';
     }
   }
 
-  clearInputFields() 
-  {
-    
-      this.submitted = false;
-      setTimeout(() => {
-        this.response = '';
-        this.AddProjectForm.reset();
-      }, 1000);
-    
+  clearInputFields() {
+
+    this.submitted = false;
+    setTimeout(() => {
+      this.response = '';
+      this.AddProjectForm.reset();
+    }, 1000);
+
   }
 
 }

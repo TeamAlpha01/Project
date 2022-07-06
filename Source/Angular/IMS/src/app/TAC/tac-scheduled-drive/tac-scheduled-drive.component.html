@@ -7,14 +7,15 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
-                            <label class="form-label" for="Department">Department </label>
-                            <select name="Department" id="Department Name" class="form-select" (change)="filterDropdown()"
-                                name="dept" [(ngModel)]="_dept">
-                                <option value="">Select the Department</option>
-                                <ng-container *ngFor="let item of departmentDetails">
-                                    <option *ngIf="!(item.departmentName=='TAC' || item.departmentName=='ADMIN')"  value={{item.departmentName}}> {{item.departmentName}} </option>
-                                </ng-container>
-                            </select>
+                        <label class="form-label" for="Department">Department </label>
+                        <select name="Department" id="Department Name" class="form-select" (change)="filterDropdown()"
+                            name="dept" [(ngModel)]="_dept">
+                            <option value="">Select the Department</option>
+                            <ng-container *ngFor="let item of departmentDetails">
+                                <option *ngIf="!(item.departmentName=='TAC' || item.departmentName=='ADMIN')"
+                                    value={{item.departmentName}}> {{item.departmentName}} </option>
+                            </ng-container>
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label" for="Pool">Pool </label>

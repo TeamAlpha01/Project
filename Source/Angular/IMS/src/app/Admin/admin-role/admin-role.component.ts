@@ -24,6 +24,7 @@ export class AdminRoleComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(3),
+        Validators.maxLength(15),
         Validators.pattern('[A-Za-z\\s]*')
       ],
     ],

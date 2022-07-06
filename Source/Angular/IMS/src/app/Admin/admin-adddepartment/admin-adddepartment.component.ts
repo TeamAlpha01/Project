@@ -10,10 +10,10 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class AdminAdddepartmentComponent implements OnInit {
   title = 'Add Department';
   response: string = '';
-  error:string='';
+  error: string = '';
   submitted: boolean = false;
 
-  constructor(private service: ConnectionService, private fb: FormBuilder) {}
+  constructor(private service: ConnectionService, private fb: FormBuilder) { }
 
   AddDepartmentForm = this.fb.group({
     departmentName: [
@@ -21,6 +21,7 @@ export class AdminAdddepartmentComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(3),
+        Validators.maxLength(15),
         Validators.pattern('[A-Za-z\\s]*'),
       ],
     ],
@@ -34,8 +35,7 @@ export class AdminAdddepartmentComponent implements OnInit {
     this.submitted = true;
     this.error = '';
 
-    if (this.AddDepartmentForm.valid)
-     {
+    if (this.AddDepartmentForm.valid) {
       this.service.AddDepartment(this.getDepartmentName()?.value).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,
@@ -46,15 +46,14 @@ export class AdminAdddepartmentComponent implements OnInit {
   }
 
 
-  clearInputFields() 
-  {
-    
-      this.submitted = false;
-      setTimeout(() => {
-        this.response = '';
-        this.AddDepartmentForm.reset();
-      }, 2000);
-    
+  clearInputFields() {
+
+    this.submitted = false;
+    setTimeout(() => {
+      this.response = '';
+      this.AddDepartmentForm.reset();
+    }, 2000);
+
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

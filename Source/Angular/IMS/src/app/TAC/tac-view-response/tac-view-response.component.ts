@@ -29,7 +29,7 @@ export class TacViewResponseComponent implements OnInit {
     toDate: ""
   }
 
-  constructor(private connection: ConnectionService, private route:ActivatedRoute) { }
+  constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -47,7 +47,7 @@ export class TacViewResponseComponent implements OnInit {
       error: (errorMessage: any) => this.errorMessage = errorMessage.message
     });
   }
-  
+
   GetDrive() {
     this.connection.GetDrive(this.driveId).subscribe({
       next: (data: any) => this.drive = data,
@@ -58,9 +58,16 @@ export class TacViewResponseComponent implements OnInit {
   schedule(employeeResponseId: number) {
     console.warn(employeeResponseId);
     this.connection.ScheduleInterview(employeeResponseId).subscribe({
-      next: (data) => {this.response = data.message,this.GetDriveResponse()},
-      error: (error) => this.error = error.error.message
+      next: (data) => { this.response = data.message, this.GetDriveResponse() },
+      error: (error) => this.error = error.error.message,
+      complete: () => this.snackBar()
     });
   }
 
+  snackBar() {
+    setTimeout(() => {
+      this.response = '';
+    }, 2000);
+
+  }
 }

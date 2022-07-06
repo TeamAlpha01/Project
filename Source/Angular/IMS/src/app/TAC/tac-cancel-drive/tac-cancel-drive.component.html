@@ -26,9 +26,9 @@
                         <div class="container "><br>
                             <div class="form-input">
                                 <label class="form-label" for="Name">Cancel Reason </label>
-                                <input
+                                <textarea
                                     [class.is-invalid]="(error.length)||(submitted)||CancelDriveForm.controls['cancelReason'].invalid && CancelDriveForm.controls['cancelReason'].touched"
-                                    type="text" id="Name" class="form-control " formControlName="cancelReason">
+                                    type="text" id="Name" class="form-control " formControlName="cancelReason" maxlength="100"></textarea>
                             </div>
                             <div
                                 *ngIf="(submitted)||CancelDriveForm.controls['cancelReason'].invalid && CancelDriveForm.controls['cancelReason'].touched">
@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-filter">Submit</button>
+                                <button type="submit" class="btn btn-create">Submit</button>
                             </div>
                             <br>
                         </div>

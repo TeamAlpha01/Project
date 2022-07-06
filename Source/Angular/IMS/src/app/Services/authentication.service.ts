@@ -48,13 +48,13 @@ export class AuthenticationService {
     if (AuthenticationService.GetData("TAC")) {
       return "TAC";
     }
-    else if(AuthenticationService.GetData("Admin")){
+    else if (AuthenticationService.GetData("Admin")) {
       return "Admin";
     }
-    else if(AuthenticationService.GetData("token")){
+    else if (AuthenticationService.GetData("token")) {
       return "Interviewer";
     }
-    else{
+    else {
       return " ";
     }
   }

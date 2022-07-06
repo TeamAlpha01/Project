@@ -10,18 +10,23 @@ export class AuthorizationService {
   constructor(private route: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot) {
-
-    if (route.data['User'] == AuthenticationService.GetUser()) {
-      return true;
-    }
-    else if (route.data['User'] == AuthenticationService.GetUser()) {
-      return true;
-    }
-    else if (route.data['User'] == AuthenticationService.GetUser()) {
-      return true;
+    if (AuthenticationService.GetData("token")) {
+      if (route.data['User'] == AuthenticationService.GetUser()) {
+        return true;
+      }
+      else if (route.data['User'] == AuthenticationService.GetUser()) {
+        return true;
+      }
+      else if (route.data['User'] == AuthenticationService.GetUser()) {
+        return true;
+      }
+      else {
+        return this.route.navigateByUrl("");
+      }
     }
     else {
-      return this.route.navigateByUrl(" ");
+      return this.route.navigateByUrl("");
     }
+
   }
 }

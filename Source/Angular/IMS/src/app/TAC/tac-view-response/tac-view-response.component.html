@@ -43,6 +43,9 @@
                             <button (click)="schedule(item.employeeAvailabilityId)"
                                 class="btn btn-success">Schedule</button>
                         </div>
+                        <div *ngIf="response.length!=0">
+                            <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,5 +56,5 @@
             No records found.
         </div>
     </ng-template>
-        <app-footer [BackBtn]="true"></app-footer>
-    </div>
+    <app-footer [BackBtn]="true"></app-footer>
+</div>
