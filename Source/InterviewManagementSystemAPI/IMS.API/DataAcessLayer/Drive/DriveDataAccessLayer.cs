@@ -355,38 +355,43 @@ namespace IMS.DataAccessLayer
                 }
                 return DefaultersList;
             }
-            catch (Exception getResponseUtilizationByStatusException)
+            catch (Exception getDefaultersException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : GetResponseUtilizationByStatus(bool isUtilized) : {getResponseUtilizationByStatusException.Message} : {getResponseUtilizationByStatusException.StackTrace}");
-                throw getResponseUtilizationByStatusException;
+                _logger.LogInformation($"Exception on Drive DAL : GetResponseUtilizationByStatus(bool isUtilized) : {getDefaultersException.Message} : {getDefaultersException.StackTrace}");
+                throw;
             }
         }
-        private object IsDefaulter(int employeeId,int poolId){
-
-                
-                var Drives = (from employee in _db.EmployeeAvailability.Include(e=>e.Drive) where employee.EmployeeId==employeeId && employee.Drive.PoolId==poolId && employee.IsInterviewScheduled==true && employee.IsInterviewCancelled==false && employee.InterviewDate>=System.DateTime.Now.AddMonths(-1) && employee.InterviewDate<=System.DateTime.Now select employee.InterviewDate).ToList();
-                Dictionary<string,int> AttendedDriveCount = new Dictionary<string, int>();
-                AttendedDriveCount.Add("WeekdaysCount",0);
-                AttendedDriveCount.Add("WeekendCount",0);
-                foreach(var date in Drives)
-                {
-                    if(date.DayOfWeek == DayOfWeek.Sunday || date.DayOfWeek == DayOfWeek.Saturday)
-                    AttendedDriveCount["WeekendCount"]+=1;
-                    else
-                    AttendedDriveCount["WeekdaysCount"]+=1;
+        private object IsDefaulter(int employeeId,int poolId)
+        {       
+                try{
+                    var Drives = (from employee in _db.EmployeeAvailability.Include(e=>e.Drive) where employee.EmployeeId==employeeId && employee.Drive.PoolId==poolId && employee.IsInterviewScheduled==true && employee.IsInterviewCancelled==false && employee.InterviewDate>=System.DateTime.Now.AddMonths(-1) && employee.InterviewDate<=System.DateTime.Now select employee.InterviewDate).ToList();
+                    Dictionary<string,int> AttendedDriveCount = new Dictionary<string, int>();
+                    AttendedDriveCount.Add("WeekdaysCount",0);
+                    AttendedDriveCount.Add("WeekendCount",0);
+                    foreach(var date in Drives)
+                    {
+                        if(date.DayOfWeek == DayOfWeek.Sunday || date.DayOfWeek == DayOfWeek.Saturday)
+                        AttendedDriveCount["WeekendCount"]+=1;
+                        else
+                        AttendedDriveCount["WeekdaysCount"]+=1;
+                    }
+                    if(AttendedDriveCount["WeekendCount"]<=1 || AttendedDriveCount["WeekdaysCount"]<=1)
+                    {
+                        var employee = (from employees in _db.Employees.Include(e=>e.Role) where employees.EmployeeId==employeeId select employees)
+                        .Select(employee => new{
+                            EmployeeId=employee.EmployeeId,
+                            EmployeeAceNumber=employee.EmployeeAceNumber,
+                            EmployeeName=employee.Name,
+                            EmployeeRole=employee.Role.RoleName
+                        });
+                        return employee;   
+                    }
+                    return new Object();
                 }
-                if(AttendedDriveCount["WeekendCount"]<=1 || AttendedDriveCount["WeekdaysCount"]<=1)
-                {
-                    var employee = (from employees in _db.Employees.Include(e=>e.Role) where employees.EmployeeId==employeeId select employees)
-                    .Select(employee => new{
-                        EmployeeId=employee.EmployeeId,
-                        EmployeeAceNumber=employee.EmployeeAceNumber,
-                        EmployeeName=employee.Name,
-                        EmployeeRole=employee.Role.RoleName
-                    });
-                    return employee;   
+                catch(Exception isDefaulterException){
+                    _logger.LogInformation($"Exception on Drive DAL : isDefaulterException(int employeeId, int poolId) : {isDefaulterException.Message} : {isDefaulterException.StackTrace}");
+                    throw;
                 }
-                return new Object();
         }
     }
 }

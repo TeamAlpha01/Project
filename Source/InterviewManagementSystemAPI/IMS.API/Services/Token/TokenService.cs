@@ -54,7 +54,7 @@ namespace IMS.Service
                     ExpiryInMinutes = 360,
                     IsAdmin = user.RoleId == 10 ? true : false,
                     IsTAC = user.RoleId == 9 ? true : false,
-                    IsManagement=user.RoleId == 11 ? true : false
+                    IsManagement=user.Role.IsManagement? true : false
                 };
 
                 return Result;
