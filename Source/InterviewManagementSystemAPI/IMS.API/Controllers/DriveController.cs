@@ -824,12 +824,11 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewToatlDrives(int employeeId)
+    public IActionResult ViewToatlDrives()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employeeId");
         try
         {
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewTotalDrives(employeeId));
         }
         catch (Exception viewToatlDrivesException)
@@ -857,12 +856,11 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewAcceptedDrives(int employeeId)
+    public IActionResult ViewAcceptedDrives()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employeeId");
         try
         {
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewAcceptedDrives(employeeId));
         }
         catch (Exception viewAcceptedDrivesException)
@@ -889,12 +887,11 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewDeniedDrives(int employeeId)
+    public IActionResult ViewDeniedDrives()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employeeId");
         try
         {
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewDeniedDrives(employeeId));
         }
         catch (Exception viewDeniedDrivesNotValid)
@@ -922,12 +919,11 @@ public class DriveController : ControllerBase
 
 
     [HttpGet]
-    public IActionResult ViewIgnoredDrives(int employeeId)
+    public IActionResult ViewIgnoredDrives()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employeeId");
         try
         {
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewIgnoredDrives(employeeId));
         }
         catch (Exception viewIgnoredDrivesNotValid)
@@ -955,12 +951,11 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewUtilizedInterviews(int employeeId)
+    public IActionResult ViewUtilizedInterviews()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employeeId");
         try
         {
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewUtilizedInterviews(employeeId));
         }
         catch (Exception viewUtilizedInterviewsNotValid)
@@ -988,12 +983,12 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewNotUtilizedInterviews(int employeeId)
+    public IActionResult ViewNotUtilizedInterviews()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employeeId");
+        
         try
         {
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewNotUtilizedInterviews(employeeId));
         }
         catch (Exception viewNotUtilizedInterviewsException)
@@ -1021,12 +1016,11 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewTotalAvailability(int employeeId)
+    public IActionResult ViewTotalAvailability()
     {
-        if (employeeId <= 0)
-            return BadRequest("provide proper employeeId");
         try
         {
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewTotalAvailability(employeeId));
         }
         catch (Exception viewTotalAvailabilityException)
