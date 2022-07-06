@@ -11,7 +11,6 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class TacProfileComponent implements OnInit {
   title = 'Profile';
 
-  data: any;  
   public profile: Profile = {
     employeeACEId: '',
     employeeDepartment: '',

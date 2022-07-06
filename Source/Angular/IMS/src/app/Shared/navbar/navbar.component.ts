@@ -10,10 +10,13 @@ import * as $ from 'jquery';
 export class NavbarComponent implements OnInit {
 
   constructor() { }
-  @Input() title='';
+  @Input() title = '';
+
+
   ngOnInit(): void {
   }
-  toggle(){
+
+  toggle() {
     $('.sidebar, .content').toggleClass("open");
   }
 

@@ -90,21 +90,18 @@ export class CreateInviteComponent implements OnInit {
   GetDepartments() {
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;
-      console.log(this.departmentDetails);
     })
   }
 
   GetPools() {
     this.connection.GetPools().subscribe((data: any) => {
       this.poolDetails = data;
-      console.log(this.poolDetails);
     })
   }
 
   GetLocation() {
     this.connection.GetLocations().subscribe((data: any) => {
       this.locationDetails = data;
-      console.log(this.locationDetails);
     })
   }
   CreateInvite() {

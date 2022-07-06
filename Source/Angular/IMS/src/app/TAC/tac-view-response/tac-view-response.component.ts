@@ -41,7 +41,9 @@ export class TacViewResponseComponent implements OnInit {
 
   GetDriveResponse() {
     this.connection.GetDriveResponse(this.driveId).subscribe({
-      next: (data: any) => this.driveResponses = data,
+      next: (data: any) => {
+        this.driveResponses = data, console.warn(this.driveResponses);
+      },
       error: (errorMessage: any) => this.errorMessage = errorMessage.message
     });
   }

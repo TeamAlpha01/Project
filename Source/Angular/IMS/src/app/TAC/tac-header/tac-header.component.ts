@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-tac-header',
@@ -8,14 +9,27 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class TacHeaderComponent implements OnInit {
 
-  constructor(private service:AuthenticationService) { }
+  constructor(private service: AuthenticationService, private connection: ConnectionService) { }
 
+  profile = {
+    employeeACEId: '',
+    employeeDepartment: '',
+    employeeEmailID: '',
+    employeeName: '',
+    employeeProject: '',
+    employeeRole: ''
+  };
   ngOnInit(): void {
+    this.GetUser();
   }
 
-  
+  GetUser() {
+    this.connection.GetEmployeeProfile().subscribe((data: any) => {
+      this.profile = data;
+    })
+  }
 
-  logout(){
+  logout() {
     this.service.ClearToken();
   }
 }

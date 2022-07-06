@@ -9,26 +9,31 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./interviewer-accept-invite-page.component.css']
 })
 export class InterviewerAcceptInvitePageComponent implements OnInit {
-  driveId:number=0;
-  title='Drive Details'
+  driveId: number = 0;
+  title = 'Drive Details'
   Invites: any;
-  dept=''
-  department:any[]=[]
+  dept = ''
+  department: any[] = []
+  toTime: any;
 
-  AcceptInvitePage=this.fb.group({
-    InterviewDate:['',[Validators.required]],
-    SlotTime:['',[Validators.required]]
+
+
+  AcceptInvitePage = this.fb.group({
+    InterviewDate: ['', [Validators.required]],
+    SlotTime: ['', [Validators.required]]
   });
+  response: any;
+  error: any;
 
-  getInterviewDate()
-  {
+
+  getInterviewDate() {
     return this.AcceptInvitePage.get('InterviewDate')?.value;
   }
-  getSlotTime()
-  {
+  getSlotTime() {
     return this.AcceptInvitePage.get('SlotTime')?.value;
   }
-  constructor(private connection :ConnectionService,private route: ActivatedRoute,private fb:FormBuilder) { }
+
+  constructor(private connection: ConnectionService, private route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -36,31 +41,38 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
     })
     this.GetDriveById(this.driveId);
   }
-  GetDriveById(driveId:any)
-  {
+
+  GetDriveById(driveId: any) {
     this.connection.GetDriveById(driveId).subscribe((data: any) => {
       this.Invites = data;
       console.warn(this.Invites);
     })
   }
 
-  AddResponse()
-  {
-    console.warn('test')
-    if(this.AcceptInvitePage.valid)
-    {
-      console.warn(this.getInterviewDate()+"   "+this.getSlotTime())
-      var to=new Date()
-      to.setHours(this.getSlotTime().substr(0,2))
+  AddResponse() {
+    if (this.AcceptInvitePage.valid) {
+      console.warn(this.getInterviewDate() + "   " + this.getSlotTime())
+      var to = new Date()
+      to.setHours(this.getSlotTime().substr(0, 2))
       to.setMinutes(this.getSlotTime().substr(3))
-      console.log(to)
-      var too =new Date();
-      too.setTime(to.getTime()+ (this.Invites.slotTiming * 60000))
-      console.log(too)
-      // this.connection.AddResponse(this.driveId).subscribe((data: any) => {
-      //   this.Invites = data;
-      //   console.warn(this.Invites);
-      // })
+      var too = new Date();
+      too.setTime(to.getTime() + (this.Invites.slotTiming * 60000))
+      this.toTime = Math.floor(too.getHours()) + ":" + too.getMinutes() % 60;
+      console.warn(this.toTime);
+
+      const timeSlot = {
+        employeeAvailabilityId: 0,
+        driveId: this.driveId,
+        employeeId: 1,
+        interviewDate: this.getInterviewDate,
+        fromTime: this.getSlotTime,
+        toTime: this.toTime
+      }
+
+      this.connection.AddTimeSlot(timeSlot).subscribe({
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message
+      });
     }
   }
 }

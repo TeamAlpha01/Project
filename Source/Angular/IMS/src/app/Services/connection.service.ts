@@ -146,6 +146,11 @@ export class ConnectionService {
     return this.http.post<any>(this.baseURL + `Drive/AddResponse`, driveId ,{ headers: this.headers });
   }
 
+  AddTimeSlot(timeSlot:any)
+  {
+    return this.http.post<any>(this.baseURL + `Drive/SetTimeSlot`, timeSlot ,{ headers: this.headers });
+  }
+
   //POST methods
   Login(user: any) {
     return this.http.post<any>(this.baseURL + `Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.headers })
