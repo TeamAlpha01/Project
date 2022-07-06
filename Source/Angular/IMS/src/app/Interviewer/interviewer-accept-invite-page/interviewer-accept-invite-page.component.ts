@@ -64,11 +64,11 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
         employeeAvailabilityId: 0,
         driveId: this.driveId,
         employeeId: 1,
-        interviewDate: this.getInterviewDate,
-        fromTime: this.getSlotTime,
+        interviewDate: this.getInterviewDate(),
+        fromTime: this.getSlotTime(),
         toTime: this.toTime
       }
-
+      console.log(timeSlot);
       this.connection.AddTimeSlot(timeSlot).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message

@@ -4,36 +4,32 @@
     <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
 
-    <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of Invites| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
+    <div class="mt-5 container shadow mb-5 bg-body rounded"
+        *ngFor="let item of Invites| paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
         <div class>
             <div class="card-body">
-                <h3 class="card-title"><b>{{item.driveName}}</b></h3>
-                <hr>
-                <div class="row rone mt-4">
+                <div class="row">
                     <div class="col-md-5">
-                        <!-- <p ><b>ROLE : </b> {{item.role}}</p> -->
-                        <p ><b>FROM DATE : </b> {{item.fromDate}}</p>
-                        <p ><b>TO DATE : </b> {{item.toDate}}</p>
+                        <p><b>Drive Name : </b> {{item.driveName}}</p>
+                        <p><b>From Date : </b> {{item.fromDate}}</p>
+                        <p><b>To Date : </b> {{item.toDate}}</p>
                     </div>
                     <div class="col-md-5">
-                        <!-- <p ><b>DEPARTMENT : </b>{{item.department}}</p> -->
-                        <p ><b>MODE : </b> {{item.driveMode}}</p>
-                        <p ><b>LOCATION : </b> {{item.driveLocation}}</p>
-
+                        <p><b>Drive Timing : </b>{{item.department}}</p>
+                        <p><b>Mode : </b> {{item.driveMode}}</p>
+                        <p><b>Location : </b> {{item.driveLocation}}</p>
                     </div>
-                    <div class="col-md-2">
-                        <div class="row mt-1">
-                            <a [routerLink]="['/interviewer/driveInvites/accept-invite',item.driveId]"> <button class="btn btn-success" (click)="AddResponse(item.employeeId,true)">Accept</button></a>
-                        </div>
-                        <div class="row mt-1">
-                            <a [routerLink]="['/interviewer/driveInvites/cancel-invite',item.driveId]"> <button class="btn btn-danger">Reject&nbsp;</button></a>
-                        </div>
+                    <div class="col-md-2 col-sm-2 col-3 d-flex align-items-start">
+                        <a [routerLink]="['/interviewer/driveInvites/accept-invite',item.driveId]"> <button
+                                class="btn btn-success" (click)="AddResponse(item.employeeId,true)">Accept</button></a>
+                        <div class="col-1"></div>
+                        <button class="btn btn-danger" (click)="AddResponse(item.employeeId,true)">Reject</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div >
+    <div>
         <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
     </div>
     <app-footer></app-footer>
