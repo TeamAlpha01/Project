@@ -221,14 +221,19 @@ namespace IMS.DataAccessLayer
             try
             {
 
-                if (_db.EmployeeAvailability.Any(a => a.EmployeeId == employeeAvailability.EmployeeId && a.DriveId == employeeAvailability.DriveId && a.InterviewDate == employeeAvailability.InterviewDate && a.To.TimeOfDay <= employeeAvailability.From.TimeOfDay)) //DateTime.Parse(a.ToTime).TimeOfDay<=DateTime.Parse(employeeAvailability.FromTime).TimeOfDay
+                if (_db.EmployeeAvailability.Any(a => a.EmployeeId == employeeAvailability.EmployeeId 
+                    && a.DriveId == employeeAvailability.DriveId 
+                    && a.InterviewDate == employeeAvailability.InterviewDate 
+                    && (employeeAvailability.From.TimeOfDay >=a.From.TimeOfDay && employeeAvailability.From.TimeOfDay <=a.To.TimeOfDay 
+                    || employeeAvailability.To.TimeOfDay >=a.From.TimeOfDay && employeeAvailability.To.TimeOfDay <=a.To.TimeOfDay)
+                    ))
                     throw new ValidationException("You have already given your availability in same timing!");
                 if (_db.EmployeeDriveResponse.Any(r => r.EmployeeId == employeeAvailability.EmployeeId && r.DriveId == employeeAvailability.DriveId && r.ResponseType == 2))
                     throw new ValidationException("You Cannot Give Availability Because You Have Denied The Drive Invite");
                 if (!_db.Drives.Any(d => d.DriveId == employeeAvailability.DriveId && d.FromDate.Date <= employeeAvailability.InterviewDate.Date && d.ToDate.Date >= employeeAvailability.InterviewDate.Date))
                     throw new ValidationException("Interview Date Is Not Between Drives Date Range, Not Valid");
-                //if ((employeeAvailability.To - employeeAvailability.From).TotalHours != _db.Drives.Find(employeeAvailability.DriveId).SlotTiming)
-                    //throw new ValidationException("Interview Slot Timing Does Not Match With Drive Slot Period");
+                if ((employeeAvailability.To - employeeAvailability.From).TotalMinutes != _db.Drives.Find(employeeAvailability.DriveId).SlotTiming)
+                    throw new ValidationException("Interview Slot Timing Does Not Match With Drive Slot Period");
 
 
                 _db.EmployeeAvailability.Add(employeeAvailability);

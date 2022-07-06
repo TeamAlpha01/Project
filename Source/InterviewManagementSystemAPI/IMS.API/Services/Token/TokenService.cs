@@ -36,17 +36,24 @@ namespace IMS.Service
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                         new Claim("ACE Number",user.EmployeeAceNumber),
                         new Claim("UserId", user.EmployeeId.ToString()),
+                        new Claim("UserName", user.Name.ToString()),
                         new Claim(ClaimTypes.Role,user.RoleId.ToString()),
                     };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
                 var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                var token = new JwtSecurityToken(
+                var encryptingCredentials = new EncryptingCredentials(key, JwtConstants.DirectKeyUseAlg, SecurityAlgorithms.Aes256CbcHmacSha512);
+                var token = new JwtSecurityTokenHandler().CreateJwtSecurityToken(
                     _configuration["Jwt:Issuer"],
                     _configuration["Jwt:Audience"],
-                        claims,
+                    new ClaimsIdentity(claims),
+                    null,
                     expires: DateTime.UtcNow.AddHours(6),
-                    signingCredentials: signIn);
+                    null,
+                    signingCredentials: signIn,
+                    encryptingCredentials: encryptingCredentials
+                    );
+
 
                 var Result = new
                 {
@@ -54,7 +61,8 @@ namespace IMS.Service
                     ExpiryInMinutes = 360,
                     IsAdmin = user.RoleId == 10 ? true : false,
                     IsTAC = user.RoleId == 9 ? true : false,
-                    IsManagement=user.Role.IsManagement? true : false
+                    IsManagement=user.Role.IsManagement? true : false,
+                    UserName=user.Name
                 };
 
                 return Result;
