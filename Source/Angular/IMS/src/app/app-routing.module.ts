@@ -45,6 +45,8 @@ import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total
 import { InterviewerAvailabilityGivenComponent } from './Interviewer/interviewer-availability-given/interviewer-availability-given.component';
 import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-utilized-drives/interviewer-utilized-drives.component';
 import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer-not-utilized-drives/interviewer-not-utilized-drives.component';
+import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ignored-drives/interviewer-ignored-drives.component';
+import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-denied-drives/interviewer-denied-drives.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -62,7 +64,8 @@ const routes: Routes = [
   { path: 'interviewer/dashboard/availabilitygiven', component: InterviewerAvailabilityGivenComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/utilizedinterviews', component: InterviewerUtilizedDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/notutilizedinterviews', component: InterviewerNotUtilizedDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
-
+  { path: 'interviewer/dashboard/ignoreddrives', component: InterviewerIgnoredDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  { path: 'interviewer/dashboard/denied-drives', component: InterviewerDeniedDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
 
   //admin pages
   { path: '', component: LoginComponent},

@@ -76,7 +76,8 @@ import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total
 import { InterviewerAvailabilityGivenComponent } from './Interviewer/interviewer-availability-given/interviewer-availability-given.component';
 import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-utilized-drives/interviewer-utilized-drives.component';
 import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer-not-utilized-drives/interviewer-not-utilized-drives.component';
-
+import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-denied-drives/interviewer-denied-drives.component';
+import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ignored-drives/interviewer-ignored-drives.component';
 
 @NgModule({
   declarations: [
@@ -145,6 +146,8 @@ import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer
     InterviewerAvailabilityGivenComponent,
     InterviewerUtilizedDrivesComponent,
     InterviewerNotUtilizedDrivesComponent,
+    InterviewerDeniedDrivesComponent,
+    InterviewerIgnoredDrivesComponent,
 
   ],
 

@@ -72,6 +72,14 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeeRequest', { headers: this.headers });
   }
 
+  GetDeniedDrives(): any{
+    return this.http.get<any>(this.baseURL + 'Drive/ViewDeniedDrives', { headers: this.headers });
+  }
+
+  GetIgnoredDrives(): any{
+    return this.http.get<any>(this.baseURL + 'Drive/ViewIgnoredDrives', { headers: this.headers });
+  }
+
   GetLocations(): any {
     return this.http.get<any>(this.baseURL + 'Location/ViewLocations', { headers: this.headers });
   }
@@ -114,10 +122,6 @@ export class ConnectionService {
 
   GetTotalDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewToatlDrives', { headers: this.headers });
-  }
-
-  GetTotalAvailability(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewTotalAvailability', { headers: this.headers });
   }
   
   GetTodaysInterviews(): any {

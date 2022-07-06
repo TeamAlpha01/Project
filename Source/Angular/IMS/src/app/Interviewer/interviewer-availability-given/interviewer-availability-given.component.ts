@@ -15,7 +15,7 @@ export class InterviewerAvailabilityGivenComponent implements OnInit {
   constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
-    this.connection.GetTotalAvailability().subscribe((data: any) => {
+    this.connection.GetAcceptedDrives().subscribe((data: any) => {
       this.Availability = data;
       console.warn(this.Availability)
     }) 

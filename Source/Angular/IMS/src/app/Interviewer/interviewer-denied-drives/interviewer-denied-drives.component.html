@@ -6,21 +6,18 @@
     
     <app-navbar [title]="title"></app-navbar>
 
-    <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of Availability| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
+    <div class="mt-5 container shadow p-3 mb-5 bg-body rounded" *ngFor="let item of Denied| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
         <div class>
             <div class="card-body">
                 <h3 class="card-title"><b>{{item.driveName}}</b></h3>
                 <hr>
                 <div class="row rone mt-4">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <p ><b>Pool Name : </b> {{item.drivePool}}</p>
-                        <p ><b>Interview Date : </b> {{item.intervieDate}}</p>
-                    </div>
-                    <div class="col-md-4">
                         <p ><b>From Date : </b> {{item.fromDate}}</p>
                         <p ><b>To Date : </b> {{item.toDate}}</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <p ><b>Mode : </b> {{item.driveMode}}</p>
                         <p ><b>Location : </b> {{item.driveLocation}}</p>
                     </div>
