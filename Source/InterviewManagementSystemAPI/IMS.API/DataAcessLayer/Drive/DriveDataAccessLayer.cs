@@ -346,11 +346,11 @@ namespace IMS.DataAccessLayer
             try
             {
                 var poolMembers = (from members in _db.PoolMembers where members.PoolId==poolId && members.IsActive==true select members.EmployeeId).ToList();
-                List<int> DefaultersList=new List<int>();
+                List<object> DefaultersList=new List<object>();
                 foreach(var members in poolMembers)
                 {
-                    int employeeId=IsDefaulter(members,poolId);
-                    if( employeeId!=0)
+                    object employeeId=IsDefaulter(members,poolId);
+                    if( employeeId!=null)
                     DefaultersList.Add(employeeId);
                 }
                 return DefaultersList;
@@ -361,7 +361,7 @@ namespace IMS.DataAccessLayer
                 throw getResponseUtilizationByStatusException;
             }
         }
-        private int IsDefaulter(int employeeId,int poolId){
+        private object IsDefaulter(int employeeId,int poolId){
 
                 
                 var Drives = (from employee in _db.EmployeeAvailability.Include(e=>e.Drive) where employee.EmployeeId==employeeId && employee.Drive.PoolId==poolId && employee.IsInterviewScheduled==true && employee.IsInterviewCancelled==false && employee.InterviewDate>=System.DateTime.Now.AddMonths(-1) && employee.InterviewDate<=System.DateTime.Now select employee.InterviewDate).ToList();
@@ -377,9 +377,16 @@ namespace IMS.DataAccessLayer
                 }
                 if(AttendedDriveCount["WeekendCount"]<=1 || AttendedDriveCount["WeekdaysCount"]<=1)
                 {
-                    return employeeId;   
+                    var employee = (from employees in _db.Employees.Include(e=>e.Role) where employees.EmployeeId==employeeId select employees)
+                    .Select(employee => new{
+                        EmployeeId=employee.EmployeeId,
+                        EmployeeAceNumber=employee.EmployeeAceNumber,
+                        EmployeeName=employee.Name,
+                        EmployeeRole=employee.Role.RoleName
+                    });
+                    return employee;   
                 }
-                return 0;
+                return new Object();
         }
     }
 }
