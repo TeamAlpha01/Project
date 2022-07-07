@@ -8,7 +8,6 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class InterviewerIgnoredDrivesComponent implements OnInit {
 
-
   title='Ignored Drives';
   Ignored: any;
   totalLength: any;
@@ -17,7 +16,7 @@ export class InterviewerIgnoredDrivesComponent implements OnInit {
   constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
-    this.connection.GetDeniedDrives().subscribe((data: any) => {
+    this.connection.GetIgnoredDrives().subscribe((data: any) => {
       this.Ignored = data;
       console.warn(this.Ignored)
     }) 

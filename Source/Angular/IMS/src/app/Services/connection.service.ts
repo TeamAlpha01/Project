@@ -96,6 +96,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Pool/ViewPools', { headers: this.headers });
   }
 
+  GetPoolsbyId(): any {
+    return this.http.get<any>(this.baseURL + 'Pool/ViewPoolsByID?employeeId=7', { headers: this.headers });
+  }
+
   GetPoolMembers(pool: any): any {
     return this.http.get<any>(this.baseURL + `Pool/ViewPoolMembers?poolId=${pool}`, { headers: this.headers });
   }
@@ -121,7 +125,7 @@ export class ConnectionService {
   }
 
   GetTotalDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewToatlDrives', { headers: this.headers });
+    return this.http.get<any>(this.baseURL + 'Drive/ViewTotalDrives', { headers: this.headers });
   }
   
   GetTodaysInterviews(): any {
