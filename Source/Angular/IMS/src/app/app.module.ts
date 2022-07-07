@@ -80,6 +80,7 @@ import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-deni
 import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ignored-drives/interviewer-ignored-drives.component';
 import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
 import { PoolmembersperformanceComponent } from './Management/poolmembersperformance/poolmembersperformance.component';
+import { ViewDefaultersComponent } from './Management/view-defaulters/view-defaulters.component';
 
 @NgModule({
   declarations: [
@@ -152,6 +153,7 @@ import { PoolmembersperformanceComponent } from './Management/poolmembersperform
     InterviewerIgnoredDrivesComponent,
     ManagementDashboardComponent,
     PoolmembersperformanceComponent,
+    ViewDefaultersComponent,
 
   ],
 

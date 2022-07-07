@@ -44,6 +44,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard`, { headers: this.headers });
   }
 
+  GetDefaulters(poolId:number): any {
+    return this.http.get<any>(this.baseURL + `Drive/ViewDefaulters?poolId=${poolId}`, { headers: this.headers });
+  }
+
   GetDepartments(): any {
     return this.http.get<any>(this.baseURL + 'Department/ViewDepartments', { headers: this.headers });
   }

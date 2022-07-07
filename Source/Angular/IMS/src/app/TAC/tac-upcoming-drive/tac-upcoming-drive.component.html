@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label class="form-label" for="Department">Department </label>
-                        <select name="Department" id="Department Name" class="form-select " (change)="filterDropdown()"
+                        <select name="Department" id="Department Name" class="form-select " (change)="OnDepartmentChange()"
                             name="dept" [(ngModel)]="_dept">
                             <option value="">Select the Department</option>
                             <ng-container *ngFor="let item of departmentDetails">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label" for="Pool">Pool </label>
-                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool"
+                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown(_dept)" name="_pool"
                             [(ngModel)]="_pool" [disabled]="_dept==''">
                             <option value="">Select the Pool</option>
                             <option *ngFor="let item of poolDetails | filter:_dept" value={{item.poolName}}> {{item.poolName}} </option>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label" for="Pool">Date </label>
-                        <input type="date" id="Pool" class="form-select" (change)="filterDropdown()" name="_date" [(ngModel)]="_date">
+                        <input type="date" id="Pool" class="form-select" (change)="filterDropdown(_dept)" name="_date" [(ngModel)]="_date">
                     </div>
                 </div>
             </div>

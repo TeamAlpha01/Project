@@ -43,43 +43,40 @@ export class TacUpcomingDriveComponent implements OnInit {
     })
   }
 
-  filterDropdown() {
+  OnDepartmentChange() {
+    this._pool = ''
+    this.filterDropdown(this._dept);
+  }
+
+  filterDropdown(_dept: string) {
     //To filter cards based on the department and pool selection
-    if (this._dept == '') {
-      this._pool = ''
-    }
-    
     this.drive = [];
     for (let item of this.driveDetails) {
 
-      if (this._dept == '' && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
+      if (_dept == '' && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
       }
-      else if (this._dept == '' && item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
+      else if (_dept == '' && item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
       }
-      else if (this._dept == '' && this._pool == '' && this._date == '') {
+      else if (_dept == '' && this._pool == '' && this._date == '') {
         this.drive.push(item);
       }
-      else if (this._dept == '' && item.drivePool == this._pool && this._date == '') {
+      else if (_dept == '' && item.drivePool == this._pool && this._date == '') {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && item.drivePool == this._pool && this._date == '') {
+      else if (item.driveDepartment == _dept && item.drivePool == this._pool && this._date == '') {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
+      else if (item.driveDepartment == _dept && item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && this._pool == '' && this._date == '') {
+      else if (item.driveDepartment == _dept && this._pool == '' && this._date == '') {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
+      else if (item.driveDepartment == _dept && this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && item.drivePool != this._pool) {
-      }
-
     }
-
   }
 }

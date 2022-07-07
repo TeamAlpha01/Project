@@ -49,6 +49,7 @@ import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ign
 import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-denied-drives/interviewer-denied-drives.component';
 import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
 import { PoolmembersperformanceComponent } from './Management/poolmembersperformance/poolmembersperformance.component';
+import { ViewDefaultersComponent } from './Management/view-defaulters/view-defaulters.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -107,8 +108,9 @@ const routes: Routes = [
   { path: 'errorPage', component: ErrorPageComponent },
 
   //management pages
-  {path:'management/management-dashboard',component:ManagementDashboardComponent,canActivate:[AuthorizationService],data:{User:"Interviewer"}},
-  {path:'management/management-dashboard/poolmembersperforamnce',component:PoolmembersperformanceComponent,canActivate:[AuthorizationService],data:{User:"Interviewer"}},
+  {path:'dashboard/management-dashboard',component:ManagementDashboardComponent},
+  {path:'dashboard/management-dashboard/poolmembersperforamnce',component:PoolmembersperformanceComponent},
+  {path:'dashboard/management-dashboard/poolmembersperforamnce/view-defaulters/:poolId',component:ViewDefaultersComponent},
 ];
 
 @NgModule({

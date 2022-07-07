@@ -61,42 +61,26 @@ export class TacCurrentDriveComponent implements OnInit {
       }
     });
   }
+  
+  OnDepartmentChange() {
+    this._pool = ''
+    this.filterDropdown(this._dept);
+  }
 
-  filterDropdown() {
-
-    console.log("Department Name : " + this._dept);
-    console.log("Pool Name : " + this._pool);
-
+  filterDropdown(_dept: string) {
     //TO FILTER DRIVE BASED ON THE DEPARTMENT AND POOL SELECTION
     this.drive = [];
     for (let item of this.driveDetails) {
-      if (this._dept == '' && this._pool == '') {
+      if (_dept == '' && this._pool == '') {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && item.drivePool == this._pool) {
+      else if (item.driveDepartment == _dept && item.drivePool == this._pool) {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && this._pool == '') {
+      else if (item.driveDepartment == _dept && this._pool == '') {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && item.drivePool != this._pool) {
-      }
     }
-
-    //TO CLEAR POOL SELECTION ONCE THE DEPARTMENT SELECTION IS CHANGED
-    if (this._dept != '') {
-      this._pool = '';
-    }
-
-    // TO FILTER POOL BASED ON DEPARTMENT SELECTION
-    this.pool = [];
-    for (let item of this.poolDetails) {
-      if (item.departmentName == this._dept) {
-        this.pool.push(item);
-      }
-    }
-    console.warn("Department Name : " + this._dept);
-    console.warn("Pool Name : " + this._pool);
   }
 
 }
