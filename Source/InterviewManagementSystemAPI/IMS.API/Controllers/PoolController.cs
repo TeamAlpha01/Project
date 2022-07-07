@@ -191,13 +191,12 @@ public class PoolController : ControllerBase
     /// <param name="employeeId"></param>
     /// <returns>Returns list of pool based on the given employee Id</returns>
     [HttpGet]
-    public IActionResult ViewPoolsByID(int employeeId)
+    public IActionResult ViewPoolsByID()
     {
-        if (employeeId <= 0)
-            BadRequest("Employee Id cannot be null or negative");
 
         try
         {
+            int employeeId=Convert.ToInt32(User.FindFirst("UserID").Value);
             return Ok(_poolService.ViewPoolsByID(employeeId));
         }
         catch (ValidationException employeeNotFound)
