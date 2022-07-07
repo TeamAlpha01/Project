@@ -97,7 +97,7 @@ export class ConnectionService {
   }
 
   GetPoolsbyId(): any {
-    return this.http.get<any>(this.baseURL + 'Pool/ViewPoolsByID?employeeId=7', { headers: this.headers });
+    return this.http.get<any>(this.baseURL + 'Pool/ViewPoolsByID', { headers: this.headers });
   }
 
   GetPoolMembers(pool: any): any {

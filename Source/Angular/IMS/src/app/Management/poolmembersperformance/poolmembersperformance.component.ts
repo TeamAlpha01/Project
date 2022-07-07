@@ -17,16 +17,11 @@ export class PoolmembersperformanceComponent implements OnInit {
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
-    this.GetPoolsById();
-
-  }
-  GetPoolsById() {
-    this.connection.GetPoolsById(this.employeesUnderPool).subscribe((data: any) => {
+    
+    this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.employeesUnderPool = data;
+      console.warn(this.employeesUnderPool)
     })
+
   }
-
-
-
-
 }
