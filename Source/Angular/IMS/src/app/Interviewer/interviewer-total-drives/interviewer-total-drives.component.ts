@@ -29,7 +29,7 @@ export class InterviewerTotalDrivesComponent implements OnInit {
   ngOnInit(): void {
     this.connection.GetTotalDrives().subscribe((data: any) => {
       this.Drives = data;
-      console.warn(this.Drives)
+      this.drive=data;
     }) 
 
     this.connection.GetPoolsbyId().subscribe((data: any) => {
@@ -39,11 +39,10 @@ export class InterviewerTotalDrivesComponent implements OnInit {
   }
 
 filterDropdown() {
-  //To filter cards based on pool selection
+  
   this.drive = [];
 
-  for (let item of this.driveDetails) {
-
+  for (let item of this.Drives) {
     if ( this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
       this.drive.push(item);
     }
@@ -55,8 +54,6 @@ filterDropdown() {
     }
     else if (item.drivePool == this._pool && this._date == '') {
       this.drive.push(item);
-    }
-    else if (item.drivePool != this._pool) {
     }
   }
 }
