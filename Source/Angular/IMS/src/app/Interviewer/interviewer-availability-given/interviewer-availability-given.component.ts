@@ -28,7 +28,7 @@ export class InterviewerAvailabilityGivenComponent implements OnInit {
   ngOnInit(): void {
     this.connection.GetAcceptedDrives().subscribe((data: any) => {
       this.Availability = data;
-      console.warn(this.Availability)
+      this.drive=data;
     }) 
 
     this.connection.GetPoolsbyId().subscribe((data: any) => {
@@ -37,26 +37,24 @@ export class InterviewerAvailabilityGivenComponent implements OnInit {
     })
   }
 
-  filterDropdown(){
-  //To filter cards based on pool selection
-  this.drive = [];
-
-  for (let item of this.driveDetails) {
-
-    if ( this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
-      this.drive.push(item);
-    }
-    else if (item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
-      this.drive.push(item);
-    }
-    else if (this._pool == '' && this._date == '') {
-      this.drive.push(item);
-    }
-    else if (item.drivePool == this._pool && this._date == '') {
-      this.drive.push(item);
-    }
-    else if (item.drivePool != this._pool) {
+  filterDropdown() {
+  
+    this.drive = [];
+  
+    for (let item of this.Availability) {
+      if ( this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
+        this.drive.push(item);
+      }
+      else if (item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
+        this.drive.push(item);
+      }
+      else if (this._pool == '' && this._date == '') {
+        this.drive.push(item);
+      }
+      else if (item.drivePool == this._pool && this._date == '') {
+        this.drive.push(item);
+      }
     }
   }
-}
-}
+  }
+  
