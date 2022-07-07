@@ -8,26 +8,26 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./tac-header.component.css']
 })
 export class TacHeaderComponent implements OnInit {
+  userName: string | null = '';
+  Name: string = '';
 
   constructor(private service: AuthenticationService, private connection: ConnectionService) { }
 
-  profile = {
-    employeeACEId: '',
-    employeeDepartment: '',
-    employeeEmailID: '',
-    employeeName: '',
-    employeeProject: '',
-    employeeRole: ''
-  };
   ngOnInit(): void {
     this.GetUser();
   }
 
   GetUser() {
-    this.connection.GetEmployeeProfile().subscribe((data: any) => {
-      this.profile = data;
-    })
+    this.userName = AuthenticationService.GetUserName();
+    if (this.userName == null) {
+      this.Name = "User"
+    }
+    else {
+      this.Name = this.userName.replace(/"/g, '')
+    }
   }
+
+
 
   logout() {
     this.service.ClearToken();

@@ -9,24 +9,23 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./interviewer-header.component.css']
 })
 export class InterviewerHeaderComponent implements OnInit {
-  constructor(private service: AuthenticationService, private connection: ConnectionService) { }
+  userName: string | null = '';
+  Name: string = '';
 
-  profile = {
-    employeeACEId: '',
-    employeeDepartment: '',
-    employeeEmailID: '',
-    employeeName: '',
-    employeeProject: '',
-    employeeRole: ''
-  };
+  constructor(private service: AuthenticationService) { }
+
   ngOnInit(): void {
     this.GetUser();
   }
 
   GetUser() {
-    this.connection.GetEmployeeProfile().subscribe((data: any) => {
-      this.profile = data;
-    })
+    this.userName = AuthenticationService.GetUserName();
+    if (this.userName == null) {
+      this.Name = "User"
+    }
+    else {
+      this.Name = this.userName.replace(/"/g, '')
+    }
   }
   logout(){
     this.service.ClearToken();

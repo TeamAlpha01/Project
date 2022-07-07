@@ -1,6 +1,7 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
+import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-admin-header',
@@ -8,14 +9,25 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
   styleUrls: ['./admin-header.component.css'],
 })
 export class AdminHeaderComponent implements OnInit {
+  userName: string | null = '';
+  Name: string = '';
 
-
-  constructor(private service: AuthenticationService) {}
+  constructor(private service: AuthenticationService) { }
 
   ngOnInit(): void {
-  
+    this.GetUser();
   }
-  logout(){
+
+  GetUser() {
+    this.userName = AuthenticationService.GetUserName();
+    if (this.userName == null) {
+      this.Name = "User"
+    }
+    else {
+      this.Name = this.userName.replace(/"/g, '')
+    }
+  }
+  logout() {
     console.log(this.service)
     this.service.ClearToken();
     console.log(this.service)

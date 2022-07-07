@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
   employeeDetails: any;
   employeeID = '';
   employeeACENumber: any;
-  error:string='';
-  isCommanError:boolean=false;
+  error: string = '';
+  isCommanError: boolean = false;
   loading: boolean = false;
-  submitted: boolean=false;
+  submitted: boolean = false;
 
 
   loginForm = this.FB.group({
@@ -41,10 +41,10 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    
-    this.submitted=true;
+
+    this.submitted = true;
     if (this.loginForm.valid) {
-      this.loading=true
+      this.loading = true
       const user = {
         ACENumber: this.loginForm.value['ACENumber'],
         Password: this.loginForm.value['Password'],
@@ -59,10 +59,11 @@ export class LoginComponent implements OnInit {
           AuthenticationService.SetDateWithExpiry("token", data.token, data.expiryInMinutes)
           AuthenticationService.SetDateWithExpiry("Admin", data.isAdmin, data.expiryInMinutes)
           AuthenticationService.SetDateWithExpiry("TAC", data.isTAC, data.expiryInMinutes)
-
+          AuthenticationService.SetDateWithExpiry("Management", data.isManagement, data.expiryInMinutes)
+          AuthenticationService.SetUserName("UserName", data.userName)
 
           this.connection.initializeTokenHeader(AuthenticationService.GetData("token"))
-          
+
           if (this.IsAdmin) {
             this.route.navigateByUrl("/admin/requests");  //navigation
           }
@@ -81,12 +82,11 @@ export class LoginComponent implements OnInit {
           if (error.status == 404) {
             this.route.navigateByUrl("errorPage");
           }
-          if(!(error.error.toString().includes('ACE') || error.error.toString().includes('Password')))
-          {
-            this.isCommanError=true;
+          if (!(error.error.toString().includes('ACE') || error.error.toString().includes('Password'))) {
+            this.isCommanError = true;
           }
-          this.error=error.error;
-          this.loading=false;
+          this.error = error.error;
+          this.loading = false;
         },
         complete: () => {
 

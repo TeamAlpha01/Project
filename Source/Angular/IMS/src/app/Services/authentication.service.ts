@@ -58,8 +58,12 @@ export class AuthenticationService {
       return " ";
     }
   }
-
-
+  static SetUserName(key: string, value: string) {
+    localStorage.setItem(key, JSON.stringify(value))
+  }
+  static GetUserName() {
+   return (localStorage.getItem("UserName"));
+  }
 
 
   ClearToken() {
