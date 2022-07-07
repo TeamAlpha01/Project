@@ -47,6 +47,8 @@ import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-ut
 import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer-not-utilized-drives/interviewer-not-utilized-drives.component';
 import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ignored-drives/interviewer-ignored-drives.component';
 import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-denied-drives/interviewer-denied-drives.component';
+import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
+import { PoolmembersperformanceComponent } from './Management/poolmembersperformance/poolmembersperformance.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -104,6 +106,9 @@ const routes: Routes = [
   { path: 'tac/home', component: TacHomeComponent,canActivate:[AuthorizationService], data:{User:"TAC"}},
   { path: 'errorPage', component: ErrorPageComponent },
 
+  //management pages
+  {path:'management/management-dashboard',component:ManagementDashboardComponent},
+  {path:'management/management-dashboard/poolmembersperforamnce',component:PoolmembersperformanceComponent},
 ];
 
 @NgModule({

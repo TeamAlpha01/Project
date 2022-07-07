@@ -78,6 +78,8 @@ import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-ut
 import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer-not-utilized-drives/interviewer-not-utilized-drives.component';
 import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-denied-drives/interviewer-denied-drives.component';
 import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ignored-drives/interviewer-ignored-drives.component';
+import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
+import { PoolmembersperformanceComponent } from './Management/poolmembersperformance/poolmembersperformance.component';
 
 @NgModule({
   declarations: [
@@ -148,6 +150,8 @@ import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ign
     InterviewerNotUtilizedDrivesComponent,
     InterviewerDeniedDrivesComponent,
     InterviewerIgnoredDrivesComponent,
+    ManagementDashboardComponent,
+    PoolmembersperformanceComponent,
 
   ],
 
