@@ -6,8 +6,9 @@ namespace IMS.Validations
 {
     public static class DriveValidation
     {
-        public static void IsdriveValid(Drive drive)
+        public static void IsdriveValid(Drive drive,IConfiguration configuration)
         {
+            int minimumFromDate = Convert.ToInt32(configuration.GetSection("MySettings").GetSection("DbConnection").Value); 
             if (drive == null) throw new ValidationException("drive object cannot be null");
 
             if (drive.Name.Length <= 2) throw new ValidationException("drive name is too short");

@@ -9,16 +9,18 @@ namespace IMS.Service
     {
         private IDriveDataAccessLayer _driveDataAccess;
         private ILogger _logger;
+        private IConfiguration _configuration;
 
-        public DriveService(ILogger<DriveService> logger,IDriveDataAccessLayer driveDataAccessLayer)
+        public DriveService(ILogger<DriveService> logger,IDriveDataAccessLayer driveDataAccessLayer,IConfiguration configuration)
         {
             _logger = logger;
-            _driveDataAccess = driveDataAccessLayer;//DataFactory.DriveDataFactory.GetDriveDataAccessLayerObject(logger);
+            _driveDataAccess = driveDataAccessLayer;
+            _configuration=configuration;
         }
 
         public bool CreateDrive(Drive drive)
         {
-            DriveValidation.IsdriveValid(drive);
+            DriveValidation.IsdriveValid(drive,_configuration);
             try
             {
                 return _driveDataAccess.AddDriveToDatabase(drive) ? true : false;
