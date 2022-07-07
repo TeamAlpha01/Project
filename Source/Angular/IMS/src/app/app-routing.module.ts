@@ -107,8 +107,8 @@ const routes: Routes = [
   { path: 'errorPage', component: ErrorPageComponent },
 
   //management pages
-  {path:'management/management-dashboard',component:ManagementDashboardComponent},
-  {path:'management/management-dashboard/poolmembersperforamnce',component:PoolmembersperformanceComponent},
+  {path:'management/management-dashboard',component:ManagementDashboardComponent,canActivate:[AuthorizationService],data:{User:"Interviewer"}},
+  {path:'management/management-dashboard/poolmembersperforamnce',component:PoolmembersperformanceComponent,canActivate:[AuthorizationService],data:{User:"Interviewer"}},
 ];
 
 @NgModule({
