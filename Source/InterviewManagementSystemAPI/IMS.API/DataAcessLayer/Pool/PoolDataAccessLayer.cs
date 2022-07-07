@@ -79,11 +79,11 @@ namespace IMS.DataAccessLayer
         {
             PoolValidation.IsValidPoolId(poolId);
 
-            bool isDeletePoolId = _db.Pools.Any(x => x.PoolId == poolId && x.IsActive == false);
-            if (isDeletePoolId)
-            {
+            if (_db.Pools.Any(x => x.PoolId == poolId && x.IsActive == false))
                 throw new ValidationException("Pool already deleted");
-            }
+            if(hasActiveDrives(poolId))
+                throw new ValidationException("Pool contains active drives.");
+            
             try
             {
                 var Pool = _db.Pools.Find(poolId);
@@ -126,16 +126,29 @@ namespace IMS.DataAccessLayer
         /// <returns>Return true or Throws Exception : No pool is found with given Pool Id or The given pool Id is inactive,so unable to rename the pool</returns>
         /// Catches exceptions thorwed by Database if any Misconnections in DB
 
+        private bool hasActiveDrives(int poolId)
+        {
+            try{
+                if(_db.Drives.Any(d=>d.PoolId==poolId&&d.ToDate>=System.DateTime.Now))
+                    return true;
+            
+            return false;
+            }
+            catch(Exception hasActiveDrivesException)
+            {
+                _logger.LogInformation($"Pool DAL : hasActiveDrives(int poolId) : {hasActiveDrivesException.Message} : {hasActiveDrivesException.StackTrace}");
+                throw;
+            }
+        }
         public bool EditPoolFromDatabase(int poolId, string poolName)
         {
             PoolValidation.IsEditPoolValid(poolId, poolName);
             try
             {
-                   bool poolNameExists = _db.Pools.Any(x => x.PoolName == poolName && x.IsActive == true);
-                   if(poolNameExists)
-                   {
+                bool poolNameExists = _db.Pools.Any(x => x.PoolName == poolName && x.IsActive == true);
+                if(poolNameExists)
                     throw new ValidationException("Pool Name already Exists");
-                   }
+                
                 var edit = _db.Pools.Find(poolId);
                 if (edit == null)
                     throw new ValidationException("No pool is found with given Pool Id");
@@ -146,11 +159,6 @@ namespace IMS.DataAccessLayer
                 _db.Pools.Update(edit);
                 _db.SaveChanges();
                  return true;
-                
-                
-               
-
-
             }
             catch (DbUpdateException exception)
             {

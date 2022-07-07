@@ -8,7 +8,7 @@
     <!-- Navbar End -->
 
         <div class="container">
-            <div class="row" style="padding-top: 15%;">
+            <div class="row" style="padding-top: 13%;">
                 <div class="col-xs-12 col-sm-4">
                     <a [routerLink]="['/interviewer/dashboard/totaldrives']" class="link">
                         <div class="card-card">
@@ -26,17 +26,17 @@
 
                 <div class="col-xs-12 col-sm-4">
                     <a [routerLink]="['/interviewer/dashboard/availabilitygiven']" class="link">
-                    <div class="card-card">
-                        <div class="card-content">
-                            <h1 class="card-title">
-                                {{AvailabilityGiven}}
-                            </h1>
-                            <h3>
-                                <b>Availability Given</b>
-                            </h3>
+                        <div class="card-card">
+                            <div class="card-content">
+                                 <h1 class="card-title">
+                                      {{AvailabilityGiven}}
+                                 </h1>
+                                 <h3>
+                                    <b>Availability Given</b>
+                                 </h3>
+                            </div>
                         </div>
-                    </div>
-                     </a>
+                    </a>
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
@@ -70,8 +70,8 @@
               </div>
 
               <div class="col-xs-12 col-sm-4">
+                <a [routerLink]="['/interviewer/dashboard/ignoreddrives']" class="link">
                 <div class="card-card">
-                    
                     <div class="card-content">
                         <h1 class="card-title">
                             {{InterviewsIgnored}}
@@ -81,6 +81,7 @@
                         </h3>
                     </div>
                 </div>
+                </a>
               </div>
 
             <div class="col-xs-12 col-sm-4">

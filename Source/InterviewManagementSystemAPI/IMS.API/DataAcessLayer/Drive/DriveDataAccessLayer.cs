@@ -11,14 +11,16 @@ namespace IMS.DataAccessLayer
         private InterviewManagementSystemDbContext _db;// = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
 
         private ILogger _logger;
-        public DriveDataAccessLayer(ILogger<IDriveDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
+        private IConfiguration _configuration;
+        public DriveDataAccessLayer(ILogger<IDriveDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration=configuration;
         }
         public bool AddDriveToDatabase(Drive drive)
         {
-            DriveValidation.IsdriveValid(drive);
+            DriveValidation.IsdriveValid(drive,_configuration);
             if (_db.Drives.Any(d => d.Name == drive.Name && d.PoolId == drive.PoolId && d.IsCancelled == false && d.ToDate >= drive.FromDate)) throw new ValidationException("Drive Name already exists under this pool");
             try
             {

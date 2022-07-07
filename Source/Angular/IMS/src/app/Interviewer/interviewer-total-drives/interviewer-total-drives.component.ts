@@ -8,7 +8,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class InterviewerTotalDrivesComponent implements OnInit {
 
-  title='Total No. Of Drives';
+  title='Total No. of Drives';
   Drives: any;
   totalLength: any;
   page: number = 1;

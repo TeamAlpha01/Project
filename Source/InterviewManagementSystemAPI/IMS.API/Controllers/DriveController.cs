@@ -824,16 +824,16 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewToatlDrives()
+    public IActionResult ViewTotalDrives()
     {
         try
         {
             int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewTotalDrives(employeeId));
         }
-        catch (Exception viewToatlDrivesException)
+        catch (Exception viewTotalDrivesException)
         {
-            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {viewToatlDrivesException.Message}");
+            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {viewTotalDrivesException.Message}");
             return Problem("Sorry internal error occured");
         }
     }
