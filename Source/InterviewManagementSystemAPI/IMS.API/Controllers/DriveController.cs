@@ -496,12 +496,12 @@ public class DriveController : ControllerBase
         try
         {
             employeeAvailability.EmployeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
-            return _driveService.SetTimeSlot(employeeAvailability) ? Ok("Availability recorded sucessfully") : Problem("Sorry internal error occured");
+            return _driveService.SetTimeSlot(employeeAvailability) ? Ok(UtilityService.Response("Availability recorded sucessfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException setTimeSlotNotValid)
         {
             _logger.LogInformation($"Drive Controller : UpdateResponse(int employeeId, int driveId, int responseType) : {setTimeSlotNotValid.Message} : {setTimeSlotNotValid.StackTrace}");
-            return BadRequest(setTimeSlotNotValid.Message);
+            return BadRequest(UtilityService.Response(setTimeSlotNotValid.Message));
         }
         catch (Exception setTimeSlotException)
         {
