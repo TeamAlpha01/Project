@@ -663,7 +663,7 @@ public class DriveController : ControllerBase
         {
             if (_driveService.ScheduleInterview(employeeAvailabilityId))
             {
-                _mailService.SendEmailAsync(_mailService.InterviewScheduled(employeeAvailabilityId, Convert.ToInt32(User.FindFirst("UserId").Value)), true);
+                //_mailService.SendEmailAsync(_mailService.InterviewScheduled(employeeAvailabilityId, Convert.ToInt32(User.FindFirst("UserId").Value)), true);
                 return Ok(UtilityService.Response("Interview Scheduled Sucessfully"));
             }
             return Problem("Sorry internal error occured");
