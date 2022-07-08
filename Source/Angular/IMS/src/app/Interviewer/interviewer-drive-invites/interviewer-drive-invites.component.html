@@ -9,17 +9,20 @@
         <div class>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <p><b>Drive Name : </b> {{item.driveName}}</p>
+                        <p><b>Pool Name : </b> {{item.drivePool}}</p>    
+                    </div>
+                    <div class="col-md-3">
                         <p><b>From Date : </b> {{item.fromDate}}</p>
                         <p><b>To Date : </b> {{item.toDate}}</p>
                     </div>
-                    <div class="col-md-5">
-                        <p><b>Drive Timing : </b>{{item.department}}</p>
+                    <div class="col-md-3">
+                        <p><b>Drive Timing : </b>{{item.driveTiming}} minutes</p>
                         <p><b>Mode : </b> {{item.driveMode}}</p>
                         <p><b>Location : </b> {{item.driveLocation}}</p>
                     </div>
-                    <div class="col-md-2 col-sm-2 col-3 d-flex align-items-start">
+                    <div class="col-md-3 col-sm-2 col-3 d-flex align-items-start">
                         <a [routerLink]="['/interviewer/driveInvites/accept-invite',item.driveId]"> <button
                                 class="btn btn-success" (click)="AddResponse(item.employeeId,true)">Accept</button></a>
                         <div class="col-1"></div>
