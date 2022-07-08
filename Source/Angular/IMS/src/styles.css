@@ -352,6 +352,11 @@ body {
 
 /*-----------------------------------------Dashboard-----------------------------------------*/
 
+/* Interviewer dashboard card alignment */
+.dashboard{
+  padding-top: 13%;
+}
+
 #DashboardScheduled,
 #DashboardCancelled {
   margin: auto;

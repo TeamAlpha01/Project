@@ -1,16 +1,12 @@
-
+<!-- Sidebar Start -->
 <app-admin-header ></app-admin-header>
 <!-- Sidebar End -->
-
 <div class="content">
     <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
-
     <!-- Navbar End -->
-
     <div class="Register CreatePool">
         <div class="card-body">
-            
             <form [formGroup]="AddRoleForm" (ngSubmit)="addRole()">
                 <div class="form-input">
                     <label class="form-label" for="Name">Role Name </label>
@@ -33,5 +29,7 @@
             </form>
         </div>
     </div>
+    <!-- Footer Start  -->
     <app-footer [BackBtn]=true></app-footer>
+    <!-- Footer End  -->
 </div>
