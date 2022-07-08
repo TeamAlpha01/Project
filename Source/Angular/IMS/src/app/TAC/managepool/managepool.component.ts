@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/Services/connection.service';
-import { DialogBoxComponent } from 'src/app/Shared/DialogBox/dialog-box/dialog-box.component';
-import { MatDialog } from '@angular/material/dialog';
 import { DialogueBoxService } from 'src/app/Services/dialogue-box.service';
 
 @Component({
@@ -25,7 +23,8 @@ export class ManagepoolComponent implements OnInit {
   totalLength: any;
 
   //HTTP RESPONSE
-  error: any;
+  error: string = '';
+  response: string = '';
 
 
   constructor(private connection: ConnectionService, private dialogueService: DialogueBoxService) { }
@@ -44,7 +43,7 @@ export class ManagepoolComponent implements OnInit {
 
   GetDepartments() {
     this.connection.GetDepartments().subscribe({
-      next:(data: any) => this.departmentDetails = data,
+      next: (data: any) => this.departmentDetails = data,
       error: (error: any) => this.error = error.error.message
     })
   }
@@ -52,7 +51,18 @@ export class ManagepoolComponent implements OnInit {
   async RemovePool(poolId: number) {
     await this.dialogueService.IsDeleteConfirmed().then((value) => {
       if (value)
-        this.connection.RemovePool(poolId).subscribe(() => this.GetPools());
+        this.connection.RemovePool(poolId).subscribe({
+          next: (data) => { this.response = data.message, this.GetPools() },
+          error: (error) => { this.error = error.error, this.snackBar() },
+          complete: () => this.snackBar(),
+        });
     });
+  }
+
+  snackBar() {
+    setTimeout(() => {
+      this.error = '';
+      this.response = '';
+    }, 2000);
   }
 }

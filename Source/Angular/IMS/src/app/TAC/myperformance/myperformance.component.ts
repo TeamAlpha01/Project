@@ -10,17 +10,21 @@ export class MyperformanceComponent implements OnInit {
   title = 'My Performance'
   ScheduledDrives: number = 0
   CancelledDrives: number = 0
+  error: any;
 
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
-
-
+    this.GetDashboard();
   }
+
   GetDashboard() {
-    this.connection.GetTACDashboard().subscribe((data: any) => {
-      this.ScheduledDrives = data.ScheduledDrives
-      this.CancelledDrives = data.CancelledDrives
-    })
+    this.connection.GetTACDashboard().subscribe({
+      next: (data: any) => {
+        this.ScheduledDrives = data.ScheduledDrives
+        this.CancelledDrives = data.CancelledDrives
+      },
+      error: (error: any) => this.error = error.error.message,
+    });
   }
 }

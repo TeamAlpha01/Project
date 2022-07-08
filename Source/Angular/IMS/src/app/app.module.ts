@@ -2,7 +2,7 @@ import { SnackBarComponent } from './Shared/SnackBar/snack-bar/snack-bar.compone
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
@@ -27,15 +27,12 @@ import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-driv
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
 import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
-
-import { PoolmembersPerformanceComponent } from './TAC/poolmembers-performance/poolmembers-performance.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { NavbarComponent } from './Shared/navbar/navbar.component';
 import { LoginComponent } from './Shared/login/login.component';
-
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
@@ -44,7 +41,6 @@ import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-
 import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming-drive.component';
 import { InterviewerCardDetailsComponent } from './Interviewer/interviewer-card-details/interviewer-card-details.component';
-
 import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
@@ -108,7 +104,6 @@ import { DepartmentPerformanceComponent } from './Management/department-performa
     TacHomeComponent,
     TacDashboardComponent,
     TacCreatePoolComponent,
-    PoolmembersPerformanceComponent,
     MyperformanceComponent,
     TacEditPoolComponent,
     TacEditPoolMemberComponent,

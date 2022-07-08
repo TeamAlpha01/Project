@@ -14,7 +14,6 @@ export class TacCancelDriveComponent implements OnInit {
   title = 'Cancel Drive';
   driveId: number = 0;
   Reason = '';
-  errorMessage: string = '';
   data: any;
   error: string = '';
   submitted: boolean = false;
@@ -47,12 +46,14 @@ export class TacCancelDriveComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.driveId = params['driveId']
     })
+    this.GetDrive();
+  }
+
+  GetDrive() {
     this.connection.GetDrive(this.driveId).subscribe({
       next: (data: any) => this.drive = data,
-      error: (errorMessage: any) => this.errorMessage = errorMessage.message
+      error: (error: any) => this.error = error.error.message
     });
-
-
   }
 
   CancelDrive() {

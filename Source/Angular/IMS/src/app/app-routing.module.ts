@@ -26,7 +26,6 @@ import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-a
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/interviewer-profile.component';
 import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-employee-dashboard.component';
-import { PoolmembersPerformanceComponent } from './TAC/poolmembers-performance/poolmembers-performance.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
@@ -92,7 +91,6 @@ const routes: Routes = [
   { path: 'tac/dashboard', component: MyperformanceComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/dashboard/scheduled-drive-history', component: TacScheduledDriveHistoryComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/dashboard/cancelled-drive-history', component: TacCancelledDriveHistoryComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
-  { path: 'tac/dashboard/poolmembers-performance', component: PoolmembersPerformanceComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/dashboard/employee-dashboard', component: TacEmployeeDashboardComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/managepool/managepoolmembers/:poolId', component: TacEditPoolMemberComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },
   { path: 'tac/myProfile', component: TacProfileComponent,canActivate:[AuthorizationService], data:{User:"TAC"} },

@@ -33,8 +33,12 @@ export class TacCancelledDriveHistoryComponent implements OnInit {
   constructor(private connection: ConnectionService, private route: Router) { }
 
   ngOnInit(): void {
-
-
+    this.GetCancelledDrives();
+    this.GetPools();
+    this.GetDepartments();
+  }
+  
+  GetCancelledDrives() {
     this.connection.GetCancelledDrives().subscribe({
       next: (data: any) => {
         this.driveDetails = data;
@@ -42,62 +46,42 @@ export class TacCancelledDriveHistoryComponent implements OnInit {
           this.drive.push(item);
         }
       },
-      error: (error: any) => {
-        if (error.status == 404) {
-          this.route.navigateByUrl("errorPage");
-        }
-      }
+      error: (error: any) => this.error = error.error.message,
     })
-
-
-    this.connection.GetPools().subscribe((data: any) => {
-      this.poolDetails = data;
-    },
-      (error: any) => {
-        this.showErrorMessage = true;
-        console.warn("1");
-        console.warn(error);
-        if (error.status == 404) {
-          this.route.navigateByUrl("errorPage");
-        }
-      })
-
-
-    this.connection.GetDepartments().subscribe((data: any) => {
-      this.departmentDetails = data;
-    },
-      (error: any) => {
-        this.showErrorMessage = true;
-        console.warn("1");
-        console.warn(error);
-        if (error.status == 404) {
-          this.route.navigateByUrl("errorPage");
-        }
-      })
   }
 
+  GetPools() {
+    this.connection.GetPools().subscribe({
+      next: (data: any) => this.poolDetails = data,
+      error: (error: any) => this.error = error.error.message,
+    });
+  }
 
-  filterDropdown() {
+  GetDepartments() {
+    this.connection.GetDepartments().subscribe({
+      next: (data: any) => this.driveDetails = data,
+      error: (error: any) => this.error = error.error.message,
+    });
+  }
 
-    //To filter cards based on the department and pool selection
+  OnDepartmentChange() {
+    this._pool = ''
+    this.filterDropdown(this._dept);
+  }
 
+  //To filter cards based on the department and pool selection
+  filterDropdown(_dept: string) {
     this.drive = [];
-
     for (let item of this.driveDetails) {
-      if (this._dept == '' && this._pool == '') {
+      if (_dept == '' && this._pool == '') {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && item.drivePool == this._pool) {
+      else if (item.driveDepartment == _dept && item.drivePool == this._pool) {
         this.drive.push(item);
       }
-
-      else if (item.driveDepartment == this._dept && this._pool == '') {
+      else if (item.driveDepartment == _dept && this._pool == '') {
         this.drive.push(item);
       }
-      else if (item.driveDepartment == this._dept && item.drivePool != this._pool) {
-      }
-
     }
-
   }
 }
