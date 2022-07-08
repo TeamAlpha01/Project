@@ -1,3 +1,4 @@
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
@@ -29,24 +30,24 @@ export class InterviewerUtilizedDrivesComponent implements OnInit {
   ngOnInit(): void {
     this.connection.GetUtilizedInterviews().subscribe((data: any) => {
       this.Utilized = data;
-      console.warn(this.Utilized)
+      for (let item of data){
+        this.drive.push(item);
+      }
     }) 
 
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
-      console.warn(this.poolDetails)
     })
   }
 
   filterDropdown() {
   
     this.drive = [];
-  
     for (let item of this.Utilized) {
-      if ( this._pool == '' && item.interviewDate <= this._date ) {
+      if ( this._pool == '' && item.interviewDate == this._date ) {
         this.drive.push(item);
       }
-      else if (item.drivePool == this._pool && this._date <= item.interviewDate ) {
+      else if (item.drivePool == this._pool && item.interviewDate == this._date) {
         this.drive.push(item);
       }
       else if (this._pool == '' && this._date == '') {

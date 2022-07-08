@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagementDashboardComponent implements OnInit {
   
-  title="MDashboard"
+  title="Dashboard"
   constructor() { }
 
   ngOnInit(): void {
