@@ -11,6 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AdminAddprojectComponent implements OnInit {
   title = 'Add Project'
   data: any;
+  //HTTP RESPONSE
   response: string = '';
   error: string = '';
 
@@ -49,6 +50,8 @@ export class AdminAddprojectComponent implements OnInit {
     }
   }
 
+
+  //RESET AFTER SUBMIT
   clearInputFields() {
 
     this.submitted = false;

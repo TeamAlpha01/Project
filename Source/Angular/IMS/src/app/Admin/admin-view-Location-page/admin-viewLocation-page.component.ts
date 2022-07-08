@@ -9,7 +9,11 @@ import { DialogueBoxService } from 'src/app/Services/dialogue-box.service';
 })
 export class AdminviewLocationPageComponent implements OnInit {
   title = 'Locations';
+  
+  //TO GET USER INPUT
   location: any;
+  
+  //PAGINATION
   totalLength: any;
   page: number = 1;
 

@@ -7,11 +7,13 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-
+  title ="Dashboard";
   data: any;
+  
+  //PAGINATION
   totalLength: any;
   page: number = 1;
-  title ="Dashboard";
+  
   
   constructor(private connection: ConnectionService) { }
 

@@ -8,10 +8,16 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class InterviewerAvailabilityGivenComponent implements OnInit {
   title='Availability Given';
+  
+  //TO GET DATA FROM DATABASE
   Availability: any;
+  
+  //PAGINATION
   totalLength: any;
   page: number = 1;
 
+  
+  //TO GET USER INPUT
   _pool = '';
   _date = '';
 

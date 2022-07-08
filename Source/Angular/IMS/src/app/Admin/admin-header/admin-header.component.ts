@@ -9,6 +9,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./admin-header.component.css'],
 })
 export class AdminHeaderComponent implements OnInit {
+  //TO GET DATA FROM DATABASE
   userName: string | null = '';
   Name: string = '';
 

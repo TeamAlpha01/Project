@@ -10,9 +10,14 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class AdminviewDepartmentPageComponent implements OnInit {
   title = 'Departments';
+  
+  //TO GET DATA FROM DATABASE
   department: any;
+  
+  //PAGNATION
   totalLength: any;
   page: number = 1;
+  
   constructor(private service: ConnectionService,private dialogueService:DialogueBoxService) {}
 
   ngOnInit(): void {

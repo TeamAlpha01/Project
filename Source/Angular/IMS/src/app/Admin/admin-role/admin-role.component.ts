@@ -9,6 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class AdminRoleComponent implements OnInit {
   title = 'Add Role';
+  
+  //HTTP RESPONSE
   response: string = '';
   error: string='';
   submitted: boolean = false;
@@ -48,6 +50,8 @@ export class AdminRoleComponent implements OnInit {
     }
   }
 
+
+  //RESET AFTER SUBMIT
   clearInputFields() 
   {
     

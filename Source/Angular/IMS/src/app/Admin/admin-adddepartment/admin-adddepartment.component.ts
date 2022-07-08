@@ -9,13 +9,16 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class AdminAdddepartmentComponent implements OnInit {
   title = 'Add Department';
-  response: string = '';
+  
+  //HTTP  RESPONSE
+  response: string = '';  
   error: string = '';
   submitted: boolean = false;
 
   constructor(private service: ConnectionService, private fb: FormBuilder) { }
 
   AddDepartmentForm = this.fb.group({
+    //VALIDATE THE INPUT
     departmentName: [
       '',
       [
@@ -45,7 +48,7 @@ export class AdminAdddepartmentComponent implements OnInit {
 
   }
 
-
+  //RESET AFTER SUBMIT
   clearInputFields() {
 
     this.submitted = false;

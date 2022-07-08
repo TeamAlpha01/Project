@@ -1,6 +1,6 @@
 <app-admin-header></app-admin-header>
-<!-- Sidebar End -->
 
+<!--Content Start  -->
 <div class="content">
     <app-navbar [title]="title"></app-navbar>
 
@@ -30,7 +30,7 @@
                     <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['pattern'] && !AddProjectForm.controls['projectName'].errors?.['minlength']">Project name cannot contain numbers or symbols</span>
                 </div>
 
-
+               <!--Snack Bar    -->
                 <div *ngIf="response.length!=0">
                     <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                 </div>
@@ -47,3 +47,4 @@
 
     <app-footer [BackBtn]=true></app-footer>
  </div>
+<!-- Content Ends -->

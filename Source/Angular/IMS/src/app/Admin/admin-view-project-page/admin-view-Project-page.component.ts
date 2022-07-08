@@ -8,10 +8,15 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./admin-view-Project-page.component.css']
 })
 export class AdminviewProjectPageComponent implements OnInit {
+  title = "Projects";
+  
+  //TO STORE DATA FROM DATABASE
   data: any;
+  
+  //PAGINATION
   totalLength: any;
   page: number = 1;
-  title = "Projects";
+  
  
   constructor(private connection: ConnectionService,private dialogueService:DialogueBoxService) { }
 
