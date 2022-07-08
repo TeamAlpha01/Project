@@ -50,17 +50,18 @@
 }
 
 .Login {
-  margin: 3vh 20vw;
+  margin: 0 20vw;
   padding: 1% 5%;
   /* border: 1px solid black; */
   border-radius: 15px;
-  /* background-color:whitesmoke; */
+  background-color:white;
   backdrop-filter: blur(100px);
-  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* color: white; */
 }
 
 .title{
-  color: white;
+  /* color: white; */
 }
 
 .Login-btn {
@@ -290,7 +291,7 @@ body {
 #wholebox {
   padding-left: 210px;
   padding-top: 50px;
-  
+
 }
 
 .footer {
@@ -398,7 +399,7 @@ body {
   margin-bottom: 5%;
   margin-top: 5%;
   display: block;
-  
+
 }
 
 .background {
@@ -607,7 +608,7 @@ body {
 
 .bg-c-lite-green {
   background: var(--light);
-  
+
 
 }
 
@@ -833,7 +834,7 @@ h6 {
   margin: auto;
   border: 1px solid black;
   margin: 2.5vh auto;
- 
+
 }
 
 .CurrentDrivesFilterButton {
@@ -1020,7 +1021,7 @@ h6 {
 .sidebar .navbar .navbar-nav .nav-link.active {
   color: var(--primary);
   background: var(--light);
-  
+
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
@@ -1537,7 +1538,7 @@ body {
 
 .sticky-pagination {
   position: sticky;
-  
+
 }
 
 .container-fostrap {
@@ -1902,7 +1903,6 @@ body {
   bottom: 0;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 50 50'%3E%3Cpath d='M28.43 6.378C18.27 4.586 8.58 11.37 6.788 21.533c-1.791 10.161 4.994 19.851 15.155 21.643l.707-4.006C14.7 37.768 9.392 30.189 10.794 22.24c1.401-7.95 8.981-13.258 16.93-11.856l.707-4.006z'%3E%3CanimateTransform attributeType='xml' attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='0.6s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E") center / 50px no-repeat;
 }
-
 
 
 #innercard {

@@ -438,6 +438,7 @@ public class DriveController : ControllerBase
 
         try
         {
+            response.EmployeeId=Convert.ToInt32(User.FindFirst("UserID").Value);
             return _driveService.AddResponse(response) ? Ok("Response added sucessfully") : Problem("Sorry internal error occured");
         }
         catch (ValidationException addResponseNotValid)
