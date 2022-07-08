@@ -212,6 +212,7 @@ namespace IMS.Service
             DriveValidation.IsDriveIdValid(driveId);
 
             try
+
             {
                 var drive = _driveDataAccess.ViewDrive(driveId);
                 return  new
@@ -512,8 +513,8 @@ namespace IMS.Service
                     employeeName = availability.Employee.Name,
                     employeeDepartment = availability.Employee.Department.DepartmentName,
                     employeeRole = availability.Employee.Role.RoleName, //ACE ,DEPT NAME,ROLE
-                    employeeFromTime = availability.FromTime,
-                    employeeToTime = availability.ToTime
+                    employeeFromTime = availability.From.TimeOfDay.ToString("hh\\:mm") ,
+                    employeeToTime = availability.To.TimeOfDay.ToString("hh\\:mm")
                 }
             );
             }
