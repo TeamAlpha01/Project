@@ -17,7 +17,7 @@
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['pattern'] && !AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name cannot contain numbers or symbols</span>
                 </div>
 
-                <div *ngIf="response.length!=0">
+                <div *ngIf="response.length!==0">
                     <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                 </div>
 

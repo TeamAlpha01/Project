@@ -2,16 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-tac-current-drive',
   templateUrl: './tac-current-drive.component.html',
-  styleUrls: ['./tac-current-drive.component.css']
+  styleUrls: ['./tac-current-drive.component.css'],
 })
-
 export class TacCurrentDriveComponent implements OnInit {
-
-  title = 'Current Drive'
+  title = 'Current Drive';
 
   //PAGINATION
   totalLength: any;
@@ -25,7 +22,6 @@ export class TacCurrentDriveComponent implements OnInit {
   pool: any[] = [];
   drive: any[] = [];
 
-
   //TO STORE THE DATA FROM THE DATABASE
   driveDetails: any;
   poolDetails: any;
@@ -35,7 +31,7 @@ export class TacCurrentDriveComponent implements OnInit {
   error: any;
   showErrorMessage: boolean = false;
 
-  constructor(private connection: ConnectionService, private route: Router) { }
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
     this.GetPools();
@@ -44,11 +40,15 @@ export class TacCurrentDriveComponent implements OnInit {
   }
 
   GetPools() {
-    this.connection.GetPools().subscribe({ next: (data: any) => this.poolDetails = data });
+    this.connection.GetPools().subscribe({
+      next: (data: any) => (this.poolDetails = data),
+    });
   }
 
   GetDepartments() {
-    this.connection.GetDepartments().subscribe({ next: (data: any) => this.departmentDetails = data });
+    this.connection.GetDepartments().subscribe({
+      next: (data: any) => (this.departmentDetails = data),
+    });
   }
 
   GetTodaysDrives() {
@@ -58,12 +58,12 @@ export class TacCurrentDriveComponent implements OnInit {
         for (let item of this.driveDetails) {
           this.drive.push(item);
         }
-      }
+      },
     });
   }
-  
+
   OnDepartmentChange() {
-    this._pool = ''
+    this._pool = '';
     this.filterDropdown(this._dept);
   }
 
@@ -73,15 +73,11 @@ export class TacCurrentDriveComponent implements OnInit {
     for (let item of this.driveDetails) {
       if (_dept == '' && this._pool == '') {
         this.drive.push(item);
-      }
-      else if (item.driveDepartment == _dept && item.drivePool == this._pool) {
+      } else if (item.driveDepartment == _dept && item.drivePool == this._pool) {
         this.drive.push(item);
-      }
-      else if (item.driveDepartment == _dept && this._pool == '') {
+      } else if (item.driveDepartment == _dept && this._pool == '') {
         this.drive.push(item);
       }
     }
   }
-
 }
-

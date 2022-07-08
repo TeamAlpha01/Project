@@ -13,7 +13,7 @@
                             [(ngModel)]="_dept">
                             <option value="">Select the Department</option>
                             <ng-container *ngFor="let item of departmentDetails">
-                                <option *ngIf="!(item.departmentName=='TAC' || item.departmentName=='ADMIN')"  value={{item.departmentName}}> {{item.departmentName}} </option>
+                                <option *ngIf="!(item.departmentName==='TAC' || item.departmentName==='ADMIN')"  value={{item.departmentName}}> {{item.departmentName}} </option>
                             </ng-container>
                         </select>
                     </div>

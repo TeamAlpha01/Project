@@ -11,7 +11,7 @@
                     <select [class.is-invalid]="(submitted)||AddPoolForm.controls['departmentId'].invalid && AddPoolForm.controls['departmentId'].touched" name="Department" id="Department Name" class="form-select " formControlName="departmentId">
                         <option value="">Select the Department</option>
                         <ng-container *ngFor="let item of data">
-                            <option *ngIf="item.departmentId!=4" value={{item.departmentId}}> {{item.departmentName}} </option>
+                            <option *ngIf="item.departmentId!==4" value={{item.departmentId}}> {{item.departmentName}} </option>
                         </ng-container>
                     </select>
                 </div>
@@ -37,7 +37,7 @@
                     <button type="submit" class="btn btn-back"> Add </button>
                 </div>
             </form>
-            <div *ngIf="response.length!=0">
+            <div *ngIf="response.length!==0">
                 <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
             </div>
         </div>

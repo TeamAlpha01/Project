@@ -23,7 +23,7 @@
                     <span class="text-danger" *ngIf="EditPoolForm.controls['poolName'].errors?.['pattern'] && !EditPoolForm.controls['poolName'].errors?.['minlength']">*Pool name cannot contain numbers or symbols</span>
                 </div>
 
-                <div *ngIf="response.length!=0">
+                <div *ngIf="response.length!==0">
                     <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                 </div>
                 

@@ -16,6 +16,8 @@ export class AdminAdddepartmentComponent implements OnInit {
   submitted: boolean = false;
 
   constructor(private service: ConnectionService, private fb: FormBuilder) { }
+  
+  ngOnInit(): void { }
 
   AddDepartmentForm = this.fb.group({
     //VALIDATE THE INPUT
@@ -58,5 +60,4 @@ export class AdminAdddepartmentComponent implements OnInit {
     }, 2000);
 
   }
-  ngOnInit(): void { }
 }
