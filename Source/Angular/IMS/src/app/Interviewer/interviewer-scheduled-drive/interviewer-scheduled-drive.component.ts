@@ -29,7 +29,7 @@ export class InterviewerScheduledDriveComponent implements OnInit {
   constructor(private connection :ConnectionService,private route: Router) { }
 
   ngOnInit(): void {
-    this.connection.GetPools().subscribe((data: any) => {
+    this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
       
       for (let item of this.interviewerpoolDetails) {
