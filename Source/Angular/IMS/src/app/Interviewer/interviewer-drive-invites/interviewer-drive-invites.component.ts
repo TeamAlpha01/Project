@@ -13,6 +13,7 @@ export class InterviewerDriveInvitesComponent implements OnInit {
   page: number = 1;
   Invites: any;
   driveId: any;
+  
   constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
