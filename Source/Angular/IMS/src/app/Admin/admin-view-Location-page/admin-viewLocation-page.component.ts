@@ -3,7 +3,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 import { DialogueBoxService } from 'src/app/Services/dialogue-box.service';
 
 @Component({
-  selector: 'app-admin-AddLocation-page',
+  selector: 'app-admin-add-location-page',
   templateUrl: './admin-viewLocation-page.component.html',
   styleUrls: ['./admin-viewLocation-page.component.css'],
 })

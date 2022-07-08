@@ -88,7 +88,7 @@
                             name="locationId" id="locationId" class="form-select " formControlName="locationId">
                             <option value="">Select the Location</option>
                             <ng-container *ngFor="let item of locationDetails">
-                                <option *ngIf="!(item.locationId==9 && CreateInviteForm.controls['modeId'].value==2)"   value={{item.locationId}}> {{item.locationName}} </option>
+                                <option *ngIf="!(item.locationId===9 && CreateInviteForm.controls['modeId'].value===2)"   value={{item.locationId}}> {{item.locationName}} </option>
                             </ng-container>
                         </select>
                     </div>
@@ -144,7 +144,7 @@
                     <div class="Login-btn">
                         <a><button class="btn btn-create" type="submit">CREATE</button></a>
                     </div>
-                    <div *ngIf="response.length!=0">
+                    <div *ngIf="response.length!==0">
                         <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                     </div>
                     <div *ngIf="!error.toString().includes('Name')">

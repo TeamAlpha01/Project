@@ -4,7 +4,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 
 
 @Component({
-  selector: 'app-admin-viewDepartment-page',
+  selector: 'app-admin-view-department-page',
   templateUrl: './admin-view-Department-page.component.html',
   styleUrls: ['./admin-view-department-page.component.css'],
 })
