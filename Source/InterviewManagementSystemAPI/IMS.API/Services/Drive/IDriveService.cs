@@ -31,11 +31,11 @@ namespace IMS.Service
         public bool ScheduleInterview(int employeeAvailabilityId);
         public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments);
         public Object ViewAvailableMembersForDrive(int driveId);
-        public Dictionary<string,int> ViewEmployeeDashboard(int employeeId); 
-        public Object ViewTotalDrives(int employeeId);
-        public Object ViewAcceptedDrives(int employeeId);
-        public Object ViewDeniedDrives(int employeeId);
-        public Object ViewIgnoredDrives(int employeeId);
+        public Dictionary<string,int> ViewEmployeeDashboard(int employeeId,DateTime fromDate,DateTime toTime); 
+        public Object ViewTotalDrives(int employeeId,DateTime fromDate,DateTime toDate);
+        public Object ViewAcceptedDrives(int employeeId,DateTime fromDate,DateTime toDate);
+        public Object ViewDeniedDrives(int employeeId,DateTime fromDate,DateTime toDate);
+        public Object ViewIgnoredDrives(int employeeId,DateTime fromDate,DateTime toDate);
         public Object ViewUtilizedInterviews(int employeeId);
         public Object ViewNotUtilizedInterviews(int employeeId);
         public Object ViewTotalAvailability(int employeeId);

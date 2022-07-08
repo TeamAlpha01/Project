@@ -14,6 +14,8 @@ namespace IMS.Validations
             //Default Values Setting
             employeeAvailability.From = DateTime.Parse(employeeAvailability.FromTime);
             employeeAvailability.To = DateTime.Parse(employeeAvailability.ToTime);
+            employeeAvailability.IsInterviewCancelled=false;
+            employeeAvailability.IsInterviewScheduled=false;
         }
 
         public static void IsAvailabilityIdValid(int employeeAvailabilityId)

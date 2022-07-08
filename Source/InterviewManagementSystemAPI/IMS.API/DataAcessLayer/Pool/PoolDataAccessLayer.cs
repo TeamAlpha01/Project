@@ -230,8 +230,10 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
-                throw new DbUpdateException();
+                _logger.LogInformation(string.Format("Pool DAL : GetPoolsFromDatabase() : {0}",exception.Message));
+                // _logger.LogInformation("Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                //_logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                throw;
             }
             catch (OperationCanceledException exception)
             {

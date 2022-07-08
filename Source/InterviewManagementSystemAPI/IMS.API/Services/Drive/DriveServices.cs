@@ -530,14 +530,14 @@ namespace IMS.Service
 
         }
 
-        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId)
+        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Count());
-                DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId).Count());
-                DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId).Count());
+                DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId,fromDate,toDate).Count());
+                DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId,fromDate,toDate).Count());
+                DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId,fromDate,toDate).Count());
                 DashboardCount.Add("TotalDrives", DashboardCount["AcceptedDrives"] + DashboardCount["DeniedDrives"] + DashboardCount["IgnoredDrives"]);
                 DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
                 DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
@@ -555,11 +555,11 @@ namespace IMS.Service
                 throw viewEmployeeDashboardException;
             }
         }
-        public Object ViewTotalDrives(int employeeId)
+        public Object ViewTotalDrives(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Concat(_driveDataAccess.GetResponseDetailsByStatus(2, employeeId)).Concat(_driveDataAccess.GetResponseDetailsByStatus(3, employeeId)).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId,fromDate,toDate).Concat(_driveDataAccess.GetResponseDetailsByStatus(2, employeeId,fromDate,toDate)).Concat(_driveDataAccess.GetResponseDetailsByStatus(3, employeeId,fromDate,toDate)).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -579,11 +579,11 @@ namespace IMS.Service
             }
 
         }
-        public Object ViewAcceptedDrives(int employeeId)
+        public Object ViewAcceptedDrives(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId,fromDate,toDate).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -602,11 +602,11 @@ namespace IMS.Service
                 throw viewAcceptedDrivesException;
             }
         }
-        public Object ViewDeniedDrives(int employeeId)
+        public Object ViewDeniedDrives(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(2, employeeId).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(2, employeeId,fromDate,toDate).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -625,11 +625,11 @@ namespace IMS.Service
                 throw viewDeniedDrivesException;
             }
         }
-        public Object ViewIgnoredDrives(int employeeId)
+        public Object ViewIgnoredDrives(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(3, employeeId).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(3, employeeId,fromDate,toDate).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
