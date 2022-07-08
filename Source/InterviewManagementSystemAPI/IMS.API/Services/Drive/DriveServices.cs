@@ -512,7 +512,8 @@ namespace IMS.Service
                     employeeAceNumber = availability.Employee.EmployeeAceNumber,
                     employeeName = availability.Employee.Name,
                     employeeDepartment = availability.Employee.Department.DepartmentName,
-                    employeeRole = availability.Employee.Role.RoleName, //ACE ,DEPT NAME,ROLE
+                    employeeRole = availability.Employee.Role.RoleName,
+                    employeeSlotDate=availability.InterviewDate.ToShortDateString(),
                     employeeFromTime = availability.From.TimeOfDay.ToString("hh\\:mm") ,
                     employeeToTime = availability.To.TimeOfDay.ToString("hh\\:mm")
                 }

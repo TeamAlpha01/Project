@@ -785,6 +785,8 @@ public class DriveController : ControllerBase
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
+    /// <param name="fromDate"></param>
+    /// <param name="toDate"></param>
     /// <returns>Returns the dashboard of employee</returns>
     [HttpGet]
     public IActionResult ViewEmployeeDashboard(int employeeId,DateTime fromDate,DateTime toDate)
