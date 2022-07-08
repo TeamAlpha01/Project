@@ -50,12 +50,17 @@
 }
 
 .Login {
-  margin: 5vh 20vw;
+  margin: 3vh 20vw;
   padding: 1% 5%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.915);
+  /* background-color:whitesmoke; */
+  backdrop-filter: blur(100px);
+  color: white;
+}
 
+.title{
+  color: white;
 }
 
 .Login-btn {

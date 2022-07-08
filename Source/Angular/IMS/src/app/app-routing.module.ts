@@ -50,6 +50,7 @@ import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-deni
 import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
 import { PoolmembersperformanceComponent } from './Management/poolmembersperformance/poolmembersperformance.component';
 import { ViewDefaultersComponent } from './Management/view-defaulters/view-defaulters.component';
+import { DepartmentPerformanceComponent } from './Management/department-performance/department-performance.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -109,7 +110,7 @@ const routes: Routes = [
 
   //management pages
   {path:'dashboard/management-dashboard',component:ManagementDashboardComponent},
-  {path:'dashboard/management-dashboard/poolmembersperforamnce',component:PoolmembersperformanceComponent},
+  {path:'dashboard/management-dashboard/poolmembersperforamnce',component:DepartmentPerformanceComponent},
   {path:'dashboard/management-dashboard/poolmembersperforamnce/view-defaulters/:poolId',component:ViewDefaultersComponent},
 ];
 

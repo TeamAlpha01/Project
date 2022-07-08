@@ -1,45 +1,57 @@
-<div class="Login">
-    <div class="card-body">
-        <h2 class="text-uppercase text-center">LOGIN</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="submit()">
-            <br>
-            <p>Please login to your account</p>
-            <div class="form-input">
-                <label class="form-label" for="ACE Number">ACE Number </label>
-                <input  [class.is-invalid]="(error.toString().includes('ACE')||submitted && loginForm.controls['ACENumber'].invalid)||loginForm.controls['ACENumber'].invalid && loginForm.controls['ACENumber'].touched" id="ACE Number" type="text" placeholder="ACE Number" formControlName="ACENumber" class="form-control">
-            </div>
-            <div *ngIf="(submitted)||loginForm.controls['ACENumber'].invalid && loginForm.controls['ACENumber'].touched">
-                <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['required']">ACE Number is required</span>
-                <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['pattern']">ACE Number should starts with ACE and followed by 4 digits</span>
-                <span *ngIf="error.toString().includes('ACE')" class="text-danger">{{error}}</span>
-            </div>
+<div class="background-img-login">
+    <h1 class="text-center title">INTERVIEW MANAGEMENT SYSTEM</h1>
+    <div class="Login">
+        <div class="card-body">
+            <h2 class="text-center">LOGIN</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="submit()">
+                <br>
+                <p>Please login to your account</p>
+                <div class="form-input">
+                    <label class="form-label" for="ACE Number">ACE Number </label>
+                    <input
+                        [class.is-invalid]="(error.toString().includes('ACE')||submitted && loginForm.controls['ACENumber'].invalid)||loginForm.controls['ACENumber'].invalid && loginForm.controls['ACENumber'].touched"
+                        id="ACE Number" type="text" placeholder="ACE Number" formControlName="ACENumber"
+                        class="form-control">
+                </div>
+                <div
+                    *ngIf="(submitted)||loginForm.controls['ACENumber'].invalid && loginForm.controls['ACENumber'].touched">
+                    <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['required']">ACE Number is
+                        required</span>
+                    <span class="text-danger" *ngIf="loginForm.controls['ACENumber'].errors?.['pattern']">ACE Number
+                        should starts with ACE and followed by 4 digits</span>
+                    <span *ngIf="error.toString().includes('ACE')" class="text-danger">{{error}}</span>
+                </div>
 
-            <div class="form-input">
-                <label class="form-label" for="Password">Password</label>
-                <input [class.is-invalid]="(error.toString().includes('Password')||submitted && loginForm.controls['Password'].invalid)||loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched" id="Password" type="password" placeholder="Password" formControlName="Password" class="form-control">
-            </div>
-            <div *ngIf="(submitted)||loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched">
-                <span class="text-danger" *ngIf="loginForm.controls['Password'].errors?.['required']">Password is required</span>
-                <span *ngIf="error.toString().includes('Password')" class="text-danger">{{error}}</span>
-            </div>
-            <div *ngIf="loading" diameter="40" class="spinner">
-                <!-- <mat-spinner></mat-spinner> -->
-            </div>
-            <div *ngIf="isCommanError" class="span12 text-center">
-                <span class="text-center text-danger">{{error}}</span>
-            </div>
+                <div class="form-input">
+                    <label class="form-label" for="Password">Password</label>
+                    <input
+                        [class.is-invalid]="(error.toString().includes('Password')||submitted && loginForm.controls['Password'].invalid)||loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched"
+                        id="Password" type="password" placeholder="Password" formControlName="Password"
+                        class="form-control">
+                </div>
+                <div
+                    *ngIf="(submitted)||loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched">
+                    <span class="text-danger" *ngIf="loginForm.controls['Password'].errors?.['required']">Password is
+                        required</span>
+                    <span *ngIf="error.toString().includes('Password')" class="text-danger">{{error}}</span>
+                </div>
+                <div *ngIf="loading" diameter="40" class="spinner">
+                    <!-- <mat-spinner></mat-spinner> -->
+                </div>
+                <div *ngIf="isCommanError" class="span12 text-center">
+                    <span class="text-center text-danger">{{error}}</span>
+                </div>
 
-            <div class="Login-btn">
-                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log in </button>
-            </div>
+                <div class="Login-btn">
+                    <button class="btn btn-create mb-3" type="submit">Log in </button>
+                </div>
 
 
-            <div class="d-flex align-items-center justify-content-center pb-4">
-                <p class="text-center text-muted  mb-0 me-2">Don't have an account?</p>
-                <a routerLink="/register">Create new</a>
-            </div>
-
-
-        </form>
+                <div class="d-flex align-items-center justify-content-center pb-4 register">
+                    <p class="text-center mb-0 me-2">Don't have an account?</p>
+                    <a routerLink="/register">Create new</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

@@ -12,53 +12,47 @@ import { DialogueBoxService } from 'src/app/Services/dialogue-box.service';
 export class ManagepoolComponent implements OnInit {
   title = 'Manage Pool'
 
+  //TO STORE THE DATA FROM THE DATABASE
   poolDetails: any;
   departmentDetails: any;
+
+  //TO GET USER INPUT
   _dept = '';
   _pool = '';
+
+  //PAGINATION
   page: number = 1;
   totalLength: any;
 
+  //HTTP RESPONSE
+  error: any;
 
-  constructor(private connection: ConnectionService, private dialogueService:DialogueBoxService) { }
+
+  constructor(private connection: ConnectionService, private dialogueService: DialogueBoxService) { }
 
   ngOnInit(): void {
-    
     this.GetPools();
     this.GetDepartments();
-    this.poolEnabler();
   }
 
   GetPools() {
-    this.connection.GetPools().subscribe((data: any) => {
-      this.poolDetails = data;
+    this.connection.GetPools().subscribe({
+      next: (data: any) => this.poolDetails = data,
+      error: (error: any) => this.error = error.error.message
     })
   }
 
   GetDepartments() {
-    this.connection.GetDepartments().subscribe((data: any) => {
-      this.departmentDetails = data;
+    this.connection.GetDepartments().subscribe({
+      next:(data: any) => this.departmentDetails = data,
+      error: (error: any) => this.error = error.error.message
     })
   }
 
   async RemovePool(poolId: number) {
-  
-    await this.dialogueService.IsDeleteConfirmed().then((value)=> {
-
-      if(value)
-      this.connection.RemovePool(poolId).subscribe(() => this.GetPools());
-    
+    await this.dialogueService.IsDeleteConfirmed().then((value) => {
+      if (value)
+        this.connection.RemovePool(poolId).subscribe(() => this.GetPools());
     });
   }
-  poolEnabler():boolean  {
-    if (this._dept == '') { 
-      
-      return true;
-    }
-    else {
-      return false; 
-    }
-  }
-
-
 }
