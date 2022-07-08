@@ -21,25 +21,27 @@
         </div>
     </div>
     <div *ngIf="driveResponses.length>0; else ArrayEmpty">
-        <div class="mt-3 container shadow  bg-body rounded"
-            *ngFor="let item of driveResponses| paginate: { itemsPerPage: 6, currentPage: page,totalItems:totalLength }">
+        <div class="mt-3 container shadow  bg-body rounded" *ngFor="let item of driveResponses| paginate: { itemsPerPage: 6, currentPage: page,totalItems:totalLength }">
             <div class>
                 <div class="card-body">
                     <div class="row rone">
-                        <div class="col-md-2 col-lg-2 ">
+                        <div class="col-md-2 col-lg-2 col-sm-2 ">
                             <p><strong>ACE Number :</strong> {{item.employeeAceNumber}}</p>
                         </div>
-                        <div class="col-md-2 col-lg-3">
+                        <div class="col-md-2 col-lg-2 col-sm-2 ">
                             <p><strong>Name :</strong> {{item.employeeName}}</p>
                         </div>
-                        <div class="col-md-2 col-lg-2">
-                            <p><strong>Date :</strong> {{item.employeeFromTime}}to{{item.employeeToTime}}</p>
+                        <div class="col-md-2 col-lg-2 col-sm-2 ">
+                            <p><strong>Date : </strong> {{item.employeeSlotDate}}</p>
                         </div>
-                        <div class="col-md-2 col-lg-3">
+                        <div class="col-md-2 col-lg-2 col-sm-2 ">
+                            <p><strong>Time : </strong> {{item.employeeFromTime}} to {{item.employeeToTime}}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-sm-2 ">
                             <p><strong>Role :</strong> {{item.employeeRole}}</p>
                         </div>
 
-                        <div class="col-md-2 col-sm-2 col-3 d-flex align-items-start">
+                        <div class="col-md-2 col-sm-2 col-2 d-flex ">
                             <button (click)="schedule(item.employeeAvailabilityId)"
                                 class="btn btn-success">Schedule</button>
                         </div>

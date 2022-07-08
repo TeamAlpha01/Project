@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
 
           this.IsAdmin = data.isAdmin
           this.IsTAC = data.isTAC
-
+          
           AuthenticationService.SetDateWithExpiry("token", data.token, data.expiryInMinutes)
           AuthenticationService.SetDateWithExpiry("Admin", data.isAdmin, data.expiryInMinutes)
           AuthenticationService.SetDateWithExpiry("TAC", data.isTAC, data.expiryInMinutes)

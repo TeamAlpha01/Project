@@ -2,7 +2,6 @@
 
 <div class="content">
     <app-navbar [title]="title"></app-navbar>
-
     <div class="container">
         <div class="card mx-auto">
             <div class="card-body">
@@ -37,6 +36,12 @@
 
                                 <div class="col-md-2 ">
                                     <a><button type="submit" class="btn btn-back">Add</button></a>
+                                </div>
+                                <div *ngIf="error.length!=0">
+                                    <app-snack-bar snackBarMessage={{error}} snackBarAction="Done"></app-snack-bar>
+                                </div>
+                                <div *ngIf="response.length!=0">
+                                    <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                                 </div>
                             </div>
                         </div>

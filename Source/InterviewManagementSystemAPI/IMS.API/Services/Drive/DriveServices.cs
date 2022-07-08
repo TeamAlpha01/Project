@@ -212,6 +212,7 @@ namespace IMS.Service
             DriveValidation.IsDriveIdValid(driveId);
 
             try
+
             {
                 var drive = _driveDataAccess.ViewDrive(driveId);
                 return  new
@@ -296,11 +297,11 @@ namespace IMS.Service
                     DriveName = d.Name,
                     FromDate = d.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
                     DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.ModeId),
-                    PoolId = d.PoolId
+                    PoolId = d.PoolId,
+                    DriveTiming=d.SlotTiming
                 }
                     );
 
@@ -511,9 +512,10 @@ namespace IMS.Service
                     employeeAceNumber = availability.Employee.EmployeeAceNumber,
                     employeeName = availability.Employee.Name,
                     employeeDepartment = availability.Employee.Department.DepartmentName,
-                    employeeRole = availability.Employee.Role.RoleName, //ACE ,DEPT NAME,ROLE
-                    employeeFromTime = availability.FromTime,
-                    employeeToTime = availability.ToTime
+                    employeeRole = availability.Employee.Role.RoleName,
+                    employeeSlotDate=availability.InterviewDate.ToShortDateString(),
+                    employeeFromTime = availability.From.TimeOfDay.ToString("hh\\:mm") ,
+                    employeeToTime = availability.To.TimeOfDay.ToString("hh\\:mm")
                 }
             );
             }
@@ -530,14 +532,14 @@ namespace IMS.Service
 
         }
 
-        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId)
+        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Count());
-                DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId).Count());
-                DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId).Count());
+                DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId,fromDate,toDate).Count());
+                DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId,fromDate,toDate).Count());
+                DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId,fromDate,toDate).Count());
                 DashboardCount.Add("TotalDrives", DashboardCount["AcceptedDrives"] + DashboardCount["DeniedDrives"] + DashboardCount["IgnoredDrives"]);
                 DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
                 DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
@@ -555,11 +557,11 @@ namespace IMS.Service
                 throw viewEmployeeDashboardException;
             }
         }
-        public Object ViewTotalDrives(int employeeId)
+        public Object ViewTotalDrives(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Concat(_driveDataAccess.GetResponseDetailsByStatus(2, employeeId)).Concat(_driveDataAccess.GetResponseDetailsByStatus(3, employeeId)).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId,fromDate,toDate).Concat(_driveDataAccess.GetResponseDetailsByStatus(2, employeeId,fromDate,toDate)).Concat(_driveDataAccess.GetResponseDetailsByStatus(3, employeeId,fromDate,toDate)).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -579,11 +581,11 @@ namespace IMS.Service
             }
 
         }
-        public Object ViewAcceptedDrives(int employeeId)
+        public Object ViewAcceptedDrives(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId,fromDate,toDate).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -602,11 +604,11 @@ namespace IMS.Service
                 throw viewAcceptedDrivesException;
             }
         }
-        public Object ViewDeniedDrives(int employeeId)
+        public Object ViewDeniedDrives(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(2, employeeId).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(2, employeeId,fromDate,toDate).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -625,11 +627,11 @@ namespace IMS.Service
                 throw viewDeniedDrivesException;
             }
         }
-        public Object ViewIgnoredDrives(int employeeId)
+        public Object ViewIgnoredDrives(int employeeId,DateTime fromDate,DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(3, employeeId).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(3, employeeId,fromDate,toDate).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,

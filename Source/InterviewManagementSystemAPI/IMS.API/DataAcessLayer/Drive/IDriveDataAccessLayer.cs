@@ -22,7 +22,7 @@ namespace IMS.DataAccessLayer
         public List<EmployeeAvailability> ViewAvailableMembersForDrive(int driveId);
         public bool ScheduleInterview(int employeeAvailabilityId);
         public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments);
-        public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType,int employeeId);
+        public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType,int employeeId,DateTime fromDate,DateTime toDate);
         public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized,int employeeId);
         public object GetDefaulters(int poolId);
     }

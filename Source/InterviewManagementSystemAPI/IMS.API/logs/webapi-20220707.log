@@ -1,263 +1,25 @@
-[2022-07-07 09:30:12.553 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 09:30:12.682 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 09:30:12.682 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 09:30:12.687 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 09:30:12.687 +05:30 INF] Hosting environment: Development
-[2022-07-07 09:30:12.688 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 09:30:22.905 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/AddResponse application/json-patch+json 81
-[2022-07-07 09:30:22.953 +05:30 INF] CORS policy execution successful.
-[2022-07-07 09:30:23.122 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Drive/AddResponse
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json-patch+json
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 81
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 09:30:23.124 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.AddResponse (Source)'
-[2022-07-07 09:30:23.141 +05:30 INF] Route matched with {action = "AddResponse", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddResponse(IMS.Models.EmployeeDriveResponse) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 09:30:23.267 +05:30 INF] RequestBody: {
-  "responseId": 0,
-  "driveId": 28,
-  "employeeId": 20,
-  "responseType": 0,
- }
-[2022-07-07 09:30:23.386 +05:30 INF] Drive Controller : AddResponse(EmployeeDriveResponse response) : Invalid Response Type : 0 :    at IMS.Validations.EmployeeResponseValidation.IsResponseTypeValid(Int32 responseType) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\EmployeeResponseValidation.cs:line 19
-   at IMS.Validations.EmployeeResponseValidation.IsResponseValid(EmployeeDriveResponse response) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\EmployeeResponseValidation.cs:line 14
-   at IMS.Service.DriveService.AddResponse(EmployeeDriveResponse response) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 245
-   at IMS.Controllers.DriveController.AddResponse(EmployeeDriveResponse response) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Controllers\DriveController.cs:line 441
-[2022-07-07 09:30:23.392 +05:30 INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
-[2022-07-07 09:30:23.395 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: text/plain; charset=utf-8
-[2022-07-07 09:30:23.403 +05:30 INF] Executed action IMS.Controllers.DriveController.AddResponse (Source) in 257.4389ms
-[2022-07-07 09:30:23.404 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.AddResponse (Source)'
-[2022-07-07 09:30:23.404 +05:30 INF] ResponseBody: Invalid Response Type : 0
-[2022-07-07 09:30:23.407 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Drive/AddResponse application/json-patch+json 81 - 400 - text/plain;+charset=utf-8 505.2039ms
-[2022-07-07 09:35:55.754 +05:30 INF] Application is shutting down...
-[2022-07-07 09:36:02.736 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 09:36:02.850 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 09:36:02.851 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 09:36:02.855 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 09:36:02.855 +05:30 INF] Hosting environment: Development
-[2022-07-07 09:36:02.855 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 09:36:15.383 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Pool/RemovePool?poolId=1 - 0
-[2022-07-07 09:36:15.425 +05:30 INF] CORS policy execution successful.
-[2022-07-07 09:36:15.563 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Pool/RemovePool
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 0
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 09:36:15.565 +05:30 INF] Executing endpoint 'IMS.Controllers.PoolController.RemovePool (Source)'
-[2022-07-07 09:36:15.580 +05:30 INF] Route matched with {action = "RemovePool", controller = "Pool"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RemovePool(Int32) on controller IMS.Controllers.PoolController (Source).
-[2022-07-07 09:36:16.333 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:36:16.753 +05:30 INF] Executed DbCommand (42ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Pools] AS [p]
-        WHERE ([p].[PoolId] = @__poolId_0) AND ([p].[IsActive] = CAST(0 AS bit))) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
-[2022-07-07 09:36:16.768 +05:30 INF] Pool service : RemovePool(int poolId): Pool contains active drives.
-[2022-07-07 09:36:16.768 +05:30 INF] Pool Service : RemovePool(int poolId) : Pool contains active drives.
-[2022-07-07 09:36:16.776 +05:30 INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
-[2022-07-07 09:36:16.777 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: text/plain; charset=utf-8
-[2022-07-07 09:36:16.782 +05:30 INF] Executed action IMS.Controllers.PoolController.RemovePool (Source) in 1198.0445ms
-[2022-07-07 09:36:16.782 +05:30 INF] Executed endpoint 'IMS.Controllers.PoolController.RemovePool (Source)'
-[2022-07-07 09:36:16.783 +05:30 INF] ResponseBody: Pool contains active drives.
-[2022-07-07 09:36:16.787 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Pool/RemovePool?poolId=1 - 0 - 400 - text/plain;+charset=utf-8 1406.5672ms
-[2022-07-07 09:39:21.282 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewToatlDrives - -
-[2022-07-07 09:39:21.294 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: GET
-Scheme: https
-PathBase: 
-Path: /Drive/ViewToatlDrives
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Cookie: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 09:39:21.294 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewToatlDrives (Source)'
-[2022-07-07 09:39:21.295 +05:30 INF] Route matched with {action = "ViewToatlDrives", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewToatlDrives() on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 09:39:21.298 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:39:21.366 +05:30 INF] Executed DbCommand (5ms) [Parameters=[@__responseType_0='?' (DbType = Int32), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[ResponseId], [e].[DriveId], [e].[EmployeeId], [e].[ResponseType], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [EmployeeDriveResponse] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-WHERE ([e].[ResponseType] = @__responseType_0) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 09:39:21.434 +05:30 INF] Executed DbCommand (0ms) [Parameters=[@__responseType_0='?' (DbType = Int32), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[ResponseId], [e].[DriveId], [e].[EmployeeId], [e].[ResponseType], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [EmployeeDriveResponse] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-WHERE ([e].[ResponseType] = @__responseType_0) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 09:39:21.453 +05:30 INF] Drive Service : ViewTotalDrives(int employeeId) : Invalid Response Type : 3 :    at IMS.Validations.EmployeeResponseValidation.IsResponseTypeValid(Int32 responseType) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\EmployeeResponseValidation.cs:line 19
-   at IMS.DataAccessLayer.DriveDataAccessLayer.GetResponseDetailsByStatus(Int32 responseType, Int32 employeeId) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\DataAcessLayer\Drive\DriveDataAccessLayer.cs:line 324
-   at IMS.Service.DriveService.ViewTotalDrives(Int32 employeeId) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 560
-[2022-07-07 09:39:21.453 +05:30 INF] Drive Controller : ViewEmployeeDashboard(int employeeId) : Invalid Response Type : 3
-[2022-07-07 09:39:21.454 +05:30 INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
-[2022-07-07 09:39:21.515 +05:30 INF] Response:
-StatusCode: 500
-Content-Type: application/problem+json; charset=utf-8
-Content-Length: 240
-[2022-07-07 09:39:21.515 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewToatlDrives (Source) in 219.932ms
-[2022-07-07 09:39:21.515 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewToatlDrives (Source)'
-[2022-07-07 09:39:21.515 +05:30 INF] ResponseBody: {"type":"https://tools.ietf.org/html/rfc7231#section-6.6.1","title":"An error occurred while processing your request.","status":500,"detail":"Sorry internal error occured","traceId":"00-7963f0ee235554a6bb38c8588aef4935-bd17fdc348553218-00"}
-[2022-07-07 09:39:21.516 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewToatlDrives - - - 500 240 application/problem+json;+charset=utf-8 233.6682ms
-[2022-07-07 09:39:32.685 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewToatlDrives - -
-[2022-07-07 09:39:32.694 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: GET
-Scheme: https
-PathBase: 
-Path: /Drive/ViewToatlDrives
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Cookie: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 09:39:32.694 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewToatlDrives (Source)'
-[2022-07-07 09:39:32.694 +05:30 INF] Route matched with {action = "ViewToatlDrives", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewToatlDrives() on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 09:39:32.734 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:39:32.740 +05:30 INF] Executed DbCommand (6ms) [Parameters=[@__responseType_0='?' (DbType = Int32), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[ResponseId], [e].[DriveId], [e].[EmployeeId], [e].[ResponseType], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [EmployeeDriveResponse] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-WHERE ([e].[ResponseType] = @__responseType_0) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 09:39:32.741 +05:30 INF] Executed DbCommand (0ms) [Parameters=[@__responseType_0='?' (DbType = Int32), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[ResponseId], [e].[DriveId], [e].[EmployeeId], [e].[ResponseType], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [EmployeeDriveResponse] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-WHERE ([e].[ResponseType] = @__responseType_0) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 09:39:32.741 +05:30 INF] Drive Service : ViewTotalDrives(int employeeId) : Invalid Response Type : 3 :    at IMS.Validations.EmployeeResponseValidation.IsResponseTypeValid(Int32 responseType) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\EmployeeResponseValidation.cs:line 19
-   at IMS.DataAccessLayer.DriveDataAccessLayer.GetResponseDetailsByStatus(Int32 responseType, Int32 employeeId) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\DataAcessLayer\Drive\DriveDataAccessLayer.cs:line 324
-   at IMS.Service.DriveService.ViewTotalDrives(Int32 employeeId) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 560
-[2022-07-07 09:39:32.741 +05:30 INF] Drive Controller : ViewEmployeeDashboard(int employeeId) : Invalid Response Type : 3
-[2022-07-07 09:39:32.742 +05:30 INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
-[2022-07-07 09:39:32.742 +05:30 INF] Response:
-StatusCode: 500
-Content-Type: application/problem+json; charset=utf-8
-Content-Length: 240
-[2022-07-07 09:39:32.742 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewToatlDrives (Source) in 47.701ms
-[2022-07-07 09:39:32.742 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewToatlDrives (Source)'
-[2022-07-07 09:39:32.742 +05:30 INF] ResponseBody: {"type":"https://tools.ietf.org/html/rfc7231#section-6.6.1","title":"An error occurred while processing your request.","status":500,"detail":"Sorry internal error occured","traceId":"00-398ff7fbbd56e39a6b3dfee83d441f7f-fadd45ee6dafc64f-00"}
-[2022-07-07 09:39:32.742 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewToatlDrives - - - 500 240 application/problem+json;+charset=utf-8 56.9906ms
-[2022-07-07 09:40:06.781 +05:30 INF] Application is shutting down...
-[2022-07-07 09:40:12.588 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 09:40:12.730 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 09:40:12.731 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 09:40:12.734 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 09:40:12.734 +05:30 INF] Hosting environment: Development
-[2022-07-07 09:40:12.734 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 09:40:20.501 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewToatlDrives - -
-[2022-07-07 09:40:20.679 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: GET
-Scheme: https
-PathBase: 
-Path: /Drive/ViewToatlDrives
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Cookie: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 09:40:20.679 +05:30 INF] Response:
-StatusCode: 404
-[2022-07-07 09:40:20.681 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewToatlDrives - - - 404 0 - 183.1628ms
-[2022-07-07 09:40:32.835 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Swagger/index.html - -
-[2022-07-07 09:40:32.870 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Swagger/index.html - - - 200 - text/html;charset=utf-8 34.2746ms
-[2022-07-07 09:40:32.883 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Swagger/swagger-ui.css - -
-[2022-07-07 09:40:32.893 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Swagger/swagger-ui-bundle.js - -
-[2022-07-07 09:40:32.893 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Swagger/swagger-ui-standalone-preset.js - -
-[2022-07-07 09:40:32.907 +05:30 INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
-[2022-07-07 09:40:32.907 +05:30 INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
-[2022-07-07 09:40:32.907 +05:30 INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
-[2022-07-07 09:40:32.907 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Swagger/swagger-ui.css - - - 200 143632 text/css 24.5689ms
-[2022-07-07 09:40:32.908 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 15.1850ms
-[2022-07-07 09:40:32.908 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 15.1674ms
-[2022-07-07 09:40:33.023 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/swagger/v1/swagger.json - -
-[2022-07-07 09:40:33.027 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Swagger/favicon-32x32.png - -
-[2022-07-07 09:40:33.027 +05:30 INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
-[2022-07-07 09:40:33.027 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Swagger/favicon-32x32.png - - - 200 628 image/png 0.4678ms
-[2022-07-07 09:40:33.143 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 119.9200ms
-[2022-07-07 09:40:50.806 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0013&password=Pass%4012345 - 0
-[2022-07-07 09:40:50.812 +05:30 INF] CORS policy execution successful.
-[2022-07-07 09:40:50.813 +05:30 INF] Request:
+[2022-07-07 15:01:53.637 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-07-07 15:01:53.936 +05:30 INF] Now listening on: https://localhost:7072
+[2022-07-07 15:01:53.936 +05:30 INF] Now listening on: http://localhost:5236
+[2022-07-07 15:01:53.941 +05:30 INF] Application started. Press Ctrl+C to shut down.
+[2022-07-07 15:01:53.944 +05:30 INF] Hosting environment: Development
+[2022-07-07 15:01:53.944 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
+[2022-07-07 15:01:54.241 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Swagger/index.html - -
+[2022-07-07 15:01:54.367 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Swagger/index.html - - - 200 - text/html;charset=utf-8 129.4869ms
+[2022-07-07 15:01:54.395 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Swagger/swagger-ui-bundle.js - -
+[2022-07-07 15:01:54.395 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Swagger/swagger-ui-standalone-preset.js - -
+[2022-07-07 15:01:54.395 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Swagger/swagger-ui.css - -
+[2022-07-07 15:01:54.425 +05:30 INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+[2022-07-07 15:01:54.425 +05:30 INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+[2022-07-07 15:01:54.426 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Swagger/swagger-ui.css - - - 200 143632 text/css 31.8789ms
+[2022-07-07 15:01:54.429 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 34.7633ms
+[2022-07-07 15:01:54.438 +05:30 INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+[2022-07-07 15:01:54.438 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 43.6632ms
+[2022-07-07 15:01:55.460 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/swagger/v1/swagger.json - -
+[2022-07-07 15:01:55.669 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 209.2117ms
+[2022-07-07 15:02:21.966 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0010&password=Pass%4012345 - 0
+[2022-07-07 15:02:21.970 +05:30 INF] CORS policy execution successful.
+[2022-07-07 15:02:22.006 +05:30 INF] Request:
 Protocol: HTTP/2
 Method: POST
 Scheme: https
@@ -279,10 +41,10 @@ sec-ch-ua-platform: [Redacted]
 sec-fetch-site: [Redacted]
 sec-fetch-mode: [Redacted]
 sec-fetch-dest: [Redacted]
-[2022-07-07 09:40:50.815 +05:30 INF] Executing endpoint 'IMS.Controllers.TokenController.AuthToken (Source)'
-[2022-07-07 09:40:50.832 +05:30 INF] Route matched with {action = "AuthToken", controller = "Token"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AuthToken(System.String, System.String) on controller IMS.Controllers.TokenController (Source).
-[2022-07-07 09:40:51.544 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:40:51.961 +05:30 INF] Executed DbCommand (29ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+[2022-07-07 15:02:22.008 +05:30 INF] Executing endpoint 'IMS.Controllers.TokenController.AuthToken (Source)'
+[2022-07-07 15:02:22.027 +05:30 INF] Route matched with {action = "AuthToken", controller = "Token"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AuthToken(System.String, System.String) on controller IMS.Controllers.TokenController (Source).
+[2022-07-07 15:02:22.883 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 15:02:23.390 +05:30 INF] Executed DbCommand (29ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
 SELECT CASE
     WHEN EXISTS (
         SELECT 1
@@ -290,7 +52,7 @@ SELECT CASE
         WHERE [e].[EmployeeAceNumber] = @__employeeAceNumber_0) THEN CAST(1 AS bit)
     ELSE CAST(0 AS bit)
 END
-[2022-07-07 09:40:51.988 +05:30 INF] Executed DbCommand (6ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+[2022-07-07 15:02:23.411 +05:30 INF] Executed DbCommand (3ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
 SELECT CASE
     WHEN EXISTS (
         SELECT 1
@@ -298,7 +60,7 @@ SELECT CASE
         WHERE ([e].[EmployeeAceNumber] = @__employeeAceNumber_0) AND ([e].[Password] = @__password_1)) THEN CAST(1 AS bit)
     ELSE CAST(0 AS bit)
 END
-[2022-07-07 09:40:51.992 +05:30 INF] Executed DbCommand (2ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+[2022-07-07 15:02:23.415 +05:30 INF] Executed DbCommand (2ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
 SELECT CASE
     WHEN EXISTS (
         SELECT 1
@@ -306,7 +68,7 @@ SELECT CASE
         WHERE (([e].[EmployeeAceNumber] = @__employeeAceNumber_0) AND ([e].[Password] = @__password_1)) AND ([e].[IsActive] = CAST(1 AS bit))) THEN CAST(1 AS bit)
     ELSE CAST(0 AS bit)
 END
-[2022-07-07 09:40:51.995 +05:30 INF] Executed DbCommand (2ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+[2022-07-07 15:02:23.421 +05:30 INF] Executed DbCommand (5ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
 SELECT CASE
     WHEN EXISTS (
         SELECT 1
@@ -314,701 +76,28 @@ SELECT CASE
         WHERE (([e].[EmployeeAceNumber] = @__employeeAceNumber_0) AND ([e].[Password] = @__password_1)) AND ([e].[IsAdminAccepted] = CAST(1 AS bit))) THEN CAST(1 AS bit)
     ELSE CAST(0 AS bit)
 END
-[2022-07-07 09:40:52.073 +05:30 INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+[2022-07-07 15:02:23.508 +05:30 INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 SELECT [e].[EmployeeId], [e].[DepartmentId], [e].[EmailId], [e].[EmployeeAceNumber], [e].[IsActive], [e].[IsAdminAccepted], [e].[IsAdminResponded], [e].[Name], [e].[Password], [e].[ProjectId], [e].[RoleId], [d].[DepartmentId], [d].[DepartmentName], [d].[IsActive], [r].[RoleId], [r].[IsActive], [r].[IsManagement], [r].[RoleName], [p].[ProjectId], [p].[DepartmentId], [p].[IsActive], [p].[ProjectName]
 FROM [Employees] AS [e]
 INNER JOIN [Departments] AS [d] ON [e].[DepartmentId] = [d].[DepartmentId]
 INNER JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
 INNER JOIN [Projects] AS [p] ON [e].[ProjectId] = [p].[ProjectId]
-[2022-07-07 09:40:52.145 +05:30 INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType38`6[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 09:40:52.210 +05:30 INF] Response:
-StatusCode: 200
-Content-Type: application/json; charset=utf-8
-Content-Length: 840
-[2022-07-07 09:40:52.215 +05:30 INF] Executed action IMS.Controllers.TokenController.AuthToken (Source) in 1379.4256ms
-[2022-07-07 09:40:52.216 +05:30 INF] Executed endpoint 'IMS.Controllers.TokenController.AuthToken (Source)'
-[2022-07-07 09:40:52.218 +05:30 INF] ResponseBody: {"token":"eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwidHlwIjoiSldUIn0..p1XQz1QKO6l7lM-0DQY7TQ.wwOD4W8aYFM8oDGcI_W7xhf0X1qvSL5bRC7PFISbKDJtiT9dbHtO7QfGHotxeP65oCwjEHews6owxytkkfJuM1QEqF0CyWCF2xVsuOKJc4MOv54ZaS09lLy9mPTZYiMSq5rbOHZiV-GULnCSUekCnq8t3GILGI89SavVbrFQ8aYfMkE0NbsnUn80I0Ih9nyonn8EZX4vQ4mk7OT-sgZMKmu4VniVZZ5LOrWEKw7gByOUTJYgXakDP1qyGFHlbURXpt19TEcyVtwE7AyWO_dTvJxPFRxISXeJ8qKb-nYhUMnCjk4pnf3eNDQPTS8JOIu5TO9lV-Dthr4zO_smUF6ALuqnHZa59c1EJLjt-bsX-cpDWC3tDBrXzi2L8tC2hu-Q00XtVRKWlQvjiktUtb4-rKmE0wd1lYfMSCZE3WJGNMHn3F1AwIiy7xSWrmY9BQiHRmAjqzd_rL4lUYfCxwZavTGwHekqA6jTSZI9kkN8wtC3Z4lwlUsoPbnWmxZGwtIwfsI55MIPrAwfEM9XnIDs-ZtbKNLbWksUGEITuzrhagKmI8P5mA8ayOwTe0WG7LNwjX2sCF8MaUhr07aiPbr7nA.Z8OgyWwvD4YUyF5uoP2qVOUjHRuAaGmXHUri55eTAbc","expiryInMinutes":360,"isAdmin":false,"isTAC":false,"isManagement":true,"userName":"Girish Kumar"}
-[2022-07-07 09:40:52.221 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0013&password=Pass%4012345 - 0 - 200 840 application/json;+charset=utf-8 1415.1827ms
-[2022-07-07 09:41:14.358 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewTotalDrives - -
-[2022-07-07 09:41:14.371 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: GET
-Scheme: https
-PathBase: 
-Path: /Drive/ViewTotalDrives
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Cookie: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 09:41:14.371 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewTotalDrives (Source)'
-[2022-07-07 09:41:14.372 +05:30 INF] Route matched with {action = "ViewTotalDrives", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewTotalDrives() on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 09:41:14.375 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:41:14.401 +05:30 INF] Executed DbCommand (4ms) [Parameters=[@__responseType_0='?' (DbType = Int32), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[ResponseId], [e].[DriveId], [e].[EmployeeId], [e].[ResponseType], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [EmployeeDriveResponse] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-WHERE ([e].[ResponseType] = @__responseType_0) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 09:41:14.449 +05:30 INF] Executed DbCommand (4ms) [Parameters=[@__responseType_0='?' (DbType = Int32), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[ResponseId], [e].[DriveId], [e].[EmployeeId], [e].[ResponseType], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [EmployeeDriveResponse] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-WHERE ([e].[ResponseType] = @__responseType_0) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 09:41:14.473 +05:30 INF] Drive Service : ViewTotalDrives(int employeeId) : Invalid Response Type : 3 :    at IMS.Validations.EmployeeResponseValidation.IsResponseTypeValid(Int32 responseType) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\EmployeeResponseValidation.cs:line 19
-   at IMS.DataAccessLayer.DriveDataAccessLayer.GetResponseDetailsByStatus(Int32 responseType, Int32 employeeId) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\DataAcessLayer\Drive\DriveDataAccessLayer.cs:line 324
-   at IMS.Service.DriveService.ViewTotalDrives(Int32 employeeId) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 560
-[2022-07-07 09:41:14.473 +05:30 INF] Drive Controller : ViewEmployeeDashboard(int employeeId) : Invalid Response Type : 3
-[2022-07-07 09:41:14.474 +05:30 INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
-[2022-07-07 09:41:14.483 +05:30 INF] Response:
-StatusCode: 500
-Content-Type: application/problem+json; charset=utf-8
-Content-Length: 240
-[2022-07-07 09:41:14.483 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewTotalDrives (Source) in 111.4443ms
-[2022-07-07 09:41:14.483 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewTotalDrives (Source)'
-[2022-07-07 09:41:14.483 +05:30 INF] ResponseBody: {"type":"https://tools.ietf.org/html/rfc7231#section-6.6.1","title":"An error occurred while processing your request.","status":500,"detail":"Sorry internal error occured","traceId":"00-6866e64311df1dd916a7596a94259db4-9011b0c99b8b380e-00"}
-[2022-07-07 09:41:14.484 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewTotalDrives - - - 500 240 application/problem+json;+charset=utf-8 125.7314ms
-[2022-07-07 09:42:45.366 +05:30 INF] Application is shutting down...
-[2022-07-07 09:42:51.153 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 09:42:51.259 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 09:42:51.260 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 09:42:51.265 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 09:42:51.265 +05:30 INF] Hosting environment: Development
-[2022-07-07 09:42:51.265 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 09:42:53.231 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewTotalDrives - -
-[2022-07-07 09:42:53.465 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: GET
-Scheme: https
-PathBase: 
-Path: /Drive/ViewTotalDrives
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Cookie: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 09:42:53.468 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewTotalDrives (Source)'
-[2022-07-07 09:42:53.477 +05:30 INF] Route matched with {action = "ViewTotalDrives", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewTotalDrives() on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 09:42:54.182 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:42:54.619 +05:30 INF] Executed DbCommand (31ms) [Parameters=[@__responseType_0='?' (DbType = Int32), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[ResponseId], [e].[DriveId], [e].[EmployeeId], [e].[ResponseType], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [EmployeeDriveResponse] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-WHERE ([e].[ResponseType] = @__responseType_0) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 09:42:54.738 +05:30 INF] Executed DbCommand (5ms) [Parameters=[@__responseType_0='?' (DbType = Int32), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[ResponseId], [e].[DriveId], [e].[EmployeeId], [e].[ResponseType], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [EmployeeDriveResponse] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-WHERE ([e].[ResponseType] = @__responseType_0) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 09:42:54.745 +05:30 INF] Executed DbCommand (6ms) [Parameters=[@__responseType_0='?' (DbType = Int32), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[ResponseId], [e].[DriveId], [e].[EmployeeId], [e].[ResponseType], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [EmployeeDriveResponse] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-WHERE ([e].[ResponseType] = @__responseType_0) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 09:42:54.750 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectEnumerableIterator`2[[IMS.Models.EmployeeDriveResponse, Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[<>f__AnonymousType30`8[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
-[2022-07-07 09:42:54.862 +05:30 INF] Response:
-StatusCode: 200
-Content-Type: application/json; charset=utf-8
-Content-Length: 211
-[2022-07-07 09:42:54.869 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewTotalDrives (Source) in 1387.268ms
-[2022-07-07 09:42:54.869 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewTotalDrives (Source)'
-[2022-07-07 09:42:54.870 +05:30 INF] ResponseBody: [{"employeeDriveResponseId":12,"driveName":"Freshers .Net Drive T","fromDate":"2022-07-05","toDate":"2022-07-06","driveLocation":"Chennai","drivePool":"Fresher .NET","driveMode":"Offline","response":"Accepted"}]
-[2022-07-07 09:42:54.877 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewTotalDrives - - - 200 211 application/json;+charset=utf-8 1649.6840ms
-[2022-07-07 09:49:41.992 +05:30 INF] Application is shutting down...
-[2022-07-07 09:51:04.046 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:51:19.813 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:51:20.032 +05:30 INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1
-[2022-07-07 09:51:20.051 +05:30 INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
-[2022-07-07 09:51:20.053 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT 1
-[2022-07-07 09:51:20.054 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
-[2022-07-07 09:51:20.068 +05:30 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT [MigrationId], [ProductVersion]
-FROM [__EFMigrationsHistory]
-ORDER BY [MigrationId];
-[2022-07-07 09:51:20.079 +05:30 INF] Applying migration '20220707042104_DAILY_SEEDING_JULY_7'.
-[2022-07-07 09:51:20.126 +05:30 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912925+05:30', [FromDate] = '2022-07-07T09:51:04.0912908+05:30', [ToDate] = '2022-07-08T09:51:04.0912920+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912928+05:30'
-WHERE [DriveId] = 1;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.127 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912931+05:30', [FromDate] = '2022-07-10T09:51:04.0912929+05:30', [ToDate] = '2022-07-11T09:51:04.0912929+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912931+05:30'
-WHERE [DriveId] = 2;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.128 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912934+05:30', [FromDate] = '2022-07-13T09:51:04.0912932+05:30', [ToDate] = '2022-07-14T09:51:04.0912933+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912934+05:30'
-WHERE [DriveId] = 3;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.129 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912936+05:30', [FromDate] = '2022-07-07T09:51:04.0912935+05:30', [ToDate] = '2022-07-08T09:51:04.0912935+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912937+05:30'
-WHERE [DriveId] = 4;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.130 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912939+05:30', [FromDate] = '2022-07-07T09:51:04.0912938+05:30', [ToDate] = '2022-07-07T09:51:04.0912938+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912939+05:30'
-WHERE [DriveId] = 5;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.131 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912942+05:30', [FromDate] = '2022-07-10T09:51:04.0912940+05:30', [ToDate] = '2022-07-07T09:51:04.0912941+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912942+05:30'
-WHERE [DriveId] = 6;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.131 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912944+05:30', [FromDate] = '2022-07-13T09:51:04.0912943+05:30', [ToDate] = '2022-07-07T09:51:04.0912944+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912945+05:30'
-WHERE [DriveId] = 7;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.132 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912947+05:30', [FromDate] = '2022-07-07T09:51:04.0912946+05:30', [ToDate] = '2022-07-07T09:51:04.0912946+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912947+05:30'
-WHERE [DriveId] = 8;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.132 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912950+05:30', [FromDate] = '2022-07-07T09:51:04.0912948+05:30', [ToDate] = '2022-07-08T09:51:04.0912949+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912950+05:30'
-WHERE [DriveId] = 9;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.133 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912952+05:30', [FromDate] = '2022-07-10T09:51:04.0912951+05:30', [ToDate] = '2022-07-11T09:51:04.0912951+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912953+05:30'
-WHERE [DriveId] = 10;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.133 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912955+05:30', [FromDate] = '2022-07-13T09:51:04.0912954+05:30', [ToDate] = '2022-07-14T09:51:04.0912954+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912956+05:30'
-WHERE [DriveId] = 11;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.133 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912958+05:30', [FromDate] = '2022-07-07T09:51:04.0912956+05:30', [ToDate] = '2022-07-08T09:51:04.0912957+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912958+05:30'
-WHERE [DriveId] = 12;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.133 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912960+05:30', [FromDate] = '2022-07-07T09:51:04.0912959+05:30', [ToDate] = '2022-07-08T09:51:04.0912959+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912961+05:30'
-WHERE [DriveId] = 13;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.134 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912963+05:30', [FromDate] = '2022-07-10T09:51:04.0912961+05:30', [ToDate] = '2022-07-11T09:51:04.0912962+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912963+05:30'
-WHERE [DriveId] = 14;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.134 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912965+05:30', [FromDate] = '2022-07-13T09:51:04.0912964+05:30', [ToDate] = '2022-07-14T09:51:04.0912964+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912966+05:30'
-WHERE [DriveId] = 15;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.135 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912968+05:30', [FromDate] = '2022-07-07T09:51:04.0912967+05:30', [ToDate] = '2022-07-08T09:51:04.0912967+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912969+05:30'
-WHERE [DriveId] = 16;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.136 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912971+05:30', [FromDate] = '2022-07-07T09:51:04.0912969+05:30', [ToDate] = '2022-07-07T09:51:04.0912970+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912971+05:30'
-WHERE [DriveId] = 17;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.136 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912973+05:30', [FromDate] = '2022-07-10T09:51:04.0912972+05:30', [ToDate] = '2022-07-07T09:51:04.0912972+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912974+05:30'
-WHERE [DriveId] = 18;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.136 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912975+05:30', [FromDate] = '2022-07-13T09:51:04.0912974+05:30', [ToDate] = '2022-07-07T09:51:04.0912975+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912976+05:30'
-WHERE [DriveId] = 19;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.137 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0912978+05:30', [FromDate] = '2022-07-07T09:51:04.0912977+05:30', [ToDate] = '2022-07-07T09:51:04.0912977+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0912978+05:30'
-WHERE [DriveId] = 20;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.137 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0913001+05:30', [FromDate] = '2022-07-07T09:51:04.0912999+05:30', [ToDate] = '2022-07-08T09:51:04.0913000+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0913001+05:30'
-WHERE [DriveId] = 21;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.137 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0913004+05:30', [FromDate] = '2022-07-10T09:51:04.0913003+05:30', [ToDate] = '2022-07-11T09:51:04.0913003+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0913005+05:30'
-WHERE [DriveId] = 22;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.138 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0913007+05:30', [FromDate] = '2022-07-13T09:51:04.0913006+05:30', [ToDate] = '2022-07-14T09:51:04.0913006+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0913007+05:30'
-WHERE [DriveId] = 23;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.138 +05:30 INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-UPDATE [Drives] SET [AddedOn] = '2022-07-07T09:51:04.0913009+05:30', [FromDate] = '2022-07-07T09:51:04.0913008+05:30', [ToDate] = '2022-07-08T09:51:04.0913009+05:30', [UpdatedOn] = '2022-07-07T09:51:04.0913010+05:30'
-WHERE [DriveId] = 24;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:51:20.139 +05:30 INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20220707042104_DAILY_SEEDING_JULY_7', N'6.0.6');
-[2022-07-07 09:53:21.482 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 09:53:21.603 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 09:53:21.604 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 09:53:21.609 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 09:53:21.609 +05:30 INF] Hosting environment: Development
-[2022-07-07 09:53:21.609 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 09:54:01.299 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Pool/RemovePool?poolId=1 - 0
-[2022-07-07 09:54:01.343 +05:30 INF] CORS policy execution successful.
-[2022-07-07 09:54:01.500 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Pool/RemovePool
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 0
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 09:54:01.502 +05:30 INF] Executing endpoint 'IMS.Controllers.PoolController.RemovePool (Source)'
-[2022-07-07 09:54:01.519 +05:30 INF] Route matched with {action = "RemovePool", controller = "Pool"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RemovePool(Int32) on controller IMS.Controllers.PoolController (Source).
-[2022-07-07 09:54:02.326 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:54:02.946 +05:30 INF] Executed DbCommand (39ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Pools] AS [p]
-        WHERE ([p].[PoolId] = @__poolId_0) AND ([p].[IsActive] = CAST(0 AS bit))) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
-[2022-07-07 09:54:02.985 +05:30 INF] Executed DbCommand (5ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Drives] AS [d]
-        WHERE ([d].[PoolId] = @__poolId_0) AND ([d].[ToDate] >= GETDATE())) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
-[2022-07-07 09:54:02.986 +05:30 INF] Pool service : RemovePool(int poolId): Pool contains active drives.
-[2022-07-07 09:54:02.986 +05:30 INF] Pool Service : RemovePool(int poolId) : Pool contains active drives.
-[2022-07-07 09:54:02.994 +05:30 INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
-[2022-07-07 09:54:02.995 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: text/plain; charset=utf-8
-[2022-07-07 09:54:03.003 +05:30 INF] Executed action IMS.Controllers.PoolController.RemovePool (Source) in 1478.685ms
-[2022-07-07 09:54:03.003 +05:30 INF] Executed endpoint 'IMS.Controllers.PoolController.RemovePool (Source)'
-[2022-07-07 09:54:03.004 +05:30 INF] ResponseBody: Pool contains active drives.
-[2022-07-07 09:54:03.010 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Pool/RemovePool?poolId=1 - 0 - 400 - text/plain;+charset=utf-8 1712.7045ms
-[2022-07-07 09:54:11.688 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Pool/RemovePool?poolId=21 - 0
-[2022-07-07 09:54:11.691 +05:30 INF] CORS policy execution successful.
-[2022-07-07 09:54:11.693 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Pool/RemovePool
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 0
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 09:54:11.693 +05:30 INF] Executing endpoint 'IMS.Controllers.PoolController.RemovePool (Source)'
-[2022-07-07 09:54:11.694 +05:30 INF] Route matched with {action = "RemovePool", controller = "Pool"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult RemovePool(Int32) on controller IMS.Controllers.PoolController (Source).
-[2022-07-07 09:54:11.696 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 09:54:11.699 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Pools] AS [p]
-        WHERE ([p].[PoolId] = @__poolId_0) AND ([p].[IsActive] = CAST(0 AS bit))) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
-[2022-07-07 09:54:11.701 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Drives] AS [d]
-        WHERE ([d].[PoolId] = @__poolId_0) AND ([d].[ToDate] >= GETDATE())) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
-[2022-07-07 09:54:11.741 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT TOP(1) [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName]
-FROM [Pools] AS [p]
-WHERE [p].[PoolId] = @__p_0
-[2022-07-07 09:54:11.856 +05:30 INF] Executed DbCommand (13ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (Size = 25)], CommandType='"Text"', CommandTimeout='30']
-SET NOCOUNT ON;
-UPDATE [Pools] SET [DepartmentId] = @p0, [IsActive] = @p1, [PoolName] = @p2
-WHERE [PoolId] = @p3;
-SELECT @@ROWCOUNT;
-[2022-07-07 09:54:11.864 +05:30 INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType39`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 09:54:11.934 +05:30 INF] Response:
-StatusCode: 200
-Content-Type: application/json; charset=utf-8
-Content-Length: 39
-[2022-07-07 09:54:11.935 +05:30 INF] Executed action IMS.Controllers.PoolController.RemovePool (Source) in 241.4701ms
-[2022-07-07 09:54:11.935 +05:30 INF] Executed endpoint 'IMS.Controllers.PoolController.RemovePool (Source)'
-[2022-07-07 09:54:11.935 +05:30 INF] ResponseBody: {"message":"Pool Removed Successfully"}
-[2022-07-07 09:54:11.936 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Pool/RemovePool?poolId=21 - 0 - 200 39 application/json;+charset=utf-8 248.2695ms
-[2022-07-07 10:08:24.906 +05:30 INF] Application is shutting down...
-[2022-07-07 10:08:34.011 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:08:34.180 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:08:34.180 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:08:34.187 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:08:34.187 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:08:34.187 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:31:29.587 +05:30 INF] Application is shutting down...
-[2022-07-07 10:31:38.637 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:31:38.805 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:31:38.805 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:31:38.810 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:31:38.810 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:31:38.810 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:31:45.062 +05:30 INF] Application is shutting down...
-[2022-07-07 10:36:13.670 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:36:13.803 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:36:13.803 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:36:13.807 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:36:13.807 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:36:13.807 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:36:13.990 +05:30 INF] Request starting HTTP/2 OPTIONS https://localhost:7072/Drive/ViewTodaysInterview - -
-[2022-07-07 10:36:13.990 +05:30 INF] Request starting HTTP/2 OPTIONS https://localhost:7072/Pool/ViewPools - -
-[2022-07-07 10:36:14.028 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:14.028 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:14.032 +05:30 INF] Request finished HTTP/2 OPTIONS https://localhost:7072/Drive/ViewTodaysInterview - - - 204 - - 44.1225ms
-[2022-07-07 10:36:14.032 +05:30 INF] Request finished HTTP/2 OPTIONS https://localhost:7072/Pool/ViewPools - - - 204 - - 44.1226ms
-[2022-07-07 10:36:14.034 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Pool/ViewPools application/json -
-[2022-07-07 10:36:14.036 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewTodaysInterview application/json -
-[2022-07-07 10:36:14.048 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:14.048 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:14.200 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: GET
-Scheme: https
-PathBase: 
-Path: /Drive/ViewTodaysInterview
-Accept: application/json, text/plain, */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json
-Origin: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:36:14.200 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: GET
-Scheme: https
-PathBase: 
-Path: /Pool/ViewPools
-Accept: application/json, text/plain, */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json
-Origin: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:36:14.202 +05:30 INF] Executing endpoint 'IMS.Controllers.PoolController.ViewPools (Source)'
-[2022-07-07 10:36:14.202 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewTodaysInterview (Source)'
-[2022-07-07 10:36:14.212 +05:30 INF] Route matched with {action = "ViewPools", controller = "Pool"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewPools() on controller IMS.Controllers.PoolController (Source).
-[2022-07-07 10:36:14.212 +05:30 INF] Route matched with {action = "ViewTodaysInterview", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewTodaysInterview() on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:36:14.920 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 10:36:14.920 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 10:36:15.348 +05:30 INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [d].[DepartmentId], [d].[DepartmentName], [d].[IsActive]
-FROM [Pools] AS [p]
-INNER JOIN [Departments] AS [d] ON [p].[DepartmentId] = [d].[DepartmentId]
-[2022-07-07 10:36:15.363 +05:30 INF] Executed DbCommand (31ms) [Parameters=[@__status_0='?' (DbType = Boolean), @__employeeId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[EmployeeAvailabilityId], [e].[CancellationReason], [e].[Comments], [e].[DriveId], [e].[EmployeeId], [e].[From], [e].[InterviewDate], [e].[IsInterviewCancelled], [e].[IsInterviewScheduled], [e].[To], [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [l].[LocationId], [l].[IsActive], [l].[LocationName], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName]
-FROM [EmployeeAvailability] AS [e]
-INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
-INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
-INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
-WHERE (([e].[IsInterviewCancelled] = @__status_0) AND ([d].[IsCancelled] = CAST(0 AS bit))) AND ([e].[EmployeeId] = @__employeeId_1)
-[2022-07-07 10:36:15.401 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+WhereSelectListIterator`2[[IMS.Models.Pool, Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[<>f__AnonymousType35`4[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
-[2022-07-07 10:36:15.411 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+WhereSelectListIterator`2[[IMS.Models.EmployeeAvailability, Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[<>f__AnonymousType27`9[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Nullable`1[[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
-[2022-07-07 10:36:15.464 +05:30 INF] Response:
-StatusCode: 200
-Content-Type: application/json; charset=utf-8
-Content-Length: 1254
-[2022-07-07 10:36:15.464 +05:30 INF] Response:
-StatusCode: 200
-Content-Type: application/json; charset=utf-8
-Content-Length: 435
-[2022-07-07 10:36:15.470 +05:30 INF] Executed action IMS.Controllers.PoolController.ViewPools (Source) in 1253.7438ms
-[2022-07-07 10:36:15.470 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewTodaysInterview (Source) in 1253.7521ms
-[2022-07-07 10:36:15.470 +05:30 INF] Executed endpoint 'IMS.Controllers.PoolController.ViewPools (Source)'
-[2022-07-07 10:36:15.470 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewTodaysInterview (Source)'
-[2022-07-07 10:36:15.470 +05:30 INF] RequestBody: 
-[2022-07-07 10:36:15.470 +05:30 INF] RequestBody: 
-[2022-07-07 10:36:15.471 +05:30 INF] ResponseBody: [{"poolId":1,"poolName":"Fresher .NET","departmentId":1,"departmentName":".NET"},{"poolId":2,"poolName":"SSE .NET","departmentId":1,"departmentName":".NET"},{"poolId":3,"poolName":"SLO .NET","departmentId":1,"departmentName":".NET"},{"poolId":4,"poolName":"Fresher JAVA","departmentId":2,"departmentName":"JAVA"},{"poolId":5,"poolName":"SSE JAVA","departmentId":2,"departmentName":"JAVA"},{"poolId":6,"poolName":"SLO JAVA","departmentId":2,"departmentName":"JAVA"},{"poolId":7,"poolName":"Fresher ORACLE","departmentId":3,"departmentName":"ORACLE"},{"poolId":8,"poolName":"SSE ORACLE","departmentId":3,"departmentName":"ORACLE"},{"poolId":9,"poolName":"SLO ORACLE","departmentId":3,"departmentName":"ORACLE"},{"poolId":10,"poolName":"Fresher LAMP","departmentId":4,"departmentName":"LAMP"},{"poolId":11,"poolName":"SSE LAMP","departmentId":4,"departmentName":"LAMP"},{"poolId":12,"poolName":"SLO LAMP","departmentId":4,"departmentName":"LAMP"},{"poolId":13,"poolName":"Fresher BFS","departmentId":5,"departmentName":"BFS"},{"poolId":14,"poolName":"SSE BFS","departmentId":5,"departmentName":"BFS"},{"poolId":15,"poolName":"SLO BFS","departmentId":5,"departmentName":"BFS"},{"poolId":21,"poolName":"Testing Java","departmentId":2,"departmentName":"JAVA"}]
-[2022-07-07 10:36:15.471 +05:30 INF] ResponseBody: [{"employeeAvailabilityId":12,"fromTime":"9:00 AM","toTime":"10:00 AM","driveName":"Freshers .Net Drive T","poolName":"Fresher .NET","intervieDate":"2022-07-07","mode":"Offline","locationName":"Chennai","status":true},{"employeeAvailabilityId":13,"fromTime":"9:00 AM","toTime":"10:00 AM","driveName":"Freshers .Net Drive T","poolName":"Fresher .NET","intervieDate":"2022-07-07","mode":"Offline","locationName":"Chennai","status":true}]
-[2022-07-07 10:36:15.474 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewTodaysInterview application/json - - 200 435 application/json;+charset=utf-8 1438.3982ms
-[2022-07-07 10:36:15.474 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Pool/ViewPools application/json - - 200 1254 application/json;+charset=utf-8 1440.4312ms
-[2022-07-07 10:36:22.546 +05:30 INF] Request starting HTTP/2 OPTIONS https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0010&password=Pass@12345 - -
-[2022-07-07 10:36:22.546 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:22.546 +05:30 INF] Request finished HTTP/2 OPTIONS https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0010&password=Pass@12345 - - - 204 - - 0.4767ms
-[2022-07-07 10:36:22.548 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0010&password=Pass@12345 application/json 47
-[2022-07-07 10:36:22.548 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:22.557 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Token/AuthToken/Login
-Accept: application/json, text/plain, */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 47
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:36:22.557 +05:30 INF] Executing endpoint 'IMS.Controllers.TokenController.AuthToken (Source)'
-[2022-07-07 10:36:22.569 +05:30 INF] Route matched with {action = "AuthToken", controller = "Token"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AuthToken(System.String, System.String) on controller IMS.Controllers.TokenController (Source).
-[2022-07-07 10:36:22.646 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 10:36:22.674 +05:30 INF] Executed DbCommand (9ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Employees] AS [e]
-        WHERE [e].[EmployeeAceNumber] = @__employeeAceNumber_0) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
-[2022-07-07 10:36:22.679 +05:30 INF] Executed DbCommand (2ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Employees] AS [e]
-        WHERE ([e].[EmployeeAceNumber] = @__employeeAceNumber_0) AND ([e].[Password] = @__password_1)) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
-[2022-07-07 10:36:22.687 +05:30 INF] Executed DbCommand (4ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Employees] AS [e]
-        WHERE (([e].[EmployeeAceNumber] = @__employeeAceNumber_0) AND ([e].[Password] = @__password_1)) AND ([e].[IsActive] = CAST(1 AS bit))) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
-[2022-07-07 10:36:22.695 +05:30 INF] Executed DbCommand (2ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
-SELECT CASE
-    WHEN EXISTS (
-        SELECT 1
-        FROM [Employees] AS [e]
-        WHERE (([e].[EmployeeAceNumber] = @__employeeAceNumber_0) AND ([e].[Password] = @__password_1)) AND ([e].[IsAdminAccepted] = CAST(1 AS bit))) THEN CAST(1 AS bit)
-    ELSE CAST(0 AS bit)
-END
-[2022-07-07 10:36:22.717 +05:30 INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT [e].[EmployeeId], [e].[DepartmentId], [e].[EmailId], [e].[EmployeeAceNumber], [e].[IsActive], [e].[IsAdminAccepted], [e].[IsAdminResponded], [e].[Name], [e].[Password], [e].[ProjectId], [e].[RoleId], [d].[DepartmentId], [d].[DepartmentName], [d].[IsActive], [r].[RoleId], [r].[IsActive], [r].[IsManagement], [r].[RoleName], [p].[ProjectId], [p].[DepartmentId], [p].[IsActive], [p].[ProjectName]
-FROM [Employees] AS [e]
-INNER JOIN [Departments] AS [d] ON [e].[DepartmentId] = [d].[DepartmentId]
-INNER JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
-INNER JOIN [Projects] AS [p] ON [e].[ProjectId] = [p].[ProjectId]
-[2022-07-07 10:36:22.765 +05:30 INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType38`6[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 10:36:22.771 +05:30 INF] Response:
+[2022-07-07 15:02:23.697 +05:30 INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType38`6[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-07 15:02:23.790 +05:30 INF] Response:
 StatusCode: 200
 Content-Type: application/json; charset=utf-8
 Content-Length: 812
-[2022-07-07 10:36:22.773 +05:30 INF] Executed action IMS.Controllers.TokenController.AuthToken (Source) in 203.037ms
-[2022-07-07 10:36:22.773 +05:30 INF] Executed endpoint 'IMS.Controllers.TokenController.AuthToken (Source)'
-[2022-07-07 10:36:22.773 +05:30 INF] RequestBody: 
-[2022-07-07 10:36:22.773 +05:30 INF] ResponseBody: {"token":"eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwidHlwIjoiSldUIn0..2764j_4MJdfGuK2cDPdddA.bGMl5kFXz1QmGjo9vVQQ1iv7Fx7Z4jkUuNMyg1zWmhjJ4yPH9asdrQbpmToqGWbqS1ODysxseKHnHLRiR7a5ad_o3qPiyio2A-vcNfX6I8MCCi3f83-F75u5rTzyIl5udlNsrxfHa8B2pp0wJd27HhvOT3eP04FSPmNBZJ6huPsjBtA7r9L8JPPAmPJZKY-lZ4a8OmHXSXboEN6eLdTkDivHVk6pIw7h6aaoZ82uYV2Bu2VgZeDy15aUCgvCZOhzHZvHBVqUxo4YlOz96OanVtJFCGQ25vG3KSC9FZLb8lNRsgPCHpBCEZes7_krLImi1U97dTXHc7llz2UOvptjj8T9pSKARCASQPszy1ex4q3D0k8H-za3Ad6wNEyMqcIW5ELBrdP-L6wohLEVY9WJs66agA5mEM-mX7fZBy7Ha6Yd4y_1V0UZy3b39rL4VixmJxKwnNzYFIgEYJbawwC1cysr20i42GXe5txC9SpRAPzMPa-0RJJ24Na13tPzsY2YeI8AjsqZjE-bdqYNo5bmrc2rw7QdmQsdd_7ec7C2waVHpQidEyya2FUURlxbpqJv.UDAtkbAfZRbtHzABIQoZ9EWHp-ql00F6o8E-Qg-NviI","expiryInMinutes":360,"isAdmin":false,"isTAC":true,"isManagement":false,"userName":"Vishnu"}
-[2022-07-07 10:36:22.773 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0010&password=Pass@12345 application/json 47 - 200 812 application/json;+charset=utf-8 225.0509ms
-[2022-07-07 10:36:24.323 +05:30 INF] Request starting HTTP/2 OPTIONS https://localhost:7072/Department/ViewDepartments - -
-[2022-07-07 10:36:24.323 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:24.323 +05:30 INF] Request finished HTTP/2 OPTIONS https://localhost:7072/Department/ViewDepartments - - - 204 - - 0.4446ms
-[2022-07-07 10:36:24.324 +05:30 INF] Request starting HTTP/2 OPTIONS https://localhost:7072/Location/ViewLocations - -
-[2022-07-07 10:36:24.324 +05:30 INF] Request starting HTTP/2 OPTIONS https://localhost:7072/Pool/ViewPools - -
-[2022-07-07 10:36:24.324 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:24.324 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:24.324 +05:30 INF] Request finished HTTP/2 OPTIONS https://localhost:7072/Pool/ViewPools - - - 204 - - 0.2341ms
-[2022-07-07 10:36:24.324 +05:30 INF] Request finished HTTP/2 OPTIONS https://localhost:7072/Location/ViewLocations - - - 204 - - 0.2712ms
-[2022-07-07 10:36:24.326 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Department/ViewDepartments application/json -
-[2022-07-07 10:36:24.326 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Pool/ViewPools application/json -
-[2022-07-07 10:36:24.326 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Location/ViewLocations application/json -
-[2022-07-07 10:36:24.326 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:24.327 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:24.328 +05:30 INF] Request:
+[2022-07-07 15:02:23.797 +05:30 INF] Executed action IMS.Controllers.TokenController.AuthToken (Source) in 1764.4437ms
+[2022-07-07 15:02:23.797 +05:30 INF] Executed endpoint 'IMS.Controllers.TokenController.AuthToken (Source)'
+[2022-07-07 15:02:23.798 +05:30 INF] ResponseBody: {"token":"eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwidHlwIjoiSldUIn0..gafcCe4XGvOrfPkZuRUMsA.y6yx8TJCvWg9wPKwJhYHxFjyi5CakLDsCgLCzWeZLgIMufcR2fYCW-VN6THZCdx8zwlNUoCv07wbt39tjig0MeXqhM11FCrTMXb18SwrPjdF8mHQWOAbSD-ZdeplZmLmohKTqCpBX2GfGzffiVHLrXO0LAT6mwHQz-5EkENP2bPAYo7T9W2qoW024IYL_JhI507aKHBwjYU_WH-NmOqHPUU48hEU2bSBBNjuGaKR8tAub9zODUBoGz7m4cToOv0FQIB-oh4Imm1Gdf5H1uvRLWKX62FIiSL0lkMVllj5970pNZy7vvltfyrGUzwhhHi413Z63kP7aFPjsMoADJf0MPo-LKCWoBKHxP_0om_ipbUUF4kIkzmhL3W2kCD5MJvYwkBuepdrPhuIVhzYRPsDJrGk3gsygHPd3xXUDWBDiNBup2R5L3B5AoetYO_qQ-qcGEphKQZtmuTJ1bkNpnBSFMQJ5NcGDjnLpzliohDzL2cMcZwSmInVzlH__Jx8QNwGZyuBd_sZeDHZPhVS8gpWV-_rPvax1SwiSBRRH-BqvSJh6XL64genJA6Nnutm3Zi6.UnUWBY2AzNiediABYzvuvAFhCWbeFvXpVbx6QslNpGQ","expiryInMinutes":360,"isAdmin":false,"isTAC":true,"isManagement":false,"userName":"Vishnu"}
+[2022-07-07 15:02:23.806 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0010&password=Pass%4012345 - 0 - 200 812 application/json;+charset=utf-8 1839.2153ms
+[2022-07-07 15:02:43.643 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewDefaulters?poolId=1 - -
+[2022-07-07 15:02:43.724 +05:30 INF] Request:
 Protocol: HTTP/2
 Method: GET
 Scheme: https
 PathBase: 
-Path: /Pool/ViewPools
-Accept: application/json, text/plain, */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json
-Origin: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:36:24.328 +05:30 INF] Executing endpoint 'IMS.Controllers.PoolController.ViewPools (Source)'
-[2022-07-07 10:36:24.328 +05:30 INF] Route matched with {action = "ViewPools", controller = "Pool"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewPools() on controller IMS.Controllers.PoolController (Source).
-[2022-07-07 10:36:24.328 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: GET
-Scheme: https
-PathBase: 
-Path: /Location/ViewLocations
-Accept: application/json, text/plain, */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json
-Origin: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:36:24.328 +05:30 INF] Executing endpoint 'IMS.Controllers.LocationController.ViewLocations (Source)'
-[2022-07-07 10:36:24.330 +05:30 INF] Route matched with {action = "ViewLocations", controller = "Location"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewLocations() on controller IMS.Controllers.LocationController (Source).
-[2022-07-07 10:36:24.331 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 10:36:24.332 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:36:24.332 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 10:36:24.332 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: GET
-Scheme: https
-PathBase: 
-Path: /Department/ViewDepartments
-Accept: application/json, text/plain, */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json
-Origin: [Redacted]
-Referer: [Redacted]
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:36:24.332 +05:30 INF] Executing endpoint 'IMS.Controllers.DepartmentController.ViewDepartments (Source)'
-[2022-07-07 10:36:24.334 +05:30 INF] Route matched with {action = "ViewDepartments", controller = "Department"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewDepartments() on controller IMS.Controllers.DepartmentController (Source).
-[2022-07-07 10:36:24.337 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
-[2022-07-07 10:36:24.339 +05:30 INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [d].[DepartmentId], [d].[DepartmentName], [d].[IsActive]
-FROM [Pools] AS [p]
-INNER JOIN [Departments] AS [d] ON [p].[DepartmentId] = [d].[DepartmentId]
-[2022-07-07 10:36:24.340 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+WhereSelectListIterator`2[[IMS.Models.Pool, Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[<>f__AnonymousType35`4[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
-[2022-07-07 10:36:24.340 +05:30 INF] Response:
-StatusCode: 200
-Content-Type: application/json; charset=utf-8
-Content-Length: 1254
-[2022-07-07 10:36:24.340 +05:30 INF] Executed action IMS.Controllers.PoolController.ViewPools (Source) in 12.5334ms
-[2022-07-07 10:36:24.340 +05:30 INF] Executed endpoint 'IMS.Controllers.PoolController.ViewPools (Source)'
-[2022-07-07 10:36:24.341 +05:30 INF] RequestBody: 
-[2022-07-07 10:36:24.341 +05:30 INF] ResponseBody: [{"poolId":1,"poolName":"Fresher .NET","departmentId":1,"departmentName":".NET"},{"poolId":2,"poolName":"SSE .NET","departmentId":1,"departmentName":".NET"},{"poolId":3,"poolName":"SLO .NET","departmentId":1,"departmentName":".NET"},{"poolId":4,"poolName":"Fresher JAVA","departmentId":2,"departmentName":"JAVA"},{"poolId":5,"poolName":"SSE JAVA","departmentId":2,"departmentName":"JAVA"},{"poolId":6,"poolName":"SLO JAVA","departmentId":2,"departmentName":"JAVA"},{"poolId":7,"poolName":"Fresher ORACLE","departmentId":3,"departmentName":"ORACLE"},{"poolId":8,"poolName":"SSE ORACLE","departmentId":3,"departmentName":"ORACLE"},{"poolId":9,"poolName":"SLO ORACLE","departmentId":3,"departmentName":"ORACLE"},{"poolId":10,"poolName":"Fresher LAMP","departmentId":4,"departmentName":"LAMP"},{"poolId":11,"poolName":"SSE LAMP","departmentId":4,"departmentName":"LAMP"},{"poolId":12,"poolName":"SLO LAMP","departmentId":4,"departmentName":"LAMP"},{"poolId":13,"poolName":"Fresher BFS","departmentId":5,"departmentName":"BFS"},{"poolId":14,"poolName":"SSE BFS","departmentId":5,"departmentName":"BFS"},{"poolId":15,"poolName":"SLO BFS","departmentId":5,"departmentName":"BFS"},{"poolId":21,"poolName":"Testing Java","departmentId":2,"departmentName":"JAVA"}]
-[2022-07-07 10:36:24.341 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Pool/ViewPools application/json - - 200 1254 application/json;+charset=utf-8 14.6381ms
-[2022-07-07 10:36:24.342 +05:30 INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT [d].[DepartmentId], [d].[DepartmentName], [d].[IsActive]
-FROM [Departments] AS [d]
-[2022-07-07 10:36:24.343 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+WhereListIterator`1[[IMS.Models.Department, Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
-[2022-07-07 10:36:24.344 +05:30 INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
-SELECT [l].[LocationId], [l].[IsActive], [l].[LocationName]
-FROM [Locations] AS [l]
-[2022-07-07 10:36:24.345 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+WhereListIterator`1[[IMS.Models.Location, Source, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
-[2022-07-07 10:36:24.349 +05:30 INF] Response:
-StatusCode: 200
-Content-Type: application/json; charset=utf-8
-Content-Length: 756
-[2022-07-07 10:36:24.349 +05:30 INF] Executed action IMS.Controllers.LocationController.ViewLocations (Source) in 18.9665ms
-[2022-07-07 10:36:24.349 +05:30 INF] Executed endpoint 'IMS.Controllers.LocationController.ViewLocations (Source)'
-[2022-07-07 10:36:24.349 +05:30 INF] RequestBody: 
-[2022-07-07 10:36:24.349 +05:30 INF] ResponseBody: [{"locationId":1,"locationName":"Chennai","isActive":true,"drivesUnderLocation":[]},{"locationId":2,"locationName":"Bangalore","isActive":true,"drivesUnderLocation":[]},{"locationId":3,"locationName":"Mumbai","isActive":true,"drivesUnderLocation":[]},{"locationId":4,"locationName":"Delhi","isActive":true,"drivesUnderLocation":[]},{"locationId":5,"locationName":"Noida","isActive":true,"drivesUnderLocation":[]},{"locationId":6,"locationName":"Hyderabad","isActive":true,"drivesUnderLocation":[]},{"locationId":7,"locationName":"Kochin","isActive":true,"drivesUnderLocation":[]},{"locationId":8,"locationName":"Coimbatore","isActive":true,"drivesUnderLocation":[]},{"locationId":9,"locationName":"Not Applicable","isActive":true,"drivesUnderLocation":[]}]
-[2022-07-07 10:36:24.350 +05:30 INF] Response:
-StatusCode: 200
-Content-Type: application/json; charset=utf-8
-Content-Length: 1005
-[2022-07-07 10:36:24.350 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Location/ViewLocations application/json - - 200 756 application/json;+charset=utf-8 23.5868ms
-[2022-07-07 10:36:24.351 +05:30 INF] Executed action IMS.Controllers.DepartmentController.ViewDepartments (Source) in 16.0898ms
-[2022-07-07 10:36:24.351 +05:30 INF] Executed endpoint 'IMS.Controllers.DepartmentController.ViewDepartments (Source)'
-[2022-07-07 10:36:24.351 +05:30 INF] RequestBody: 
-[2022-07-07 10:36:24.351 +05:30 INF] ResponseBody: [{"departmentId":2,"departmentName":"JAVA","isActive":true,"pools":[],"projects":[],"employeesUnderDepartment":null,"drivesUnderDepartment":[]},{"departmentId":3,"departmentName":"ORACLE","isActive":true,"pools":[],"projects":[],"employeesUnderDepartment":null,"drivesUnderDepartment":[]},{"departmentId":4,"departmentName":"LAMP","isActive":true,"pools":[],"projects":[],"employeesUnderDepartment":null,"drivesUnderDepartment":[]},{"departmentId":5,"departmentName":"BFS","isActive":true,"pools":[],"projects":[],"employeesUnderDepartment":null,"drivesUnderDepartment":[]},{"departmentId":6,"departmentName":"TAC","isActive":true,"pools":[],"projects":[],"employeesUnderDepartment":null,"drivesUnderDepartment":[]},{"departmentId":7,"departmentName":"ADMIN","isActive":true,"pools":[],"projects":[],"employeesUnderDepartment":null,"drivesUnderDepartment":[]},{"departmentId":21,"departmentName":"LAMPS","isActive":true,"pools":[],"projects":[],"employeesUnderDepartment":null,"drivesUnderDepartment":[]}]
-[2022-07-07 10:36:24.352 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Department/ViewDepartments application/json - - 200 1005 application/json;+charset=utf-8 25.8876ms
-[2022-07-07 10:39:45.055 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:39:45.055 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:39:45.055 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Drive/CreateDrive
+Path: /Drive/ViewDefaulters
 Accept: */*
 Host: localhost:7072
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
@@ -1016,53 +105,54 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 Accept-Encoding: gzip, deflate, br
 Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
 Authorization: [Redacted]
-Content-Type: application/json-patch+json
 Cookie: [Redacted]
-Origin: [Redacted]
 Referer: [Redacted]
-Content-Length: 248
 sec-ch-ua: [Redacted]
 sec-ch-ua-mobile: [Redacted]
 sec-ch-ua-platform: [Redacted]
 sec-fetch-site: [Redacted]
 sec-fetch-mode: [Redacted]
 sec-fetch-dest: [Redacted]
-[2022-07-07 10:39:45.055 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:39:45.056 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:39:45.064 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-07-07T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:39:45.132 +05:30 INF] Drive Controller : CreateDrive(Drive drive) : From date must be greater than 7/13/2022 :    at IMS.Validations.DriveValidation.IsdriveValid(Drive drive, IConfiguration configuration) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\DriveValidation.cs:line 18
-   at IMS.Service.DriveService.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 23
-   at IMS.Controllers.DriveController.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Controllers\DriveController.cs:line 53
-[2022-07-07 10:39:45.133 +05:30 INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType39`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 10:39:45.134 +05:30 INF] Response:
-StatusCode: 400
+[2022-07-07 15:02:43.724 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewDefaulters (Source)'
+[2022-07-07 15:02:43.725 +05:30 INF] Route matched with {action = "ViewDefaulters", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewDefaulters(Int32) on controller IMS.Controllers.DriveController (Source).
+[2022-07-07 15:02:43.729 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 15:02:43.752 +05:30 INF] Executed DbCommand (13ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[EmployeeId]
+FROM [PoolMembers] AS [p]
+WHERE ([p].[PoolId] = @__poolId_0) AND ([p].[IsActive] = CAST(1 AS bit))
+[2022-07-07 15:02:43.784 +05:30 INF] Executed DbCommand (7ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[InterviewDate]
+FROM [EmployeeAvailability] AS [e]
+INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
+WHERE ((((([e].[EmployeeId] = @__employeeId_0) AND ([d].[PoolId] = @__poolId_1)) AND ([e].[IsInterviewScheduled] = CAST(1 AS bit))) AND ([e].[IsInterviewCancelled] = CAST(0 AS bit))) AND ([e].[InterviewDate] >= DATEADD(month, CAST(-1 AS int), GETDATE()))) AND ([e].[InterviewDate] <= GETDATE())
+[2022-07-07 15:02:43.788 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[InterviewDate]
+FROM [EmployeeAvailability] AS [e]
+INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
+WHERE ((((([e].[EmployeeId] = @__employeeId_0) AND ([d].[PoolId] = @__poolId_1)) AND ([e].[IsInterviewScheduled] = CAST(1 AS bit))) AND ([e].[IsInterviewCancelled] = CAST(0 AS bit))) AND ([e].[InterviewDate] >= DATEADD(month, CAST(-1 AS int), GETDATE()))) AND ([e].[InterviewDate] <= GETDATE())
+[2022-07-07 15:02:43.790 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-07 15:02:43.806 +05:30 INF] Executed DbCommand (3ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[EmployeeAceNumber], [e].[Name] AS [EmployeeName], [r].[RoleName] AS [EmployeeRole]
+FROM [Employees] AS [e]
+INNER JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
+WHERE [e].[EmployeeId] = @__employeeId_0
+[2022-07-07 15:02:43.807 +05:30 INF] Response:
+StatusCode: 200
 Content-Type: application/json; charset=utf-8
-Content-Length: 54
-[2022-07-07 10:39:45.134 +05:30 INF] Executed action IMS.Controllers.DriveController.CreateDrive (Source) in 77.5917ms
-[2022-07-07 10:39:45.134 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:39:45.134 +05:30 INF] ResponseBody: {"message":"From date must be greater than 7/13/2022"}
-[2022-07-07 10:39:45.134 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248 - 400 54 application/json;+charset=utf-8 79.6834ms
-[2022-07-07 10:39:54.212 +05:30 INF] Application is shutting down...
-[2022-07-07 10:40:01.565 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:40:01.761 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:40:01.763 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:40:01.768 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:40:01.769 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:40:01.771 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:40:02.316 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/ - -
-[2022-07-07 10:40:02.429 +05:30 INF] Request:
+Content-Length: 114
+[2022-07-07 15:02:43.807 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewDefaulters (Source) in 82.1908ms
+[2022-07-07 15:02:43.807 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewDefaulters (Source)'
+[2022-07-07 15:02:43.807 +05:30 INF] ResponseBody: [[{"employeeId":1,"employeeAceNumber":"ACE0001","employeeName":"Prithvi","employeeRole":"Software Developer"}],{}]
+[2022-07-07 15:02:43.808 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewDefaulters?poolId=1 - - - 200 114 application/json;+charset=utf-8 164.3978ms
+[2022-07-07 15:06:37.607 +05:30 INF] Application is shutting down...
+[2022-07-07 15:06:46.675 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-07-07 15:06:46.875 +05:30 INF] Now listening on: https://localhost:7072
+[2022-07-07 15:06:46.877 +05:30 INF] Now listening on: http://localhost:5236
+[2022-07-07 15:06:46.882 +05:30 INF] Application started. Press Ctrl+C to shut down.
+[2022-07-07 15:06:46.887 +05:30 INF] Hosting environment: Development
+[2022-07-07 15:06:46.889 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
+[2022-07-07 15:06:47.278 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/ - -
+[2022-07-07 15:06:47.395 +05:30 INF] Request:
 Protocol: HTTP/2
 Method: GET
 Scheme: https
@@ -1083,17 +173,16 @@ sec-fetch-site: [Redacted]
 sec-fetch-mode: [Redacted]
 sec-fetch-user: [Redacted]
 sec-fetch-dest: [Redacted]
-[2022-07-07 10:40:02.430 +05:30 INF] Response:
+[2022-07-07 15:06:47.395 +05:30 INF] Response:
 StatusCode: 404
-[2022-07-07 10:40:02.433 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/ - - - 404 0 - 120.0381ms
-[2022-07-07 10:40:05.999 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:40:06.009 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:40:06.163 +05:30 INF] Request:
+[2022-07-07 15:06:47.398 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/ - - - 404 0 - 124.1725ms
+[2022-07-07 15:06:58.228 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewDefaulters?poolId=1 - -
+[2022-07-07 15:06:58.390 +05:30 INF] Request:
 Protocol: HTTP/2
-Method: POST
+Method: GET
 Scheme: https
 PathBase: 
-Path: /Drive/CreateDrive
+Path: /Drive/ViewDefaulters
 Accept: */*
 Host: localhost:7072
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
@@ -1101,40 +190,39 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 Accept-Encoding: gzip, deflate, br
 Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
 Authorization: [Redacted]
-Content-Type: application/json-patch+json
 Cookie: [Redacted]
-Origin: [Redacted]
 Referer: [Redacted]
-Content-Length: 248
 sec-ch-ua: [Redacted]
 sec-ch-ua-mobile: [Redacted]
 sec-ch-ua-platform: [Redacted]
 sec-fetch-site: [Redacted]
 sec-fetch-mode: [Redacted]
 sec-fetch-dest: [Redacted]
-[2022-07-07 10:40:06.165 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:40:06.183 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:40:06.340 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-07-07T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:42:06.216 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:42:06.441 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:42:06.443 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:42:06.451 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:42:06.453 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:42:06.455 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:42:06.819 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/ - -
-[2022-07-07 10:42:06.919 +05:30 INF] Request:
+[2022-07-07 15:06:58.392 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewDefaulters (Source)'
+[2022-07-07 15:06:58.408 +05:30 INF] Route matched with {action = "ViewDefaulters", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewDefaulters(Int32) on controller IMS.Controllers.DriveController (Source).
+[2022-07-07 15:06:59.230 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 15:07:00.037 +05:30 INF] Executed DbCommand (39ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[EmployeeId]
+FROM [PoolMembers] AS [p]
+WHERE ([p].[PoolId] = @__poolId_0) AND ([p].[IsActive] = CAST(1 AS bit))
+[2022-07-07 15:07:08.752 +05:30 INF] Executed DbCommand (18ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[InterviewDate]
+FROM [EmployeeAvailability] AS [e]
+INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
+WHERE ((((([e].[EmployeeId] = @__employeeId_0) AND ([d].[PoolId] = @__poolId_1)) AND ([e].[IsInterviewScheduled] = CAST(1 AS bit))) AND ([e].[IsInterviewCancelled] = CAST(0 AS bit))) AND ([e].[InterviewDate] >= DATEADD(month, CAST(-1 AS int), GETDATE()))) AND ([e].[InterviewDate] <= GETDATE())
+[2022-07-07 15:07:32.715 +05:30 INF] Executed DbCommand (16ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[InterviewDate]
+FROM [EmployeeAvailability] AS [e]
+INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
+WHERE ((((([e].[EmployeeId] = @__employeeId_0) AND ([d].[PoolId] = @__poolId_1)) AND ([e].[IsInterviewScheduled] = CAST(1 AS bit))) AND ([e].[IsInterviewCancelled] = CAST(0 AS bit))) AND ([e].[InterviewDate] >= DATEADD(month, CAST(-1 AS int), GETDATE()))) AND ([e].[InterviewDate] <= GETDATE())
+[2022-07-07 15:08:31.634 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-07-07 15:08:31.826 +05:30 INF] Now listening on: https://localhost:7072
+[2022-07-07 15:08:31.827 +05:30 INF] Now listening on: http://localhost:5236
+[2022-07-07 15:08:31.833 +05:30 INF] Application started. Press Ctrl+C to shut down.
+[2022-07-07 15:08:31.836 +05:30 INF] Hosting environment: Development
+[2022-07-07 15:08:31.837 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
+[2022-07-07 15:08:32.113 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/ - -
+[2022-07-07 15:08:32.225 +05:30 INF] Request:
 Protocol: HTTP/2
 Method: GET
 Scheme: https
@@ -1155,17 +243,16 @@ sec-fetch-site: [Redacted]
 sec-fetch-mode: [Redacted]
 sec-fetch-user: [Redacted]
 sec-fetch-dest: [Redacted]
-[2022-07-07 10:42:06.920 +05:30 INF] Response:
+[2022-07-07 15:08:32.225 +05:30 INF] Response:
 StatusCode: 404
-[2022-07-07 10:42:06.922 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/ - - - 404 0 - 106.5170ms
-[2022-07-07 10:42:09.746 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:42:09.760 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:42:09.952 +05:30 INF] Request:
+[2022-07-07 15:08:32.230 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/ - - - 404 0 - 119.1234ms
+[2022-07-07 15:08:34.361 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewDefaulters?poolId=1 - -
+[2022-07-07 15:08:34.590 +05:30 INF] Request:
 Protocol: HTTP/2
-Method: POST
+Method: GET
 Scheme: https
 PathBase: 
-Path: /Drive/CreateDrive
+Path: /Drive/ViewDefaulters
 Accept: */*
 Host: localhost:7072
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
@@ -1173,446 +260,39 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 Accept-Encoding: gzip, deflate, br
 Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
 Authorization: [Redacted]
-Content-Type: application/json-patch+json
 Cookie: [Redacted]
-Origin: [Redacted]
 Referer: [Redacted]
-Content-Length: 248
 sec-ch-ua: [Redacted]
 sec-ch-ua-mobile: [Redacted]
 sec-ch-ua-platform: [Redacted]
 sec-fetch-site: [Redacted]
 sec-fetch-mode: [Redacted]
 sec-fetch-dest: [Redacted]
-[2022-07-07 10:42:09.955 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:42:09.980 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:42:10.183 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-07-07T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:43:22.752 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:43:22.846 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:43:22.846 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:43:22.851 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:43:22.851 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:43:22.851 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:43:31.810 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:43:31.843 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:43:31.977 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Drive/CreateDrive
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json-patch+json
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 248
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:43:31.980 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:43:31.995 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:43:32.114 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-07-07T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:43:32.234 +05:30 INF] Drive Controller : CreateDrive(Drive drive) : From date must be greater than 7/15/2022 :    at IMS.Validations.DriveValidation.IsdriveValid(Drive drive, IConfiguration configuration) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\DriveValidation.cs:line 19
-   at IMS.Service.DriveService.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 23
-   at IMS.Controllers.DriveController.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Controllers\DriveController.cs:line 53
-[2022-07-07 10:43:32.239 +05:30 INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType39`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 10:43:32.265 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: application/json; charset=utf-8
-Content-Length: 54
-[2022-07-07 10:43:32.270 +05:30 INF] Executed action IMS.Controllers.DriveController.CreateDrive (Source) in 272.1668ms
-[2022-07-07 10:43:32.271 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:43:32.271 +05:30 INF] ResponseBody: {"message":"From date must be greater than 7/15/2022"}
-[2022-07-07 10:43:32.273 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248 - 400 54 application/json;+charset=utf-8 467.2737ms
-[2022-07-07 10:43:42.509 +05:30 INF] Application is shutting down...
-[2022-07-07 10:43:45.294 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:43:45.395 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:43:45.396 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:43:45.401 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:43:45.401 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:43:45.401 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:43:56.360 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:43:56.400 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:43:56.593 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Drive/CreateDrive
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json-patch+json
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 248
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:43:56.597 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:43:56.625 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:43:56.804 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-07-07T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:43:56.962 +05:30 INF] Drive Controller : CreateDrive(Drive drive) : From date must be greater than 7/9/2022 :    at IMS.Validations.DriveValidation.IsdriveValid(Drive drive, IConfiguration configuration) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\DriveValidation.cs:line 19
-   at IMS.Service.DriveService.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 23
-   at IMS.Controllers.DriveController.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Controllers\DriveController.cs:line 53
-[2022-07-07 10:43:56.968 +05:30 INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType39`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 10:43:56.996 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: application/json; charset=utf-8
-Content-Length: 53
-[2022-07-07 10:43:57.004 +05:30 INF] Executed action IMS.Controllers.DriveController.CreateDrive (Source) in 373.5287ms
-[2022-07-07 10:43:57.004 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:43:57.004 +05:30 INF] ResponseBody: {"message":"From date must be greater than 7/9/2022"}
-[2022-07-07 10:43:57.007 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248 - 400 53 application/json;+charset=utf-8 649.4856ms
-[2022-07-07 10:45:32.475 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:45:32.482 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:45:32.487 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Drive/CreateDrive
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json-patch+json
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 248
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:45:32.487 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:45:32.487 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:45:32.488 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-07-07T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:45:32.489 +05:30 INF] Drive Controller : CreateDrive(Drive drive) : From date must be greater than 7/9/2022 :    at IMS.Validations.DriveValidation.IsdriveValid(Drive drive, IConfiguration configuration) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\DriveValidation.cs:line 19
-   at IMS.Service.DriveService.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 23
-   at IMS.Controllers.DriveController.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Controllers\DriveController.cs:line 53
-[2022-07-07 10:45:32.489 +05:30 INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType39`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 10:45:32.489 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: application/json; charset=utf-8
-Content-Length: 53
-[2022-07-07 10:45:32.490 +05:30 INF] Executed action IMS.Controllers.DriveController.CreateDrive (Source) in 2.5535ms
-[2022-07-07 10:45:32.490 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:45:32.490 +05:30 INF] ResponseBody: {"message":"From date must be greater than 7/9/2022"}
-[2022-07-07 10:45:32.491 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248 - 400 53 application/json;+charset=utf-8 15.7003ms
-[2022-07-07 10:45:39.280 +05:30 INF] Application is shutting down...
-[2022-07-07 10:45:43.997 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:45:44.109 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:45:44.110 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:45:44.113 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:45:44.113 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:45:44.113 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:45:55.420 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:45:55.454 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:45:55.582 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Drive/CreateDrive
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json-patch+json
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 248
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:45:55.584 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:45:55.598 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:45:55.736 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-07-07T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:45:55.857 +05:30 INF] Drive Controller : CreateDrive(Drive drive) : From date must be greater than 7/7/2022 :    at IMS.Validations.DriveValidation.IsdriveValid(Drive drive, IConfiguration configuration) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\DriveValidation.cs:line 19
-   at IMS.Service.DriveService.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 23
-   at IMS.Controllers.DriveController.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Controllers\DriveController.cs:line 53
-[2022-07-07 10:45:55.864 +05:30 INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType39`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 10:45:55.902 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: application/json; charset=utf-8
-Content-Length: 53
-[2022-07-07 10:45:55.912 +05:30 INF] Executed action IMS.Controllers.DriveController.CreateDrive (Source) in 305.8746ms
-[2022-07-07 10:45:55.912 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:45:55.912 +05:30 INF] ResponseBody: {"message":"From date must be greater than 7/7/2022"}
-[2022-07-07 10:45:55.914 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248 - 400 53 application/json;+charset=utf-8 495.9453ms
-[2022-07-07 10:46:04.743 +05:30 INF] Application is shutting down...
-[2022-07-07 10:46:07.171 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:46:07.466 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:46:07.466 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:46:07.474 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:46:07.475 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:46:07.476 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:46:18.525 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:46:18.562 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:46:18.718 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Drive/CreateDrive
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json-patch+json
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 248
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:46:18.721 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:46:18.742 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:46:18.867 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-07-07T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:46:18.996 +05:30 INF] Drive Controller : CreateDrive(Drive drive) : From date must be greater than 7/8/2022 :    at IMS.Validations.DriveValidation.IsdriveValid(Drive drive, IConfiguration configuration) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\DriveValidation.cs:line 19
-   at IMS.Service.DriveService.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 23
-   at IMS.Controllers.DriveController.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Controllers\DriveController.cs:line 53
-[2022-07-07 10:46:19.002 +05:30 INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType39`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 10:46:19.030 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: application/json; charset=utf-8
-Content-Length: 53
-[2022-07-07 10:46:19.036 +05:30 INF] Executed action IMS.Controllers.DriveController.CreateDrive (Source) in 288.3633ms
-[2022-07-07 10:46:19.037 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:46:19.037 +05:30 INF] ResponseBody: {"message":"From date must be greater than 7/8/2022"}
-[2022-07-07 10:46:19.040 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248 - 400 53 application/json;+charset=utf-8 516.4986ms
-[2022-07-07 10:46:44.080 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:46:44.086 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:46:44.088 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Drive/CreateDrive
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json-patch+json
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 248
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:46:44.088 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:46:44.088 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:46:44.088 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-10-09T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:46:44.089 +05:30 INF] Drive Controller : CreateDrive(Drive drive) : From date must be smaller than 8/6/2022 :    at IMS.Validations.DriveValidation.IsdriveValid(Drive drive, IConfiguration configuration) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\DriveValidation.cs:line 21
-   at IMS.Service.DriveService.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 23
-   at IMS.Controllers.DriveController.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Controllers\DriveController.cs:line 53
-[2022-07-07 10:46:44.089 +05:30 INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType39`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 10:46:44.090 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: application/json; charset=utf-8
-Content-Length: 53
-[2022-07-07 10:46:44.090 +05:30 INF] Executed action IMS.Controllers.DriveController.CreateDrive (Source) in 2.4148ms
-[2022-07-07 10:46:44.090 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:46:44.090 +05:30 INF] ResponseBody: {"message":"From date must be smaller than 8/6/2022"}
-[2022-07-07 10:46:44.091 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248 - 400 53 application/json;+charset=utf-8 10.8093ms
-[2022-07-07 10:47:14.758 +05:30 INF] Application is shutting down...
-[2022-07-07 10:47:20.630 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:47:20.742 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:47:20.742 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:47:20.746 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:47:20.747 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:47:20.747 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:47:23.905 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:47:23.940 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:47:24.095 +05:30 INF] Request:
-Protocol: HTTP/2
-Method: POST
-Scheme: https
-PathBase: 
-Path: /Drive/CreateDrive
-Accept: */*
-Host: localhost:7072
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
-:method: [Redacted]
-Accept-Encoding: gzip, deflate, br
-Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
-Authorization: [Redacted]
-Content-Type: application/json-patch+json
-Cookie: [Redacted]
-Origin: [Redacted]
-Referer: [Redacted]
-Content-Length: 248
-sec-ch-ua: [Redacted]
-sec-ch-ua-mobile: [Redacted]
-sec-ch-ua-platform: [Redacted]
-sec-fetch-site: [Redacted]
-sec-fetch-mode: [Redacted]
-sec-fetch-dest: [Redacted]
-[2022-07-07 10:47:24.098 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:47:24.116 +05:30 INF] Route matched with {action = "CreateDrive", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult CreateDrive(IMS.Models.Drive) on controller IMS.Controllers.DriveController (Source).
-[2022-07-07 10:47:24.223 +05:30 INF] RequestBody: {
-  "driveId": 0,
-  "name": "string",
-  "fromDate": "2022-10-09T05:08:31.486Z",
-  "toDate": "2022-07-07T05:08:31.486Z",
-  "departmentId": 1,
-  "poolId": 1,
-  "modeId": 1,
-  "locationId": 1,
-  "addedBy": 10,
-  "updatedBy": 10,
-  "slotTiming": 60,
- }
-[2022-07-07 10:47:24.349 +05:30 INF] Drive Controller : CreateDrive(Drive drive) : From date must be smaller than 8/7/2022 :    at IMS.Validations.DriveValidation.IsdriveValid(Drive drive, IConfiguration configuration) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Validations\DriveValidation.cs:line 21
-   at IMS.Service.DriveService.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Services\Drive\DriveServices.cs:line 23
-   at IMS.Controllers.DriveController.CreateDrive(Drive drive) in C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Controllers\DriveController.cs:line 53
-[2022-07-07 10:47:24.356 +05:30 INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType39`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
-[2022-07-07 10:47:24.409 +05:30 INF] Response:
-StatusCode: 400
-Content-Type: application/json; charset=utf-8
-Content-Length: 53
-[2022-07-07 10:47:24.416 +05:30 INF] Executed action IMS.Controllers.DriveController.CreateDrive (Source) in 295.5592ms
-[2022-07-07 10:47:24.417 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.CreateDrive (Source)'
-[2022-07-07 10:47:24.417 +05:30 INF] ResponseBody: {"message":"From date must be smaller than 8/7/2022"}
-[2022-07-07 10:47:24.423 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248 - 400 53 application/json;+charset=utf-8 521.8015ms
-[2022-07-07 10:49:51.229 +05:30 INF] Application is shutting down...
-[2022-07-07 10:50:00.339 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-[2022-07-07 10:50:00.560 +05:30 INF] Now listening on: https://localhost:7072
-[2022-07-07 10:50:00.562 +05:30 INF] Now listening on: http://localhost:5236
-[2022-07-07 10:50:00.568 +05:30 INF] Application started. Press Ctrl+C to shut down.
-[2022-07-07 10:50:00.570 +05:30 INF] Hosting environment: Development
-[2022-07-07 10:50:00.573 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
-[2022-07-07 10:50:00.896 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/ - -
-[2022-07-07 10:50:01.052 +05:30 INF] Request:
+[2022-07-07 15:08:34.599 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewDefaulters (Source)'
+[2022-07-07 15:08:34.625 +05:30 INF] Route matched with {action = "ViewDefaulters", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewDefaulters(Int32) on controller IMS.Controllers.DriveController (Source).
+[2022-07-07 15:08:35.546 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 15:08:36.407 +05:30 INF] Executed DbCommand (36ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[EmployeeId]
+FROM [PoolMembers] AS [p]
+WHERE ([p].[PoolId] = @__poolId_0) AND ([p].[IsActive] = CAST(1 AS bit))
+[2022-07-07 15:08:36.511 +05:30 INF] Executed DbCommand (8ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[InterviewDate]
+FROM [EmployeeAvailability] AS [e]
+INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
+WHERE ((((([e].[EmployeeId] = @__employeeId_0) AND ([d].[PoolId] = @__poolId_1)) AND ([e].[IsInterviewScheduled] = CAST(1 AS bit))) AND ([e].[IsInterviewCancelled] = CAST(0 AS bit))) AND ([e].[InterviewDate] >= DATEADD(month, CAST(-1 AS int), GETDATE()))) AND ([e].[InterviewDate] <= GETDATE())
+[2022-07-07 15:08:36.516 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[InterviewDate]
+FROM [EmployeeAvailability] AS [e]
+INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
+WHERE ((((([e].[EmployeeId] = @__employeeId_0) AND ([d].[PoolId] = @__poolId_1)) AND ([e].[IsInterviewScheduled] = CAST(1 AS bit))) AND ([e].[IsInterviewCancelled] = CAST(0 AS bit))) AND ([e].[InterviewDate] >= DATEADD(month, CAST(-1 AS int), GETDATE()))) AND ([e].[InterviewDate] <= GETDATE())
+[2022-07-07 15:09:30.270 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-07-07 15:09:30.459 +05:30 INF] Now listening on: https://localhost:7072
+[2022-07-07 15:09:30.461 +05:30 INF] Now listening on: http://localhost:5236
+[2022-07-07 15:09:30.470 +05:30 INF] Application started. Press Ctrl+C to shut down.
+[2022-07-07 15:09:30.471 +05:30 INF] Hosting environment: Development
+[2022-07-07 15:09:30.473 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
+[2022-07-07 15:09:30.829 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/ - -
+[2022-07-07 15:09:30.954 +05:30 INF] Request:
 Protocol: HTTP/2
 Method: GET
 Scheme: https
@@ -1633,17 +313,16 @@ sec-fetch-site: [Redacted]
 sec-fetch-mode: [Redacted]
 sec-fetch-user: [Redacted]
 sec-fetch-dest: [Redacted]
-[2022-07-07 10:50:01.053 +05:30 INF] Response:
+[2022-07-07 15:09:30.955 +05:30 INF] Response:
 StatusCode: 404
-[2022-07-07 10:50:01.056 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/ - - - 404 0 - 163.7669ms
-[2022-07-07 10:50:05.615 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Drive/CreateDrive application/json-patch+json 248
-[2022-07-07 10:50:05.625 +05:30 INF] CORS policy execution successful.
-[2022-07-07 10:50:05.791 +05:30 INF] Request:
+[2022-07-07 15:09:30.957 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/ - - - 404 0 - 133.0138ms
+[2022-07-07 15:09:33.202 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewDefaulters?poolId=1 - -
+[2022-07-07 15:09:33.359 +05:30 INF] Request:
 Protocol: HTTP/2
-Method: POST
+Method: GET
 Scheme: https
 PathBase: 
-Path: /Drive/CreateDrive
+Path: /Drive/ViewDefaulters
 Accept: */*
 Host: localhost:7072
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
@@ -1651,11 +330,301 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 Accept-Encoding: gzip, deflate, br
 Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
 Authorization: [Redacted]
-Content-Type: application/json-patch+json
+Cookie: [Redacted]
+Referer: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+[2022-07-07 15:09:33.362 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewDefaulters (Source)'
+[2022-07-07 15:09:33.378 +05:30 INF] Route matched with {action = "ViewDefaulters", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewDefaulters(Int32) on controller IMS.Controllers.DriveController (Source).
+[2022-07-07 15:09:34.307 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 15:09:34.851 +05:30 INF] Executed DbCommand (27ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[EmployeeId]
+FROM [PoolMembers] AS [p]
+WHERE ([p].[PoolId] = @__poolId_0) AND ([p].[IsActive] = CAST(1 AS bit))
+[2022-07-07 15:09:34.914 +05:30 INF] Executed DbCommand (5ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[InterviewDate]
+FROM [EmployeeAvailability] AS [e]
+INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
+WHERE ((((([e].[EmployeeId] = @__employeeId_0) AND ([d].[PoolId] = @__poolId_1)) AND ([e].[IsInterviewScheduled] = CAST(1 AS bit))) AND ([e].[IsInterviewCancelled] = CAST(0 AS bit))) AND ([e].[InterviewDate] >= DATEADD(month, CAST(-1 AS int), GETDATE()))) AND ([e].[InterviewDate] <= GETDATE())
+[2022-07-07 15:09:34.918 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[InterviewDate]
+FROM [EmployeeAvailability] AS [e]
+INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
+WHERE ((((([e].[EmployeeId] = @__employeeId_0) AND ([d].[PoolId] = @__poolId_1)) AND ([e].[IsInterviewScheduled] = CAST(1 AS bit))) AND ([e].[IsInterviewCancelled] = CAST(0 AS bit))) AND ([e].[InterviewDate] >= DATEADD(month, CAST(-1 AS int), GETDATE()))) AND ([e].[InterviewDate] <= GETDATE())
+[2022-07-07 15:09:49.910 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-07 15:09:49.997 +05:30 INF] Executed DbCommand (5ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[EmployeeAceNumber], [e].[Name] AS [EmployeeName], [r].[RoleName] AS [EmployeeRole]
+FROM [Employees] AS [e]
+INNER JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
+WHERE [e].[EmployeeId] = @__employeeId_0
+[2022-07-07 15:09:50.015 +05:30 INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Content-Length: 111
+[2022-07-07 15:09:50.020 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewDefaulters (Source) in 16637.918ms
+[2022-07-07 15:09:50.020 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewDefaulters (Source)'
+[2022-07-07 15:09:50.022 +05:30 INF] ResponseBody: [[{"employeeId":1,"employeeAceNumber":"ACE0001","employeeName":"Prithvi","employeeRole":"Software Developer"}]]
+[2022-07-07 15:09:50.027 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewDefaulters?poolId=1 - - - 200 111 application/json;+charset=utf-8 16824.5630ms
+[2022-07-07 15:58:17.667 +05:30 INF] User profile is available. Using 'C:\Users\prithvi.palani\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2022-07-07 15:58:17.769 +05:30 INF] Now listening on: https://localhost:7072
+[2022-07-07 15:58:17.769 +05:30 INF] Now listening on: http://localhost:5236
+[2022-07-07 15:58:17.773 +05:30 INF] Application started. Press Ctrl+C to shut down.
+[2022-07-07 15:58:17.773 +05:30 INF] Hosting environment: Development
+[2022-07-07 15:58:17.773 +05:30 INF] Content root path: C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\
+[2022-07-07 15:58:18.623 +05:30 INF] Request starting HTTP/2 POST https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0011&password=Pass%4012345 - 0
+[2022-07-07 15:58:18.667 +05:30 INF] CORS policy execution successful.
+[2022-07-07 15:58:18.804 +05:30 INF] Request:
+Protocol: HTTP/2
+Method: POST
+Scheme: https
+PathBase: 
+Path: /Token/AuthToken/Login
+Accept: */*
+Host: localhost:7072
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Authorization: [Redacted]
 Cookie: [Redacted]
 Origin: [Redacted]
 Referer: [Redacted]
-Content-Length: 248
+Content-Length: 0
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+[2022-07-07 15:58:18.806 +05:30 INF] Executing endpoint 'IMS.Controllers.TokenController.AuthToken (Source)'
+[2022-07-07 15:58:18.821 +05:30 INF] Route matched with {action = "AuthToken", controller = "Token"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AuthToken(System.String, System.String) on controller IMS.Controllers.TokenController (Source).
+[2022-07-07 15:58:19.787 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 15:58:20.146 +05:30 INF] Executed DbCommand (37ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE [e].[EmployeeAceNumber] = @__employeeAceNumber_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2022-07-07 15:58:20.164 +05:30 INF] Executed DbCommand (2ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE ([e].[EmployeeAceNumber] = @__employeeAceNumber_0) AND ([e].[Password] = @__password_1)) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2022-07-07 15:58:20.168 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE (([e].[EmployeeAceNumber] = @__employeeAceNumber_0) AND ([e].[Password] = @__password_1)) AND ([e].[IsActive] = CAST(1 AS bit))) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2022-07-07 15:58:20.171 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__employeeAceNumber_0='?' (Size = 4000), @__password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE (([e].[EmployeeAceNumber] = @__employeeAceNumber_0) AND ([e].[Password] = @__password_1)) AND ([e].[IsAdminAccepted] = CAST(1 AS bit))) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2022-07-07 15:58:20.356 +05:30 INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[EmployeeId], [e].[DepartmentId], [e].[EmailId], [e].[EmployeeAceNumber], [e].[IsActive], [e].[IsAdminAccepted], [e].[IsAdminResponded], [e].[Name], [e].[Password], [e].[ProjectId], [e].[RoleId], [d].[DepartmentId], [d].[DepartmentName], [d].[IsActive], [r].[RoleId], [r].[IsActive], [r].[IsManagement], [r].[RoleName], [p].[ProjectId], [p].[DepartmentId], [p].[IsActive], [p].[ProjectName]
+FROM [Employees] AS [e]
+INNER JOIN [Departments] AS [d] ON [e].[DepartmentId] = [d].[DepartmentId]
+INNER JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
+INNER JOIN [Projects] AS [p] ON [e].[ProjectId] = [p].[ProjectId]
+[2022-07-07 15:58:20.483 +05:30 INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType38`6[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-07 15:58:20.594 +05:30 INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Content-Length: 814
+[2022-07-07 15:58:20.608 +05:30 INF] Executed action IMS.Controllers.TokenController.AuthToken (Source) in 1781.6281ms
+[2022-07-07 15:58:20.608 +05:30 INF] Executed endpoint 'IMS.Controllers.TokenController.AuthToken (Source)'
+[2022-07-07 15:58:20.609 +05:30 INF] ResponseBody: {"token":"eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwidHlwIjoiSldUIn0..nJBqmaQED-qDULrchIhzdQ.oUpZTT2BYdmVB6dbmaTfImTbwlyUQGm70--sFx7Cs7_izqeSYuIk0B5E7EV14mnDZAlIqoH59Ks8Zx3DLkio92U47JLcZvNHFfP4kvNld24F8SLcjIR15xIJsVa8E-J3YIIeCTHA968h2RkypYmyP45M8ZwQ5YTP9XeuY0Ngb_Xmj0Qs6egVgJycq1ZHa6bhhi7iAFcnysy4ds-6OO8qJvbrQ8_t6d2INUyqunulaz74Nolm-xGp-pCTA48MyEJm2obuvf8QVlP4qIARJ5XkDFCwgp_b2clCZ29ilKOqMolpNGijsFBvUkDegg-xoMD5Hkw1WJlx-YIrCmvksDGRt6Af0GQD8qwp_t1xTgULag9kOxw65-RkRIkHLZvyrdH05PP5e4iI5Z43rWLSQfSimyxOYOfILwtAvo7aavpj4c3xGx_xmebmQt6Cf4Sr7CkmARwNHu68YrKjFwPH-OAoU2y9Tu1i-i9n1cCw_iRZGdf3OKDr2gep2qGHv6Nu_ES5g30Uq3huBx7jGJfVQtUFHDWY_-UkaofX0ROTBhiZih5lMocEZQ9MsIYj8xh_T3oi.LmgPY-OZgcbMEXrO27J-8bo65RUs3zi9ej6XYFTUark","expiryInMinutes":360,"isAdmin":false,"isTAC":true,"isManagement":false,"userName":"Sandhiya"}
+[2022-07-07 15:58:20.619 +05:30 INF] Request finished HTTP/2 POST https://localhost:7072/Token/AuthToken/Login?employeeAceNumber=ACE0011&password=Pass%4012345 - 0 - 200 814 application/json;+charset=utf-8 1996.9024ms
+[2022-07-07 15:58:48.590 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewInvites?employeeId=11 - -
+[2022-07-07 15:58:48.607 +05:30 INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /Drive/ViewInvites
+Accept: */*
+Host: localhost:7072
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Authorization: [Redacted]
+Cookie: [Redacted]
+Referer: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+[2022-07-07 15:58:48.608 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewInvites (Source)'
+[2022-07-07 15:58:48.609 +05:30 INF] Route matched with {action = "ViewInvites", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewInvites(Int32) on controller IMS.Controllers.DriveController (Source).
+[2022-07-07 15:58:48.614 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 15:58:48.629 +05:30 INF] Executed DbCommand (12ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE [e].[EmployeeId] = @__employeeId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2022-07-07 15:58:48.638 +05:30 INF] Executed DbCommand (2ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PoolId]
+FROM [PoolMembers] AS [p]
+WHERE [p].[EmployeeId] = @__employeeId_0
+[2022-07-07 15:58:48.667 +05:30 INF] Executed DbCommand (5ms) [Parameters=[@__status_0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [l].[LocationId], [l].[IsActive], [l].[LocationName], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [d0].[DepartmentId], [d0].[DepartmentName], [d0].[IsActive]
+FROM [Drives] AS [d]
+INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
+INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
+INNER JOIN [Departments] AS [d0] ON [p].[DepartmentId] = [d0].[DepartmentId]
+WHERE [d].[IsCancelled] = @__status_0
+[2022-07-07 15:58:48.708 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-07 15:58:48.712 +05:30 INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Content-Length: 2
+[2022-07-07 15:58:48.712 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewInvites (Source) in 102.9352ms
+[2022-07-07 15:58:48.712 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewInvites (Source)'
+[2022-07-07 15:58:48.712 +05:30 INF] ResponseBody: []
+[2022-07-07 15:58:48.713 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewInvites?employeeId=11 - - - 200 2 application/json;+charset=utf-8 122.9549ms
+[2022-07-07 15:58:54.099 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewInvitesByID - -
+[2022-07-07 15:58:54.108 +05:30 INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /Drive/ViewInvitesByID
+Accept: */*
+Host: localhost:7072
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Authorization: [Redacted]
+Cookie: [Redacted]
+Referer: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+[2022-07-07 15:58:54.108 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewInvitesByID (Source)'
+[2022-07-07 15:58:54.110 +05:30 INF] Route matched with {action = "ViewInvitesByID", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewInvitesByID() on controller IMS.Controllers.DriveController (Source).
+[2022-07-07 15:58:54.150 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 15:58:54.152 +05:30 INF] Executed DbCommand (0ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE [e].[EmployeeId] = @__employeeId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2022-07-07 15:58:54.152 +05:30 INF] Executed DbCommand (0ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PoolId]
+FROM [PoolMembers] AS [p]
+WHERE [p].[EmployeeId] = @__employeeId_0
+[2022-07-07 15:58:54.153 +05:30 INF] Executed DbCommand (0ms) [Parameters=[@__status_0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [l].[LocationId], [l].[IsActive], [l].[LocationName], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [d0].[DepartmentId], [d0].[DepartmentName], [d0].[IsActive]
+FROM [Drives] AS [d]
+INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
+INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
+INNER JOIN [Departments] AS [d0] ON [p].[DepartmentId] = [d0].[DepartmentId]
+WHERE [d].[IsCancelled] = @__status_0
+[2022-07-07 15:58:54.154 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-07 15:58:54.154 +05:30 INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Content-Length: 2
+[2022-07-07 15:58:54.154 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewInvitesByID (Source) in 44.1612ms
+[2022-07-07 15:58:54.154 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewInvitesByID (Source)'
+[2022-07-07 15:58:54.154 +05:30 INF] ResponseBody: []
+[2022-07-07 15:58:54.155 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewInvitesByID - - - 200 2 application/json;+charset=utf-8 56.0027ms
+[2022-07-07 15:59:00.487 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewInvites?employeeId=10 - -
+[2022-07-07 15:59:00.487 +05:30 INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /Drive/ViewInvites
+Accept: */*
+Host: localhost:7072
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Authorization: [Redacted]
+Cookie: [Redacted]
+Referer: [Redacted]
+sec-ch-ua: [Redacted]
+sec-ch-ua-mobile: [Redacted]
+sec-ch-ua-platform: [Redacted]
+sec-fetch-site: [Redacted]
+sec-fetch-mode: [Redacted]
+sec-fetch-dest: [Redacted]
+[2022-07-07 15:59:00.488 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewInvites (Source)'
+[2022-07-07 15:59:00.488 +05:30 INF] Route matched with {action = "ViewInvites", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewInvites(Int32) on controller IMS.Controllers.DriveController (Source).
+[2022-07-07 15:59:00.489 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 15:59:00.491 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Employees] AS [e]
+        WHERE [e].[EmployeeId] = @__employeeId_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+[2022-07-07 15:59:00.493 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[PoolId]
+FROM [PoolMembers] AS [p]
+WHERE [p].[EmployeeId] = @__employeeId_0
+[2022-07-07 15:59:00.497 +05:30 INF] Executed DbCommand (4ms) [Parameters=[@__status_0='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[DriveId], [d].[AddedBy], [d].[AddedOn], [d].[CancelReason], [d].[DepartmentId], [d].[FromDate], [d].[IsCancelled], [d].[IsScheduled], [d].[LocationId], [d].[ModeId], [d].[Name], [d].[PoolId], [d].[SlotTiming], [d].[ToDate], [d].[UpdatedBy], [d].[UpdatedOn], [l].[LocationId], [l].[IsActive], [l].[LocationName], [p].[PoolId], [p].[DepartmentId], [p].[IsActive], [p].[PoolName], [d0].[DepartmentId], [d0].[DepartmentName], [d0].[IsActive]
+FROM [Drives] AS [d]
+INNER JOIN [Locations] AS [l] ON [d].[LocationId] = [l].[LocationId]
+INNER JOIN [Pools] AS [p] ON [d].[PoolId] = [p].[PoolId]
+INNER JOIN [Departments] AS [d0] ON [p].[DepartmentId] = [d0].[DepartmentId]
+WHERE [d].[IsCancelled] = @__status_0
+[2022-07-07 15:59:00.498 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-07 15:59:00.498 +05:30 INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Content-Length: 2
+[2022-07-07 15:59:00.499 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewInvites (Source) in 11.0112ms
+[2022-07-07 15:59:00.499 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewInvites (Source)'
+[2022-07-07 15:59:00.499 +05:30 INF] ResponseBody: []
+[2022-07-07 15:59:00.499 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewInvites?employeeId=10 - - - 200 2 application/json;+charset=utf-8 12.2171ms
+[2022-07-07 16:25:15.578 +05:30 INF] Request starting HTTP/2 GET https://localhost:7072/Drive/ViewDefaulters?poolId=1 - -
+[2022-07-07 16:25:15.578 +05:30 INF] Request:
+Protocol: HTTP/2
+Method: GET
+Scheme: https
+PathBase: 
+Path: /Drive/ViewDefaulters
+Accept: */*
+Host: localhost:7072
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36
+:method: [Redacted]
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Authorization: [Redacted]
+Cookie: [Redacted]
+Referer: [Redacted]
 sec-ch-ua: [Redacted]
 sec-ch-ua-mobile: [Redacted]
 sec-ch-ua-platform: [Redacted]
@@ -10634,11 +9603,20 @@ SELECT [p].[EmployeeId]
 FROM [PoolMembers] AS [p]
 WHERE ([p].[PoolId] = @__poolId_0) AND ([p].[IsActive] = CAST(1 AS bit))
 [2022-07-07 17:07:05.356 +05:30 INF] Executed DbCommand (11ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+[2022-07-07 16:25:15.579 +05:30 INF] Executing endpoint 'IMS.Controllers.DriveController.ViewDefaulters (Source)'
+[2022-07-07 16:25:15.580 +05:30 INF] Route matched with {action = "ViewDefaulters", controller = "Drive"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult ViewDefaulters(Int32) on controller IMS.Controllers.DriveController (Source).
+[2022-07-07 16:25:15.582 +05:30 INF] Entity Framework Core 6.0.6 initialized 'InterviewManagementSystemDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.5' with options: None
+[2022-07-07 16:25:15.594 +05:30 INF] Executed DbCommand (2ms) [Parameters=[@__poolId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[EmployeeId]
+FROM [PoolMembers] AS [p]
+WHERE ([p].[PoolId] = @__poolId_0) AND ([p].[IsActive] = CAST(1 AS bit))
+[2022-07-07 16:25:15.627 +05:30 INF] Executed DbCommand (13ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
 SELECT [e].[InterviewDate]
 FROM [EmployeeAvailability] AS [e]
 INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
 WHERE ((((([e].[EmployeeId] = @__employeeId_0) AND ([d].[PoolId] = @__poolId_1)) AND ([e].[IsInterviewScheduled] = CAST(1 AS bit))) AND ([e].[IsInterviewCancelled] = CAST(0 AS bit))) AND ([e].[InterviewDate] >= DATEADD(month, CAST(-1 AS int), GETDATE()))) AND ([e].[InterviewDate] <= GETDATE())
 [2022-07-07 17:07:05.359 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+[2022-07-07 16:25:15.630 +05:30 INF] Executed DbCommand (1ms) [Parameters=[@__employeeId_0='?' (DbType = Int32), @__poolId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
 SELECT [e].[InterviewDate]
 FROM [EmployeeAvailability] AS [e]
 INNER JOIN [Drives] AS [d] ON [e].[DriveId] = [d].[DriveId]
@@ -10650,6 +9628,8 @@ FROM [Employees] AS [e]
 INNER JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
 WHERE [e].[EmployeeId] = @__employeeId_0
 [2022-07-07 17:07:05.370 +05:30 INF] Executed DbCommand (3ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+[2022-07-07 16:25:15.630 +05:30 INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+[2022-07-07 16:25:15.637 +05:30 INF] Executed DbCommand (2ms) [Parameters=[@__employeeId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
 SELECT [e].[EmployeeId], [e].[EmployeeAceNumber], [e].[Name] AS [EmployeeName], [r].[RoleName] AS [EmployeeRole]
 FROM [Employees] AS [e]
 INNER JOIN [Roles] AS [r] ON [e].[RoleId] = [r].[RoleId]
@@ -10663,3 +9643,12 @@ Content-Length: 227
 [2022-07-07 17:07:05.372 +05:30 INF] RequestBody: 
 [2022-07-07 17:07:05.372 +05:30 INF] ResponseBody: [[{"employeeId":1,"employeeAceNumber":"ACE0001","employeeName":"Prithvi","employeeRole":"Software Developer"}],[{"employeeId":2,"employeeAceNumber":"ACE0002","employeeName":"Vinoth","employeeRole":"Senior Software Developer"}]]
 [2022-07-07 17:07:05.372 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewDefaulters?poolId=1 application/json - - 200 227 application/json;+charset=utf-8 34.1624ms
+[2022-07-07 16:25:15.638 +05:30 INF] Response:
+StatusCode: 200
+Content-Type: application/json; charset=utf-8
+Content-Length: 111
+[2022-07-07 16:25:15.638 +05:30 INF] Executed action IMS.Controllers.DriveController.ViewDefaulters (Source) in 58.3142ms
+[2022-07-07 16:25:15.638 +05:30 INF] Executed endpoint 'IMS.Controllers.DriveController.ViewDefaulters (Source)'
+[2022-07-07 16:25:15.638 +05:30 INF] ResponseBody: [[{"employeeId":1,"employeeAceNumber":"ACE0001","employeeName":"Prithvi","employeeRole":"Software Developer"}]]
+[2022-07-07 16:25:15.638 +05:30 INF] Request finished HTTP/2 GET https://localhost:7072/Drive/ViewDefaulters?poolId=1 - - - 200 111 application/json;+charset=utf-8 60.6779ms
+[2022-07-07 17:35:59.416 +05:30 INF] Application is shutting down...

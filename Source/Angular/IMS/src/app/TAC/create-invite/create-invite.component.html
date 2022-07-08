@@ -7,32 +7,7 @@
         <div class="Register">
             <div class="card-body">
                 <form [formGroup]="CreateInviteForm" (ngSubmit)="CreateInvite()">
-                    <div class="form-input">
-                        <label class="form-label" for="fromDate">From Date</label>
-                        <input type="date"
-                            [class.is-invalid]="(submitted && CreateInviteForm.controls['fromDate'].invalid)||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched"
-                            name="fromDate" id="fromDate" class="form-control " formControlName="fromDate" (change)="toDateEnabler(CreateInviteForm.controls['fromDate'].value)"
-                            [min]="minDate|date:'yyyy-MM-dd'" [max]="maxDate|date:'yyyy-MM-dd'">
-                    </div>
-                    <div
-                        *ngIf="(submitted )||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched">
-                        <span class="text-danger"
-                            *ngIf="CreateInviteForm.controls['fromDate'].errors?.['required']">Choose a
-                            Date</span>
-                    </div>
-                    <div class="form-input">
-                        <label class="form-label" for="toDate">To Date</label>
-                        <input type="date"
-                            [class.is-invalid]="(submitted && CreateInviteForm.controls['toDate'].invalid)||CreateInviteForm.controls['toDate'].invalid && CreateInviteForm.controls['toDate'].touched"
-                            name="toDate" id="toDate" class="form-control " formControlName="toDate"
-                            [min]="CreateInviteForm.controls['fromDate'].value">
-                    </div>
-                    <div *ngIf="(submitted)||CreateInviteForm.controls['toDate'].invalid &&
-                        CreateInviteForm.controls['toDate'].touched">
-                        <span class="text-danger"
-                            *ngIf="CreateInviteForm.controls['toDate'].errors?.['required']">Choose a
-                            Date</span>
-                    </div>
+                    
                     <div class="form-input">
                         <label class="form-label" for="driveName"> Drive Name</label>
                         <input type="text"
@@ -123,7 +98,32 @@
                             *ngIf="CreateInviteForm.controls['locationId'].errors?.['required']">Choose a
                             Pool</span>
                     </div>
-
+                    <div class="form-input">
+                        <label class="form-label" for="fromDate">From Date</label>
+                        <input type="date"
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['fromDate'].invalid)||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched"
+                            name="fromDate" id="fromDate" class="form-control " formControlName="fromDate" (change)="toDateEnabler(CreateInviteForm.controls['fromDate'].value)"
+                            [min]="minDate|date:'yyyy-MM-dd'" [max]="maxDate|date:'yyyy-MM-dd'">
+                    </div>
+                    <div
+                        *ngIf="(submitted )||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['fromDate'].errors?.['required']">Choose a
+                            Date</span>
+                    </div>
+                    <div class="form-input">
+                        <label class="form-label" for="toDate">To Date</label>
+                        <input type="date"
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['toDate'].invalid)||CreateInviteForm.controls['toDate'].invalid && CreateInviteForm.controls['toDate'].touched"
+                            name="toDate" id="toDate" class="form-control " formControlName="toDate"
+                            [min]="CreateInviteForm.controls['fromDate'].value">
+                    </div>
+                    <div *ngIf="(submitted)||CreateInviteForm.controls['toDate'].invalid &&
+                        CreateInviteForm.controls['toDate'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['toDate'].errors?.['required']">Choose a
+                            Date</span>
+                    </div>
                     <div class="form-input">
                         <label class="form-label " for="slotTiming">Slot Timing</label>
                         <select

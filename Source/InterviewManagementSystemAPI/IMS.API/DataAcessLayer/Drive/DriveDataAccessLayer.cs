@@ -321,12 +321,12 @@ namespace IMS.DataAccessLayer
                 throw viewAvailableMembersForDriveException;
             }
         }
-        public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType, int employeeId)// want to filter with Employee ID
+        public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType, int employeeId,DateTime fromDate,DateTime toDate)// want to filter with Employee ID
         {
             Validations.EmployeeResponseValidation.IsResponseTypeValid(responseType);
             try
             {
-                return (from response in _db.EmployeeDriveResponse.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where response.ResponseType == responseType && response.EmployeeId == employeeId select response).ToList();
+                return (from response in _db.EmployeeDriveResponse.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where  response.EmployeeId == employeeId && response.ResponseType == responseType && (response.Drive.FromDate.Date>=fromDate.Date || response.Drive.ToDate.Date>=toDate.Date) select response).ToList();
             }
             catch (Exception getResponseCountByStatusException)
             {
@@ -393,7 +393,7 @@ namespace IMS.DataAccessLayer
                         });
                         return employee;   
                     }
-                    return new Object();
+                    return null;
                 }
                 catch(Exception isDefaulterException){
                     _logger.LogInformation($"Exception on Drive DAL : isDefaulterException(int employeeId, int poolId) : {isDefaulterException.Message} : {isDefaulterException.StackTrace}");

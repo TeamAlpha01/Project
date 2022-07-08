@@ -3,15 +3,15 @@
   <ProjectName>Source</ProjectName>
   <ProjectLanguage>C#</ProjectLanguage>
   <ProjectType>Test</ProjectType>
-  <ProjectGuid>99ec03ce-c526-4bfd-8dea-9a888a22cb9e</ProjectGuid>
-  <FullPath>C:\Users\vinoth.jayakumar\Documents\GITHUB\Project\Source\InterviewManagementSystemAPI\IMS.API\Source.csproj</FullPath>
+  <ProjectGuid>e68ecad6-57b9-466f-897e-a5c27ae13dc2</ProjectGuid>
+  <FullPath>C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\Source.csproj</FullPath>
   <IsExcluded>false</IsExcluded>
   <AnalysisResults>
-    <AnalysisResult Id="FilesToAnalyze" Location="C:\Users\vinoth.jayakumar\Documents\GITHUB\Project\Source\InterviewManagementSystemAPI\IMS.API\.sonarqube\conf\0\FilesToAnalyze.txt" />
+    <AnalysisResult Id="FilesToAnalyze" Location="C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\.sonarqube\conf\0\FilesToAnalyze.txt" />
   </AnalysisResults>
   <AnalysisSettings>
-    <Property Name="sonar.cs.roslyn.reportFilePaths">C:\Users\vinoth.jayakumar\Documents\GITHUB\Project\Source\InterviewManagementSystemAPI\IMS.API\.sonarqube\out\0\Issues.json</Property>
-    <Property Name="sonar.cs.analyzer.projectOutPaths">C:\Users\vinoth.jayakumar\Documents\GITHUB\Project\Source\InterviewManagementSystemAPI\IMS.API\.sonarqube\out\0</Property>
+    <Property Name="sonar.cs.roslyn.reportFilePaths">C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\.sonarqube\out\0\Issues.json</Property>
+    <Property Name="sonar.cs.analyzer.projectOutPaths">C:\Users\prithvi.palani\Documents\Git-Prithvi\Project\Source\InterviewManagementSystemAPI\IMS.API\.sonarqube\out\0</Property>
   </AnalysisSettings>
   <Configuration>Debug</Configuration>
   <Platform>AnyCPU</Platform>

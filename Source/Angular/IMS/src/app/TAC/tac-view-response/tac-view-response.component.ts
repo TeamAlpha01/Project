@@ -14,7 +14,7 @@ export class TacViewResponseComponent implements OnInit {
   driveId: number = 0;
   errorMessage: any;
   driveResponses: any[] = [];
-  response: any;
+  response: string='';
   error: any;
 
   drive = {

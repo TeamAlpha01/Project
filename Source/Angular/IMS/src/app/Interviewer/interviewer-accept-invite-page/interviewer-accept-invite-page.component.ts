@@ -11,20 +11,30 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class InterviewerAcceptInvitePageComponent implements OnInit {
   driveId: number = 0;
   title = 'Drive Details'
-  Invites: any;
   dept = ''
   department: any[] = []
   toTime: any;
-
+  response: string = '';
+  error: string = '';
 
 
   AcceptInvitePage = this.fb.group({
     InterviewDate: ['', [Validators.required]],
     SlotTime: ['', [Validators.required]]
   });
-  response: any;
-  error: any;
 
+
+  Invites = {
+    driveDepartment: "",
+    driveId: 0,
+    driveLocation: "",
+    driveMode: "",
+    driveName: "",
+    drivePool: "",
+    fromDate: "",
+    slotTiming: 0,
+    toDate: ""
+  }
 
   getInterviewDate() {
     return this.AcceptInvitePage.get('InterviewDate')?.value;
@@ -45,7 +55,6 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   GetDriveById(driveId: any) {
     this.connection.GetDriveById(driveId).subscribe((data: any) => {
       this.Invites = data;
-      console.warn(this.Invites);
     })
   }
 
@@ -68,11 +77,20 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
         fromTime: this.getSlotTime(),
         toTime: this.toTime
       }
+
       console.log(timeSlot);
       this.connection.AddTimeSlot(timeSlot).subscribe({
         next: (data) => this.response = data.message,
-        error: (error) => this.error = error.error.message
+        error: (error) => { this.error = error.error, this.snackBar() },
+        complete: () => this.snackBar(),
       });
     }
+  }
+  snackBar() {
+    setTimeout(() => {
+      this.error = '';
+      this.response = '';
+      this.AcceptInvitePage.reset();
+    }, 2000);
   }
 }

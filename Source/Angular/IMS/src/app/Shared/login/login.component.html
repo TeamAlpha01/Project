@@ -1,11 +1,11 @@
 <div class="background-img-login">
-    <h1 class="text-center title">INTERVIEW MANAGEMENT SYSTEM</h1>
+   
     <div class="Login">
         <div class="card-body">
+            <h1 class="text-center title">INTERVIEW MANAGEMENT SYSTEM</h1>
             <h2 class="text-center">LOGIN</h2>
             <form [formGroup]="loginForm" (ngSubmit)="submit()">
                 <br>
-                <p>Please login to your account</p>
                 <div class="form-input">
                     <label class="form-label" for="ACE Number">ACE Number </label>
                     <input
@@ -36,7 +36,6 @@
                     <span *ngIf="error.toString().includes('Password')" class="text-danger">{{error}}</span>
                 </div>
                 <div *ngIf="loading" diameter="40" class="spinner">
-                    <!-- <mat-spinner></mat-spinner> -->
                 </div>
                 <div *ngIf="isCommanError" class="span12 text-center">
                     <span class="text-center text-danger">{{error}}</span>
