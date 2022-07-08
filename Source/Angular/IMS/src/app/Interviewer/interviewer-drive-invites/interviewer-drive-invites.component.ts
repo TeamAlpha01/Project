@@ -7,28 +7,42 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./interviewer-drive-invites.component.css']
 })
 export class InterviewerDriveInvitesComponent implements OnInit {
-  title ='Drive Invites'
+  title = 'Drive Invites'
   data: any;
   totalLength: any;
   page: number = 1;
   Invites: any;
   driveId: any;
-  
-  constructor(private connection :ConnectionService) { }
+  error: string = '';
+  response: string = '';
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
     this.connection.GetDriveInvitesById().subscribe((data: any) => {
       this.Invites = data;
       console.warn(this.Invites)
-    }) 
+    })
   }
 
-  AddResponse(driveId: number, response: boolean)
-  {
-    this.connection.AddResponse(this.driveId).subscribe((data: any) => {
-      this.Invites = data;
-      console.warn(this.Invites);
-    }) 
+  AddResponse(DriveId: number) {
+    const response = {
+      responseId: 0,
+      driveId: DriveId,
+      employeeId: 0,
+      responseType: 2,
+    }
+    this.connection.AddResponse(response).subscribe({
+      next: (data: any) => { this.Invites = data, console.warn(this.Invites) },
+      error: (error) => { this.error = error.error, this.snackBar() },
+      complete: () => this.snackBar(),
+    });
+  }
+
+  snackBar() {
+    setTimeout(() => {
+      this.error = '';
+      this.response = '';
+    }, 2000);
   }
 
 }

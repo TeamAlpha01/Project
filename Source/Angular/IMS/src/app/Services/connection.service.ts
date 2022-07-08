@@ -165,9 +165,9 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + `Drive/ViewInvitesByID`, { headers: this.headers });
   }
 
-  AddResponse(driveId:any)
+  AddResponse(response:any)
   {
-    return this.http.post<any>(this.baseURL + `Drive/AddResponse`, driveId ,{ headers: this.headers });
+    return this.http.post<any>(this.baseURL + `Drive/AddResponse`, response ,{ headers: this.headers });
   }
 
   AddTimeSlot(timeSlot:any)

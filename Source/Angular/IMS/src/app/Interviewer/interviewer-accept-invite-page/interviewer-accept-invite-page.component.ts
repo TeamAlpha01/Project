@@ -80,7 +80,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
 
       console.log(timeSlot);
       this.connection.AddTimeSlot(timeSlot).subscribe({
-        next: (data) => this.response = data.message,
+        next: (data) => { this.response = data.message, this.AcceptResponse() },
         error: (error) => { this.error = error.error, this.snackBar() },
         complete: () => this.snackBar(),
       });
@@ -92,5 +92,18 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
       this.response = '';
       this.AcceptInvitePage.reset();
     }, 2000);
+  }
+  AcceptResponse() {
+    const response = {
+      responseId: 0,
+      driveId: this.driveId,
+      employeeId: 0,
+      responseType: 2,
+    }
+    this.connection.AddResponse(response).subscribe({
+      next: (data: any) => { this.Invites = data, console.warn(this.Invites) },
+      error: (error: any) => { this.error = error.error.message, this.snackBar() },
+      complete: () => this.snackBar(),
+    });
   }
 }

@@ -24,9 +24,9 @@
                     </div>
                     <div class="col-md-3 col-sm-2 col-3 d-flex align-items-start">
                         <a [routerLink]="['/interviewer/driveInvites/accept-invite',item.driveId]"> <button
-                                class="btn btn-success" (click)="AddResponse(item.employeeId,true)">Accept</button></a>
+                                class="btn btn-success">Accept</button></a>
                         <div class="col-1"></div>
-                        <button class="btn btn-danger" (click)="AddResponse(item.employeeId,true)">Reject</button>
+                        <button class="btn btn-danger" (click)="AddResponse(item.driveId)">Reject</button>
                     </div>
                 </div>
             </div>
