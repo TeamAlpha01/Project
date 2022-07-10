@@ -1,0 +1,67 @@
+Configuration Setup Document
+
+Interview Management System
+
+GitHub Account Name :  TeamAlpha01
+                                          (https://github.com/TeamAlpha01)
+
+Steps To Download the Project from GitHub :
+     Project-->Download Zip-->Extract All
+
+Pre-Requisites  :
+
+API
+Visual Studio code
+Basic Knowledge in C#
+SQL Server
+SDK
+
+Angular
+Visual Studio Code
+Node.js
+Basic Knowledge on HTML , CSS , TypeScript.
+For Angular CLI, we need to install npm by using “npm install -g @angular/cli” .
+
+
+
+1. API (Back-End)
+	1.1 Steps to be Taken to run the API
+Open Extracted project-->Project-->Source-->InterviewManagementSystemAPI-->-->IMS.API and then in file path type "cmd",it will open command prompt  and type "code .".It will open VS code
+                                                     (or)
+Open VS code, File --> Open Folder -->Project -->Source-->InterviewManagementSystemAPI-->-->IMS.API, It will open the Project in VScode
+In appsetting.json ,change the server name in the ConnectionString with the server name of the local SQL Server.
+Then open terminal.To open terminal either use Terminal-->New Terminal (or) control+shift+ ~ 
+Then in terminal type "dotnet build"
+Then type "dotnet ef migrations add (migration name)" 
+                      Example:dotnet ef migrations add initial
+To update database type "dotnet ef database update"
+To run the project type "dotnet run"
+A localhost link will be generated (Ex: https://localhost:7072) , Click that link and it will navigate to chrome page and in url we have to type    " /swagger"next to the available link. (Ex : https://localhost:7072/swagger).
+
+
+2. Angular (Front-End)
+
+2.1 Steps to be Taken to run the Angular
+In Extracted Project-->Source-->Angular-->IMS, and   and then in path type "cmd", and it will open Command prompt and type "code ." .It will open VScode
+                                                 (or)
+Open VS code, File --> Open Folder -->Extracted Project --> Source--> Angular-->IMS, It will open the Project in VScode
+Change the host id (URL) with your Swagger URL in app-->src -->Services --> Connection.Service.ts
+In command prompt,type "npm i"   to install the pakages that are required for our project.
+After the packages have been installed give the command as "ng s -o" . It will open the Application's login page.
+
+
+Linting
+
+Steps to be taken to Lint the Angular project :
+Open Angular project by  Project        Source        Angular         IMS.
+
+The pakages that are dependent, will be installed by using the command “npm i” in terminal.
+
+To install the Package for linting, type “ng add @angular-eslint/schematics” in the terminal. It adds the file “eslintrc.json” in angular.
+
+After installing the packages, run linting by using  “ng lint”.
+
+To skip the errors that are occurred due to default lifemethod, add "@angular-eslint/no-empty-lifecycle-method": "off" in eslintrc.json file.
+
+Some Errors can be automatically fixed by default. To fix those linting errors run ng lint --fix .
+
