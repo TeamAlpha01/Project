@@ -38,7 +38,7 @@ import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-curr
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
-import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-cancel-invite-page/interviewer-cancel-invite-page.component';
+import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
 import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-response.component';
 import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total-drives/interviewer-total-drives.component';
 import { InterviewerAvailabilityGivenComponent } from './Interviewer/interviewer-availability-given/interviewer-availability-given.component';
@@ -62,7 +62,7 @@ const routes: Routes = [
   { path: 'interviewer/driveInvites', component: InterviewerDriveInvitesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/driveInvites/accept-invite/:driveId', component: InterviewerAcceptInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   //{ path: 'interviewer/driveInvites/reject-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
-  { path: 'interviewer/cancel-interview/:employeeAvailabilityId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  { path: 'interviewer/cancel-interview/:employeeAvailabilityId', component: InterviewerCancelInterviewPageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/totaldrives', component: InterviewerTotalDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/availabilitygiven', component: InterviewerAvailabilityGivenComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/utilizedinterviews', component: InterviewerUtilizedDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },

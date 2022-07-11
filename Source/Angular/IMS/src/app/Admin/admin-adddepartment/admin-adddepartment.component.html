@@ -1,8 +1,10 @@
+<!-- Sidebar Component  -->
 <app-admin-header></app-admin-header>
 <!-- Content Start -->
 <div class="content">
-    <!-- Navbar  -->
+    <!-- Navbar Starts -->
     <app-navbar [title]="title"></app-navbar>
+    <!-- Navbar Ends -->
     <div class="Register CreatePool">
         <div class="card-body">
             <form [formGroup]="AddDepartmentForm" (ngSubmit)="addDepartment()">
@@ -30,7 +32,8 @@
             </form>
         </div>
     </div>
-
+    <!-- Footer Starts -->
     <app-footer [BackBtn]=true></app-footer>
+    <!-- Footer Ends -->
 </div>
 <!-- Content Ends -->

@@ -18,7 +18,7 @@ export class InterviewerDashboardComponent implements OnInit {
   constructor( private connection :ConnectionService) { }
 
   ngOnInit(): void {
-    
+    //GET METHOD IS CALLED AT CONNECTION SERVICE
     this.connection.GetDashboard().subscribe((data: any) =>{
        this.Alldrives = data.TotalDrives
        this.AvailabilityGiven = data.AcceptedDrives

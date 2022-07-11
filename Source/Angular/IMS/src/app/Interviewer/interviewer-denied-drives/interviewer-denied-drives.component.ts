@@ -10,6 +10,8 @@ export class InterviewerDeniedDrivesComponent implements OnInit {
 
   title='Denied Drives';
   Denied: any;
+  
+  //PAGINATION
   totalLength: any;
   page: number = 1;
 

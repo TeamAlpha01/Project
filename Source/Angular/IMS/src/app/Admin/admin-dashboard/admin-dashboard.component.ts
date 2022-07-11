@@ -18,6 +18,7 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
+    //GET METHOD CALLED AT CONNECTION SERVICE
     this.connection.GetEmployeeProfile().subscribe((data: any) => {
       this.data = data;
       console.log(this.data)

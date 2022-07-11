@@ -32,17 +32,21 @@ export class InterviewerAvailabilityGivenComponent implements OnInit {
   constructor(private connection :ConnectionService) { }
 
   ngOnInit(): void {
+    
+    //GET METHOD CALLED AT CONNECTION SERVICE
     this.connection.GetAcceptedDrives().subscribe((data: any) => {
       this.Availability = data;
       this.drive=data;
     }) 
 
+    //GET METHOD CALLED AT CONNECTION SERVICE
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
       console.warn(this.poolDetails)
     })
   }
 
+  //THIS METHOD IS CALLED ON CHANGE IN DROPDOWN FILTER 
   filterDropdown() {
   
     this.drive = [];

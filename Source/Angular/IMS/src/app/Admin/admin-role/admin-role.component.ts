@@ -21,6 +21,7 @@ export class AdminRoleComponent implements OnInit {
   }
 
   AddRoleForm = this.fb.group({
+   //VALIDATE THE INPUT
     roleName: [
       '',
       [

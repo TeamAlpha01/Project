@@ -1,5 +1,7 @@
+<!-- Title and sidebar Component  -->
 <app-admin-header></app-admin-header>
 
+<!-- Content Starts -->
 <div class="content">
     <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
@@ -31,5 +33,9 @@
     <div class="mt-3 sticky-pagination">
         <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
     </div>
+
+    <!-- Footer Component Starts -->
     <app-footer></app-footer>
+    <!-- Footer Component Ends -->
 </div>
+<!-- Content Ends -->

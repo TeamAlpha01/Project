@@ -28,6 +28,8 @@ export class AdminHeaderComponent implements OnInit {
       this.Name = this.userName.replace(/"/g, '')
     }
   }
+
+  //THIS METHOD IS CALLED ON CLICK OF LOGOUT BUTTON
   logout() {
     console.log(this.service)
     this.service.ClearToken();

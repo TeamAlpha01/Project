@@ -27,6 +27,8 @@ export class InterviewerHeaderComponent implements OnInit {
       this.Name = this.userName.replace(/"/g, '')
     }
   }
+
+  //THIS METHOD IS CALLED ON CLICK OF LOGOUT BUTTTON
   logout(){
     this.service.ClearToken();
   }

@@ -66,7 +66,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/interviewer-profile.component';
 import { DatePipe } from '@angular/common';
 import { AlertBoxComponent } from './Shared/AlertBox/alert-box/alert-box.component';
-import { InterviewerCancelInvitePageComponent } from './Interviewer/interviewer-cancel-invite-page/interviewer-cancel-invite-page.component';
+import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
 import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-response.component';
 import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total-drives/interviewer-total-drives.component';
 import { InterviewerAvailabilityGivenComponent } from './Interviewer/interviewer-availability-given/interviewer-availability-given.component';
@@ -101,6 +101,7 @@ import { DepartmentPerformanceComponent } from './Management/department-performa
     InterviewerDashboardComponent,
     InterviewerDriveInvitesComponent,
     InterviewerScheduledDriveComponent,
+    InterviewerCancelInterviewPageComponent,
     TacHomeComponent,
     TacDashboardComponent,
     TacCreatePoolComponent,
@@ -139,7 +140,6 @@ import { DepartmentPerformanceComponent } from './Management/department-performa
     DialogBoxComponent,
     InterviewerProfileComponent,
     AlertBoxComponent,
-    InterviewerCancelInvitePageComponent,
     TacViewResponseComponent,
     InterviewerTotalDrivesComponent,
     InterviewerAvailabilityGivenComponent,

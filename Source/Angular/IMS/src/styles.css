@@ -52,17 +52,12 @@
 .Login {
   margin: 0 20vw;
   padding: 1% 5%;
-  /* border: 1px solid black; */
   border-radius: 15px;
   background-color:white;
   backdrop-filter: blur(100px);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* color: white; */
 }
 
-.title{
-  /* color: white; */
-}
 
 .Login-btn {
   padding-top: 10%;
@@ -165,9 +160,6 @@ body {
   font-size: 14px;
 }
 
-/* ul li:hover a {
-    padding-left: 40px;
-  } */
 
 .sidebar ul a i {
   margin-right: 16px;
@@ -196,7 +188,6 @@ body {
 }
 
 section {
-  /* background: url(bg.jpeg) no-repeat; */
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -872,11 +863,9 @@ h6 {
 
 .sidebar-layout {
   position: fixed;
-  /* left: -250px; */
   width: 250px;
   height: 100%;
   background: var(--light);
-  /*   b295c0      8958a0 */
   transition: all .5s ease;
   text-decoration: none;
 }
@@ -887,7 +876,6 @@ h6 {
 
 .sidebar-header {
   padding-top: 50px;
-  /* font-size: 20px; */
   color: #000000;
   line-height: 30px;
   text-align: center;

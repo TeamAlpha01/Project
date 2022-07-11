@@ -17,6 +17,8 @@ export class AdminAddlocationComponent implements OnInit {
   constructor(private service: ConnectionService, private fb: FormBuilder, private location: Location) { }
 
   AddLocationForm = this.fb.group({
+    //VALIDATE THE INPUT
+
     locationName: [
       '',
       [

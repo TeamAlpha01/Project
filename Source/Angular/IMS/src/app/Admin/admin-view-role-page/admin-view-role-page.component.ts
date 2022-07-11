@@ -29,7 +29,7 @@ export class AdminViewRolePageComponent implements OnInit {
     
     });
   }
-
+  //GET METHOD CALLED AT CONNECTION SERVICE
   GetRoles() {
     this.service.GetRoles().subscribe((data: any) => {
       this.role = data;

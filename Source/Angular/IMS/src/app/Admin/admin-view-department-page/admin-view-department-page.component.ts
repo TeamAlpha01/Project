@@ -33,7 +33,7 @@ export class AdminviewDepartmentPageComponent implements OnInit {
     
     });
   }
-
+  //GET METHOD CALLED AT CONNECTION SERVICE
   GetDepartments() {
     this.service.GetDepartments().subscribe((data: any) => {
       this.department = data;

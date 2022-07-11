@@ -24,6 +24,7 @@ export class AdminviewProjectPageComponent implements OnInit {
     this.GetProjects()
   }
   
+  //GET METHOD CALLED AT CONNECTIONS SERVICE
   GetProjects(){
     this.connection.GetProjects().subscribe((data: any) => {
       this.data = data;

@@ -29,14 +29,15 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   constructor(private connection :ConnectionService,private route: Router) { }
 
   ngOnInit(): void {
-
+  
+  //GET METHOD IS CALLED AT CONNECTION SERVICE
   this.connection.GetPoolsbyId().subscribe((data: any) => {
     this.poolDetails = data;
     for (let item of this.interviewerpoolDetails) {
          this.drive.push(item);
          }
   })
-
+  //GET METHOD IS CALLED AT CONNECTION SERVICE
   this.connection.GetTodaysInterviews().subscribe({
       next: (data: any) => {
         this.interviewDetails = data;

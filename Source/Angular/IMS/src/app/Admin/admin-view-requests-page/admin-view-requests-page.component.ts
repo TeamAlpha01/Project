@@ -21,10 +21,12 @@ export class AdminViewRequestsPageComponent implements OnInit {
     console.log(AuthenticationService.GetData("Admin"))
     this.GetEmployeeRequests();
   }
+  //THIS METHOD IS CALLED ON CLICK0F ACCEPT OR REJECT BUTTON
   RespondEmployeeRequest(employeeId: number, response: boolean) {
     this.service.RespondEmployeeRequest(employeeId, response).subscribe(() => this.GetEmployeeRequests());
 
   }
+  //GET METHOD CALLED AT CONNECTION SERVICE
   GetEmployeeRequests() {
     this.service.GetEmployeeRequests()
       .subscribe((data: any) => {

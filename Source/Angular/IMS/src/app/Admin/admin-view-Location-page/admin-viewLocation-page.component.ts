@@ -32,7 +32,7 @@ export class AdminviewLocationPageComponent implements OnInit {
     });
   }
 
-
+  //GET METHOD CALLED AT CONNECTION SERVICE
   GetLocations() {
     this.service.GetLocations().subscribe((data: any) => {
       this.location = data;

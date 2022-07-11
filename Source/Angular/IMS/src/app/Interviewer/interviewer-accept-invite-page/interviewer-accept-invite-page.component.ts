@@ -58,6 +58,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
     })
   }
 
+  //
   AddResponse() {
     if (this.AcceptInvitePage.valid) {
       console.warn(this.getInterviewDate() + "   " + this.getSlotTime())
@@ -100,6 +101,8 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
       employeeId: 0,
       responseType: 2,
     }
+
+    //POST METHOD IS CALLED AT CONNECTION SERVICE
     this.connection.AddResponse(response).subscribe({
       next: (data: any) => { this.Invites = data, console.warn(this.Invites) },
       error: (error: any) => { this.error = error.error.message, this.snackBar() },

@@ -37,11 +37,12 @@ export class AdminAddprojectComponent implements OnInit {
       this.data = data;
     })
   }
-  addProject() {
+    addProject() {
     this.submitted = true;
     this.error = '';
 
     if (this.AddProjectForm.valid) {
+      //POST METHOD CALLED AT CONNECTION SERVICE
       this.connection.AddProject(this.getProjectName()?.value, this.getdepartmentId()?.value).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,
@@ -51,7 +52,7 @@ export class AdminAddprojectComponent implements OnInit {
   }
 
 
-  //RESET AFTER SUBMIT
+  //RESET AFTER SUBMIT                                                                                      
   clearInputFields() {
 
     this.submitted = false;
