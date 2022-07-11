@@ -7,12 +7,12 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-create-pool.component.html',
   styleUrls: ['./tac-create-pool.component.css']
 })
+
 export class TacCreatePoolComponent implements OnInit {
   title = 'Add Pool'
   data: any;
   response: string = '';
   error: any;
-
 
   constructor(private connection: ConnectionService, private fb: FormBuilder) { }
   submitted: boolean = false;
@@ -20,7 +20,6 @@ export class TacCreatePoolComponent implements OnInit {
     poolName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z\\s]*')]],
     departmentId: ['', [Validators.required]]
   });
-
 
   ngOnInit(): void {
     this.GetDepartments();

@@ -7,6 +7,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-header.component.html',
   styleUrls: ['./tac-header.component.css']
 })
+
 export class TacHeaderComponent implements OnInit {
   userName: string | null = '';
   Name: string = '';
@@ -26,8 +27,6 @@ export class TacHeaderComponent implements OnInit {
       this.Name = this.userName.replace(/"/g, '')
     }
   }
-
-
 
   logout() {
     this.service.ClearToken();

@@ -8,6 +8,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-profile.component.html',
   styleUrls: ['./tac-profile.component.css']
 })
+
 export class TacProfileComponent implements OnInit {
   title = 'Profile';
 
@@ -20,14 +21,12 @@ export class TacProfileComponent implements OnInit {
     employeeRole: ''
   };
 
-
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
     this.connection.GetEmployeeProfile().subscribe((data: any) => {
       this.profile = data;
     })
-
   }
 
 }

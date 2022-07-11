@@ -7,6 +7,7 @@ import { DialogueBoxService } from 'src/app/Services/dialogue-box.service';
   templateUrl: './managepool.component.html',
   styleUrls: ['./managepool.component.css']
 })
+
 export class ManagepoolComponent implements OnInit {
   title = 'Manage Pool'
 
@@ -25,7 +26,6 @@ export class ManagepoolComponent implements OnInit {
   //HTTP RESPONSE
   error: string = '';
   response: string = '';
-
 
   constructor(private connection: ConnectionService, private dialogueService: DialogueBoxService) { }
 

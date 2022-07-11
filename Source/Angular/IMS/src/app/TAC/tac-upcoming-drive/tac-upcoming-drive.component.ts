@@ -7,6 +7,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-upcoming-drive.component.html',
   styleUrls: ['./tac-upcoming-drive.component.css']
 })
+
 export class TacUpcomingDriveComponent implements OnInit {
   title = 'Upcoming Drive'
   totalLength: any;
@@ -18,7 +19,6 @@ export class TacUpcomingDriveComponent implements OnInit {
   pool: any[] = [];
   drive: any[] = [];
   deptId: any;
-
 
   //To get the details from the db
   driveDetails: any;

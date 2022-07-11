@@ -7,6 +7,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-scheduled-drive-history.component.html',
   styleUrls: ['./tac-scheduled-drive-history.component.css']
 })
+
 export class TacScheduledDriveHistoryComponent implements OnInit {
 
   title = 'Scheduled Drive History'
@@ -21,7 +22,6 @@ export class TacScheduledDriveHistoryComponent implements OnInit {
   pool: any[] = [];
   drive: any[] = [];
   deptId: any;
-
 
   //To get the details from the db
   driveDetails: any;

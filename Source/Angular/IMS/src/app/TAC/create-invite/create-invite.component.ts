@@ -77,6 +77,8 @@ export class CreateInviteComponent implements OnInit {
     console.warn(this.toDate);
   }
 
+  //GET METHODS CALLED AT CONNECTION SERVICE
+
   poolEnabler() {
     if (this.getDepartmentId()?.value == '') { this.CreateInviteForm.controls['poolId'].disable() }
     else { this.CreateInviteForm.controls['poolId'].enable() }
@@ -104,6 +106,7 @@ export class CreateInviteComponent implements OnInit {
       this.locationDetails = data;
     })
   }
+  
   CreateInvite() {
     this.submitted = true;
     this.error = '';

@@ -5,7 +5,6 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { catchError, throwError } from 'rxjs';
 // import { threadId } from 'worker_threads';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -176,6 +175,7 @@ export class ConnectionService {
   }
 
   //POST methods
+
   Login(user: any) {
     return this.http.post<any>(this.baseURL + `Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.headers })
   }
@@ -191,6 +191,7 @@ export class ConnectionService {
   CancelDrive(driveId: number, reason: string) {
     return this.http.patch<any>(this.baseURL + `Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
   }
+
   CancelInterview(employeeAvailabilityId: number, cancellationReason: string,comments:string) {
     console.log('service called')
     return this.http.patch<any>(this.baseURL + `Drive/CancelInterview?employeeAvailabilityId=${employeeAvailabilityId}&cancellationReason=${cancellationReason}&comments=${comments}`, null, { headers: this.headers });
@@ -224,9 +225,8 @@ export class ConnectionService {
     return this.http.patch<any>(this.baseURL + `Drive/ScheduleInterview?employeeAvailabilityId=${driveId}`, null, { headers: this.headers })
   }
 
-
-
   //Admin
+
   AddLocation(locationName: string) {
     return this.http.post<any>(this.baseURL + `Location/CreateNewLocation?locationName=${locationName}`, null, { headers: this.headers });
   }
@@ -240,9 +240,9 @@ export class ConnectionService {
     return this.http.post<any>(this.baseURL + `Department/CreateNewDepartment?departmentName=${departmentName}`, null, { headers: this.headers })
   }
 
-
   //Patch Methods
   //Admin
+  
   RespondEmployeeRequest(employeeId: number, response: boolean) {
     return this.http.patch<any>(this.baseURL + `Employee/RespondEmployeeRequest?employeeId=${employeeId}&response=${response}`, null, { headers: this.headers })
   }

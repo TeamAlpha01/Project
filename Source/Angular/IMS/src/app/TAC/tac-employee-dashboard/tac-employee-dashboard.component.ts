@@ -6,6 +6,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-employee-dashboard.component.html',
   styleUrls: ['./tac-employee-dashboard.component.css']
 })
+
 export class TacEmployeeDashboardComponent implements OnInit {
   title = 'Employee Dashboard'
 
@@ -24,7 +25,6 @@ export class TacEmployeeDashboardComponent implements OnInit {
   pool: any;
   employeeDashboardDetails: any;
 
-  
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
@@ -53,8 +53,6 @@ export class TacEmployeeDashboardComponent implements OnInit {
       this.poolMembers = data;
     })
   }
-
-  
 
   GetEmployeeDashboard(employeeId: number) {
     this.connection.GetEmployeesDashboard(employeeId).subscribe((data: any) => {

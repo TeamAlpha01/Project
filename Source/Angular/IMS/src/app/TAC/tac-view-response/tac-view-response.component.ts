@@ -7,6 +7,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-view-response.component.html',
   styleUrls: ['./tac-view-response.component.css']
 })
+
 export class TacViewResponseComponent implements OnInit {
   totalLength: any;
   page: number = 1;

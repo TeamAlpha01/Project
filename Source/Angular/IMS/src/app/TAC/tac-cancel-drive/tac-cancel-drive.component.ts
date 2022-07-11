@@ -10,6 +10,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-cancel-drive.component.html',
   styleUrls: ['./tac-cancel-drive.component.css']
 })
+
 export class TacCancelDriveComponent implements OnInit {
   title = 'Cancel Drive';
   driveId: number = 0;
@@ -30,7 +31,6 @@ export class TacCancelDriveComponent implements OnInit {
     slotTiming: 0,
     toDate: ""
   }
-
 
   constructor(private route: ActivatedRoute, private connection: ConnectionService, private fb: FormBuilder, private location: Location) { }
 

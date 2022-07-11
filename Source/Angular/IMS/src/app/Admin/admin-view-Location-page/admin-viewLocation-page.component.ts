@@ -7,6 +7,7 @@ import { DialogueBoxService } from 'src/app/Services/dialogue-box.service';
   templateUrl: './admin-viewLocation-page.component.html',
   styleUrls: ['./admin-viewLocation-page.component.css'],
 })
+
 export class AdminviewLocationPageComponent implements OnInit {
   title = 'Locations';
   

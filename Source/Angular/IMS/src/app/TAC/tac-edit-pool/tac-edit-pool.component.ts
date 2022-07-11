@@ -8,6 +8,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-edit-pool.component.html',
   styleUrls: ['./tac-edit-pool.component.css']
 })
+
 export class TacEditPoolComponent implements OnInit {
   title = 'Edit Pool'
   data: any;
@@ -19,15 +20,11 @@ export class TacEditPoolComponent implements OnInit {
   error: string = '';
   submitted: boolean = false;
 
-
-
   constructor(private connection: ConnectionService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { }
-
 
   EditPoolForm = this.fb.group({
     poolName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z.0-9\\s]*')]],
   });
-
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -49,11 +46,9 @@ export class TacEditPoolComponent implements OnInit {
     })
   }
 
-
   getpoolName() {
     return this.EditPoolForm.get('poolName')
   }
-
 
   EditPool() {
     this.submitted = true;
@@ -75,7 +70,6 @@ export class TacEditPoolComponent implements OnInit {
         this.response = '';
         this.router.navigateByUrl("/tac/managepool");
       }, 2000);
-    
   }
 
 }

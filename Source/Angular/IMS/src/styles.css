@@ -5,13 +5,16 @@
   --light: #ffffff;
   --dark: #231924;
 }
+
 .link{
   text-decoration: none;
   color: black;
 }
+
 .link :hover{
   color:#aa60e7;
 }
+
 .Sdropdown {
   height: 50px;
   overflow: auto;
@@ -58,7 +61,6 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-
 .Login-btn {
   padding-top: 10%;
   padding-bottom: 10%;
@@ -68,7 +70,6 @@
 .gradient-custom-2 {
   background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
-
 
 /* 631 X 834 */
 @media screen and (max-width:800px) {
@@ -123,8 +124,6 @@ body {
   border-bottom: 1px solid black;
 }
 
-
-
 .sidebar ul a {
   display: block;
   min-height: 100vh;
@@ -159,7 +158,6 @@ body {
 .sidebar li {
   font-size: 14px;
 }
-
 
 .sidebar ul a i {
   margin-right: 16px;
@@ -268,8 +266,6 @@ body {
   height: 290px;
   background: #FFF;
   margin: 100px auto;
-
-
 }
 
 /* Effect 1*/
@@ -290,7 +286,6 @@ body {
   padding-bottom: .6rem;
   color: var(--light);
 }
-
 
 /*Padding for Profile*/
 #align {
@@ -365,7 +360,6 @@ body {
 
 /*-----------------------------------------Dashboard End-----------------------------------------*/
 
-
 body {
   background: #e9ecef99;
   font-family: arial-helvetica
@@ -390,14 +384,11 @@ body {
   margin-bottom: 5%;
   margin-top: 5%;
   display: block;
-
 }
 
 .background {
   background: var(--primary);
 }
-
-
 
 .btn-filter {
   margin-top: 30px !important;
@@ -429,13 +420,10 @@ body {
   background-color: #431c54 !important;
 }
 
-
-
 .btn-filter:hover {
   color: var(--light);
   background-color: #aa60e7;
 }
-
 
 .textinput {
   float: left;
@@ -522,7 +510,6 @@ span.nrate {
 
 .btn.btn-lg {
   background: var(--primary)
-
 }
 
 .btn.btn-lg span {
@@ -599,8 +586,6 @@ body {
 
 .bg-c-lite-green {
   background: var(--light);
-
-
 }
 
 .user-profile {
@@ -705,7 +690,6 @@ h6 {
   font-style: bold;
 }
 
-
 .FreshersButton,
 .SoftwareEngineerButton,
 .SeniorSoftwareEngineerBuuton,
@@ -724,7 +708,6 @@ h6 {
   -moz-box-shadow: 0 10px 6px -6px #777;
   box-shadow: 0 10px 6px -6px #777;
 }
-
 
 .SoftwareEngineerButton,
 .SeniorSoftwareEngineerBuuton,
@@ -767,7 +750,6 @@ h6 {
 .btn-custom {
   border: 1px solid black;
   margin-left: 10px;
-
   width: 10vw;
 }
 
@@ -782,7 +764,6 @@ h6 {
 .home-btn {
   padding-top: 5vh;
   padding-left: 15vw;
-
 }
 
 .btn-light-custom:hover {
@@ -814,7 +795,6 @@ h6 {
 .CurrentDrivesBoxHead {
   margin-top: 5vh;
   margin-bottom: 5vh;
-
 }
 
 .CurrentDrivesBox {
@@ -825,7 +805,6 @@ h6 {
   margin: auto;
   border: 1px solid black;
   margin: 2.5vh auto;
-
 }
 
 .CurrentDrivesFilterButton {
@@ -835,7 +814,6 @@ h6 {
 
 /*--------------------------CurrentDrives-end------------------------*/
 /********** Template CSS **********/
-
 
 .back-to-top {
   position: fixed;
@@ -883,7 +861,6 @@ h6 {
   user-select: none;
   border-bottom: 1px solid black;
 }
-
 
 /*** Spinner ***/
 #spinner {
@@ -1009,7 +986,6 @@ h6 {
 .sidebar .navbar .navbar-nav .nav-link.active {
   color: var(--primary);
   background: var(--light);
-
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
@@ -1090,7 +1066,6 @@ h6 {
   }
 }
 
-
 /*** Date Picker ***/
 .bootstrap-datetimepicker-widget.bottom {
   top: auto !important;
@@ -1118,13 +1093,11 @@ h6 {
   border-bottom-color: var(--primary);
 }
 
-
 /*** Testimonial ***/
 .progress .progress-bar {
   width: 0px;
   transition: 2s;
 }
-
 
 /*** Testimonial ***/
 .testimonial-carousel .owl-dots {
@@ -1191,7 +1164,6 @@ body {
   padding-bottom: 10%;
 }
 
-
 a.logout-btn:hover {
   color: red;
 }
@@ -1213,9 +1185,6 @@ a.logout-btn:hover {
 
 .fa {
   color: var(--primary);
-
-
-
 }
 
 /*  Upcoming drives  */
@@ -1225,8 +1194,7 @@ a.logout-btn:hover {
   /* padding-top: 6rem; */
 }
 
-
-/* DashBoard */
+/*--------------DashBoard------------------*/
 #DashboardScheduled,
 #DashboardCancelled {
   padding-left: 15rem;
@@ -1244,7 +1212,8 @@ a.logout-btn:hover {
   font-size: 7rem;
 }
 
-/* DashBoard  Ends */
+/*---------------DashBoard  Ends------------------*/
+
 /* Management DashBoard */
 #MDashboardScheduled:hover,
 #AvailabilityGiven:hover,
@@ -1276,9 +1245,8 @@ a.logout-btn:hover {
   width: 44px !important;
   background-color: var(--primary) !important;
 }
-
-
 /* Management DashBoard Ends*/
+
 #ViewPoolFilterCard {
   width: 100%;
   height: 3rem;
@@ -1389,8 +1357,6 @@ h1.heading {
   margin-left: 8rem;
 }
 
-*/
-
 /* Create Pool */
 #CreatingPool {
   text-decoration: none;
@@ -1440,6 +1406,7 @@ h1.heading {
 }
 
 /* DashBoard Selection Ends */
+
 /* layout */
 
 /* Admin location */
@@ -1460,7 +1427,6 @@ h1.heading {
   position: center;
   top: 90%;
   text-align: center;
-
 }
 
 .previous-pagination {
@@ -1482,7 +1448,6 @@ h1.heading {
   font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
-
 }
 
 .button1-admin {
@@ -1635,8 +1600,6 @@ h1.heading {
   bottom: 20px;
   right: 35px;
   border-radius: 5px;
-
-
 }
 
 .Location {
@@ -1719,7 +1682,6 @@ label {
   max-height: 50vh;
 }
 
-
 .AddMemberPool {
   width: 100%;
   margin-left: 10px;
@@ -1728,7 +1690,6 @@ label {
 #dashselect {
   padding-top: 10rem;
 }
-
 
 #denied {
   visibility: hidden;
@@ -1799,7 +1760,6 @@ label {
     opacity: 0;
   }
 }
-
 
 #accept {
   visibility: hidden;
@@ -1891,7 +1851,6 @@ body {
   bottom: 0;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 50 50'%3E%3Cpath d='M28.43 6.378C18.27 4.586 8.58 11.37 6.788 21.533c-1.791 10.161 4.994 19.851 15.155 21.643l.707-4.006C14.7 37.768 9.392 30.189 10.794 22.24c1.401-7.95 8.981-13.258 16.93-11.856l.707-4.006z'%3E%3CanimateTransform attributeType='xml' attributeName='transform' type='rotate' from='0 25 25' to='360 25 25' dur='0.6s' repeatCount='indefinite'/%3E%3C/path%3E%3C/svg%3E") center / 50px no-repeat;
 }
-
 
 #innercard {
   background-color: rgb(212, 163, 235);

@@ -5,6 +5,7 @@ import { AuthenticationService } from './authentication.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthorizationService {
 
   constructor(private route: Router) { }

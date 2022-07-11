@@ -1,8 +1,9 @@
 <app-tac-header></app-tac-header>
 
 <div class="content">
+    <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
-
+    <!-- Navbar End -->
      <div class="Register CreatePool">
         <div class="card-body">
             <form [formGroup]="EditPoolForm" (ngSubmit)="EditPool()" >

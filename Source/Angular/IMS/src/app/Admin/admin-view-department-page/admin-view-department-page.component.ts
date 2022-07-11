@@ -2,12 +2,12 @@ import { DialogueBoxService } from './../../Services/dialogue-box.service';
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
-
 @Component({
   selector: 'app-admin-view-department-page',
   templateUrl: './admin-view-Department-page.component.html',
   styleUrls: ['./admin-view-department-page.component.css'],
 })
+
 export class AdminviewDepartmentPageComponent implements OnInit {
   title = 'Departments';
   
@@ -33,6 +33,7 @@ export class AdminviewDepartmentPageComponent implements OnInit {
     
     });
   }
+
   //GET METHOD CALLED AT CONNECTION SERVICE
   GetDepartments() {
     this.service.GetDepartments().subscribe((data: any) => {
@@ -40,8 +41,4 @@ export class AdminviewDepartmentPageComponent implements OnInit {
       this.totalLength= data.length;
     });
   }
-  
-  
-
-
 }

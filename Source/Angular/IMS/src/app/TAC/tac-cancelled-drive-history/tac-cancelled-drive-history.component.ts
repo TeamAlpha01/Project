@@ -7,6 +7,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   templateUrl: './tac-cancelled-drive-history.component.html',
   styleUrls: ['./tac-cancelled-drive-history.component.css']
 })
+
 export class TacCancelledDriveHistoryComponent implements OnInit {
 
   title = 'Cancelled Drive History'
@@ -21,7 +22,6 @@ export class TacCancelledDriveHistoryComponent implements OnInit {
   pool: any[] = [];
   drive: any[] = [];
   deptId: any;
-
 
   //To get the details from the db
   driveDetails: any;
