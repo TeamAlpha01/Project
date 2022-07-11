@@ -39,7 +39,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Exception on Employee DAL : AddEmployeeToDatabase(Employee employee) : {exception.Message}");
+                _logger.LogError($"Exception on Employee DAL : AddEmployeeToDatabase(Employee employee) : {exception.Message}");
                 return false;
             }
         }
@@ -75,23 +75,23 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
+                _logger.LogError($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
+                _logger.LogError($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
                 return false;
             }
             catch (ValidationException exception)
             {
-                _logger.LogInformation($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
-                //return false;
+                _logger.LogError($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
+            
                 throw exception;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
+                _logger.LogError($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
                 return false;
             }
         }
@@ -102,25 +102,73 @@ namespace IMS.DataAccessLayer
         /// Return list of all employees to the service layer or
         /// Throws an exception when exception is occured in this method.
         /// </returns>
-        public List<Employee> GetEmployeesFromDatabase()
+        public List<Employee> GetApprovedEmployessFromDatabase(bool isAdminAccepted)
         {
             try
             {
-                return _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project).ToList();
+                return (from employee in _db.Employees  where employee.IsActive == true && employee.IsAdminAccepted == isAdminAccepted select employee).ToList();
             }
-            catch (DbUpdateException exception)
+           catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+                _logger.LogError($"Employee DAL : GetApprovedEmployessFromDatabase(bool isAdminAccepted) : {exception.Message}");
                 throw new DbUpdateException();
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+                _logger.LogError($"Employee DAL : GetApprovedEmployessFromDatabase(bool isAdminAccepted) : {exception.Message}");
                 throw new OperationCanceledException();
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+                _logger.LogError($"Employee DAL : GetApprovedEmployessFromDatabase(bool isAdminAccepted) : {exception.Message}");
+                throw new Exception();
+            }
+
+        }
+        public List<Employee> GetEmployeesRequestFromDatabase()
+        {
+            try
+            {
+                return (from employee in _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project)  where employee.IsActive == true  && employee.IsAdminAccepted == false && employee.IsAdminResponded == false select employee).ToList();
+            }
+            catch (DbUpdateException exception)
+            {
+                _logger.LogError($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+                throw new DbUpdateException();
+            }
+            catch (OperationCanceledException exception)
+            {
+                _logger.LogError($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+                throw new OperationCanceledException();
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+                throw new Exception();
+            }
+        }
+
+        public List<Employee> GetEmployeesFromDatabase()
+        {
+            try
+            {
+                return  _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project).ToList();;
+
+
+            }
+               catch (DbUpdateException exception)
+            {
+                _logger.LogError($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+                throw new DbUpdateException();
+            }
+            catch (OperationCanceledException exception)
+            {
+                _logger.LogError($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
+                throw new OperationCanceledException();
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
         }
@@ -143,7 +191,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception isEmployeeIdValidException)
             {
-                _logger.LogInformation($"Exception on Employee DAL : IsEmployeeIdValid(int employeeId) : {isEmployeeIdValidException.Message} : {isEmployeeIdValidException.StackTrace}");
+                _logger.LogError($"Exception on Employee DAL : IsEmployeeIdValid(int employeeId) : {isEmployeeIdValidException.Message} : {isEmployeeIdValidException.StackTrace}");
                 throw isEmployeeIdValidException;
             }
         }
@@ -167,7 +215,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Exception on Employee DAL : CheckLoginCrendentials(string employeeAceNumber, string password) : {exception.Message}");
+                _logger.LogError($"Exception on Employee DAL : CheckLoginCrendentials(string employeeAceNumber, string password) : {exception.Message}");
                 throw exception;
             }
         }
@@ -182,7 +230,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception IsDepartmentValid)
             {
-                _logger.LogInformation($"Exception on Employee DAL : IsDepartmentValid(int departmnet) : {IsDepartmentValid.Message} : {IsDepartmentValid.StackTrace}");
+                _logger.LogError($"Exception on Employee DAL : IsDepartmentValid(int departmnet) : {IsDepartmentValid.Message} : {IsDepartmentValid.StackTrace}");
                 throw IsDepartmentValid;
             }
         }

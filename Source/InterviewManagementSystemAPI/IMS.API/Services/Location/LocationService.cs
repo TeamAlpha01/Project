@@ -35,18 +35,18 @@ namespace IMS.Service
             }
             catch (ArgumentException exception)
             {
-                _logger.LogInformation($"Location service : CreateLocation(string  locationName) : {exception.Message}");
+                _logger.LogError($"Location service : CreateLocation(string  locationName) : {exception.Message}");
                 return false;
             }
             catch (ValidationException locationnameAlreadyExists)
             {
-             _logger.LogInformation($"Location service : CreateLocation(string  locationName) : {locationnameAlreadyExists.Message}");
+             _logger.LogError($"Location service : CreateLocation(string  locationName) : {locationnameAlreadyExists.Message}");
               throw locationnameAlreadyExists;
             }
 
             catch (Exception exception)
             {
-                _logger.LogInformation($"Location service : CreateLocation(string locationName) : {exception.Message}");
+                _logger.LogError($"Location service : CreateLocation(string locationName) : {exception.Message}");
                 return false;
             }
 
@@ -69,17 +69,17 @@ namespace IMS.Service
             }
            catch (ArgumentException exception)
             {
-                _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {exception.Message}");
+                _logger.LogError($"Location service : RemoveLocation(int locationId) : {exception.Message}");
                 return false;
             }
             catch (ValidationException locationNotFound)
             {
-                _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {locationNotFound.Message}");
+                _logger.LogError($"Location service : RemoveLocation(int locationId) : {locationNotFound.Message}");
                 throw locationNotFound;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Location service : RemoveLocation(int locationId) :{exception.Message}");
+                _logger.LogError($"Location service : RemoveLocation(int locationId) :{exception.Message}");
                 return false;
             }
         }
@@ -93,11 +93,11 @@ namespace IMS.Service
             try
             {
                 IEnumerable<Location> locations = new List<Location>();
-                return locations = from location in _locationDataAccessLayer.GetLocationsFromDatabase() where location.IsActive == true select location;
+                return locations = _locationDataAccessLayer.GetLocationsFromDatabase() ;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Location service:ViewLocations(): {exception.Message}");
+                _logger.LogError($"Location service:ViewLocations(): {exception.Message}");
                 throw new Exception();
             }
 

@@ -6,7 +6,7 @@ namespace IMS.DataAccessLayer
 {
     public class LocationDataAccessLayer : ILocationDataAccessLayer
     {
-        private InterviewManagementSystemDbContext _db;// = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private InterviewManagementSystemDbContext _db;
         private ILogger _logger;
 
         public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
@@ -41,12 +41,12 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location) : {exception.Message}");
+                _logger.LogError($"Location DAL : AddLocationToDatabase(Location location) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location) : {exception.Message}");
+                _logger.LogError($"Location DAL : AddLocationToDatabase(Location location) : {exception.Message}");
                 return false;
             }
             catch (ValidationException locationnameAlreadyExists)
@@ -55,7 +55,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Location DAL : AddLocationToDatabase(Location location)) : {exception.Message}");
+                _logger.LogError($"Location DAL : AddLocationToDatabase(Location location)) : {exception.Message}");
                 return false;
             }
         }
@@ -90,12 +90,12 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
+                _logger.LogError($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
+                _logger.LogError($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
                 return false;
             }
             catch (ValidationException locationNotFound)
@@ -104,7 +104,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
+                _logger.LogError($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
                 return false;
             }
 
@@ -120,21 +120,21 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return _db.Locations.ToList();
+                return (from location in _db.Locations where location.IsActive == true select location).ToList();
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
                 throw new DbUpdateException();
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
         }

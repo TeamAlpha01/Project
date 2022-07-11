@@ -5,7 +5,9 @@ namespace IMS.DataAccessLayer
     {
         public bool AddEmployeeToDatabase(Employee employee);
         public bool RemoveEmployeeFromDatabase(int employeeId);
+        public List<Employee> GetApprovedEmployessFromDatabase(bool isAdminAccepted);
         public List<Employee> GetEmployeesFromDatabase();
+        public List<Employee> GetEmployeesRequestFromDatabase();
 
         public Employee ViewProfile(int employeeId);
 

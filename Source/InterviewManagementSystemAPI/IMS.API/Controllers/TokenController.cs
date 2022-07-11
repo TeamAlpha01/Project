@@ -29,12 +29,12 @@ namespace IMS.Controllers
             }
             catch (ValidationException validationException)
             {
-                _logger.LogInformation($"Token Service : AuthToken() : {validationException.Message}");
+                _logger.LogError($"Token Service : AuthToken() : {validationException.Message}");
                 return BadRequest(validationException.Message);
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Token Service : AuthToken() : {exception.Message}");
+                _logger.LogError($"Token Service : AuthToken() : {exception.Message}");
                 return Problem("Sorry some internal error occured");
             }
         }

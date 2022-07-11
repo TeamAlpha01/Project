@@ -47,12 +47,12 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Pool DAL : AddPoolToDatabase(Pool pool) : {exception.Message}");
+                _logger.LogError($"Pool DAL : AddPoolToDatabase(Pool pool) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Pool DAL : AddPoolToDatabase(Pool pool) : {exception.Message}");
+                _logger.LogError($"Pool DAL : AddPoolToDatabase(Pool pool) : {exception.Message}");
                 return false;
             }
             catch(ValidationException departmentNotFound)
@@ -62,7 +62,7 @@ namespace IMS.DataAccessLayer
 
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool DAL : AddPoolToDatabase(Pool pool)  : {exception.Message}");
+                _logger.LogError($"Pool DAL : AddPoolToDatabase(Pool pool)  : {exception.Message}");
                 return false;
             }
 
@@ -97,12 +97,12 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Pool DAL : RemovePoolFromDatabase(int departmentId,int poolId) : {exception.Message}");
+                _logger.LogError($"Pool DAL : RemovePoolFromDatabase(int departmentId,int poolId) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Pool DAL : RemovePoolFromDatabase(int departmentId,int poolId) : {exception.Message}");
+                _logger.LogError($"Pool DAL : RemovePoolFromDatabase(int departmentId,int poolId) : {exception.Message}");
                 return false;
             }
             catch (ValidationException poolNotFound)
@@ -111,20 +111,13 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool DAL : RemovePoolFromDatabase(int departmentId,int poolId) : {exception.Message}");
+                _logger.LogError($"Pool DAL : RemovePoolFromDatabase(int departmentId,int poolId) : {exception.Message}");
                 return false;
             }
 
         }
 
-        /// <summary>
-        /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
-        /// Pool DAL Perform the interaction with Database and Respond to the Rename a Pool from Database request.
-        /// </summary>
-        /// <param name="poolId">int</param>
-        /// <param name="poolName">string</param>
-        /// <returns>Return true or Throws Exception : No pool is found with given Pool Id or The given pool Id is inactive,so unable to rename the pool</returns>
-        /// Catches exceptions thorwed by Database if any Misconnections in DB
+      
 
         private bool hasActiveDrives(int poolId)
         {
@@ -136,10 +129,18 @@ namespace IMS.DataAccessLayer
             }
             catch(Exception hasActiveDrivesException)
             {
-                _logger.LogInformation($"Pool DAL : hasActiveDrives(int poolId) : {hasActiveDrivesException.Message} : {hasActiveDrivesException.StackTrace}");
+                _logger.LogError($"Pool DAL : hasActiveDrives(int poolId) : {hasActiveDrivesException.Message} : {hasActiveDrivesException.StackTrace}");
                 throw;
             }
         }
+          /// <summary>
+        /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+        /// Pool DAL Perform the interaction with Database and Respond to the Rename a Pool from Database request.
+        /// </summary>
+        /// <param name="poolId">int</param>
+        /// <param name="poolName">string</param>
+        /// <returns>Return true or Throws Exception : No pool is found with given Pool Id or The given pool Id is inactive,so unable to rename the pool</returns>
+        /// Catches exceptions thorwed by Database if any Misconnections in DB
         public bool EditPoolFromDatabase(int poolId, string poolName)
         {
             PoolValidation.IsEditPoolValid(poolId, poolName);
@@ -162,12 +163,12 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Pool DAL : EditPoolFromDatabase(int poolId,string poolName) : {exception.Message}");
+                _logger.LogError($"Pool DAL : EditPoolFromDatabase(int poolId,string poolName) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Pool DAL : EditPoolFromDatabase(int poolId,string poolName) : {exception.Message}");
+                _logger.LogError($"Pool DAL : EditPoolFromDatabase(int poolId,string poolName) : {exception.Message}");
                 return false;
             }
             catch (ValidationException poolNotFound)
@@ -177,7 +178,7 @@ namespace IMS.DataAccessLayer
 
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool DAL : EditPoolFromDatabase(int poolId,string poolName) : {exception.Message}");
+                _logger.LogError($"Pool DAL : EditPoolFromDatabase(int poolId,string poolName) : {exception.Message}");
 
                 return false;
             }
@@ -198,16 +199,16 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                return _db.Pools.Include(p=>p.department).ToList();
+                return (from pool in _db.Pools.Include(p=>p.department) where pool.IsActive == true select pool).ToList();
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new DbUpdateException();
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
             }
             catch (ValidationException departmentNotFound)
@@ -216,7 +217,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
         }
@@ -230,20 +231,20 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation(string.Format("Pool DAL : GetPoolsFromDatabase() : {0}",exception.Message));
+                _logger.LogError(string.Format("Pool DAL : GetPoolsFromDatabase() : {0}",exception.Message));
                 // _logger.LogInformation("Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 //_logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
             }
             
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
 
@@ -274,7 +275,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers)  : {exception.Message}");
+                _logger.LogError($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers)  : {exception.Message}");
                 return false;
             }
 
@@ -286,12 +287,7 @@ namespace IMS.DataAccessLayer
             var pool =_db.Employees.Find(poolMembers.PoolId);
             if(employee==null || pool==null)
                 throw new ValidationException("Employee or pool not found with the given Employee Id and Pool Id");
-            var poolCount =_db.PoolMembers.Where(p=>p.PoolId==poolMembers.PoolId && p.IsActive==true).ToList().Count;
-            if(poolCount==0 && employee.Role.IsManagement==false)       
-            {
-                var dummy=employee.Role.IsManagement;
-                throw new ValidationException("A Pool must contain minimum one Management Employee, Try adding a Management Employee First");
-            }              
+                      
             bool poolMemberAlreadyExists = _db.PoolMembers.Any(x => x.EmployeeId == poolMembers.EmployeeId && x.PoolId==poolMembers.PoolId && x.IsActive == true);    
             if(poolMemberAlreadyExists)
              throw new ValidationException("Pool Member already exists in the given Pool Id");
@@ -327,12 +323,12 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers) : {exception.Message}");
+                _logger.LogError($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers): {exception.Message}");
+                _logger.LogError($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers): {exception.Message}");
                 return false;
             }
             catch (ValidationException poolMemberNotException)
@@ -341,7 +337,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers)  : {exception.Message}");
+                _logger.LogError($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers)  : {exception.Message}");
                 return false;
             }
 
@@ -366,18 +362,18 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new DbUpdateException();
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
             }
             
             catch (Exception exception)
             {
-                _logger.LogInformation($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
+                _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
 

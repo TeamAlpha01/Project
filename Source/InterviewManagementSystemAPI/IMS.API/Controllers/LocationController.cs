@@ -24,15 +24,6 @@ public class LocationController : ControllerBase
     /// <summary>
     /// This method will be implemented when "Add a new Locatioon" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /CreateNewLocation
-    ///     {
-    ///        "Location Name": "Chennai",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="locationName">String</param>
@@ -50,12 +41,12 @@ public class LocationController : ControllerBase
         }
         catch (ValidationException locationnameAlreadyExists)
         {
-            _logger.LogInformation($"Location Service : CreateNewLocation(string locationName) : {locationnameAlreadyExists.Message}");
+            _logger.LogError($"Location Service : CreateNewLocation(string locationName) : {locationnameAlreadyExists.Message}");
             return BadRequest(UtilityService.Response(locationnameAlreadyExists.Message));
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Location Service : CreateLocation throwed an exception : {exception}");
+            _logger.LogError($"Location Service : CreateLocation throwed an exception : {exception}");
             return Problem("Sorry some internal error occured");
         }
     }
@@ -63,15 +54,6 @@ public class LocationController : ControllerBase
     /// <summary>
     /// This method will be implemented when "Remove a Location" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /RemoveLocation
-    ///     {
-    ///        "Location Id": "1",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="locationId">int</param>
@@ -88,12 +70,12 @@ public class LocationController : ControllerBase
         }
         catch (ValidationException locationNotFound)
         {
-            _logger.LogInformation($"Location Service : RemoveLocation(int locationId) : {locationNotFound.Message}");
+            _logger.LogError($"Location Service : RemoveLocation(int locationId) : {locationNotFound.Message}");
             return BadRequest(locationNotFound.Message);
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Location Service : RemoveLocation throwed an exception : {exception}");
+            _logger.LogError($"Location Service : RemoveLocation throwed an exception : {exception}");
             return Problem("Sorry some internal error occured");
         }
 
@@ -101,15 +83,6 @@ public class LocationController : ControllerBase
     /// <summary>
     /// This method will be implemented when "View all Location" - Request rises
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewLocation
-    ///     {
-    ///        
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns Error Message when Exception occured in Location Service. A list contains All locations or Error Message</returns>
@@ -122,7 +95,7 @@ public class LocationController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching locations ", exception);
+            _logger.LogError("Service throwed exception while fetching locations ", exception);
             return Problem("Sorry some internal error occured");
         }
     }

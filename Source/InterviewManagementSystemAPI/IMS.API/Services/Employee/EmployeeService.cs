@@ -44,12 +44,12 @@ namespace IMS.Service
             }
             catch (ValidationException employeeNotValid)
             {
-                _logger.LogInformation($"Employee Service : CreateEmployee() : {employeeNotValid.Message}");
+                _logger.LogError($"Employee Service : CreateEmployee() : {employeeNotValid.Message}");
                 throw employeeNotValid;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee Service : CreateEmployee() : {exception.Message}");
+                _logger.LogError($"Employee Service : CreateEmployee() : {exception.Message}");
                 throw exception;
             }
         }
@@ -77,17 +77,17 @@ namespace IMS.Service
             }
             catch (ArgumentException exception)
             {
-                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
+                _logger.LogError($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
                 throw exception;
             }
             catch (ValidationException employeeNotFound)
             {
-                _logger.LogInformation($"Employee service : CreateEmployee(Employee employee) : {employeeNotFound.Message}");
+                _logger.LogError($"Employee service : CreateEmployee(Employee employee) : {employeeNotFound.Message}");
                 throw employeeNotFound;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
+                _logger.LogError($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
                 throw exception;
             }
         }
@@ -102,7 +102,7 @@ namespace IMS.Service
         {
             try
             {
-                return  (from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsActive == true select employee).
+                return  _employeeDataAccessLayer.GetEmployeesFromDatabase().
                 Select(
                     employee => new{
                         employeeId=employee.EmployeeId,
@@ -116,7 +116,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {   
-                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
+                _logger.LogError($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
         }
@@ -148,12 +148,12 @@ namespace IMS.Service
             }
             catch (ValidationException viewEmployeeNotValid)
             {
-                _logger.LogInformation($"Employee Service : ViewProfile(int employeeId) : {viewEmployeeNotValid.Message} : {viewEmployeeNotValid.StackTrace}");
+                _logger.LogError($"Employee Service : ViewProfile(int employeeId) : {viewEmployeeNotValid.Message} : {viewEmployeeNotValid.StackTrace}");
                 throw viewEmployeeNotValid;
             }
             catch (Exception viewEmployeeException)
             {
-                _logger.LogInformation($"Employee Service : ViewProfile(int employeeId) : {viewEmployeeException.Message} : {viewEmployeeException.StackTrace}");
+                _logger.LogError($"Employee Service : ViewProfile(int employeeId) : {viewEmployeeException.Message} : {viewEmployeeException.StackTrace}");
                 throw viewEmployeeException;
             }
         }
@@ -193,7 +193,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
+                _logger.LogError($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
 
@@ -223,11 +223,11 @@ namespace IMS.Service
             try
             {
                 IEnumerable<Employee> employees = new List<Employee>();
-                return employees = from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsAdminAccepted == isAdminAccepted select employee;
+                return employees = _employeeDataAccessLayer.GetApprovedEmployessFromDatabase(isAdminAccepted);
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee service : ViewEmployeeByApprovalStatus : Exception occured in DAL :{exception.Message}");
+                _logger.LogError($"Employee service : ViewEmployeeByApprovalStatus : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
         }
@@ -243,7 +243,7 @@ namespace IMS.Service
         {
             try
             {
-                return (from employee in _employeeDataAccessLayer.GetEmployeesFromDatabase() where employee.IsAdminAccepted == false && employee.IsAdminResponded == false select employee)
+                return  _employeeDataAccessLayer.GetEmployeesRequestFromDatabase()
                 .Select(
                     e => new{
                         employeeId = e.EmployeeId,
@@ -256,7 +256,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee service : ViewTACRequest : Exception occured in DAL :{exception.Message}");
+                _logger.LogError($"Employee service : ViewTACRequest : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
         }
@@ -269,7 +269,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
+                _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
                 throw exception;
             }
         }
@@ -282,7 +282,7 @@ namespace IMS.Service
             } 
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
+                _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
                 throw exception;
             }
         }

@@ -35,7 +35,9 @@ public class RoleController : ControllerBase
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="roleName">String</param>
+    /// <param name="isManagement">bool</param>
     /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
+    
     [HttpPost]
     public IActionResult CreateNewRole(string roleName,bool isManagement)
     {
@@ -47,12 +49,12 @@ public class RoleController : ControllerBase
         }
         catch (ValidationException roleNameException)
         {
-            _logger.LogInformation($"Role Service : CreateNewRole() : {roleNameException.Message}");
+            _logger.LogError($"Role Service : CreateNewRole() : {roleNameException.Message}");
             return BadRequest(UtilityService.Response(roleNameException.Message));
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Role Service : CreateRole throwed an exception : {exception}");
+            _logger.LogError($"Role Service : CreateRole throwed an exception : {exception}");
             return Problem("Sorry some internal error occured");
         }
     }
@@ -60,15 +62,6 @@ public class RoleController : ControllerBase
     /// <summary>
     ///  This method will be implemented when "Remove a new Role" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /Remove Role
-    ///     {
-    ///        "Role ID": "1",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="roleId">int</param>
@@ -85,12 +78,12 @@ public class RoleController : ControllerBase
         }
         catch (ValidationException roleNotFound)
         {
-            _logger.LogInformation($"Role Service : RemoveRole() : {roleNotFound.Message}");
+            _logger.LogError($"Role Service : RemoveRole() : {roleNotFound.Message}");
             return BadRequest(roleNotFound.Message);
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Role Service : RemoveRole throwed an exception : {exception.Message}");
+            _logger.LogError($"Role Service : RemoveRole throwed an exception : {exception.Message}");
             return Problem("Sorry some internal error occured ");
         }
     }
@@ -98,15 +91,6 @@ public class RoleController : ControllerBase
     /// <summary>
     /// This method will be implemented when "View Roles" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /ViewRoles
-    ///     {
-    ///       
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
@@ -120,7 +104,7 @@ public class RoleController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Service throwed exception while fetching roles : {exception}");
+            _logger.LogError($"Service throwed exception while fetching roles : {exception}");
             return Problem("Sorry some internal error occured");
         }
     }

@@ -42,12 +42,12 @@ namespace IMS.Service
             }
             catch (ValidationException departmentExist)
             {
-                _logger.LogInformation($"Department Service : CreateDepartment(string departmentName) : {departmentExist.Message} : {departmentExist.StackTrace}");
+                _logger.LogError($"Department Service : CreateDepartment(string departmentName) : {departmentExist.Message} : {departmentExist.StackTrace}");
                 throw departmentExist;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Department Service : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogError($"Department Service : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
 
                 // Log "Exception Occured in Data Access Layer"
                 return false;
@@ -74,12 +74,12 @@ namespace IMS.Service
             }
             catch (ValidationException departmentNotFound)
             {
-                _logger.LogInformation($"Location service : RemoveLocation(int locationId) : {departmentNotFound.Message}");
+                _logger.LogError($"Location service : RemoveLocation(int locationId) : {departmentNotFound.Message}");
                 throw departmentNotFound;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Department Service : RemoveDepartment(departmentId) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogError($"Department Service : RemoveDepartment(departmentId) : {exception.Message} : {exception.StackTrace}");
 
                 // Log "Exception Occured in Data Access Layer"
                 return false;
@@ -98,11 +98,11 @@ namespace IMS.Service
             try
             {
                 IEnumerable<Department> departments = new List<Department>();
-                return departments = from department in _departmentDataAccessLayer.GetDepartmentsFromDatabase() where department.IsActive == true select department;
+                return departments = _departmentDataAccessLayer.GetDepartmentsFromDatabase();
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Department Service : ViewDepartments() : {exception.Message} : {exception.StackTrace}");
+                _logger.LogError($"Department Service : ViewDepartments() : {exception.Message} : {exception.StackTrace}");
 
                 //Log "Exception occured in DAL while fetching roles"
                 throw exception;
@@ -128,12 +128,12 @@ namespace IMS.Service
             }
             catch (ValidationException projectnameAlreadyExists)
             {
-                _logger.LogInformation($"Department Service : CreateProject(int deparmentId,string projectId) : {projectnameAlreadyExists.Message} : {projectnameAlreadyExists.StackTrace}");
+                _logger.LogError($"Department Service : CreateProject(int deparmentId,string projectId) : {projectnameAlreadyExists.Message} : {projectnameAlreadyExists.StackTrace}");
                 throw projectnameAlreadyExists;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Department Service : CreateProject(int deparmentId,string projectId) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogError($"Department Service : CreateProject(int deparmentId,string projectId) : {exception.Message} : {exception.StackTrace}");
 
                 // Log "Exception Occured in Data Access Layer"
                 return false;
@@ -160,12 +160,12 @@ namespace IMS.Service
             }
             catch (ValidationException projectNotFound)
             {
-                _logger.LogInformation($"Department Service : RemoveDepartment(int projectId) : {projectNotFound.Message} : {projectNotFound.StackTrace}");
+                _logger.LogError($"Department Service : RemoveDepartment(int projectId) : {projectNotFound.Message} : {projectNotFound.StackTrace}");
                 throw projectNotFound;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Department Service : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogError($"Department Service : RemoveProject(int projectId) : {exception.Message} : {exception.StackTrace}");
 
                 // Log "Exception Occured in Data Access Layer"
                 return false;
@@ -185,7 +185,7 @@ namespace IMS.Service
         {
             try
             {
-                return (from project in _departmentDataAccessLayer.GetProjectsFromDatabase() where project.IsActive == true select project).
+                return  _departmentDataAccessLayer.GetProjectsFromDatabase().
                 Select(
                     project => new
                     {
@@ -197,7 +197,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Department Service : ViewProjects(int departmentId) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogError($"Department Service : ViewProjects(int departmentId) : {exception.Message} : {exception.StackTrace}");
 
                 //Log "Exception occured in DAL while fetching roles"
                 throw exception;

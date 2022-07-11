@@ -21,21 +21,12 @@ public class PoolController : ControllerBase
     {
         _logger = logger;
         _mailService = mailService;
-        _poolService = poolService;  //DataFactory.PoolDataFactory.GetPoolServiceObject(_logger);
+        _poolService = poolService;  
     }
 
     /// <summary>
     /// This method will be implemented when "Create a New Pool" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /CreateNewPool
-    ///     {
-    ///        "Location Pool": "Freshers2022",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="departmentId">int</param>
@@ -55,7 +46,7 @@ public class PoolController : ControllerBase
 
         catch (ValidationException departmentNotFound)
         {
-            _logger.LogInformation($"Pool Service : CreatePool throwed an exception : {departmentNotFound.Message}");
+            _logger.LogError($"Pool Service : CreatePool throwed an exception : {departmentNotFound.Message}");
             return BadRequest(UtilityService.Response(departmentNotFound.Message));
         }
 
@@ -70,15 +61,6 @@ public class PoolController : ControllerBase
     /// <summary>
     /// This method will be implemented when "Remove a Pool" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /Remove Pool
-    ///     {
-    ///        "PoolId": "1",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="poolId">int</param>
@@ -95,12 +77,12 @@ public class PoolController : ControllerBase
         }
         catch (ValidationException poolNotFound)
         {
-            _logger.LogInformation($"Pool Service : RemovePool(int poolId) : {poolNotFound.Message}");
+            _logger.LogError($"Pool Service : RemovePool(int poolId) : {poolNotFound.Message}");
             return BadRequest(poolNotFound.Message);
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Pool Service : RemoveLocation throwed an exception : {exception}");
+            _logger.LogError($"Pool Service : RemoveLocation throwed an exception : {exception}");
             return Problem ("Sorry some internal error occured");
         }
 
@@ -109,16 +91,6 @@ public class PoolController : ControllerBase
     /// <summary>
     /// This method will be implemented when "Rename a Pool" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /Edit Pool
-    ///     {
-    ///        "Pool ID": "1",
-    ///        "Pool Name" : "Freshers2021",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="poolId">int</param>
@@ -137,13 +109,13 @@ public class PoolController : ControllerBase
         }
         catch (ValidationException poolNotFound)
         {
-            _logger.LogInformation($"Pool Service :EditPool(int poolId,string poolName): {poolNotFound.Message}");
+            _logger.LogError($"Pool Service :EditPool(int poolId,string poolName): {poolNotFound.Message}");
             return BadRequest(poolNotFound.Message);
         }
 
         catch (Exception exception)
         {
-            _logger.LogInformation("Pool Service : RemovePool throwed an exception", exception);
+            _logger.LogError("Pool Service : RemovePool throwed an exception", exception);
             return BadRequest("Sorry some internal error occured");
         }
 
@@ -152,20 +124,10 @@ public class PoolController : ControllerBase
     /// <summary>
     /// This method will be implemented when "View Pools" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET / ViewPools
-    ///     {
-    ///      
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
-    /// <param name="departmentId">int</param>
     /// <returns>Returns a list of pools</returns>
-    /// 
+    
 
     [HttpGet]
     public IActionResult ViewPools()
@@ -176,20 +138,19 @@ public class PoolController : ControllerBase
         }
         catch (ValidationException departmentNotFound)
         {
-            _logger.LogInformation($"Pool Service :EditPool(int poolId,string poolName): {departmentNotFound.Message}");
+            _logger.LogError($"Pool Service :EditPool(int poolId,string poolName): {departmentNotFound.Message}");
             return BadRequest(departmentNotFound.Message);
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching Pools ", exception);
+            _logger.LogError("Service throwed exception while fetching Pools ", exception);
             return Problem ("Sorry some internal error occured");
         }
     }
     /// <summary>
-    /// This method will be implemented when "View PoolsById" - Request rises.
+    /// This method will be  implemented when "ViewPoolsById"-Requset arises
     /// </summary>
-    /// <param name="employeeId"></param>
-    /// <returns>Returns list of pool based on the given employee Id</returns>
+    /// <returns>Returns list of pool based on employee id</returns>
     [HttpGet]
     public IActionResult ViewPoolsByID()
     {
@@ -201,13 +162,13 @@ public class PoolController : ControllerBase
         }
         catch (ValidationException employeeNotFound)
         {
-            _logger.LogInformation($"Pool Service : ViewPools(employeeID) : {employeeNotFound.Message}");
+            _logger.LogError($"Pool Service : ViewPools(employeeID) : {employeeNotFound.Message}");
             return BadRequest(employeeNotFound.Message);
 
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching locations ", exception);
+            _logger.LogError("Service throwed exception while fetching locations ", exception);
             return Problem("Sorry some internal error occured");
         }
     }
@@ -215,16 +176,6 @@ public class PoolController : ControllerBase
     /// <summary>
     /// This method will be implemented when "Add Pool Members" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /AddPoolMembers
-    ///     {
-    ///        "Employee Id": "1",
-    ///        "Pool Id" : "1",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId">int</param>
@@ -248,17 +199,17 @@ public class PoolController : ControllerBase
         }
         catch (ValidationException employeeNotException)
         {
-            _logger.LogInformation($"Pool Service :AddPoolMembers(int employeeId,int poolId) {employeeNotException.Message}");
+            _logger.LogError($"Pool Service :AddPoolMembers(int employeeId,int poolId) {employeeNotException.Message}");
             return BadRequest(UtilityService.Response(employeeNotException.Message));
         }
         catch (MailException mailException)
         {
-            _logger.LogInformation($"Pool Controller : AddPoolMembers(int employeeId,int poolId) : {mailException.Message} : {mailException.StackTrace}");
+            _logger.LogWarning($"Pool Controller : AddPoolMembers(int employeeId,int poolId) : {mailException.Message} : {mailException.StackTrace}");
             return Ok("Pool Member Added Successfully but failed to send email");
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Pool Service : AddPoolMembers throwed an exception : {exception}");
+            _logger.LogError($"Pool Service : AddPoolMembers throwed an exception : {exception}");
             return Problem("Sorry some internal error occured");
         }
     }
@@ -266,15 +217,6 @@ public class PoolController : ControllerBase
     /// <summary>
     /// This method will be implemented when "Remove Pool Members" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /RemovePoolMembers
-    ///     {
-    ///        "Pool Member Id": "1",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="poolMemberId">int</param>
@@ -296,17 +238,17 @@ public class PoolController : ControllerBase
         }
         catch (ValidationException poolMemberNotException)
         {
-            _logger.LogInformation($"Pool Service :RemovePoolMembers(int poolMemberId): {poolMemberNotException.Message}");
+            _logger.LogError($"Pool Service :RemovePoolMembers(int poolMemberId): {poolMemberNotException.Message}");
             return BadRequest(UtilityService.Response(poolMemberNotException.Message));
         }
         catch (MailException mailException)
         {
-            _logger.LogInformation($"Pool Controller : RemovePoolMembers(int poolMemberId) : {mailException.Message} : {mailException.StackTrace}");
+            _logger.LogWarning($"Pool Controller : RemovePoolMembers(int poolMemberId) : {mailException.Message} : {mailException.StackTrace}");
             return Ok("Pool Member removed Successfully but failed to send email");
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Pool Service : RemovePoolMembers(int poolMemberId) throwed an exception: {exception}");
+            _logger.LogError($"Pool Service : RemovePoolMembers(int poolMemberId) throwed an exception: {exception}");
             return Problem("Sorry some internal error occured");
         }
     }
@@ -314,14 +256,6 @@ public class PoolController : ControllerBase
     /// <summary>
     /// This method will be implemented when "View Pool Members" - Request rises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewPoolMembers
-    ///     {
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <param name="poolId">int</param>
@@ -339,13 +273,13 @@ public class PoolController : ControllerBase
         }
         catch (ValidationException poolNotFound)
         {
-            _logger.LogInformation($"Pool Service : ViewPoolMembers() : {poolNotFound.Message}");
+            _logger.LogError($"Pool Service : ViewPoolMembers() : {poolNotFound.Message}");
             return BadRequest(poolNotFound.Message);
 
         }
         catch (Exception exception)
         {
-            _logger.LogInformation("Service throwed exception while fetching locations ", exception);
+            _logger.LogError("Service throwed exception while fetching locations ", exception);
             return Problem("Sorry some internal error occured");
         }
     }

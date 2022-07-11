@@ -40,17 +40,17 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
+                _logger.LogError($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
+                _logger.LogError($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
                 return false;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
+                _logger.LogError($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
                 return false;
             }
         }
@@ -93,12 +93,12 @@ namespace IMS.DataAccessLayer
             // }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
+                _logger.LogError($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
+                _logger.LogError($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
                 return false;
             }
             catch (ValidationException roleNotFound)
@@ -107,7 +107,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
+                _logger.LogError($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
                 return false;
             }
 
@@ -123,22 +123,22 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                _logger.LogInformation("logger DAL");
-                return _db.Roles.ToList();
+                _logger.LogError("logger DAL");
+                return (from role in _db.Roles where role.IsActive == true select role).ToList();
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogInformation($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
+                _logger.LogError($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
                 throw new DbUpdateException();
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogInformation($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
+                _logger.LogError($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
                 throw new OperationCanceledException();
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
+                _logger.LogError($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
         }

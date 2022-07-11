@@ -23,7 +23,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getEmployeeEmailException)
             {
-                _logger.LogInformation($"Exception on Mail DAL : GetEmployeeEmail(int employeeId) : {getEmployeeEmailException.Message} : {getEmployeeEmailException.StackTrace}");
+                _logger.LogError($"Exception on Mail DAL : GetEmployeeEmail(int employeeId) : {getEmployeeEmailException.Message} : {getEmployeeEmailException.StackTrace}");
                 throw getEmployeeEmailException;
             }
         }
@@ -36,7 +36,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getEmployeeNameException)
             {
-                _logger.LogInformation($"Exception on Mail DAL :GetEmployeeName(int employeeId) : {getEmployeeNameException.Message} : {getEmployeeNameException.StackTrace}");
+                _logger.LogError($"Exception on Mail DAL :GetEmployeeName(int employeeId) : {getEmployeeNameException.Message} : {getEmployeeNameException.StackTrace}");
                 throw getEmployeeNameException;
             }
         }
@@ -49,7 +49,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getPoolNameException)
             {
-                _logger.LogInformation($"Exception on Mail DAL : GetPoolName(int poolId) : {getPoolNameException.Message} : {getPoolNameException.StackTrace}");
+                _logger.LogError($"Exception on Mail DAL : GetPoolName(int poolId) : {getPoolNameException.Message} : {getPoolNameException.StackTrace}");
                 throw getPoolNameException;
             }
         }
@@ -61,7 +61,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getPoolMemberException)
             {
-                _logger.LogInformation($"Exception on Mail DAL : GetPoolMember(int poolMemberId) : {getPoolMemberException.Message} : {getPoolMemberException.StackTrace}");
+                _logger.LogError($"Exception on Mail DAL : GetPoolMember(int poolMemberId) : {getPoolMemberException.Message} : {getPoolMemberException.StackTrace}");
                 throw getPoolMemberException;
             }
         }
@@ -74,7 +74,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getEmployeeEmailsByPoolException)
             {
-                _logger.LogInformation($"Exception on Mail DAL : GetEmployeeEmailsByPool(int poolId) : {getEmployeeEmailsByPoolException.Message} : {getEmployeeEmailsByPoolException.StackTrace}");
+                _logger.LogError($"Exception on Mail DAL : GetEmployeeEmailsByPool(int poolId) : {getEmployeeEmailsByPoolException.Message} : {getEmployeeEmailsByPoolException.StackTrace}");
                 throw getEmployeeEmailsByPoolException;
             }
         }
@@ -87,7 +87,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getDrivebyIdException)
             {
-                _logger.LogInformation($"Exception on Mail DAL : GetDrivebyId(int driveId) : {getDrivebyIdException.Message} : {getDrivebyIdException.StackTrace}");
+                _logger.LogError($"Exception on Mail DAL : GetDrivebyId(int driveId) : {getDrivebyIdException.Message} : {getDrivebyIdException.StackTrace}");
                 throw getDrivebyIdException;
             }
         }
@@ -100,7 +100,7 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getEmployeeAvailabilityException)
             {
-                _logger.LogInformation($"Exception on Mail DAL : GetEmployeeAvailability(int employeeAvailabilityId) : {getEmployeeAvailabilityException.Message} : {getEmployeeAvailabilityException.StackTrace}");
+                _logger.LogError($"Exception on Mail DAL : GetEmployeeAvailability(int employeeAvailabilityId) : {getEmployeeAvailabilityException.Message} : {getEmployeeAvailabilityException.StackTrace}");
                 throw getEmployeeAvailabilityException;
             }
         }

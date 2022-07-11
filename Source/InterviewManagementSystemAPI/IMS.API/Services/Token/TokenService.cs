@@ -70,12 +70,12 @@ namespace IMS.Service
             }
             catch (ValidationException loginCredentialsNotValid)
             {
-                _logger.LogInformation($"Employee DAL : CheckLoginCredentails throwed an exception : {loginCredentialsNotValid.Message}");
+                _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {loginCredentialsNotValid.Message}");
                 throw loginCredentialsNotValid;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
+                _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
                 throw exception;
             }
         }

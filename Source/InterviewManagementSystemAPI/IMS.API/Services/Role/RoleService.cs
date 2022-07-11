@@ -36,12 +36,12 @@ namespace IMS.Service
             }
             catch (ValidationException roleNameValidException)
             {
-                _logger.LogInformation($"Role service : CreateRole(string roleName) : {roleNameValidException.Message}");
+                _logger.LogError($"Role service : CreateRole(string roleName) : {roleNameValidException.Message}");
                 throw roleNameValidException;
             }
             catch (Exception roleNameException)
             {
-                _logger.LogInformation($"Role service : CreateRole(string roleName) : {roleNameException.Message}");
+                _logger.LogError($"Role service : CreateRole(string roleName) : {roleNameException.Message}");
                 return false;
             }
         }
@@ -64,17 +64,17 @@ namespace IMS.Service
             }
             catch (ArgumentException exception)
             {
-                _logger.LogInformation($"Role service : RemoveRole(int roleId) : {exception.Message}");
+                _logger.LogError($"Role service : RemoveRole(int roleId) : {exception.Message}");
                 return false;
             }
             catch (ValidationException roleNotFound)
             {
-                _logger.LogInformation($"Role service : CreateRole(string roleName) : {roleNotFound.Message}");
+                _logger.LogError($"Role service : CreateRole(string roleName) : {roleNotFound.Message}");
                 throw roleNotFound;
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Role service : RemoveRole(int roleId) : {exception.Message}");
+                _logger.LogError($"Role service : RemoveRole(int roleId) : {exception.Message}");
                 return false;
             }
         }
@@ -88,11 +88,11 @@ namespace IMS.Service
             try
             {
                 IEnumerable<Role> roles = new List<Role>();
-                return roles = from role in _roleDataAccessLayer.GetRolesFromDatabase() where role.IsActive == true select role;
+                return roles =  _roleDataAccessLayer.GetRolesFromDatabase();
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Role service : RemoveRole(int roleId) : Exception occured in DAL :{exception.Message}");
+                _logger.LogError($"Role service : RemoveRole(int roleId) : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
         }

@@ -16,25 +16,17 @@ public class DepartmentController : ControllerBase
     public DepartmentController(ILogger<DepartmentController> logger,IDepartmentService departmentService)
     {
         _logger = logger;
-        _departmentService = departmentService; //DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
+        _departmentService = departmentService; 
     }
     
     /// <summary>
     ///  This Method Will Implement When Create New Department Request rises from the Admin.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /CreateNewDepartment
-    ///     {
-    ///        "Department Name": ".net",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
+    /// <response code="500">If some internal problem arises </response>
     /// <param name="departmentName">String</param>
-    /// <returns>Return Department Added Successfully when the department is added in the database otherwise return Sorry internal error occured.It returns validation exeption or Exception when exception thrown in service .</returns>
+    /// <returns>Return Department Added Successfully when the department is added in the database otherwise return Sorry internal error occured.It returns validation exception or Exception when exception thrown in service .</returns>
     [HttpPost]
     public IActionResult CreateNewDepartment(string departmentName)
     {
@@ -46,29 +38,21 @@ public class DepartmentController : ControllerBase
         }
          catch (ValidationException departmentnotvalid)
         {
-            _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {departmentnotvalid.Message} : {departmentnotvalid.StackTrace}");
+            _logger.LogError($"Department Controller : CreateDepartment(string departmentName) : {departmentnotvalid.Message} : {departmentnotvalid.StackTrace}");
             return BadRequest(UtilityService.Response(departmentnotvalid.Message));
         }
         catch (Exception exception)
         {
-            _logger.LogInformation($"Department Controller : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
+            _logger.LogError($"Department Controller : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
             return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
     /// This Method Will Implement When Remove Department Request rises from the Admin
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /RemoveDepartment
-    ///     {
-    ///        "Department ID": "1",
-    ///     }
-    ///
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
+    /// <response code="500">If some internal error thrown from service layer</response>
     /// <param name="departmentId">int</param>
     /// <returns>Return Department Removed Successfully message when project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
     [HttpPatch]
@@ -82,25 +66,18 @@ public class DepartmentController : ControllerBase
         }
         catch (ValidationException departmentExist)
         {
-            _logger.LogInformation($"Department Controller : RemoveDepartment(int departmentId) : {departmentExist.Message}");
+            _logger.LogError($"Department Controller : RemoveDepartment(int departmentId) : {departmentExist.Message}");
             return BadRequest(departmentExist.Message);
         }
         catch (Exception exception)
         {
-         _logger.LogInformation($"Department Controller : RemoveDepartment(int departmentId) : {exception.Message} : {exception.StackTrace}");
+         _logger.LogError($"Department Controller : RemoveDepartment(int departmentId) : {exception.Message} : {exception.StackTrace}");
            return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
     /// This Method Will Implement When ViewDepartments Request rises from the Admin
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///     GET /View Department
-    ///     {
-    ///     
-    ///     }
-    /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Return List of Departments  otherwise it returns  Exception when exception thrown in service.</returns>
@@ -114,7 +91,7 @@ public class DepartmentController : ControllerBase
         }
         catch (Exception exception)
         {
-           _logger.LogInformation($"Department Controller : ViewDepartment() : {exception.Message} : {exception.StackTrace}");
+           _logger.LogError($"Department Controller : ViewDepartment() : {exception.Message} : {exception.StackTrace}");
             return Problem("Sorry some internal error occured");
         }
     }
