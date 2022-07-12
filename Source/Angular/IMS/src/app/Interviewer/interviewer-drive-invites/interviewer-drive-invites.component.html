@@ -28,6 +28,12 @@
                         <div class="col-1"></div>
                         <button class="btn btn-danger" (click)="AddResponse(item.driveId)">Reject</button>
                     </div>
+                    <div *ngIf="error.length!==0">
+                        <app-snack-bar snackBarMessage={{error}} snackBarAction="Done"></app-snack-bar>
+                    </div>
+                    <div *ngIf="response.length!==0">
+                        <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                    </div>
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@
 import { HttpClientModule, HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
+import { catchError, throwError } from 'rxjs';
 // import { threadId } from 'worker_threads';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class ConnectionService {
 
-  baseURL = 'http://172.24.217.145/'
+  baseURL = 'https://localhost:7072/'
   constructor(private http: HttpClient) { }
 
   public headers = new HttpHeaders({
@@ -232,8 +233,8 @@ export class ConnectionService {
   AddProject(projectName: string, departmentId: number) {
     return this.http.post<any>(this.baseURL + `Project/CreateNewProject?departmentId=${departmentId}&projectName=${projectName}`, null, { headers: this.headers })
   }
-  AddRole(roleName: string) {
-    return this.http.post<any>(this.baseURL + `Role/CreateNewRole?roleName=${roleName}`, null, { headers: this.headers })
+  AddRole(roleName: string, isManagement:boolean) {
+    return this.http.post<any>(this.baseURL + `Role/CreateNewRole?roleName=${roleName}&isManagement=${isManagement}`, null, { headers: this.headers })
   }
   AddDepartment(departmentName: string) {
     return this.http.post<any>(this.baseURL + `Department/CreateNewDepartment?departmentName=${departmentName}`, null, { headers: this.headers })

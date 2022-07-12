@@ -1,5 +1,5 @@
 <!-- Title and sidebar Component  -->
-<app-admin-header ></app-admin-header>
+<app-admin-header></app-admin-header>
 <!-- Sidebar End -->
 <div class="content">
     <!-- Navbar Start -->
@@ -10,22 +10,34 @@
             <form [formGroup]="AddRoleForm" (ngSubmit)="addRole()">
                 <div class="form-input">
                     <label class="form-label" for="Name">Role Name </label>
-                    <input type="text" maxlength="15" [class.is-invalid]="(error.length)||(submitted)||AddRoleForm.controls['roleName'].invalid && AddRoleForm.controls['roleName'].touched" type="text" id="Name" class="form-control " formControlName="roleName">                    
+                    <input type="text" maxlength="30"
+                        [class.is-invalid]="(error.length)||(submitted)||AddRoleForm.controls['roleName'].invalid && AddRoleForm.controls['roleName'].touched"
+                        type="text" id="Name" class="form-control " formControlName="roleName">
                 </div>
-                <div *ngIf="(submitted)||AddRoleForm.controls['roleName'].invalid && AddRoleForm.controls['roleName'].touched">
-                    <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['required']">Role name is required</span>
-                    <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['minlength']">Role name is too short</span>
-                    <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['maxlength']">Role name can't be more than 15 characters</span>
-                    <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['pattern'] && !AddRoleForm.controls['roleName'].errors?.['minlength']">Role name cannot contain numbers or symbols</span>
+                <div
+                    *ngIf="(submitted)||AddRoleForm.controls['roleName'].invalid && AddRoleForm.controls['roleName'].touched">
+                    <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['required']">Role name is
+                        required</span>
+                    <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['minlength']">Role name
+                        is too short</span>
+                    <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['maxlength']">Role name
+                        can't be more than 30 characters</span>
+                    <span class="text-danger"
+                        *ngIf="AddRoleForm.controls['roleName'].errors?.['pattern'] && !AddRoleForm.controls['roleName'].errors?.['minlength']">Role
+                        name cannot contain numbers or symbols</span>
                 </div>
                 <div *ngIf="response.length!==0">
                     <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-back" >Add</button>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="true" formControlName="management">
+                    <label class="form-check-label" > Is Management </label>
                 </div>
-                <div >
-                    <h3 class="text-center text-danger" >{{error}}</h3>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-back">Add</button>
+                </div>
+                <div>
+                    <h3 class="text-center text-danger">{{error}}</h3>
                 </div>
             </form>
         </div>

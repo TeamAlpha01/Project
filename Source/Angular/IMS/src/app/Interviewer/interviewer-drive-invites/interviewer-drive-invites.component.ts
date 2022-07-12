@@ -18,12 +18,13 @@ export class InterviewerDriveInvitesComponent implements OnInit {
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
+    this.GetDriveInvitesById();
+  }
+  GetDriveInvitesById() {
     this.connection.GetDriveInvitesById().subscribe((data: any) => {
       this.Invites = data;
-      console.warn(this.Invites)
     })
   }
-
   AddResponse(DriveId: number) {
     const response = {
       responseId: 0,
@@ -32,7 +33,7 @@ export class InterviewerDriveInvitesComponent implements OnInit {
       responseType: 2,
     }
     this.connection.AddResponse(response).subscribe({
-      next: (data: any) => { this.Invites = data, console.warn(this.Invites) },
+      next: (data: any) => { this.response = data.message, this.GetDriveInvitesById() },
       error: (error) => { this.error = error.error, this.snackBar() },
       complete: () => this.snackBar(),
     });

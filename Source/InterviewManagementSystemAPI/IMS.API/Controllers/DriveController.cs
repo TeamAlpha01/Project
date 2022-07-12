@@ -434,17 +434,17 @@ public class DriveController : ControllerBase
     public IActionResult AddResponse(EmployeeDriveResponse response)
     {
         if (response == null)
-            return BadRequest("Response cannnot be null");
+            return BadRequest(UtilityService.Response("Response cannnot be null"));
 
         try
         {
             response.EmployeeId=Convert.ToInt32(User.FindFirst("UserID").Value);
-            return _driveService.AddResponse(response) ? Ok("Response added sucessfully") : Problem("Sorry internal error occured");
+            return _driveService.AddResponse(response) ? Ok(UtilityService.Response("Response added sucessfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException addResponseNotValid)
         {
             _logger.LogInformation($"Drive Controller : AddResponse(EmployeeDriveResponse response) : {addResponseNotValid.Message} : {addResponseNotValid.StackTrace}");
-            return BadRequest(addResponseNotValid.Message);
+            return BadRequest(UtilityService.Response(addResponseNotValid.Message));
         }
         catch (Exception addResponseException)
         {
@@ -493,7 +493,7 @@ public class DriveController : ControllerBase
     public IActionResult SetTimeSlot(EmployeeAvailability employeeAvailability)
     {
         if (employeeAvailability == null)
-            return BadRequest("Invalid employee availability");
+            return BadRequest(UtilityService.Response("Invalid employee availability"));
         try
         {
             employeeAvailability.EmployeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
@@ -713,7 +713,7 @@ public class DriveController : ControllerBase
             if (_driveService.CancelInterview(employeeAvailabilityId, cancellationReason, comments))
             {
                 //_mailService.SendEmailAsync(_mailService.InterviewCancelled(employeeAvailabilityId), true);
-                return Ok(UtilityService.Response("Availability Cancellerd Sucessfully"));
+                return Ok(UtilityService.Response("Availability Cancelled Sucessfully"));
             }
             return Problem("Sorry internal error occured");
         }
