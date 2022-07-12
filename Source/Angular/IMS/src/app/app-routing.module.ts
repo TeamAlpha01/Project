@@ -60,15 +60,14 @@ const routes: Routes = [
   { path: 'interviewer/home/upcomingDrives', component: InterviewerUpcomingDriveComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/driveInvites', component: InterviewerDriveInvitesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/driveInvites/accept-invite/:driveId', component: InterviewerAcceptInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
-  //{ path: 'interviewer/driveInvites/reject-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
-  { path: 'interviewer/cancel-interview/:employeeAvailabilityId', component: InterviewerCancelInterviewPageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  // { path: 'interviewer/driveInvites/reject-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
+  { path: 'interviewer/cancel-interview-page/:driveId', component: InterviewerCancelInterviewPageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/totaldrives', component: InterviewerTotalDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/availabilitygiven', component: InterviewerAvailabilityGivenComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/utilizedinterviews', component: InterviewerUtilizedDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/notutilizedinterviews', component: InterviewerNotUtilizedDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/ignoreddrives', component: InterviewerIgnoredDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/dashboard/denied-drives', component: InterviewerDeniedDrivesComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
-
   //admin pages
   { path: '', component: LoginComponent},
   // { path: '**', component: ErrorPageComponent},
