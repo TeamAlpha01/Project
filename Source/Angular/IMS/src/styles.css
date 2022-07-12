@@ -33,39 +33,6 @@
   font-weight: bold;
 }
 
-.background-img-register {
-  height: 100%;
-  padding: 75px;
-  background-size: cover;
-  background-image: url(./assets/Images/Interview.jpg);
-}
-
-.background-img-register1 {
-  padding: 75px;
-  background-size: cover;
-}
-
-.background-img-login {
-  height: 100vh;
-  padding: 10%;
-  background-size: cover;
-  background-image: url(./assets/Images/Interview.jpg);
-}
-
-.Login {
-  margin: 0 20vw;
-  padding: 1% 5%;
-  border-radius: 15px;
-  background-color:white;
-  backdrop-filter: blur(100px);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.Login-btn {
-  padding-top: 10%;
-  padding-bottom: 10%;
-  text-align: center;
-}
 
 .gradient-custom-2 {
   background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
@@ -96,9 +63,9 @@
   text-decoration: none;
 }
 
-body {
+/* body {
   font-family: 'Roboto', sans-serif;
-}
+} */
 
 .sidebar {
   position: fixed;
@@ -113,55 +80,10 @@ body {
   font-size: 40px;
 }
 
-.sidebar header {
-  padding-top: 50px;
-  /* font-size: 20px; */
-  color: #000000;
-  line-height: 30px;
-  text-align: center;
-  background: var(--primary);
-  user-select: none;
-  border-bottom: 1px solid black;
-}
 
-.sidebar ul a {
-  display: block;
-  min-height: 100vh;
-  width: 100%;
-  line-height: 65px;
-  font-size: 15px;
-  color: rgb(0, 0, 0);
-  padding-left: 10px;
-  box-sizing: border-box;
-  text-decoration: none;
-  transition: .4s;
-}
 
-.sidebar ul li {
-  border-bottom: 1px solid black;
-  font-size: 20px;
-}
 
-.sidebar header li a {
-  text-decoration: none;
-  color: #000000;
-}
 
-.sidebar header li a:hover {
-  color: red;
-}
-
-.sidebar li a:hover {
-  color: #38114b;
-}
-
-.sidebar li {
-  font-size: 14px;
-}
-
-.sidebar ul a i {
-  margin-right: 16px;
-}
 
 #check {
   display: none;
@@ -306,32 +228,8 @@ body {
 }
 
 /*-----------------------------------------Manage Pool-----------------------------------------*/
-.managepoolbutton {
-  border-radius: 25px;
-  width: 50%;
-  height: 160px;
-  background: #FFF;
-  margin-left: 39rem;
-  margin-top: 15rem;
-}
 
-.CreatePool {
-  margin-top: 25vh;
-}
 
-#buttonheight {
-  margin-top: 5.5rem;
-}
-
-#alignpool {
-  padding-top: 50px;
-}
-
-#aligncreatepool {
-  font-size: 25px;
-  padding-top: 50px;
-  padding-left: 25rem;
-}
 
 /*-----------------------------------------Manage Pool End-----------------------------------------*/
 
@@ -342,21 +240,7 @@ body {
   padding-top: 13%;
 }
 
-#DashboardScheduled,
-#DashboardCancelled {
-  margin: auto;
-  margin: 10rem 0;
-}
 
-#DashboardScheduled:hover,
-#DashboardCancelled :hover {
-  color: #8958a0;
-}
-
-#ScheduledCount,
-#CancelledCount {
-  font-size: 15rem;
-}
 
 /*-----------------------------------------Dashboard End-----------------------------------------*/
 
@@ -690,48 +574,11 @@ h6 {
   font-style: bold;
 }
 
-.FreshersButton,
-.SoftwareEngineerButton,
-.SeniorSoftwareEngineerBuuton,
-.ProjectLeadButton,
-.TeamLeadButton,
-.ManagementButton {
-  margin-top: 3rem;
-  margin-left: 3rem;
-  height: 8rem;
-  width: 19rem;
-  background-color: var(--light);
-  color: black;
-  border-color: black;
-  border-radius: 20px;
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
-}
 
-.SoftwareEngineerButton,
-.SeniorSoftwareEngineerBuuton,
-.TeamLeadButton,
-.ManagementButton {
-  margin-left: 120px;
-}
 
-.ViewPoolsContainer {
-  margin-left: 10rem;
-}
+
 
 /*--------------------ViewPool-end-------------*/
-#NotoficationsCard {
-  width: 100%;
-  text-align: center;
-  margin-top: 2rem;
-  border-radius: 20px;
-}
-
-#NotificationsConatiner {
-  padding-left: 15rem;
-  padding-top: 7rem;
-}
 
 /*--------------------------Notifications-end------------------------*/
 
@@ -753,18 +600,19 @@ h6 {
   width: 10vw;
 }
 
-.btn-light-custom {
+/* .btn-light-custom {
   margin: auto;
   width: 80%;
   height: 10vh;
   border: 1px solid black;
   border-radius: 15px;
-}
+} */
 
-.home-btn {
+/* .home-btn {
   padding-top: 5vh;
   padding-left: 15vw;
-}
+
+} */
 
 .btn-light-custom:hover {
   background-color: var(--light);
@@ -862,19 +710,6 @@ h6 {
   border-bottom: 1px solid black;
 }
 
-/*** Spinner ***/
-#spinner {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .5s ease-out, visibility 0s linear .5s;
-  z-index: 99999;
-}
-
-#spinner.show {
-  transition: opacity .5s ease-out, visibility 0s linear 0s;
-  visibility: visible;
-  opacity: 1;
-}
 
 
 /*** Button ***/
@@ -972,6 +807,14 @@ h6 {
 }
 
 
+
+
+@media (max-width: 575.98px) {
+  .content .navbar .navbar-nav .nav-link {
+    margin-left: 15px;
+  }
+}
+
 /*** Navbar ***/
 
 .sidebar .navbar .navbar-nav .nav-link {
@@ -1059,13 +902,6 @@ h6 {
 .content .navbar .dropdown-toggle[aria-expanded=true]::after {
   transform: rotate(-180deg);
 }
-
-@media (max-width: 575.98px) {
-  .content .navbar .navbar-nav .nav-link {
-    margin-left: 15px;
-  }
-}
-
 /*** Date Picker ***/
 .bootstrap-datetimepicker-widget.bottom {
   top: auto !important;
@@ -1091,36 +927,6 @@ h6 {
 
 .bootstrap-datetimepicker-widget table td.today::before {
   border-bottom-color: var(--primary);
-}
-
-/*** Testimonial ***/
-.progress .progress-bar {
-  width: 0px;
-  transition: 2s;
-}
-
-/*** Testimonial ***/
-.testimonial-carousel .owl-dots {
-  margin-top: 24px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.testimonial-carousel .owl-dot {
-  position: relative;
-  display: inline-block;
-  margin: 0 5px;
-  width: 15px;
-  height: 15px;
-  border: 5px solid var(--primary);
-  border-radius: 15px;
-  transition: .5s;
-}
-
-.testimonial-carousel .owl-dot.active {
-  background: var(--dark);
-  border-color: var(--primary);
 }
 
 .bread {
@@ -1187,57 +993,9 @@ a.logout-btn:hover {
   color: var(--primary);
 }
 
-/*  Upcoming drives  */
-#Responsetextalign {
-  /* margin-left: 30rem; */
-  text-align: center;
-  /* padding-top: 6rem; */
-}
 
-/*--------------DashBoard------------------*/
-#DashboardScheduled,
-#DashboardCancelled {
-  padding-left: 15rem;
-  margin-top: 20rem;
-  margin-left: 20rem;
-}
 
-#DashboardScheduled:hover,
-#DashboardCancelled:hover {
-  color: #8958a0;
-}
 
-#ScheduledCount,
-#CancelledCount {
-  font-size: 7rem;
-}
-
-/*---------------DashBoard  Ends------------------*/
-
-/* Management DashBoard */
-#MDashboardScheduled:hover,
-#AvailabilityGiven:hover,
-#Utilized:hover,
-#NotUtilized:hover,
-#InterviewsIgnored:hover,
-#InterviewsDenied :hover {
-  color: #8958a0;
-}
-
-#AvailabilityGivenCount,
-#UtilizedCount,
-#NotUtilizedCount,
-#IgnoredCount,
-#DeniedCount {
-  font-size: 7rem;
-}
-
-#MDashboard {
-  margin: auto;
-  margin-top: 10vh;
-  font-size: smaller;
-
-}
 
 .collapse-btn {
   border-radius: 0% !important;
@@ -1336,64 +1094,11 @@ h1.heading {
   padding-top: 4rem;
 }
 
-#FreshersButton,
-#SoftwareEngineerButton,
-#SeniorSoftwareEngineerBuuton,
-#ProjectLeadButton,
-#TeamLeadButton,
-#ManagementButton {
-  margin-top: 5rem;
-  height: 8rem;
-  background-color: var(--light);
-  color: black;
-  border-color: black;
-  border-radius: 20px;
-}
 
-#SoftwareEngineerButton,
-#SeniorSoftwareEngineerBuuton,
-#TeamLeadButton,
-#ManagementButton {
-  margin-left: 8rem;
-}
 
-/* Create Pool */
-#CreatingPool {
-  text-decoration: none;
-  color: black;
-}
+*/
 
-#CreatingPool:hover {
-  color: #38114b;
-}
 
-#CreateButton {
-  font-size: large;
-  margin-left: 6.3rem;
-  text-decoration-color: #FFF;
-  border-radius: 2px;
-  background-color: #f9f9f9;
-}
-
-#CreateButton:hover {
-  color: #38114b;
-}
-
-.dropdown {
-  padding-left: 0.5rem;
-
-}
-
-#DepartmentName {
-  padding-top: 0.5rem;
-}
-
-#CPdropdown {
-  background-color: #b295c0;
-  text-decoration-color: var(--light);
-}
-
-/* Create Pool Ends */
 
 /* DashBoard Selection */
 .card .mperf,
@@ -1409,19 +1114,7 @@ h1.heading {
 
 /* layout */
 
-/* Admin location */
-.location-admin {
-  border: #191C24;
-  background-color: #ddd;
-  padding: 2px;
-  margin: 12px;
-  text-align: center;
-  border-radius: 5px;
-}
 
-.location1-admin {
-  float: right;
-}
 
 .pagination {
   position: center;
@@ -1602,9 +1295,7 @@ h1.heading {
   border-radius: 5px;
 }
 
-.Location {
-  margin-top: 5vh;
-}
+
 
 .card:hover {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -1750,6 +1441,7 @@ label {
 }
 
 @keyframes fadeout {
+  
   from {
     bottom: 30px;
     opacity: 1;

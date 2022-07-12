@@ -43,7 +43,6 @@ import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming
 import { InterviewerCardDetailsComponent } from './Interviewer/interviewer-card-details/interviewer-card-details.component';
 import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
-import { PerformanceDashboardComponent } from './Shared/performance-dashboard/performance-dashboard.component';
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -124,7 +123,6 @@ import { DepartmentPerformanceComponent } from './Management/department-performa
     TacUpcomingDriveComponent,
     InterviewerCardDetailsComponent,
     ManageCardsComponent,
-    PerformanceDashboardComponent,
     TacCreatePoolComponent,
     TacEditPoolComponent,
     TacEditPoolMemberComponent,
