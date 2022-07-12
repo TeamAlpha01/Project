@@ -8,15 +8,17 @@
                 <div class="row">
                     <div class="col-md-2">
                         <label class="form-label" for="Department">Name</label>
-                        <input type="text" class="form-control " placeholder="Name or ACE ID" name="_role">
+                        <input type="text" class="form-control " placeholder="Name or ACE ID" name="_name"
+                            [(ngModel)]="_name">
                     </div>
                     <div class="col-md-2">
                         <label class="form-label" for="Department">Drive </label>
-                        <input type="text" class="form-control " placeholder="Name or ACE ID" name="_role">
+                        <input type="text" class="form-control " placeholder="Drive Name" name="_drive"
+                            [(ngModel)]="_drive" (change)="drive()">
                     </div>
                     <div class="col-md-2">
                         <label class="form-label" for="Pool">Pool </label>
-                        <select name="Pool" id="Pool" class="form-select" name="_pool">
+                        <select name="Pool" id="Pool" class="form-select" name="_pool" [(ngModel)]="_pool">
                             <option value="">Select the Pool</option>
                             <option *ngFor="let item of poolDetails" value={{item.poolName}}> {{item.poolName}}
                             </option>
@@ -24,11 +26,11 @@
                     </div>
                     <div class="col-md-2">
                         <label class="form-label" for="Pool">From Date</label>
-                        <input type="date" id="Pool" class="form-select" name="_date">
+                        <input type="date" id="Pool" class="form-select" name="_date" [(ngModel)]="_fromDate" (change)="date()">
                     </div>
                     <div class="col-md-2">
                         <label class="form-label" for="Pool">To Date</label>
-                        <input type="date" id="Pool" class="form-select" name="_date">
+                        <input type="date" id="Pool" class="form-select" name="_date" [(ngModel)]="_toDate" (change)="date()">
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-1">
@@ -38,29 +40,29 @@
             </div>
         </div>
     </div>
-    <div class="mt-3 container shadow  bg-body rounded">
+    <div class="mt-3 container shadow  bg-body rounded" *ngFor="let item of user |filter:_name |filter:_pool">
         <div class>
             <div class="card-body">
                 <div class="row rone mt-4">
                     <div class="col-md-3">
-                        <p><b>Name : </b>John</p>
-                        <p><b>ACE Number : </b>ACE0001</p>  
+                        <p><b>Name : </b>{{item.name}}</p>
+                        <p><b>ACE Number : </b>{{item.AceNumber}}</p>
                     </div>
                     <div class="col-md-3">
-                        <p><b>Role :</b>Software Developer</p>   
-                        <p><b>Total No.of.Drives : </b>12</p>
+                        <p><b>Role :</b>{{item.role}}</p>
+                        <p><b>Total No.of.Drives : </b>{{item.totalNumberOfDrives}}</p>
                     </div>
                     <div class="col-md-2">
-                        <p><b>Availability : </b>10</p>
-                        <p><b>Denied : </b>10</p>
+                        <p><b>Availability : </b>{{item.availability}}</p>
+                        <p><b>Denied : </b>{{item.denied}}</p>
                     </div>
                     <div class="col-md-2">
-                        <p><b>Ignored : </b>1</p>
-                        <p><b>Utilized : </b>7</p>                        
+                        <p><b>Ignored : </b>{{item.ignored}}</p>
+                        <p><b>Utilized : </b>{{item.utilized}}</p>
                     </div>
                     <div class="col-md-2">
-                        <p><b>Not utilized : </b>1</p>
-                        <p><b>Cancelled : </b>2</p>
+                        <p><b>Not utilized : </b>{{item.notUtilized}}</p>
+                        <p><b>Cancelled : </b>{{item.cancel}}</p>
                     </div>
                 </div>
             </div>
