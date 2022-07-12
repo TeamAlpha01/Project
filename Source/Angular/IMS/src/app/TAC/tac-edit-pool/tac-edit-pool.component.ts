@@ -23,7 +23,7 @@ export class TacEditPoolComponent implements OnInit {
   constructor(private connection: ConnectionService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { }
 
   EditPoolForm = this.fb.group({
-    poolName: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[A-Za-z.0-9\\s]*')]],
+    poolName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern('[A-Za-z.0-9\\s]*')]],
   });
 
   ngOnInit(): void {

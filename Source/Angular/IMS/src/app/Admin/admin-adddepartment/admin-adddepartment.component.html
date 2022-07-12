@@ -16,6 +16,7 @@
                 <div *ngIf="(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched">
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['required']">Department name is required</span>
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name is too short</span>
+                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['maxlength']">Department name can't be more than 15 characters</span>
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['pattern'] && !AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name cannot contain numbers or symbols</span>
                 </div>
 

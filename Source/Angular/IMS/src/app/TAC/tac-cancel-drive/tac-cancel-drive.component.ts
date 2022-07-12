@@ -35,7 +35,7 @@ export class TacCancelDriveComponent implements OnInit {
   constructor(private route: ActivatedRoute, private connection: ConnectionService, private fb: FormBuilder, private location: Location) { }
 
   CancelDriveForm = this.fb.group({
-    cancelReason: ['', [Validators.required, Validators.minLength(5)]],
+    cancelReason: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
   });
 
   getCancelReason() {

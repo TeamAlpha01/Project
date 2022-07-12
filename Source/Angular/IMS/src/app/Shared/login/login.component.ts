@@ -4,7 +4,6 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit {
   });
 
 
-  constructor(private http: HttpClient, private route: Router, private connection: ConnectionService, private FB: FormBuilder) { }
+  constructor(private route: Router, private connection: ConnectionService, private FB: FormBuilder) { }
 
 
 

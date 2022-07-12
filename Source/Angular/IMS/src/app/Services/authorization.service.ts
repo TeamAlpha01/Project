@@ -8,7 +8,7 @@ import { AuthenticationService } from './authentication.service';
 
 export class AuthorizationService {
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private authService: AuthenticationService) { }
 
   canActivate(route: ActivatedRouteSnapshot) {
     if (AuthenticationService.GetData("token")) {
@@ -22,10 +22,12 @@ export class AuthorizationService {
         return true;
       }
       else {
+        this.authService.ClearToken();
         return this.route.navigateByUrl("");
       }
     }
     else {
+      this.authService.ClearToken();
       return this.route.navigateByUrl("");
     }
 

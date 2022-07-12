@@ -37,7 +37,7 @@ export class AdminAddprojectComponent implements OnInit {
       this.data = data;
     })
   }
-    addProject() {
+  addProject() {
     this.submitted = true;
     this.error = '';
 
