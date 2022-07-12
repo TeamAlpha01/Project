@@ -16,6 +16,9 @@ export class DepartmentPerformanceComponent implements OnInit {
   _fromDate = ''
   _toDate = ''
 
+  page: number = 1;
+  totalLength: any;
+
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
@@ -41,7 +44,7 @@ export class DepartmentPerformanceComponent implements OnInit {
   user = [
     {
       id: 1,
-      name: "Vinoth",
+      name: "Aravind",
       AceNumber: "ACE0001",
       role: "Software Engineer",
       totalNumberOfDrives: 10,
@@ -54,8 +57,58 @@ export class DepartmentPerformanceComponent implements OnInit {
       pool: "Fresher .NET"
     }, {
       id: 2,
-      name: "Aravind",
+      name: "Deepika",
       AceNumber: "ACE0002",
+      role: "Software Engineer",
+      totalNumberOfDrives: 15,
+      availability: 11,
+      denied: 3,
+      ignored: 1,
+      utilized: 9,
+      notUtilized: 4,
+      cancel: 2
+    },{
+      id: 1,
+      name: "Kumaresh",
+      AceNumber: "ACE0003",
+      role: "Software Engineer",
+      totalNumberOfDrives: 10,
+      availability: 8,
+      denied: 1,
+      ignored: 1,
+      utilized: 6,
+      notUtilized: 2,
+      cancel: 2,
+      pool: "Fresher .NET"
+    }, {
+      id: 2,
+      name: "Gokul",
+      AceNumber: "ACE0004",
+      role: "Software Engineer",
+      totalNumberOfDrives: 15,
+      availability: 11,
+      denied: 3,
+      ignored: 1,
+      utilized: 9,
+      notUtilized: 4,
+      cancel: 2
+    },{
+      id: 1,
+      name: "Sheik",
+      AceNumber: "ACE0005",
+      role: "Software Engineer",
+      totalNumberOfDrives: 10,
+      availability: 8,
+      denied: 1,
+      ignored: 1,
+      utilized: 6,
+      notUtilized: 2,
+      cancel: 2,
+      pool: "Fresher .NET"
+    }, {
+      id: 2,
+      name: "prithvi",
+      AceNumber: "ACE0006",
       role: "Software Engineer",
       totalNumberOfDrives: 15,
       availability: 11,

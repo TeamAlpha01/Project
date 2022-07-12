@@ -2,7 +2,6 @@
 import { HttpClientModule, HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
-import { catchError, throwError } from 'rxjs';
 // import { threadId } from 'worker_threads';
 
 @Injectable({
@@ -10,7 +9,7 @@ import { catchError, throwError } from 'rxjs';
 })
 export class ConnectionService {
 
-  baseURL = 'https://localhost:7072/'
+  baseURL = 'http://172.24.217.145/'
   constructor(private http: HttpClient) { }
 
   public headers = new HttpHeaders({
