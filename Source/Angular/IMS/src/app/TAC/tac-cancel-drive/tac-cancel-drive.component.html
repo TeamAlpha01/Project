@@ -39,6 +39,10 @@
                                     *ngIf="CancelDriveForm.controls['cancelReason'].errors?.['minlength']">*Cancel
                                     Reason is
                                     too short</span>
+                                <span class="text-danger"
+                                    *ngIf="CancelDriveForm.controls['cancelReason'].errors?.['maxlength']">*Cancel
+                                    Reason is
+                                    can't be more than 100 characters</span>
                             </div>
 
                             <div *ngIf="response.length!==0">

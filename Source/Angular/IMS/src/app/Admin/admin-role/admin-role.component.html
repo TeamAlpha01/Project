@@ -15,6 +15,7 @@
                 <div *ngIf="(submitted)||AddRoleForm.controls['roleName'].invalid && AddRoleForm.controls['roleName'].touched">
                     <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['required']">Role name is required</span>
                     <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['minlength']">Role name is too short</span>
+                    <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['maxlength']">Role name can't be more than 15 characters</span>
                     <span class="text-danger" *ngIf="AddRoleForm.controls['roleName'].errors?.['pattern'] && !AddRoleForm.controls['roleName'].errors?.['minlength']">Role name cannot contain numbers or symbols</span>
                 </div>
                 <div *ngIf="response.length!==0">

@@ -27,6 +27,7 @@
                 <div *ngIf="(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched">
                     <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['required']">Project name is required</span>
                     <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['minlength']">Project name is too short</span>
+                    <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['maxlength']">Project name can't be more than 15 characters</span>
                     <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['pattern'] && !AddProjectForm.controls['projectName'].errors?.['minlength']">Project name cannot contain numbers or symbols</span>
                 </div>
 
