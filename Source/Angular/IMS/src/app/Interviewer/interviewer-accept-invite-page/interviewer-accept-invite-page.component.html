@@ -8,8 +8,8 @@
                 <h3 class="card-title" id="cancelinvitealign"><b>Drive Name : </b> {{Invites.driveName}}</h3>
                 <div class="row rone mt-4">
                     <div class="col-md-6">
-                        <p><b>From Date : </b> {{Invites.fromDate}}</p>
-                        <p><b>To Date : </b> {{Invites.toDate}}</p>
+                        <p><b>From Date : </b> {{Invites.fromDate|date:'dd-MM-yyyy'}}</p>
+                        <p><b>To Date : </b> {{Invites.toDate|date:'dd-MM-yyyy'}}</p>
                         <p><b>Interview Timing : </b>{{Invites.slotTiming}} minutes</p>
                     </div>
                     <div class="col-md-6">
@@ -22,10 +22,11 @@
                         <div class="card-body">
                             <div class="row rone mt-4">
                                 <div class="col-md-6">
-                                    <label class="form-label" for="Date"><b>Availability</b></label><br>
-                                    <input type="date" class="form-control" name="date" [(ngModel)]="_date" min="{{Invites.fromDate}}"
-                                    max="{{Invites.toDate}}">
-                                </div> 
+                                    <label class="text"><b>Availability</b></label>
+                                    <br>
+                                    <input formControlName="InterviewDate" type="date" min="{{Invites.fromDate}}"
+                                        max="{{Invites.toDate}}" class="form-control">
+                                </div>
                                 <div class="col-md-4">
                                     <label class="text"><b>Select Timing </b></label>
                                     <input type="time" class="form-control" id="appt" formControlName="SlotTime"
@@ -45,8 +46,25 @@
                         </div>
                     </form>
                 </div>
+                <div class="container"
+                    *ngFor="let item of GivenSlot | paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
+                    <div class="card ml-6">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Availability Date: </b>{{item.date|date:'dd-MM-yyyy'}}</p>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <p><b>Selected Timing : </b>{{item.fromTime|date:'h:mm a'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <app-footer [BackBtn]=true></app-footer>
+
 </div>

@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class ConnectionService {
 
-  baseURL = 'http://172.24.217.145/'
+  baseURL = 'https://localhost:7072/'
   constructor(private http: HttpClient) { }
 
   public headers = new HttpHeaders({
@@ -32,6 +32,10 @@ export class ConnectionService {
 
   GetAcceptedDrives():any{
     return this.http.get<any>(this.baseURL + 'Drive/ViewAcceptedDrives', { headers: this.headers });
+  }
+ 
+  GetAvailability(driveId:number):any{
+    return this.http.get<any>(this.baseURL + `Drive/ViewAvailabilty?driveId=${driveId}`,{headers:this.headers});
   }
 
   GetCancelledDrives(): any {

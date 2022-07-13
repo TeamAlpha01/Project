@@ -16,7 +16,11 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   toTime: any;
   response: string = '';
   error: string = '';
- _date='';
+  Availability: string = '';
+  GivenSlot:any;
+
+  totalLength: any;
+  page: number = 1;
 
   AcceptInvitePage = this.fb.group({
     InterviewDate: ['', [Validators.required]],
@@ -36,6 +40,12 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
     toDate: ""
   }
 
+  // GivenSlot = {
+  //   driveName: "",
+  //   date: "",
+  //   fromTime: ""
+  // }
+
   getInterviewDate() {
     return this.AcceptInvitePage.get('InterviewDate')?.value;
   }
@@ -50,14 +60,22 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
       this.driveId = params['driveId'];
     })
     this.GetDriveById(this.driveId);
+    this.GetAvailability();
   }
 
   GetDriveById(driveId: any) {
     this.connection.GetDriveById(driveId).subscribe((data: any) => {
       this.Invites = data;
+      console.warn(this.Invites);
     })
   }
 
+  GetAvailability() {
+    this.connection.GetAvailability(this.driveId).subscribe((data: any) => {
+      this.GivenSlot = data;
+      console.warn(this.GivenSlot);
+    })
+  }
   //
   AddResponse() {
     if (this.AcceptInvitePage.valid) {
@@ -81,7 +99,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
 
       console.log(timeSlot);
       this.connection.AddTimeSlot(timeSlot).subscribe({
-        next: (data) => { this.response = data.message, this.AcceptResponse() },
+        next: (data) => { this.response = data.message, this.AcceptResponse(), this.GetAvailability() },
         error: (error) => { this.error = error.error, this.snackBar() },
         complete: () => this.snackBar(),
       });
