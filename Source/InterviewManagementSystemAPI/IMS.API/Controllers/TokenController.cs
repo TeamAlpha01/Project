@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using IMS.Service;
+using IMS.Models;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -21,18 +22,19 @@ namespace IMS.Controllers
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="employeeMail"></param>
-        /// <param name="password"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
 
+
         [HttpPost("Login")]
-        public IActionResult AuthToken(string employeeMail, string password)
+        public IActionResult Login(User user)
         {
-            if(employeeMail==null && password==null)
+            if (user.EmailId == null && user.EmailId == null)
                 return BadRequest("Mail Id and Password cannot be null");
+
             try
             {
-                var Result = _tokenService.AuthToken(employeeMail, password);                
+                var Result = _tokenService.AuthToken(user.EmailId, user.Password);
                 return Ok(Result);
             }
             catch (ValidationException validationException)
