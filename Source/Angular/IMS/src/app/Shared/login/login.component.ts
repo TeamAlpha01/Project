@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
 
   loginForm = this.FB.group({
-    ACENumber: ['', [Validators.required, Validators.pattern("ACE+[0-9]{4}")]],
+    EmailID: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]{4,22})@(aspiresys.com)")]],
     Password: ['', [Validators.required]]
   });
 
@@ -45,16 +45,17 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loading = true
       const user = {
-        ACENumber: this.loginForm.value['ACENumber'],
+        EmailID: this.loginForm.value['EmailID'],
         Password: this.loginForm.value['Password'],
       }
+      console.warn(user);
 
       this.connection.Login(user).subscribe({
         next: (data: any) => {
 
           this.IsAdmin = data.isAdmin
           this.IsTAC = data.isTAC
-          
+
           AuthenticationService.SetDateWithExpiry("token", data.token, data.expiryInMinutes)
           AuthenticationService.SetDateWithExpiry("Admin", data.isAdmin, data.expiryInMinutes)
           AuthenticationService.SetDateWithExpiry("TAC", data.isTAC, data.expiryInMinutes)
@@ -81,7 +82,7 @@ export class LoginComponent implements OnInit {
           if (error.status == 404) {
             this.route.navigateByUrl("errorPage");
           }
-          if (!(error.error.toString().includes('ACE') || error.error.toString().includes('Password'))) {
+          if (!(error.error.toString().includes('mail') || error.error.toString().includes('Password'))) {
             this.isCommanError = true;
           }
           this.error = error.error;

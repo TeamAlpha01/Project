@@ -2,15 +2,14 @@
 import { HttpClientModule, HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
-import { catchError, throwError } from 'rxjs';
-// import { threadId } from 'worker_threads';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConnectionService {
 
-  baseURL = 'https://localhost:7072/'
+  baseURL = 'http://172.24.217.145/'
   constructor(private http: HttpClient) { }
 
   public headers = new HttpHeaders({
@@ -177,7 +176,7 @@ export class ConnectionService {
   //POST methods
 
   Login(user: any) {
-    return this.http.post<any>(this.baseURL + `Token/AuthToken/Login?employeeAceNumber=${user.ACENumber}&password=${user.Password}`, user, { headers: this.headers })
+    return this.http.post<any>(this.baseURL + `Token/AuthToken/Login?employeeMail=${user.EmailID}&password=${user.Password}`, user, { headers: this.headers })
   }
 
   CreateNewProject(user: any) {
