@@ -26,7 +26,7 @@ namespace IMS.Service
             Throws ArgumentNullException when Role Name is not passed to this service method
         */
         /// <summary>
-        /// This Method will implement when Department controller pass the parameter to this method and it validate the department name and pass the object to the DAL
+        /// This Method will implement when Department controller pass the parameter to this method an
         /// </summary>
         /// <param name="departmentName">string</param>
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>

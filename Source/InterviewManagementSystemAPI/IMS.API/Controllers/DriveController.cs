@@ -510,6 +510,20 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+    [HttpGet]
+    public IActionResult ViewAvailabilty()
+    {
+        try{
+            int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            return Ok(_driveService.ViewAvailabilty(currentUser));
+        }
+         catch (Exception exception)
+        {
+            _logger.LogInformation($"Drive Controller : viewAvailabilty() : {exception.Message} : {exception.StackTrace}");
+            return Problem("Sorry internal error occured");
+        }
+
+    }
 
     /// <summary>
     /// This method invoked when the view today's interviews request raise.
@@ -527,6 +541,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns a list of today's interviews</returns>
+    
     [HttpGet]
     public IActionResult ViewTodaysInterview()
     {
