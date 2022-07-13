@@ -253,6 +253,17 @@ namespace IMS.DataAccessLayer
                 return false;
             }
         }
+        public List<EmployeeAvailability> ViewAvailability(int employeeId)
+        {
+           try{
+            return (from availability in _db.EmployeeAvailability.Include(d=>d.Drive)  where availability.EmployeeId == employeeId  select availability ).ToList();
+           } 
+          catch (Exception exception)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : ViewInterviewsByStatus(bool status) : {exception.Message}");
+                throw exception;
+            }
+        }
         public List<EmployeeAvailability> ViewInterviewsByStatus(bool status, int employeeId)//int employeeId filter using auth token
         {
             try

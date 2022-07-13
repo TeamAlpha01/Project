@@ -361,6 +361,24 @@ namespace IMS.Service
                 return false;
             }
         }
+        public Object ViewAvailabilty(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.ViewAvailability(employeeId).Select(e=>new
+                {
+                    DriveName=e.Drive.Name,
+                    Date=e.InterviewDate,
+                    FromTime=e.From
+                }
+                );
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : ViewAvailability(employeeId) : {exception.Message} : {exception.StackTrace}");
+                throw exception;
+            }
+        }
         public Object ViewTodayInterviews(int employeeId)
         {
             try
