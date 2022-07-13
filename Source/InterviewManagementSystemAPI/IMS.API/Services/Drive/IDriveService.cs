@@ -23,7 +23,7 @@ namespace IMS.Service
         
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability);
-        public Object ViewAvailabilty(int employeeId);
+        public Object ViewAvailabilty(int employeeId,int driveId);
 
         public Object ViewTodayInterviews(int employeeId);
         public Object ViewScheduledInterview(int employeeId);

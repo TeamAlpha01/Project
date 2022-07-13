@@ -253,10 +253,10 @@ namespace IMS.DataAccessLayer
                 return false;
             }
         }
-        public List<EmployeeAvailability> ViewAvailability(int employeeId)
+        public List<EmployeeAvailability> ViewAvailability(int employeeId,int driveId)
         {
            try{
-            return (from availability in _db.EmployeeAvailability.Include(d=>d.Drive)  where availability.EmployeeId == employeeId  select availability ).ToList();
+            return (from availability in _db.EmployeeAvailability.Include(d=>d.Drive)  where availability.EmployeeId == employeeId && availability.DriveId==driveId select availability ).ToList();
            } 
           catch (Exception exception)
             {
