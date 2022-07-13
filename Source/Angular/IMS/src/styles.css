@@ -34,9 +34,9 @@
 }
 
 
-.gradient-custom-2 {
+/* .gradient-custom-2 {
   background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-}
+} */
 
 /* 631 X 834 */
 @media screen and (max-width:800px) {
@@ -369,7 +369,7 @@ label.form-check-label {
   font-size: 16px
 }
 
-.note {
+/* .note {
   border-radius: 15px;
   border: none;
   border-color: grey;
@@ -378,7 +378,7 @@ label.form-check-label {
   font-weight: bold;
   font-size: 10px;
   color: #bb04e9
-}
+} */
 
 span.text-muted {
   font-size: 12px
@@ -1363,10 +1363,10 @@ label {
   margin: .4rem 0;
 }
 
-#BackButton {
+/* #BackButton {
   padding-left: 17rem;
   margin-top: 15rem;
-}
+} */
 
 .my-box {
   overflow-y: scroll;
@@ -1378,11 +1378,11 @@ label {
   margin-left: 10px;
 }
 
-#dashselect {
+/* #dashselect {
   padding-top: 10rem;
-}
+} */
 
-#denied {
+/* #denied {
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;
@@ -1521,7 +1521,7 @@ label {
     bottom: 0;
     opacity: 0;
   }
-}
+} */
 
 html,
 body {
