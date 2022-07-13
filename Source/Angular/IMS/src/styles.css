@@ -1523,6 +1523,7 @@ label {
   }
 } */
 
+
 html,
 body {
   height: 100%;
@@ -1551,4 +1552,14 @@ body {
 #cards-align{
   padding-top: 10%;
 }
+
+/* @media screen and (max-width: 600px) {
+  .dropdown {float: none;}
+  .dropdown-content {position: relative;}
+  .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+} */
 
