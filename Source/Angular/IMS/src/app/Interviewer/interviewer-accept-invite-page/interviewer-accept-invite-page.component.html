@@ -48,15 +48,15 @@
                 </div>
                 <div class="container"
                     *ngFor="let item of GivenSlot | paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
-                    <div class="card ml-6">
+                    <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <p><b>Availability Date: </b>{{item.date|date:'dd-MM-yyyy'}}</p>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <p><b>Selected Timing : </b>{{item.fromTime|date:'h:mm a'}}</p>
+                                <div class="col-md-8">
+                                    <p><b>Selected Timing : </b>{{item.fromTime|date:'h:mm a'}} to {{item.toTime|date:'h:mm a'}}</p>
                                 </div>
                             </div>
                         </div>
