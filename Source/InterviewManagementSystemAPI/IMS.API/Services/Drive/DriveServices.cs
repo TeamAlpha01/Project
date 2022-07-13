@@ -361,11 +361,11 @@ namespace IMS.Service
                 return false;
             }
         }
-        public Object ViewAvailabilty(int employeeId)
+        public Object ViewAvailabilty(int employeeId,int driveId)
         {
             try
             {
-                return _driveDataAccess.ViewAvailability(employeeId).Select(e=>new
+                return _driveDataAccess.ViewAvailability(employeeId,driveId).Select(e=>new
                 {
                     DriveName=e.Drive.Name,
                     Date=e.InterviewDate,

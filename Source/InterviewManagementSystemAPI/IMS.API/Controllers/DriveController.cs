@@ -511,11 +511,11 @@ public class DriveController : ControllerBase
         }
     }
     [HttpGet]
-    public IActionResult ViewAvailabilty()
+    public IActionResult ViewAvailabilty(int driveId)
     {
         try{
             int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewAvailabilty(currentUser));
+            return Ok(_driveService.ViewAvailabilty(currentUser,driveId));
         }
          catch (Exception exception)
         {
