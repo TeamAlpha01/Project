@@ -18,16 +18,18 @@ public class LocationController : ControllerBase
     public LocationController(ILogger<LocationController> logger, ILocationServices locationServices)
     {
         _logger = logger;
-        _locationService = locationServices;// DataFactory.LocationDataFactory.GetLocationServiceObject(_logger);
+        _locationService = locationServices;
     }
 
     /// <summary>
-    /// This method will be implemented when "Add a new Locatioon" - Request rises.
+    /// This method is used to create new location
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If new location was created</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
     /// <param name="locationName">String</param>
-    /// <returns> Returns Error Message when Exception occured in Location Service. Succsess Message or Internal Error</returns>
+    /// <returns>Returns success message if location was created or 
+    /// Returns bad request if validation exception occurs or
+    /// Returns problem if some internal error occurs</returns>
 
     [HttpPost]
     public IActionResult CreateNewLocation(string locationName)
@@ -52,12 +54,15 @@ public class LocationController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Remove a Location" - Request rises.
+    /// This method is used to remove location
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If Location was removed successfully</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
+    /// <response code="500">If there is problem in server </response>
     /// <param name="locationId">int</param>
-    /// <returns>Returns Error Message when Exception occured in Location Service. Succsess Message or Internal Error</returns>
+    /// <returns>Returns success message if location removed or
+    /// Returns Bad request if validation exception occurs or
+    /// Returns problem when some internal error occurs</returns>
 
     [HttpPatch]
     public IActionResult RemoveLocation(int locationId)
@@ -81,11 +86,12 @@ public class LocationController : ControllerBase
 
     }
     /// <summary>
-    /// This method will be implemented when "View all Location" - Request rises
+    /// This method is used to view list of locations
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <returns>Returns Error Message when Exception occured in Location Service. A list contains All locations or Error Message</returns>
+    /// <response code="20o">Returns list of locations</response>
+    /// <response code="500">If there is problem in server</response> 
+    /// <returns>Returns list of locations or 
+    /// Returns problem when some internal error occurs</returns>
     [HttpGet]
     public IActionResult ViewLocations()
     {

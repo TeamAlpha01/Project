@@ -24,17 +24,18 @@ namespace IMS.Service
             _employeeDataAccessLayer = employeeDataAccessLayer;// DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(logger);
         }
 
-        public object AuthToken(string employeeAceNumber, string password)
+        public object AuthToken(string employeeMail, string password)
         {
+            Validations.EmployeeValidation.IsValidCrredentials(employeeMail,password);
             try
             {
-                var user = _employeeDataAccessLayer.CheckLoginCrendentials(employeeAceNumber, password);
+                var user = _employeeDataAccessLayer.CheckLoginCrendentials(employeeMail, password);
 
                 var claims = new[] {
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim("ACE Number",user.EmployeeAceNumber),
+                        new Claim("Email",user.EmailId),
                         new Claim("UserId", user.EmployeeId.ToString()),
                         new Claim("UserName", user.Name.ToString()),
                         new Claim(ClaimTypes.Role,user.RoleId.ToString()),

@@ -18,13 +18,21 @@ namespace IMS.Controllers
             _logger = logger;
             _tokenService = tokenService;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="employeeMail"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
 
         [HttpPost("Login")]
-        public IActionResult AuthToken(string employeeAceNumber, string password)
+        public IActionResult AuthToken(string employeeMail, string password)
         {
+            if(employeeMail==null && password==null)
+                return BadRequest("Mail Id and Password cannot be null");
             try
             {
-                var Result = _tokenService.AuthToken(employeeAceNumber, password);                
+                var Result = _tokenService.AuthToken(employeeMail, password);                
                 return Ok(Result);
             }
             catch (ValidationException validationException)

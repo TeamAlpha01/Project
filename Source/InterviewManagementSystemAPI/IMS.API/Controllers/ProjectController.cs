@@ -17,13 +17,16 @@ namespace IMS.Controller;
         _departmentService = departmentService;//IMS.DataFactory.DepartmentDataFactory.GetDepartmentServiceObject(_logger);
     }
     /// <summary>
-    /// This Method Will Implement When Create New Department Request rises.
+    /// This method is used to create new project
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If project is created successfully</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
+    /// <response code="500">If there is problem in server</response>
     /// <param name="departmentId">int</param>
     /// <param name="projectName">String</param>
-    /// <returns>Return project added successfully message when the project is added in the database  otherwise  return Sorry internal error occured message .it return  validation exeption or Exception when exception thrown in service.</returns>
+    /// <returns>Returns success message when project added or
+    /// Returns bad request when validation exception occurs or
+    /// Retuurns problem when internal problem occurs </returns>
  
     [HttpPost]
     public IActionResult CreateNewProject( int departmentId,string projectName)
@@ -47,13 +50,16 @@ namespace IMS.Controller;
         }
     }
     /// <summary>
-    /// This Method Will Implement When Remove Project Request rises.
+    /// This method is used to remove project
     /// </summary>
     /// <remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If project was removed successfully</response>
+    /// <response code="400">If the item is null or validation exception oocurs</response> 
+    /// <response code="500">If there is problem in server</response>
     /// <param name="projectId">int</param>
-    /// <returns>Return Project Removed Successfully message when the project Isctive is set to 0 otherwise return Sorry internal error occured .It returns validation exeption or Exception when exception thrown in service.</returns>
+    /// <returns>Return success message if project removed or
+    /// Returns bad request when validation exception occurs or
+    /// Returns problem if some internal error occurs</returns>
     
     [HttpPatch]
     public IActionResult RemoveProject(int projectId)
@@ -77,11 +83,12 @@ namespace IMS.Controller;
         }
     }
     /// <summary>
-    /// This Method Will Implement When View Projects Request rises.
+    /// This method is used to view list of projects
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <returns>Return List of Projects  otherwise it returns  Exception when exception thrown in service .</returns>
+    /// <response code="200">Returns list of projects</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
+    /// <returns>Return List of Projects or
+    /// Returns problem if internal error occurs</returns>
     [AllowAnonymous]
     [HttpGet]
     public IActionResult ViewProjects()

@@ -276,10 +276,16 @@ namespace IMS.Service
 
         public bool RespondEmployeeRequest(int employeeId, bool response)
         {
+            EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
                 return _employeeDataAccessLayer.RespondEmployeeRequest(employeeId,response);
             } 
+            catch (ValidationException exception)
+            {
+                _logger.LogError($"Employee service:RespondEmployeeRequest(int employeeId,bool response) : {exception.Message}");
+                throw exception;
+            }
             catch (Exception exception)
             {
                 _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");

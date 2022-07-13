@@ -41,5 +41,13 @@ namespace IMS.Validations
         {
             if (DepartmentId <= 0) throw new ValidationException("Department with the given Id is Not found");
         }
+        public static void IsValidCrredentials(string employeeMail,string password)
+        {
+            if (String.IsNullOrEmpty(employeeMail)) throw new ValidationException("EmailId cannot be null");
+
+            else if (!Regex.IsMatch(employeeMail,@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z")) throw new ValidationException ("Enter a valid email");
+
+
+        }
     }
 }                                                        

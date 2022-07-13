@@ -17,18 +17,18 @@ public class EmployeeController : ControllerBase
     private IEmployeeService _employeeService;
     private IMailService _mailService;
 
-    public EmployeeController(ILogger<EmployeeController> logger,IMailService mailService,IEmployeeService employeeService) //
+    public EmployeeController(ILogger<EmployeeController> logger, IMailService mailService, IEmployeeService employeeService) //
     {
         _logger = logger;
         _mailService = mailService;
-        _employeeService = employeeService;//DataFactory.EmployeeDataFactory.GetEmployeeServiceObject(_logger);
+        _employeeService = employeeService;
     }
 
     /// <summary>
-    /// This method will implements when you create or register new employee.
+    /// This method is used to register as a new employee
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If new employee was created</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
     /// <response code="500">If there is problem in server</response>
     /// <param name="employee"></param>
     /// <returns>
@@ -41,7 +41,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            if(_employeeService.CreateNewEmployee(employee))
+            if (_employeeService.CreateNewEmployee(employee))
             {
                 //_mailService.SendEmailAsync(_mailService.WelcomeEmployeeMail(employee.EmailId,employee.Name),true);
                 return Ok(UtilityService.Response("Account has been created sucessfully. Please Wait untill Admin verfies your account"));
@@ -60,20 +60,21 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogError($"Employee Service : CreateNewEmployee throwed an exception : {exception}");
+            _logger.LogError($"Employee Service : CreateNewEmployee throwed an exception : {exception.Message}");
             return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
-    /// This method will implements if Admin wants to remove any Employee.
+    /// This method is used to remove employee
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response>
+    /// <response code="200">If employee was removed successfully</response>
+    /// <response code="400">If the item is null or validation exception occurs</response>
     /// <response code="500">If there is problem in server</response>
     /// <param name="employeeId"></param>
     /// <returns>
-    /// Return OK when employee is removed successfully or
-    /// Return Badrequest when exception occured in the EmployeeService layer.
+    /// Return success message when employee removed
+    /// Return Badrequest when validation exception or 
+    /// Return Problem when some internal error occurred
     /// </returns>
     [HttpPatch]
     public IActionResult RemoveEmployee(int employeeId)
@@ -89,19 +90,19 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogError($"Employee Service : RemoveEmployee throwed an exception : {exception}");
+            _logger.LogError($"Employee Service : RemoveEmployee throwed an exception : {exception.Message}");
             return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
-    /// This method will be implemented when Admin want to see all the Employees list.
+    /// This method is used view list of employees 
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
+    /// <response code="200">Returns list of employee</response>
     /// <response code="400">If the item is null</response>
     /// <response code="500">If there is problem in server</response>
     /// <returns>
     /// Return list of all employees or
-    /// Return BadRequest when exception occured in the EmployeeService layer.
+    /// Return Problem when exception occured in the EmployeeService layer.
     /// </returns>
     [HttpGet]
     public IActionResult ViewEmployees()
@@ -112,20 +113,20 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogError($"Service throwed exception while fetching roles : {exception}");
+            _logger.LogError($"Service throwed exception while fetching employees : {exception.Message}");
             return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
-    /// This method implements when you want see your profile of an Employee.
+    /// This method is used to view employee profile
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response>
+    /// <response code="200">Returns employee profile</response>
+    /// <response code="400">If the item is null or validation exception occurs</response>
     /// <response code="500">If there is problem in server</response>
     /// <param name="employeeId"></param>
     /// <returns>
     /// Return Employee details(profile) or
-    /// Return BadRequest when exception occured in the EmployeeService layer.
+    /// Return problem when exception occured in the EmployeeService layer.
     /// </returns>
     [HttpGet]
     public IActionResult ViewProfile(int employeeId)
@@ -136,34 +137,41 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogError($"Service throwed exception while fetching employees : {exception}");
+            _logger.LogError($"Service throwed exception while fetching employees : {exception.Message}");
             return Problem("Sorry some internal error occured");
         }
     }
+    /// <summary>
+    /// This is used to view their profile
+    /// </summary>
+    /// <returns>
+    /// Returns his/her profile or
+    /// Returns problem when internal problem occurs
+    /// </returns>
     [HttpGet]
     public IActionResult ViewEmployeeProfile()
     {
         try
         {
-            int currentUser=Convert.ToInt32(User.FindFirst("UserId").Value);
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_employeeService.ViewProfile(currentUser));
         }
         catch (Exception exception)
         {
-            _logger.LogError($"Service throwed exception while fetching employees : {exception}");
+            _logger.LogError($"Service throwed exception while fetching employees : {exception.Message}");
             return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
-    /// This method implements when you want to see employees list filtered by Department id.
+    /// This method is used to view list of employees by department
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response>
+    /// <response code="200">Returns list of employees by department</response>
+    /// <response code="400">If the item is null or validations exception occurs</response>
     /// <response code="500">If there is problem in server</response>
     /// <param name="departmentId"></param>
     /// <returns>
-    /// Return list of employees filtered by department id or
-    /// Return BadRequest when exception occured in the EmployeeService layer or 
+    /// Return list of employees by department  or
+    /// Return BadRequest when validation exception occurs or 
     /// Return Problem when problem arises in server
     /// </returns>
     [HttpGet]
@@ -175,50 +183,48 @@ public class EmployeeController : ControllerBase
         }
         catch (ValidationException exception1)
         {
-            _logger.LogError($"Service throwed exception while fetching roles : {exception1}");
+            _logger.LogError($"Employee controller:ViewEmployeesByDepartment(int departmentId):{exception1.Message}:{exception1.StackTrace}");
             return BadRequest(exception1.Message);
         }
         catch (Exception exception)
         {
-            _logger.LogError($"Service throwed exception while fetching employees : {exception}");
+            _logger.LogError($"Service throwed exception while fetching employees : {exception.Message}:{exception.StackTrace}");
             return Problem("Sorry some internal error occured");
         }
 
     }
     /// <summary>
-    /// This method implements when admin want to see their Approval status.
+    /// This method is used to view whether employee is accepted by admin or not
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response>
+    /// <response code="200">Returns list of approved employee</response>
     /// <response code="500">If there is problem in server</response>
     /// <param name="isAdminAccepted"></param>
-    /// <returns>
-    /// Return list of employees who are approved or rejected by admin based on isAdminAccepted parameter or
-    /// Return Problem when exception occured in the EmployeeService layer.
-    /// </returns>
+    /// <returns>Returns list of employees where accepted by admin or
+    /// Returns problem when internal error occurs </returns>
     [HttpGet]
     public IActionResult ViewEmployeeByApprovalStatus(bool isAdminAccepted)
     {
+        
+        
         try
         {
             return Ok(_employeeService.ViewEmployeeByApprovalStatus(isAdminAccepted));
         }
         catch (Exception exception)
         {
-            _logger.LogError($"Service throwed exception while fetching employees : {exception}");
+            _logger.LogError($"Service throwed exception while fetching employees : {exception.Message}");
             return Problem("Sorry some internal error occured");
         }
     }
     /// <summary>
-    /// This method implements when admin want to see who has sent a request to Admin.
+    /// This method is used to view request received from the employee
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response>
+    /// <response code="200">Returns list of request from employee</response>
     /// <response code="500">If there is problem in server</response>
-    /// <returns>
-    /// Return list of employees who has sent a request to admin and doesn't shows a accepted request or 
-    /// Return BadRequest when exception occured in the EmployeeService layer.
+    /// <returns>Returns list of request received from employee or
+    /// Returns Problem when internal error occurs
     /// </returns>
+   
     [HttpGet]
     public IActionResult ViewEmployeeRequest()
     {
@@ -228,33 +234,36 @@ public class EmployeeController : ControllerBase
         }
         catch (Exception exception)
         {
-            _logger.LogError($"Service throwed exception while fetching employees : {exception}");
-            return BadRequest("Sorry some internal error occured");
-        }
-    }
-    /// <summary>
-    /// To respond request received from the employee
-    /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response>
-    /// <response code="500">If there is problem in server</response>
-    /// <param name="employeeId"></param>
-    /// <param name="response"></param>
-    /// <returns>Returns list of request received from the employee or Returns Exception when problem in server</returns>
-    [HttpPatch]
-    public IActionResult RespondEmployeeRequest(int employeeId,bool response)
-    {
-        if(employeeId<=0)
-            return BadRequest("Employee Id cannot be zero or less than zero ");
-        try
-        {
-            return Ok(_employeeService.RespondEmployeeRequest(employeeId,response));
-        }
-        catch (Exception exception)
-        {
-            _logger.LogError($"Service throwed exception while fetching employees : {exception}");
+            _logger.LogError($"Service throwed exception while fetching employees : {exception.Message}");
             return Problem("Sorry some internal error occured");
         }
     }
-    
+    /// <summary>
+    /// This method is used to respond request received from employee
+    /// </summary>
+    /// <param name="employeeId">int</param>
+    /// <param name="response">bool</param>
+    /// <returns>Returns true after accept/reject request from employee or
+    /// Returns bad request when employeeId is null</returns>
+    [HttpPatch]
+    public IActionResult RespondEmployeeRequest(int employeeId, bool response)
+    {
+        if (employeeId <= 0)
+            return BadRequest("Employee Id cannot be zero or less than zero ");
+        try
+        {
+            return Ok(_employeeService.RespondEmployeeRequest(employeeId, response));
+        }
+        catch (ValidationException exception)
+        {
+            _logger.LogError($"Employee Controller:RespondEmployeeRequest(int employeeId,bool response): {exception.Message}");
+            return BadRequest(exception.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogError($"Service throwed exception while fetching employees : {exception.Message}");
+            return Problem("Sorry some internal error occured");
+        }
+    }
+
 }

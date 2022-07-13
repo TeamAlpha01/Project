@@ -17,23 +17,15 @@ public class RoleController : ControllerBase
     public RoleController(ILogger<RoleController> logger,IRoleService roleService)
     {
         _logger = logger;
-        _roleService = roleService;//DataFactory.RoleDataFactory.GetRoleServiceObject(_logger);
+        _roleService = roleService;
     }
 
     /// <summary>
-    /// This method will be implemented when "Add a new Role" - Request rises.
+    /// This method used to create new role
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /CreateNewRole
-    ///     {
-    ///        "Role Name": "SSE",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If new role is created</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
+    /// <response code="500">If there is problem in server</response>
     /// <param name="roleName">String</param>
     /// <param name="isManagement">bool</param>
     /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
@@ -60,14 +52,16 @@ public class RoleController : ControllerBase
     }
 
     /// <summary>
-    ///  This method will be implemented when "Remove a new Role" - Request rises.
+    ///  This method is used to remove a role
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If role was created</response>
+    /// <response code="400">If the item is null or validtaion exception occurs</response> 
     /// <param name="roleId">int</param>
-    /// <returns>>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
-    /// 
-    [HttpPatch]
+    /// <returns>Returns success message  when role was created or 
+    /// Returns bad request when validation exception occurs or
+    /// Returns problem if internal error occurs</returns>
+  
+   [HttpPatch]
     public IActionResult RemoveRole(int roleId)
     {
         if (roleId == 0) return BadRequest("Role Id is not provided");
@@ -89,11 +83,12 @@ public class RoleController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "View Roles" - Request rises.
+    /// This method is used to view list of roles
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
+    /// <response code="200">If it returns list of roles</response>
+    /// <response code="500">If there is problem in server</response> 
+    /// <returns>Returns list of role or 
+    /// Returns problem if some internal error occurs</returns>
     [AllowAnonymous]
     [HttpGet]
     public IActionResult ViewRoles()

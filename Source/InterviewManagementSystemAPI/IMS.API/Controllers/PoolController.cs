@@ -25,13 +25,15 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Create a New Pool" - Request rises.
+    /// This method is used to create new pool
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If new pool was created</response>
+    /// <response code="400">If the item is null or validation exception occurs</response>
+    /// <response code="500">If there is problem in server</response>
     /// <param name="departmentId">int</param>
     /// <param name="poolName">string</param>
-    /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
+    /// <returns>Returns success message if new pool was created
+    /// Returns bad request if validation exception occcurs</returns>
 
     [HttpPost]
     public IActionResult CreateNewPool(int departmentId, string poolName)
@@ -59,12 +61,15 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Remove a Pool" - Request rises.
+    /// This method is used to remove pool
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If pool removed successfully</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
+    /// <response code="500">If there is problem in server</response>
     /// <param name="poolId">int</param>
-    /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
+    /// <returns>Returns Success Message if pool was removed or
+    /// Returns Badrequest if validation exception occurs
+    /// Retursn problem if some internal error occurs</returns>
 
     [HttpPost]
     public IActionResult RemovePool(int poolId)
@@ -89,13 +94,16 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Rename a Pool" - Request rises.
+    /// This method is used to rename a pool 
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If pool was successfully renamed</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
+    /// <response code="500">If there is problem in server</response>
     /// <param name="poolId">int</param>
     /// <param name="poolName">String</param>
-    /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
+    /// <returns>Returns Success Message if pool was renamed or 
+    /// Returns bad request if validation exception occurs or
+    /// Returns problem if some internal error occurs</returns>
 
     [HttpPut]
     public IActionResult EditPool(int poolId, string poolName)
@@ -104,7 +112,7 @@ public class PoolController : ControllerBase
             return BadRequest("Pool Id cannot be negative or null , Pool Name cannot be null  cannot be negative or null");
         try
         {
-            return _poolService.EditPool(poolId, poolName) ? Ok(UtilityService.Response("Pool name changed Successfully")) : BadRequest("Sorry internal error occured");
+            return _poolService.EditPool(poolId, poolName) ? Ok(UtilityService.Response("Pool name changed Successfully")) : Problem("Sorry internal error occured");
 
         }
         catch (ValidationException poolNotFound)
@@ -116,17 +124,20 @@ public class PoolController : ControllerBase
         catch (Exception exception)
         {
             _logger.LogError("Pool Service : RemovePool throwed an exception", exception);
-            return BadRequest("Sorry some internal error occured");
+            return Problem("Sorry some internal error occured");
         }
 
     }
 
     /// <summary>
-    /// This method will be implemented when "View Pools" - Request rises.
+    /// This method is used to view list of pools
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
+    /// <response code="200">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
-    /// <returns>Returns a list of pools</returns>
+    /// <response code="500">If there is problem in server</response>
+    /// <returns>Returns a list of pools or 
+    /// Returns bad request when validation exception occurs or
+    /// Returns problem when some internal error occurs</returns>
     
 
     [HttpGet]
@@ -148,9 +159,14 @@ public class PoolController : ControllerBase
         }
     }
     /// <summary>
-    /// This method will be  implemented when "ViewPoolsById"-Requset arises
+    /// This method is used view list of pools for a cuurent user
     /// </summary>
-    /// <returns>Returns list of pool based on employee id</returns>
+    /// <response code="200">Returns pool by Id</response>
+    /// <response code="400">Returns bad request when validation exception occurs </response>
+    /// <response code="500">If there is problem in server</response>
+    /// <returns>Returns list of pool based on employee id or
+    /// Returns bad request when validation exception occurs or
+    /// Returnns problem when intrenal error occurs</returns>
     [HttpGet]
     public IActionResult ViewPoolsByID()
     {
@@ -174,13 +190,16 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Add Pool Members" - Request rises.
+    /// This method is used to add a pool member
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If pool member is added sucessfully</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
+    /// <response code="500">If problem occurs in server</response>
     /// <param name="employeeId">int</param>
     /// <param name="poolId">int</param>
-    /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
+    /// <returns>Returns Success message when pool member added or 
+    /// Returns bad request when validation exception occurs
+    /// Rerurns problem when internal error occurs</returns>
 
     [HttpPost]
     public IActionResult AddPoolMember(int employeeId, int poolId)
@@ -215,10 +234,10 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "Remove Pool Members" - Request rises.
+    /// This method is used to remove a pool member from a pool
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If pool member removed successfully</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
     /// <param name="poolMemberId">int</param>
     /// <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
 
@@ -254,12 +273,14 @@ public class PoolController : ControllerBase
     }
 
     /// <summary>
-    /// This method will be implemented when "View Pool Members" - Request rises.
+    /// This method is used to view list of pool members by pool id
     /// </summary>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">Returns list of pool members</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
     /// <param name="poolId">int</param>
-    /// <returns>Returns a list of pool Members</returns>
+    /// <returns>Returns a list of pool Members or 
+    /// Returns bad request when validation exception occurs or
+    /// Returns problem when some internal error occurs</returns>
 
     [HttpGet]
     public IActionResult ViewPoolMembers(int poolId)

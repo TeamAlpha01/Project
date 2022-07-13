@@ -48,8 +48,6 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Department Service : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
-
-                // Log "Exception Occured in Data Access Layer"
                 return false;
             }
         }

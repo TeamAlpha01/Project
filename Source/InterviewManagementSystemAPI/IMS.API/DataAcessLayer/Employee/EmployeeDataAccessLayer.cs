@@ -196,21 +196,21 @@ namespace IMS.DataAccessLayer
             }
         }
         
-        public Employee CheckLoginCrendentials(string employeeAceNumber, string password)
+        public Employee CheckLoginCrendentials(string employeeMail, string password)
         {
             try
             {
-                if(!_db.Employees.Any(x => x.EmployeeAceNumber == employeeAceNumber))
-                    throw new ValidationException($"No Employee Found With The ACE Number : {employeeAceNumber}");
+                if(!_db.Employees.Any(x => x.EmailId == employeeMail))
+                    throw new ValidationException($"No employee found With given mail id : {employeeMail}");
 
-                if(!_db.Employees.Any(x => x.EmployeeAceNumber == employeeAceNumber && x.Password == password))
-                    throw new ValidationException($"Wrong Password!");
+                if(!_db.Employees.Any(x => x.EmailId == employeeMail && x.Password == password))
+                    throw new ValidationException($"Invalid credentials");
 
-                if(!_db.Employees.Any(x => x.EmployeeAceNumber == employeeAceNumber && x.Password == password && x.IsActive==true))
-                    throw new ValidationException($"Your account has been deactivated! Please Contact Admin");
-                if(!_db.Employees.Any(x =>x.EmployeeAceNumber == employeeAceNumber && x.Password == password && x.IsAdminAccepted==true))
-                    throw new ValidationException($"Please wait untill Admin verfies your account");
-                var _employee = GetEmployeesFromDatabase().Where(employee => employee.EmployeeAceNumber == employeeAceNumber).First();
+                if(!_db.Employees.Any(x => x.EmailId == employeeMail && x.Password == password && x.IsActive==true))
+                    throw new ValidationException($"Your account has been deactivated! Please Contact Adminstrator");
+                if(!_db.Employees.Any(x =>x.EmailId == employeeMail && x.Password == password && x.IsAdminAccepted==true))
+                    throw new ValidationException($"Wait untill you receive a mail!");
+                var _employee = GetEmployeesFromDatabase().Where(employee => employee.EmailId == employeeMail).First();
                 return _employee;
             }
             catch (Exception exception)
@@ -237,12 +237,29 @@ namespace IMS.DataAccessLayer
 
         public bool RespondEmployeeRequest(int employeeId, bool response)
         {
-            var employee = _db.Employees.Find(employeeId);
-            employee.IsAdminResponded=true; 
-            employee.IsAdminAccepted=response;
-            _db.Employees.Update(employee);
-            _db.SaveChanges(); 
-            return true;
+            EmployeeValidation.IsEmployeeIdValid(employeeId);
+            try
+            {
+                if(!_db.Employees.Any(x => x.EmployeeId ==employeeId ))
+                    throw new ValidationException($"No Employee Found With the given employee id : {employeeId}");
+                var employee = _db.Employees.Find(employeeId);
+                employee.IsAdminResponded=true; 
+                employee.IsAdminAccepted=response;
+                _db.Employees.Update(employee);
+                _db.SaveChanges(); 
+                return true;
+            }
+            catch (ValidationException exception)
+            {
+                _logger.LogError($"Employee DAL:RespondEmployeeRequest(int employee,bool response):{exception.Message}");
+                throw exception;
+            }
+            catch(Exception exception)
+            {
+                _logger.LogError($"Employee DAL:ResponsEmployeeRequest(int emloyeeId,bool response):{exception.Message}");
+                return false;
+            }
+            
         }
     }
 }

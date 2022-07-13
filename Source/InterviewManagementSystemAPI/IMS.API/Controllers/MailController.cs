@@ -13,6 +13,11 @@ public class MailController : ControllerBase
     {
         this.mailService = mailService;
     }
+    /// <summary>
+    /// This method is used to send mail t
+    /// </summary>
+    /// <param name="request"></param>
+  
     [HttpPost("send")]
     public async Task<IActionResult> SendMail([FromForm]MailRequest request)
     {
