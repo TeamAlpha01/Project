@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ConnectionService } from 'src/app/Services/connection.service';
@@ -78,10 +77,6 @@ export class LoginComponent implements OnInit {
 
         },
         error: (error: any) => {
-
-          if (error.status == 404) {
-            this.route.navigateByUrl("errorPage");
-          }
           if (!(error.error.toString().includes('mail') || error.error.toString().includes('Password'))) {
             this.isCommanError = true;
           }
