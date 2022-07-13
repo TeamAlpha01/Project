@@ -243,7 +243,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int tacId=Convert.ToInt32(User.FindFirst("UserId").Value);
+            int tacId=Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewNonCancelledDrives(tacId));
         }
         catch (Exception viewAllScheduledDrivesException)

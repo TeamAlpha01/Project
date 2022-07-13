@@ -369,7 +369,8 @@ namespace IMS.Service
                 {
                     DriveName=e.Drive.Name,
                     Date=e.InterviewDate,
-                    FromTime=e.From
+                    FromTime=e.From,
+                    ToTime=e.To
                 }
                 );
             }

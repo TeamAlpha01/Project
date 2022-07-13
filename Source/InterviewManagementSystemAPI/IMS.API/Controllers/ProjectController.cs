@@ -52,7 +52,6 @@ namespace IMS.Controller;
     /// <summary>
     /// This method is used to remove project
     /// </summary>
-    /// <remarks>
     /// <response code="200">If project was removed successfully</response>
     /// <response code="400">If the item is null or validation exception oocurs</response> 
     /// <response code="500">If there is problem in server</response>
