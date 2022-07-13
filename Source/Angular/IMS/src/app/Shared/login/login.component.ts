@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loading = true
       const user = {
-        EmailID: this.loginForm.value['EmailID'],
-        Password: this.loginForm.value['Password'],
+        emailId: this.loginForm.value['EmailID'],
+        password: this.loginForm.value['Password'],
       }
       console.warn(user);
 
