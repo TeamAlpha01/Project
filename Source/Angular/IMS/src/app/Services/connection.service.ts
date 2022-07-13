@@ -180,7 +180,7 @@ export class ConnectionService {
   //POST methods
 
   Login(user: any) {
-    return this.http.post<any>(this.baseURL + `Token/AuthToken/Login`, user, { headers: this.headers })
+    return this.http.post<any>(this.baseURL + `Token/Login/Login`, user, { headers: this.headers })
   }
 
   CreateNewProject(user: any) {
