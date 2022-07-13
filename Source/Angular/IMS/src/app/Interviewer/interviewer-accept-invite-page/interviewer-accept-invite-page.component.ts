@@ -16,7 +16,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   toTime: any;
   response: string = '';
   error: string = '';
-
+ _date='';
 
   AcceptInvitePage = this.fb.group({
     InterviewDate: ['', [Validators.required]],

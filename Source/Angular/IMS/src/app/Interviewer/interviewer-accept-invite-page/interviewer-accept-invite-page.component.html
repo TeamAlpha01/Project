@@ -22,12 +22,10 @@
                         <div class="card-body">
                             <div class="row rone mt-4">
                                 <div class="col-md-6">
-                                    <label class="text"><b>Availability</b></label>
-                                    <br>
-                                    <input formControlName="InterviewDate" type="date" min="{{Invites.fromDate}}"
-                                        max="{{Invites.toDate}}">
-                                </div>
-
+                                    <label class="form-label" for="Date"><b>Availability</b></label><br>
+                                    <input type="date" class="form-control" name="date" [(ngModel)]="_date" min="{{Invites.fromDate}}"
+                                    max="{{Invites.toDate}}">
+                                </div> 
                                 <div class="col-md-4">
                                     <label class="text"><b>Select Timing </b></label>
                                     <input type="time" class="form-control" id="appt" formControlName="SlotTime"
