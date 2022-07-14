@@ -11,7 +11,7 @@ namespace IMS.Validations
             if(departmentName==null) throw new ValidationException("Department name cannot be null");
            
            if(!Regex.IsMatch(departmentName , @"^[a-zA-Z]{3,15}$")) 
-                throw new ValidationException("Department name must be alphabets and of length 3 to 15");
+                throw new ValidationException("Department name must be alphabets and of length 3 to 15.");
 
            
         }

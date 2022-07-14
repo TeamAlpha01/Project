@@ -41,7 +41,7 @@ namespace IMS.Validations
         {
             if (DepartmentId <= 0) throw new ValidationException("Department with the given Id is Not found");
         }
-        public static void IsValidCrredentials(string employeeMail,string password)
+        public static void IsValidCredentials(string employeeMail,string password)
         {
             if (String.IsNullOrEmpty(employeeMail)) throw new ValidationException("EmailId cannot be null");
 

@@ -26,7 +26,7 @@ namespace IMS.Service
 
         public object AuthToken(string employeeMail, string password)
         {
-            Validations.EmployeeValidation.IsValidCrredentials(employeeMail,password);
+            Validations.EmployeeValidation.IsValidCredentials(employeeMail,password);
             try
             {
                 var user = _employeeDataAccessLayer.CheckLoginCrendentials(employeeMail, password);

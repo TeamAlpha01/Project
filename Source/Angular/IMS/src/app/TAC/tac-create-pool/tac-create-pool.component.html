@@ -5,7 +5,7 @@
      <div class="Register">
         <div class="card-body">
             <form [formGroup]="AddPoolForm" (ngSubmit)="addPool()" >
-                <div class="form-input">
+                <div class="form-input"><br>
                     <label class="form-label" for="Department">Department Name</label>
                     <select [class.is-invalid]="(submitted)||AddPoolForm.controls['departmentId'].invalid && AddPoolForm.controls['departmentId'].touched" name="Department" id="Department Name" class="form-select " formControlName="departmentId">
                         <option value="">Select the Department</option>
@@ -17,7 +17,7 @@
                 <div *ngIf="(submitted)||AddPoolForm.controls['departmentId'].invalid && AddPoolForm.controls['departmentId'].touched">
                     <span class="text-danger" *ngIf="AddPoolForm.controls['departmentId'].errors?.['required']">*Choose a Department</span>
                 </div>
-                
+
                 <div class="form-input">
                     <label class="form-label" for="Name">Pool Name </label>
                     <input [class.is-invalid]="(submitted)||AddPoolForm.controls['poolName'].invalid && AddPoolForm.controls['poolName'].touched" type="text" id="Name" class="form-control " formControlName="poolName" maxlength="15">
