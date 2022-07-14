@@ -764,9 +764,9 @@ namespace IMS.Service
             {
                 return _driveDataAccess.GetDriveResponse(driveId).Select(e => new
                 {
-                    EmployeeId= e.EmployeeId,
-                    EmployeeName=e.Employee!.Name,
-                    ResponseType=Enum.GetName(typeof(UtilityService.ResponseType), e.ResponseType)
+                    EmployeeId = e.EmployeeId,
+                    EmployeeName = e.Employee.Name,
+                    ResponseType = Enum.GetName(typeof(UtilityService.ResponseType), e.ResponseType)
                 }
                 );
             }

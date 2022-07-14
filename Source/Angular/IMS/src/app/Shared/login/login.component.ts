@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
         emailId: this.loginForm.value['EmailID'],
         password: this.loginForm.value['Password'],
       }
-      console.warn(user);
 
       this.connection.Login(user).subscribe({
         next: (data: any) => {

@@ -15,12 +15,10 @@ export class AuthorizationService {
       if (route.data['User'] == AuthenticationService.GetUser()) {
         return true;
       }
-      else if (route.data['User'] == AuthenticationService.GetUser()) {
+      else if (route.data['User'] == "Interviewer" && AuthenticationService.GetUser() == "Management") {
         return true;
       }
-      else if (route.data['User'] == AuthenticationService.GetUser()) {
-        return true;
-      }
+
       else {
         this.authService.ClearToken();
         return this.route.navigateByUrl("");

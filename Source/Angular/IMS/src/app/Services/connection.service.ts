@@ -46,6 +46,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard`, { headers: this.headers });
   }
 
+  GetDashboardDriveResponse(driveId:number): any {
+    return this.http.get<any>(this.baseURL + `Drive/ViewDriveResponse?driveId=${driveId}`, { headers: this.headers });
+  }
+
   GetDefaulters(poolId:number): any {
     return this.http.get<any>(this.baseURL + `Drive/ViewDefaulters?poolId=${poolId}`, { headers: this.headers });
   }
@@ -60,6 +64,15 @@ export class ConnectionService {
 
   GetDriveResponse(driveId:number){
     return this.http.get<any>(this.baseURL + `Drive/ViewAvailableMembersForDrive?driveId=${driveId}`, { headers: this.headers });
+  }
+
+  GetDriveById(driveId:any)
+  {
+    return this.http.get<any>(this.baseURL+ `Drive/ViewDrive?driveId=${driveId}`,{headers:this.headers});
+  }
+
+  GetDriveInvitesById(){
+    return this.http.get<any>(this.baseURL + `Drive/ViewInvitesByID`, { headers: this.headers });
   }
 
   GetEmployees() {
@@ -154,18 +167,7 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUtilizedInterviews', { headers: this.headers });
   }
 
-  GetDriveById(driveId:any)
-  {
-    return this.http.get<any>(this.baseURL+ `Drive/ViewDrive?driveId=${driveId}`,{headers:this.headers});
-  }
 
-  GetDriveInvites(employeeId:any){
-    return this.http.get<any>(this.baseURL + `Drive/ViewInvites?employeeId=${employeeId}`, { headers: this.headers});
-  }
-
-  GetDriveInvitesById(){
-    return this.http.get<any>(this.baseURL + `Drive/ViewInvitesByID`, { headers: this.headers });
-  }
 
   AddResponse(response:any)
   {
@@ -180,11 +182,11 @@ export class ConnectionService {
   //POST methods
 
   Login(user: any) {
-    return this.http.post<any>(this.baseURL + `Token/Login/Login`, user, { headers: this.headers })
+    return this.http.post<any>(this.baseURL + `Token/Login`, user, { headers: this.headers })
   }
 
   CreateNewProject(user: any) {
-    this.http.post<any>(this.baseURL + '/Project/CreateNewProject', user, { headers: this.headers })
+    this.http.post<any>(this.baseURL + 'Project/CreateNewProject', user, { headers: this.headers })
   }
 
   CreateEmployee(user: any) {

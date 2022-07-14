@@ -51,6 +51,9 @@ export class AuthenticationService {
     else if (AuthenticationService.GetData("Admin")) {
       return "Admin";
     }
+    else if (AuthenticationService.GetData("Management")) {
+      return "Management";
+    }
     else if (AuthenticationService.GetData("token")) {
       return "Interviewer";
     }

@@ -26,12 +26,11 @@ namespace IMS.Controllers
         /// <returns></returns>
 
 
-        [HttpPost("Login")]
+        [HttpPost]
         public IActionResult Login(User user)
         {
             if (user.EmailId == null && user.EmailId == null)
                 return BadRequest("Mail Id and Password cannot be null");
-
             try
             {
                 var Result = _tokenService.AuthToken(user.EmailId, user.Password);

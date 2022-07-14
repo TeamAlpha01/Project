@@ -5,6 +5,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { HashLocationStrategy,LocationStrategy } from '@angular/common';
 
 
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
@@ -169,7 +170,7 @@ import { DepartmentPerformanceComponent } from './Management/department-performa
 
 
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, {provide:LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,6 +11,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class InterviewerHeaderComponent implements OnInit {
   userName: string | null = '';
   Name: string = '';
+  isManagement:boolean=false
 
   constructor(private service: AuthenticationService) { }
 
@@ -18,8 +19,11 @@ export class InterviewerHeaderComponent implements OnInit {
     this.GetUser();
   }
 
+
+
   GetUser() {
     this.userName = AuthenticationService.GetUserName();
+    this.isManagement = AuthenticationService.GetData("Management")?true:false;
     if (this.userName == null) {
       this.Name = "User"
     }
