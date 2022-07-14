@@ -231,7 +231,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int tacId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int tacId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewAllCancelledDrives(tacId));
         }
         catch (Exception viewAllCancelledDrivesException)
@@ -309,7 +309,7 @@ public class DriveController : ControllerBase
     [HttpGet]
     public IActionResult ViewInvitesByID()
     {
-        int currentUser = Convert.ToInt32(User.FindFirst("UserId").Value);
+        int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
         if (currentUser <= 0)
             return BadRequest("provide proper employee Id");
         try
@@ -338,7 +338,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            return Ok(_driveService.ViewTACDashboard(Convert.ToInt32(User.FindFirst("UserId").Value)));
+            return Ok(_driveService.ViewTACDashboard(Convert.ToInt32(User.FindFirst("UserId")?.Value)));
         }
         catch (ValidationException viewDashboardNotValid)
         {
@@ -379,7 +379,7 @@ public class DriveController : ControllerBase
 
         try
         {
-            response.EmployeeId = Convert.ToInt32(User.FindFirst("UserID").Value);
+            response.EmployeeId = Convert.ToInt32(User.FindFirst("UserID")?.Value);
             return _driveService.AddResponse(response) ? Ok(UtilityService.Response("Response added sucessfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException addResponseNotValid)
@@ -437,7 +437,7 @@ public class DriveController : ControllerBase
             return BadRequest(UtilityService.Response("Invalid employee availability"));
         try
         {
-            employeeAvailability.EmployeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            employeeAvailability.EmployeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return _driveService.SetTimeSlot(employeeAvailability) ? Ok(UtilityService.Response("Availability recorded sucessfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException setTimeSlotNotValid)
@@ -481,7 +481,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int currentUser = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewTodayInterviews(currentUser));
         }
         catch (Exception viewTodaysInterviewException)
@@ -503,7 +503,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int currentUser = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewScheduledInterview(currentUser));
         }
         catch (Exception viewScheduledInterviewException)
@@ -526,7 +526,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int currentUser = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewUpcomingInterview(currentUser));
         }
         catch (Exception viewUpcomingInterviewException)

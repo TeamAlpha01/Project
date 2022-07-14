@@ -8,16 +8,22 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 
 export class InterviewerProfileComponent implements OnInit {
-  title ='My Profile'
-  profileDetails:any;
-  data :any;
-  constructor(private connection :ConnectionService) { }
+  title = 'My Profile'
+  data: any;
+  public profile = {
+    employeeACEId: '',
+    employeeDepartment: '',
+    employeeEmailID: '',
+    employeeName: '',
+    employeeProject: '',
+    employeeRole: ''
+  };
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
     this.connection.GetEmployeeProfile().subscribe((data: any) => {
-      this.profileDetails = data;
-      console.warn(this.profileDetails)
-    }) 
+      this.profile = data;
+    })
   }
-   
+
 }

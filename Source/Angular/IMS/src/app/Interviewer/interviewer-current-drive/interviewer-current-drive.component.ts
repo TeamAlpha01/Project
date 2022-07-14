@@ -22,32 +22,30 @@ export class InterviewerCurrentDriveComponent implements OnInit {
 
   interviewDetails: any;
   poolDetails: any;
-  interviewerpoolDetails :any;
+  interviewerpoolDetails: any;
   showErrorMessage: boolean = false;
   error: any;
 
-  constructor(private connection :ConnectionService,private route: Router) { }
+  constructor(private connection: ConnectionService, private route: Router) { }
 
   ngOnInit(): void {
-  
-  //GET METHOD IS CALLED AT CONNECTION SERVICE
-  this.connection.GetPoolsbyId().subscribe((data: any) => {
-    this.poolDetails = data;
-    for (let item of this.interviewerpoolDetails) {
-         this.drive.push(item);
-         }
-  })
-  //GET METHOD IS CALLED AT CONNECTION SERVICE
-  this.connection.GetTodaysInterviews().subscribe({
+
+    //GET METHOD IS CALLED AT CONNECTION SERVICE
+    this.connection.GetPoolsbyId().subscribe((data: any) => {
+      this.poolDetails = data;
+    })
+
+    //GET METHOD IS CALLED AT CONNECTION SERVICE
+    this.connection.GetTodaysInterviews().subscribe({
       next: (data: any) => {
         this.interviewDetails = data;
         for (let item of this.interviewDetails) {
           this.drive.push(item);
         }
       }
-  })
+    })
 
-}
+  }
 
   filterDropdown() {
 
@@ -59,8 +57,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
       if (this._pool == '') {
         this.drive.push(item);
       }
-      else if(item.pool == this._pool)
-      {
+      else if (item.pool == this._pool) {
         this.drive.push(item);
       }
     }
