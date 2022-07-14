@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { DatePipe } from '@angular/common'
-import { PoolmembersperformanceComponent } from 'src/app/Management/poolmembersperformance/poolmembersperformance.component';
 
 @Component({
   selector: 'app-create-invite',
@@ -84,8 +83,8 @@ export class CreateInviteComponent implements OnInit {
   //GET METHODS CALLED AT CONNECTION SERVICE
 
   poolEnabler() {
-    if (this.getDepartmentId()?.value == '') {this.CreateInviteForm.controls['poolId'].disable()}
-    else {this.CreateInviteForm.controls['poolId'].enable()}
+    if (this.getDepartmentId()?.value == '') { this.CreateInviteForm.controls['poolId'].disable() }
+    else { this.CreateInviteForm.controls['poolId'].enable() }
   }
 
   poolName() {
@@ -95,9 +94,6 @@ export class CreateInviteComponent implements OnInit {
       }
     }
   }
-
-
-
 
 
   locationEnabler() {
@@ -161,7 +157,6 @@ export class CreateInviteComponent implements OnInit {
   isNameError(error: string): boolean {
     if (error.toString().includes('Name'))
       return true;
-
     return false;
   }
 

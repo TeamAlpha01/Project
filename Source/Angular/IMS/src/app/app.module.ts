@@ -75,8 +75,6 @@ import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer
 import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-denied-drives/interviewer-denied-drives.component';
 import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ignored-drives/interviewer-ignored-drives.component';
 import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
-import { PoolmembersperformanceComponent } from './Management/poolmembersperformance/poolmembersperformance.component';
-import { ViewDefaultersComponent } from './Management/view-defaulters/view-defaulters.component';
 import { DepartmentPerformanceComponent } from './Management/department-performance/department-performance.component';
 
 @NgModule({
@@ -147,8 +145,6 @@ import { DepartmentPerformanceComponent } from './Management/department-performa
     InterviewerDeniedDrivesComponent,
     InterviewerIgnoredDrivesComponent,
     ManagementDashboardComponent,
-    PoolmembersperformanceComponent,
-    ViewDefaultersComponent,
     DepartmentPerformanceComponent,
 
   ],
