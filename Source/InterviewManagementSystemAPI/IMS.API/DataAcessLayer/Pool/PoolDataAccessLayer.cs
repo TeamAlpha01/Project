@@ -87,10 +87,11 @@ namespace IMS.DataAccessLayer
             try
             {
                 var Pool = _db.Pools.Find(poolId);
-                if (poolId == null)
+                if (poolId <= 0)
                     throw new ValidationException("No Pool  is found with given Pool Id");
 
-                Pool.IsActive = false;
+                
+                Pool!.IsActive = false;
                 _db.Pools.Update(Pool);
                 _db.SaveChanges();
                 return true;
@@ -190,9 +191,8 @@ namespace IMS.DataAccessLayer
         /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
         /// Pool DAL Perform the interaction with Database and Respond to the Get Pools from Database request.
         /// </summary>
-        /// <param name="departmentId">int</param>
         /// <returns>Return list of pools from database or Throws Exception : No pool is found with given department Id</returns>
-        /// Catches exceptions thorwed by Database if any Misconnections in DB </returns>
+        /// Catches exceptions thorwed by Database if any Misconnections in DB 
 
         public List<Pool> GetPoolsFromDatabase()
         {

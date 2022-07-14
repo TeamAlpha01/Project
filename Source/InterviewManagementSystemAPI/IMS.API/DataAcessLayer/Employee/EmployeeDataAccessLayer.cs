@@ -192,7 +192,7 @@ namespace IMS.DataAccessLayer
             catch (Exception isEmployeeIdValidException)
             {
                 _logger.LogError($"Exception on Employee DAL : IsEmployeeIdValid(int employeeId) : {isEmployeeIdValidException.Message} : {isEmployeeIdValidException.StackTrace}");
-                throw isEmployeeIdValidException;
+                throw;
             }
         }
         
@@ -216,7 +216,7 @@ namespace IMS.DataAccessLayer
             catch (Exception exception)
             {
                 _logger.LogError($"Exception on Employee DAL : CheckLoginCrendentials(string employeeAceNumber, string password) : {exception.Message}");
-                throw exception;
+                throw;
             }
         }
 
@@ -231,7 +231,7 @@ namespace IMS.DataAccessLayer
             catch (Exception IsDepartmentValid)
             {
                 _logger.LogError($"Exception on Employee DAL : IsDepartmentValid(int departmnet) : {IsDepartmentValid.Message} : {IsDepartmentValid.StackTrace}");
-                throw IsDepartmentValid;
+                throw;
             }
         }
 
@@ -243,7 +243,7 @@ namespace IMS.DataAccessLayer
                 if(!_db.Employees.Any(x => x.EmployeeId ==employeeId ))
                     throw new ValidationException($"No Employee Found With the given employee id : {employeeId}");
                 var employee = _db.Employees.Find(employeeId);
-                employee.IsAdminResponded=true; 
+                employee!.IsAdminResponded=true; 
                 employee.IsAdminAccepted=response;
                 _db.Employees.Update(employee);
                 _db.SaveChanges(); 

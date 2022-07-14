@@ -29,6 +29,14 @@ namespace UnitTesting.ServiceTests
         }
 
         // Create Drive
+        [Theory]
+        [InlineData(null)]
+        public void CreateDrive_ThrowsValidationException_WhenDriveObjectIsNull(Drive drive)
+        {
+            var Result=()=>_driveService.CreateDrive(drive);
+            Result.Should().Throw<ValidationException>();
+
+        }
 
         [Fact]
         public void CreateDrive_ThrowsValidationException_WithInvalidDriveName()
@@ -36,6 +44,13 @@ namespace UnitTesting.ServiceTests
             Drive drive = new Drive() { Name = "Test@3#4" };
             var Result = () => _driveService.CreateDrive(drive);
 
+            Result.Should().Throw<ValidationException>();
+        }
+        [Fact]
+        public void CreateDrive_ThrowsValidationException_WithInvalidDate()
+        {
+            Drive drive=new Drive(){FromDate=System.DateTime.Now};
+            var Result=()=>_driveService.CreateDrive(drive);
             Result.Should().Throw<ValidationException>();
         }
         [Fact]
@@ -193,41 +208,45 @@ namespace UnitTesting.ServiceTests
         [Fact]
         public void ViewNonCancelledDrive_ReturnListofDrives()
         {
+            int tacId=1;
             _driveDataAccessLayer.Setup(DriveDataAccessLayer => DriveDataAccessLayer.GetDrivesByStatus(false)).Returns(DriveMock.GetDriveMockForNonCancelled());
-            var Result = _driveService.ViewNonCancelledDrives();
+            var Result = _driveService.ViewNonCancelledDrives(tacId);
             Result.Should().BeEquivalentTo(DriveMock.GetExpectedUpcommingDriveMock().Concat(DriveMock.GetExpectedScheduledDriveMock()).Concat(DriveMock.GetExpectedTodaysDriveMock()));
         }
         [Fact]
         public void ViewNonCancelledDrive_ThrowsException()
         {
+            int tacId=1;
             _driveDataAccessLayer.Setup(DriveDataAccessLayer => DriveDataAccessLayer.GetDrivesByStatus(false)).Throws<Exception>();
-            var Result = () => _driveService.ViewNonCancelledDrives();
+            var Result = () => _driveService.ViewNonCancelledDrives(tacId);
             Result.Should().Throw<Exception>();
         }
     //View Cancelled Drives
         [Fact]
         public void ViewAllCancelledDrive_ReturnListofDrives()
         {
+            int tacId=1;
             _driveDataAccessLayer.Setup(DriveDataAccessLayer => DriveDataAccessLayer.GetDrivesByStatus(true)).Returns(DriveMock.GetDriveMockForCancelled());
-            var Result = _driveService.ViewAllCancelledDrives();
+            var Result = _driveService.ViewAllCancelledDrives(tacId);
             Result.Should().BeEquivalentTo(DriveMock.GetExpectedCancelledDriveMock());
         }
         [Fact]
         public void ViewAllCancelledDrive_ThrowsException()
         {
+            int tacId=1;
             _driveDataAccessLayer.Setup(DriveDataAccessLayer => DriveDataAccessLayer.GetDrivesByStatus(true)).Throws<Exception>();
-            var Result = () => _driveService.ViewAllCancelledDrives();
+            var Result = () => _driveService.ViewAllCancelledDrives(tacId);
             Result.Should().Throw<Exception>();
         }
     //View TAC Dashboard Drives
-        [Fact]
-        public void ViewTACDashboard_ReturnListofDrives()
-        {
-            _driveDataAccessLayer.Setup(DriveDataAccessLayer => DriveDataAccessLayer.GetDrivesByStatus(true)).Returns(DriveMock.GetDriveMockForCancelled());
-            _driveDataAccessLayer.Setup(DriveDataAccessLayer => DriveDataAccessLayer.GetDrivesByStatus(false)).Returns(DriveMock.GetDriveMockForCancelled());
-            var Result = _driveService.ViewTACDashboard(1);
-            Result.Should().BeEquivalentTo(DriveMock.GetTacExpectedDashboardCount());
-        }
+        // [Fact]
+        // public void ViewTACDashboard_ReturnListofDrives()
+        // {
+        //     _driveDataAccessLayer.Setup(DriveDataAccessLayer => DriveDataAccessLayer.GetDrivesByStatus(true)).Returns(DriveMock.GetDriveMockForCancelled());
+        //     _driveDataAccessLayer.Setup(DriveDataAccessLayer => DriveDataAccessLayer.GetDrivesByStatus(false)).Returns(DriveMock.GetDriveMockForCancelled());
+        //     var Result = _driveService.ViewTACDashboard(1);
+        //     Result.Should().BeEquivalentTo(DriveMock.GetTacExpectedDashboardCount());
+        // }
         [Fact]
         public void ViewTACDashboard_ThrowsException()
         {
@@ -261,14 +280,14 @@ namespace UnitTesting.ServiceTests
         [Fact]
         public void ViewDrive_ThrowsValidationException()
         {
-            var Result = () => _driveService.ViewTACDashboard(-1);
+            var Result = () => _driveService.ViewDrive(-1);
             Result.Should().Throw<ValidationException>();
         }
         [Fact]
         public void ViewDrive_ThrowsValidationException_WhenDALThrowsException()
         {
             _driveDataAccessLayer.Setup(DriveDataAccessLayer => DriveDataAccessLayer.ViewDrive(1)).Throws<ValidationException>();
-            var Result = () => _driveService.ViewTACDashboard(-1);
+            var Result = () => _driveService.ViewDrive(-1);
             Result.Should().Throw<ValidationException>();
         }
         

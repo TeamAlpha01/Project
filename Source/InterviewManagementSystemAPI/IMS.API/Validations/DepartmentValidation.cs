@@ -24,7 +24,7 @@ namespace IMS.Validations
         
          public static void IsDepartmentIdValid(int deparmentId)
          {
-             if(deparmentId == null) throw new ValidationException("Department Id cannot be null");
+             if(deparmentId<=0) throw new ValidationException("Department Id cannot be zero or less than zero");
          }
     }
 }

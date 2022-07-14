@@ -268,7 +268,7 @@ namespace IMS.Service
                     poolMemberId=poolMembers.PoolMembersId,
                     employeeAceNumber=poolMembers.Employees.EmployeeAceNumber,
                     employeeName=poolMembers.Employees.Name,
-                    employeeRole=poolMembers.Employees.Role.RoleName
+                    employeeRole=poolMembers.Employees.Role!.RoleName
 
 
                 }

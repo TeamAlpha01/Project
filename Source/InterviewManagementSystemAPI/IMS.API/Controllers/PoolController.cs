@@ -43,7 +43,7 @@ public class PoolController : ControllerBase
 
         try
         {
-            return _poolService.CreatePool(departmentId, poolName) ? Ok(UtilityService.Response("Pool Added Successfully")) : Problem("Sorry internal error occured");
+            return _poolService.CreatePool(departmentId, poolName!) ? Ok(UtilityService.Response("Pool Added Successfully")) : Problem("Sorry internal error occured");
         }
 
         catch (ValidationException departmentNotFound)

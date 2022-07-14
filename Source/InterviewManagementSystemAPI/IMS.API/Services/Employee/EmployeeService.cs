@@ -108,9 +108,9 @@ namespace IMS.Service
                         employeeId=employee.EmployeeId,
                         employeeName=employee.Name,
                         employeeAceNumber=employee.EmployeeAceNumber,
-                        employeeDepartmentName=employee.Department.DepartmentName,
-                        employeeProjectName=employee.Project.ProjectName,
-                        employeeRoleName=employee.Role.RoleName,
+                        employeeDepartmentName=employee.Department!.DepartmentName,
+                        employeeProjectName=employee.Project!.ProjectName,
+                        employeeRoleName=employee.Role!.RoleName,
                     }
                 );
             }
@@ -139,9 +139,9 @@ namespace IMS.Service
                 {
                     EmployeeACEId = _employee.EmployeeAceNumber,
                     EmployeeName = _employee.Name,
-                    EmployeeDepartment = _employee.Department.DepartmentName,
-                    EmployeeProject = _employee.Project.ProjectName,
-                    EmployeeRole = _employee.Role.RoleName,
+                    EmployeeDepartment = _employee.Department!.DepartmentName,
+                    EmployeeProject = _employee.Project!.ProjectName,
+                    EmployeeRole = _employee.Role!.RoleName,
                     EmployeeEmailID = _employee.EmailId
                     //EmployeePoolName = _employee.PoolMembers.Pools.PoolName,
                 };
@@ -178,9 +178,9 @@ namespace IMS.Service
                 {
                     EmployeeACEId = e.EmployeeAceNumber,
                     EmployeeName = e.Name,
-                    EmployeeDepartment = e.Department.DepartmentName,
-                    EmployeeProject = e.Project.ProjectName,
-                    EmployeeRole = e.Role.RoleName,
+                    EmployeeDepartment = e.Department!.DepartmentName,
+                    EmployeeProject = e.Project!.ProjectName,
+                    EmployeeRole = e.Role!.RoleName,
                     EmployeeEmailID = e.EmailId
 
                 }
@@ -249,8 +249,8 @@ namespace IMS.Service
                         employeeId = e.EmployeeId,
                         employeeAceNumber = e.EmployeeAceNumber,
                         employeeName = e.Name,
-                        employeeDepartment= e.Department.DepartmentName,
-                        employeeRole=e.Role.RoleName
+                        employeeDepartment= e.Department!.DepartmentName,
+                        employeeRole=e.Role!.RoleName
                     } 
                 );
             }

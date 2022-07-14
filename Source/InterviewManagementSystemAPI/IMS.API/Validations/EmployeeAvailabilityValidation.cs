@@ -12,8 +12,8 @@ namespace IMS.Validations
             EmployeeValidation.IsEmployeeIdValid(employeeAvailability.EmployeeId);
             DriveValidation.IsDriveIdValid(employeeAvailability.DriveId);
             //Default Values Setting
-            employeeAvailability.From = DateTime.Parse(employeeAvailability.FromTime);
-            employeeAvailability.To = DateTime.Parse(employeeAvailability.ToTime);
+            employeeAvailability.From = DateTime.Parse(employeeAvailability.FromTime!);
+            employeeAvailability.To = DateTime.Parse(employeeAvailability.ToTime!);
             employeeAvailability.IsInterviewCancelled=false;
             employeeAvailability.IsInterviewScheduled=false;
         }

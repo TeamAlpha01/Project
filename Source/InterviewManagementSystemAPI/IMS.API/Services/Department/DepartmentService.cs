@@ -103,7 +103,7 @@ namespace IMS.Service
                 _logger.LogError($"Department Service : ViewDepartments() : {exception.Message} : {exception.StackTrace}");
 
                 //Log "Exception occured in DAL while fetching roles"
-                throw exception;
+                throw;
             }
         }
         /// <summary>
@@ -175,9 +175,8 @@ namespace IMS.Service
         */
         /// <summary>
         /// This Method will implement when Project controller pass the request to this method  and it shift the control  to the DAL
-
         /// </summary>
-        /// <param name="departmentId">int</param>
+       
         /// <returns>Return list otherwise throw exception when exception occur in DAL</returns>
         public Object ViewProjects()
         {
@@ -189,7 +188,7 @@ namespace IMS.Service
                     {
                         projectId = project.ProjectId,
                         projectName = project.ProjectName,
-                        departmentName =project.department.DepartmentName
+                        departmentName =project.department!.DepartmentName
                     }
                 );
             }
@@ -198,7 +197,7 @@ namespace IMS.Service
                 _logger.LogError($"Department Service : ViewProjects(int departmentId) : {exception.Message} : {exception.StackTrace}");
 
                 //Log "Exception occured in DAL while fetching roles"
-                throw exception;
+                throw;
             }
         }
 

@@ -25,20 +25,15 @@ public class DriveController : ControllerBase
     }
 
     /// <summary>
-    /// This method gets invoked when the 'create Drive' request raised by TAC
+    /// This method is used to create drive
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     POST /Createdrive
-    ///     {
-    ///        "Drive object": "Drive",
-    ///     }
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">If drive was created successfully</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
+    /// <response code="500">If there is problem in server</response>
     /// <param name="drive"></param>
-    /// <returns>Create a drive </returns>
+    /// <returns>Returns success message if drive was created or
+    /// Returns bad request if validations exception occurs or 
+    /// Returns problem if internal error occurs</returns>
 
     [HttpPost]
     public IActionResult CreateDrive(Drive drive)
@@ -76,24 +71,17 @@ public class DriveController : ControllerBase
     }
 
     /// <summary>
-    /// This method gets invoked when the 'Cancel Drive' Request raises by the TAC member
+    /// This method is used to cancel a drive
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     Patch/CancelDrive
-    ///     {
-    ///        "Drive ID": "1",
-    ///        "TAC Id" : "2",
-    ///        "Reason" : "Interviewer Not Vailable",
-    ///     }
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="driveId"></param>
-    /// <param name="tacId"></param>
-    /// <param name="reason"></param>
-    /// <returns>Cancel a drive</returns>
+    
+    /// <response code="200">If drive was cancelled successfully</response>
+    /// <response code="400">If the item is null or validation exception occurs</response> 
+    /// <param name="driveId">int</param>
+    /// <param name="tacId">int</param>
+    /// <param name="reason">string</param>
+    /// <returns>Returns success message if drive was cancelled successfully or
+    /// Returns Bad request if validtaion exception occurs or
+    /// Returns problem if internal error occurs</returns>
 
     [HttpPatch]
     public IActionResult CancelDrive(int driveId, int tacId, string reason)
@@ -131,20 +119,12 @@ public class DriveController : ControllerBase
     }
 
     /// <summary>
-    /// This method gets invoked by the TAC to view the Today's Drive
+    /// This method is used to view today's drives
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewTodaysDrive
-    ///     {
-    ///       
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <returns>Listing down todays drives</returns>
+    /// <response code="200">Returns list of today drive</response>
+    /// <response code="500">If there is a problem in server</response> 
+    /// <returns>Returns list of today drives or
+    ///  Returns problem if internal error occurs</returns>
 
     [HttpGet]
     public IActionResult ViewTodayDrives()
@@ -164,18 +144,10 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invoked by TAC to view the list of Scheduled drives
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewScheduledDrive
-    ///     {
-    ///       
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <returns>Returns a list of Scheduled drives</returns>
+    /// <response code="200">Returns list of scheduled drives</response>
+    /// <response code="500">If there is problem in server</response> 
+    /// <returns>Returns a list of Scheduled drives or
+    /// Returns problem if internal error occurs</returns>
 
     [HttpGet]
     public IActionResult ViewScheduledDrives()
@@ -195,24 +167,16 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invoked by TAC to view the list of Upcoming drives
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewUpcomingDrive
-    ///     {
-    ///        
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
+    /// <response code="200">Returns list of upcoming drive</response>
     /// <response code="400">If the item is null</response> 
-    /// <returns>Returns a list of Upcoming drives</returns>
+    /// <returns>Returns a list of Upcoming drives or
+    /// Returns problem if internal error occurs</returns>
     [HttpGet]
-    public IActionResult ViewUpcommingDrives()
+    public IActionResult ViewUpcomingDrives()
     {
         try
         {
-            return Ok(_driveService.ViewUpcommingDrives());
+            return Ok(_driveService.ViewUpcomingDrives());
         }
         catch (Exception viewUpcommingDrivesException)
         {
@@ -225,16 +189,8 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method is invoked When the 'ViewNonCancelledDrive' request raises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET/ViewNonCancelledDrive
-    ///     {
-    ///       
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
+
+    /// <response code="200">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns the list of Non Scheduled Drives</returns>
 
@@ -289,16 +245,8 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invokes when the 'ViewDrives' request raises
     /// </summary>
-    /// <param name="DriveId"></param>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewInvites
-    ///     {
-    ///        "Drive Id": "1",
-    ///     }
-    ///
-    /// </remarks>
+    /// <param name="driveId"></param>
+
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns a list of Interview Invites</returns>
@@ -378,18 +326,11 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invokes when a TAC wants to view their dashboard
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /VioewDashboard
-    ///     {
-    ///        "TAC Id": "9",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="tacId"></param>
+   
+    /// <response code="200">Returns dashboard of TAC</response>
+    /// <response code="400">If validation exception occurs</response> 
+    /// <response code="500">If there is problem in server</response>
+   
     /// <returns>Returns the dashboard of TAC</returns>
 
     [HttpGet]
@@ -529,18 +470,10 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invoked when the view today's interviews request raise.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewTodaysInterview
-    ///     {
-    ///        "Employee ID": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
+   
+    /// <response code="201">Returs list of today's interview</response>
+    /// <response code="500">If there is problem in server </response> 
+  
     /// <returns>Returns a list of today's interviews</returns>
 
     [HttpGet]
@@ -561,18 +494,9 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method is invoked when the 'View Scheduled interviews' request raises
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewScheduledInterviews
-    ///     {
-    ///        "EmployeeId": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
+    /// <response code="200">Returns list of scheduled interviews</response>
+    /// <response code="500">If there is problem in server</response> 
+    
     /// <returns>Returns a list of Scheduled Interviews</returns>
     [HttpGet]
     public IActionResult ViewScheduledInterview()
@@ -592,18 +516,9 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method is implemented when the 'ViewUpcomingInterviews' request raises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewUpcomingDrive
-    ///     {
-    ///        "Employee id": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
+    /// <response code="200">Returns list of upcoming interviews</response>
+    /// <response code="400">If there is problem in server</response> 
+   
     /// <returns>Returns a list of Upcoming Interviews</returns>
 
     [HttpGet]
@@ -705,19 +620,15 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invokes when the employee needs to cancel the availability 
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     Patch /CancelInterview
-    ///     {
-    ///        "EmployeeAvailabilityId": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
+    /// <response code="200">Returns list of canceled interview</response>
+    /// <response code="400">If there is validation exception occurs</response>
+    /// <response code="500">If there is problem in server</response>
     /// <param name="employeeAvailabilityId"></param>
-    /// <returns>Cancel the interview</returns>
+    /// <param name="cancellationReason"></param>
+    /// <param name="comments"></param>
+    /// <returns>Returns list of cancelled interview or 
+    /// Returns bad request when validtaion exception occurs or
+    /// Returns problem if internal error occurs</returns>
 
     [HttpPatch]
     public IActionResult CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)
@@ -827,22 +738,14 @@ public class DriveController : ControllerBase
         }
     }
 
-    /// <summary>
-    /// This method invoked when the employee wants to see their Total list of Drives
-    /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewEmployueeDashboard
-    ///     {
-    ///        "Employee Id": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
-    /// <returns>Returns the dashboard of employee</returns>
+   /// <summary>
+   /// This method is used to view  list of drives
+   /// </summary>
+   /// <response code="200">Returns list of total drives</response>
+    /// <response code="500">If there is problem in server</response> 
+   /// <param name="fromDate">DateTime</param>
+   /// <param name="toDate">DateTime</param>
+   /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
     public IActionResult ViewTotalDrives(DateTime fromDate, DateTime toDate)
@@ -862,19 +765,11 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invoked when the employee wants to see their Accepted Drive
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewEmployueeDashboard
-    ///     {
-    ///        "Employee Id": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
-    /// <returns>Returns the dashboard of employee</returns>
+    /// <response code="200">Returns list of accepted drives</response>
+    /// <response code="500">If there is problem in server</response>
+    /// <param name="fromDate"></param>
+    /// <param name="toDate"></param>
+    /// <returns>Returns list of accepted drives</returns>
 
     [HttpGet]
     public IActionResult ViewAcceptedDrives(DateTime fromDate, DateTime toDate)
@@ -893,20 +788,11 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invoked when the employee wants to see their Denied drives
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewEmployueeDashboard
-    ///     {
-    ///        "Employee Id": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
-    /// <returns>Returns the dashboard of employee</returns>
-
+    /// <response code="200">If it returns list of denied drives</response>
+    /// <response code="500">If there is problem</response> 
+    /// <param name="fromDate">DateTime</param>
+    /// <param name="toDate">DateTime</param>
+    /// <returns>Returns list of denied drives</returns>
     [HttpGet]
     public IActionResult ViewDeniedDrives(DateTime fromDate, DateTime toDate)
     {
@@ -958,19 +844,11 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invoked when the employee wants to see their Utilized Slots
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewEmployueeDashboard
-    ///     {
-    ///        "Employee Id": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
-    /// <returns>Returns the dashboard of employee</returns>
+  
+    /// <response code="200">If it returns list of utilized interviews</response>
+    /// <response code="500">If there is problem in server</response> 
+    /// <returns>Returns list of utilized interviews or 
+    /// Returns problem if some internal problem occurs</returns>
 
     [HttpGet]
     public IActionResult ViewUtilizedInterviews()
@@ -990,19 +868,10 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method invoked when the employee wants to see their Not Utilized Slots
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewEmployueeDashboard
-    ///     {
-    ///        "Employee Id": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
-    /// <returns>Returns the dashboard of employee</returns>
+    /// <response code="201">If it returns list of not utilized interviews</response>
+    /// <response code="500">If there is problem in server</response> 
+  
+    /// <returns>Returns list of not utilized interviews </returns>
 
     [HttpGet]
     public IActionResult ViewNotUtilizedInterviews()
@@ -1034,7 +903,7 @@ public class DriveController : ControllerBase
     /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
+  
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]

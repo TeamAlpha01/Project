@@ -22,9 +22,9 @@ namespace IMS.Validations
         }
         public static void IsRoleIdValid(int roleId)
         {
-            if (roleId <= 0 || roleId == null)
+            if (roleId <= 0)
             {
-                throw new ValidationException("Role Id cannot be null");
+                throw new ValidationException("Role Id cannot be zero or less than zero");
             }
         }
     }

@@ -143,7 +143,7 @@ namespace IMS.DataAccessLayer
             catch (Exception exception)
             {
                 _logger.LogError($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
-                throw exception;
+                throw;
             }
         }
         /// <summary>

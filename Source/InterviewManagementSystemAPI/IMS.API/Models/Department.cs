@@ -34,4 +34,3 @@ namespace IMS.Models
     }
 }
 
-///Temproary Model

@@ -19,7 +19,7 @@ namespace IMS.DataAccessLayer
         /// This method is implemented when the Service layer shifts the control to Location DAL. 
         /// Location DAL Perform the interaction with Database and Respond to the Add Location to Database request. 
         /// </summary>
-        /// <param name="Location">Object</param>
+        /// <param name="location">Object</param>
         /// <returns> Returns False when Exception occured in Database Connectivity.
         /// Throws ArgumentNullException when Role object is not passed </returns>       
 

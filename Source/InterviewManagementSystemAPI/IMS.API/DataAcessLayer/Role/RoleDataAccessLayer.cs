@@ -68,7 +68,7 @@ namespace IMS.DataAccessLayer
             try
             {
                 var role = _db.Roles.Find(roleId);
-                if (role.IsActive == false)
+                if (role!.IsActive == false)
                 {
                     throw new ValidationException("There is no employee for this role id");
                 }
