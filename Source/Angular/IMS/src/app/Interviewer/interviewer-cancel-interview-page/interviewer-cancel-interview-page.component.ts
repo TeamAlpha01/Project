@@ -1,6 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -9,59 +10,70 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./interviewer-cancel-interview-page.component.css']
 })
 export class InterviewerCancelInterviewPageComponent implements OnInit {
-  driveId:any;
-  employeeAvailabilityId:number=0;
-  title='Cancel Interview';
-  Invites: any;
+  driveId: any;
+  employeeAvailabilityId: number = 0;
+  title = 'Cancel Interview';
   Drives: any;
-  response: string='';
-  error: string='';
+  response: string = '';
+  error: string = '';
 
-  constructor(private connection: ConnectionService,private service :ConnectionService,private route: ActivatedRoute,private Fb: FormBuilder) { }
+  constructor(private connection: ConnectionService, private service: ConnectionService, private route: ActivatedRoute, private Fb: FormBuilder, private location: Location, private router:Router) { }
 
-  CancelInterviewForm:FormGroup=this.Fb.group({
-    CancelInterviewReason:['',Validators.required],
-    Comments:['',Validators.required]
+  CancelInterviewForm: FormGroup = this.Fb.group({
+    CancelInterviewReason: ['', Validators.required],
+    Comments: ['', Validators.required]
   });
 
-  getCancellationReason(){
+  public Invites = {
+    driveDepartment: ".",
+    driveId: 0,
+    driveLocation: "",
+    driveMode: "",
+    driveName: "",
+    drivePool: "",
+    fromDate: "",
+    slotTiming: 0,
+    toDate: "",
+  }
+
+  getCancellationReason() {
     return this.CancelInterviewForm.get('CancelInterviewReason')?.value;
   }
-  getComments(){
+  getComments() {
     return this.CancelInterviewForm.get('Comments')?.value;
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.employeeAvailabilityId = params['employeeAvailabilityId'];
+      this.driveId = params['driveId'];
     })
-    // this.GetDriveById(this.driveId);
-
-    
-      this.connection.GetAcceptedDrives().subscribe((data: any) => {
-        this.Invites = data;
-      })
+    this.GetDriveById();
   }
 
   //GET METHOD IN CONNECTION SERVICE TO GET DRIVES
-  GetDriveById(driveId:any)
-  {
-    this.service.GetDriveById(driveId).subscribe((data: any) => {
+  GetDriveById() {
+    this.service.GetDriveById(this.driveId).subscribe((data: any) => {
       this.Invites = data;
-      console.warn(this.Invites);
     })
   }
 
-  CancellInterview(){
-    if(this.CancelInterviewForm.valid)
-    {
-      console.log('employeeAvailabilitd : '+this.employeeAvailabilityId);
-      console.log('radio '+this.getCancellationReason())
-      console.log('radio '+this.getComments())
-      this.service.CancelInterview(this.employeeAvailabilityId,this.getCancellationReason(),this.getComments()).subscribe({
-        next :(data)=>this.response=data,
-        error: (error)=>this.error=error.error.message
+  CancellInterview() {
+    if (this.CancelInterviewForm.valid) {
+      this.service.CancelInterview(this.employeeAvailabilityId, this.getCancellationReason(), this.getComments()).subscribe({
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message,
+        complete: () => this.clearInputFields(),
       });
     }
+  }
+
+  clearInputFields() {
+    setTimeout(() => {
+      this.response = '';
+      this.CancelInterviewForm.reset();
+      this.router.navigateByUrl("/interviewer/home/upcomingDrives");
+    }, 1000);
+
   }
 }

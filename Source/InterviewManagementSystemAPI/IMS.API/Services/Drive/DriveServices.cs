@@ -470,6 +470,7 @@ namespace IMS.Service
                     FromTime=e.From.ToShortTimeString(),
                     ToTime=e.To.ToShortTimeString(),
                     DriveName = e.Drive!.Name,
+                    DriveId=e.DriveId,
                     PoolName = e.Drive.Pool!.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     Mode = Enum.GetName(typeof(UtilityService.Mode),e.Drive.ModeId),

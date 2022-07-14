@@ -198,7 +198,6 @@ export class ConnectionService {
   }
 
   CancelInterview(employeeAvailabilityId: number, cancellationReason: string,comments:string) {
-    console.log('service called')
     return this.http.patch<any>(this.baseURL + `Drive/CancelInterview?employeeAvailabilityId=${employeeAvailabilityId}&cancellationReason=${cancellationReason}&comments=${comments}`, null, { headers: this.headers });
   }
 

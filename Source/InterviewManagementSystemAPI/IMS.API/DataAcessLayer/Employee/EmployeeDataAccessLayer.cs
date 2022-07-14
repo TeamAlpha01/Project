@@ -201,13 +201,13 @@ namespace IMS.DataAccessLayer
             try
             {
                 if(!_db.Employees.Any(x => x.EmailId == employeeMail))
-                    throw new ValidationException($"No employee found With given mail id : {employeeMail}");
+                    throw new ValidationException($"Invalid credentials");
 
                 if(!_db.Employees.Any(x => x.EmailId == employeeMail && x.Password == password))
                     throw new ValidationException($"Invalid credentials");
 
                 if(!_db.Employees.Any(x => x.EmailId == employeeMail && x.Password == password && x.IsActive==true))
-                    throw new ValidationException($"Your account has been deactivated! Please Contact Adminstrator");
+                    throw new ValidationException($"Your account has been deactivated! Please Contact Adminstrator.");
                 if(!_db.Employees.Any(x =>x.EmailId == employeeMail && x.Password == password && x.IsAdminAccepted==true))
                     throw new ValidationException($"Wait untill you receive a mail!");
                 var _employee = GetEmployeesFromDatabase().Where(employee => employee.EmailId == employeeMail).First();
