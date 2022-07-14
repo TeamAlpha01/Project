@@ -14,6 +14,7 @@ export class InterviewerDashboardComponent implements OnInit {
   NotUtilized : number=0;
   InterviewsIgnored : number=0;
   InterviewsDenied : number=0;
+  InterviewsAccepted : number=0;
 
   constructor( private connection :ConnectionService) { }
 
@@ -26,6 +27,7 @@ export class InterviewerDashboardComponent implements OnInit {
        this.NotUtilized = data.NotUtilizedInterviews
        this.InterviewsIgnored = data.IgnoredDrives
        this.InterviewsDenied = data.DeniedDrives
+       this.InterviewsAccepted = data.AcceptedDrives
     })
   }
 

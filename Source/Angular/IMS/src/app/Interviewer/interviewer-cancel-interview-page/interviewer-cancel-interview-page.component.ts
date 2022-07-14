@@ -11,11 +11,14 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class InterviewerCancelInterviewPageComponent implements OnInit {
   driveId:any;
   employeeAvailabilityId:number=0;
-  title='Cancel Invite';
+  title='Cancel Interview';
   Invites: any;
+  Drives: any;
   response: string='';
   error: string='';
-  constructor(private service :ConnectionService,private route: ActivatedRoute,private Fb: FormBuilder) { }
+
+  constructor(private connection: ConnectionService,private service :ConnectionService,private route: ActivatedRoute,private Fb: FormBuilder) { }
+
   CancelInterviewForm:FormGroup=this.Fb.group({
     CancelInterviewReason:['',Validators.required],
     Comments:['',Validators.required]
@@ -33,9 +36,14 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
       this.employeeAvailabilityId = params['employeeAvailabilityId'];
     })
     // this.GetDriveById(this.driveId);
+
+    
+      this.connection.GetAcceptedDrives().subscribe((data: any) => {
+        this.Drives = data;
+      })
   }
 
-  //GET METHOD CALLED AT CONNECTION SERVICE
+  //GET METHOD IN CONNECTION SERVICE TO GET DRIVES
   GetDriveById(driveId:any)
   {
     this.service.GetDriveById(driveId).subscribe((data: any) => {
