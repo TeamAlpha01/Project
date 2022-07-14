@@ -3,25 +3,34 @@
         <div class="card-body">
             <h2 class="text-uppercase text-center">Create an account</h2>
             <form [formGroup]="registerForm">
-                
+
                 <!-- Name -->
 
                 <div class="form-input">
                     <label class="form-label" for="Name">Name </label>
-                    <input [class.is-invalid]="(formSubmitted && registerForm.controls['Name'].invalid )||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched" id="Name" type="text" placeholder="Name" formControlName="Name" class="form-control">
+                    <input
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['Name'].invalid )||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched"
+                        id="Name" type="text" placeholder="Name" formControlName="Name" class="form-control">
                 </div>
-                <div *ngIf="(formSubmitted)||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched">
-                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['required']">Name is required</span>
-                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['minlength']">Name is too short</span>
-                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['maxlength']">Name is too long</span>
-                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['pattern']">Name should contain only characters</span>
+                <div
+                    *ngIf="(formSubmitted)||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched">
+                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['required']">Name is
+                        required</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['minlength']">Name is too
+                        short</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['maxlength']">Name is too
+                        long</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['pattern']">Name should
+                        contain only characters</span>
                 </div>
-                
+
                 <!-- ACE Numeber -->
-                
+
                 <div class="form-input">
                     <label class="form-label" for="ACE Number">ACE Number </label>
-                    <input [class.is-invalid]="(error.includes('ACE'))||(formSubmitted && registerForm.controls['ACENumber'].invalid )||registerForm.controls['ACENumber'].invalid && registerForm.controls['ACENumber'].touched" id="ACE Number" type="text" placeholder="ACE Number" formControlName="ACENumber"
+                    <input
+                        [class.is-invalid]="(error.includes('ACE'))||(formSubmitted && registerForm.controls['ACENumber'].invalid )||registerForm.controls['ACENumber'].invalid && registerForm.controls['ACENumber'].touched"
+                        id="ACE Number" type="text" placeholder="ACE Number" formControlName="ACENumber"
                         class="form-control">
                 </div>
                 <div
@@ -29,7 +38,8 @@
                     <span class="text-danger" *ngIf="registerForm.controls['ACENumber'].errors?.['required']">ACE Number
                         is
                         required</span>
-                    <span class="text-danger" *ngIf="registerForm.controls['ACENumber'].errors?.['pattern']">Invalid ACE Number
+                    <span class="text-danger" *ngIf="registerForm.controls['ACENumber'].errors?.['pattern']">Invalid ACE
+                        Number
                         Eg : ACE1234</span>
                     <div *ngIf="error.includes('ACE')">
                         <span class="text-center text-danger">{{error}}</span>
@@ -39,40 +49,53 @@
                 <!-- Department -->
                 <div class="form-input">
                     <label class="form-label " for="Department Name">Department</label>
-                    <select [class.is-invalid]="(formSubmitted && registerForm.controls['Department'].invalid)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched" name="Department" id="Department Name" class="form-select" formControlName="Department"
-                        [(ngModel)]="_dept">
+                    <select
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['Department'].invalid)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched"
+                        name="Department" id="Department Name" class="form-select" formControlName="Department"
+                        (change)="projectName()">
                         <option value="">Select the Department</option>
-                        <option *ngFor="let item of departmentDetails" value={{item.departmentId}}>
-                            {{item.departmentName}} </option>
+                        <ng-container *ngFor="let item of departmentDetails">
+                            <option *ngIf="!(item.departmentName==='ADMIN')" value={{item.departmentId}}>
+                                {{item.departmentName}} </option>
+                        </ng-container>
                     </select>
                 </div>
                 <div
                     *ngIf="(formSubmitted)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched">
-                    <span class="text-danger" *ngIf="registerForm.controls['Department'].errors?.['required']">Department is required</span>
+                    <span class="text-danger"
+                        *ngIf="registerForm.controls['Department'].errors?.['required']">Department is required</span>
                 </div>
 
                 <!-- Role -->
 
                 <div class="form-input">
                     <label class="form-label " for="Role Name">Role</label>
-                    <select [class.is-invalid]="(formSubmitted && registerForm.controls['Role'].invalid)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched" name="Role" id="Role Name" class="form-select" name="Role" formControlName="Role">
+                    <select
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['Role'].invalid)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched"
+                        name="Role" id="Role Name" class="form-select" name="Role" formControlName="Role">
+
                         <option value="">Select the Role</option>
-                        
-                        <option *ngFor="let item of roleDetails" value={{item.roleId}}>
-                            {{item.roleName}} </option>
+                        <ng-container *ngFor="let item of roleDetails">
+                            <option *ngIf="(_dept==='TAC' && item.roleName==='TAC')" value={{item.roleId}}>
+                                {{item.roleName}}</option>
+                            <option *ngIf="(item.roleName!=='Admin' && _dept!=='TAC' && item.roleName!=='TAC')"
+                                value={{item.roleId}}> {{item.roleName}} </option>
+                        </ng-container>
                     </select>
                 </div>
                 <div
                     *ngIf="(formSubmitted)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched">
-                    <span class="text-danger" *ngIf="registerForm.controls['Role'].errors?.['required']">Role is required</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Role'].errors?.['required']">Role is
+                        required</span>
                 </div>
 
                 <!-- Project  -->
 
                 <div class="form-input">
                     <label class="form-label " for="Project Name">Project</label>
-                    <select [class.is-invalid]="(formSubmitted && registerForm.controls['Project'].invalid)||registerForm.controls['Project'].invalid && registerForm.controls['Project'].touched" name="Project" id="Project Name" class="form-select" name="Project"
-                        formControlName="Project">
+                    <select
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['Project'].invalid)||registerForm.controls['Project'].invalid && registerForm.controls['Project'].touched"
+                        name="Project" id="Project Name" class="form-select" name="Project" formControlName="Project">
                         <option value="">Select the Project</option>
                         <option *ngFor="let item of projectDetails |filter:_dept" value={{item.projectId}}>
                             {{item.projectName}} </option>
@@ -80,20 +103,25 @@
                 </div>
                 <div
                     *ngIf="(formSubmitted)||registerForm.controls['Project'].invalid && registerForm.controls['Project'].touched">
-                    <span class="text-danger" *ngIf="registerForm.controls['Project'].errors?.['required']">Project is required</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Project'].errors?.['required']">Project is
+                        required</span>
                 </div>
 
                 <!-- Email  -->
 
                 <div class="form-input">
                     <label class="form-label" for="Email">Email</label>
-                    <input [class.is-invalid]="error.includes('Email')||(formSubmitted && registerForm.controls['Email'].invalid)||registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched" id="Email" type="email" placeholder="Email" formControlName="Email" class="form-control">
+                    <input
+                        [class.is-invalid]="error.includes('Email')||(formSubmitted && registerForm.controls['Email'].invalid)||registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched"
+                        id="Email" type="email" placeholder="Email" formControlName="Email" class="form-control">
                 </div>
-                <div *ngIf="(formSubmitted)||registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched">
+                <div
+                    *ngIf="(formSubmitted)||registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched">
                     <span class="text-danger" *ngIf="registerForm.controls['Email'].errors?.['required']">Email
                         is
                         required</span>
-                    <span class="text-danger" *ngIf="registerForm.controls['Email'].errors?.['pattern']">Please enter a valid email with aspire domain</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Email'].errors?.['pattern']">Please enter a
+                        valid email with aspire domain</span>
                     <div *ngIf="error.includes('Email')">
                         <span class="text-center text-danger">{{error}}</span>
                     </div>
@@ -103,32 +131,43 @@
 
                 <div class="form-input">
                     <label class="form-label" for="Password">Password</label>
-                    <input [class.is-invalid]="(formSubmitted && registerForm.controls['Password'].invalid)||registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched"  id="Password" type="password" placeholder="Password" formControlName="Password"
+                    <input
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['Password'].invalid)||registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched"
+                        id="Password" type="password" placeholder="Password" formControlName="Password"
                         class="form-control">
                 </div>
-                <div *ngIf="(formSubmitted ) || registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched">
-                    <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['required']">Password is required</span>
-                    <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['pattern']">Password should contain only minimum 8 digits with one uppercase and one symbol and one number</span>
+                <div
+                    *ngIf="(formSubmitted ) || registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched">
+                    <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['required']">Password is
+                        required</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['pattern']">Password
+                        should contain only minimum 8 digits with one uppercase and one symbol and one number</span>
                 </div>
 
                 <!-- Confirm Password  -->
-                
+
                 <div class="form-input">
                     <label class="form-label" for="ConfirmPassword">Confirm Password</label>
-                    <input [class.is-invalid]="(formSubmitted && registerForm.controls['ConfirmPassword'].invalid) || registerForm.controls['ConfirmPassword'].invalid && registerForm.controls['ConfirmPassword'].touched" id="ConfirmPassword" type="password" placeholder="ConfirmPassword"
+                    <input
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['ConfirmPassword'].invalid) || registerForm.controls['ConfirmPassword'].invalid && registerForm.controls['ConfirmPassword'].touched"
+                        id="ConfirmPassword" type="password" placeholder="ConfirmPassword"
                         formControlName="ConfirmPassword" class="form-control">
                 </div>
-                <div *ngIf="(formSubmitted)||registerForm.controls['ConfirmPassword'].invalid && registerForm.controls['ConfirmPassword'].touched">
-                    <span class="text-danger" *ngIf="registerForm.controls['ConfirmPassword'].errors?.['required']">Please re-enter your password</span>
-                    <span class="text-danger" *ngIf="registerForm.controls['ConfirmPassword'].errors?.['passwordNotMatched']">Your password not matched</span>
+                <div
+                    *ngIf="(formSubmitted)||registerForm.controls['ConfirmPassword'].invalid && registerForm.controls['ConfirmPassword'].touched">
+                    <span class="text-danger"
+                        *ngIf="registerForm.controls['ConfirmPassword'].errors?.['required']">Please re-enter your
+                        password</span>
+                    <span class="text-danger"
+                        *ngIf="registerForm.controls['ConfirmPassword'].errors?.['passwordNotMatched']">Your password
+                        not matched</span>
                 </div>
-                
+
                 <!-- Submit btn -->
                 <div class="d-flex justify-content-center ">
-                    <button type="submit" (click)="submit()"
-                        class="btn btn-create">Register</button>
+                    <button type="submit" (click)="submit()" class="btn btn-create">Register</button>
                 </div>
-                
+
                 <p class="text-center text-muted mt-5 mb-0">Have already an account?
                     <a routerLink="">Login</a>
                 </p>

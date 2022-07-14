@@ -13,51 +13,65 @@ import { AlertBoxComponent } from '../AlertBox/alert-box/alert-box.component';
 export class RegisterPageComponent implements OnInit {
   formSubmitted: boolean = false;
   departmentDetails: any;
-  roleDetails:any;
+  roleDetails: any;
   projectDetails: any;
-  _dept='';
-  error:string='';
+  _dept = '';
+  error: string = '';
 
-  registerForm:FormGroup;
+  registerForm: FormGroup;
 
 
-  constructor(private FB: FormBuilder, private connection:ConnectionService,private dialog: MatDialog,private router:Router) { 
-    this.registerForm=this.FB.group({});
+  constructor(private FB: FormBuilder, private connection: ConnectionService, private dialog: MatDialog, private router: Router) {
+    this.registerForm = this.FB.group({});
   }
 
   ngOnInit(): void {
 
     this.registerForm = this.FB.group({
-      Name: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(25),Validators.pattern("^[A-Za-z ]+$")]],
-      ACENumber: ['', [Validators.required,Validators.pattern("^[ACE]+[\\d]{4}$")]],
+      Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("^[A-Za-z ]+$")]],
+      ACENumber: ['', [Validators.required, Validators.pattern("^[ACE]+[\\d]{4}$")]],
       Department: ['', [Validators.required]],
       Role: ['', [Validators.required]],
       Project: ['', [Validators.required]],
       Email: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]{5,22})@(aspiresys.com)")]],
       Password: ['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]],
-      ConfirmPassword: ['', [Validators.required,this.ValidateConfirmPassword]]
-    },
-    
-    );
+      ConfirmPassword: ['', [Validators.required, this.ValidateConfirmPassword]]
+    });
 
+    this.GetDepartments();
+    this.GetRoles();
+    this.GetProjects();
+  }
 
-
+  GetDepartments() {
     this.connection.GetDepartments().subscribe((data: any) => {
       this.departmentDetails = data;
     })
+  }
+  GetRoles() {
     this.connection.GetRoles().subscribe((data: any) => {
       this.roleDetails = data;
     })
+  }
+  GetProjects() {
     this.connection.GetProjects().subscribe((data: any) => {
       this.projectDetails = data;
     })
   }
 
-  submit(){
-    this.formSubmitted=true;
-    if(this.registerForm.valid)
-    {
-      const user={
+  projectName() {
+    for (let item of this.departmentDetails) {
+      if (this.registerForm.value['Department'] == item.departmentId) {
+        this._dept = item.departmentName
+      }
+    }
+  }
+
+
+  submit() {
+    this.formSubmitted = true;
+    if (this.registerForm.valid) {
+      const user = {
         employeeId: 0,
         employeeAceNumber: this.registerForm.value['ACENumber'],
         name: this.registerForm.value['Name'],
@@ -66,12 +80,12 @@ export class RegisterPageComponent implements OnInit {
         projectId: this.registerForm.value['Project'],
         emailId: this.registerForm.value['Email'],
         password: this.registerForm.value['Password'],
-       }
+      }
 
-        this.connection.CreateEmployee(user).subscribe({
-          next:(data)=>{this.OpenAlertBox()},
-          error:(error)=>this.error=error.error
-        });
+      this.connection.CreateEmployee(user).subscribe({
+        next: (data) => { this.OpenAlertBox() },
+        error: (error) => this.error = error.error
+      });
     }
   }
 
@@ -83,13 +97,12 @@ export class RegisterPageComponent implements OnInit {
     return null;
   }
 
-  OpenAlertBox()
-  {
-    var dialogRef=this.dialog.open(AlertBoxComponent);
-      dialogRef.afterClosed().subscribe((result)=>{
-        console.log(result)
-        if(result=='confirm' || result==undefined)
-         this.router.navigateByUrl('');
-      })
+  OpenAlertBox() {
+    var dialogRef = this.dialog.open(AlertBoxComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result)
+      if (result == 'confirm' || result == undefined)
+        this.router.navigateByUrl('');
+    })
   }
 }

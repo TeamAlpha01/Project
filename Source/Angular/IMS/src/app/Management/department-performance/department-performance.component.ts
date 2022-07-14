@@ -42,11 +42,15 @@ export class DepartmentPerformanceComponent implements OnInit {
 
   drive() {
     this._fromDate = ''
-    this._toDate = '' 
-    
+    this._toDate = ''
+  }
+  
+  date() {
+    this._pool = ''
+    this._drive = ''
   }
 
-  Apply(){
+  Apply() {
     this.GetDrives();
     this.Drive = true;
     this.Date = false;
@@ -57,12 +61,7 @@ export class DepartmentPerformanceComponent implements OnInit {
     }
   }
 
-  date() {
-    this._pool = ''
-    this._drive = ''
-    this.Drive = false;
-    this.Date = true;
-  }
+  
 
   user = [
     {
