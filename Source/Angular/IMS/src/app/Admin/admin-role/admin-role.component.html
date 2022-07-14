@@ -6,7 +6,7 @@
     <app-navbar [title]="title"></app-navbar>
     <!-- Navbar End -->
     <div class="Register CreatePool">
-        <div class="card-body">
+        <div class="card-body"><br>
             <form [formGroup]="AddRoleForm" (ngSubmit)="addRole()">
                 <div class="form-input">
                     <label class="form-label" for="Name">Role Name </label>
@@ -30,7 +30,7 @@
                     <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="true" formControlName="management">
+                    <br><input class="form-check-input checkboxalignment" type="checkbox" value="true" formControlName="management">
                     <label class="form-check-label" > Is Management </label>
                 </div>
                 <div class="text-center">

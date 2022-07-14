@@ -8,7 +8,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class DepartmentPerformanceComponent implements OnInit {
   poolDetails: any;
-  title = "Performance";
+  title = "Department Performance";
 
   _name = ''
   _drive = ''

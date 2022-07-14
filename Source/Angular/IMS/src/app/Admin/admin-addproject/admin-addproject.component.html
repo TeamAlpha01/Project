@@ -5,7 +5,7 @@
     <app-navbar [title]="title"></app-navbar>
 
      <div class="Register CreatePool">
-        <div class="card-body">
+        <div class="card-body"><br>
             <form [formGroup]="AddProjectForm" (ngSubmit)="addProject()" >
                 <div class="form-input">
                     <label class="form-label" for="Department">Department Name</label>
@@ -31,7 +31,7 @@
                     <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['pattern'] && !AddProjectForm.controls['projectName'].errors?.['minlength']">Project name cannot contain numbers or symbols</span>
                 </div>
 
-               <!--Snack Bar    -->
+               <!--Snack Bar-->
                 <div *ngIf="response.length!==0">
                     <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                 </div>
