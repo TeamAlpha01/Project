@@ -26,5 +26,6 @@ namespace IMS.DataAccessLayer
         public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType,int employeeId,DateTime fromDate,DateTime toDate);
         public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized,int employeeId);
         public object GetDefaulters(int poolId);
+        public List<EmployeeDriveResponse> GetDriveResponse(int driveId);
     }
 }

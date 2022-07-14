@@ -11,16 +11,16 @@ namespace IMS.Service
         private ILogger _logger;
         private IConfiguration _configuration;
 
-        public DriveService(ILogger<DriveService> logger,IDriveDataAccessLayer driveDataAccessLayer,IConfiguration configuration)
+        public DriveService(ILogger<DriveService> logger, IDriveDataAccessLayer driveDataAccessLayer, IConfiguration configuration)
         {
             _logger = logger;
             _driveDataAccess = driveDataAccessLayer;
-            _configuration=configuration;
+            _configuration = configuration;
         }
 
         public bool CreateDrive(Drive drive)
         {
-            DriveValidation.IsdriveValid(drive,_configuration);
+            DriveValidation.IsdriveValid(drive, _configuration);
             try
             {
                 return _driveDataAccess.AddDriveToDatabase(drive) ? true : false;
@@ -71,7 +71,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.ModeId)
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId)
                 }
                 );
             }
@@ -97,7 +97,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.ModeId)
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId)
                 }
                 );
             }
@@ -123,7 +123,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.ModeId)
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId)
                 }
                 );
             }
@@ -139,7 +139,7 @@ namespace IMS.Service
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false).Where(d=>d.AddedBy==tacId) select drive).ToList()
+                return (from drive in _driveDataAccess.GetDrivesByStatus(false).Where(d => d.AddedBy == tacId) select drive).ToList()
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -149,7 +149,7 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.ModeId)
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId)
                 }
                 );
             }
@@ -164,7 +164,7 @@ namespace IMS.Service
         {
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(true).Where(d=>d.AddedBy==tacId) select drive).ToList()
+                return (from drive in _driveDataAccess.GetDrivesByStatus(true).Where(d => d.AddedBy == tacId) select drive).ToList()
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -174,8 +174,8 @@ namespace IMS.Service
                     DriveDepartment = d.Pool.department.DepartmentName,
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.ModeId),
-                    CancellationReason=d.CancelReason
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId),
+                    CancellationReason = d.CancelReason
                 }
                 );
             }
@@ -215,18 +215,18 @@ namespace IMS.Service
 
             {
                 var drive = _driveDataAccess.ViewDrive(driveId);
-                return  new
+                return new
                 {
                     DriveId = drive.DriveId,
                     DriveName = drive.Name,
                     FromDate = drive.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = drive.ToDate.ToString("yyyy-MM-dd"),
-                    SlotTiming=drive.SlotTiming,
+                    SlotTiming = drive.SlotTiming,
                     DriveDepartment = drive.Pool.department.DepartmentName,
                     DriveLocation = drive.Location.LocationName,
                     DrivePool = drive.Pool.PoolName,
 
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),drive.ModeId)
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), drive.ModeId)
                 }
                 ;
             }
@@ -299,9 +299,9 @@ namespace IMS.Service
                     ToDate = d.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Location.LocationName,
                     DrivePool = d.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.ModeId),
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId),
                     PoolId = d.PoolId,
-                    DriveTiming=d.SlotTiming
+                    DriveTiming = d.SlotTiming
                 }
                     );
 
@@ -361,16 +361,16 @@ namespace IMS.Service
                 return false;
             }
         }
-        public Object ViewAvailabilty(int employeeId,int driveId)
+        public Object ViewAvailabilty(int employeeId, int driveId)
         {
             try
             {
-                return _driveDataAccess.ViewAvailability(employeeId,driveId).Select(e=>new
+                return _driveDataAccess.ViewAvailability(employeeId, driveId).Select(e => new
                 {
-                    DriveName=e.Drive.Name,
-                    Date=e.InterviewDate,
-                    FromTime=e.From,
-                    ToTime=e.To
+                    DriveName = e.Drive.Name,
+                    Date = e.InterviewDate,
+                    FromTime = e.From,
+                    ToTime = e.To
                 }
                 );
             }
@@ -388,12 +388,12 @@ namespace IMS.Service
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
-                    FromTime=e.From.ToShortTimeString(),
-                    ToTime=e.To.ToShortTimeString(),
+                    FromTime = e.From.ToShortTimeString(),
+                    ToTime = e.To.ToShortTimeString(),
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
-                    Mode = Enum.GetName(typeof(UtilityService.Mode),e.Drive.ModeId),
+                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -413,12 +413,12 @@ namespace IMS.Service
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
-                    FromTime=e.From.ToShortTimeString(),
-                    ToTime=e.To.ToShortTimeString(),
+                    FromTime = e.From.ToShortTimeString(),
+                    ToTime = e.To.ToShortTimeString(),
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
-                    Mode = Enum.GetName(typeof(UtilityService.Mode),e.Drive.ModeId),
+                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -439,12 +439,12 @@ namespace IMS.Service
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
-                    FromTime=e.From.ToShortTimeString(),
-                    ToTime=e.To.ToShortTimeString(),
+                    FromTime = e.From.ToShortTimeString(),
+                    ToTime = e.To.ToShortTimeString(),
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
-                    Mode = Enum.GetName(typeof(UtilityService.Mode),e.Drive.ModeId),
+                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -468,7 +468,7 @@ namespace IMS.Service
                     DriveName = e.Drive.Name,
                     PoolName = e.Drive.Pool.PoolName,
                     IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
-                    Mode = Enum.GetName(typeof(UtilityService.Mode),e.Drive.ModeId),
+                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -526,14 +526,14 @@ namespace IMS.Service
                 return _driveDataAccess.ViewAvailableMembersForDrive(driveId).Select(
                 availability => new
                 {
-                    employeeAvailabilityId=availability.EmployeeAvailabilityId,
+                    employeeAvailabilityId = availability.EmployeeAvailabilityId,
                     employeeId = availability.EmployeeId,
                     employeeAceNumber = availability.Employee.EmployeeAceNumber,
                     employeeName = availability.Employee.Name,
                     employeeDepartment = availability.Employee.Department.DepartmentName,
                     employeeRole = availability.Employee.Role.RoleName,
-                    employeeSlotDate=availability.InterviewDate.ToShortDateString(),
-                    employeeFromTime = availability.From.TimeOfDay.ToString("hh\\:mm") ,
+                    employeeSlotDate = availability.InterviewDate.ToShortDateString(),
+                    employeeFromTime = availability.From.TimeOfDay.ToString("hh\\:mm"),
                     employeeToTime = availability.To.TimeOfDay.ToString("hh\\:mm")
                 }
             );
@@ -551,14 +551,14 @@ namespace IMS.Service
 
         }
 
-        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId,DateTime fromDate,DateTime toDate)
+        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId, DateTime fromDate, DateTime toDate)
         {
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId,fromDate,toDate).Count());
-                DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId,fromDate,toDate).Count());
-                DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId,fromDate,toDate).Count());
+                DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Count());
+                DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate).Count());
+                DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate).Count());
                 DashboardCount.Add("TotalDrives", DashboardCount["AcceptedDrives"] + DashboardCount["DeniedDrives"] + DashboardCount["IgnoredDrives"]);
                 DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
                 DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
@@ -576,11 +576,11 @@ namespace IMS.Service
                 throw viewEmployeeDashboardException;
             }
         }
-        public Object ViewTotalDrives(int employeeId,DateTime fromDate,DateTime toDate)
+        public Object ViewTotalDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId,fromDate,toDate).Concat(_driveDataAccess.GetResponseDetailsByStatus(2, employeeId,fromDate,toDate)).Concat(_driveDataAccess.GetResponseDetailsByStatus(3, employeeId,fromDate,toDate)).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Concat(_driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate)).Concat(_driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate)).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -588,8 +588,8 @@ namespace IMS.Service
                     ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Drive.Location.LocationName,
                     DrivePool = d.Drive.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.Drive.ModeId),
-                    Response =  Enum.GetName(typeof(UtilityService.ResponseType),d.ResponseType)
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.Drive.ModeId),
+                    Response = Enum.GetName(typeof(UtilityService.ResponseType), d.ResponseType)
                 }
                 );
             }
@@ -600,11 +600,11 @@ namespace IMS.Service
             }
 
         }
-        public Object ViewAcceptedDrives(int employeeId,DateTime fromDate,DateTime toDate)
+        public Object ViewAcceptedDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId,fromDate,toDate).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -612,8 +612,8 @@ namespace IMS.Service
                     ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Drive.Location.LocationName,
                     DrivePool = d.Drive.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.Drive.ModeId),
-                    Response = Enum.GetName(typeof(UtilityService.ResponseType),d.ResponseType)
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.Drive.ModeId),
+                    Response = Enum.GetName(typeof(UtilityService.ResponseType), d.ResponseType)
                 }
                 );
             }
@@ -623,11 +623,11 @@ namespace IMS.Service
                 throw viewAcceptedDrivesException;
             }
         }
-        public Object ViewDeniedDrives(int employeeId,DateTime fromDate,DateTime toDate)
+        public Object ViewDeniedDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(2, employeeId,fromDate,toDate).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -635,8 +635,8 @@ namespace IMS.Service
                     ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Drive.Location.LocationName,
                     DrivePool = d.Drive.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.Drive.ModeId),
-                    Response = Enum.GetName(typeof(UtilityService.ResponseType),d.ResponseType)
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.Drive.ModeId),
+                    Response = Enum.GetName(typeof(UtilityService.ResponseType), d.ResponseType)
                 }
                 );
             }
@@ -646,11 +646,11 @@ namespace IMS.Service
                 throw viewDeniedDrivesException;
             }
         }
-        public Object ViewIgnoredDrives(int employeeId,DateTime fromDate,DateTime toDate)
+        public Object ViewIgnoredDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
             try
             {
-                return _driveDataAccess.GetResponseDetailsByStatus(3, employeeId,fromDate,toDate).Select(d => new
+                return _driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate).Select(d => new
                 {
                     EmployeeDriveResponseId = d.ResponseId,
                     DriveName = d.Drive.Name,
@@ -658,8 +658,8 @@ namespace IMS.Service
                     ToDate = d.Drive.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Drive.Location.LocationName,
                     DrivePool = d.Drive.Pool.PoolName,
-                    DriveMode = Enum.GetName(typeof(UtilityService.Mode),d.Drive.ModeId),
-                    Response =Enum.GetName(typeof(UtilityService.ResponseType),d.ResponseType)
+                    DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.Drive.ModeId),
+                    Response = Enum.GetName(typeof(UtilityService.ResponseType), d.ResponseType)
                 }
                 );
             }
@@ -669,7 +669,7 @@ namespace IMS.Service
                 throw viewIgnoredDrivesException;
             }
         }
-        
+
         public Object ViewUtilizedInterviews(int employeeId)
         {
             try
@@ -681,8 +681,8 @@ namespace IMS.Service
                     PoolName = e.Drive.Pool.PoolName,
                     InterviewDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     FromTime = e.From.TimeOfDay,
-                    ToTime = e.To.TimeOfDay, 
-                    Mode = Enum.GetName(typeof(UtilityService.Mode),e.Drive.ModeId),
+                    ToTime = e.To.TimeOfDay,
+                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -705,8 +705,8 @@ namespace IMS.Service
                     PoolName = e.Drive.Pool.PoolName,
                     InterviewDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     FromTime = e.From.TimeOfDay,
-                    ToTime = e.To.TimeOfDay, 
-                    Mode = Enum.GetName(typeof(UtilityService.Mode),e.Drive.ModeId),
+                    ToTime = e.To.TimeOfDay,
+                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -730,8 +730,8 @@ namespace IMS.Service
                     PoolName = e.Drive.Pool.PoolName,
                     InterviewDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     FromTime = e.From.TimeOfDay,
-                    ToTime = e.To.TimeOfDay, 
-                    Mode = Enum.GetName(typeof(UtilityService.Mode),e.Drive.ModeId),
+                    ToTime = e.To.TimeOfDay,
+                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location.LocationName,
                     Status = e.IsInterviewScheduled
                 }
@@ -753,6 +753,25 @@ namespace IMS.Service
             catch (Exception viewDefaultersException)
             {
                 _logger.LogInformation($"Drive Service : ViewTotalAvailability(int employeeId) : {viewDefaultersException.Message} : {viewDefaultersException.StackTrace}");
+                throw;
+            }
+        }
+
+        public Object ViewDriveResponse(int driveId)
+        {
+            try
+            {
+                return _driveDataAccess.GetDriveResponse(driveId).Select(e => new
+                {
+                    EmployeeId= e.EmployeeId,
+                    EmployeeName=e.Employee.Name,
+                    ResponseType=Enum.GetName(typeof(UtilityService.ResponseType), e.ResponseType)
+                }
+                );
+            }
+            catch (Exception ViewDriveResponseException)
+            {
+                _logger.LogInformation($"Drive Service : ViewDriveResponse(int driveId) : {ViewDriveResponseException.Message} : {ViewDriveResponseException.StackTrace}");
                 throw;
             }
         }

@@ -12,15 +12,15 @@ namespace IMS.DataAccessLayer
 
         private ILogger _logger;
         private IConfiguration _configuration;
-        public DriveDataAccessLayer(ILogger<IDriveDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
+        public DriveDataAccessLayer(ILogger<IDriveDataAccessLayer> logger, InterviewManagementSystemDbContext dbContext, IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
-            _configuration=configuration;
+            _configuration = configuration;
         }
         public bool AddDriveToDatabase(Drive drive)
         {
-            DriveValidation.IsdriveValid(drive,_configuration);
+            DriveValidation.IsdriveValid(drive, _configuration);
             if (_db.Drives.Any(d => d.Name == drive.Name && d.PoolId == drive.PoolId && d.IsCancelled == false && d.ToDate >= drive.FromDate)) throw new ValidationException("Drive Name already exists under this pool");
             try
             {
@@ -223,11 +223,11 @@ namespace IMS.DataAccessLayer
             try
             {
 
-                if (_db.EmployeeAvailability.Any(a => a.EmployeeId == employeeAvailability.EmployeeId 
-                    && a.DriveId == employeeAvailability.DriveId 
-                    && a.InterviewDate == employeeAvailability.InterviewDate 
-                    && (employeeAvailability.From.TimeOfDay >=a.From.TimeOfDay && employeeAvailability.From.TimeOfDay <=a.To.TimeOfDay 
-                    || employeeAvailability.To.TimeOfDay >=a.From.TimeOfDay && employeeAvailability.To.TimeOfDay <=a.To.TimeOfDay)
+                if (_db.EmployeeAvailability.Any(a => a.EmployeeId == employeeAvailability.EmployeeId
+                    && a.DriveId == employeeAvailability.DriveId
+                    && a.InterviewDate == employeeAvailability.InterviewDate
+                    && (employeeAvailability.From.TimeOfDay >= a.From.TimeOfDay && employeeAvailability.From.TimeOfDay <= a.To.TimeOfDay
+                    || employeeAvailability.To.TimeOfDay >= a.From.TimeOfDay && employeeAvailability.To.TimeOfDay <= a.To.TimeOfDay)
                     ))
                     throw new ValidationException("You have already given your availability in same timing!");
                 if (_db.EmployeeDriveResponse.Any(r => r.EmployeeId == employeeAvailability.EmployeeId && r.DriveId == employeeAvailability.DriveId && r.ResponseType == 2))
@@ -253,12 +253,13 @@ namespace IMS.DataAccessLayer
                 return false;
             }
         }
-        public List<EmployeeAvailability> ViewAvailability(int employeeId,int driveId)
+        public List<EmployeeAvailability> ViewAvailability(int employeeId, int driveId)
         {
-           try{
-            return (from availability in _db.EmployeeAvailability.Include(d=>d.Drive)  where availability.EmployeeId == employeeId && availability.DriveId==driveId select availability ).ToList();
-           } 
-          catch (Exception exception)
+            try
+            {
+                return (from availability in _db.EmployeeAvailability.Include(d => d.Drive) where availability.EmployeeId == employeeId && availability.DriveId == driveId select availability).ToList();
+            }
+            catch (Exception exception)
             {
                 _logger.LogInformation($"Exception on Drive DAL : ViewInterviewsByStatus(bool status) : {exception.Message}");
                 throw exception;
@@ -332,12 +333,12 @@ namespace IMS.DataAccessLayer
                 throw viewAvailableMembersForDriveException;
             }
         }
-        public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType, int employeeId,DateTime fromDate,DateTime toDate)// want to filter with Employee ID
+        public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType, int employeeId, DateTime fromDate, DateTime toDate)// want to filter with Employee ID
         {
             Validations.EmployeeResponseValidation.IsResponseTypeValid(responseType);
             try
             {
-                return (from response in _db.EmployeeDriveResponse.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where  response.EmployeeId == employeeId && response.ResponseType == responseType && (response.Drive.FromDate.Date>=fromDate.Date || response.Drive.ToDate.Date>=toDate.Date) select response).ToList();
+                return (from response in _db.EmployeeDriveResponse.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where response.EmployeeId == employeeId && response.ResponseType == responseType && (response.Drive.FromDate.Date >= fromDate.Date || response.Drive.ToDate.Date >= toDate.Date) select response).ToList();
             }
             catch (Exception getResponseCountByStatusException)
             {
@@ -363,13 +364,13 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                var poolMembers = (from members in _db.PoolMembers where members.PoolId==poolId && members.IsActive==true select members.EmployeeId).ToList();
-                List<object> DefaultersList=new List<object>();
-                foreach(var members in poolMembers)
+                var poolMembers = (from members in _db.PoolMembers where members.PoolId == poolId && members.IsActive == true select members.EmployeeId).ToList();
+                List<object> DefaultersList = new List<object>();
+                foreach (var members in poolMembers)
                 {
-                    object employeeId=IsDefaulter(members,poolId);
-                    if( employeeId!=null)
-                    DefaultersList.Add(employeeId);
+                    object employeeId = IsDefaulter(members, poolId);
+                    if (employeeId != null)
+                        DefaultersList.Add(employeeId);
                 }
                 return DefaultersList;
             }
@@ -379,37 +380,53 @@ namespace IMS.DataAccessLayer
                 throw;
             }
         }
-        private object IsDefaulter(int employeeId,int poolId)
-        {       
-                try{
-                    var Drives = (from employee in _db.EmployeeAvailability.Include(e=>e.Drive) where employee.EmployeeId==employeeId && employee.Drive.PoolId==poolId && employee.IsInterviewScheduled==true && employee.IsInterviewCancelled==false && employee.InterviewDate>=System.DateTime.Now.AddMonths(-1) && employee.InterviewDate<=System.DateTime.Now select employee.InterviewDate).ToList();
-                    Dictionary<string,int> AttendedDriveCount = new Dictionary<string, int>();
-                    AttendedDriveCount.Add("WeekdaysCount",0);
-                    AttendedDriveCount.Add("WeekendCount",0);
-                    foreach(var date in Drives)
-                    {
-                        if(date.DayOfWeek == DayOfWeek.Sunday || date.DayOfWeek == DayOfWeek.Saturday)
-                        AttendedDriveCount["WeekendCount"]+=1;
-                        else
-                        AttendedDriveCount["WeekdaysCount"]+=1;
-                    }
-                    if(AttendedDriveCount["WeekendCount"]<=1 || AttendedDriveCount["WeekdaysCount"]<=1)
-                    {
-                        var employee = (from employees in _db.Employees.Include(e=>e.Role) where employees.EmployeeId==employeeId select employees)
-                        .Select(employee => new{
-                            EmployeeId=employee.EmployeeId,
-                            EmployeeAceNumber=employee.EmployeeAceNumber,
-                            EmployeeName=employee.Name,
-                            EmployeeRole=employee.Role.RoleName
-                        });
-                        return employee;   
-                    }
-                    return null;
+        private object IsDefaulter(int employeeId, int poolId)
+        {
+            try
+            {
+                var Drives = (from employee in _db.EmployeeAvailability.Include(e => e.Drive) where employee.EmployeeId == employeeId && employee.Drive.PoolId == poolId && employee.IsInterviewScheduled == true && employee.IsInterviewCancelled == false && employee.InterviewDate >= System.DateTime.Now.AddMonths(-1) && employee.InterviewDate <= System.DateTime.Now select employee.InterviewDate).ToList();
+                Dictionary<string, int> AttendedDriveCount = new Dictionary<string, int>();
+                AttendedDriveCount.Add("WeekdaysCount", 0);
+                AttendedDriveCount.Add("WeekendCount", 0);
+                foreach (var date in Drives)
+                {
+                    if (date.DayOfWeek == DayOfWeek.Sunday || date.DayOfWeek == DayOfWeek.Saturday)
+                        AttendedDriveCount["WeekendCount"] += 1;
+                    else
+                        AttendedDriveCount["WeekdaysCount"] += 1;
                 }
-                catch(Exception isDefaulterException){
-                    _logger.LogInformation($"Exception on Drive DAL : isDefaulterException(int employeeId, int poolId) : {isDefaulterException.Message} : {isDefaulterException.StackTrace}");
-                    throw;
+                if (AttendedDriveCount["WeekendCount"] <= 1 || AttendedDriveCount["WeekdaysCount"] <= 1)
+                {
+                    var employee = (from employees in _db.Employees.Include(e => e.Role) where employees.EmployeeId == employeeId select employees)
+                    .Select(employee => new
+                    {
+                        EmployeeId = employee.EmployeeId,
+                        EmployeeAceNumber = employee.EmployeeAceNumber,
+                        EmployeeName = employee.Name,
+                        EmployeeRole = employee.Role.RoleName
+                    });
+                    return employee;
                 }
+                return null;
+            }
+            catch (Exception isDefaulterException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : isDefaulterException(int employeeId, int poolId) : {isDefaulterException.Message} : {isDefaulterException.StackTrace}");
+                throw;
+            }
+        }
+
+        public List<EmployeeDriveResponse> GetDriveResponse(int driveId)
+        {
+            try
+            {
+                return (from driveResponse in _db.EmployeeDriveResponse.Include(e => e.Employee) where driveResponse.DriveId == driveId select driveResponse).ToList();
+            }
+            catch (Exception GetDriveResponseException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : GetDriveResponse(int driveId) : {GetDriveResponseException.Message} : {GetDriveResponseException.StackTrace}");
+                throw;
+            }
         }
     }
 }

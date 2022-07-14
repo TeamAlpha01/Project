@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { DatePipe } from '@angular/common'
+import { PoolmembersperformanceComponent } from 'src/app/Management/poolmembersperformance/poolmembersperformance.component';
 
 @Component({
   selector: 'app-create-invite',
@@ -20,7 +21,10 @@ export class CreateInviteComponent implements OnInit {
   maxDate: Date = new Date();
   toDate: Date = new Date();
   toDateActive: boolean = true;
-  
+
+  _dept = '';
+  _pool = '';
+
   constructor(private connection: ConnectionService, private fb: FormBuilder, private datepipe: DatePipe) { }
 
   submitted: boolean = false;
@@ -73,16 +77,28 @@ export class CreateInviteComponent implements OnInit {
     this.CreateInviteForm.controls['toDate'].enable();
     console.warn(this.getFromDate()?.value);
     this.toDate = new Date(date);
-    this.toDate.setDate(this.toDate.getDate()+7)
+    this.toDate.setDate(this.toDate.getDate() + 7)
     console.warn(this.toDate);
   }
 
   //GET METHODS CALLED AT CONNECTION SERVICE
 
   poolEnabler() {
-    if (this.getDepartmentId()?.value == '') { this.CreateInviteForm.controls['poolId'].disable() }
-    else { this.CreateInviteForm.controls['poolId'].enable() }
+    if (this.getDepartmentId()?.value == '') {this.CreateInviteForm.controls['poolId'].disable()}
+    else {this.CreateInviteForm.controls['poolId'].enable()}
   }
+
+  poolName() {
+    for (let item of this.poolDetails) {
+      if (this.getDepartmentId()?.value == item.departmentId) {
+        this._dept = item.departmentName
+      }
+    }
+  }
+
+
+
+
 
   locationEnabler() {
     if (this.getModeId()?.value == '1' || '') { { this.CreateInviteForm.controls['locationId'].disable() }; this.CreateInviteForm.controls['locationId'].setValue('9') }
@@ -106,7 +122,7 @@ export class CreateInviteComponent implements OnInit {
       this.locationDetails = data;
     })
   }
-  
+
   CreateInvite() {
     this.submitted = true;
     this.error = '';
@@ -126,7 +142,7 @@ export class CreateInviteComponent implements OnInit {
     if (this.CreateInviteForm.valid) {
       this.connection.CreateDrive(drive).subscribe({
         next: (data) => this.response = data.message,
-        error: (error) => {this.error = error.error.message;this.isNameError(error.error.message)},
+        error: (error) => { this.error = error.error.message; this.isNameError(error.error.message) },
         complete: () => this.clearInputFields(),
       });
     }
@@ -141,10 +157,10 @@ export class CreateInviteComponent implements OnInit {
     }, 1000);
 
   }
-  isNameError(error:string):boolean
-  {
-    if(error.toString().includes('Name'))
-    return true;
+
+  isNameError(error: string): boolean {
+    if (error.toString().includes('Name'))
+      return true;
 
     return false;
   }

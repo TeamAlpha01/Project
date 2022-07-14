@@ -8,7 +8,7 @@
         <div class="mt-3">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3">                        
+                    <div class="col-md-3">
                         <label class="form-label" for="ACE Number">Department</label>
                         <input type="text" class="form-control" value="{{_dept}}" disabled>
                     </div>
@@ -34,19 +34,21 @@
                 </div>
             </div>
         </div>
-        <div class=" container row AddMemberPool mt-2 justify-content-evenly"> 
+        <div class=" container row AddMemberPool mt-2 justify-content-evenly">
             <div class="card  col-6 ml-5">
                 <div class="">
                     <h3 class="card-header text-cente">{{_dept}} Employees</h3>
                     <div class="container my-box " *ngIf="_dept!=='';else ArrayEmpty">
-                        <div class="card-body p-1 border-bottom"
-                            *ngFor="let item of employeeDetails |filter:_dept |filter:_role |filter:_search">
-                            <div class="d-flex justify-content-evenly align-items-center">
-                                <div class="col-md-3">{{item.employeeAceNumber}}</div>
-                                <div class="col-md-3">{{item.employeeName}}</div>
-                                <div class="col-md-3">{{item.employeeRoleName}}</div>
-                                <div><button class="btn btn-success btn-sm" (click)="AddPoolMember(item.employeeId)">
-                                    <i class="fa-solid fa-arrow-right"></i></button>
+                        <div *ngFor="let item of employeeDetails |filter:_dept |filter:_role ">
+                            <div class="card-body p-1 border-bottom" *ngIf="(item.employeeAceNumber | lowercase).includes(_search | lowercase) || (item.employeeName | lowercase).includes(_search | lowercase)">
+                                <div class="d-flex justify-content-evenly align-items-center">
+                                    <div class="col-md-3">{{item.employeeAceNumber}}</div>
+                                    <div class="col-md-3">{{item.employeeName}}</div>
+                                    <div class="col-md-3">{{item.employeeRoleName}}</div>
+                                    <div><button class="btn btn-success btn-sm"
+                                            (click)="AddPoolMember(item.employeeId)">
+                                            <i class="fa-solid fa-arrow-right"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -68,8 +70,9 @@
                                 <div class="col-md-3">{{item.employeeAceNumber}}</div>
                                 <div class="col-md-3">{{item.employeeName}}</div>
                                 <div class="col-md-3">{{item.employeeRole}}</div>
-                                <div><button class="btn btn-danger btn-sm" (click)="RemovePoolMember(item.poolMemberId)">
-                                    <i class="fa-solid fa-arrow-left"></i></button>
+                                <div><button class="btn btn-danger btn-sm"
+                                        (click)="RemovePoolMember(item.poolMemberId)">
+                                        <i class="fa-solid fa-arrow-left"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -85,9 +88,9 @@
             <div *ngIf="response.length!==0">
                 <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
             </div>
-            <div >
-                <h3 class="text-center text-danger" >{{error}}</h3>
-            </div>  
+            <div>
+                <h3 class="text-center text-danger">{{error}}</h3>
+            </div>
         </div>
     </div>
     <app-footer [BackBtn]=true></app-footer>

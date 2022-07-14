@@ -7,7 +7,7 @@
         <div class="Register">
             <div class="card-body">
                 <form [formGroup]="CreateInviteForm" (ngSubmit)="CreateInvite()">
-                    
+
                     <div class="form-input">
                         <label class="form-label" for="driveName"> Drive Name</label>
                         <input type="text"
@@ -24,19 +24,21 @@
                             too
                             short</span>
                         <span class="text-danger"
-                            *ngIf="CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive name can't be more than 15 characters</span>
+                            *ngIf="CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive name can't be
+                            more than 15 characters</span>
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['driveName'].errors?.['pattern'] && !CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive
                             name cannot contain numbers or symbols</span>
-                            <div *ngIf="error.toString().includes('Name')">
-                                <span class="text-center text-danger">{{error}}</span>
-                            </div>
+                        <div *ngIf="error.toString().includes('Name')">
+                            <span class="text-center text-danger">{{error}}</span>
+                        </div>
                     </div>
                     <div class="form-input">
                         <label class="form-label " for="departmentId">Department</label>
                         <select
                             [class.is-invalid]="(submitted && CreateInviteForm.controls['departmentId'].invalid )||CreateInviteForm.controls['departmentId'].invalid && CreateInviteForm.controls['departmentId'].touched"
-                            name="departmentId" id="departmentId" class="form-select" formControlName="departmentId" (change)="poolEnabler()">
+                            name="departmentId" id="departmentId" class="form-select" formControlName="departmentId"
+                            (change)="poolEnabler()" (change)="poolName()">
                             <option value="">Select the Department</option>
                             <option *ngFor="let item of departmentDetails" value={{item.departmentId}}>
                                 {{item.departmentName}} </option>
@@ -55,9 +57,8 @@
                             name="poolId" id="poolId" class="form-select " formControlName="poolId">
                             <option value="">Select the Pool</option>
                             <option
-                                *ngFor="let item of poolDetails| filter:CreateInviteForm.controls['departmentId'].value "
-                                value={{item.poolId}}>
-                                {{item.poolName}} </option>
+                                *ngFor="let item of poolDetails| filter:_dept"
+                                value={{item.poolId}}>{{item.poolName}} </option>
                         </select>
                     </div>
                     <div
@@ -70,7 +71,8 @@
                         <label class="form-label " for="modeId">Mode</label>
                         <select
                             [class.is-invalid]="(submitted && CreateInviteForm.controls['modeId'].invalid)||CreateInviteForm.controls['modeId'].invalid && CreateInviteForm.controls['modeId'].touched"
-                            name="modeId" id="modeId" class="form-select " formControlName="modeId" (change)="locationEnabler()">
+                            name="modeId" id="modeId" class="form-select " formControlName="modeId"
+                            (change)="locationEnabler()">
                             <option value="">Select the Mode</option>
                             <option value=1>Online</option>
                             <option value=2>Offline</option>
@@ -90,7 +92,8 @@
                             name="locationId" id="locationId" class="form-select " formControlName="locationId">
                             <option value="">Select the Location</option>
                             <ng-container *ngFor="let item of locationDetails">
-                                <option *ngIf="!(item.locationId===9 && CreateInviteForm.controls['modeId'].value===2)"   value={{item.locationId}}> {{item.locationName}} </option>
+                                <option *ngIf="!(item.locationId===9 && CreateInviteForm.controls['modeId'].value===2)"
+                                    value={{item.locationId}}> {{item.locationName}} </option>
                             </ng-container>
                         </select>
                     </div>
@@ -104,7 +107,8 @@
                         <label class="form-label" for="fromDate">From Date</label>
                         <input type="date"
                             [class.is-invalid]="(submitted && CreateInviteForm.controls['fromDate'].invalid)||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched"
-                            name="fromDate" id="fromDate" class="form-control " formControlName="fromDate" (change)="toDateEnabler(CreateInviteForm.controls['fromDate'].value)"
+                            name="fromDate" id="fromDate" class="form-control " formControlName="fromDate"
+                            (change)="toDateEnabler(CreateInviteForm.controls['fromDate'].value)"
                             [min]="minDate|date:'yyyy-MM-dd'" [max]="maxDate|date:'yyyy-MM-dd'">
                     </div>
                     <div

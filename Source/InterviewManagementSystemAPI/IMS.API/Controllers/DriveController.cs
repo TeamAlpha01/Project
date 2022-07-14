@@ -53,7 +53,7 @@ public class DriveController : ControllerBase
             if (_driveService.CreateDrive(drive))
             {
                 //_mailService.SendEmailAsync(_mailService.DriveInvites(drive, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
-                return Ok(UtilityService.Response( "Drive Created Successfully"));
+                return Ok(UtilityService.Response("Drive Created Successfully"));
             }
             return Problem("Sorry internal error occured");
         }
@@ -243,7 +243,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int tacId=Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            int tacId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewNonCancelledDrives(tacId));
         }
         catch (Exception viewAllScheduledDrivesException)
@@ -275,7 +275,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int tacId=Convert.ToInt32(User.FindFirst("UserId").Value);
+            int tacId = Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewAllCancelledDrives(tacId));
         }
         catch (Exception viewAllCancelledDrivesException)
@@ -361,8 +361,8 @@ public class DriveController : ControllerBase
     [HttpGet]
     public IActionResult ViewInvitesByID()
     {
-        int currentUser=Convert.ToInt32(User.FindFirst("UserId").Value);
-        if ( currentUser<= 0)
+        int currentUser = Convert.ToInt32(User.FindFirst("UserId").Value);
+        if (currentUser <= 0)
             return BadRequest("provide proper employee Id");
         try
         {
@@ -438,7 +438,7 @@ public class DriveController : ControllerBase
 
         try
         {
-            response.EmployeeId=Convert.ToInt32(User.FindFirst("UserID").Value);
+            response.EmployeeId = Convert.ToInt32(User.FindFirst("UserID").Value);
             return _driveService.AddResponse(response) ? Ok(UtilityService.Response("Response added sucessfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException addResponseNotValid)
@@ -496,7 +496,7 @@ public class DriveController : ControllerBase
             return BadRequest(UtilityService.Response("Invalid employee availability"));
         try
         {
-            employeeAvailability.EmployeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
+            employeeAvailability.EmployeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
             return _driveService.SetTimeSlot(employeeAvailability) ? Ok(UtilityService.Response("Availability recorded sucessfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException setTimeSlotNotValid)
@@ -513,11 +513,12 @@ public class DriveController : ControllerBase
     [HttpGet]
     public IActionResult ViewAvailabilty(int driveId)
     {
-        try{
-            int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewAvailabilty(currentUser,driveId));
+        try
+        {
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            return Ok(_driveService.ViewAvailabilty(currentUser, driveId));
         }
-         catch (Exception exception)
+        catch (Exception exception)
         {
             _logger.LogInformation($"Drive Controller : viewAvailabilty() : {exception.Message} : {exception.StackTrace}");
             return Problem("Sorry internal error occured");
@@ -541,7 +542,7 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null</response> 
     /// <param name="employeeId"></param>
     /// <returns>Returns a list of today's interviews</returns>
-    
+
     [HttpGet]
     public IActionResult ViewTodaysInterview()
     {
@@ -805,13 +806,13 @@ public class DriveController : ControllerBase
     /// <param name="toDate"></param>
     /// <returns>Returns the dashboard of employee</returns>
     [HttpGet]
-    public IActionResult ViewEmployeeDashboard(int employeeId,DateTime fromDate,DateTime toDate)
+    public IActionResult ViewEmployeeDashboard(int employeeId, DateTime fromDate, DateTime toDate)
     {
         try
         {
-            if(employeeId==0)
-            employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
-            
+            if (employeeId == 0)
+                employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+
             return Ok(_driveService.ViewEmployeeDashboard(employeeId, fromDate, toDate));
         }
         catch (ValidationException ViewEmployeeDashboardNotValid)
@@ -844,12 +845,12 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewTotalDrives(DateTime fromDate,DateTime toDate)
+    public IActionResult ViewTotalDrives(DateTime fromDate, DateTime toDate)
     {
         try
         {
-            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
-            return Ok(_driveService.ViewTotalDrives(employeeId,fromDate,toDate));
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_driveService.ViewTotalDrives(employeeId, fromDate, toDate));
         }
         catch (Exception viewTotalDrivesException)
         {
@@ -876,12 +877,12 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewAcceptedDrives(DateTime fromDate,DateTime toDate)
+    public IActionResult ViewAcceptedDrives(DateTime fromDate, DateTime toDate)
     {
         try
         {
-            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
-            return Ok(_driveService.ViewAcceptedDrives(employeeId,fromDate,toDate));
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_driveService.ViewAcceptedDrives(employeeId, fromDate, toDate));
         }
         catch (Exception viewAcceptedDrivesException)
         {
@@ -907,12 +908,12 @@ public class DriveController : ControllerBase
     /// <returns>Returns the dashboard of employee</returns>
 
     [HttpGet]
-    public IActionResult ViewDeniedDrives(DateTime fromDate,DateTime toDate)
+    public IActionResult ViewDeniedDrives(DateTime fromDate, DateTime toDate)
     {
         try
         {
-            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
-            return Ok(_driveService.ViewDeniedDrives(employeeId,fromDate,toDate));
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_driveService.ViewDeniedDrives(employeeId, fromDate, toDate));
         }
         catch (Exception viewDeniedDrivesNotValid)
         {
@@ -940,12 +941,12 @@ public class DriveController : ControllerBase
 
 
     [HttpGet]
-    public IActionResult ViewIgnoredDrives(DateTime fromDate,DateTime toDate)
+    public IActionResult ViewIgnoredDrives(DateTime fromDate, DateTime toDate)
     {
         try
         {
-            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
-            return Ok(_driveService.ViewIgnoredDrives(employeeId,fromDate,toDate));
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            return Ok(_driveService.ViewIgnoredDrives(employeeId, fromDate, toDate));
         }
         catch (Exception viewIgnoredDrivesNotValid)
         {
@@ -976,7 +977,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewUtilizedInterviews(employeeId));
         }
         catch (Exception viewUtilizedInterviewsNotValid)
@@ -1006,10 +1007,10 @@ public class DriveController : ControllerBase
     [HttpGet]
     public IActionResult ViewNotUtilizedInterviews()
     {
-        
+
         try
         {
-            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewNotUtilizedInterviews(employeeId));
         }
         catch (Exception viewNotUtilizedInterviewsException)
@@ -1041,7 +1042,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int employeeId=Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
             return Ok(_driveService.ViewTotalAvailability(employeeId));
         }
         catch (Exception viewTotalAvailabilityException)
@@ -1063,6 +1064,24 @@ public class DriveController : ControllerBase
         catch (Exception viewTotalAvailabilityException)
         {
             _logger.LogInformation($"Drive Controller : ViewDeniedDrives() : {viewTotalAvailabilityException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    
+    [HttpGet]
+    public IActionResult ViewDriveResponse(int driveId)
+    {
+        if (driveId <= 0)
+        {
+            return BadRequest(UtilityService.Response("provide proper driveId"));
+        }
+        try
+        {
+            return Ok(_driveService.ViewDriveResponse(driveId));
+        }
+        catch (Exception ViewDriveResponseException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDriveResponseException(driveId) : {ViewDriveResponseException.Message}");
             return Problem("Sorry internal error occured");
         }
     }

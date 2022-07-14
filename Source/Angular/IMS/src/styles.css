@@ -6,13 +6,13 @@
   --dark: #231924;
 }
 
-.link{
+.link {
   text-decoration: none;
   color: black;
 }
 
-.link :hover{
-  color:#aa60e7;
+.link :hover {
+  color: #aa60e7;
 }
 
 .Sdropdown {
@@ -21,7 +21,7 @@
 }
 
 .Register {
-  margin: 0% 25%;
+  margin: 10% 25%;
   padding: 0% 5%;
   border: 1px solid black;
   border-radius: 15px;
@@ -41,7 +41,7 @@
 /* 631 X 834 */
 @media screen and (max-width:800px) {
   .Register {
-    margin: 0;
+    margin: 5%;
 
   }
 
@@ -236,7 +236,7 @@ body {
 /*-----------------------------------------Dashboard-----------------------------------------*/
 
 /* Interviewer dashboard card alignment */
-.dashboard{
+.dashboard {
   padding-top: 13%;
 }
 
@@ -281,14 +281,14 @@ body {
   background-color: var(--primary) !important;
 }
 
-.btn-create{
+.btn-create {
   color: var(--light) !important;
   background-color: var(--primary) !important;
 }
 
 .btn-create:hover {
-  color: var(--light)!important;
-  background-color: #9d63b0!important;
+  color: var(--light) !important;
+  background-color: #9d63b0 !important;
 }
 
 .btn-back {
@@ -902,6 +902,7 @@ h6 {
 .content .navbar .dropdown-toggle[aria-expanded=true]::after {
   transform: rotate(-180deg);
 }
+
 /*** Date Picker ***/
 .bootstrap-datetimepicker-widget.bottom {
   top: auto !important;
@@ -983,7 +984,7 @@ a.logout-btn:hover {
 
 .username {
   text-align: center;
-  font-weight:normal;
+  font-weight: normal;
   font-size: large;
   margin: auto;
   color: var(--light);
@@ -1003,6 +1004,7 @@ a.logout-btn:hover {
   width: 44px !important;
   background-color: var(--primary) !important;
 }
+
 /* Management DashBoard Ends*/
 
 #ViewPoolFilterCard {
@@ -1097,8 +1099,6 @@ h1.heading {
 
 
 */
-
-
 
 /* DashBoard Selection */
 .card .mperf,
@@ -1549,7 +1549,7 @@ body {
   background-color: rgb(212, 163, 235);
 }
 
-#cards-align{
+#cards-align {
   padding-top: 10%;
 }
 
@@ -1562,4 +1562,3 @@ body {
     text-align: left;
   }
 } */
-
