@@ -697,6 +697,29 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+      [HttpGet]
+    public IActionResult ViewEmployeePerformance(DateTime fromDate, DateTime toDate)
+    {
+        try
+        {
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            int departmentId=Convert.ToInt32(User.FindFirst("DepartmentId")?.Value);
+
+            return Ok(_driveService.ViewEmployeePerformance(employeeId,departmentId, fromDate, toDate));
+        }
+        catch (ValidationException ViewEmployeeDashboardNotValid)
+        {
+            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {ViewEmployeeDashboardNotValid.Message}");
+            return BadRequest(ViewEmployeeDashboardNotValid.Message);
+        }
+        catch (Exception ViewEmployeeDashboardException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {ViewEmployeeDashboardException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+
+ 
 
     /// <summary>
     /// This method invoked when the employee wants to see their dashboard

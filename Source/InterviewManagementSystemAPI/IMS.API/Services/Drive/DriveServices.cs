@@ -551,12 +551,28 @@ namespace IMS.Service
             }
 
         }
+         public Object ViewEmployees(int departmentId)
+        {
+            try
+            {
+               
+               return _driveDataAccess.GetEmployee(departmentId);
+              
+            }
+            catch (Exception viewDefaultersException)
+            {
+                _logger.LogInformation($"Drive Service : ViewEmployees(int departmentId) : {viewDefaultersException.Message} : {viewDefaultersException.StackTrace}");
+                throw;
+            }
+        }
 
         public Dictionary<string, int> ViewEmployeeDashboard(int employeeId,int departmentId, DateTime fromDate, DateTime toDate)
         {
             try
             {
+                
                 var DashboardCount = new Dictionary<string, int>();
+                
                 DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Count());
                 DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate).Count());
                 DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate).Count());
@@ -577,6 +593,41 @@ namespace IMS.Service
                 throw ;
             }
         }
+        public List<Dictionary<string,int>>ViewEmployeePerformance(int employeeId,int departmentId,DateTime fromDate,DateTime toDate)
+        {
+            var employee=GetEmployee(departmentId);
+          
+            var count=new Dictionary<string,int>();
+            var DashboardCount=new List<Dictionary<string,int>>();
+            
+
+            foreach(var member in employee)
+            {
+                count=ViewEmployeeDashboard(member, departmentId,fromDate,toDate);
+               DashboardCount.Add(count);
+             
+            }
+              return DashboardCount;
+
+        }
+         private List<int>  GetEmployee(int departmentId)
+        { 
+            try
+            {
+                return _driveDataAccess.GetEmployee(departmentId);
+            }
+            catch (ValidationException exception)
+            {
+                _logger.LogInformation($"Drive Service :  GetEmployee(int departmentId) : {exception.Message}");
+                throw exception;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service :  GetEmployeePoolIds(int departmentId) : {exception.Message}");
+                throw;
+            }
+        }
+
         public Object ViewTotalDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
             try
@@ -764,9 +815,11 @@ namespace IMS.Service
             {
                 return _driveDataAccess.GetDriveResponse(driveId).Select(e => new
                 {
-                    EmployeeId = e.EmployeeId,
-                    EmployeeName = e.Employee.Name,
-                    ResponseType = Enum.GetName(typeof(UtilityService.ResponseType), e.ResponseType)
+                    EmployeeId= e.EmployeeId,
+                    EmployeeName=e.Employee!.Name,
+                    EmployeeACENumber=e.Employee!.EmployeeAceNumber,
+                    
+                    ResponseType=Enum.GetName(typeof(UtilityService.ResponseType), e.ResponseType)
                 }
                 );
             }

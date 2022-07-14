@@ -37,6 +37,7 @@ namespace IMS.Service
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                         new Claim("Email",user.EmailId),
                         new Claim("UserId", user.EmployeeId.ToString()),
+                        new Claim("DepartmentId",user.DepartmentId.ToString()),
                         new Claim("UserName", user.Name.ToString()),
                         new Claim(ClaimTypes.Role,user.RoleId.ToString()),
                     };

@@ -333,10 +333,11 @@ namespace IMS.DataAccessLayer
                 throw;
             }
         }
-        public object GetEmployee(int departmentId)
+        public List<int> GetEmployee(int departmentId)
         {
             try{
                 return(from employees in _db.Employees where employees.DepartmentId==departmentId && employees.IsActive==true select employees.EmployeeId).ToList();
+                
             }
             catch(Exception e)
             {
@@ -393,7 +394,8 @@ namespace IMS.DataAccessLayer
         }
         private object IsDefaulter(int employeeId,int poolId)
         {       
-                try{
+                try
+                {
                     var Drives = (from employee in _db.EmployeeAvailability.Include(e=>e.Drive) where employee.EmployeeId==employeeId && employee.Drive!.PoolId==poolId && employee.IsInterviewScheduled==true && employee.IsInterviewCancelled==false && employee.InterviewDate>=System.DateTime.Now.AddMonths(-1) && employee.InterviewDate<=System.DateTime.Now select employee.InterviewDate).ToList();
                     Dictionary<string,int> AttendedDriveCount = new Dictionary<string, int>();
                     AttendedDriveCount.Add("WeekdaysCount",0);
@@ -417,6 +419,7 @@ namespace IMS.DataAccessLayer
                         return employee;   
                     }
                     return null!;
+                
                 
                 if(AttendedDriveCount["WeekendCount"] <= 1 || AttendedDriveCount["WeekdaysCount"] <= 1)
                 {
