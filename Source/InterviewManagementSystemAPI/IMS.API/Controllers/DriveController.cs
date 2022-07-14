@@ -42,6 +42,7 @@ public class DriveController : ControllerBase
             return BadRequest("Drive is Invalid");
         try
         {
+            drive.AddedBy= Convert.ToInt32(User.FindFirst("UserId")?.Value);
             //use authentication and find current user id
             //drive.AddedBy=
             //drive.UpdatedBy=
@@ -1000,6 +1001,11 @@ public class DriveController : ControllerBase
         {
             int departmentId = Convert.ToInt32(User.FindFirst("DepartmentId")?.Value);
             return Ok(_driveService.GetDrivesForCurrentUser(departmentId));
+        }
+        catch(ValidationException exception)
+        {
+            _logger.LogError($"Drive controller:GetDrivesForCurrentUser():{exception.Message}");
+            return BadRequest(exception.Message);
         }
         catch (Exception ViewDriveResponseException)
         {

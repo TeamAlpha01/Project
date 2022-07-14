@@ -860,8 +860,22 @@ namespace IMS.Service
         }
         public List<string> GetDrivesForCurrentUser(int departmentId)
         {
+            try
+            {
             
-            return _driveDataAccess.GetDrivesForCurrentUser(departmentId);;
+            return _driveDataAccess.GetDrivesForCurrentUser(departmentId);
+            }
+            catch(ValidationException exception)
+            {
+                _logger.LogError($"Drive service:GetDrivesForCurrentUser(int departmentId):{exception.Message}");
+                throw;
+
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError($"Drive service:GetDrivesForCurrentUser(int department):{exception.Message}");
+                throw;
+            }
         }
     }
 }
