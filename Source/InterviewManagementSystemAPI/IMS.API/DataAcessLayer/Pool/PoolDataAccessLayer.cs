@@ -290,7 +290,7 @@ namespace IMS.DataAccessLayer
                       
             bool poolMemberAlreadyExists = _db.PoolMembers.Any(x => x.EmployeeId == poolMembers.EmployeeId && x.PoolId==poolMembers.PoolId && x.IsActive == true);    
             if(poolMemberAlreadyExists)
-             throw new ValidationException("Pool Member already exists in the given Pool Id");
+             throw new ValidationException("Pool member already exists in the given pool");
 
             return true;
         }
