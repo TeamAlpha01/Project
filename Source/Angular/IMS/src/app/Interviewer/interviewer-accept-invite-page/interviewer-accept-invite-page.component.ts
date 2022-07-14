@@ -17,7 +17,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   response: string = '';
   error: string = '';
   Availability: string = '';
-  GivenSlot:any;
+  GivenSlot: any;
 
   totalLength: any;
   page: number = 1;
@@ -39,12 +39,9 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
     slotTiming: 0,
     toDate: ""
   }
+  addResponse: any;
+  AcceptedResponse: boolean = true;
 
-  // GivenSlot = {
-  //   driveName: "",
-  //   date: "",
-  //   fromTime: ""
-  // }
 
   getInterviewDate() {
     return this.AcceptInvitePage.get('InterviewDate')?.value;
@@ -66,27 +63,23 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   GetDriveById(driveId: any) {
     this.connection.GetDriveById(driveId).subscribe((data: any) => {
       this.Invites = data;
-      console.warn(this.Invites);
     })
   }
 
   GetAvailability() {
     this.connection.GetAvailability(this.driveId).subscribe((data: any) => {
       this.GivenSlot = data;
-      console.warn(this.GivenSlot);
     })
   }
   //
   AddResponse() {
     if (this.AcceptInvitePage.valid) {
-      console.warn(this.getInterviewDate() + "   " + this.getSlotTime())
       var to = new Date()
       to.setHours(this.getSlotTime().substr(0, 2))
       to.setMinutes(this.getSlotTime().substr(3))
       var too = new Date();
       too.setTime(to.getTime() + (this.Invites.slotTiming * 60000))
       this.toTime = Math.floor(too.getHours()) + ":" + too.getMinutes() % 60;
-      console.warn(this.toTime);
 
       const timeSlot = {
         employeeAvailabilityId: 0,
@@ -117,14 +110,15 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
       responseId: 0,
       driveId: this.driveId,
       employeeId: 0,
-      responseType: 2,
+      responseType: 1,
     }
 
-    //POST METHOD IS CALLED AT CONNECTION SERVICE
-    this.connection.AddResponse(response).subscribe({
-      next: (data: any) => { this.Invites = data, console.warn(this.Invites) },
-      error: (error: any) => { this.error = error.error.message, this.snackBar() },
-      complete: () => this.snackBar(),
-    });
+    if (this.AcceptedResponse) {
+      this.connection.AddResponse(response).subscribe({
+        next: (data: any) => { this.addResponse = data, this.AcceptedResponse = false },
+        error: (error: any) => { this.error = error.error.message, this.snackBar() },
+        complete: () => this.snackBar(),
+      });
+    }
   }
 }
