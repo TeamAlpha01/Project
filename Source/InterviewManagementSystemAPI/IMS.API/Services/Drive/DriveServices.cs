@@ -432,6 +432,33 @@ namespace IMS.Service
                 throw;
             }
         }
+        public Object ViewCancelledInterview(int employeeId)
+        {
+            try
+            {
+                return (from interviews in _driveDataAccess.ViewCancelledInterview(true, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                .Select(e => new
+                {
+                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    FromTime=e.From.ToShortTimeString(),
+                    ToTime=e.To.ToShortTimeString(),
+                    DriveName = e.Drive!.Name,
+                    PoolName = e.Drive.Pool!.PoolName,
+                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
+                    Mode = Enum.GetName(typeof(UtilityService.Mode),e.Drive.ModeId),
+                    LocationName = e.Drive.Location!.LocationName,
+                    Status = e.IsInterviewScheduled
+                }
+                );//filter by user using authentication  
+
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : ViewScheduledInterview() : {exception.Message} : {exception.StackTrace}");
+                throw;
+            }
+        }
+        
         public Object ViewUpcomingInterview(int employeeId)
         {
             try
@@ -818,7 +845,7 @@ namespace IMS.Service
                     EmployeeId= e.EmployeeId,
                     EmployeeName=e.Employee!.Name,
                     EmployeeACENumber=e.Employee!.EmployeeAceNumber,
-                    
+
                     ResponseType=Enum.GetName(typeof(UtilityService.ResponseType), e.ResponseType)
                 }
                 );

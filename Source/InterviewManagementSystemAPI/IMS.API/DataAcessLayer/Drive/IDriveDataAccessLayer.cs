@@ -28,5 +28,6 @@ namespace IMS.DataAccessLayer
         public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized,int employeeId);
         public object GetDefaulters(int poolId);
         public List<EmployeeDriveResponse> GetDriveResponse(int driveId);
+        public List<EmployeeAvailability> ViewCancelledInterview(bool status, int employeeId);
     }
 }

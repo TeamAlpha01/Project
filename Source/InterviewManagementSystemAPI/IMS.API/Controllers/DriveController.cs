@@ -512,6 +512,21 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+      [HttpGet]
+    public IActionResult ViewCancelledInterview()
+    {
+        try
+        {
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            return Ok(_driveService.ViewCancelledInterview(currentUser));
+        }
+        catch (Exception viewScheduledInterviewException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewCancelledInterview() : {viewScheduledInterviewException.Message} : {viewScheduledInterviewException.StackTrace}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+
 
     /// <summary>
     /// This method is implemented when the 'ViewUpcomingInterviews' request raises.
@@ -709,7 +724,7 @@ public class DriveController : ControllerBase
         }
         catch (ValidationException ViewEmployeeDashboardNotValid)
         {
-            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {ViewEmployeeDashboardNotValid.Message}");
+            _logger.LogInformation($"Drive Controller : ViewEmployeePerformance(DateTime fromDate, DateTime toDate) : {ViewEmployeeDashboardNotValid.Message}");
             return BadRequest(ViewEmployeeDashboardNotValid.Message);
         }
         catch (Exception ViewEmployeeDashboardException)

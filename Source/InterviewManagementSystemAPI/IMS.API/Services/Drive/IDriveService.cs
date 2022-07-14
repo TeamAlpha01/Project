@@ -27,6 +27,7 @@ namespace IMS.Service
 
         public Object ViewTodayInterviews(int employeeId);
         public Object ViewScheduledInterview(int employeeId);
+         public Object ViewCancelledInterview(int employeeId);
         public Object ViewUpcomingInterview(int employeeId);
         public Object ViewAllInterview(int employeeId);
         public bool ScheduleInterview(int employeeAvailabilityId);

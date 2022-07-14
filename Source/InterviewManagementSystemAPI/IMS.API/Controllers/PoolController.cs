@@ -173,7 +173,7 @@ public class PoolController : ControllerBase
 
         try
         {
-            int employeeId=Convert.ToInt32(User.FindFirst("UserID").Value);
+            int employeeId=Convert.ToInt32(User.FindFirst("UserID")?.Value);
             return Ok(_poolService.ViewPoolsByID(employeeId));
         }
         catch (ValidationException employeeNotFound)

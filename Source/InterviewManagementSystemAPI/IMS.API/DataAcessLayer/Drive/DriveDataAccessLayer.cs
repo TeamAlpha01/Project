@@ -277,6 +277,18 @@ namespace IMS.DataAccessLayer
                 throw;
             }
         }
+            public List<EmployeeAvailability> ViewCancelledInterview(bool status, int employeeId)//int employeeId filter using auth token
+            {
+            try
+            {
+                return (from interview in _db.EmployeeAvailability.Include(d => d.Drive).Include(L => L.Drive!.Location).Include(P => P.Drive!.Pool) where interview.IsInterviewCancelled == status && interview.Drive!.IsCancelled == false && interview.EmployeeId == employeeId select interview).ToList();
+            }
+            catch (Exception viewInterviewsByStatusException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : ViewInterviewsByStatus(bool status) : {viewInterviewsByStatusException.Message}");
+                throw;
+            }
+            }
 
         public bool ScheduleInterview(int employeeAvailabilityId)
         {
@@ -419,21 +431,6 @@ namespace IMS.DataAccessLayer
                         return employee;   
                     }
                     return null!;
-                
-                
-                if(AttendedDriveCount["WeekendCount"] <= 1 || AttendedDriveCount["WeekdaysCount"] <= 1)
-                {
-                    var employee = (from employees in _db.Employees.Include(e => e.Role) where employees.EmployeeId == employeeId select employees)
-                    .Select(employee => new
-                    {
-                        EmployeeId = employee.EmployeeId,
-                        EmployeeAceNumber = employee.EmployeeAceNumber,
-                        EmployeeName = employee.Name,
-                        EmployeeRole = employee.Role.RoleName
-                    });
-                    return employee;
-                }
-                return null;
             }
             catch (Exception isDefaulterException)
             {
