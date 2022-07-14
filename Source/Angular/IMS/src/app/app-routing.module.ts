@@ -47,7 +47,6 @@ import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer
 import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ignored-drives/interviewer-ignored-drives.component';
 import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-denied-drives/interviewer-denied-drives.component';
 import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
-import { ViewDefaultersComponent } from './Management/view-defaulters/view-defaulters.component';
 import { DepartmentPerformanceComponent } from './Management/department-performance/department-performance.component';
 
 const routes: Routes = [
@@ -107,7 +106,6 @@ const routes: Routes = [
   //management pages
   { path: 'dashboard/management-dashboard', component: ManagementDashboardComponent, canActivate: [AuthorizationService], data: { User: "Management" } },
   { path: 'dashboard/management-dashboard/poolmembersperforamnce', component: DepartmentPerformanceComponent, canActivate: [AuthorizationService], data: { User: "Management" } },
-  { path: 'dashboard/management-dashboard/poolmembersperforamnce/view-defaulters/:poolId', component: ViewDefaultersComponent, canActivate: [AuthorizationService], data: { User: "Management" } },
 ];
 
 @NgModule({

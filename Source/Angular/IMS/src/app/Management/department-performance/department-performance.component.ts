@@ -21,11 +21,13 @@ export class DepartmentPerformanceComponent implements OnInit {
   page: number = 1;
   totalLength: any;
   driveResponse: any[] = [];
+  employeesPerformance: any[]=[];
 
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
     this.GetPools();
+    this.GetEmployeesPerformance();
   }
 
   GetPools() {
@@ -40,11 +42,17 @@ export class DepartmentPerformanceComponent implements OnInit {
     })
   }
 
+  GetEmployeesPerformance() {
+    this.connection.GetEmployeesPerformance().subscribe({
+      next: (data: any) =>{ this.employeesPerformance = data, console.warn(this.employeesPerformance)},
+    })
+  }
+
   drive() {
     this._fromDate = ''
     this._toDate = ''
   }
-  
+
   date() {
     this._pool = ''
     this._drive = ''
@@ -61,84 +69,84 @@ export class DepartmentPerformanceComponent implements OnInit {
     }
   }
 
-  
 
-  user = [
-    {
-      id: 1,
-      name: "Aravind",
-      AceNumber: "ACE0001",
-      role: "Software Engineer",
-      totalNumberOfDrives: 10,
-      availability: 8,
-      denied: 1,
-      ignored: 1,
-      utilized: 6,
-      notUtilized: 2,
-      cancel: 2,
-      pool: "Fresher .NET"
-    }, {
-      id: 2,
-      name: "Deepika",
-      AceNumber: "ACE0002",
-      role: "Software Engineer",
-      totalNumberOfDrives: 15,
-      availability: 11,
-      denied: 3,
-      ignored: 1,
-      utilized: 9,
-      notUtilized: 4,
-      cancel: 2
-    }, {
-      id: 1,
-      name: "Kumaresh",
-      AceNumber: "ACE0003",
-      role: "Software Engineer",
-      totalNumberOfDrives: 10,
-      availability: 8,
-      denied: 1,
-      ignored: 1,
-      utilized: 6,
-      notUtilized: 2,
-      cancel: 2,
-      pool: "Fresher .NET"
-    }, {
-      id: 2,
-      name: "Gokul",
-      AceNumber: "ACE0004",
-      role: "Software Engineer",
-      totalNumberOfDrives: 15,
-      availability: 11,
-      denied: 3,
-      ignored: 1,
-      utilized: 9,
-      notUtilized: 4,
-      cancel: 2
-    }, {
-      id: 1,
-      name: "Sheik",
-      AceNumber: "ACE0005",
-      role: "Software Engineer",
-      totalNumberOfDrives: 10,
-      availability: 8,
-      denied: 1,
-      ignored: 1,
-      utilized: 6,
-      notUtilized: 2,
-      cancel: 2,
-      pool: "Fresher .NET"
-    }, {
-      id: 2,
-      name: "prithvi",
-      AceNumber: "ACE0006",
-      role: "Software Engineer",
-      totalNumberOfDrives: 15,
-      availability: 11,
-      denied: 3,
-      ignored: 1,
-      utilized: 9,
-      notUtilized: 4,
-      cancel: 2
-    }]
+
+  // user = [
+  //   {
+  //     id: 1,
+  //     name: "Aravind",
+  //     AceNumber: "ACE0001",
+  //     role: "Software Engineer",
+  //     totalNumberOfDrives: 10,
+  //     availability: 8,
+  //     denied: 1,
+  //     ignored: 1,
+  //     utilized: 6,
+  //     notUtilized: 2,
+  //     cancel: 2,
+  //     pool: "Fresher .NET"
+  //   }, {
+  //     id: 2,
+  //     name: "Deepika",
+  //     AceNumber: "ACE0002",
+  //     role: "Software Engineer",
+  //     totalNumberOfDrives: 15,
+  //     availability: 11,
+  //     denied: 3,
+  //     ignored: 1,
+  //     utilized: 9,
+  //     notUtilized: 4,
+  //     cancel: 2
+  //   }, {
+  //     id: 1,
+  //     name: "Kumaresh",
+  //     AceNumber: "ACE0003",
+  //     role: "Software Engineer",
+  //     totalNumberOfDrives: 10,
+  //     availability: 8,
+  //     denied: 1,
+  //     ignored: 1,
+  //     utilized: 6,
+  //     notUtilized: 2,
+  //     cancel: 2,
+  //     pool: "Fresher .NET"
+  //   }, {
+  //     id: 2,
+  //     name: "Gokul",
+  //     AceNumber: "ACE0004",
+  //     role: "Software Engineer",
+  //     totalNumberOfDrives: 15,
+  //     availability: 11,
+  //     denied: 3,
+  //     ignored: 1,
+  //     utilized: 9,
+  //     notUtilized: 4,
+  //     cancel: 2
+  //   }, {
+  //     id: 1,
+  //     name: "Sheik",
+  //     AceNumber: "ACE0005",
+  //     role: "Software Engineer",
+  //     totalNumberOfDrives: 10,
+  //     availability: 8,
+  //     denied: 1,
+  //     ignored: 1,
+  //     utilized: 6,
+  //     notUtilized: 2,
+  //     cancel: 2,
+  //     pool: "Fresher .NET"
+  //   }, {
+  //     id: 2,
+  //     name: "prithvi",
+  //     AceNumber: "ACE0006",
+  //     role: "Software Engineer",
+  //     totalNumberOfDrives: 15,
+  //     availability: 11,
+  //     denied: 3,
+  //     ignored: 1,
+  //     utilized: 9,
+  //     notUtilized: 4,
+  //     cancel: 2
+  //   }]
 
 }

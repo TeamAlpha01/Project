@@ -55,7 +55,7 @@ export class TacEmployeeDashboardComponent implements OnInit {
   }
 
   GetEmployeeDashboard(employeeId: number) {
-    this.connection.GetEmployeesDashboard(employeeId).subscribe((data: any) => {
+    this.connection.GetEmployeeDashboard(employeeId).subscribe((data: any) => {
       this.employeeDashboardDetails = data;
       console.log(this.employeeDashboardDetails);
     })
