@@ -15,9 +15,12 @@ export class DepartmentPerformanceComponent implements OnInit {
   _pool = ''
   _fromDate = ''
   _toDate = ''
+  Drive: boolean = false
+  Date: boolean = true
 
   page: number = 1;
   totalLength: any;
+  driveResponse: any[] = [];
 
   constructor(private connection: ConnectionService) { }
 
@@ -31,14 +34,34 @@ export class DepartmentPerformanceComponent implements OnInit {
     })
   }
 
-  drive() {
-
-    this._fromDate = '',
-      this._toDate = ''
+  GetDrives() {
+    this.connection.GetDashboardDriveResponse(25).subscribe({
+      next: (data: any) => this.driveResponse = data,
+    })
   }
+
+  drive() {
+    this._fromDate = ''
+    this._toDate = '' 
+    
+  }
+
+  Apply(){
+    this.GetDrives();
+    this.Drive = true;
+    this.Date = false;
+    if (this._drive === '') {
+      this.GetPools();
+      this.Drive = false;
+      this.Date = true;
+    }
+  }
+
   date() {
-    this._pool = '',
-      this._drive = ''
+    this._pool = ''
+    this._drive = ''
+    this.Drive = false;
+    this.Date = true;
   }
 
   user = [
@@ -67,7 +90,7 @@ export class DepartmentPerformanceComponent implements OnInit {
       utilized: 9,
       notUtilized: 4,
       cancel: 2
-    },{
+    }, {
       id: 1,
       name: "Kumaresh",
       AceNumber: "ACE0003",
@@ -92,7 +115,7 @@ export class DepartmentPerformanceComponent implements OnInit {
       utilized: 9,
       notUtilized: 4,
       cancel: 2
-    },{
+    }, {
       id: 1,
       name: "Sheik",
       AceNumber: "ACE0005",

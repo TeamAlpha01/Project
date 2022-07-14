@@ -21,11 +21,21 @@
 }
 
 .Register {
-  margin: 10% 25%;
+  margin: 0% 25%;
   padding: 0% 5%;
   border: 1px solid black;
   border-radius: 15px;
   background-color: var(--light);
+}
+
+.Login-btn {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  text-align: center;
+}
+
+.CreatePool {
+  margin-top: 25vh;
 }
 
 .form-input {
