@@ -44,7 +44,7 @@ public class EmployeeController : ControllerBase
             if (_employeeService.CreateNewEmployee(employee))
             {
                 //_mailService.SendEmailAsync(_mailService.WelcomeEmployeeMail(employee.EmailId,employee.Name),true);
-                return Ok(UtilityService.Response("Account has been created sucessfully. Please Wait untill Admin verfies your account"));
+                return Ok(UtilityService.Response("Account has been created sucessfully. Please wait until you receive a mail from administrator"));
             }
             return Problem("Sorry internal error occured");
         }
