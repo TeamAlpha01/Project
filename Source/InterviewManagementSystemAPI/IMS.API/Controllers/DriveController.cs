@@ -992,4 +992,18 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
+    [HttpGet]
+    public IActionResult GetDrivesForCurrentUser()
+    {
+        try
+        {
+            int departmentId = Convert.ToInt32(User.FindFirst("DepartmentId")?.Value);
+            return Ok(_driveService.GetDrivesForCurrentUser(departmentId));
+        }
+        catch (Exception ViewDriveResponseException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewDriveResponseException(driveId) : {ViewDriveResponseException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
 }

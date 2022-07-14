@@ -857,6 +857,11 @@ namespace IMS.Service
                 throw;
             }
         }
+        public List<string> GetDrivesForCurrentUser(int departmentId)
+        {
+            
+            return _driveDataAccess.GetDrivesForCurrentUser(departmentId);;
+        }
     }
 }
 

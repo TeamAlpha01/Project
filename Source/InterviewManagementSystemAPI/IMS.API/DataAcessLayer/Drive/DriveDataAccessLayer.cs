@@ -451,6 +451,11 @@ namespace IMS.DataAccessLayer
                 throw;
             }
         }
+
+        public List<string> GetDrivesForCurrentUser(int departmentId)
+        {
+            return (from drive in _db.Drives where drive.DepartmentId==departmentId select drive.Name).ToList();
+        }
     }
 }
 

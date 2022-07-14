@@ -29,5 +29,6 @@ namespace IMS.DataAccessLayer
         public object GetDefaulters(int poolId);
         public List<EmployeeDriveResponse> GetDriveResponse(int driveId);
         public List<EmployeeAvailability> ViewCancelledInterview(bool status, int employeeId);
+        public List<string> GetDrivesForCurrentUser(int departmentId);
     }
 }
