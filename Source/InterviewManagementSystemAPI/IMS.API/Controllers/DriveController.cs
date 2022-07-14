@@ -712,19 +712,18 @@ public class DriveController : ControllerBase
     /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
-    /// <param name="employeeId"></param>
+    /// <param name="departmentId"></param>
     /// <param name="fromDate"></param>
     /// <param name="toDate"></param>
     /// <returns>Returns the dashboard of employee</returns>
     [HttpGet]
-    public IActionResult ViewEmployeeDashboard(int employeeId, DateTime fromDate, DateTime toDate)
+    public IActionResult ViewEmployeeDashboard(int departmentId, DateTime fromDate, DateTime toDate)
     {
         try
         {
-            if (employeeId == 0)
-                employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
 
-            return Ok(_driveService.ViewEmployeeDashboard(employeeId, fromDate, toDate));
+            return Ok(_driveService.ViewEmployeeDashboard(employeeId,departmentId, fromDate, toDate));
         }
         catch (ValidationException ViewEmployeeDashboardNotValid)
         {
@@ -752,7 +751,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewTotalDrives(employeeId, fromDate, toDate));
         }
         catch (Exception viewTotalDrivesException)
@@ -776,7 +775,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewAcceptedDrives(employeeId, fromDate, toDate));
         }
         catch (Exception viewAcceptedDrivesException)
@@ -798,7 +797,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewDeniedDrives(employeeId, fromDate, toDate));
         }
         catch (Exception viewDeniedDrivesNotValid)
@@ -831,7 +830,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewIgnoredDrives(employeeId, fromDate, toDate));
         }
         catch (Exception viewIgnoredDrivesNotValid)
@@ -855,7 +854,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewUtilizedInterviews(employeeId));
         }
         catch (Exception viewUtilizedInterviewsNotValid)
@@ -879,7 +878,7 @@ public class DriveController : ControllerBase
 
         try
         {
-            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewNotUtilizedInterviews(employeeId));
         }
         catch (Exception viewNotUtilizedInterviewsException)
@@ -911,7 +910,7 @@ public class DriveController : ControllerBase
     {
         try
         {
-            int employeeId = Convert.ToInt32(User.FindFirst("UserId").Value);
+            int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             return Ok(_driveService.ViewTotalAvailability(employeeId));
         }
         catch (Exception viewTotalAvailabilityException)

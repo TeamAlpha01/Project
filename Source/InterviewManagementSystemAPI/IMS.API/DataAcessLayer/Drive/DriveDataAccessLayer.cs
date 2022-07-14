@@ -333,6 +333,17 @@ namespace IMS.DataAccessLayer
                 throw;
             }
         }
+        public object GetEmployee(int departmentId)
+        {
+            try{
+                return(from employees in _db.Employees where employees.DepartmentId==departmentId && employees.IsActive==true select employees.EmployeeId).ToList();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+        
         public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType, int employeeId, DateTime fromDate, DateTime toDate)// want to filter with Employee ID
         {
             Validations.EmployeeResponseValidation.IsResponseTypeValid(responseType);
@@ -406,8 +417,8 @@ namespace IMS.DataAccessLayer
                         return employee;   
                     }
                     return null!;
-                }
-                if (AttendedDriveCount["WeekendCount"] <= 1 || AttendedDriveCount["WeekdaysCount"] <= 1)
+                
+                if(AttendedDriveCount["WeekendCount"] <= 1 || AttendedDriveCount["WeekdaysCount"] <= 1)
                 {
                     var employee = (from employees in _db.Employees.Include(e => e.Role) where employees.EmployeeId == employeeId select employees)
                     .Select(employee => new

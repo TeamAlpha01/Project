@@ -552,7 +552,7 @@ namespace IMS.Service
 
         }
 
-        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId, DateTime fromDate, DateTime toDate)
+        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId,int departmentId, DateTime fromDate, DateTime toDate)
         {
             try
             {
