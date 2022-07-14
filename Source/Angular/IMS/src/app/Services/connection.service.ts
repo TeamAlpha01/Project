@@ -156,7 +156,7 @@ export class ConnectionService {
   }
   
   GetUpcomingDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewUpcommingDrives', { headers: this.headers });
+    return this.http.get<any>(this.baseURL + 'Drive/ViewUpcomingDrives', { headers: this.headers });
   }
 
   GetUpcomingInterviews(): any {
