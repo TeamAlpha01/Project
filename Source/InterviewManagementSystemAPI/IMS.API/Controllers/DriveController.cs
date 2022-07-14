@@ -178,9 +178,9 @@ public class DriveController : ControllerBase
         {
             return Ok(_driveService.ViewUpcomingDrives());
         }
-        catch (Exception viewUpcommingDrivesException)
+        catch (Exception viewUpcomingDrivesException)
         {
-            _logger.LogInformation($"Drive Controller : ViewUpcommingDrives() : {viewUpcommingDrivesException.Message} : {viewUpcommingDrivesException.Message}");
+            _logger.LogInformation($"Drive Controller : ViewUpcomingDrives() : {viewUpcomingDrivesException.Message} : {viewUpcomingDrivesException.Message}");
             return Problem("Sorry internal error occured");
         }
 
@@ -209,6 +209,7 @@ public class DriveController : ControllerBase
         }
 
     }
+    
 
 
     /// <summary>
