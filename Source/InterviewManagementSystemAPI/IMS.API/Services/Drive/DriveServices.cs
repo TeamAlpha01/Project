@@ -413,6 +413,7 @@ namespace IMS.Service
                 return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
                 .Select(e => new
                 {
+                    DriveId=e.DriveId,
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     FromTime=e.From.ToShortTimeString(),
                     ToTime=e.To.ToShortTimeString(),

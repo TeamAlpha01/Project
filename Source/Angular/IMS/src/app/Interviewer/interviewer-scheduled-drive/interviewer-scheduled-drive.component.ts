@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class InterviewerScheduledDriveComponent implements OnInit {
   // drive: any;
-  title='Scheduled Interviews'
+  title = 'Scheduled Interviews'
   totalLength: any;
   page: number = 1;
 
@@ -23,45 +23,34 @@ export class InterviewerScheduledDriveComponent implements OnInit {
 
   driveDetails: any;
   poolDetails: any;
-  interviewerpoolDetails :any;
+  interviewerpoolDetails: any;
   showErrorMessage: boolean = false;
 
-  constructor(private connection :ConnectionService,private route: Router) { }
+  constructor(private connection: ConnectionService, private route: Router) { }
 
   ngOnInit(): void {
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
-      
-      for (let item of this.interviewerpoolDetails) {
-           this.drive.push(item);
-           }
     },
       (error: any) => {
         this.showErrorMessage = true;
-        console.warn("1");
-        console.warn(error);
-        if (error.status == 404) {
-          this.route.navigateByUrl("errorPage");
-        }
       })
-  
-      this.connection.GetScheduledInterviews().subscribe({
-        next: (data: any) => {
-          this.driveDetails = data;
-          for (let item of this.driveDetails) {
-            this.drive.push(item);
-          }
-        },
-        error: (error: any) => {
-          if (error.status == 404) {
-            this.route.navigateByUrl("errorPage");
-          }
+
+    this.connection.GetScheduledInterviews().subscribe({
+      next: (data: any) => {
+        this.driveDetails = data;
+        console.warn(this.driveDetails)
+        for (let item of this.driveDetails) {
+          this.drive.push(item);
         }
-      })
-    }
+      },
+      error: (error: any) => {
+       this.showErrorMessage=error.message
+      }
+    })
+  }
 
   filterDropdown() {
-
     //To filter cards based on the date and pool selection
     this.drive = [];
     for (let item of this.driveDetails) {

@@ -17,7 +17,7 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
   response: string = '';
   error: string = '';
 
-  constructor(private connection: ConnectionService, private service: ConnectionService, private route: ActivatedRoute, private Fb: FormBuilder, private location: Location, private router:Router) { }
+  constructor(private connection: ConnectionService, private service: ConnectionService, private route: ActivatedRoute, private Fb: FormBuilder, private location: Location) { }
 
   CancelInterviewForm: FormGroup = this.Fb.group({
     CancelInterviewReason: ['', Validators.required],
@@ -72,7 +72,7 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
     setTimeout(() => {
       this.response = '';
       this.CancelInterviewForm.reset();
-      this.router.navigateByUrl("/interviewer/home/upcomingDrives");
+      this.location.back();
     }, 1000);
 
   }
