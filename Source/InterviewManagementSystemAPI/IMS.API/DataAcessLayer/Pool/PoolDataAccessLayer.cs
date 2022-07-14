@@ -284,7 +284,7 @@ namespace IMS.DataAccessLayer
         private bool isPoolMemberValid(PoolMembers poolMembers)
         {
             var employee=_db.Employees.Include(e=>e.Role).FirstOrDefault(e=>e.EmployeeId==poolMembers.EmployeeId);
-            var pool =_db.Employees.Find(poolMembers.PoolId);
+            var pool =_db.Pools.Find(poolMembers.PoolId);
             if(employee==null || pool==null)
                 throw new ValidationException("Employee or pool not found with the given Employee Id and Pool Id");
                       

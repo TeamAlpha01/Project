@@ -98,7 +98,7 @@ namespace IMS.Service
             {
                 MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
                 PoolMembers? _poolMember = _mailDataAccessLayer.GetPoolMember(poolMemberId);
-                mailRequest.ToEmail = _mailDataAccessLayer.GetEmployeeEmail(_poolMember.EmployeeId);
+                mailRequest.ToEmail = _mailDataAccessLayer.GetEmployeeEmail(_poolMember!.EmployeeId);
                 mailRequest.Subject = "Removed From a Pool - Aspire Interview Management System";
                 mailRequest.Body = $"Hi, {_mailDataAccessLayer.GetEmployeeName(_poolMember.EmployeeId)}.\n\nYou have been removed from \"{_mailDataAccessLayer.GetPoolName(_poolMember.PoolId)}\" pool by TAC - {_mailDataAccessLayer.GetEmployeeName(tacId)}.\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
                 return mailRequest;
@@ -151,7 +151,7 @@ namespace IMS.Service
                 EmployeeAvailability ?employeeAvailability = _mailDataAccessLayer.GetEmployeeAvailability(employeeAvailabilityId);
                 mailRequest.ToEmail = _mailDataAccessLayer.GetEmployeeEmail(employeeAvailability!.EmployeeId);
                 mailRequest.Subject = "Interview Scheduled - Aspire Interview Management System";
-                mailRequest.Body = $"Hi, {_mailDataAccessLayer.GetEmployeeName(employeeAvailability.EmployeeId)}\n\nA Interview in \"{employeeAvailability.Drive.Name}\" Drive under \"{_mailDataAccessLayer.GetPoolName(employeeAvailability.Drive.PoolId)}\" pool has been scheduled from {employeeAvailability.From.TimeOfDay} to {employeeAvailability.To.TimeOfDay} on {employeeAvailability.InterviewDate.ToShortDateString()} by TAC - {_mailDataAccessLayer.GetEmployeeName(tacId)}.\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
+                mailRequest.Body = $"Hi, {_mailDataAccessLayer.GetEmployeeName(employeeAvailability.EmployeeId)}\n\nA Interview in \"{employeeAvailability.Drive!.Name}\" Drive under \"{_mailDataAccessLayer.GetPoolName(employeeAvailability.Drive.PoolId)}\" pool has been scheduled from {employeeAvailability.From.TimeOfDay} to {employeeAvailability.To.TimeOfDay} on {employeeAvailability.InterviewDate.ToShortDateString()} by TAC - {_mailDataAccessLayer.GetEmployeeName(tacId)}.\n\nThank you - Team Alpha.\n\nFor any Queries Please Contact : teamalpha731@gmail.com";
                 return mailRequest;
             }
             catch (Exception interviewScheduledException)
