@@ -8,17 +8,17 @@
             <div class="card-body">
                 <br>
                 <div>
-                    <h2 class="card-title" id="cancelinvitealign"><b>Drive Name : </b> {{Drives.driveName}}</h2>
+                    <h2 class="card-title" id="cancelinvitealign"><b>Drive Name : </b> {{Invites.driveName}}</h2>
                     <form [formGroup]="CancelInterviewForm" (ngSubmit)="CancellInterview()">
                         <div class="row rone mt-4">
                             <div class="col-md-6">
-                                <p><b>From Date : </b> {{Drives.fromDate|date:'dd-MM-yyyy'}}</p>
-                                <p><b>To Date : </b> {{Drives.toDate|date:'dd-MM-yyyy'}}</p>
-                                <p><b>Pool Name : </b>{{Drives.drivePool}}</p>
+                                <p><b>From Date : </b> {{Invites.fromDate|date:'dd-MM-yyyy'}}</p>
+                                <p><b>To Date : </b> {{Invites.toDate|date:'dd-MM-yyyy'}}</p>
+                                <p><b>Pool Name : </b>{{Invites.drivePool}}</p>
                             </div>
                             <div class="col-md-6">
-                                <p><b>Mode : </b> {{Drives.driveMode}}</p>
-                                <p><b>Location : </b> {{Drives.driveLocation}}</p>
+                                <p><b>Mode : </b> {{Invites.driveMode}}</p>
+                                <p><b>Location : </b> {{Invites.driveLocation}}</p>
                             </div>
                         </div>
                     <div>

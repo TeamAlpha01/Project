@@ -39,7 +39,7 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
 
     
       this.connection.GetAcceptedDrives().subscribe((data: any) => {
-        this.Drives = data;
+        this.Invites = data;
       })
   }
 
