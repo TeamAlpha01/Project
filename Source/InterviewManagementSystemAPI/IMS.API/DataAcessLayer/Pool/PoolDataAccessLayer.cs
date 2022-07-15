@@ -357,7 +357,7 @@ namespace IMS.DataAccessLayer
         {
             try
             {
-                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Employees.Role) where poolMember.PoolId==poolId && poolMember.IsActive ==true && poolMember.Employees.IsAdminAccepted==true select poolMember).ToList();
+                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Employees.Role) where poolMember.PoolId==poolId && poolMember.IsActive ==true && poolMember.Employees.IsAdminAccepted==true && poolMember.Employees.IsAdminResponded==true select poolMember).ToList();
 
                 //return _db.PoolMembers.ToList();
             }
