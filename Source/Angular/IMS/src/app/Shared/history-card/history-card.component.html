@@ -17,10 +17,10 @@
                             <p><b>Mode :</b> {{item.driveMode}} </p>
                             <p><b>Location :</b> {{item.driveLocation}} </p>
                         </div>   
-                        <div class="col-md-4" *ngIf="item.cancellationReason!==null">
-                            <p><b>Reason :</b> {{item.cancellationReason}} </p>
-                        </div>   
                     </div>
+                    <div class="col" *ngIf="item.cancellationReason">
+                        <p><b>Reason :</b> {{item.cancellationReason}} </p>
+                    </div>   
                 </div>
             </div>
         </div>
