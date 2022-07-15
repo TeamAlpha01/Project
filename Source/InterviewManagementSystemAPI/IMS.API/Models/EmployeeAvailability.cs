@@ -21,7 +21,9 @@ namespace IMS.Models
         public string? ToTime { get; set; }
         public bool? IsInterviewScheduled { get; set; }
         public bool? IsInterviewCancelled { get; set; }
+        [StringLength(40)]
         public string? CancellationReason { get; set; }
+        [StringLength(40)]
         public string? Comments { get; set; }
 
         [ForeignKey("DriveId")]

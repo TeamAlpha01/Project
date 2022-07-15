@@ -35,7 +35,7 @@ namespace IMS.Service
         public Object ViewAvailableMembersForDrive(int driveId);
         public  Object ViewEmployees(int departmentId);
         public Dictionary<string,int> ViewEmployeeDashboard(int employeeId,int departmentId,DateTime fromDate,DateTime toTime);
-        public List<Dictionary<string,int>>ViewEmployeePerformance(int employeeId,int departmentId,DateTime fromDate,DateTime toDate); 
+        public List<Object> ViewEmployeePerformance(int employeeId,int departmentId,DateTime fromDate,DateTime toDate); 
         public Object ViewTotalDrives(int employeeId,DateTime fromDate,DateTime toDate);
         public Object ViewAcceptedDrives(int employeeId,DateTime fromDate,DateTime toDate);
         public Object ViewDeniedDrives(int employeeId,DateTime fromDate,DateTime toDate);

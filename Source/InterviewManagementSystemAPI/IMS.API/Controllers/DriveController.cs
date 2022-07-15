@@ -722,7 +722,6 @@ public class DriveController : ControllerBase
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             int departmentId=Convert.ToInt32(User.FindFirst("DepartmentId")?.Value);
-
             return Ok(_driveService.ViewEmployeePerformance(employeeId,departmentId, fromDate, toDate));
         }
         catch (ValidationException ViewEmployeeDashboardNotValid)

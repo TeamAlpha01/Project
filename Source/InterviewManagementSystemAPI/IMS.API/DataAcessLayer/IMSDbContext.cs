@@ -111,7 +111,8 @@ namespace IMS.DataAccessLayer
                       new Location { LocationId = 6, LocationName = "Hyderabad", IsActive = true },
                       new Location { LocationId = 7, LocationName = "Kochin", IsActive = true },
                       new Location { LocationId = 8, LocationName = "Coimbatore", IsActive = true },
-                      new Location { LocationId = 9, LocationName = "Not Applicable", IsActive = true }
+                      new Location { LocationId = 9, LocationName = "Online", IsActive = true}
+                      
                       );
             modelBuilder.Entity<Pool>()
                     .HasData(

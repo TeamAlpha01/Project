@@ -345,10 +345,11 @@ namespace IMS.DataAccessLayer
                 throw;
             }
         }
-        public List<int> GetEmployee(int departmentId)
+        public List<Employee> GetEmployee(int departmentId)
         {
             try{
-                return(from employees in _db.Employees where employees.DepartmentId==departmentId && employees.IsActive==true select employees.EmployeeId).ToList();
+                
+                return (from employee in _db.Employees.Include(d => d.Role) where employee.DepartmentId == departmentId && employee.IsActive == true select employee).ToList();
                 
             }
             catch(Exception e)
