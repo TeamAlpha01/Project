@@ -39,8 +39,8 @@
                         <p ><b>Response : </b> {{item.response}}</p>
                     </div>
                     <div class="col-md-4">
-                        <p ><b>From Date : </b> {{item.fromDate}}</p>
-                        <p ><b>To Date : </b> {{item.toDate}}</p>
+                        <p ><b>From Date : </b> {{item.fromDate|date:'dd-MM-yyyy'}}</p>
+                        <p ><b>To Date : </b> {{item.toDate|date:'dd-MM-yyyy'}}</p>
                     </div>
                     <div class="col-md-4">
                         <p ><b>Mode : </b> {{item.driveMode}}</p>
