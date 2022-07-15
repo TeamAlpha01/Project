@@ -10,7 +10,7 @@ namespace IMS.Validations
         {
             if(roleName==null) throw new ValidationException("Role name cannot be null");
             // if(roleName.Length<2) throw new ValidationException("role name is too short");
-            if(!Regex.IsMatch(roleName,@"^[a-zA-Z ]{3,20}$")) throw new ValidationException("Role Name must be alphabets and of lenght of 3 to 15.");
+            if(!Regex.IsMatch(roleName,@"^(?!.*([ ])\1)(?!.*([A-Za-z])\2{2})\w[a-zA-Z\s]*$")) throw new ValidationException("Role Name must be alphabets and of lenght of 3 to 15.");
         
         }
         public static void IsRoleValid(Role role)

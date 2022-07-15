@@ -47,6 +47,7 @@ namespace IMS.Validations
             if(reason.Length<=5) throw new ValidationException($"{reason} : This reason is too short");
             if(String.IsNullOrWhiteSpace(reason)) throw new ValidationException("reason cannot contain only whitespaces");
             if(!Regex.IsMatch(reason,"[a-zA-Z0-9]")) throw new ValidationException($"{reason} : reason cannot contain only symbols");
+
         }
         public static void IsDriveIdValid(int driveId)
         {
