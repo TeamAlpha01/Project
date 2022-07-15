@@ -28,7 +28,7 @@ export class RegisterPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.registerForm = this.FB.group({
-      Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("^[A-Za-z ]+$")]],
+      Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")]],
       ACENumber: ['', [Validators.required, Validators.pattern("^[ACE]+[\\d]{4}$")]],
       Department: ['', [Validators.required]],
       Role: ['', [Validators.required]],
