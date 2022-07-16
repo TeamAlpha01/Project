@@ -9,14 +9,14 @@
                 <div class="form-input">
                     <label class="form-label" for="EmailID">Email ID</label>
                     <input
-                        [class.is-invalid]="(error.toString().includes('mail')||submitted && loginForm.controls['Email ID'].invalid)||loginForm.controls['Email ID'].invalid && loginForm.controls['Email ID'].touched"
-                        id="Email ID" type="text" placeholder="Email ID" formControlName="Email ID" class="form-control">
+                        [class.is-invalid]="(error.toString().includes('mail')||submitted && loginForm.controls['EmailID'].invalid)||loginForm.controls['EmailID'].invalid && loginForm.controls['EmailID'].touched"
+                        id="EmailID" type="text" placeholder="Email ID" formControlName="EmailID" class="form-control">
                 </div>
                 <div
-                    *ngIf="(submitted)||loginForm.controls['Email ID'].invalid && loginForm.controls['Email ID'].touched">
-                    <span class="text-danger" *ngIf="loginForm.controls['Email ID'].errors?.['required']">Email ID is
+                    *ngIf="(submitted)||loginForm.controls['EmailID'].invalid && loginForm.controls['EmailID'].touched">
+                    <span class="text-danger" *ngIf="loginForm.controls['EmailID'].errors?.['required']">Email ID is
                         required</span>
-                    <span class="text-danger" *ngIf="loginForm.controls['Email ID'].errors?.['pattern']">Please enter a
+                    <span class="text-danger" *ngIf="loginForm.controls['EmailID'].errors?.['pattern']">Please enter a
                         valid email with aspire domain</span>
                     <span *ngIf="error.toString().includes('ACE')" class="text-danger">{{error}}</span>
                 </div>
