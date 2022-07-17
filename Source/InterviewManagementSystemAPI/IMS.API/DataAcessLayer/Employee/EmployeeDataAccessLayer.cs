@@ -183,7 +183,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return  _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project).ToList();;
+                return  _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project).Where(employee=>employee.IsActive==true && employee.IsAdminAccepted==true).ToList();;
 
 
             }
