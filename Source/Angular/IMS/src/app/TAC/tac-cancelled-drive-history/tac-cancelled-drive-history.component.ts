@@ -37,7 +37,7 @@ export class TacCancelledDriveHistoryComponent implements OnInit {
     this.GetPools();
     this.GetDepartments();
   }
-  
+
   GetCancelledDrives() {
     this.connection.GetCancelledDrives().subscribe({
       next: (data: any) => {
@@ -59,7 +59,7 @@ export class TacCancelledDriveHistoryComponent implements OnInit {
 
   GetDepartments() {
     this.connection.GetDepartments().subscribe({
-      next: (data: any) => this.driveDetails = data,
+      next: (data: any) => this.departmentDetails = data,
       error: (error: any) => this.error = error.error.message,
     });
   }
