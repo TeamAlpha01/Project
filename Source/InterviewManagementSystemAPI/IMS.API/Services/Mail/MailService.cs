@@ -8,6 +8,7 @@ using MailKit.Security;
 using IMS.DataAccessLayer;
 using System.Net.Mail;
 using IMS.CustomExceptions;
+using System.Diagnostics;
 
 namespace IMS.Service
 {
@@ -17,6 +18,9 @@ namespace IMS.Service
         private readonly MailSettings _mailSettings;
         private ILogger<MailService> _logger;
         private IMailDataAccessLayer _mailDataAccessLayer;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
         public MailService(ILogger<MailService> logger, IOptions<MailSettings> mailSettings,IMailDataAccessLayer mailDataAccessLayer)
         {
             _logger = logger;
@@ -26,6 +30,7 @@ namespace IMS.Service
 
         public async Task SendEmailAsync(MailRequest mailRequest, bool isSingleMail)
         {
+            _stopwatch.Start();
             try
             {
                 var email = new MimeMessage();
@@ -58,9 +63,15 @@ namespace IMS.Service
                 _logger.LogInformation($"Exception at Mail Service : SendEmailAsync(MailRequest mailRequest, bool isSingleMail) : {sendEmailAsyncException.Message} : {sendEmailAsyncException.StackTrace}");
                 throw new MailException("Error Occured While Sending Mail");
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Mail Service Time elapsed for  SendEmailAsync(MailRequest mailRequest, bool isSingleMail) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public MailRequest WelcomeEmployeeMail(string newEmployeeMailId, string newEmployeeName)
         {
+            _stopwatch.Start();
             try
             {
                 MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
@@ -74,10 +85,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Exception at Mail Service : WelcomeEmployeeMail(string newEmployeeMailId, string newEmployeeName) : {welcomeEmployeeMailException.Message} : {welcomeEmployeeMailException.StackTrace}");
                 throw new MailException("Error Occured While Sending Mail");
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Mail Service Time elapsed for  WelcomeEmployeeMail(string newEmployeeMailId, string newEmployeeName) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public MailRequest AddedEmployeeToPool(int employeeId, int poolId, int tacId)
         {
+            _stopwatch.Start();
             try
             {
                 MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
@@ -91,9 +108,15 @@ namespace IMS.Service
                 _logger.LogInformation($"Exception at Mail Service : AddedEmployeeToPool(int employeeId, int poolId, int tacId) : {addedEmployeeToPoolException.Message} : {addedEmployeeToPoolException.StackTrace}");
                 throw new MailException("Error Occured While Sending Mail");
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Mail Service Time elapsed for  AddedEmployeeToPool(int employeeId, int poolId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public MailRequest RemovedEmployeeFromPool(int poolMemberId, int tacId)
         {
+            _stopwatch.Start();
             try
             {
                 MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
@@ -108,9 +131,15 @@ namespace IMS.Service
                 _logger.LogInformation($"Exception at Mail Service : RemovedEmployeeFromPool(int poolMemberId, int tacId) : {removedEmployeeFromPoolException.Message} : {removedEmployeeFromPoolException.StackTrace}");
                 throw new MailException("Error Occured While Sending Mail");
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Mail Service Time elapsed for RemovedEmployeeFromPool(int poolMemberId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public MailRequest DriveInvites(Drive drive, int tacId)
         {
+            _stopwatch.Start();
             try
             {
                 MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
@@ -124,9 +153,15 @@ namespace IMS.Service
                 _logger.LogInformation($"Exception at Mail Service : DriveInvites(Drive drive, int tacId) : {driveInvitesException.Message} : {driveInvitesException.StackTrace}");
                 throw new MailException("Error Occured While Sending Mail");
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Mail Service Time elapsed for  DriveInvites(Drive drive, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public MailRequest DriveCancelled(int driveId, int tacId)
         {
+            _stopwatch.Start();
             try
             {
                 MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
@@ -141,10 +176,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Exception at Mail Service : DriveCancelled(int driveId, int tacId) : {driveCancelledException.Message} : {driveCancelledException.StackTrace}");
                 throw new MailException("Error Occured While Sending Mail");
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Mail Service Time elapsed for  DriveCancelled(int driveId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public MailRequest InterviewScheduled(int employeeAvailabilityId, int tacId)
         {
+            _stopwatch.Start();
             try
             {
                 MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
@@ -159,10 +200,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Exception at Mail Service : InterviewScheduled(int employeeAvailabilityId, int tacId) : {interviewScheduledException.Message} : {interviewScheduledException.StackTrace}");
                 throw new MailException("Error Occured While Sending Mail");
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Mail Service Time elapsed for  InterviewScheduled(int employeeAvailabilityId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public MailRequest InterviewCancelled(int employeeAvailabilityId)
         {
+            _stopwatch.Start();
             try
             {
                 MailRequest mailRequest = DataFactory.MailDataFactory.GetMailRequestObject();
@@ -176,6 +223,11 @@ namespace IMS.Service
             {
                 _logger.LogInformation($"Exception at Mail Service : InterviewCancelled(int employeeAvailabilityId) : {interviewCancelledException.Message} : {interviewCancelledException.StackTrace}");
                 throw new MailException("Error Occured While Sending Mail");
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Mail Service Time elapsed for  InterviewCancelled(int employeeAvailabilityId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
     }

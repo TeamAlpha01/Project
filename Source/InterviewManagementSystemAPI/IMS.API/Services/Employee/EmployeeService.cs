@@ -4,6 +4,7 @@ using IMS.Validations;
 using IMS.DataFactory;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace IMS.Service
 {
@@ -13,6 +14,9 @@ namespace IMS.Service
         private IDepartmentDataAccessLayer _departmentDataAccessLayer;
         private IRoleDataAccessLayer _roleDataAccessLayer;
         private ILogger _logger;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
 
         public EmployeeService(ILogger<IEmployeeService> logger, IEmployeeDataAccessLayer employeeDataAccessLayer, IDepartmentDataAccessLayer departmentDataAccessLayer, IRoleDataAccessLayer roleDataAccessLayer)
         {
@@ -34,6 +38,7 @@ namespace IMS.Service
 
         public bool CreateNewEmployee(Employee employee)
         {
+            _stopwatch.Start();
             EmployeeValidation.IsEmployeeValid(employee);
             _departmentDataAccessLayer.CheckDepartmentId(employee.DepartmentId);
             _roleDataAccessLayer.CheckRoleId(employee.RoleId);
@@ -52,6 +57,11 @@ namespace IMS.Service
                 _logger.LogError($"Employee Service : CreateEmployee() : {exception.Message}");
                 throw exception;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee Service Time elapsed for  CreateNewEmployee(Employee employee) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /// <summary>
@@ -66,6 +76,7 @@ namespace IMS.Service
 
         public bool RemoveEmployee(int employeeId)
         {
+            _stopwatch.Start();
             // if (employeeId <= 0)
             //     throw new ValidationException("Employee Id is not provided");
 
@@ -90,6 +101,12 @@ namespace IMS.Service
                 _logger.LogError($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
                 throw exception;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee Service Time elapsed for RemoveEmployee(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         /// <summary>
         /// This method will implemented when EmployeeController passes the request to this method,then this method calls the GetEmployeesFromDatabase method in DAL.
@@ -100,6 +117,7 @@ namespace IMS.Service
         /// </returns>
         public Object ViewEmployees()
         {
+            _stopwatch.Start();
             try
             {
                 return  _employeeDataAccessLayer.GetEmployeesFromDatabase().
@@ -119,6 +137,11 @@ namespace IMS.Service
                 _logger.LogError($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee Service Time elapsed for  ViewEmployees() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         /// <summary>
         /// This method implements when EmployeeController passes the request to this method,then this method calls ViewProfile method in DAL.
@@ -131,6 +154,7 @@ namespace IMS.Service
 
         public object ViewProfile(int employeeId)
         {
+            _stopwatch.Start();
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
@@ -156,6 +180,11 @@ namespace IMS.Service
                 _logger.LogError($"Employee Service : ViewProfile(int employeeId) : {viewEmployeeException.Message} : {viewEmployeeException.StackTrace}");
                 throw viewEmployeeException;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee Service Time elapsed for  ViewProfile(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         /// <summary>
         /// This method will implemented when EmployeeController passes the request to this method,then this method calls the GetEmployeesFromDatabase method in DAL.
@@ -167,6 +196,7 @@ namespace IMS.Service
         /// </returns>
         public Object ViewEmployeesByDepartment(int departmentId)
         {
+            _stopwatch.Start();
             EmployeeValidation.IsDepartmentValid(departmentId);
             _departmentDataAccessLayer.CheckDepartmentId(departmentId);
 
@@ -193,8 +223,13 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogError($"Employee service : RemoveEmployee(int employeeId) : Exception occured in DAL :{exception.Message}");
+                _logger.LogError($"Employee service : ViewEmployeesByDepartment(int employeeId) : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee Service Time elapsed for ViewEmployeesByDepartment(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
             // try
@@ -220,6 +255,7 @@ namespace IMS.Service
         /// </returns>
         public IEnumerable<Employee> ViewEmployeeByApprovalStatus(bool isAdminAccepted)
         {
+            _stopwatch.Start();
             try
             {
                 IEnumerable<Employee> employees = new List<Employee>();
@@ -229,6 +265,11 @@ namespace IMS.Service
             {
                 _logger.LogError($"Employee service : ViewEmployeeByApprovalStatus : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee Service Time elapsed for  ViewEmployeeByApprovalStatus(bool isAdminAccepted) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -241,6 +282,7 @@ namespace IMS.Service
 
         public object ViewEmployeeRequest()
         {
+            _stopwatch.Start();
             try
             {
                 return  _employeeDataAccessLayer.GetEmployeesRequestFromDatabase()
@@ -259,9 +301,15 @@ namespace IMS.Service
                 _logger.LogError($"Employee service : ViewTACRequest : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee Service Time elapsed for  ViewEmployeeRequest() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public bool Login(string employeeAceNumber, string password)
         {
+            _stopwatch.Start();
             try
             {
                 return true;
@@ -272,10 +320,16 @@ namespace IMS.Service
                 _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
                 throw exception;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee Service Time elapsed for Login(string employeeAceNumber, string password)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public bool RespondEmployeeRequest(int employeeId, bool response)
         {
+            _stopwatch.Start();
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
@@ -290,6 +344,11 @@ namespace IMS.Service
             {
                 _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
                 throw exception;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee Service Time elapsed for  RespondEmployeeRequest(int employeeId, bool response) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
     }

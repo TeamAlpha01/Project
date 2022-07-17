@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Diagnostics;
 
 namespace IMS.Service
 {
@@ -16,6 +17,9 @@ namespace IMS.Service
         private IEmployeeDataAccessLayer _employeeDataAccessLayer;
         private ILogger<TokenService> _logger;
         private IConfiguration _configuration;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
 
         public TokenService(ILogger<TokenService> logger, IConfiguration configuration, IEmployeeDataAccessLayer employeeDataAccessLayer)
         {
@@ -26,6 +30,7 @@ namespace IMS.Service
 
         public object AuthToken(string employeeMail, string password)
         {
+            _stopwatch.Start();
             Validations.EmployeeValidation.IsValidCredentials(employeeMail,password);
             try
             {
@@ -79,6 +84,11 @@ namespace IMS.Service
             {
                 _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
                 throw exception;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"token Service Time elapsed for  AuthToken(string employeeMail, string password) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 

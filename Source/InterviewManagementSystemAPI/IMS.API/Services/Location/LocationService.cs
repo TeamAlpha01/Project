@@ -3,6 +3,7 @@ using IMS.Validations;
 using IMS.DataAccessLayer;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Diagnostics;
 namespace IMS.Service
 {
     public class LocationService : ILocationServices
@@ -10,6 +11,9 @@ namespace IMS.Service
         private ILocationDataAccessLayer _locationDataAccessLayer;
         
         private readonly ILogger _logger;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
         public LocationService(ILogger<LocationService> logger,ILocationDataAccessLayer dataAccessLayer)
         {
             _logger = logger;
@@ -25,6 +29,7 @@ namespace IMS.Service
         public bool CreateLocation(string locationName)
 
         {
+            _stopwatch.Start();
             LocationValidation.IsLocationNameValid(locationName);
 
             try
@@ -49,6 +54,11 @@ namespace IMS.Service
                 _logger.LogError($"Location service : CreateLocation(string locationName) : {exception.Message}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Location Service Time elapsed for  CreateLocation(string locationName) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -61,6 +71,7 @@ namespace IMS.Service
 
         public bool RemoveLocation(int locationId)
         {
+            _stopwatch.Start();
             LocationValidation.IsLocationIdValid(locationId);
 
             try
@@ -82,6 +93,11 @@ namespace IMS.Service
                 _logger.LogError($"Location service : RemoveLocation(int locationId) :{exception.Message}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Location Service Time elapsed for  RemoveLocation(int locationId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /// <summary>
@@ -90,6 +106,7 @@ namespace IMS.Service
         /// <returns>Returns List of locations otherwise Throws Exception when Exception occured in DAL while fetching roles</returns>
         public IEnumerable<Location> ViewLocations()
         {
+            _stopwatch.Start();
             try
             {
                 IEnumerable<Location> locations = new List<Location>();
@@ -99,6 +116,11 @@ namespace IMS.Service
             {
                 _logger.LogError($"Location service:ViewLocations(): {exception.Message}");
                 throw new Exception();
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Location Service Time elapsed for  ViewLocations() :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }

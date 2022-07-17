@@ -3,6 +3,7 @@ using IMS.Validations;
 using IMS.DataAccessLayer;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Diagnostics;
 namespace IMS.Service
 {
     public class PoolService : IPoolService
@@ -10,6 +11,9 @@ namespace IMS.Service
         private IPoolDataAccessLayer _poolDataAccessLayer;
 
         private readonly ILogger _logger;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
 
         public PoolService(ILogger<IPoolService> logger,IPoolDataAccessLayer poolDataAccessLayer)
         {
@@ -26,6 +30,7 @@ namespace IMS.Service
         public bool CreatePool(int departmentId, string poolName)
 
         {
+            _stopwatch.Start();
             Pool _pool = DataFactory.PoolDataFactory.GetPoolObject();
             PoolValidation.IsCreatePoolValid(departmentId, poolName);
 
@@ -53,7 +58,12 @@ namespace IMS.Service
                 _logger.LogError($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
                 return false;
             }
-
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool Service Time elapsed for  CreatePool(int departmentId, string poolName) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -64,6 +74,7 @@ namespace IMS.Service
         /// <returns>Return True or False to the Pool Controller Layer</returns>
         public bool RemovePool(int poolId)
         {
+            _stopwatch.Start();
             PoolValidation.IsRemovePoolValid(poolId);
 
             try
@@ -86,6 +97,12 @@ namespace IMS.Service
                 _logger.LogError($"Pool service : RemovePool(int poolId):{exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool Service Time elapsed for  RemovePool(int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -97,6 +114,7 @@ namespace IMS.Service
         /// <returns>>Return True or False to the Pool Controller Layer</returns>
         public bool EditPool(int poolId, string poolName)
         {
+            _stopwatch.Start();
             PoolValidation.IsEditPoolValid(poolId, poolName);
 
 
@@ -119,6 +137,12 @@ namespace IMS.Service
                 _logger.LogError($"Pool service : EditPool(int poolId,string poolName):{exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool Service Time elapsed for  EditPool(int poolId, string poolName) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         
 
@@ -128,6 +152,7 @@ namespace IMS.Service
         /// <returns>Returns list of pools</returns>
         public object ViewPools()
         {
+            _stopwatch.Start();
             try
             {
                 return _poolDataAccessLayer.GetPoolsFromDatabase().Select(
@@ -149,6 +174,12 @@ namespace IMS.Service
                 _logger.LogError($"Pool Service:ViewPools(int departmentId): {exception.Message}");
                 throw new Exception();
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool Service Time elapsed for  ViewPools() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         /// <summary>
         /// /// This method will be implemented when Pool Controller Passes the Employee Id to the service Layer to view pools by employee id. And controll Shifts to Pool DAL.
@@ -157,6 +188,7 @@ namespace IMS.Service
         /// <returns>Returns list of pool by employee id</returns>
         public object ViewPoolsByID(int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                  return _poolDataAccessLayer.GetPoolsFromDatabase(employeeId).Select(
@@ -177,6 +209,12 @@ namespace IMS.Service
                 _logger.LogError($"Pool Service:ViewPools(int departmentId): {exception.Message}");
                 throw new Exception();
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool Service Time elapsed for  ViewPoolsByID(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
        
         /// <summary>
@@ -188,6 +226,7 @@ namespace IMS.Service
 
         public bool AddPoolMember(int employeeId, int poolId)
         {
+            _stopwatch.Start();
             PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
             PoolValidation.IsAddPoolMembersValid(employeeId, poolId);
 
@@ -214,6 +253,12 @@ namespace IMS.Service
                 _logger.LogError($"Pool service : AddPoolMembers(int employeeId,int poolId) : {exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool Service Time elapsed for  AddPoolMember(int employeeId, int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -224,6 +269,7 @@ namespace IMS.Service
         /// <returns>Return true or false for the Pool controller</returns>
         public bool RemovePoolMember(int poolMemberId)
         {
+            _stopwatch.Start();
             PoolValidation.IsRemovePoolMembersValid(poolMemberId);
 
             try
@@ -246,6 +292,12 @@ namespace IMS.Service
                 _logger.LogError($"Pool service : RemoveLocation(int departmentId,int poolId):{exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool Service Time elapsed for  RemovePoolMember(int poolMemberId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -257,6 +309,7 @@ namespace IMS.Service
         
         public Object ViewPoolMembers(int poolId)
         {
+            _stopwatch.Start();
             PoolValidation.IsPoolIdValid(poolId);
        
         try
@@ -284,6 +337,11 @@ namespace IMS.Service
             {
                 _logger.LogError($"Pool Service:ViewPoolMembers(int poolId): {exception.Message}");
                 throw new Exception();
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool Service Time elapsed for  ViewPoolMembers(int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 

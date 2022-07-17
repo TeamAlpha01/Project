@@ -2,6 +2,7 @@ using IMS.Models;
 using IMS.DataAccessLayer;
 using System.ComponentModel.DataAnnotations;
 using IMS.Validations;
+using System.Diagnostics;
 
 namespace IMS.Service
 {
@@ -10,6 +11,9 @@ namespace IMS.Service
         private IDriveDataAccessLayer _driveDataAccess;
         private ILogger _logger;
         private IConfiguration _configuration;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
 
         public DriveService(ILogger<DriveService> logger, IDriveDataAccessLayer driveDataAccessLayer, IConfiguration configuration)
         {
@@ -20,6 +24,7 @@ namespace IMS.Service
 
         public bool CreateDrive(Drive drive)
         {
+            _stopwatch.Start();
             DriveValidation.IsdriveValid(drive, _configuration);
             try
             {
@@ -35,9 +40,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : CreateDrive() : {createDrivexception.Message} : {createDrivexception.StackTrace}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  CreateDrive(Drive drive) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public bool CancelDrive(int driveId, int tacId, string reason)
         {
+            _stopwatch.Start();
             DriveValidation.IsCancelDriveValid(driveId, tacId, reason);
 
             try
@@ -54,11 +66,18 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : CancelDrive() : {cancelDriveException.Message} : {cancelDriveException.StackTrace}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  CancelDrive(int driveId, int tacId, string reason) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
         public Object ViewTodayDrives()
         {
+            _stopwatch.Start();
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(false) where (drive.FromDate.Date <= System.DateTime.Now.Date && drive.ToDate.Date >= System.DateTime.Now.Date) && drive.IsScheduled == true select drive).ToList()
@@ -80,11 +99,18 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewTodayDrives() : {viewTodayDrivesException.Message} : {viewTodayDrivesException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewTodayDrives() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
         public Object ViewScheduledDrives()
         {
+            _stopwatch.Start();
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date > System.DateTime.Now.Date && drive.IsScheduled == true select drive).ToList()
@@ -106,11 +132,18 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewScheduledDrives() : {viewScheduledDrivesException.Message} : {viewScheduledDrivesException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewScheduledDrives() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
         public Object ViewUpcomingDrives()
         {
+            _stopwatch.Start();
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).ToList()
@@ -132,11 +165,18 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewUpcommingDrives() : {viewUpcommingDrivesException.Message} : {viewUpcommingDrivesException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewUpcomingDrives() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
         public Object ViewNonCancelledDrives(int tacId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(false).Where(d => d.AddedBy == tacId) select drive).ToList()
@@ -158,10 +198,17 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewAllScheduledDrives() : {viewAllScheduledDrivesException.Message} : {viewAllScheduledDrivesException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewNonCancelledDrives(int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public Object ViewAllCancelledDrives(int tacId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from drive in _driveDataAccess.GetDrivesByStatus(true).Where(d => d.AddedBy == tacId) select drive).ToList()
@@ -184,10 +231,17 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewAllCancelledDrives() : {viewAllCancelledDrivesException.Message} : {viewAllCancelledDrivesException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewAllCancelledDrives(int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public Dictionary<string, int> ViewTACDashboard(int employeeId)
         {
+            _stopwatch.Start();
             DriveValidation.IsEmployeeIdValid(employeeId);
             try
             {
@@ -201,14 +255,28 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewDashboard() : {viewTACDashboardException.Message} : {viewTACDashboardException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewTACDashboard(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         private int DriveCountForTacByStatus(bool status, int employeeId)
         {
+            _stopwatch.Start();
             return (from drive in _driveDataAccess.GetDrivesByStatus(status) where drive.AddedBy == employeeId select drive).Count();
+         
+           /** finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  DriveCountForTacByStatus(bool status, int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }    **/  
         }
 
         public Object ViewDrive(int driveId)
         {
+            _stopwatch.Start();
             DriveValidation.IsDriveIdValid(driveId);
 
             try
@@ -240,11 +308,18 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewDrive(int driveId) : {viewDriveException.Message} : {viewDriveException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewDrive(int driveId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         //For Employee Drive Response Entity
         public bool AddResponse(EmployeeDriveResponse response)
         {
+            _stopwatch.Start();
             Validations.EmployeeResponseValidation.IsResponseValid(response);
 
             try
@@ -262,6 +337,12 @@ namespace IMS.Service
             {
                 _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {viewDriveInvitesException.Message}");
                 throw;
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  AddResponse(EmployeeDriveResponse response) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -285,6 +366,7 @@ namespace IMS.Service
         // }
         public object ViewDriveInvites(int employeeId)
         {
+            _stopwatch.Start();
             Validations.EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
@@ -319,12 +401,19 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"EmployeeDriveResponse Service : AddResponse(EmployeeDriveResponse response) : {exception.Message}");
+                _logger.LogInformation($"EmployeeDriveResponse Service : ViewDriveInvites(int employeeId) : {exception.Message}");
                 throw;
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewDriveInvites(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         private List<int> GetEmployeePoolIds(int employeeId)
         {
+            _stopwatch.Start();
             Validations.EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
@@ -340,11 +429,18 @@ namespace IMS.Service
                 _logger.LogInformation($"EmployeeDriveResponse Service :  GetEmployeePoolIds(int employeeId) : {getEmployeePoolIdsException.Message}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  GetEmployeePoolIds(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         //For Employee Availability Entity
         public bool SetTimeSlot(EmployeeAvailability employeeAvailability)
         {
+            _stopwatch.Start();
             Validations.EmployeeAvailabilityValidation.IsAvailabilityValid(employeeAvailability);
             try
             {
@@ -360,9 +456,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service :SetTimeSlot(EmployeeAvailability employeeAvailability) : {setTimeSlotException.Message} : {setTimeSlotException.StackTrace}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  SetTimeSlot(EmployeeAvailability employeeAvailability) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public Object ViewAvailabilty(int employeeId, int driveId)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.ViewAvailability(employeeId, driveId).Select(e => new
@@ -377,12 +480,19 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Drive Service : ViewAvailability(employeeId) : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Drive Service : ViewAvailabilty(int employeeId, int driveId) : {exception.Message} : {exception.StackTrace}");
                 throw;
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewAvailabilty(int employeeId, int driveId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public Object ViewTodayInterviews(int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date == System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
@@ -405,9 +515,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewTodayInterviews() : {viewTodayInterviews.Message} : {viewTodayInterviews.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewTodayInterviews(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public Object ViewScheduledInterview(int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
@@ -432,9 +549,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewScheduledInterview() : {viewScheduledInterviewException.Message} : {viewScheduledInterviewException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewScheduledInterview(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public Object ViewCancelledInterview(int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from interviews in _driveDataAccess.ViewCancelledInterview(true, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
@@ -455,13 +579,20 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogInformation($"Drive Service : ViewScheduledInterview() : {exception.Message} : {exception.StackTrace}");
+                _logger.LogInformation($"Drive Service : ViewCancelledInterview(int employeeId) : {exception.Message} : {exception.StackTrace}");
                 throw;
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewCancelledInterview(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
         public Object ViewUpcomingInterview(int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == false select interviews)
@@ -486,9 +617,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewUpcomingInterview() : {viewUpcomingInterview.Message} : {viewUpcomingInterview.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewUpcomingInterview(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public Object ViewAllInterview(int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                 return ((from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) select interviews).Concat((from interviews in _driveDataAccess.ViewInterviewsByStatus(true, employeeId) select interviews)))
@@ -509,11 +647,18 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewAllInterview() : {viewAllInterview.Message} : {viewAllInterview.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewAllInterview(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
         public bool ScheduleInterview(int employeeAvailabilityId)
         {
+            _stopwatch.Start();
             Validations.EmployeeAvailabilityValidation.IsAvailabilityIdValid(employeeAvailabilityId);
             try
             {
@@ -529,10 +674,17 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ScheduleInterview(int employeeAvailabilityId) : {scheduleInterviewException.Message} : {scheduleInterviewException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ScheduleInterview(int employeeAvailabilityId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.CancelInterview(employeeAvailabilityId, cancellationReason, comments);
@@ -547,9 +699,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : CancelInterview(int employeeAvailabilityId) : {cancelInterviewException.Message} : {cancelInterviewException.StackTrace}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public Object ViewAvailableMembersForDrive(int driveId)
         {
+            _stopwatch.Start();
             //Drive Id validation
             try
             {
@@ -578,10 +737,17 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewAvailableMembersForDrive(int driveId) : {viewAvailableMembersForDriveException.Message} : {viewAvailableMembersForDriveException.StackTrace}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewAvailableMembersForDrive(int driveId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
         public Object ViewEmployees(int departmentId)
         {
+            _stopwatch.Start();
             try
             {
 
@@ -593,10 +759,17 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewEmployees(int departmentId) : {viewDefaultersException.Message} : {viewDefaultersException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewEmployees(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public Dictionary<string, int> ViewEmployeeDashboard(int employeeId, int departmentId, DateTime fromDate, DateTime toDate)
         {
+            _stopwatch.Start();
             try
             {
 
@@ -621,10 +794,17 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewEmployeeDashboard(int employeeId) : {viewEmployeeDashboardException.Message} : {viewEmployeeDashboardException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewEmployeeDashboard(int employeeId, int departmentId, DateTime fromDate, DateTime toDate) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         
         public List<object> ViewEmployeePerformance(int employeeId, int departmentId, DateTime fromDate, DateTime toDate)
         {
+            _stopwatch.Start();
             List<Employee> employee = _driveDataAccess.GetEmployee(departmentId);
 
             var count = new Dictionary<string, int>();
@@ -649,7 +829,12 @@ namespace IMS.Service
 
             }
             return ViewEmployeePerformance;
-
+           
+          /**  finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewEmployeePerformance(int employeeId, int departmentId, DateTime fromDate, DateTime toDate) :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
         // private object GetEmployee(int departmentId)
         // {
@@ -678,6 +863,7 @@ namespace IMS.Service
 
         public Object ViewTotalDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Concat(_driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate)).Concat(_driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate)).Select(d => new
@@ -698,10 +884,17 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewTotalDrives(int employeeId) : {viewTotalDrivesException.Message} : {viewTotalDrivesException.StackTrace}");
                 throw viewTotalDrivesException;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewTotalDrives(int employeeId, DateTime fromDate, DateTime toDate) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
         public Object ViewAcceptedDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d => new
@@ -722,9 +915,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewAcceptedDrives() : {viewAcceptedDrivesException.Message} : {viewAcceptedDrivesException.StackTrace}");
                 throw viewAcceptedDrivesException;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewAcceptedDrives(int employeeId, DateTime fromDate, DateTime toDate) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public Object ViewDeniedDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate).Select(d => new
@@ -745,9 +945,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewDeniedDrives() : {viewDeniedDrivesException.Message} : {viewDeniedDrivesException.StackTrace}");
                 throw viewDeniedDrivesException;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewDeniedDrives(int employeeId, DateTime fromDate, DateTime toDate) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public Object ViewIgnoredDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate).Select(d => new
@@ -765,13 +972,20 @@ namespace IMS.Service
             }
             catch (Exception viewIgnoredDrivesException)
             {
-                _logger.LogInformation($"Drive Service : ViewDeniedDrives() : {viewIgnoredDrivesException.Message} : {viewIgnoredDrivesException.StackTrace}");
+                _logger.LogInformation($"Drive Service : ViewIgnoredDrives(int employeeId, DateTime fromDate, DateTime toDate) : {viewIgnoredDrivesException.Message} : {viewIgnoredDrivesException.StackTrace}");
                 throw viewIgnoredDrivesException;
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewIgnoredDrives(int employeeId, DateTime fromDate, DateTime toDate) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
         public Object ViewUtilizedInterviews(int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Select(e => new
@@ -793,9 +1007,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : UtilizedInterviews(int employeeId) : {utilizedInterviewsException.Message} : {utilizedInterviewsException.StackTrace}");
                 throw utilizedInterviewsException;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewUtilizedInterviews(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public Object ViewNotUtilizedInterviews(int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Select(e => new
@@ -817,9 +1038,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewNotUtilizedInterviews(int employeeId) : {viewNotUtilizedInterviewsException.Message} : {viewNotUtilizedInterviewsException.StackTrace}");
                 throw viewNotUtilizedInterviewsException;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewNotUtilizedInterviews(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public Object ViewTotalAvailability(int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Concat(_driveDataAccess.GetResponseUtilizationByStatus(true, employeeId))
@@ -842,10 +1070,17 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewTotalAvailability(int employeeId) : {viewTotalAvailabilityException.Message} : {viewTotalAvailabilityException.StackTrace}");
                 throw viewTotalAvailabilityException;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewTotalAvailability(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public Object ViewDefaulters(int poolId)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.GetDefaulters(poolId);
@@ -855,10 +1090,17 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewTotalAvailability(int employeeId) : {viewDefaultersException.Message} : {viewDefaultersException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewDefaulters(int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public Object ViewDriveResponse(int driveId)
         {
+            _stopwatch.Start();
             try
             {
                 return _driveDataAccess.GetDriveResponse(driveId).Select(e => new
@@ -876,9 +1118,16 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewDriveResponse(int driveId) : {ViewDriveResponseException.Message} : {ViewDriveResponseException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  ViewDriveResponse(int driveId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public List<string> GetDrivesForCurrentUser(int departmentId)
         {
+            _stopwatch.Start();
             try
             {
 
@@ -894,6 +1143,11 @@ namespace IMS.Service
             {
                 _logger.LogError($"Drive service:GetDrivesForCurrentUser(int department):{exception.Message}");
                 throw;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive Service Time elapsed for  GetDrivesForCurrentUser(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
     }

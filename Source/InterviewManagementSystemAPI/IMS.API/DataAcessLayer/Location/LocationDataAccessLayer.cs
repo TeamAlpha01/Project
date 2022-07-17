@@ -2,12 +2,16 @@ using IMS.Models;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using IMS.Validations;
+using System.Diagnostics;
 namespace IMS.DataAccessLayer
 {
     public class LocationDataAccessLayer : ILocationDataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;
         private ILogger _logger;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
 
         public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
@@ -26,6 +30,7 @@ namespace IMS.DataAccessLayer
 
         public bool AddLocationToDatabase(Location location)
         {
+            _stopwatch.Start();
             LocationValidation.IsLocationValid(location);
             try
             {
@@ -58,6 +63,12 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Location DAL : AddLocationToDatabase(Location location)) : {exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Location DAL Time elapsed for AddLocationToDatabase(Location location)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /// <summary>
@@ -70,6 +81,7 @@ namespace IMS.DataAccessLayer
 
         public bool RemoveLocationFromDatabase(int locationId)
         {
+            _stopwatch.Start();
             LocationValidation.IsLocationIdValid(locationId);
             bool isLoactiontId = _db.Locations.Any(x => x.LocationId == locationId && x.IsActive == false);
             if (isLoactiontId)
@@ -107,6 +119,12 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Location DAL Time elapsed for  RemoveLocationFromDatabase(int locationId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -118,6 +136,7 @@ namespace IMS.DataAccessLayer
         /// Catches exceptions if any problems in interacting with Database</returns>
         public List<Location> GetLocationsFromDatabase()
         {
+            _stopwatch.Start();
             try
             {
                 return (from location in _db.Locations where location.IsActive == true select location).ToList();
@@ -136,6 +155,11 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogError($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
                 throw new Exception();
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Location DAL Time elapsed for  GetLocationsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 

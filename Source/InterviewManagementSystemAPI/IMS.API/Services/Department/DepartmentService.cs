@@ -2,6 +2,7 @@ using IMS.Models;
 using IMS.DataAccessLayer;
 using IMS.Validations;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace IMS.Service
 {
@@ -10,6 +11,8 @@ namespace IMS.Service
 
         private IDepartmentDataAccessLayer _departmentDataAccessLayer;
         private ILogger _logger;
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
 
         public DepartmentService(ILogger<DepartmentService> logger, IDepartmentDataAccessLayer departmentDataAccessLayer)
         {
@@ -32,6 +35,7 @@ namespace IMS.Service
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
         public bool CreateDepartment(string departmentName)
         {
+            _stopwatch.Start();
             DepartmentValidation.IsDepartmentValid(departmentName);
 
             try
@@ -50,6 +54,11 @@ namespace IMS.Service
                 _logger.LogError($"Department Service : CreateDepartment(string departmentName) : {exception.Message} : {exception.StackTrace}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department Service Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /*  
@@ -64,6 +73,7 @@ namespace IMS.Service
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
         public bool RemoveDepartment(int departmentId)
         {
+            _stopwatch.Start();
             DepartmentValidation.IsDepartmentIdValid(departmentId);
 
             try
@@ -82,6 +92,12 @@ namespace IMS.Service
                 // Log "Exception Occured in Data Access Layer"
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department Service Time elapsed for  RemoveDepartment(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /*  
@@ -93,6 +109,7 @@ namespace IMS.Service
         /// <returns>Return list otherwise throw exception when exception occur in DAL</returns>
         public IEnumerable<Department> ViewDepartments()
         {
+            _stopwatch.Start();
             try
             {
                 IEnumerable<Department> departments = new List<Department>();
@@ -105,6 +122,12 @@ namespace IMS.Service
                 //Log "Exception occured in DAL while fetching roles"
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department Service Time elapsed for  ViewDepartments() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         /// <summary>
         /// This Method will implement when Project controller pass the parameter to this method and it validate the  department ID and project name and pass the object to the DAL
@@ -114,6 +137,7 @@ namespace IMS.Service
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
         public bool CreateProject(int departmentId, string projectName)
         {
+            _stopwatch.Start();
             ProjectValidation.IsProjectValid(departmentId, projectName);
 
 
@@ -136,6 +160,12 @@ namespace IMS.Service
                 // Log "Exception Occured in Data Access Layer"
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department Service Time elapsed for  CreateProject(int departmentId, string projectName) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /*  
@@ -150,6 +180,7 @@ namespace IMS.Service
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
         public bool RemoveProject(int projectId)
         {
+            _stopwatch.Start();
             ProjectValidation.IsProjectValid(projectId);
 
             try
@@ -168,6 +199,12 @@ namespace IMS.Service
                 // Log "Exception Occured in Data Access Layer"
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department Service Time elapsed for  RemoveProject(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /*  
@@ -180,6 +217,7 @@ namespace IMS.Service
         /// <returns>Return list otherwise throw exception when exception occur in DAL</returns>
         public Object ViewProjects()
         {
+            _stopwatch.Start();
             try
             {
                 return  _departmentDataAccessLayer.GetProjectsFromDatabase().
@@ -198,6 +236,12 @@ namespace IMS.Service
 
                 //Log "Exception occured in DAL while fetching roles"
                 throw;
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department Service Time elapsed for  ViewProjects(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 

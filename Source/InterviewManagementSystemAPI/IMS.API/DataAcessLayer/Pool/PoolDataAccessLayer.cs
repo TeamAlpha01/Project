@@ -2,6 +2,7 @@ using IMS.Models;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using IMS.Validations;
+using System.Diagnostics;
 namespace IMS.DataAccessLayer
 {
     public class PoolDataAccessLayer : IPoolDataAccessLayer
@@ -9,6 +10,9 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db; // = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger _logger;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
 
         public PoolDataAccessLayer(ILogger<IPoolDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
@@ -24,7 +28,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Returns true or Exception message when any misconnection in database</returns>
         public bool AddPoolToDatabase(Pool pool)
         {
-
+             _stopwatch.Start();
             PoolValidation.IsAddPoolValid(pool);
             if (_db.Pools.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId && p.IsActive == true)) throw new ValidationException("Pool Name already exists under this department");
             try
@@ -65,6 +69,12 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Pool DAL : AddPoolToDatabase(Pool pool)  : {exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool DAL Time elapsed for AddPoolToDatabase(Pool pool)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -77,6 +87,7 @@ namespace IMS.DataAccessLayer
         /// 
         public bool RemovePoolFromDatabase(int poolId)
         {
+            _stopwatch.Start();
             PoolValidation.IsValidPoolId(poolId);
 
             if (_db.Pools.Any(x => x.PoolId == poolId && x.IsActive == false))
@@ -115,6 +126,12 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Pool DAL : RemovePoolFromDatabase(int departmentId,int poolId) : {exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool DAL Time elapsed for RemovePoolFromDatabase(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -122,6 +139,7 @@ namespace IMS.DataAccessLayer
 
         private bool hasActiveDrives(int poolId)
         {
+            _stopwatch.Start();
             try{
                 if(_db.Drives.Any(d=>d.PoolId==poolId&&d.ToDate>=System.DateTime.Now))
                     return true;
@@ -132,6 +150,12 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogError($"Pool DAL : hasActiveDrives(int poolId) : {hasActiveDrivesException.Message} : {hasActiveDrivesException.StackTrace}");
                 throw;
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool DAL Time elapsed for hasActiveDrives(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
           /// <summary>
@@ -144,6 +168,7 @@ namespace IMS.DataAccessLayer
         /// Catches exceptions thorwed by Database if any Misconnections in DB
         public bool EditPoolFromDatabase(int poolId, string poolName)
         {
+            _stopwatch.Start();
             PoolValidation.IsEditPoolValid(poolId, poolName);
             try
             {
@@ -183,6 +208,12 @@ namespace IMS.DataAccessLayer
 
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool DAL Time elapsed for EditPoolFromDatabase(int poolId, string poolName)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
 
         }
@@ -196,6 +227,7 @@ namespace IMS.DataAccessLayer
 
         public List<Pool> GetPoolsFromDatabase()
         {
+            _stopwatch.Start();
 
             try
             {
@@ -220,9 +252,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"pool DAL Time elapsed for GetPoolsFromDatabase()  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
        public List<PoolMembers> GetPoolsFromDatabase(int employeeID)
         {
+            _stopwatch.Start();
             try
             {
                 return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Pools) where poolMember.EmployeeId==employeeID  select poolMember).ToList();
@@ -247,6 +286,12 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"pool DAL Time elapsed for GetPoolsFromDatabase(int employeeID) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -258,6 +303,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Return true or  Catches exceptions thorwed by Database if any Misconnections in DB</returns>
         public bool AddPoolMembersToDatabase(PoolMembers poolMembers)
         {
+            _stopwatch.Start();
             PoolValidation.IsAddPoolMemberValid(poolMembers);
 
             try
@@ -279,11 +325,18 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers)  : {exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool DAL Time elapsed for AddPoolMembersToDatabase(PoolMembers poolMembers)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
 
         }
         private bool isPoolMemberValid(PoolMembers poolMembers)
         {
+            _stopwatch.Start();
             var employee=_db.Employees.Include(e=>e.Role).FirstOrDefault(e=>e.EmployeeId==poolMembers.EmployeeId);
             var pool =_db.Pools.Find(poolMembers.PoolId);
             if(employee==null || pool==null)
@@ -294,6 +347,12 @@ namespace IMS.DataAccessLayer
              throw new ValidationException("Pool member already exists in the given pool");
 
             return true;
+            
+          /**  finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool DAL Time elapsed for isPoolMemberValid(PoolMembers poolMembers)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
 
         /// <summary>
@@ -304,6 +363,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Return true or  Catches exceptions thorwed by Database if any Misconnections in DB</returns>
         public bool RemovePoolMembersFromDatabase(int poolMemberId)
         {
+            _stopwatch.Start();
             PoolValidation.IsRemovePoolMembersValid(poolMemberId);
              bool isPoolMemberId = _db.PoolMembers.Any(x => x.PoolMembersId == poolMemberId && x.IsActive == false);
             if (isPoolMemberId)
@@ -324,12 +384,12 @@ namespace IMS.DataAccessLayer
             }
             catch (DbUpdateException exception)
             {
-                _logger.LogError($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers) : {exception.Message}");
+                _logger.LogError($"Pool DAL : RemovePoolMembersFromDatabase(PoolMembers poolMembers) : {exception.Message}");
                 return false;
             }
             catch (OperationCanceledException exception)
             {
-                _logger.LogError($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers): {exception.Message}");
+                _logger.LogError($"Pool DAL : RemovePoolMembersFromDatabase(PoolMembers poolMembers): {exception.Message}");
                 return false;
             }
             catch (ValidationException poolMemberNotException)
@@ -338,8 +398,14 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception exception)
             {
-                _logger.LogError($"Pool DAL : AddPoolMembersToDatabase(PoolMembers poolMembers)  : {exception.Message}");
+                _logger.LogError($"Pool DAL : RemovePoolMembersFromDatabase(PoolMembers poolMembers)  : {exception.Message}");
                 return false;
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool DAL Time elapsed for RemovePoolMembersFromDatabase(int poolMemberId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
 
@@ -355,6 +421,7 @@ namespace IMS.DataAccessLayer
 
         public List<PoolMembers> GetPoolMembersFromDatabase(int poolId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Employees.Role) where poolMember.PoolId==poolId && poolMember.IsActive ==true && poolMember.Employees.IsAdminAccepted==true && poolMember.Employees.IsAdminResponded==true select poolMember).ToList();
@@ -376,6 +443,12 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogError($"Pool DAL : GetPoolsFromDatabase() : {exception.Message}");
                 throw new Exception();
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Pool DAL Time elapsed for GetPoolMembersFromDatabase(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }

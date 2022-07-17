@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using IMS.Models;
 using IMS.Validations;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace IMS.DataAccessLayer
 {
@@ -9,6 +10,9 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;
         private ILogger _logger;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
 
         public RoleDataAccessLayer(ILogger<RoleDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
@@ -25,6 +29,7 @@ namespace IMS.DataAccessLayer
 
         public bool AddRoleToDatabase(Role role)
         {
+             _stopwatch.Start();
             RoleValidation.IsRoleValid(role);
             bool roleNameExists = _db.Roles.Any(x => x.RoleName == role.RoleName && x.IsActive == true);
             if (roleNameExists)
@@ -53,6 +58,11 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Role DAL : AddRoleToDatabase(Role role) : {exception.Message}");
                 return false;
             }
+             finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Role DAL Time elapsed for  AddRoleToDatabase(Role role) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /// <summary>
@@ -63,6 +73,7 @@ namespace IMS.DataAccessLayer
         /// <returns>  Returns False when Exception occured in Database Connectivity . Throws ArgumentNullException when Role Id is not passed </returns>
         public bool RemoveRoleFromDatabase(int roleId)
         {
+             _stopwatch.Start();
             // if (roleId <= 0)
             //     throw new ArgumentNullException("Role Id is not provided to DAL");
             try
@@ -110,6 +121,11 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Role DAL : RemoveRoleFromDatabase(int roleId) : {exception.Message}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Role DAL Time elapsed for  RemoveRoleFromDatabase(int roleId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -121,6 +137,7 @@ namespace IMS.DataAccessLayer
 
         public List<Role> GetRolesFromDatabase()
         {
+             _stopwatch.Start();
             try
             {
                 _logger.LogError("logger DAL");
@@ -141,13 +158,23 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Role DAL : GetRolesFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Role DAL Time elapsed for  GetRolesFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public void CheckRoleId(int roleId)
         {
+             _stopwatch.Start();
             if(!_db.Roles.Any(x => x.RoleId == roleId)) 
                 throw new ValidationException("Role was not found");
-            
+            /**finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Role DAL Time elapsed for  AddRoleToDatabase(Role role) :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
 
     }

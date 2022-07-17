@@ -4,6 +4,7 @@ using IMS.Validations;
 using System.Linq;
 using IMS.Controllers;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace IMS.Service
 {
@@ -11,6 +12,9 @@ namespace IMS.Service
     {
         private IRoleDataAccessLayer _roleDataAccessLayer;
         private readonly ILogger _logger;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
         public RoleService(ILogger<RoleService> logger,IRoleDataAccessLayer roleDataAccessLayer)
         {
             _logger = logger;
@@ -26,6 +30,7 @@ namespace IMS.Service
         
         public bool CreateRole(string roleName,bool isManagement)
         {
+            _stopwatch.Start();
             RoleValidation.IsRoleNameValid(roleName);
 
             try
@@ -45,6 +50,11 @@ namespace IMS.Service
                 _logger.LogError($"Role service : CreateRole(string roleName) : {roleNameException.Message}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Role Service Time elapsed for  CreateRole(string roleName,bool isManagement) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /// <summary>
@@ -56,6 +66,7 @@ namespace IMS.Service
 
         public bool RemoveRole(int roleId)
         {
+            _stopwatch.Start();
             if (roleId <= 0)
                 throw new ValidationException("Role Id is not provided");
 
@@ -78,6 +89,11 @@ namespace IMS.Service
                 _logger.LogError($"Role service : RemoveRole(int roleId) : {exception.Message}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Role Service Time elapsed for  RemoveRole(int roleId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         /// <summary>
@@ -86,6 +102,7 @@ namespace IMS.Service
         /// <returns> Throws Exception when Exception occured in DAL while fetching roles</returns>
         public IEnumerable<Role> ViewRoles()
         {
+            _stopwatch.Start();
             try
             {
                 IEnumerable<Role> roles = new List<Role>();
@@ -95,6 +112,11 @@ namespace IMS.Service
             {
                 _logger.LogError($"Role service : RemoveRole(int roleId) : Exception occured in DAL :{exception.Message}");
                 throw new Exception();
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Role Service Time elapsed for  ViewRoles(int roleId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
     }

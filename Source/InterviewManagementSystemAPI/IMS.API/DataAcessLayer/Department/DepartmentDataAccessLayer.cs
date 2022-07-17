@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using IMS.Models;
 using System.ComponentModel.DataAnnotations;
 using IMS.Validations;
+using System.Diagnostics;
 
 namespace IMS.DataAccessLayer
 {
@@ -16,6 +17,9 @@ namespace IMS.DataAccessLayer
 
         //private readonly ILogger _logger = new ILogger<RoleDataAccessLayer>();        
         private ILogger _logger;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
         public DepartmentDataAccessLayer(ILogger<DepartmentDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
             _logger = logger;
@@ -28,6 +32,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Return True otherwise Return False when it throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool AddDepartmentToDatabase(Department department)
         {
+            _stopwatch.Start();
             DepartmentValidation.IsDepartmentValid(department);
             bool departmentNameExists = _db.Departments.Any(x => x.DepartmentName == department.DepartmentName && x.IsActive == true);
             if (departmentNameExists)
@@ -59,6 +64,11 @@ namespace IMS.DataAccessLayer
                 //LOG   "unknown exception occured "
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department DAL Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
 
@@ -74,6 +84,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool RemoveDepartmentFromDatabase(int departmentId)
         {
+             _stopwatch.Start();
             DepartmentValidation.IsDepartmentIdValid(departmentId);
 
             bool isDeletedepartmentId = _db.Departments.Any(x => x.DepartmentId == departmentId && x.IsActive == false);
@@ -114,6 +125,11 @@ namespace IMS.DataAccessLayer
                
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department DAL Time elapsed for RemoveDepartmentFromDatabase(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
@@ -126,6 +142,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Return List. otherwise throw DbUpdateException or OperationCanceledException or Exception</returns>
         public List<Department> GetDepartmentsFromDatabase()
         {
+             _stopwatch.Start();
             try
             {
                 return (from department in _db.Departments where department.IsActive == true select department).ToList();
@@ -145,6 +162,11 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Department DAL : GetDepartmentsFromDatabase() : {exception.Message} : {exception.StackTrace}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department DAL Time elapsed for  GetDepartmentsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         /// <summary>
         /// This method will implement when Department service pass the object and it interact with Database.It validate the department Id and project Name
@@ -153,6 +175,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool AddProjectToDatabase(Project project)
         {
+             _stopwatch.Start();
             var department = _db.Projects.Find(project.DepartmentId);
             if (department == null)
                 throw new ValidationException("No department Id found with given department id");
@@ -194,6 +217,11 @@ namespace IMS.DataAccessLayer
                 
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department DAL Time elapsed for  AddProjectToDatabase(Project project) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
 
@@ -209,6 +237,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool RemoveProjectFromDatabase(int projectId)
         {
+             _stopwatch.Start();
             ProjectValidation.IsProjectValid(projectId);
 
             bool isProjectId = _db.Projects.Any(x => x.ProjectId == projectId && x.IsActive == false);
@@ -247,6 +276,11 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Department DAL : RemoveProjectFromDatabase(int projectId) : {exception.Message} : {exception.StackTrace}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department DAL Time elapsed for  RemoveProjectFromDatabase(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
         /// <summary>
@@ -255,6 +289,7 @@ namespace IMS.DataAccessLayer
         /// <returns>Return List otherwise it throw DbUpdateException or OperationCanceledException or Exception</returns>
         public List<Project> GetProjectsFromDatabase()
         {
+             _stopwatch.Start();
 
             try
             {
@@ -275,19 +310,34 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Location DAL : GetLocationsFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department DAL Time elapsed for  GetProjectsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public void CheckDepartmentId(int departmentId)
         {
+             _stopwatch.Start();
             if(!_db.Departments.Any(x => x.DepartmentId == departmentId)) 
                 throw new ValidationException("Department was not found");
-            
+          /**  finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department DAL Time elapsed for  CheckDepartmentId(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
         public void CheckProjectId(int projectId)
         {
+             _stopwatch.Start();
             if(!_db.Projects.Any(x => x.ProjectId == projectId)) 
                 throw new ValidationException("Project was not found");
-            
+           /** finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Department DAL Time elapsed for  CreateProjectId(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
     }
 }

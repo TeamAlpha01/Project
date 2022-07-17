@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using IMS.Models;
 using IMS.Validations;
 using System;
+using System.Diagnostics;
 
 namespace IMS.DataAccessLayer
 {
@@ -12,6 +13,9 @@ namespace IMS.DataAccessLayer
 
         private ILogger _logger;
         private IConfiguration _configuration;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
         public DriveDataAccessLayer(ILogger<IDriveDataAccessLayer> logger, InterviewManagementSystemDbContext dbContext, IConfiguration configuration)
         {
             _logger = logger;
@@ -20,6 +24,7 @@ namespace IMS.DataAccessLayer
         }
         public bool AddDriveToDatabase(Drive drive)
         {
+            _stopwatch.Start();
             DriveValidation.IsdriveValid(drive, _configuration);
             if (_db.Drives.Any(d => d.Name == drive.Name && d.PoolId == drive.PoolId && d.IsCancelled == false && d.ToDate >= drive.FromDate)) throw new ValidationException("Drive Name already exists under this pool");
             try
@@ -34,9 +39,15 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : AddDriveToDatabase(Drive drive) : {addDriveToDatabaseException.Message} : {addDriveToDatabaseException.StackTrace}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for AddDriveToDatabase(Drive drive)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         private void FillInitialResponseForDrive(int driveId, int poolId)
         {
+            _stopwatch.Start();
             var employees = from employee in _db.PoolMembers where employee.PoolId == poolId select employee.EmployeeId;
             foreach (var employeeId in employees)
             {
@@ -49,9 +60,15 @@ namespace IMS.DataAccessLayer
                 _db.EmployeeDriveResponse.Add(initialResponse);
             }
             _db.SaveChanges();
+           /** finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for FillInitialResponseForDrive(int driveId, int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
         public bool CancelDriveFromDatabase(int driveId, int tacId, string reason)
         {
+            _stopwatch.Start();
             DriveValidation.IsCancelDriveValid(driveId, tacId, reason);
 
             try
@@ -80,11 +97,17 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : CancelDriveFromDatabase(int driveId, int tacId, string reason) : {cancelDriveFromDatabaseException.Message} : {cancelDriveFromDatabaseException.StackTrace}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for CancelDriveFromDatabase(int driveId, int tacId, string reason)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
 
         public List<Drive> GetDrivesByStatus(bool status)
         {
+            _stopwatch.Start();
             try
             {
                 return (from drive in _db.Drives.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool!.department) where drive.IsCancelled == status select drive).ToList();
@@ -94,10 +117,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : GetDrivesByStatus(bool status) : {getDrivesByStatusException.Message} : {getDrivesByStatusException.StackTrace}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public Drive ViewDrive(int driveId)
         {
+            _stopwatch.Start();
             DriveValidation.IsDriveIdValid(driveId);
 
             try
@@ -110,6 +139,11 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : ViewDrive(int driveId) : {isDriveIdValidException.Message} : {isDriveIdValidException.StackTrace}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for ViewDrive(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
 
@@ -117,6 +151,7 @@ namespace IMS.DataAccessLayer
         //For Employee Drive Response Entity
         public bool AddResponseToDatabase(EmployeeDriveResponse userResponse)
         {
+            _stopwatch.Start();
             Validations.EmployeeResponseValidation.IsResponseValid(userResponse);
 
             try
@@ -142,10 +177,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : AddResponseToDatabase(EmployeeDriveResponse response) : {addResponseToDatabaseException.Message} : {addResponseToDatabaseException.StackTrace}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for AddResponseToDatabase(EmployeeDriveResponse userResponse)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public bool IsResponded(int employeeId, int driveId)
         {
+            _stopwatch.Start();
             try
             {
                 return _db.EmployeeDriveResponse.Any(a => a.EmployeeId == employeeId && a.DriveId == driveId && a.ResponseType != 0);
@@ -160,10 +201,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : IsResponded(int employeeId, int driveId) : {IsRespondedException.Message} : {IsRespondedException.StackTrace}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for IsResponded(int employeeId, int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public List<int> GetEmployeePoolIdsFromDatabase(int employeeId)
         {
+            _stopwatch.Start();
             Validations.EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
@@ -181,6 +228,11 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Exception on Drive DAL : GetEmployeePoolIdsFromDatabase(int employeeId) : {getEmployeePoolIdsFromDatabaseException.Message} : {getEmployeePoolIdsFromDatabaseException.StackTrace}");
                 throw;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for GetEmployeePoolIdsFromDatabase(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -219,6 +271,7 @@ namespace IMS.DataAccessLayer
         //For Employee Avalability Entity
         public bool SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability)
         {
+            _stopwatch.Start();
             Validations.EmployeeAvailabilityValidation.IsAvailabilityValid(employeeAvailability);
             try
             {
@@ -252,9 +305,15 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability) : {setTimeSlotToDatabaseException.Message} : {setTimeSlotToDatabaseException.StackTrace}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public List<EmployeeAvailability> ViewAvailability(int employeeId, int driveId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from availability in _db.EmployeeAvailability.Include(d => d.Drive) where availability.EmployeeId == employeeId && availability.DriveId == driveId select availability).ToList();
@@ -264,9 +323,15 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : ViewInterviewsByStatus(bool status) : {exception.Message}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for ViewAvailability(int employeeId, int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public List<EmployeeAvailability> ViewInterviewsByStatus(bool status, int employeeId)//int employeeId filter using auth token
         {
+            _stopwatch.Start();
             try
             {
                 return (from interview in _db.EmployeeAvailability.Include(d => d.Drive).Include(L => L.Drive!.Location).Include(P => P.Drive!.Pool) where interview.IsInterviewCancelled == status && interview.Drive!.IsCancelled == false && interview.EmployeeId == employeeId select interview).ToList();
@@ -275,6 +340,11 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Exception on Drive DAL : ViewInterviewsByStatus(bool status) : {viewInterviewsByStatusException.Message}");
                 throw;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for ViewInterviewsByStatus(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
             public List<EmployeeAvailability> ViewCancelledInterview(bool status, int employeeId)//int employeeId filter using auth token
@@ -288,10 +358,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : ViewInterviewsByStatus(bool status) : {viewInterviewsByStatusException.Message}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for ViewCancelledInterview(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
             }
 
         public bool ScheduleInterview(int employeeAvailabilityId)
         {
+            _stopwatch.Start();
             Validations.EmployeeAvailabilityValidation.IsAvailabilityIdValid(employeeAvailabilityId);
 
             try
@@ -309,9 +385,15 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : ScheduleInterview(int employeeAvailabilityId) : {scheduleInterviewException.Message} : {scheduleInterviewException.StackTrace}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for ScheduleInterview(int employeeAvailabilityId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)
         {
+            _stopwatch.Start();
             Validations.EmployeeAvailabilityValidation.IsAvailabilityIdValid(employeeAvailabilityId);
             try
             {
@@ -330,9 +412,15 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : CancelInterview(int employeeAvailabilityId) : {cancelInterviewException.Message} : {cancelInterviewException.StackTrace}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public List<EmployeeAvailability> ViewAvailableMembersForDrive(int driveId)
         {
+            _stopwatch.Start();
             Validations.DriveValidation.IsDriveIdValid(driveId);
             try
             {
@@ -344,9 +432,15 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : ViewAvailableMembersForDrive(int driveId) : {viewAvailableMembersForDriveException.Message} : {viewAvailableMembersForDriveException.StackTrace}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for ViewAvailableMembersForDrive(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         public List<Employee> GetEmployee(int departmentId)
         {
+            _stopwatch.Start();
             try{
                 
                 return (from employee in _db.Employees.Include(d => d.Role) where employee.DepartmentId == departmentId && employee.IsActive == true select employee).ToList();
@@ -356,10 +450,16 @@ namespace IMS.DataAccessLayer
             {
                 throw e;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for GetEmployee(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         
         public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType, int employeeId, DateTime fromDate, DateTime toDate)// want to filter with Employee ID
         {
+            _stopwatch.Start();
             Validations.EmployeeResponseValidation.IsResponseTypeValid(responseType);
             try
             {
@@ -370,10 +470,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : GetResponseCountByStatus(int responseType) : {getResponseCountByStatusException.Message} : {getResponseCountByStatusException.StackTrace}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for GetResponseDetailsByStatus(int responseType, int employeeId, DateTime fromDate, DateTime toDate)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized, int employeeId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from availability in _db.EmployeeAvailability.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where availability.IsInterviewScheduled == isUtilized && availability.EmployeeId == employeeId && availability.Drive!.IsScheduled == true && availability.IsInterviewCancelled != true select availability).ToList();
@@ -383,10 +489,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : GetResponseUtilizationByStatus(bool isUtilized) : {getResponseUtilizationByStatusException.Message} : {getResponseUtilizationByStatusException.StackTrace}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for GetResponseUtilizationByStatus(bool isUtilized, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public object GetDefaulters(int poolId)
         {
+            _stopwatch.Start();
             try
             {
                 var poolMembers = (from members in _db.PoolMembers where members.PoolId == poolId && members.IsActive == true select members.EmployeeId).ToList();
@@ -401,12 +513,18 @@ namespace IMS.DataAccessLayer
             }
             catch (Exception getDefaultersException)
             {
-                _logger.LogInformation($"Exception on Drive DAL : GetResponseUtilizationByStatus(bool isUtilized) : {getDefaultersException.Message} : {getDefaultersException.StackTrace}");
+                _logger.LogInformation($"Exception on Drive DAL : GetDefaulters(int poolId) : {getDefaultersException.Message} : {getDefaultersException.StackTrace}");
                 throw;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for GetDefaulters(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         private object IsDefaulter(int employeeId,int poolId)
         {       
+            _stopwatch.Start();
                 try
                 {
                     var Drives = (from employee in _db.EmployeeAvailability.Include(e=>e.Drive) where employee.EmployeeId==employeeId && employee.Drive!.PoolId==poolId && employee.IsInterviewScheduled==true && employee.IsInterviewCancelled==false && employee.InterviewDate>=System.DateTime.Now.AddMonths(-1) && employee.InterviewDate<=System.DateTime.Now select employee.InterviewDate).ToList();
@@ -438,10 +556,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : isDefaulterException(int employeeId, int poolId) : {isDefaulterException.Message} : {isDefaulterException.StackTrace}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for IsDefaulter(int employeeId,int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public List<EmployeeDriveResponse> GetDriveResponse(int driveId)
         {
+            _stopwatch.Start();
             try
             {
                 return (from driveResponse in _db.EmployeeDriveResponse.Include(e => e.Employee) where driveResponse.DriveId == driveId select driveResponse).ToList();
@@ -451,11 +575,22 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Exception on Drive DAL : GetDriveResponse(int driveId) : {GetDriveResponseException.Message} : {GetDriveResponseException.StackTrace}");
                 throw;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for GetDriveResponse(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public List<string> GetDrivesForCurrentUser(int departmentId)
         {
+            _stopwatch.Start();
             return (from drive in _db.Drives where drive.DepartmentId==departmentId select drive.Name).ToList();
+          /**  finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Drive DAL Time elapsed for GetDrivesForCurrentUser(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
     }
 }

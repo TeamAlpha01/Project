@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using IMS.Models;
 using IMS.Validations;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace IMS.DataAccessLayer
 {
@@ -9,6 +10,9 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;// = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger _logger;
+        
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
 
         public EmployeeDataAccessLayer(ILogger<IEmployeeDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
@@ -25,7 +29,7 @@ namespace IMS.DataAccessLayer
         /// </returns>
         public bool AddEmployeeToDatabase(Employee employee)
         {
-
+            _stopwatch.Start();
             EmployeeValidation.IsEmployeeValid(employee);
             
             if ( _db.Employees.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber ))throw new ValidationException("ACE number already exists");
@@ -42,6 +46,11 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Exception on Employee DAL : AddEmployeeToDatabase(Employee employee) : {exception.Message}");
                 return false;
             }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee DAL Time elapsed for  AddEmployeeToDatabase(Employee employee)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         /// <summary>
         /// This method implements when Employee service passes the object to this method,then this method remove the employee data from the database.
@@ -53,6 +62,7 @@ namespace IMS.DataAccessLayer
         /// </returns>
         public bool RemoveEmployeeFromDatabase(int employeeId)
         {
+            _stopwatch.Start();
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
@@ -94,6 +104,12 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Employee DAL : RemoveEmployeeFromDatabase(int employeeId) : {exception.Message}");
                 return false;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee DAL Time elapsed for  RemoveEmployeeFromDatabase(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         /// <summary>
         /// This method implements when employee service passes the request to this method,then this method 
@@ -104,6 +120,7 @@ namespace IMS.DataAccessLayer
         /// </returns>
         public List<Employee> GetApprovedEmployessFromDatabase(bool isAdminAccepted)
         {
+            _stopwatch.Start();
             try
             {
                 return (from employee in _db.Employees  where employee.IsActive == true && employee.IsAdminAccepted == isAdminAccepted select employee).ToList();
@@ -123,10 +140,17 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Employee DAL : GetApprovedEmployessFromDatabase(bool isAdminAccepted) : {exception.Message}");
                 throw new Exception();
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee DAL Time elapsed for  GetApprovedEmployessFromDatabase(bool isAdminAccepted)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
 
         }
         public List<Employee> GetEmployeesRequestFromDatabase()
         {
+            _stopwatch.Start();
             try
             {
                 return (from employee in _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project)  where employee.IsActive == true  && employee.IsAdminAccepted == false && employee.IsAdminResponded == false select employee).ToList();
@@ -146,10 +170,17 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee DAL Time elapsed for  GetEmployeesRequestFromDatabase()  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public List<Employee> GetEmployeesFromDatabase()
         {
+            _stopwatch.Start();
             try
             {
                 return  _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project).ToList();;
@@ -171,6 +202,12 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Employee DAL : GetEmployeesFromDatabase() : {exception.Message}");
                 throw new Exception();
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee DAL Time elapsed for  GetEmployeesFromDatabase()  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         /// <summary>
         /// This method implements when employee service passes the object to this method,then this method shows the employee details based on parameter(employee id).
@@ -183,6 +220,7 @@ namespace IMS.DataAccessLayer
         /// 
         public Employee ViewProfile(int employeeId)
         {
+            _stopwatch.Start();
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
@@ -194,10 +232,17 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Exception on Employee DAL : IsEmployeeIdValid(int employeeId) : {isEmployeeIdValidException.Message} : {isEmployeeIdValidException.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee DAL Time elapsed for  ViewProfile(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
         
         public Employee CheckLoginCrendentials(string employeeMail, string password)
         {
+            _stopwatch.Start();
             try
             {
                 if(!_db.Employees.Any(x => x.EmailId == employeeMail))
@@ -218,10 +263,17 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Exception on Employee DAL : CheckLoginCrendentials(string employeeAceNumber, string password) : {exception.Message}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee DAL Time elapsed for  CheckLoginCrendentials(string employeeMail, string password)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public List<Employee> ViewEmployeeByDepartment(int departmentId)
         {
+            _stopwatch.Start();
             EmployeeValidation.IsDepartmentValid(departmentId);
             try
             {
@@ -233,10 +285,17 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Exception on Employee DAL : IsDepartmentValid(int departmnet) : {IsDepartmentValid.Message} : {IsDepartmentValid.StackTrace}");
                 throw;
             }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee DAL Time elapsed for  ViewEmployeeByDepartment(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
         }
 
         public bool RespondEmployeeRequest(int employeeId, bool response)
         {
+            _stopwatch.Start();
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
@@ -258,6 +317,12 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogError($"Employee DAL:ResponsEmployeeRequest(int emloyeeId,bool response):{exception.Message}");
                 return false;
+            }
+            
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogError($"Employee DAL Time elapsed for  RespondEmployeeRequest(int employeeId, bool response)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
             
         }
