@@ -7,6 +7,11 @@ namespace IMS.DataAccessLayer
         public bool AddDriveToDatabase(Drive drive);
         public bool CancelDriveFromDatabase(int driveId, int tacId, string Reason);
         public List<Drive> GetDrivesByStatus(bool status);
+         public List<Drive> GetTodaysDrivesByStatus(bool status);
+        public List<Drive> GetScheduledDrivesByStatus(bool status);
+        public List<Drive> GetUpcomingDrivesByStatus(bool status);
+        public List<Drive> GetNonCancelledDrivesByStatus(bool status,int tacId);
+        public List<Drive> GetDriveInviteByStatus(bool status);
         public Drive ViewDrive(int driveId);
 
 
@@ -19,6 +24,9 @@ namespace IMS.DataAccessLayer
         //For Employee Availability Entity
         public bool SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability);
         public List<EmployeeAvailability> ViewAvailability(int employeeId,int driveId);
+        public List<EmployeeAvailability> ViewTodayInterviewsByStatus(bool status, int employeeId);
+        public List<EmployeeAvailability> ViewScheduledInterviewsByStatus(bool status, int employeeId);
+        public List<EmployeeAvailability> ViewUpcomingInterviewsByStatus(bool status, int employeeId);
         public List<EmployeeAvailability> ViewInterviewsByStatus(bool status, int employeeId);//int employeeId
         public List<EmployeeAvailability> ViewAvailableMembersForDrive(int driveId);
         public bool ScheduleInterview(int employeeAvailabilityId);

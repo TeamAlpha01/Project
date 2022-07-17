@@ -33,7 +33,7 @@ namespace IMS.Service
         public bool ScheduleInterview(int employeeAvailabilityId);
         public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments);
         public Object ViewAvailableMembersForDrive(int driveId);
-        public  Object ViewEmployees(int departmentId);
+        // public  Object ViewEmployees(int departmentId);
         public Dictionary<string,int> ViewEmployeeDashboard(int employeeId,int departmentId,DateTime fromDate,DateTime toTime);
         public List<Object> ViewEmployeePerformance(int employeeId,int departmentId,DateTime fromDate,DateTime toDate); 
         public Object ViewTotalDrives(int employeeId,DateTime fromDate,DateTime toDate);

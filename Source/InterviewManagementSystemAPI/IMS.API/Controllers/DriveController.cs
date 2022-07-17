@@ -987,6 +987,11 @@ public class DriveController : ControllerBase
         {
             return Ok(_driveService.ViewDriveResponse(driveId));
         }
+        catch(ValidationException driveNotfoundException)
+        {
+            _logger.LogError($"Drive Controller:ViewDriveResponse(int driveId):{driveNotfoundException.Message}");
+            return BadRequest(driveNotfoundException.Message);
+        }
         catch (Exception ViewDriveResponseException)
         {
             _logger.LogInformation($"Drive Controller : ViewDriveResponseException(driveId) : {ViewDriveResponseException.Message}");

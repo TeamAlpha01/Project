@@ -80,7 +80,7 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where (drive.FromDate.Date <= System.DateTime.Now.Date && drive.ToDate.Date >= System.DateTime.Now.Date) && drive.IsScheduled == true select drive).ToList()
+                return  _driveDataAccess.GetTodaysDrivesByStatus(false)
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -113,7 +113,7 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date > System.DateTime.Now.Date && drive.IsScheduled == true select drive).ToList()
+                return _driveDataAccess.GetScheduledDrivesByStatus(false)
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -146,7 +146,7 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).ToList()
+                return  _driveDataAccess.GetUpcomingDrivesByStatus(false) 
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -155,6 +155,7 @@ namespace IMS.Service
                     ToDate = d.ToDate.ToString("yyyy-MM-dd"),
                     DriveDepartment = d.Pool!.department.DepartmentName,
                     DriveLocation = d.Location!.LocationName,
+
                     DrivePool = d.Pool.PoolName,
                     DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId)
                 }
@@ -179,7 +180,7 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(false).Where(d => d.AddedBy == tacId) select drive).ToList()
+                return _driveDataAccess.GetNonCancelledDrivesByStatus(false,tacId)
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -211,7 +212,7 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return (from drive in _driveDataAccess.GetDrivesByStatus(true).Where(d => d.AddedBy == tacId) select drive).ToList()
+                return  _driveDataAccess.GetNonCancelledDrivesByStatus(true,tacId)
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -262,16 +263,11 @@ namespace IMS.Service
                 _logger.LogError($"Drive Service Time elapsed for  ViewTACDashboard(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
-        private int DriveCountForTacByStatus(bool status, int employeeId)
+        private int DriveCountForTacByStatus(bool status,int employeeId)
         {
-            _stopwatch.Start();
-            return (from drive in _driveDataAccess.GetDrivesByStatus(status) where drive.AddedBy == employeeId select drive).Count();
-         
-           /** finally
-            {
-                _stopwatch.Stop();
-                _logger.LogError($"Drive Service Time elapsed for  DriveCountForTacByStatus(bool status, int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
-            }    **/  
+            
+            return  _driveDataAccess.GetNonCancelledDrivesByStatus(status,employeeId).Count();
+           
         }
 
         public Object ViewDrive(int driveId)
@@ -372,11 +368,12 @@ namespace IMS.Service
             {
                 List<object> driveInvites = new List<object>();
                 var employeePoolIds = GetEmployeePoolIds(employeeId);
-                var upcomingDrives = (from drive in _driveDataAccess.GetDrivesByStatus(false) where drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).
+                var upcomingDrives = _driveDataAccess.GetDriveInviteByStatus(false).
                 Select(d => new
                 {
                     DriveId = d.DriveId,
                     DriveName = d.Name,
+
                     FromDate = d.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = d.ToDate.ToString("yyyy-MM-dd"),
                     DriveLocation = d.Location!.LocationName,
@@ -495,7 +492,7 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date == System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                return _driveDataAccess.ViewTodayInterviewsByStatus(false, employeeId) 
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
@@ -527,7 +524,7 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                return  _driveDataAccess.ViewScheduledInterviewsByStatus(false, employeeId)
                 .Select(e => new
                 {
                     DriveId = e.DriveId,
@@ -561,7 +558,7 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return (from interviews in _driveDataAccess.ViewCancelledInterview(true, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == true select interviews)
+                return  _driveDataAccess.ViewCancelledInterview(true, employeeId)
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
@@ -595,7 +592,7 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return (from interviews in _driveDataAccess.ViewInterviewsByStatus(false, employeeId) where interviews.InterviewDate.Date > System.DateTime.Now.Date && interviews.IsInterviewScheduled == false select interviews)
+                return  _driveDataAccess.ViewUpcomingInterviewsByStatus(false, employeeId) 
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
@@ -745,27 +742,7 @@ namespace IMS.Service
             }
 
         }
-        public Object ViewEmployees(int departmentId)
-        {
-            _stopwatch.Start();
-            try
-            {
-
-                return _driveDataAccess.GetEmployee(departmentId);
-
-            }
-            catch (Exception viewDefaultersException)
-            {
-                _logger.LogInformation($"Drive Service : ViewEmployees(int departmentId) : {viewDefaultersException.Message} : {viewDefaultersException.StackTrace}");
-                throw;
-            }
-            
-            finally
-            {
-                _stopwatch.Stop();
-                _logger.LogError($"Drive Service Time elapsed for  ViewEmployees(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
-            }
-        }
+        
 
         public Dictionary<string, int> ViewEmployeeDashboard(int employeeId, int departmentId, DateTime fromDate, DateTime toDate)
         {
@@ -805,6 +782,8 @@ namespace IMS.Service
         public List<object> ViewEmployeePerformance(int employeeId, int departmentId, DateTime fromDate, DateTime toDate)
         {
             _stopwatch.Start();
+            try
+            {
             List<Employee> employee = _driveDataAccess.GetEmployee(departmentId);
 
             var count = new Dictionary<string, int>();
@@ -829,37 +808,21 @@ namespace IMS.Service
 
             }
             return ViewEmployeePerformance;
+            }
+            catch (Exception exception)
+            {
+ 
+                _logger.LogError($"Drive service:ViewEmployeePerformance(int employeeId, int departmentId, DateTime fromDate, DateTime toDate):{exception.Message}");
+                throw exception;
+            }
            
-          /**  finally
+           finally
             {
                 _stopwatch.Stop();
                 _logger.LogError($"Drive Service Time elapsed for  ViewEmployeePerformance(int employeeId, int departmentId, DateTime fromDate, DateTime toDate) :{_stopwatch.ElapsedMilliseconds}ms");
-            }**/
+            }
         }
-        // private object GetEmployee(int departmentId)
-        // {
-        //     try
-        //     {
-
-        //         return _driveDataAccess.GetEmployee(departmentId).Select(d => new
-        //         {
-        //             EmployeeName = d.Name,
-        //             EmployeeACENumber = d.EmployeeAceNumber,
-        //             EmployeeRole = d.Role!.RoleName
-        //         });
-        //     }
-        //     catch (ValidationException exception)
-        //     {
-        //         _logger.LogInformation($"Drive Service :  GetEmployee(int departmentId) : {exception.Message}");
-        //         throw exception;
-        //     }
-        //     catch (Exception exception)
-        //     {
-        //         _logger.LogInformation($"Drive Service :  GetEmployeePoolIds(int departmentId) : {exception.Message}");
-        //         throw;
-        //     }
-        // }
-
+  
 
         public Object ViewTotalDrives(int employeeId, DateTime fromDate, DateTime toDate)
         {
@@ -1101,6 +1064,7 @@ namespace IMS.Service
         public Object ViewDriveResponse(int driveId)
         {
             _stopwatch.Start();
+            DriveValidation.IsDriveIdValid(driveId);
             try
             {
                 return _driveDataAccess.GetDriveResponse(driveId).Select(e => new
@@ -1112,6 +1076,12 @@ namespace IMS.Service
                     ResponseType = Enum.GetName(typeof(UtilityService.ResponseType), e.ResponseType)
                 }
                 );
+            }
+            catch (ValidationException driveNotfoundException)
+            {
+                _logger.LogError($"Drive service:ViewDriveResponse(int driveId):{driveNotfoundException.Message}");
+                throw driveNotfoundException;
+
             }
             catch (Exception ViewDriveResponseException)
             {
@@ -1127,7 +1097,9 @@ namespace IMS.Service
         }
         public List<string> GetDrivesForCurrentUser(int departmentId)
         {
+            
             _stopwatch.Start();
+            DepartmentValidation.IsDepartmentIdValid(departmentId);
             try
             {
 
