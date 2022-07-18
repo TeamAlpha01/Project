@@ -801,14 +801,7 @@ public class DriveController : ControllerBase
         }
     }
 
-    /// <summary>
-    /// This method invoked when the employee wants to see their Accepted Drive
-    /// </summary>
-    /// <response code="200">Returns list of accepted drives</response>
-    /// <response code="500">If there is problem in server</response>
-    /// <param name="fromDate"></param>
-    /// <param name="toDate"></param>
-    /// <returns>Returns list of accepted drives</returns>
+   
     [HttpGet]
     public IActionResult ViewSlotAvailabilityGiven()
     {
@@ -823,7 +816,14 @@ public class DriveController : ControllerBase
         }
 
     }
-
+    /// <summary>
+    /// This method invoked when the employee wants to see their Accepted Drive
+    /// </summary>
+    /// <response code="200">Returns list of accepted drives</response>
+    /// <response code="500">If there is problem in server</response>
+    /// <param name="fromDate"></param>
+    /// <param name="toDate"></param>
+    /// <returns>Returns list of accepted drives</returns>
     [HttpGet]
     public IActionResult ViewAcceptedDrives(DateTime fromDate, DateTime toDate)
     {
