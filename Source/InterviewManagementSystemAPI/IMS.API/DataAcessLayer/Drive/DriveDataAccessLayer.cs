@@ -463,7 +463,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from interview in _db.EmployeeAvailability!.Include(d => d.Drive).Include(L => L.Drive!.Location).Include(P => P.Drive!.Pool) where interview.IsInterviewCancelled == status && interview.Drive!.IsCancelled == false && interview.EmployeeId == employeeId && interview.InterviewDate.Date > System.DateTime.Now.Date && interview.IsInterviewScheduled == false select interview).ToList();
+                return (from interview in _db.EmployeeAvailability!.Include(d => d.Drive).Include(L => L.Drive!.Location).Include(P => P.Drive!.Pool) where interview.IsInterviewCancelled == status && interview.Drive!.IsCancelled == false && interview.Drive!.IsScheduled == false && interview.EmployeeId == employeeId && interview.InterviewDate.Date > System.DateTime.Now.Date && interview.IsInterviewScheduled == false select interview).ToList();
             }
             catch (Exception viewInterviewsByStatusException)
             {
