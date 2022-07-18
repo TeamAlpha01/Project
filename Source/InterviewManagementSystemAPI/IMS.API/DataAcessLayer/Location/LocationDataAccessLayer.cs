@@ -9,14 +9,16 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;
         private ILogger _logger;
-        
+        private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
        
 
-        public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
+        public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
 
         /// <summary>
@@ -67,7 +69,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Location DAL Time elapsed for AddLocationToDatabase(Location location)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Location DAL Time elapsed for AddLocationToDatabase(Location location)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -123,7 +125,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Location DAL Time elapsed for  RemoveLocationFromDatabase(int locationId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Location DAL Time elapsed for  RemoveLocationFromDatabase(int locationId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -159,11 +161,23 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Location DAL Time elapsed for  GetLocationsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Location DAL Time elapsed for  GetLocationsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
-
+      public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Location DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            
+        }
 
     }
 }

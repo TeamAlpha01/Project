@@ -10,14 +10,16 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;
         private ILogger _logger;
-        
+        private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
      
 
-        public RoleDataAccessLayer(ILogger<RoleDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
+        public RoleDataAccessLayer(ILogger<RoleDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
 
         /// <summary>
@@ -61,7 +63,7 @@ namespace IMS.DataAccessLayer
              finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Role DAL Time elapsed for  AddRoleToDatabase(Role role) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Role DAL Time elapsed for  AddRoleToDatabase(Role role) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -124,7 +126,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Role DAL Time elapsed for  RemoveRoleFromDatabase(int roleId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Role DAL Time elapsed for  RemoveRoleFromDatabase(int roleId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -161,7 +163,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Role DAL Time elapsed for  GetRolesFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Role DAL Time elapsed for  GetRolesFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -170,7 +172,25 @@ namespace IMS.DataAccessLayer
              _stopwatch.Start();
             if(!_db.Roles!.Any(x => x.RoleId == roleId)) 
                 throw new ValidationException("Role was not found");
-           
+            /**finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Role DAL Time elapsed for  AddRoleToDatabase(Role role) :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
+        }
+        
+      public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Role DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            
         }
 
     }

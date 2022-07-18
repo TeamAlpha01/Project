@@ -16,6 +16,7 @@ namespace IMS.DataAccessLayer
         public bool RemovePoolMembersFromDatabase(int poolMemberId);
 
         public List<PoolMembers> GetPoolMembersFromDatabase(int poolId);
-
+        
+        public bool GetIsTraceEnabledFromConfiguration();
     }
 }

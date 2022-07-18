@@ -7,5 +7,6 @@ namespace IMS.DataAccessLayer
         public bool AddLocationToDatabase(Location location);
         public bool RemoveLocationFromDatabase(int locationId);
         public List<Location> GetLocationsFromDatabase();
+        public bool GetIsTraceEnabledFromConfiguration();
     }
 }

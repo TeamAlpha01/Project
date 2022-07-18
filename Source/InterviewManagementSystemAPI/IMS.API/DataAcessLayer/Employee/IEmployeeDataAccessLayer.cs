@@ -15,5 +15,6 @@ namespace IMS.DataAccessLayer
 
         public Employee CheckLoginCrendentials(string employeeAceNumber , string password);
         public bool RespondEmployeeRequest(int employeeId, bool response);
+        public bool GetIsTraceEnabledFromConfiguration();
     }
 }

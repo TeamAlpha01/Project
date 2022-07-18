@@ -10,14 +10,16 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;// = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger _logger;
-        
+        private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
       
 
-        public EmployeeDataAccessLayer(ILogger<IEmployeeDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
+        public EmployeeDataAccessLayer(ILogger<IEmployeeDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
         /// <summary>
         /// This method implements when Employee service passes the object to this method,then this method add the employee data to the database.
@@ -49,7 +51,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee DAL Time elapsed for  AddEmployeeToDatabase(Employee employee)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee DAL Time elapsed for  AddEmployeeToDatabase(Employee employee)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -108,7 +110,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee DAL Time elapsed for  RemoveEmployeeFromDatabase(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee DAL Time elapsed for  RemoveEmployeeFromDatabase(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -144,7 +146,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee DAL Time elapsed for  GetApprovedEmployessFromDatabase(bool isAdminAccepted)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee DAL Time elapsed for  GetApprovedEmployessFromDatabase(bool isAdminAccepted)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -174,7 +176,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee DAL Time elapsed for  GetEmployeesRequestFromDatabase()  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee DAL Time elapsed for  GetEmployeesRequestFromDatabase()  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -206,7 +208,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee DAL Time elapsed for  GetEmployeesFromDatabase()  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee DAL Time elapsed for  GetEmployeesFromDatabase()  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -236,7 +238,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee DAL Time elapsed for  ViewProfile(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee DAL Time elapsed for  ViewProfile(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         
@@ -267,7 +269,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee DAL Time elapsed for  CheckLoginCrendentials(string employeeMail, string password)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee DAL Time elapsed for  CheckLoginCrendentials(string employeeMail, string password)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -289,7 +291,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee DAL Time elapsed for  ViewEmployeeByDepartment(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee DAL Time elapsed for  ViewEmployeeByDepartment(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -322,8 +324,21 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee DAL Time elapsed for  RespondEmployeeRequest(int employeeId, bool response)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee DAL Time elapsed for  RespondEmployeeRequest(int employeeId, bool response)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
+            
+        }
+        public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Employee DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
             
         }
     }

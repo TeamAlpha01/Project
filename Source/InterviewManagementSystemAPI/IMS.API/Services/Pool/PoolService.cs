@@ -13,12 +13,13 @@ namespace IMS.Service
         private readonly ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-       
+        private bool IsTracingEnabled;
 
         public PoolService(ILogger<IPoolService> logger,IPoolDataAccessLayer poolDataAccessLayer)
         {
             _logger = logger;
             _poolDataAccessLayer = poolDataAccessLayer; 
+            IsTracingEnabled = _poolDataAccessLayer.GetIsTraceEnabledFromConfiguration();
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace IMS.Service
 
             catch (Exception exception)
             {
-                _logger.LogError($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
+                _logger.LogInformation($"Pool service : CreatePool(int departmentId,string poolName) : {exception.Message}");
                 return false;
             }
             
@@ -101,7 +102,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool Service Time elapsed for  RemovePool(int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool Service Time elapsed for  RemovePool(int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -141,7 +142,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool Service Time elapsed for  EditPool(int poolId, string poolName) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool Service Time elapsed for  EditPool(int poolId, string poolName) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         
@@ -178,7 +179,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool Service Time elapsed for  ViewPools() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool Service Time elapsed for  ViewPools() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -213,7 +214,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool Service Time elapsed for  ViewPoolsByID(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool Service Time elapsed for  ViewPoolsByID(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
        
@@ -257,7 +258,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool Service Time elapsed for  AddPoolMember(int employeeId, int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool Service Time elapsed for  AddPoolMember(int employeeId, int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -296,7 +297,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool Service Time elapsed for  RemovePoolMember(int poolMemberId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool Service Time elapsed for  RemovePoolMember(int poolMemberId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -341,7 +342,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool Service Time elapsed for  ViewPoolMembers(int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool Service Time elapsed for  ViewPoolMembers(int poolId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 

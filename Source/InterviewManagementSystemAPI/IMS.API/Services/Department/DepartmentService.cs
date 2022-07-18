@@ -8,16 +8,17 @@ namespace IMS.Service
 {
     public class DepartmentService : IDepartmentService
     {
-
+         
         private IDepartmentDataAccessLayer _departmentDataAccessLayer;
         private ILogger _logger;
         private readonly Stopwatch _stopwatch = new Stopwatch();
        
-
+        private bool IsTracingEnabled;
         public DepartmentService(ILogger<DepartmentService> logger, IDepartmentDataAccessLayer departmentDataAccessLayer)
         {
             _logger = logger;
             _departmentDataAccessLayer = departmentDataAccessLayer;//DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(logger);
+            IsTracingEnabled = _departmentDataAccessLayer.GetIsTraceEnabledFromConfiguration();
         }
 
 
@@ -57,7 +58,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogTrace($"Department Service Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department Service Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -96,7 +97,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department Service Time elapsed for  RemoveDepartment(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department Service Time elapsed for  RemoveDepartment(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -126,7 +127,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department Service Time elapsed for  ViewDepartments() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department Service Time elapsed for  ViewDepartments() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -164,7 +165,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department Service Time elapsed for  CreateProject(int departmentId, string projectName) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department Service Time elapsed for  CreateProject(int departmentId, string projectName) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -203,7 +204,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department Service Time elapsed for  RemoveProject(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department Service Time elapsed for  RemoveProject(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -241,7 +242,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department Service Time elapsed for  ViewProjects(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department Service Time elapsed for  ViewProjects(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 

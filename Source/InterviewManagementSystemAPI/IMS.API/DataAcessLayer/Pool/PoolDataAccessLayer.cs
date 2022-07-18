@@ -10,14 +10,16 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db; // = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger _logger;
-        
+        private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
        
 
-        public PoolDataAccessLayer(ILogger<IPoolDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
+        public PoolDataAccessLayer(ILogger<IPoolDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
 
         /// <summary>
@@ -73,7 +75,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool DAL Time elapsed for AddPoolToDatabase(Pool pool)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool DAL Time elapsed for AddPoolToDatabase(Pool pool)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -130,7 +132,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool DAL Time elapsed for RemovePoolFromDatabase(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool DAL Time elapsed for RemovePoolFromDatabase(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -155,7 +157,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool DAL Time elapsed for hasActiveDrives(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool DAL Time elapsed for hasActiveDrives(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
           /// <summary>
@@ -212,7 +214,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool DAL Time elapsed for EditPoolFromDatabase(int poolId, string poolName)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool DAL Time elapsed for EditPoolFromDatabase(int poolId, string poolName)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
 
@@ -256,7 +258,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"pool DAL Time elapsed for GetPoolsFromDatabase()  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"pool DAL Time elapsed for GetPoolsFromDatabase()  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
        public List<PoolMembers> GetPoolsFromDatabase(int employeeID)
@@ -290,7 +292,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"pool DAL Time elapsed for GetPoolsFromDatabase(int employeeID) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"pool DAL Time elapsed for GetPoolsFromDatabase(int employeeID) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -329,7 +331,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool DAL Time elapsed for AddPoolMembersToDatabase(PoolMembers poolMembers)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool DAL Time elapsed for AddPoolMembersToDatabase(PoolMembers poolMembers)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
 
@@ -348,7 +350,11 @@ namespace IMS.DataAccessLayer
 
             return true;
             
-         
+          /**  finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Pool DAL Time elapsed for isPoolMemberValid(PoolMembers poolMembers)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
 
         /// <summary>
@@ -401,7 +407,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool DAL Time elapsed for RemovePoolMembersFromDatabase(int poolMemberId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool DAL Time elapsed for RemovePoolMembersFromDatabase(int poolMemberId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
 
@@ -444,9 +450,23 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Pool DAL Time elapsed for GetPoolMembersFromDatabase(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Pool DAL Time elapsed for GetPoolMembersFromDatabase(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
+        }
+        
+      public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Pool DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            
         }
     }
 }

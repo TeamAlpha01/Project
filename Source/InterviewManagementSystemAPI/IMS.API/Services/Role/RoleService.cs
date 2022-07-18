@@ -12,12 +12,13 @@ namespace IMS.Service
     {
         private IRoleDataAccessLayer _roleDataAccessLayer;
         private readonly ILogger _logger;
-        
+        private bool IsTracingEnabled;
         private readonly Stopwatch _stopwatch = new Stopwatch();
         public RoleService(ILogger<RoleService> logger,IRoleDataAccessLayer roleDataAccessLayer)
         {
             _logger = logger;
             _roleDataAccessLayer = roleDataAccessLayer;// DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
+            IsTracingEnabled = _roleDataAccessLayer.GetIsTraceEnabledFromConfiguration();
         }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Role Service Time elapsed for  CreateRole(string roleName,bool isManagement) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Role Service Time elapsed for  CreateRole(string roleName,bool isManagement) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -85,7 +86,7 @@ namespace IMS.Service
             }
             catch (Exception exception)
             {
-                _logger.LogError($"Role service : RemoveRole(int roleId) : {exception.Message}");
+                _logger.LogInformation($"Role service : RemoveRole(int roleId) : {exception.Message}");
                 return false;
             }
             finally
@@ -115,7 +116,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Role Service Time elapsed for  ViewRoles(int roleId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Role Service Time elapsed for  ViewRoles(int roleId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
     }

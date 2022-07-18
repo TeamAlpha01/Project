@@ -21,6 +21,7 @@ namespace IMS.DataAccessLayer
             _logger = logger;
             _db = dbContext;
             _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
         public bool AddDriveToDatabase(Drive drive)
         {
@@ -42,7 +43,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for AddDriveToDatabase(Drive drive)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for AddDriveToDatabase(Drive drive)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         private void FillInitialResponseForDrive(int driveId, int poolId)
@@ -60,6 +61,11 @@ namespace IMS.DataAccessLayer
                 _db.EmployeeDriveResponse!.Add(initialResponse);
             }
             _db.SaveChanges();
+           /** finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Drive DAL Time elapsed for FillInitialResponseForDrive(int driveId, int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
         public bool CancelDriveFromDatabase(int driveId, int tacId, string reason)
         {
@@ -95,7 +101,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for CancelDriveFromDatabase(int driveId, int tacId, string reason)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for CancelDriveFromDatabase(int driveId, int tacId, string reason)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -114,7 +120,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
          public List<Drive> GetScheduledDrivesByStatus(bool status)
@@ -132,7 +138,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
           public List<Drive> GetUpcomingDrivesByStatus(bool status)
@@ -150,7 +156,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
          public List<Drive> GetNonCancelledDrivesByStatus(bool status,int tacId)
@@ -168,7 +174,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
           public List<Drive> GetDriveInviteByStatus(bool status)
@@ -186,7 +192,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -206,7 +212,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -228,7 +234,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for ViewDrive(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for ViewDrive(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -266,7 +272,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for AddResponseToDatabase(EmployeeDriveResponse userResponse)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for AddResponseToDatabase(EmployeeDriveResponse userResponse)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -290,7 +296,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for IsResponded(int employeeId, int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for IsResponded(int employeeId, int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -318,7 +324,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetEmployeePoolIdsFromDatabase(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetEmployeePoolIdsFromDatabase(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -394,7 +400,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for SetTimeSlotToDatabase(EmployeeAvailability employeeAvailability)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public List<EmployeeAvailability> ViewAvailability(int employeeId, int driveId)
@@ -412,7 +418,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for ViewAvailability(int employeeId, int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for ViewAvailability(int employeeId, int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public List<EmployeeAvailability> ViewTodayInterviewsByStatus(bool status, int employeeId)//int employeeId filter using auth token
@@ -430,7 +436,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for ViewInterviewsByStatus(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for ViewInterviewsByStatus(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
          public List<EmployeeAvailability> ViewScheduledInterviewsByStatus(bool status, int employeeId)//int employeeId filter using auth token
@@ -448,7 +454,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for ViewInterviewsByStatus(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for ViewInterviewsByStatus(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public List<EmployeeAvailability> ViewUpcomingInterviewsByStatus(bool status, int employeeId)//int employeeId filter using auth token
@@ -466,7 +472,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for ViewInterviewsByStatus(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for ViewInterviewsByStatus(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public List<EmployeeAvailability> ViewInterviewsByStatus(bool status, int employeeId)//int employeeId filter using auth token
@@ -484,7 +490,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for ViewInterviewsByStatus(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for ViewInterviewsByStatus(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
             public List<EmployeeAvailability> ViewCancelledInterview(bool status, int employeeId)//int employeeId filter using auth token
@@ -501,7 +507,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for ViewCancelledInterview(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for ViewCancelledInterview(bool status, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
             }
 
@@ -528,7 +534,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for ScheduleInterview(int employeeAvailabilityId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for ScheduleInterview(int employeeAvailabilityId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)
@@ -555,7 +561,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public List<EmployeeAvailability> ViewAvailableMembersForDrive(int driveId)
@@ -575,7 +581,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for ViewAvailableMembersForDrive(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for ViewAvailableMembersForDrive(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public List<Employee> GetEmployee(int departmentId)
@@ -594,7 +600,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetEmployee(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetEmployee(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         
@@ -614,7 +620,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetResponseDetailsByStatus(int responseType, int employeeId, DateTime fromDate, DateTime toDate)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetResponseDetailsByStatus(int responseType, int employeeId, DateTime fromDate, DateTime toDate)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -633,7 +639,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetResponseUtilizationByStatus(bool isUtilized, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetResponseUtilizationByStatus(bool isUtilized, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -660,7 +666,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetDefaulters(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDefaulters(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         private object IsDefaulter(int employeeId,int poolId)
@@ -700,7 +706,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for IsDefaulter(int employeeId,int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for IsDefaulter(int employeeId,int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -725,7 +731,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetDriveResponse(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDriveResponse(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -755,8 +761,21 @@ namespace IMS.DataAccessLayer
            finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Drive DAL Time elapsed for GetDrivesForCurrentUser(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDrivesForCurrentUser(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
+        }
+        public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            
         }
     }
 }

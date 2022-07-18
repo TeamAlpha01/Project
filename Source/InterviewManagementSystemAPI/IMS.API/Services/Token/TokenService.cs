@@ -20,12 +20,13 @@ namespace IMS.Service
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
         
-
+        private bool IsTracingEnabled;
         public TokenService(ILogger<TokenService> logger, IConfiguration configuration, IEmployeeDataAccessLayer employeeDataAccessLayer)
         {
             _logger = logger;
             _configuration = configuration;
             _employeeDataAccessLayer = employeeDataAccessLayer;// DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(logger);
+            IsTracingEnabled = _employeeDataAccessLayer.GetIsTraceEnabledFromConfiguration();
         }
 
         public object AuthToken(string employeeMail, string password)
@@ -88,7 +89,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"token Service Time elapsed for  AuthToken(string employeeMail, string password) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"token Service Time elapsed for  AuthToken(string employeeMail, string password) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 

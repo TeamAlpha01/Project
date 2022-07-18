@@ -9,14 +9,16 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;//= DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger<MailService> _logger;
-        
+        private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
        
 
-        public MailDataAccessLayer(ILogger<MailService> logger,InterviewManagementSystemDbContext dbContext)
+        public MailDataAccessLayer(ILogger<MailService> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
 
         public string GetEmployeeEmail(int employeeId)
@@ -35,7 +37,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetEmployeeEmail(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetEmployeeEmail(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -55,7 +57,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetEmployeeName(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetEmployeeName(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -75,7 +77,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetPoolName(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetPoolName(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public PoolMembers? GetPoolMember(int poolMemberId)
@@ -94,7 +96,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetPoolMember(int poolMemberId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetPoolMember(int poolMemberId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -114,7 +116,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetEmployeeEmailsByPool(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetEmployeeEmailsByPool(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -134,7 +136,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetDrivebyId(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetDrivebyId(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -154,8 +156,22 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetEmployeeAvailability(int employeeAvailabilityId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetEmployeeAvailability(int employeeAvailabilityId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
+        }
+        
+      public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Mail DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            
         }
     }
 }
