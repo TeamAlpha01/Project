@@ -11,7 +11,7 @@ namespace IMS.DataAccessLayer
         private ILogger<MailService> _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+       
 
         public MailDataAccessLayer(ILogger<MailService> logger,InterviewManagementSystemDbContext dbContext)
         {
@@ -24,7 +24,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.Employees.Find(employeeId)!.EmailId;
+                return _db.Employees!.Find(employeeId)!.EmailId!;
             }
             catch (Exception getEmployeeEmailException)
             {
@@ -44,7 +44,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.Employees.Find(employeeId)!.Name;
+                return _db.Employees!.Find(employeeId)!.Name!;
             }
             catch (Exception getEmployeeNameException)
             {
@@ -64,7 +64,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.Pools.Find(poolId)!.PoolName;
+                return _db.Pools!.Find(poolId)!.PoolName!;
             }
             catch (Exception getPoolNameException)
             {
@@ -83,7 +83,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.PoolMembers.Find(poolMemberId);
+                return _db.PoolMembers!.Find(poolMemberId);
             }
             catch (Exception getPoolMemberException)
             {
@@ -103,7 +103,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from poolMember in _db.PoolMembers.Include(p => p.Employees) where poolMember.PoolId == poolId select poolMember.Employees!.EmailId).ToList();
+                return (from poolMember in _db.PoolMembers!.Include(p => p.Employees) where poolMember.PoolId == poolId select poolMember.Employees!.EmailId).ToList();
             }
             catch (Exception getEmployeeEmailsByPoolException)
             {
@@ -123,7 +123,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.Drives.Find(driveId);
+                return _db.Drives!.Find(driveId);
             }
             catch (Exception getDrivebyIdException)
             {
@@ -143,7 +143,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.EmployeeAvailability.Include("Drive").Include("Employee").FirstOrDefault(e=>e.EmployeeAvailabilityId == employeeAvailabilityId);
+                return _db.EmployeeAvailability!.Include("Drive").Include("Employee").FirstOrDefault(e=>e.EmployeeAvailabilityId == employeeAvailabilityId);
             }
             catch (Exception getEmployeeAvailabilityException)
             {

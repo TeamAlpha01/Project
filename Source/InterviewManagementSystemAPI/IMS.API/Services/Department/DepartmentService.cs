@@ -12,7 +12,7 @@ namespace IMS.Service
         private IDepartmentDataAccessLayer _departmentDataAccessLayer;
         private ILogger _logger;
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+       
 
         public DepartmentService(ILogger<DepartmentService> logger, IDepartmentDataAccessLayer departmentDataAccessLayer)
         {
@@ -57,7 +57,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department Service Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogTrace($"Department Service Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 

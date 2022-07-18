@@ -19,7 +19,7 @@ namespace IMS.Service
         private IConfiguration _configuration;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+        
 
         public TokenService(ILogger<TokenService> logger, IConfiguration configuration, IEmployeeDataAccessLayer employeeDataAccessLayer)
         {
@@ -40,10 +40,10 @@ namespace IMS.Service
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                        new Claim("Email",user.EmailId),
+                        new Claim("Email",user.EmailId!),
                         new Claim("UserId", user.EmployeeId.ToString()),
                         new Claim("DepartmentId",user.DepartmentId.ToString()),
-                        new Claim("UserName", user.Name.ToString()),
+                        new Claim("UserName", user.Name!.ToString()),
                         new Claim(ClaimTypes.Role,user.RoleId.ToString()),
                     };
 
@@ -83,7 +83,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
-                throw exception;
+                throw ;
             }
             finally
             {

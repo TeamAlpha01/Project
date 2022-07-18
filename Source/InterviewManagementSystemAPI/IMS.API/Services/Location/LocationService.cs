@@ -13,7 +13,7 @@ namespace IMS.Service
         private readonly ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+        
         public LocationService(ILogger<LocationService> logger,ILocationDataAccessLayer dataAccessLayer)
         {
             _logger = logger;

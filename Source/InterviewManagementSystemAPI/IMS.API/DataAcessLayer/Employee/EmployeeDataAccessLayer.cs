@@ -12,7 +12,7 @@ namespace IMS.DataAccessLayer
         private ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+      
 
         public EmployeeDataAccessLayer(ILogger<IEmployeeDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
@@ -32,12 +32,12 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             EmployeeValidation.IsEmployeeValid(employee);
             
-            if ( _db.Employees.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber ))throw new ValidationException("ACE number already exists");
-            if ( _db.Employees.Any(x => x.EmailId == employee.EmailId))throw new ValidationException("Email id  already exists");
+            if ( _db.Employees!.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber ))throw new ValidationException("ACE number already exists");
+            if ( _db.Employees!.Any(x => x.EmailId == employee.EmailId))throw new ValidationException("Email id  already exists");
             
             try
             {
-                _db.Employees.Add(employee);
+                _db.Employees!.Add(employee);
                 _db.SaveChanges();
                 return true;
             }
@@ -66,7 +66,7 @@ namespace IMS.DataAccessLayer
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
-                var employee = _db.Employees.Find(employeeId);
+                var employee = _db.Employees!.Find(employeeId);
 
                 if (employee == null) throw new ValidationException("No Employee is found with given employee Id");
 
@@ -153,7 +153,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from employee in _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project)  where employee.IsActive == true  && employee.IsAdminAccepted == false && employee.IsAdminResponded == false select employee).ToList();
+                return (from employee in _db.Employees!.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project)  where employee.IsActive == true  && employee.IsAdminAccepted == false && employee.IsAdminResponded == false select employee).ToList();
             }
             catch (DbUpdateException exception)
             {
@@ -183,7 +183,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return  _db.Employees.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project).Where(employee=>employee.IsActive==true && employee.IsAdminAccepted==true).ToList();;
+                return  _db.Employees!.Include(d=>d.Department).Include(r=>r.Role).Include(p=>p.Project).Where(employee=>employee.IsActive==true && employee.IsAdminAccepted==true).ToList();;
 
 
             }
@@ -224,7 +224,7 @@ namespace IMS.DataAccessLayer
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
-                var viewProfile = (_db.Employees.Include(p => p.Project).Include(d => d.Department).Include(p => p.PoolMembers).Include(r => r.Role)).FirstOrDefault(x => x.EmployeeId == employeeId);
+                var viewProfile = (_db.Employees!.Include(p => p.Project).Include(d => d.Department).Include(p => p.PoolMembers).Include(r => r.Role)).FirstOrDefault(x => x.EmployeeId == employeeId);
                 return viewProfile != null ? viewProfile : throw new ValidationException("No Employee is found with given employee Id");
             }
             catch (Exception isEmployeeIdValidException)
@@ -245,15 +245,15 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                if(!_db.Employees.Any(x => x.EmailId == employeeMail))
+                if(!_db.Employees!.Any(x => x.EmailId == employeeMail))
                     throw new ValidationException($"Invalid credentials");
 
-                if(!_db.Employees.Any(x => x.EmailId == employeeMail && x.Password == password))
+                if(!_db.Employees!.Any(x => x.EmailId == employeeMail && x.Password == password))
                     throw new ValidationException($"Invalid credentials");
 
-                if(!_db.Employees.Any(x => x.EmailId == employeeMail && x.Password == password && x.IsActive==true))
+                if(!_db.Employees!.Any(x => x.EmailId == employeeMail && x.Password == password && x.IsActive==true))
                     throw new ValidationException($"Your account has been deactivated! Please Contact Adminstrator.");
-                if(!_db.Employees.Any(x =>x.EmailId == employeeMail && x.Password == password && x.IsAdminAccepted==true))
+                if(!_db.Employees!.Any(x =>x.EmailId == employeeMail && x.Password == password && x.IsAdminAccepted==true))
                     throw new ValidationException($"Wait untill you receive a mail!");
                 var _employee = GetEmployeesFromDatabase().Where(employee => employee.EmailId == employeeMail).First();
                 return _employee;
@@ -277,7 +277,7 @@ namespace IMS.DataAccessLayer
             EmployeeValidation.IsDepartmentValid(departmentId);
             try
             {
-                var viewEmployeesByDepartment = (_db.Employees.Include(p => p.Project).Include(p => p.Department).Include(p => p.PoolMembers).Include(r => r.Role)).Where(x => x.DepartmentId == departmentId).ToList();
+                var viewEmployeesByDepartment = (_db.Employees!.Include(p => p.Project).Include(p => p.Department).Include(p => p.PoolMembers).Include(r => r.Role)).Where(x => x.DepartmentId == departmentId).ToList();
                 return viewEmployeesByDepartment != null ? viewEmployeesByDepartment : throw new ValidationException("No Department is found with given department Id");
             }
             catch (Exception IsDepartmentValid)
@@ -299,9 +299,9 @@ namespace IMS.DataAccessLayer
             EmployeeValidation.IsEmployeeIdValid(employeeId);
             try
             {
-                if(!_db.Employees.Any(x => x.EmployeeId ==employeeId ))
+                if(!_db.Employees!.Any(x => x.EmployeeId ==employeeId ))
                     throw new ValidationException($"No Employee Found With the given employee id : {employeeId}");
-                var employee = _db.Employees.Find(employeeId);
+                var employee = _db.Employees!.Find(employeeId);
                 employee!.IsAdminResponded=true; 
                 employee.IsAdminAccepted=response;
                 _db.Employees.Update(employee);

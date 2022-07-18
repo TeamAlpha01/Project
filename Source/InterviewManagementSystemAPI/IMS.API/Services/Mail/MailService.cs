@@ -20,7 +20,7 @@ namespace IMS.Service
         private IMailDataAccessLayer _mailDataAccessLayer;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+       
         public MailService(ILogger<MailService> logger, IOptions<MailSettings> mailSettings,IMailDataAccessLayer mailDataAccessLayer)
         {
             _logger = logger;

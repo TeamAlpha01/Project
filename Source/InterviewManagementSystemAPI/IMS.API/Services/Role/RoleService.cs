@@ -14,7 +14,6 @@ namespace IMS.Service
         private readonly ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
         public RoleService(ILogger<RoleService> logger,IRoleDataAccessLayer roleDataAccessLayer)
         {
             _logger = logger;

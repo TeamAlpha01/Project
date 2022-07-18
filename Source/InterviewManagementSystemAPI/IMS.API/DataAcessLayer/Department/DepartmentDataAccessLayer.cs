@@ -19,7 +19,7 @@ namespace IMS.DataAccessLayer
         private ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+        
         public DepartmentDataAccessLayer(ILogger<DepartmentDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
             _logger = logger;
@@ -67,7 +67,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogTrace($"Department DAL Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -165,7 +165,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for  GetDepartmentsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogTrace($"Department DAL Time elapsed for  GetDepartmentsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>

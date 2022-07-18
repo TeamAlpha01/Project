@@ -13,7 +13,7 @@ namespace IMS.Service
         private IConfiguration _configuration;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+       
 
         public DriveService(ILogger<DriveService> logger, IDriveDataAccessLayer driveDataAccessLayer, IConfiguration configuration)
         {
@@ -87,7 +87,7 @@ namespace IMS.Service
                     DriveName = d.Name,
                     FromDate = d.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment = d.Pool!.department.DepartmentName,
+                    DriveDepartment = d.Pool!.department!.DepartmentName,
                     DriveLocation = d.Location!.LocationName,
                     DrivePool = d.Pool.PoolName,
                     DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId)
@@ -120,7 +120,7 @@ namespace IMS.Service
                     DriveName = d.Name,
                     FromDate = d.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment = d.Pool!.department.DepartmentName,
+                    DriveDepartment = d.Pool!.department!.DepartmentName,
                     DriveLocation = d.Location!.LocationName,
                     DrivePool = d.Pool.PoolName,
                     DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId)
@@ -187,7 +187,7 @@ namespace IMS.Service
                     DriveName = d.Name,
                     FromDate = d.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment = d.Pool!.department.DepartmentName,
+                    DriveDepartment = d.Pool!.department!.DepartmentName,
                     DriveLocation = d.Location!.LocationName,
                     DrivePool = d.Pool.PoolName,
                     DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId)
@@ -813,7 +813,7 @@ namespace IMS.Service
             {
  
                 _logger.LogError($"Drive service:ViewEmployeePerformance(int employeeId, int departmentId, DateTime fromDate, DateTime toDate):{exception.Message}");
-                throw exception;
+                throw ;
             }
            
            finally
@@ -845,7 +845,7 @@ namespace IMS.Service
             catch (Exception viewTotalDrivesException)
             {
                 _logger.LogInformation($"Drive Service : ViewTotalDrives(int employeeId) : {viewTotalDrivesException.Message} : {viewTotalDrivesException.StackTrace}");
-                throw viewTotalDrivesException;
+                throw ;
             }
             
             finally
@@ -876,7 +876,7 @@ namespace IMS.Service
             catch (Exception viewAcceptedDrivesException)
             {
                 _logger.LogInformation($"Drive Service : ViewAcceptedDrives() : {viewAcceptedDrivesException.Message} : {viewAcceptedDrivesException.StackTrace}");
-                throw viewAcceptedDrivesException;
+                throw ;
             }
             
             finally
@@ -906,7 +906,7 @@ namespace IMS.Service
             catch (Exception viewDeniedDrivesException)
             {
                 _logger.LogInformation($"Drive Service : ViewDeniedDrives() : {viewDeniedDrivesException.Message} : {viewDeniedDrivesException.StackTrace}");
-                throw viewDeniedDrivesException;
+                throw ;
             }
             
             finally
@@ -936,7 +936,7 @@ namespace IMS.Service
             catch (Exception viewIgnoredDrivesException)
             {
                 _logger.LogInformation($"Drive Service : ViewIgnoredDrives(int employeeId, DateTime fromDate, DateTime toDate) : {viewIgnoredDrivesException.Message} : {viewIgnoredDrivesException.StackTrace}");
-                throw viewIgnoredDrivesException;
+                throw ;
             }
             
             finally
@@ -968,7 +968,7 @@ namespace IMS.Service
             catch (Exception utilizedInterviewsException)
             {
                 _logger.LogInformation($"Drive Service : UtilizedInterviews(int employeeId) : {utilizedInterviewsException.Message} : {utilizedInterviewsException.StackTrace}");
-                throw utilizedInterviewsException;
+                throw ;
             }
             
             finally
@@ -999,7 +999,7 @@ namespace IMS.Service
             catch (Exception viewNotUtilizedInterviewsException)
             {
                 _logger.LogInformation($"Drive Service : ViewNotUtilizedInterviews(int employeeId) : {viewNotUtilizedInterviewsException.Message} : {viewNotUtilizedInterviewsException.StackTrace}");
-                throw viewNotUtilizedInterviewsException;
+                throw ;
             }
             
             finally
@@ -1031,7 +1031,7 @@ namespace IMS.Service
             catch (Exception viewTotalAvailabilityException)
             {
                 _logger.LogInformation($"Drive Service : ViewTotalAvailability(int employeeId) : {viewTotalAvailabilityException.Message} : {viewTotalAvailabilityException.StackTrace}");
-                throw viewTotalAvailabilityException;
+                throw ;
             }
             
             finally

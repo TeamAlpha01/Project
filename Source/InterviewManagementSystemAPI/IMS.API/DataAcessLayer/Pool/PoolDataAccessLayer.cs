@@ -12,7 +12,7 @@ namespace IMS.DataAccessLayer
         private ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+       
 
         public PoolDataAccessLayer(ILogger<IPoolDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
@@ -30,10 +30,10 @@ namespace IMS.DataAccessLayer
         {
              _stopwatch.Start();
             PoolValidation.IsAddPoolValid(pool);
-            if (_db.Pools.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId && p.IsActive == true)) throw new ValidationException("Pool Name already exists under this department");
+            if (_db.Pools!.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId && p.IsActive == true)) throw new ValidationException("Pool Name already exists under this department");
             try
             {
-                var department=_db.Pools.Find(pool.DepartmentId);
+                var department=_db.Pools!.Find(pool.DepartmentId);
                 if(department==null)
                     throw new ValidationException("Department not found with the given Department Id");
                 if(_db.Pools.Any(p => p.PoolName == pool.PoolName && p.DepartmentId == pool.DepartmentId && p.IsActive == false))
@@ -90,14 +90,14 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             PoolValidation.IsValidPoolId(poolId);
 
-            if (_db.Pools.Any(x => x.PoolId == poolId && x.IsActive == false))
+            if (_db.Pools!.Any(x => x.PoolId == poolId && x.IsActive == false))
                 throw new ValidationException("Pool already deleted");
             if(hasActiveDrives(poolId))
                 throw new ValidationException("Pool contains active drives.");
             
             try
             {
-                var Pool = _db.Pools.Find(poolId);
+                var Pool = _db.Pools!.Find(poolId);
                 if (poolId <= 0)
                     throw new ValidationException("No Pool  is found with given Pool Id");
 
@@ -141,7 +141,7 @@ namespace IMS.DataAccessLayer
         {
             _stopwatch.Start();
             try{
-                if(_db.Drives.Any(d=>d.PoolId==poolId&&d.ToDate>=System.DateTime.Now))
+                if(_db.Drives!.Any(d=>d.PoolId==poolId&&d.ToDate>=System.DateTime.Now))
                     return true;
             
             return false;
@@ -172,11 +172,11 @@ namespace IMS.DataAccessLayer
             PoolValidation.IsEditPoolValid(poolId, poolName);
             try
             {
-                bool poolNameExists = _db.Pools.Any(x => x.PoolName == poolName && x.IsActive == true);
+                bool poolNameExists = _db.Pools!.Any(x => x.PoolName == poolName && x.IsActive == true);
                 if(poolNameExists)
                     throw new ValidationException("Pool Name already Exists");
                 
-                var edit = _db.Pools.Find(poolId);
+                var edit = _db.Pools!.Find(poolId);
                 if (edit == null)
                     throw new ValidationException("No pool is found with given Pool Id");
                 else if (edit.IsActive == false)
@@ -231,7 +231,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                return (from pool in _db.Pools.Include(p=>p.department) where pool.IsActive == true select pool).ToList();
+                return (from pool in _db.Pools!.Include(p=>p.department) where pool.IsActive == true select pool).ToList();
             }
             catch (DbUpdateException exception)
             {
@@ -264,7 +264,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Pools) where poolMember.EmployeeId==employeeID  select poolMember).ToList();
+                return (from poolMember in _db.PoolMembers!.Include(e=>e.Employees).Include(r=>r.Pools) where poolMember.EmployeeId==employeeID  select poolMember).ToList();
 
                 //return _db.PoolMembers.ToList();
             }
@@ -310,7 +310,7 @@ namespace IMS.DataAccessLayer
             {
                 isPoolMemberValid(poolMembers);
                 
-                _db.PoolMembers.Add(poolMembers);
+                _db.PoolMembers!.Add(poolMembers);
                 _db.SaveChanges();
                 return true;
                
@@ -337,12 +337,12 @@ namespace IMS.DataAccessLayer
         private bool isPoolMemberValid(PoolMembers poolMembers)
         {
            
-            var employee=_db.Employees.Include(e=>e.Role).FirstOrDefault(e=>e.EmployeeId==poolMembers.EmployeeId);
-            var pool =_db.Pools.Find(poolMembers.PoolId);
+            var employee=_db.Employees!.Include(e=>e.Role).FirstOrDefault(e=>e.EmployeeId==poolMembers.EmployeeId);
+            var pool =_db.Pools!.Find(poolMembers.PoolId);
             if(employee==null || pool==null)
                 throw new ValidationException("Employee or pool not found with the given Employee Id and Pool Id");
                       
-            bool poolMemberAlreadyExists = _db.PoolMembers.Any(x => x.EmployeeId == poolMembers.EmployeeId && x.PoolId==poolMembers.PoolId && x.IsActive == true);    
+            bool poolMemberAlreadyExists = _db.PoolMembers!.Any(x => x.EmployeeId == poolMembers.EmployeeId && x.PoolId==poolMembers.PoolId && x.IsActive == true);    
             if(poolMemberAlreadyExists)
              throw new ValidationException("Pool member already exists in the given pool");
 
@@ -361,7 +361,7 @@ namespace IMS.DataAccessLayer
         {
             _stopwatch.Start();
             PoolValidation.IsRemovePoolMembersValid(poolMemberId);
-             bool isPoolMemberId = _db.PoolMembers.Any(x => x.PoolMembersId == poolMemberId && x.IsActive == false);
+             bool isPoolMemberId = _db.PoolMembers!.Any(x => x.PoolMembersId == poolMemberId && x.IsActive == false);
             if (isPoolMemberId)
             {
                 throw new ValidationException("PoolMember already deleted");
@@ -369,7 +369,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                var employee = _db.PoolMembers.Find(poolMemberId);
+                var employee = _db.PoolMembers!.Find(poolMemberId);
                 if (employee == null)
                     throw new ValidationException("PoolMember not found with the given PoolMember Id");
 
@@ -420,7 +420,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Employees!.Role) where poolMember.PoolId==poolId && poolMember.IsActive ==true && poolMember.Employees!.IsAdminAccepted==true && poolMember.Employees.IsAdminResponded==true select poolMember).ToList();
+                return (from poolMember in _db.PoolMembers!.Include(e=>e.Employees).Include(r=>r.Employees!.Role) where poolMember.PoolId==poolId && poolMember.IsActive ==true && poolMember.Employees!.IsAdminAccepted==true && poolMember.Employees.IsAdminResponded==true select poolMember).ToList();
 
                 //return _db.PoolMembers.ToList();
             }

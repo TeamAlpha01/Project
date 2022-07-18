@@ -13,7 +13,7 @@ namespace IMS.Service
         private readonly ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+       
 
         public PoolService(ILogger<IPoolService> logger,IPoolDataAccessLayer poolDataAccessLayer)
         {
@@ -160,7 +160,7 @@ namespace IMS.Service
                         poolId=p.PoolId,
                         poolName=p.PoolName,
                         departmentId=p.DepartmentId,
-                        departmentName=p.department.DepartmentName
+                        departmentName=p.department!.DepartmentName
                     }
                 );
             }

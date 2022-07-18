@@ -11,7 +11,7 @@ namespace IMS.DataAccessLayer
         private ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+       
 
         public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
@@ -34,10 +34,10 @@ namespace IMS.DataAccessLayer
             LocationValidation.IsLocationValid(location);
             try
             {
-                bool locationnameAlreadyExists = _db.Locations.Any(x => x.LocationName == location.LocationName && x.IsActive == true);
+                bool locationnameAlreadyExists = _db.Locations!.Any(x => x.LocationName == location.LocationName && x.IsActive == true);
                 if (!locationnameAlreadyExists)
                 {
-                    _db.Locations.Add(location);
+                    _db.Locations!.Add(location);
                     _db.SaveChanges();
                     return true;
                 }
@@ -83,7 +83,7 @@ namespace IMS.DataAccessLayer
         {
             _stopwatch.Start();
             LocationValidation.IsLocationIdValid(locationId);
-            bool isLoactiontId = _db.Locations.Any(x => x.LocationId == locationId && x.IsActive == false);
+            bool isLoactiontId = _db.Locations!.Any(x => x.LocationId == locationId && x.IsActive == false);
             if (isLoactiontId)
             {
                 throw new ValidationException("Location already deleted");
@@ -91,7 +91,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                var location = _db.Locations.Find(locationId);
+                var location = _db.Locations!.Find(locationId);
                 if (location == null)
                     throw new ValidationException("No location is found with given Location Id");
 

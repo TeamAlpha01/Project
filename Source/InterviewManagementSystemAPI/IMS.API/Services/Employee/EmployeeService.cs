@@ -16,7 +16,7 @@ namespace IMS.Service
         private ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+      
 
         public EmployeeService(ILogger<IEmployeeService> logger, IEmployeeDataAccessLayer employeeDataAccessLayer, IDepartmentDataAccessLayer departmentDataAccessLayer, IRoleDataAccessLayer roleDataAccessLayer)
         {
@@ -55,7 +55,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Employee Service : CreateEmployee() : {exception.Message}");
-                throw exception;
+                throw ;
             }
             finally
             {
@@ -99,7 +99,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
-                throw exception;
+                throw ;
             }
             
             finally
@@ -178,7 +178,7 @@ namespace IMS.Service
             catch (Exception viewEmployeeException)
             {
                 _logger.LogError($"Employee Service : ViewProfile(int employeeId) : {viewEmployeeException.Message} : {viewEmployeeException.StackTrace}");
-                throw viewEmployeeException;
+                throw ;
             }
             finally
             {
@@ -318,7 +318,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
-                throw exception;
+                throw;
             }
             finally
             {
@@ -343,7 +343,7 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
-                throw exception;
+                throw ;
             }
             finally
             {

@@ -12,7 +12,7 @@ namespace IMS.DataAccessLayer
         private ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+     
 
         public RoleDataAccessLayer(ILogger<RoleDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
         {
@@ -31,7 +31,7 @@ namespace IMS.DataAccessLayer
         {
              _stopwatch.Start();
             RoleValidation.IsRoleValid(role);
-            bool roleNameExists = _db.Roles.Any(x => x.RoleName == role.RoleName && x.IsActive == true);
+            bool roleNameExists = _db.Roles!.Any(x => x.RoleName == role.RoleName && x.IsActive == true);
             if (roleNameExists)
             {
                 throw new ValidationException("Role already exist");
@@ -39,7 +39,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                _db.Roles.Add(role);
+                _db.Roles!.Add(role);
                 _db.SaveChanges();
                 return true;
             }
@@ -78,7 +78,7 @@ namespace IMS.DataAccessLayer
             //     throw new ArgumentNullException("Role Id is not provided to DAL");
             try
             {
-                var role = _db.Roles.Find(roleId);
+                var role = _db.Roles!.Find(roleId);
                 if (role!.IsActive == false)
                 {
                     throw new ValidationException("There is no employee for this role id");
@@ -168,7 +168,7 @@ namespace IMS.DataAccessLayer
         public void CheckRoleId(int roleId)
         {
              _stopwatch.Start();
-            if(!_db.Roles.Any(x => x.RoleId == roleId)) 
+            if(!_db.Roles!.Any(x => x.RoleId == roleId)) 
                 throw new ValidationException("Role was not found");
            
         }

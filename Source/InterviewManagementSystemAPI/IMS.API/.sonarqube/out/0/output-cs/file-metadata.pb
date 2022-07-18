@@ -126,7 +126,13 @@ yC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementS
 ÑC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220712105604_aravind.csutf-8ô
 çC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220712105604_aravind.Designer.csutf-8è
 ÖC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220712110924_aravinth.csutf-8ö
-éC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220712110924_aravinth.Designer.csutf-8©
+éC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220712110924_aravinth.Designer.csutf-8ï
+ãC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220714153227_Removed_PoolId.csutf-8†
+îC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220714153227_Removed_PoolId.Designer.csutf-8ú
+íC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220715053914_Changed_string_lenght.csutf-8ß
+õC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220715053914_Changed_string_lenght.Designer.csutf-8£
+ôC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220717084325_UPDATED_SEEDING_DATA_JULY_17.csutf-8Æ
+¢C:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\20220717084325_UPDATED_SEEDING_DATA_JULY_17.Designer.csutf-8©
 ùC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Migrations\InterviewManagementSystemDbContextModelSnapshot.csutf-8}
 tC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Models\Department.csutf-8x
 oC:\Users\darshana.annappan\Documents\Github\Project\Source\InterviewManagementSystemAPI\IMS.API\Models\Drive.csutf-8{
