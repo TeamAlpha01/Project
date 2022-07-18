@@ -1615,3 +1615,9 @@ body {
 }
 
 /* Create Pool Ends */
+
+/* Admin Add Role - Checkbox */
+
+.checkboxalignment{
+  margin-top: 2%;
+}
