@@ -193,6 +193,26 @@ public class EmployeeController : ControllerBase
         }
 
     }
+    [HttpGet]
+    public IActionResult ViewEmployeesByDepartmentForCurrentUser()
+    {
+        try
+        {
+            int departmentId = Convert.ToInt32(User.FindFirst("DepartmentId")?.Value);
+            return Ok(_employeeService.ViewEmployeesByDepartment(departmentId));
+        }
+        catch (ValidationException exception1)
+        {
+            _logger.LogError($"Employee controller:ViewEmployeesByDepartment(int departmentId):{exception1.Message}:{exception1.StackTrace}");
+            return BadRequest(exception1.Message);
+        }
+        catch (Exception exception)
+        {
+            _logger.LogError($"Service throwed exception while fetching employees : {exception.Message}:{exception.StackTrace}");
+            return Problem("Sorry some internal error occured");
+        }
+
+    }
     /// <summary>
     /// This method is used to view whether employee is accepted by admin or not
     /// </summary>
