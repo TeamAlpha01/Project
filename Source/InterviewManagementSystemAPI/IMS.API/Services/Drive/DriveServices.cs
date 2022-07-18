@@ -759,6 +759,7 @@ namespace IMS.Service
                 DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
                 DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
                 DashboardCount.Add("SlotAvailabiltyGiven",_driveDataAccess.GetSlotAvailabilityGiven(employeeId).Count());
+                DashboardCount.Add("CancelledInterview",_driveDataAccess.ViewCancelledInterview(true, employeeId).Count());
                 DashboardCount.Add("TotalAvailability", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"]);
                 return DashboardCount;
             }
