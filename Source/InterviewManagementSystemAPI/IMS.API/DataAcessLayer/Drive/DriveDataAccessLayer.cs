@@ -572,7 +572,7 @@ namespace IMS.DataAccessLayer
             try
             {
                 if (_db.Drives!.Find(driveId) == null) throw new ValidationException($"No Drive is Found with driveId : {driveId}");
-                return (from availability in _db.EmployeeAvailability!.Include(e => e.Employee).Include(r => r.Employee!.Role).Include(d => d.Employee!.Department) where availability.DriveId == driveId && availability.IsInterviewScheduled == false select availability).ToList();
+                return (from availability in _db.EmployeeAvailability!.Include(e => e.Employee).Include(r => r.Employee!.Role).Include(d => d.Employee!.Department) where availability.DriveId == driveId && availability.IsInterviewScheduled == false && availability.IsInterviewCancelled == false select availability).ToList();
             }
             catch (Exception viewAvailableMembersForDriveException)
             {
