@@ -11,6 +11,7 @@ namespace IMS.DataAccessLayer
         private ILogger<MailService> _logger;
         private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
+         private bool IsTracingEnabled;
        
 
         public MailDataAccessLayer(ILogger<MailService> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
@@ -174,4 +175,5 @@ namespace IMS.DataAccessLayer
             
         }
     }
+}
 }

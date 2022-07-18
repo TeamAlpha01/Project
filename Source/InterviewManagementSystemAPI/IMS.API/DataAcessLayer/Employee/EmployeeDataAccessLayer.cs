@@ -12,6 +12,7 @@ namespace IMS.DataAccessLayer
         private ILogger _logger;
         private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
+        private bool IsTracingEnabled;
       
 
         public EmployeeDataAccessLayer(ILogger<IEmployeeDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
@@ -342,4 +343,5 @@ namespace IMS.DataAccessLayer
             
         }
     }
+}
 }
