@@ -7,5 +7,7 @@ namespace IMS.DataAccessLayer
         public bool RemoveRoleFromDatabase(int roleId);
         public List<Role> GetRolesFromDatabase();
         public void CheckRoleId(int roleId);
+
+        public bool GetIsTraceEnabledFromConfiguration();
     }
 }

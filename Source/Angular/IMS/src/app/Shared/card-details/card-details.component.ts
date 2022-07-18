@@ -12,11 +12,6 @@ export class CardDetailsComponent implements OnInit {
   @Input()  data!: any[];
   @Input()  response:boolean=false
   
-
-  
-
-
-  
   constructor() { }
 
   ngOnInit(): void {

@@ -9,6 +9,7 @@ namespace IMS.DataAccessLayer{
          public List<Project> GetProjectsFromDatabase();
          public void CheckDepartmentId(int departmentId);
          public void CheckProjectId(int projectId);
+         public bool GetIsTraceEnabledFromConfiguration();
           
     }
 }

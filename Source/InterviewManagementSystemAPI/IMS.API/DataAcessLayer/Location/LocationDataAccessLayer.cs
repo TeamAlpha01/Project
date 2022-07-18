@@ -9,14 +9,17 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;
         private ILogger _logger;
-        
+        private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+         private bool IsTracingEnabled;
+       
 
-        public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
+        public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
 
         /// <summary>
@@ -34,10 +37,10 @@ namespace IMS.DataAccessLayer
             LocationValidation.IsLocationValid(location);
             try
             {
-                bool locationnameAlreadyExists = _db.Locations.Any(x => x.LocationName == location.LocationName && x.IsActive == true);
+                bool locationnameAlreadyExists = _db.Locations!.Any(x => x.LocationName == location.LocationName && x.IsActive == true);
                 if (!locationnameAlreadyExists)
                 {
-                    _db.Locations.Add(location);
+                    _db.Locations!.Add(location);
                     _db.SaveChanges();
                     return true;
                 }
@@ -67,7 +70,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Location DAL Time elapsed for AddLocationToDatabase(Location location)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Location DAL Time elapsed for AddLocationToDatabase(Location location)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -83,7 +86,7 @@ namespace IMS.DataAccessLayer
         {
             _stopwatch.Start();
             LocationValidation.IsLocationIdValid(locationId);
-            bool isLoactiontId = _db.Locations.Any(x => x.LocationId == locationId && x.IsActive == false);
+            bool isLoactiontId = _db.Locations!.Any(x => x.LocationId == locationId && x.IsActive == false);
             if (isLoactiontId)
             {
                 throw new ValidationException("Location already deleted");
@@ -91,7 +94,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                var location = _db.Locations.Find(locationId);
+                var location = _db.Locations!.Find(locationId);
                 if (location == null)
                     throw new ValidationException("No location is found with given Location Id");
 
@@ -123,7 +126,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Location DAL Time elapsed for  RemoveLocationFromDatabase(int locationId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Location DAL Time elapsed for  RemoveLocationFromDatabase(int locationId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -159,11 +162,24 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Location DAL Time elapsed for  GetLocationsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Location DAL Time elapsed for  GetLocationsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
-
+      public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Location DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            
+        }
 
     }
+}
 }

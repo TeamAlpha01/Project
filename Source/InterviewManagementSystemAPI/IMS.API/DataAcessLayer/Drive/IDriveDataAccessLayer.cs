@@ -38,5 +38,6 @@ namespace IMS.DataAccessLayer
         public List<EmployeeDriveResponse> GetDriveResponse(int driveId);
         public List<EmployeeAvailability> ViewCancelledInterview(bool status, int employeeId);
         public List<string> GetDrivesForCurrentUser(int departmentId);
+        public bool GetIsTraceEnabledFromConfiguration();
     }
 }

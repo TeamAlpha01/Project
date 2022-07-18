@@ -9,14 +9,17 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;//= DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
         private ILogger<MailService> _logger;
-        
+        private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+         private bool IsTracingEnabled;
+       
 
-        public MailDataAccessLayer(ILogger<MailService> logger,InterviewManagementSystemDbContext dbContext)
+        public MailDataAccessLayer(ILogger<MailService> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
 
         public string GetEmployeeEmail(int employeeId)
@@ -24,7 +27,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.Employees.Find(employeeId)!.EmailId;
+                return _db.Employees!.Find(employeeId)!.EmailId!;
             }
             catch (Exception getEmployeeEmailException)
             {
@@ -35,7 +38,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetEmployeeEmail(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetEmployeeEmail(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -44,7 +47,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.Employees.Find(employeeId)!.Name;
+                return _db.Employees!.Find(employeeId)!.Name!;
             }
             catch (Exception getEmployeeNameException)
             {
@@ -55,7 +58,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetEmployeeName(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetEmployeeName(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -64,7 +67,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.Pools.Find(poolId)!.PoolName;
+                return _db.Pools!.Find(poolId)!.PoolName!;
             }
             catch (Exception getPoolNameException)
             {
@@ -75,7 +78,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetPoolName(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetPoolName(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public PoolMembers? GetPoolMember(int poolMemberId)
@@ -83,7 +86,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.PoolMembers.Find(poolMemberId);
+                return _db.PoolMembers!.Find(poolMemberId);
             }
             catch (Exception getPoolMemberException)
             {
@@ -94,7 +97,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetPoolMember(int poolMemberId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetPoolMember(int poolMemberId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -103,7 +106,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from poolMember in _db.PoolMembers.Include(p => p.Employees) where poolMember.PoolId == poolId select poolMember.Employees!.EmailId).ToList();
+                return (from poolMember in _db.PoolMembers!.Include(p => p.Employees) where poolMember.PoolId == poolId select poolMember.Employees!.EmailId).ToList();
             }
             catch (Exception getEmployeeEmailsByPoolException)
             {
@@ -114,7 +117,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetEmployeeEmailsByPool(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetEmployeeEmailsByPool(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -123,7 +126,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.Drives.Find(driveId);
+                return _db.Drives!.Find(driveId);
             }
             catch (Exception getDrivebyIdException)
             {
@@ -134,7 +137,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetDrivebyId(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetDrivebyId(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -143,7 +146,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return _db.EmployeeAvailability.Include("Drive").Include("Employee").FirstOrDefault(e=>e.EmployeeAvailabilityId == employeeAvailabilityId);
+                return _db.EmployeeAvailability!.Include("Drive").Include("Employee").FirstOrDefault(e=>e.EmployeeAvailabilityId == employeeAvailabilityId);
             }
             catch (Exception getEmployeeAvailabilityException)
             {
@@ -154,8 +157,23 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail DAL Time elapsed for GetEmployeeAvailability(int employeeAvailabilityId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail DAL Time elapsed for GetEmployeeAvailability(int employeeAvailabilityId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
+        
+      public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Mail DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            
+        }
     }
+}
 }

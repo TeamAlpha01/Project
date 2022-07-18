@@ -10,5 +10,6 @@ namespace IMS.DataAccessLayer
         public List<string> GetEmployeeEmailsByPool(int poolId);
         public Drive? GetDrivebyId(int driveId);
         public EmployeeAvailability? GetEmployeeAvailability(int employeeAvailabilityId);
+        public bool GetIsTraceEnabledFromConfiguration();
     }
 }

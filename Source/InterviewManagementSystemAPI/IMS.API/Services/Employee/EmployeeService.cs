@@ -16,7 +16,7 @@ namespace IMS.Service
         private ILogger _logger;
         
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+         private bool IsTracingEnabled;
 
         public EmployeeService(ILogger<IEmployeeService> logger, IEmployeeDataAccessLayer employeeDataAccessLayer, IDepartmentDataAccessLayer departmentDataAccessLayer, IRoleDataAccessLayer roleDataAccessLayer)
         {
@@ -24,6 +24,7 @@ namespace IMS.Service
             _employeeDataAccessLayer = employeeDataAccessLayer;//DataFactory.EmployeeDataFactory.GetEmployeeDataAccessLayerObject(_logger);
             _departmentDataAccessLayer = departmentDataAccessLayer; //DataFactory.DepartmentDataFactory.GetDepartmentDataAccessLayerObject(_logger);
             _roleDataAccessLayer = roleDataAccessLayer;//DataFactory.RoleDataFactory.GetRoleDataAccessLayerObject(_logger);
+            IsTracingEnabled = _employeeDataAccessLayer.GetIsTraceEnabledFromConfiguration();
         }
 
         /// <summary>
@@ -55,12 +56,12 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Employee Service : CreateEmployee() : {exception.Message}");
-                throw exception;
+                throw ;
             }
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee Service Time elapsed for  CreateNewEmployee(Employee employee) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee Service Time elapsed for  CreateNewEmployee(Employee employee) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -99,13 +100,13 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Employee service : RemoveEmployee(int employeeId) : {exception.Message}");
-                throw exception;
+                throw ;
             }
             
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee Service Time elapsed for RemoveEmployee(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee Service Time elapsed for RemoveEmployee(int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -140,7 +141,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee Service Time elapsed for  ViewEmployees() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee Service Time elapsed for  ViewEmployees() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -178,12 +179,12 @@ namespace IMS.Service
             catch (Exception viewEmployeeException)
             {
                 _logger.LogError($"Employee Service : ViewProfile(int employeeId) : {viewEmployeeException.Message} : {viewEmployeeException.StackTrace}");
-                throw viewEmployeeException;
+                throw ;
             }
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee Service Time elapsed for  ViewProfile(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee Service Time elapsed for  ViewProfile(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -229,7 +230,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee Service Time elapsed for ViewEmployeesByDepartment(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee Service Time elapsed for ViewEmployeesByDepartment(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
             // try
@@ -269,7 +270,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee Service Time elapsed for  ViewEmployeeByApprovalStatus(bool isAdminAccepted) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee Service Time elapsed for  ViewEmployeeByApprovalStatus(bool isAdminAccepted) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -304,7 +305,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee Service Time elapsed for  ViewEmployeeRequest() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee Service Time elapsed for  ViewEmployeeRequest() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public bool Login(string employeeAceNumber, string password)
@@ -318,12 +319,12 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
-                throw exception;
+                throw;
             }
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee Service Time elapsed for Login(string employeeAceNumber, string password)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee Service Time elapsed for Login(string employeeAceNumber, string password)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -343,12 +344,12 @@ namespace IMS.Service
             catch (Exception exception)
             {
                 _logger.LogError($"Employee DAL : CheckLoginCredentails throwed an exception : {exception.Message}");
-                throw exception;
+                throw ;
             }
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Employee Service Time elapsed for  RespondEmployeeRequest(int employeeId, bool response) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Employee Service Time elapsed for  RespondEmployeeRequest(int employeeId, bool response) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
     }

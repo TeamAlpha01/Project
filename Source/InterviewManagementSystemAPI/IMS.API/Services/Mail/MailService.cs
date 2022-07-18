@@ -26,6 +26,7 @@ namespace IMS.Service
             _logger = logger;
             _mailSettings = mailSettings.Value;
             _mailDataAccessLayer = mailDataAccessLayer; //DataFactory.MailDataFactory.GetMailDataAccessLayerObject(logger);
+            IsTracingEnabled = _mailDataAccessLayer.GetIsTraceEnabledFromConfiguration();
         }
 
         public async Task SendEmailAsync(MailRequest mailRequest, bool isSingleMail)
@@ -66,7 +67,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail Service Time elapsed for  SendEmailAsync(MailRequest mailRequest, bool isSingleMail) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail Service Time elapsed for  SendEmailAsync(MailRequest mailRequest, bool isSingleMail) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public MailRequest WelcomeEmployeeMail(string newEmployeeMailId, string newEmployeeName)
@@ -88,7 +89,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail Service Time elapsed for  WelcomeEmployeeMail(string newEmployeeMailId, string newEmployeeName) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail Service Time elapsed for  WelcomeEmployeeMail(string newEmployeeMailId, string newEmployeeName) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -111,7 +112,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail Service Time elapsed for  AddedEmployeeToPool(int employeeId, int poolId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail Service Time elapsed for  AddedEmployeeToPool(int employeeId, int poolId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public MailRequest RemovedEmployeeFromPool(int poolMemberId, int tacId)
@@ -134,7 +135,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail Service Time elapsed for RemovedEmployeeFromPool(int poolMemberId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail Service Time elapsed for RemovedEmployeeFromPool(int poolMemberId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public MailRequest DriveInvites(Drive drive, int tacId)
@@ -156,7 +157,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail Service Time elapsed for  DriveInvites(Drive drive, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail Service Time elapsed for  DriveInvites(Drive drive, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         public MailRequest DriveCancelled(int driveId, int tacId)
@@ -179,7 +180,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail Service Time elapsed for  DriveCancelled(int driveId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail Service Time elapsed for  DriveCancelled(int driveId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -203,7 +204,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail Service Time elapsed for  InterviewScheduled(int employeeAvailabilityId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail Service Time elapsed for  InterviewScheduled(int employeeAvailabilityId, int tacId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -227,7 +228,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Mail Service Time elapsed for  InterviewCancelled(int employeeAvailabilityId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Mail Service Time elapsed for  InterviewCancelled(int employeeAvailabilityId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
     }

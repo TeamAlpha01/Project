@@ -17,13 +17,15 @@ namespace IMS.DataAccessLayer
 
         //private readonly ILogger _logger = new ILogger<RoleDataAccessLayer>();        
         private ILogger _logger;
-        
+        private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
         private bool IsTracingEnabled;
-        public DepartmentDataAccessLayer(ILogger<DepartmentDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
+        public DepartmentDataAccessLayer(ILogger<DepartmentDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
         /// <summary>
         /// This method will implement when Department service pass the object and it interact with Database.It validate the department name
@@ -67,7 +69,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department DAL Time elapsed for  createDeaprtment(string departmentName) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -128,7 +130,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for RemoveDepartmentFromDatabase(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department DAL Time elapsed for RemoveDepartmentFromDatabase(int departmentId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -165,7 +167,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for  GetDepartmentsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department DAL Time elapsed for  GetDepartmentsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
         /// <summary>
@@ -220,7 +222,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for  AddProjectToDatabase(Project project) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department DAL Time elapsed for  AddProjectToDatabase(Project project) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -279,7 +281,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for  RemoveProjectFromDatabase(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department DAL Time elapsed for  RemoveProjectFromDatabase(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -313,7 +315,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for  GetProjectsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Department DAL Time elapsed for  GetProjectsFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -322,14 +324,36 @@ namespace IMS.DataAccessLayer
              _stopwatch.Start();
             if(!_db.Departments!.Any(x => x.DepartmentId == departmentId)) 
                 throw new ValidationException("Department was not found");
-          
+          /**  finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Department DAL Time elapsed for  CheckDepartmentId(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
         }
         public void CheckProjectId(int projectId)
         {
              _stopwatch.Start();
             if(!_db.Projects!.Any(x => x.ProjectId == projectId)) 
                 throw new ValidationException("Project was not found");
-           
+           /** finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Department DAL Time elapsed for  CreateProjectId(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
+        }
+        public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Department DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            
         }
     }
+}
 }

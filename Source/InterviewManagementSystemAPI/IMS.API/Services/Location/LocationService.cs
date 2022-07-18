@@ -18,6 +18,7 @@ namespace IMS.Service
         {
             _logger = logger;
             _locationDataAccessLayer = dataAccessLayer;//DataFactory.LocationDataFactory.GetLocationDataAccessLayerObject(_logger);
+            IsTracingEnabled = _locationDataAccessLayer.GetIsTraceEnabledFromConfiguration();    
         }
         
         /// <summary>
@@ -57,7 +58,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Location Service Time elapsed for  CreateLocation(string locationName) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Location Service Time elapsed for  CreateLocation(string locationName) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -96,7 +97,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Location Service Time elapsed for  RemoveLocation(int locationId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Location Service Time elapsed for  RemoveLocation(int locationId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -120,7 +121,7 @@ namespace IMS.Service
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Location Service Time elapsed for  ViewLocations() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Location Service Time elapsed for  ViewLocations() :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }

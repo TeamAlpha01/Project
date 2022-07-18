@@ -10,14 +10,17 @@ namespace IMS.DataAccessLayer
     {
         private InterviewManagementSystemDbContext _db;
         private ILogger _logger;
-        
+        private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
-        private bool IsTracingEnabled;
+         private bool IsTracingEnabled;
+     
 
-        public RoleDataAccessLayer(ILogger<RoleDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext)
+        public RoleDataAccessLayer(ILogger<RoleDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
+            _configuration = configuration;
+            IsTracingEnabled = GetIsTraceEnabledFromConfiguration();
         }
 
         /// <summary>
@@ -31,7 +34,7 @@ namespace IMS.DataAccessLayer
         {
              _stopwatch.Start();
             RoleValidation.IsRoleValid(role);
-            bool roleNameExists = _db.Roles.Any(x => x.RoleName == role.RoleName && x.IsActive == true);
+            bool roleNameExists = _db.Roles!.Any(x => x.RoleName == role.RoleName && x.IsActive == true);
             if (roleNameExists)
             {
                 throw new ValidationException("Role already exist");
@@ -39,7 +42,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                _db.Roles.Add(role);
+                _db.Roles!.Add(role);
                 _db.SaveChanges();
                 return true;
             }
@@ -61,7 +64,7 @@ namespace IMS.DataAccessLayer
              finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Role DAL Time elapsed for  AddRoleToDatabase(Role role) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Role DAL Time elapsed for  AddRoleToDatabase(Role role) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
@@ -78,7 +81,7 @@ namespace IMS.DataAccessLayer
             //     throw new ArgumentNullException("Role Id is not provided to DAL");
             try
             {
-                var role = _db.Roles.Find(roleId);
+                var role = _db.Roles!.Find(roleId);
                 if (role!.IsActive == false)
                 {
                     throw new ValidationException("There is no employee for this role id");
@@ -124,7 +127,7 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Role DAL Time elapsed for  RemoveRoleFromDatabase(int roleId) :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Role DAL Time elapsed for  RemoveRoleFromDatabase(int roleId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
 
         }
@@ -161,17 +164,36 @@ namespace IMS.DataAccessLayer
             finally
             {
                 _stopwatch.Stop();
-                _logger.LogError($"Role DAL Time elapsed for  GetRolesFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
+                _logger.LogInformation($"Role DAL Time elapsed for  GetRolesFromDatabase() :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
 
         public void CheckRoleId(int roleId)
         {
              _stopwatch.Start();
-            if(!_db.Roles.Any(x => x.RoleId == roleId)) 
+            if(!_db.Roles!.Any(x => x.RoleId == roleId)) 
                 throw new ValidationException("Role was not found");
-           
+            /**finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Role DAL Time elapsed for  AddRoleToDatabase(Role role) :{_stopwatch.ElapsedMilliseconds}ms");
+            }**/
+        }
+        
+      public bool GetIsTraceEnabledFromConfiguration()
+        {
+            try
+            {
+                var IsTracingEnabled = _configuration["Tracing:IsEnabled"];
+                return IsTracingEnabled != null ? Convert.ToBoolean(IsTracingEnabled) : false;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Role DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            
         }
 
     }
+}
 }
