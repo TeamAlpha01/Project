@@ -57,7 +57,7 @@ export class TacEditPoolComponent implements OnInit {
       console.log(true)
       this.connection.EditPool(this.poolId, this.getpoolName()?.value).subscribe({
         next: (data) => this.response = data.message,
-        error: (error) => this.error = error.error.message,
+        error: (error) => this.error = error.message,
         complete: () => this.clearInputFields(),
       });
     }
@@ -65,9 +65,12 @@ export class TacEditPoolComponent implements OnInit {
 
   clearInputFields() 
   {    
+    console.warn(this.response)
+    console.warn(this.error)
       this.submitted = false;
       setTimeout(() => {
         this.response = '';
+        this.error='';
         this.router.navigateByUrl("/tac/managepool");
       }, 2000);
   }

@@ -50,24 +50,24 @@
                     <div class="card-body">
                         <div class="row rone mt-4">
                             <div class="col-md-3">
-                                <p><b>Name : </b>{{item.name}}</p>
-                                <p><b>ACE Number : </b>{{item.AceNumber}}</p>
+                                <p><b>Name : </b>{{item.employee.employeeName}}</p>
+                                <p><b>ACE Number : </b>{{item.employee.employeeACENumber}}</p>
                             </div>
                             <div class="col-md-3">
-                                <p><b>Role :</b>{{item.role}}</p>
-                                <p><b>Total No.of.Drives : </b>{{item.TotalDrives}}</p>
+                                <p><b>Role :</b>{{item.employee.employeeRole}}</p>
+                                <p><b>Total No.of.Drives : </b>{{item.dashboardCount.TotalDrives}}</p>
                             </div>
                             <div class="col-md-2">
-                                <p><b>Availability : </b>{{item.TotalAvailability}}</p>
-                                <p><b>Denied : </b>{{item.DeniedDrives}}</p>
+                                <p><b>Availability : </b>{{item.dashboardCount.TotalAvailability}}</p>
+                                <p><b>Denied : </b>{{item.dashboardCount.DeniedDrives}}</p>
                             </div>
                             <div class="col-md-2">
-                                <p><b>Ignored : </b>{{item.IgnoredDrives}}</p>
-                                <p><b>Utilized : </b>{{item.UtilizedInterviews}}</p>
+                                <p><b>Ignored : </b>{{item.dashboardCount.IgnoredDrives}}</p>
+                                <p><b>Utilized : </b>{{item.dashboardCount.UtilizedInterviews}}</p>
                             </div>
                             <div class="col-md-2">
-                                <p><b>Not utilized : </b>{{item.NotUtilizedInterviews}}</p>
-                                <p><b>Accepted : </b>{{item.AcceptedDrives}}</p>
+                                <p><b>Not utilized : </b>{{item.dashboardCount.NotUtilizedInterviews}}</p>
+                                <p><b>Accepted : </b>{{item.dashboardCount.AcceptedDrives}}</p>
                             </div>
                         </div>
                     </div>

@@ -15,10 +15,9 @@ export class AdminViewRequestsPageComponent implements OnInit {
   title = "Employee Requests";
   result: any;
 
-  constructor(private http: HttpClient, private service: ConnectionService) { }
+  constructor(private service: ConnectionService) { }
 
   ngOnInit(): void {
-    console.log(AuthenticationService.GetData("Admin"))
     this.GetEmployeeRequests();
   }
   //THIS METHOD IS CALLED ON CLICK0F ACCEPT OR REJECT BUTTON
