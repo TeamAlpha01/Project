@@ -8,26 +8,26 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class InterviewerDashboardComponent implements OnInit {
   title='Dashboard';
-  Alldrives :number=0;
+  TotalDrives :number=0;
+  AcceptedDrives : number=0;
+  DeniedDrives : number=0;
+  IgnoredDrives : number=0;
   AvailabilityGiven : number=0;
-  Utilized : number=0;
-  NotUtilized : number=0;
-  InterviewsIgnored : number=0;
-  InterviewsDenied : number=0;
-  InterviewsAccepted : number=0;
+  UtilizedInterviews : number=0;
+  NotUtilizedInterviews : number=0;
 
   constructor( private connection :ConnectionService) { }
 
   ngOnInit(): void {
     //GET METHOD IS CALLED AT CONNECTION SERVICE
     this.connection.GetDashboard().subscribe((data: any) =>{
-       this.Alldrives = data.TotalDrives
-       this.AvailabilityGiven = data.AcceptedDrives
-       this.Utilized = data.UtilizedInterviews
-       this.NotUtilized = data.NotUtilizedInterviews
-       this.InterviewsIgnored = data.IgnoredDrives
-       this.InterviewsDenied = data.DeniedDrives
-       this.InterviewsAccepted = data.AcceptedDrives
+       this.TotalDrives = data.TotalDrives
+       this.AcceptedDrives = data.AcceptedDrives
+       this.DeniedDrives = data.DeniedDrives
+       this.IgnoredDrives = data.IgnoredDrives
+       this.AvailabilityGiven = data.TotalAvailability
+       this.UtilizedInterviews = data.UtilizedInterviews
+       this.NotUtilizedInterviews = data.NotUtilizedInterviews
     })
   }
 

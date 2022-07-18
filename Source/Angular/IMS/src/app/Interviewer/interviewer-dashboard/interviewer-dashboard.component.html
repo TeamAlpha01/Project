@@ -14,8 +14,8 @@
                     <a [routerLink]="['/interviewer/dashboard/totaldrives']" class="link">
                         <div class="card-card">
                             <div class="card-body">
-                                <h1 class="card-title" id="numbersize">
-                                    {{Alldrives}}
+                                <h1 class="card-title">
+                                    {{TotalDrives}}
                                 </h1>
                                 <h3>
                                     <b>Total No. of Drives</b>
@@ -29,8 +29,8 @@
                     <a [routerLink]="['/interviewer/dashboard/availabilitygiven']" class="link">
                         <div class="card-card">
                             <div class="card-content">
-                                <h1 class="card-title" id="numbersize">
-                                    {{InterviewsAccepted}}
+                                <h1 class="card-title">
+                                    {{AcceptedDrives}}
                                 </h1>
                                 <h3>
                                     <b>Accepted Drives</b>
@@ -44,11 +44,11 @@
                     <a [routerLink]="['/interviewer/dashboard/denied-drives']" class="link">
                         <div class="card-card">
                             <div class="card-content">
-                                <h1 class="card-title" id="numbersize">
-                                    {{InterviewsDenied}}
+                                <h1 class="card-title">
+                                    {{DeniedDrives}}
                                 </h1>
                                 <h3 class="">
-                                    <b>Drives Denied</b>
+                                    <b>Denied Drives </b>
                                 </h3>
                             </div>
                         </div>
@@ -59,11 +59,11 @@
                     <a [routerLink]="['/interviewer/dashboard/availabilitygiven']" class="link">
                         <div class="card-card">
                             <div class="card-content">
-                                <h1 class="card-title" id="numbersize">
-                                    {{AvailabilityGiven}}
+                                <h1 class="card-title">
+                                    {{IgnoredDrives}}
                                 </h1>
                                 <h3>
-                                    <b>Slot Availability Given</b>
+                                    <b>Ignored Drives</b>
                                 </h3>
                             </div>
                         </div>
@@ -74,11 +74,11 @@
                     <a [routerLink]="['/interviewer/dashboard/utilizedinterviews']" class="link">
                         <div class="card-card">
                             <div class="card-content">
-                                <h1 class="card-title" id="numbersize">
-                                    {{Utilized}}
+                                <h1 class="card-title">
+                                    {{AvailabilityGiven}}
                                 </h1>
                                 <h3>
-                                    <b>Utilized</b>
+                                    <b>Availability Given</b>
                                 </h3>
                             </div>
                         </div>
@@ -89,11 +89,11 @@
                     <a [routerLink]="['/interviewer/dashboard/notutilizedinterviews']" class="link">
                         <div class="card-card">
                             <div class="card-content">
-                                <h1 class="card-title" id="numbersize">
-                                    {{NotUtilized}}
+                                <h1 class="card-title">
+                                    {{UtilizedInterviews}}
                                 </h1>
                                 <h3 class="">
-                                    <b>Not Utilized</b>
+                                    <b>Interviews Utilized</b>
                                 </h3>
                             </div>
                         </div>
@@ -104,11 +104,11 @@
                     <a [routerLink]="['/interviewer/dashboard/ignoreddrives']" class="link">
                         <div class="card-card">
                             <div class="card-content">
-                                <h1 class="card-title" id="numbersize">
-                                    {{InterviewsIgnored}}
+                                <h1 class="card-title">
+                                    {{NotUtilizedInterviews}}
                                 </h1>
                                 <h3 class="">
-                                    <b>Drives Ignored</b>
+                                    <b>Interviews Not Utilized</b>
                                 </h3>
                             </div>
                         </div>
