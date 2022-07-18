@@ -55,14 +55,14 @@ export class TacEditPoolComponent implements OnInit {
     if (this.EditPoolForm.valid) {
       this.connection.EditPool(this.poolId, this.getpoolName()?.value).subscribe({
         next: (data) => this.response = data.message,
-        error: (error) => this.error = error.message,
+        error: (error) => this.error = error.error,
         complete: () => this.clearInputFields(),
       });
     }
   }
 
-  clearInputFields() 
-  {    
+  clearInputFields()
+  {
       this.submitted = false;
       setTimeout(() => {
         this.response = '';

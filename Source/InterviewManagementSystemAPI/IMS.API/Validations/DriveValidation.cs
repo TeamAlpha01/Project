@@ -16,7 +16,7 @@ namespace IMS.Validations
 
             if (drive.Name!.Length <= 2) throw new ValidationException("drive name is too short");
 
-            if(!Regex.IsMatch(drive.Name,"^[a-zA-Z0-9]+\\s[a-zA-Z]{2,20}$")) throw new ValidationException("drive name cannot contain symbols or numbers");
+            if(!Regex.IsMatch(drive.Name,"^[a-zA-Z0-9 ]{2,20}$")) throw new ValidationException("drive name cannot contain symbols or numbers");
 
             if (drive.FromDate.Date < System.DateTime.Now.Date.AddDays(minimumFromDate)) throw new ValidationException($"From date must be greater than {System.DateTime.Now.Date.AddDays(minimumFromDate-1).ToShortDateString()}");
 
