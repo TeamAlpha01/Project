@@ -736,7 +736,7 @@ namespace IMS.DataAccessLayer
             }
         }
 
-        public List<string> GetDrivesForCurrentUser(int departmentId)
+        public Object GetDrivesForCurrentUser(int departmentId)
         {
             _stopwatch.Start();
             DepartmentValidation.IsDepartmentIdValid(departmentId);
@@ -747,7 +747,13 @@ namespace IMS.DataAccessLayer
             }
             try
             {
-            return (from drive in _db.Drives where drive.DepartmentId==departmentId select drive.Name).ToList();
+            return (from drive in _db.Drives where drive.DepartmentId==departmentId select drive).Select(
+                drive=>new
+                {
+                    driveId=drive.DriveId,
+                    driveName=drive.Name
+                }
+            ).ToList();
             }
             catch(ValidationException exception)
             {

@@ -1096,7 +1096,7 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service Time elapsed for  ViewDriveResponse(int driveId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
-        public List<string> GetDrivesForCurrentUser(int departmentId)
+        public Object GetDrivesForCurrentUser(int departmentId)
         {
             
             _stopwatch.Start();

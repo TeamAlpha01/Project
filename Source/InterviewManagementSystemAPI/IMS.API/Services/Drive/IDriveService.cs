@@ -45,7 +45,7 @@ namespace IMS.Service
         public Object ViewTotalAvailability(int employeeId);
         public Object ViewDefaulters(int poolId);
         public Object ViewDriveResponse(int driveId);
-        public List<string> GetDrivesForCurrentUser(int departmentId);
+        public Object GetDrivesForCurrentUser(int departmentId);
         
     }
 }
