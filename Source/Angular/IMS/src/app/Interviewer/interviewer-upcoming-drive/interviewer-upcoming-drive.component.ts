@@ -36,6 +36,7 @@ export class InterviewerUpcomingDriveComponent implements OnInit {
     this.connection.GetUpcomingInterviews().subscribe({
       next: (data: any) => {
         this.driveDetails = data;
+        console.warn(this.driveDetails)
         for (let item of this.driveDetails) {
           this.drive.push(item);
         }
@@ -55,13 +56,13 @@ export class InterviewerUpcomingDriveComponent implements OnInit {
       if (this._pool == '' && this._date == '') {
         this.drive.push(item);
       }
-      else if (this._pool == item.poolName && this._date == item.date) {
+      else if (this._pool == item.poolName && this._date == item.interviewDate) {
         this.drive.push(item);
       }
       else if (this._pool == item.poolName && this._date == '') {
         this.drive.push(item);
       }
-      else if (this._pool == '' && this._date == item.date) {
+      else if (this._pool == '' && this._date == item.interviewDate) {
         this.drive.push(item);
       }
     }

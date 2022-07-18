@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HashLocationStrategy,LocationStrategy } from '@angular/common';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
@@ -27,7 +28,6 @@ import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboa
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
 import { TacHomeComponent } from './TAC/tac-home/tac-home.component';
-import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { CardDetailsComponent } from './Shared/card-details/card-details.component';
@@ -101,7 +101,6 @@ import { DepartmentPerformanceComponent } from './Management/department-performa
     InterviewerScheduledDriveComponent,
     InterviewerCancelInterviewPageComponent,
     TacHomeComponent,
-    TacDashboardComponent,
     TacCreatePoolComponent,
     MyperformanceComponent,
     TacEditPoolComponent,
@@ -163,6 +162,7 @@ import { DepartmentPerformanceComponent } from './Management/department-performa
     MatButtonModule,
     MatSnackBarModule,
     MatDialogModule,
+    AutocompleteLibModule,
 
 
   ],

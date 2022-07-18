@@ -17,25 +17,25 @@ export class ConnectionService {
     'Authorization': `Bearer ${AuthenticationService.GetData('token')}`
   })
 
-  initializeTokenHeader(token:string|null){
+  initializeTokenHeader(token: string | null) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     })
   }
 
-  logout(){
-    this.headers=new HttpHeaders();
+  logout() {
+    this.headers = new HttpHeaders();
   }
 
   //GET methods
 
-  GetAcceptedDrives():any{
+  GetAcceptedDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewAcceptedDrives', { headers: this.headers });
   }
- 
-  GetAvailability(driveId:number):any{
-    return this.http.get<any>(this.baseURL + `Drive/ViewAvailabilty?driveId=${driveId}`,{headers:this.headers});
+
+  GetAvailability(driveId: number): any {
+    return this.http.get<any>(this.baseURL + `Drive/ViewAvailabilty?driveId=${driveId}`, { headers: this.headers });
   }
 
   GetCancelledDrives(): any {
@@ -46,11 +46,11 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard`, { headers: this.headers });
   }
 
-  GetDashboardDriveResponse(driveId:number): any {
+  GetDashboardDriveResponse(driveId: number): any {
     return this.http.get<any>(this.baseURL + `Drive/ViewDriveResponse?driveId=${driveId}`, { headers: this.headers });
   }
 
-  GetDefaulters(poolId:number): any {
+  GetDefaulters(poolId: number): any {
     return this.http.get<any>(this.baseURL + `Drive/ViewDefaulters?poolId=${poolId}`, { headers: this.headers });
   }
 
@@ -62,16 +62,15 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + `Drive/ViewDrive?driveId=${driveId}`, { headers: this.headers });
   }
 
-  GetDriveResponse(driveId:number){
+  GetDriveResponse(driveId: number) {
     return this.http.get<any>(this.baseURL + `Drive/ViewAvailableMembersForDrive?driveId=${driveId}`, { headers: this.headers });
   }
 
-  GetDriveById(driveId:any)
-  {
-    return this.http.get<any>(this.baseURL+ `Drive/ViewDrive?driveId=${driveId}`,{headers:this.headers});
+  GetDriveById(driveId: any) {
+    return this.http.get<any>(this.baseURL + `Drive/ViewDrive?driveId=${driveId}`, { headers: this.headers });
   }
 
-  GetDriveInvitesById(){
+  GetDriveInvitesById() {
     return this.http.get<any>(this.baseURL + `Drive/ViewInvitesByID`, { headers: this.headers });
   }
 
@@ -91,15 +90,15 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + `Employee/ViewEmployeeProfile`, { headers: this.headers });
   }
 
-  GetEmployeeRequests(): any{
+  GetEmployeeRequests(): any {
     return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeeRequest', { headers: this.headers });
   }
 
-  GetDeniedDrives(): any{
+  GetDeniedDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewDeniedDrives', { headers: this.headers });
   }
 
-  GetIgnoredDrives(): any{
+  GetIgnoredDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewIgnoredDrives', { headers: this.headers });
   }
 
@@ -150,7 +149,7 @@ export class ConnectionService {
   GetTotalDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewTotalDrives', { headers: this.headers });
   }
-  
+
   GetTodaysInterviews(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewTodaysInterview', { headers: this.headers });
   }
@@ -158,7 +157,7 @@ export class ConnectionService {
   GetScheduledInterviews(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewScheduledInterview', { headers: this.headers });
   }
-  
+
   GetUpcomingDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUpcomingDrives', { headers: this.headers });
   }
@@ -173,14 +172,12 @@ export class ConnectionService {
 
 
 
-  AddResponse(response:any)
-  {
-    return this.http.post<any>(this.baseURL + `Drive/AddResponse`, response ,{ headers: this.headers });
+  AddResponse(response: any) {
+    return this.http.post<any>(this.baseURL + `Drive/AddResponse`, response, { headers: this.headers });
   }
 
-  AddTimeSlot(timeSlot:any)
-  {
-    return this.http.post<any>(this.baseURL + `Drive/SetTimeSlot`, timeSlot ,{ headers: this.headers });
+  AddTimeSlot(timeSlot: any) {
+    return this.http.post<any>(this.baseURL + `Drive/SetTimeSlot`, timeSlot, { headers: this.headers });
   }
 
   //POST methods
@@ -194,18 +191,18 @@ export class ConnectionService {
   }
 
   CreateEmployee(user: any) {
-    return this.http.post<any>( this.baseURL + 'Employee/CreateNewEmployee', user, { headers: this.headers })
+    return this.http.post<any>(this.baseURL + 'Employee/CreateNewEmployee', user, { headers: this.headers })
   }
 
   CancelDrive(driveId: number, reason: string) {
     return this.http.patch<any>(this.baseURL + `Drive/CancelDrive?driveId=${driveId}&tacId=11&reason=${reason}`, driveId, { headers: this.headers });
   }
 
-  CancelInterview(employeeAvailabilityId: number, cancellationReason: string,comments:string) {
+  CancelInterview(employeeAvailabilityId: number, cancellationReason: string, comments: string) {
     return this.http.patch<any>(this.baseURL + `Drive/CancelInterview?employeeAvailabilityId=${employeeAvailabilityId}&cancellationReason=${cancellationReason}&comments=${comments}`, null, { headers: this.headers });
   }
 
-  CreateDrive(drive:any){
+  CreateDrive(drive: any) {
     return this.http.post<any>(this.baseURL + `Drive/CreateDrive`, drive, { headers: this.headers });
   }
 
@@ -241,16 +238,16 @@ export class ConnectionService {
   AddProject(projectName: string, departmentId: number) {
     return this.http.post<any>(this.baseURL + `Project/CreateNewProject?departmentId=${departmentId}&projectName=${projectName}`, null, { headers: this.headers })
   }
-  AddRole(roleName: string, isManagement:boolean) {
+  AddRole(roleName: string, isManagement: boolean) {
     return this.http.post<any>(this.baseURL + `Role/CreateNewRole?roleName=${roleName}&isManagement=${isManagement}`, null, { headers: this.headers })
   }
-  AddDepartment(departmentName: string) {
-    return this.http.post<any>(this.baseURL + `Department/CreateNewDepartment?departmentName=${departmentName}`, null, { headers: this.headers })
+  AddDepartment(department: any) {
+    return this.http.post<any>(this.baseURL + `Department/CreateNewDepartment`, department, { headers: this.headers })
   }
 
   //Patch Methods
   //Admin
-  
+
   RespondEmployeeRequest(employeeId: number, response: boolean) {
     return this.http.patch<any>(this.baseURL + `Employee/RespondEmployeeRequest?employeeId=${employeeId}&response=${response}`, null, { headers: this.headers })
   }

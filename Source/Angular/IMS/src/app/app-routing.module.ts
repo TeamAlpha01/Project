@@ -9,11 +9,9 @@ import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
 import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
-import { TacDashboardComponent } from './TAC/tac-dashboard/tac-dashboard.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
 import { RegisterPageComponent } from './Shared/register-page/register-page.component';
 import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.component';
-import { AdminDashboardComponent } from './Admin/admin-dashboard/admin-dashboard.component';
 import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
@@ -84,7 +82,6 @@ const routes: Routes = [
 
 
   //tac pages
-  //{ path: 'tac/dashboard', component: TacDashboardComponent,canActivate:[AuthorizationService], data:{User:"TAC"}},
   { path: 'tac/dashboard', component: MyperformanceComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
   { path: 'tac/dashboard/scheduled-drive-history', component: TacScheduledDriveHistoryComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
   { path: 'tac/dashboard/cancelled-drive-history', component: TacCancelledDriveHistoryComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
@@ -104,8 +101,8 @@ const routes: Routes = [
   { path: 'errorPage', component: ErrorPageComponent },
 
   //management pages
-  { path: 'dashboard/management-dashboard', component: ManagementDashboardComponent, canActivate: [AuthorizationService], data: { User: "Management" } },
-  { path: 'dashboard/management-dashboard/poolmembersperforamnce', component: DepartmentPerformanceComponent, canActivate: [AuthorizationService], data: { User: "Management" } },
+  { path: 'management/dashboard', component: ManagementDashboardComponent, canActivate: [AuthorizationService], data: { User: "Management" } },
+  { path: 'management/dashboard/department-performance', component: DepartmentPerformanceComponent, canActivate: [AuthorizationService], data: { User: "Management" } },
 ];
 
 @NgModule({
