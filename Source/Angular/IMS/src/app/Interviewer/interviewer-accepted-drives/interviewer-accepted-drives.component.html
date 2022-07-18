@@ -7,7 +7,7 @@
     <app-navbar [title]="title"></app-navbar>
 
     <div class=" mt-3 mb-5 container shadow  bg-body rounded">
-        <div class="">
+        <div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
@@ -24,27 +24,28 @@
                         <input type="date" id="Pool" class="form-select" (change)="filterDropdown()" name="_date"
                             [(ngModel)]="_date">
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="mt-3 container shadow bg-body rounded" *ngFor="let item of drive| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
+
+
+    <div class="mt-3 container shadow bg-body rounded" *ngFor="let item of drive | paginate: { itemsPerPage: 3, currentPage: page,totalItems:totalLength }">
         <div class>
             <div class="card-body">
                 <div class="row rone mt-4">
                     <div class="col-md-4">
                         <p ><b>Drive Name : </b> {{item.driveName}}</p>
-                        <p ><b>Pool Name : </b> {{item.poolName}}</p>
-                        <p ><b>Interview Date : </b> {{item.interviewDate}}</p>
+                        <p ><b>Pool Name : </b> {{item.drivePool}}</p>
                     </div>
                     <div class="col-md-4">
-                        <p ><b>From Time : </b> {{item.fromTime}}</p>
-                        <p ><b>To Time : </b> {{item.toTime}}</p>
+                        <p ><b> From Date : </b> {{item.fromDate}}</p>
+                        <p ><b> To Date : </b> {{item.toDate}}</p>
                     </div>
                     <div class="col-md-4">
-                        <p ><b>Mode : </b> {{item.mode}}</p>
-                        <p ><b>Location : </b> {{item.locationName}}</p>
+                        <p ><b>Mode : </b> {{item.driveMode}}</p>
+                        <p ><b>Location : </b> {{item.driveLocation}}</p>
                     </div>
                 </div>
             </div>
