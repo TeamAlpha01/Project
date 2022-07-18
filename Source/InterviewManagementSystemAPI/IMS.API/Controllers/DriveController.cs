@@ -44,8 +44,7 @@ public class DriveController : ControllerBase
         {
             drive.AddedBy= Convert.ToInt32(User.FindFirst("UserId")?.Value);
             //use authentication and find current user id
-            //drive.AddedBy=
-            //drive.UpdatedBy=
+       
             if (_driveService.CreateDrive(drive))
             {
                 //_mailService.SendEmailAsync(_mailService.DriveInvites(drive, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
@@ -216,16 +215,7 @@ public class DriveController : ControllerBase
     /// <summary>
     /// This method is invoked when the 'View All cancelled drive' request raises.
     /// </summary>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET/ViewCancelledDrive
-    ///     {
-    ///       
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
+    /// <response code="200">Returns list of all cancelled drives</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns a list of Cancelled drives</returns>
 
@@ -280,16 +270,7 @@ public class DriveController : ControllerBase
     /// This method invokes when the 'viewInvites' request raises
     /// </summary>
     /// <param name="employeeId"></param>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     GET /ViewInvites
-    ///     {
-    ///        "Employee Id": "1",
-    ///     }
-    ///
-    /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
+    /// <response code="201">Returns list of drive invites</response>
     /// <response code="400">If the item is null</response> 
     /// <returns>Returns a list of Interview Invites</returns>
 

@@ -173,11 +173,7 @@ namespace IMS.DataAccessLayer
              _stopwatch.Start();
             if(!_db.Roles!.Any(x => x.RoleId == roleId)) 
                 throw new ValidationException("Role was not found");
-            /**finally
-            {
-                _stopwatch.Stop();
-                _logger.LogInformation($"Role DAL Time elapsed for  AddRoleToDatabase(Role role) :{_stopwatch.ElapsedMilliseconds}ms");
-            }**/
+          
         }
         
       public bool GetIsTraceEnabledFromConfiguration()

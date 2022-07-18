@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using IMS.Models;
-using Microsoft.AspNetCore.Authorization;
 namespace IMS.Controllers;
 
 [Authorize]

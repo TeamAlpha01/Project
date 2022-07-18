@@ -323,22 +323,14 @@ namespace IMS.DataAccessLayer
              _stopwatch.Start();
             if(!_db.Departments!.Any(x => x.DepartmentId == departmentId)) 
                 throw new ValidationException("Department was not found");
-          /**  finally
-            {
-                _stopwatch.Stop();
-                _logger.LogInformation($"Department DAL Time elapsed for  CheckDepartmentId(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
-            }**/
+         
         }
         public void CheckProjectId(int projectId)
         {
              _stopwatch.Start();
             if(!_db.Projects!.Any(x => x.ProjectId == projectId)) 
                 throw new ValidationException("Project was not found");
-           /** finally
-            {
-                _stopwatch.Stop();
-                _logger.LogInformation($"Department DAL Time elapsed for  CreateProjectId(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
-            }**/
+          
         }
         public bool GetIsTraceEnabledFromConfiguration()
         {

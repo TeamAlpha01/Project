@@ -267,7 +267,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from poolMember in _db.PoolMembers!.Include(e=>e.Employees).Include(r=>r.Pools) where poolMember.EmployeeId==employeeID  select poolMember).ToList();
+                return (from poolMember in _db.PoolMembers!.Include(e=>e.Employees).Include(r=>r.Pools) where poolMember.EmployeeId==employeeID && poolMember.IsActive==true  select poolMember).ToList();
 
                 //return _db.PoolMembers.ToList();
             }
@@ -351,11 +351,7 @@ namespace IMS.DataAccessLayer
 
             return true;
             
-          /**  finally
-            {
-                _stopwatch.Stop();
-                _logger.LogInformation($"Pool DAL Time elapsed for isPoolMemberValid(PoolMembers poolMembers)  :{_stopwatch.ElapsedMilliseconds}ms");
-            }**/
+        
         }
 
         /// <summary>

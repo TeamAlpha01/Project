@@ -32,12 +32,12 @@ namespace IMS.Service
         /// <summary>
         /// This Method will implement when Department controller pass the parameter to this method an
         /// </summary>
-        /// <param name="departmentName">string</param>
+        /// <param name="department">string</param>
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
         public bool CreateDepartment(Department department)
         {
             _stopwatch.Start();
-            DepartmentValidation.IsDepartmentValid(department.DepartmentName);
+            DepartmentValidation.IsDepartmentValid(department.DepartmentName!);
 
             try
             {
@@ -70,7 +70,7 @@ namespace IMS.Service
         /// <summary>
         /// This Method will implement when Department controller pass the parameter to this method and it validate the department ID and pass the departmentID to the DAL
         /// </summary>
-        /// <param name="departmentId">int</param>
+        /// <param name="department">int</param>
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
         public bool RemoveDepartment(Department department)
         {
