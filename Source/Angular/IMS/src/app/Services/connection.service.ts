@@ -134,6 +134,10 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Role/ViewRoles', { headers: this.headers });
   }
 
+  GetSlotAvailability(): any{
+    return this.http.get<any>(this.baseURL + 'Drive/ViewSlotAvailabilityGiven', { headers: this.headers });
+  }
+
   GetScheduledDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewScheduledDrives', { headers: this.headers });
   }

@@ -7,7 +7,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./interviewer-availability-given.component.css']
 })
 export class InterviewerAvailabilityGivenComponent implements OnInit {
-  title='Availability Given';
+  title='Slot Availability Given';
   
   //TO GET DATA FROM DATABASE
   Availability: any;
@@ -34,7 +34,7 @@ export class InterviewerAvailabilityGivenComponent implements OnInit {
   ngOnInit(): void {
     
     //GET METHOD CALLED AT CONNECTION SERVICE
-    this.connection.GetAcceptedDrives().subscribe((data: any) => {
+    this.connection.GetSlotAvailability().subscribe((data: any) => {
       this.Availability = data;
       this.drive=data;
     }) 

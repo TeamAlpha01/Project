@@ -12,7 +12,7 @@ export class InterviewerDashboardComponent implements OnInit {
   AcceptedDrives : number=0;
   DeniedDrives : number=0;
   IgnoredDrives : number=0;
-  AvailabilityGiven : number=0;
+  SlotAvailabilityGiven : number=0;
   UtilizedInterviews : number=0;
   NotUtilizedInterviews : number=0;
 
@@ -25,7 +25,7 @@ export class InterviewerDashboardComponent implements OnInit {
        this.AcceptedDrives = data.AcceptedDrives
        this.DeniedDrives = data.DeniedDrives
        this.IgnoredDrives = data.IgnoredDrives
-       this.AvailabilityGiven = data.TotalAvailability
+       this.SlotAvailabilityGiven = data.SlotAvailabiltyGiven
        this.UtilizedInterviews = data.UtilizedInterviews
        this.NotUtilizedInterviews = data.NotUtilizedInterviews
     })
