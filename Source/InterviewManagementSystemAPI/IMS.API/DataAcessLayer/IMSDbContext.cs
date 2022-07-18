@@ -98,8 +98,8 @@ namespace IMS.DataAccessLayer
                        new Employee { EmployeeId = 8, Name = "Deepika", DepartmentId = 3, EmailId = "deepika@aspiresys.com", EmployeeAceNumber = "ACE0008", Password = "Pass@12345", ProjectId = 3, RoleId = 2 },
                        new Employee { EmployeeId = 9, Name = "Remuki", DepartmentId = 3, EmailId = "remuki@aspiresys.com", EmployeeAceNumber = "ACE0009", Password = "Pass@12345", ProjectId = 3, RoleId = 3 },
                        new Employee { EmployeeId = 10, Name = "Vishnu", DepartmentId = 6, EmailId = "vishnu@aspiresys.com", EmployeeAceNumber = "ACE0010", Password = "Pass@12345", ProjectId = 4, RoleId = 9 },
-                       new Employee { EmployeeId = 11, Name = "Sandhiya", DepartmentId = 6, EmailId = "sandhiya@aspiresys.com", EmployeeAceNumber = "ACE0011", Password = "Pass@12345", ProjectId = 4, RoleId = 9 },
-                       new Employee { EmployeeId = 12, Name = "Mani", DepartmentId = 7, EmailId = "mani@aspiresys.com", EmployeeAceNumber = "ACE0012", Password = "Pass@12345", ProjectId = 4, RoleId = 10 }
+                       new Employee { EmployeeId = 11, Name = "Sandhiya", DepartmentId = 1, EmailId = "sandhiya@aspiresys.com", EmployeeAceNumber = "ACE0011", Password = "Pass@12345", ProjectId = 4, RoleId = 7 },
+                       new Employee { EmployeeId = 12, Name = "Admin", DepartmentId = 7, EmailId = "admin@aspiresys.com", EmployeeAceNumber = "ACE0012", Password = "Pass@12345", ProjectId = 4, RoleId = 10 }
                        );
             modelBuilder.Entity<Location>()
                      .HasData(

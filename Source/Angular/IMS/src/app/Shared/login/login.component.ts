@@ -79,6 +79,8 @@ export class LoginComponent implements OnInit {
           if (!(error.error.toString().includes('mail') || error.error.toString().includes('Password'))) {
             this.isCommanError = true;
           }
+          if(error.status==0)
+          this.error = "Oops! Server down please try again later"
           this.error = error.error;
           this.loading = false;
         },
