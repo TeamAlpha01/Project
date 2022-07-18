@@ -13,12 +13,12 @@
                         <label class="form-label" for="Pool">Pool </label>
                         <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool" [(ngModel)]="_pool">
                             <option value="" >Select the Pool</option>
-                            <option *ngFor="let item of poolDetails" value={{item.poolName}}> {{item.employeesUnderPool}} </option>
+                            <option *ngFor="let item of poolDetails" value={{item.employeesUnderPool}}> {{item.employeesUnderPool}} </option>
                         </select>
                     </div>
                     <div class="col-md-5">
                         <label class="form-label" for="Date">Date</label>
-                        <input type="date" class="form-control" (change)="filterDropdown()" name="date" [(ngModel)]="_date">
+                        <input type="date" class="form-control" (change)="filterDropdown()" name="_date" [(ngModel)]="_date">
                     </div>                    
                 </div>
             </div>

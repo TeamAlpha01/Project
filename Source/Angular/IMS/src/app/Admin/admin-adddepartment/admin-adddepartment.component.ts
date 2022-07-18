@@ -39,9 +39,13 @@ export class AdminAdddepartmentComponent implements OnInit {
   addDepartment() {
     this.submitted = true;
     this.error = '';
+    const department={
+      departmentId:0,
+      departmentName:this.getDepartmentName()?.value
+    }
 
     if (this.AddDepartmentForm.valid) {
-      this.service.AddDepartment(this.getDepartmentName()?.value).subscribe({
+      this.service.AddDepartment(department).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,
         complete: () => this.clearInputFields(),

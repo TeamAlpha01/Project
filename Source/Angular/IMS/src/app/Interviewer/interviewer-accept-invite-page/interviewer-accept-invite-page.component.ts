@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/Services/connection.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -18,9 +18,6 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   error: string = '';
   Availability: string = '';
   GivenSlot: any;
-
-  totalLength: any;
-  page: number = 1;
 
   AcceptInvitePage = this.fb.group({
     InterviewDate: ['', [Validators.required]],
@@ -92,7 +89,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
 
       this.connection.AddTimeSlot(timeSlot).subscribe({
         next: (data) => { this.response = data.message, this.AcceptResponse(), this.GetAvailability() },
-        error: (error) => { this.error = error.error, this.snackBar() },
+        error: (error) => { this.error = error.error.message, this.snackBar() },
         complete: () => this.snackBar(),
       });
     }
@@ -105,6 +102,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
     }, 2000);
   }
   AcceptResponse() {
+    console.warn("1")
     const response = {
       responseId: 0,
       driveId: this.driveId,
