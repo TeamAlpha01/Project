@@ -37,6 +37,8 @@ namespace IMS.DataAccessLayer
         public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized,int employeeId);
         public object GetDefaulters(int poolId);
         public List<EmployeeDriveResponse> GetDriveResponse(int driveId);
+        public int GetUtilizationCountByStatus(int driveId,int employeeId,bool status);
+        public int GetCancelledInterviewCount(int driveId,int employeeId);
         public List<EmployeeAvailability> ViewCancelledInterview(bool status, int employeeId);
         public Object GetDrivesForCurrentUser(int departmentId);
         public bool GetIsTraceEnabledFromConfiguration();

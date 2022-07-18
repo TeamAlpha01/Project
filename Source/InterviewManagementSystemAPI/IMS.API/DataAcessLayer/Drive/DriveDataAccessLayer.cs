@@ -724,7 +724,7 @@ namespace IMS.DataAccessLayer
         public List<EmployeeDriveResponse> GetDriveResponse(int driveId)
         {
             _stopwatch.Start();
-             DriveValidation.IsDriveIdValid(driveId);
+            DriveValidation.IsDriveIdValid(driveId);
             bool isDriveIdExist = _db.Drives!.Any(x => x.DriveId == driveId);
             if (!isDriveIdExist)
             {
@@ -733,6 +733,54 @@ namespace IMS.DataAccessLayer
             try
             {
                 return (from driveResponse in _db.EmployeeDriveResponse!.Include(e => e.Employee) where driveResponse.DriveId == driveId select driveResponse).ToList();
+            }
+            catch (Exception GetDriveResponseException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : GetDriveResponse(int driveId) : {GetDriveResponseException.Message} : {GetDriveResponseException.StackTrace}");
+                throw;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDriveResponse(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
+        }
+        public int GetUtilizationCountByStatus(int driveId,int employeeId,bool status)
+        {
+            _stopwatch.Start();
+            DriveValidation.IsDriveIdValid(driveId);
+            bool isDriveIdExist = _db.Drives!.Any(x => x.DriveId == driveId);
+            if (!isDriveIdExist)
+            {
+                throw new ValidationException("Drive not found wwith given drive Id");
+            }
+            try
+            {
+                return (from availability in _db.EmployeeAvailability where availability.DriveId==driveId where availability.EmployeeId==employeeId && availability.IsInterviewScheduled==status && availability.IsInterviewCancelled==false select availability).Count();
+            }
+            catch (Exception GetDriveResponseException)
+            {
+                _logger.LogInformation($"Exception on Drive DAL : GetDriveResponse(int driveId) : {GetDriveResponseException.Message} : {GetDriveResponseException.StackTrace}");
+                throw;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Drive DAL Time elapsed for GetDriveResponse(int driveId)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
+        }
+        public int GetCancelledInterviewCount(int driveId,int employeeId)
+        {
+            _stopwatch.Start();
+            DriveValidation.IsDriveIdValid(driveId);
+            bool isDriveIdExist = _db.Drives!.Any(x => x.DriveId == driveId);
+            if (!isDriveIdExist)
+            {
+                throw new ValidationException("Drive not found wwith given drive Id");
+            }
+            try
+            {
+                return (from availability in _db.EmployeeAvailability where availability.DriveId==driveId where availability.EmployeeId==employeeId && availability.IsInterviewCancelled==true select availability).Count();
             }
             catch (Exception GetDriveResponseException)
             {

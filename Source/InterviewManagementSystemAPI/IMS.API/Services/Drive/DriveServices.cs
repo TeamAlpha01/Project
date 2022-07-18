@@ -1098,8 +1098,10 @@ namespace IMS.Service
                     EmployeeId = e.EmployeeId,
                     EmployeeName = e.Employee!.Name,
                     EmployeeACENumber = e.Employee!.EmployeeAceNumber,
-
-                    ResponseType = Enum.GetName(typeof(UtilityService.ResponseType), e.ResponseType)
+                    ResponseType = Enum.GetName(typeof(UtilityService.ResponseType), e.ResponseType),
+                    UtilizedCount=_driveDataAccess.GetUtilizationCountByStatus(e.DriveId,e.EmployeeId,true),
+                    NotUtilizedCount=_driveDataAccess.GetUtilizationCountByStatus(e.DriveId,e.EmployeeId,false),
+                    CancelledInterviewCount=_driveDataAccess.GetCancelledInterviewCount(e.DriveId,e.EmployeeId)
                 }
                 );
             }
