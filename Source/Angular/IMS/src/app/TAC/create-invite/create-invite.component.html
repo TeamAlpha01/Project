@@ -3,9 +3,9 @@
     <!-- Navbar Start -->
     <app-navbar [title]="title"></app-navbar>
 
-    <div class="background-img-register1">
-        <div class="Register mt-5 mb-5">
-            <div class="card-body">
+    <div>
+        <div class="CreateInvite mt-5 mb-5">
+            <div class="card-body mt-3">
                 <form [formGroup]="CreateInviteForm" (ngSubmit)="CreateInvite()">
 
                     <div class="form-input">
@@ -56,9 +56,8 @@
                             [class.is-invalid]="(submitted && CreateInviteForm.controls['poolId'].invalid)||CreateInviteForm.controls['poolId'].invalid && CreateInviteForm.controls['poolId'].touched"
                             name="poolId" id="poolId" class="form-select " formControlName="poolId">
                             <option value="">Select the Pool</option>
-                            <option
-                                *ngFor="let item of poolDetails| filter:_dept"
-                                value={{item.poolId}}>{{item.poolName}} </option>
+                            <option *ngFor="let item of poolDetails| filter:_dept" value={{item.poolId}}>
+                                {{item.poolName}} </option>
                         </select>
                     </div>
                     <div
@@ -125,7 +124,7 @@
                             [min]="CreateInviteForm.controls['fromDate'].value">
                     </div>
                     <div *ngIf="(submitted)||CreateInviteForm.controls['toDate'].invalid &&
-                        CreateInviteForm.controls['toDate'].touched">
+                            CreateInviteForm.controls['toDate'].touched">
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['toDate'].errors?.['required']">Choose a
                             Date</span>
@@ -156,11 +155,9 @@
                     <div *ngIf="!error.toString().includes('Name')">
                         <h3 class="text-center text-danger">{{error}}</h3>
                     </div>
-
                 </form>
 
             </div>
-
         </div>
     </div>
     <app-footer></app-footer>
