@@ -750,7 +750,6 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-
                 var DashboardCount = new Dictionary<string, int>();
 
                 DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Count());
@@ -773,7 +772,6 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewEmployeeDashboard(int employeeId) : {viewEmployeeDashboardException.Message} : {viewEmployeeDashboardException.StackTrace}");
                 throw;
             }
-            
             finally
             {
                 _stopwatch.Stop();
@@ -806,8 +804,6 @@ namespace IMS.Service
                     EmployeeRole = member.Role!.RoleName
                 }
                 });
-
-
             }
             return ViewEmployeePerformance;
             }

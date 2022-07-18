@@ -630,7 +630,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where availability.IsInterviewScheduled == isUtilized && availability.EmployeeId == employeeId && availability.Drive!.IsScheduled == true && availability.IsInterviewCancelled != true select availability).ToList();
+                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where availability.IsInterviewScheduled == isUtilized && availability.EmployeeId == employeeId   select availability).ToList();
             }
             catch (Exception getResponseUtilizationByStatusException)
             {
@@ -646,7 +646,7 @@ namespace IMS.DataAccessLayer
         public List<EmployeeAvailability> GetSlotAvailabilityGiven(int employeeId)
         {
             try{
-                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location")where availability.EmployeeId==employeeId && availability.IsInterviewCancelled==false select availability).ToList();
+                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location")where availability.EmployeeId==employeeId  select availability).ToList();
             }
             catch(Exception exception)
             {
