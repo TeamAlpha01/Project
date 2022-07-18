@@ -809,6 +809,20 @@ public class DriveController : ControllerBase
     /// <param name="fromDate"></param>
     /// <param name="toDate"></param>
     /// <returns>Returns list of accepted drives</returns>
+    [HttpGet]
+    public IActionResult ViewSlotAvailabilityGiven()
+    {
+        try{
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            return Ok(_driveService.ViewSlotAvailabilityGiven(employeeId));
+        }
+        catch (Exception viewAcceptedDrivesException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {viewAcceptedDrivesException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+
+    }
 
     [HttpGet]
     public IActionResult ViewAcceptedDrives(DateTime fromDate, DateTime toDate)

@@ -60,7 +60,7 @@ public class DepartmentController : ControllerBase
     /// <response code="200">If department removed successfully</response>
     /// <response code="400">If the item is null</response> 
     /// <response code="500">If there is problem in server</response>
-    /// <param name="departmentId">int</param>
+    /// <param name="department">int</param>
     /// <returns>Returns success message when department removed or
     /// Returns bad request when validation exception occurs or
     /// Returns problem when internal problem occurs</returns>

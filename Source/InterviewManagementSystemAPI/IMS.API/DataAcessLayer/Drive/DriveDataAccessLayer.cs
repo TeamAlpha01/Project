@@ -643,6 +643,16 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Drive DAL Time elapsed for GetResponseUtilizationByStatus(bool isUtilized, int employeeId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
+        public List<EmployeeAvailability> GetSlotAvailabilityGiven(int employeeId)
+        {
+            try{
+                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location")where availability.EmployeeId==employeeId && availability.IsInterviewCancelled==false select availability).ToList();
+            }
+            catch(Exception exception)
+            {
+                throw exception;
+            }
+        }
 
         public object GetDefaulters(int poolId)
         {

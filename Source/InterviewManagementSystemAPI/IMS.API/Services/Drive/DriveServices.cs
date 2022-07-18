@@ -759,6 +759,7 @@ namespace IMS.Service
                 DashboardCount.Add("TotalDrives", DashboardCount["AcceptedDrives"] + DashboardCount["DeniedDrives"] + DashboardCount["IgnoredDrives"]);
                 DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
                 DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
+                DashboardCount.Add("SlotAvailabiltyGiven",_driveDataAccess.GetSlotAvailabilityGiven(employeeId).Count());
                 DashboardCount.Add("TotalAvailability", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"]);
                 return DashboardCount;
             }
@@ -976,6 +977,30 @@ namespace IMS.Service
             {
                 _stopwatch.Stop();
                 _logger.LogInformation($"Drive Service Time elapsed for  ViewUtilizedInterviews(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
+        }
+        public Object ViewSlotAvailabilityGiven(int employeeId)
+        {
+            try
+            {
+                return _driveDataAccess.GetSlotAvailabilityGiven(employeeId).Select(e=>new
+                {
+                    EmployeeAvailabilityId=e.EmployeeAvailabilityId,
+                    DriveName=e.Drive!.Name,
+                    PoolName=e.Drive!.Pool!.PoolName,
+                    InterviewDate=e.InterviewDate.ToString("yyyy-MM-dd"),
+                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
+                    FromTime = e.From.TimeOfDay,
+                    ToTime = e.To.TimeOfDay,
+                    LocationName = e.Drive.Location!.LocationName,
+                }
+                  
+                );
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Drive Service:ViewSlotAvailabilityGiven(int employeeId):{e.Message}");
+                throw e;
             }
         }
         public Object ViewNotUtilizedInterviews(int employeeId)

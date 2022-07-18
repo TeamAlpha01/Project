@@ -82,7 +82,7 @@ namespace IMS.DataAccessLayer
         /// <summary>
         /// This method will implement when Department service pass the department Id and it interact with Database.It validate the department Id
         /// </summary>
-        /// <param name="departmentId">int</param>
+        /// <param name="department">int</param>
         /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
         public bool RemoveDepartmentFromDatabase(Department department)
         {
@@ -96,11 +96,11 @@ namespace IMS.DataAccessLayer
             }
             try
             {
-                if (!_db.Departments.Any(d=>d.DepartmentId==department.DepartmentId))
+                if (!_db.Departments!.Any(d=>d.DepartmentId==department.DepartmentId))
                     throw new ValidationException("No Department  is found with given Department Id");
 
                 department.IsActive = false;
-                _db.Departments.Update(department);
+                _db.Departments!.Update(department);
                 _db.SaveChanges();
                 return true;
 
