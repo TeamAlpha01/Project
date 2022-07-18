@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class InterviewManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220718063819_Updated_seeding_18th_july")]
+    partial class Updated_seeding_18th_july
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,12 +32,6 @@ namespace Source.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DepartmentId"), 1L, 1);
 
-                    b.Property<int?>("AddedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("AddedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("DepartmentName")
                         .IsRequired()
                         .HasMaxLength(25)
@@ -43,12 +39,6 @@ namespace Source.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedOn")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("DepartmentId");
 
