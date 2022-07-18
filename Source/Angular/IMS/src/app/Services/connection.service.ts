@@ -98,6 +98,14 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewDeniedDrives', { headers: this.headers });
   }
 
+  GetDrivesForCurrentUser(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/GetDrivesForCurrentUser', { headers: this.headers });
+  }
+
+  GetDepartmentEmployeesForCurrentUser(): any {
+    return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeesByDepartmentForCurrentUser', { headers: this.headers });
+  }
+
   GetIgnoredDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewIgnoredDrives', { headers: this.headers });
   }

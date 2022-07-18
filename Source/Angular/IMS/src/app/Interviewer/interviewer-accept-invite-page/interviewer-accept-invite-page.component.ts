@@ -102,7 +102,6 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
     }, 2000);
   }
   AcceptResponse() {
-    console.warn("1")
     const response = {
       responseId: 0,
       driveId: this.driveId,
