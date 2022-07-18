@@ -1,6 +1,6 @@
 .background-img-login {
   object-fit: fill;
-  /* height: 100vh; */
+  height: 100vh;
   padding: 10%;
   background-size: cover;
   background-image: url(../../../assets/Images/Interview.jpg);
@@ -21,4 +21,12 @@
   /* padding-top: 10%; */
   padding-bottom: 5%;
   text-align: center;
+}
+
+@media screen and (max-width:720px) {
+  .Login {
+    padding: 0%;
+    margin: 0%;
+    margin-top: 50px;
+  }
 }
