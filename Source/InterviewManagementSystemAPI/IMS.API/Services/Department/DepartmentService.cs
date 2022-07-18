@@ -34,16 +34,16 @@ namespace IMS.Service
         /// </summary>
         /// <param name="departmentName">string</param>
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
-        public bool CreateDepartment(string departmentName)
+        public bool CreateDepartment(Department department)
         {
             _stopwatch.Start();
-            DepartmentValidation.IsDepartmentValid(departmentName);
+            DepartmentValidation.IsDepartmentValid(department.DepartmentName);
 
             try
             {
-                Department _department = DataFactory.DepartmentDataFactory.GetDepartmentObject();
-                _department.DepartmentName = departmentName;
-                return _departmentDataAccessLayer.AddDepartmentToDatabase(_department) ? true : false; // LOG Error in DAL;
+                department.AddedOn=System.DateTime.Now;
+                department.UpdatedOn=System.DateTime.Now;
+                return _departmentDataAccessLayer.AddDepartmentToDatabase(department) ? true : false; // LOG Error in DAL;
             }
             catch (ValidationException departmentExist)
             {
@@ -72,14 +72,16 @@ namespace IMS.Service
         /// </summary>
         /// <param name="departmentId">int</param>
         /// <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
-        public bool RemoveDepartment(int departmentId)
+        public bool RemoveDepartment(Department department)
         {
             _stopwatch.Start();
-            DepartmentValidation.IsDepartmentIdValid(departmentId);
+            DepartmentValidation.IsDepartmentIdValid(department.DepartmentId);
 
             try
             {
-                return _departmentDataAccessLayer.RemoveDepartmentFromDatabase(departmentId) ? true : false; // LOG Error in DAL;
+                department.AddedOn=System.DateTime.Now;
+                department.UpdatedOn=System.DateTime.Now;
+                return _departmentDataAccessLayer.RemoveDepartmentFromDatabase(department) ? true : false; // LOG Error in DAL;
             }
             catch (ValidationException departmentNotFound)
             {

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using IMS.Models;
+using Microsoft.AspNetCore.Authorization;
 namespace IMS.Controllers;
 
 [Authorize]
@@ -25,18 +27,21 @@ public class DepartmentController : ControllerBase
     /// <response code="200">If new department was created</response>
     /// <response code="400">If the item is null</response> 
     /// <response code="500">If some internal problem arises </response>
-    /// <param name="departmentName">String</param>
+    /// <param name="department">String</param>
     /// <returns>Returns success message when department is added or
     /// Returns Bad request when validation exception occurs or
     /// Returns Problem when internal error occurs </returns>
     [HttpPost]
-    public IActionResult CreateNewDepartment(string departmentName)
+    public IActionResult CreateNewDepartment(Department department)
     {
-        if (departmentName == null)
+        if (department == null || String.IsNullOrEmpty(department.DepartmentName))
             return BadRequest("Department name is required");
         try
         {
-            return _departmentService.CreateDepartment(departmentName) ? Ok(UtilityService.Response("Department Added Successfully")) : Problem("Sorry internal error occured");
+            int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            department.AddedBy=currentUser;
+            department.UpdatedBy=currentUser;
+            return _departmentService.CreateDepartment(department)?Ok(UtilityService.Response("Department Added Successfully")) : Problem("Sorry internal error occured");
         }
          catch (ValidationException departmentnotvalid)
         {
@@ -60,13 +65,16 @@ public class DepartmentController : ControllerBase
     /// Returns bad request when validation exception occurs or
     /// Returns problem when internal problem occurs</returns>
     [HttpPatch]
-    public IActionResult RemoveDepartment(int departmentId)
+    public IActionResult RemoveDepartment(Department department)
     {
-        if (departmentId <= 0) return BadRequest("Department Id  Should not be zero or less than zero");
+        if (department.DepartmentId <= 0) return BadRequest("Department Id  Should not be zero or less than zero");
 
         try
         {
-            return _departmentService.RemoveDepartment(departmentId) ? Ok(UtilityService.Response("Department Removed Successfully")) : Problem("Sorry internal error occured");
+            int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            department.AddedBy=currentUser;
+            department.UpdatedBy=currentUser;
+            return _departmentService.RemoveDepartment(department) ? Ok(UtilityService.Response("Department Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException departmentExist)
         {

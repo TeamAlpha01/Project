@@ -84,20 +84,19 @@ namespace IMS.DataAccessLayer
         /// </summary>
         /// <param name="departmentId">int</param>
         /// <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
-        public bool RemoveDepartmentFromDatabase(int departmentId)
+        public bool RemoveDepartmentFromDatabase(Department department)
         {
              _stopwatch.Start();
-            DepartmentValidation.IsDepartmentIdValid(departmentId);
+            DepartmentValidation.IsDepartmentIdValid(department.DepartmentId);
 
-            bool isDeletedepartmentId = _db.Departments!.Any(x => x.DepartmentId == departmentId && x.IsActive == false);
+            bool isDeletedepartmentId = _db.Departments!.Any(x => x.DepartmentId == department.DepartmentId && x.IsActive == false);
             if (isDeletedepartmentId)
             {
                 throw new ValidationException("Department already deleted");
             }
             try
             {
-                var department = _db.Departments!.Find(departmentId);
-                if (department == null)
+                if (!_db.Departments.Any(d=>d.DepartmentId==department.DepartmentId))
                     throw new ValidationException("No Department  is found with given Department Id");
 
                 department.IsActive = false;
