@@ -7,8 +7,8 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./interviewer-not-utilized-drives.component.css']
 })
 export class InterviewerNotUtilizedDrivesComponent implements OnInit {
-  
-  title='Not Utilized Interviews';
+
+  title = 'Not Utilized Interviews';
   NotUtilized: any;
   totalLength: any;
   page: number = 1;
@@ -24,15 +24,14 @@ export class InterviewerNotUtilizedDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection :ConnectionService) { }
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
     this.connection.GetNotUtilizedInterviews().subscribe((data: any) => {
       this.NotUtilized = data;
-      for (let item of data){
-        this.drive.push(item);
-      }
-    }) 
+      this.drive = data;
+      console.warn(this.drive)
+    })
 
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
@@ -40,19 +39,19 @@ export class InterviewerNotUtilizedDrivesComponent implements OnInit {
   }
 
   filterDropdown() {
-  
+
     this.drive = [];
     for (let item of this.NotUtilized) {
-      if ( this._pool == '' && item.interviewDate == this._date ) {
+      if (this._pool == '' && item.interviewDate == this._date) {
         this.drive.push(item);
       }
-      else if (item.drivePool == this._pool && item.interviewDate == this._date) {
+      else if (item.poolName == this._pool && item.interviewDate == this._date) {
         this.drive.push(item);
       }
       else if (this._pool == '' && this._date == '') {
         this.drive.push(item);
       }
-      else if (item.drivePool == this._pool && this._date == '') {
+      else if (item.poolName == this._pool && this._date == '') {
         this.drive.push(item);
       }
     }

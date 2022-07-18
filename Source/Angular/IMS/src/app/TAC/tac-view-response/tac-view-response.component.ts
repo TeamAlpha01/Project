@@ -25,9 +25,9 @@ export class TacViewResponseComponent implements OnInit {
     driveMode: "",
     driveName: "",
     drivePool: "",
-    fromDate: "",
+    fromDate:  new Date(),
     slotTiming: 0,
-    toDate: ""
+    toDate: new Date()
   }
 
   constructor(private connection: ConnectionService, private route: ActivatedRoute) { }

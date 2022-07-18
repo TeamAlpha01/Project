@@ -15,7 +15,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   department: any[] = []
   toTime: any;
   response: string = '';
-  error: string = '';
+  error: any[] = [];
   Availability: string = '';
   GivenSlot: any;
 
@@ -96,7 +96,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   }
   snackBar() {
     setTimeout(() => {
-      this.error = '';
+      this.error = [];
       this.response = '';
       this.AcceptInvitePage.reset();
     }, 2000);
@@ -111,8 +111,8 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
 
     if (this.AcceptedResponse) {
       this.connection.AddResponse(response).subscribe({
-        next: (data: any) => { this.addResponse = data, this.AcceptedResponse = false },
-        error: (error: any) => { this.error = error.error.message, this.snackBar() },
+        next: (data) => { this.addResponse = data, this.AcceptedResponse = false },
+        error: (error) => { this.error = error.error.message, this.snackBar() },
         complete: () => this.snackBar(),
       });
     }

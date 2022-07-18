@@ -15,7 +15,7 @@
                         <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool"
                             [(ngModel)]="_pool">
                             <option value="">Select the Pool</option>
-                            <option *ngFor="let item of poolDetails | filter:_pool" value={{item.poolName}}>
+                            <option *ngFor="let item of poolDetails" value={{item.poolName}}>
                                 {{item.poolName}} </option>
                         </select>
                     </div>
@@ -30,8 +30,7 @@
         </div>
     </div>
 
-    <div class="mt-3 container shadow bg-body rounded"
-        *ngFor="let item of Ignored| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
+    <div class="mt-3 container shadow bg-body rounded" *ngFor="let item of drive| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
         <div class>
             <div class="card-body">
                 <div class="row rone mt-4">

@@ -34,13 +34,21 @@
   text-align: center;
 }
 
-.CreatePool {
-  margin-top: 25vh;
-}
-
 .form-input {
   padding-bottom: 2%;
   font-weight: bold;
+}
+
+.Register {
+  margin: 0% 25%;
+  padding: 0% 5%;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: var(--light);
+}
+
+.CreatePool {
+  margin-top: 25vh;
 }
 
 
@@ -1574,7 +1582,7 @@ body {
 } */
 
 /* Interviewer Dashboard */
-#numbersize{
+#numbersize {
   font-size: 40px;
 }
 
@@ -1618,6 +1626,6 @@ body {
 
 /* Admin Add Role - Checkbox */
 
-.checkboxalignment{
+.checkboxalignment {
   margin-top: 2%;
 }
