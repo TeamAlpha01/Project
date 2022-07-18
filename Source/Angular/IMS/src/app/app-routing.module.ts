@@ -47,6 +47,7 @@ import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-deni
 import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
 import { DepartmentPerformanceComponent } from './Management/department-performance/department-performance.component';
 import { InterviewerAcceptedDrivesComponent } from './Interviewer/interviewer-accepted-drives/interviewer-accepted-drives.component';
+import { InterviewerCancelledDrivesComponent } from './Interviewer/interviewer-cancelled-drives/interviewer-cancelled-drives.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'interviewer/dashboard/ignoreddrives', component: InterviewerIgnoredDrivesComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/dashboard/denied-drives', component: InterviewerDeniedDrivesComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/dashboard/accepted-drives', component: InterviewerAcceptedDrivesComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
+  { path: 'interviewer/dashboard/cancelled-drives', component: InterviewerCancelledDrivesComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
 
   //admin pages
   { path: '', component: LoginComponent },

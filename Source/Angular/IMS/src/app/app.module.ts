@@ -77,6 +77,7 @@ import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ign
 import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
 import { DepartmentPerformanceComponent } from './Management/department-performance/department-performance.component';
 import { InterviewerAcceptedDrivesComponent } from './Interviewer/interviewer-accepted-drives/interviewer-accepted-drives.component';
+import { InterviewerCancelledDrivesComponent } from './Interviewer/interviewer-cancelled-drives/interviewer-cancelled-drives.component';
 
 @NgModule({
   declarations: [
@@ -147,6 +148,7 @@ import { InterviewerAcceptedDrivesComponent } from './Interviewer/interviewer-ac
     ManagementDashboardComponent,
     DepartmentPerformanceComponent,
     InterviewerAcceptedDrivesComponent,
+    InterviewerCancelledDrivesComponent,
 
   ],
 

@@ -37,6 +37,10 @@ export class ConnectionService {
   GetAvailability(driveId: number): any {
     return this.http.get<any>(this.baseURL + `Drive/ViewAvailabilty?driveId=${driveId}`, { headers: this.headers });
   }
+  
+  GetCancelledinterviews(): any{
+    return this.http.get<any>(this.baseURL + 'Drive/ViewCancelledInterview', { headers: this.headers });
+  }
 
   GetCancelledDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewAllCancelledDrives', { headers: this.headers });

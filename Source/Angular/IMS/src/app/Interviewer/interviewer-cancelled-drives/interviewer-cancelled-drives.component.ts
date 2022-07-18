@@ -2,22 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
-  selector: 'app-interviewer-denied-drives',
-  templateUrl: './interviewer-denied-drives.component.html',
-  styleUrls: ['./interviewer-denied-drives.component.css']
+  selector: 'app-interviewer-cancelled-drives',
+  templateUrl: './interviewer-cancelled-drives.component.html',
+  styleUrls: ['./interviewer-cancelled-drives.component.css']
 })
-export class InterviewerDeniedDrivesComponent implements OnInit {
+export class InterviewerCancelledDrivesComponent implements OnInit {
 
-  title='Denied Drives';
+  title = 'Cancelled Drives';
 
   //TO GET DATA FROM DATABASE
-  Denied: any;
-  
+  CancelledDrives: any;
+
   //PAGINATION
   totalLength: any;
   page: number = 1;
 
-   //TO GET USER INPUT
+  //TO GET USER INPUT
   _pool = '';
   _date = '';
 
@@ -29,16 +29,16 @@ export class InterviewerDeniedDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection :ConnectionService) { }
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
-     //GET METHOD CALLED AT CONNECTION SERVICE
-    this.connection.GetDeniedDrives().subscribe((data: any) => {
-      this.Denied = data;
+    //GET METHOD CALLED AT CONNECTION SERVICE
+    this.connection.GetCancelledinterviews().subscribe((data: any) => {
+      this.CancelledDrives = data;
       this.drive = data;
-    }) 
+    })
 
-     //GET METHOD CALLED AT CONNECTION SERVICE
+    //GET METHOD CALLED AT CONNECTION SERVICE
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
     })
@@ -46,11 +46,11 @@ export class InterviewerDeniedDrivesComponent implements OnInit {
 
   //THIS METHOD IS CALLED ON CHANGE IN DROPDOWN FILTER 
   filterDropdown() {
-  
+
     this.drive = [];
-  
-    for (let item of this.Denied) {
-      if ( this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
+
+    for (let item of this.CancelledDrives) {
+      if (this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
       }
       else if (item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
@@ -65,3 +65,4 @@ export class InterviewerDeniedDrivesComponent implements OnInit {
     }
   }
 }
+
