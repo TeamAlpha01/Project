@@ -10,14 +10,14 @@ export class InterviewerDeniedDrivesComponent implements OnInit {
 
   title='Denied Drives';
 
-  //TO GET DATA FROM DATABASE
+  //To get data from database
   Denied: any;
   
-  //PAGINATION
+  //Pagination
   totalLength: any;
   page: number = 1;
 
-   //TO GET USER INPUT
+  //To get user input
   _pool = '';
   _date = '';
 
@@ -44,13 +44,13 @@ export class InterviewerDeniedDrivesComponent implements OnInit {
     })
   }
 
-  //THIS METHOD IS CALLED ON CHANGE IN DROPDOWN FILTER 
   filterDropdown() {
-  
+    //To filter cards based on the date and pool selection
     this.drive = [];
   
     for (let item of this.Denied) {
       if ( this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
+        console.warn("1");
         this.drive.push(item);
       }
       else if (item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {

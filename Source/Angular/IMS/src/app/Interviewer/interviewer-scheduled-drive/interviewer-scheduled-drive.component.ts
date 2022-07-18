@@ -23,7 +23,6 @@ export class InterviewerScheduledDriveComponent implements OnInit {
 
   driveDetails: any;
   poolDetails: any;
-  interviewerpoolDetails: any;
   showErrorMessage: boolean = false;
 
   constructor(private connection: ConnectionService, private route: Router) { }
@@ -52,21 +51,18 @@ export class InterviewerScheduledDriveComponent implements OnInit {
   filterDropdown() {
     //To filter cards based on the date and pool selection
     this.drive = [];
+
     for (let item of this.driveDetails) {
       if (this._pool == '' && this._date == '') {
-        console.warn("1");
         this.drive.push(item);
       }
       else if (this._pool == item.poolName && this._date == item.interviewDate) {
-        console.warn("2");
         this.drive.push(item);
       }
       else if (this._pool == item.poolName && this._date == '') {
-        console.warn("3");
         this.drive.push(item);
       }
       else if (this._pool == '' && this._date == item.interviewDate) {
-        console.warn("4");
         this.drive.push(item);
       }
     }
