@@ -146,7 +146,7 @@ namespace IMS.DataAccessLayer
              _stopwatch.Start();
             try
             {
-                return (from department in _db.Departments where department.IsActive == true select department).ToList();
+                return (from department in _db.Departments where department.IsActive == true select department).OrderByDescending(x => x.DepartmentId).ToList();
             }
             catch (DbUpdateException exception)
             {
