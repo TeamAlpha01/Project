@@ -153,7 +153,7 @@ namespace IMS.Service
                     DriveName = d.Name,
                     FromDate = d.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment = d.Pool!.department.DepartmentName,
+                    DriveDepartment = d.Pool!.department!.DepartmentName,
                     DriveLocation = d.Location!.LocationName,
 
                     DrivePool = d.Pool.PoolName,
@@ -219,7 +219,7 @@ namespace IMS.Service
                     DriveName = d.Name,
                     FromDate = d.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = d.ToDate.ToString("yyyy-MM-dd"),
-                    DriveDepartment = d.Pool!.department.DepartmentName,
+                    DriveDepartment = d.Pool!.department!.DepartmentName,
                     DriveLocation = d.Location!.LocationName,
                     DrivePool = d.Pool.PoolName,
                     DriveMode = Enum.GetName(typeof(UtilityService.Mode), d.ModeId),
@@ -286,7 +286,7 @@ namespace IMS.Service
                     FromDate = drive.FromDate.ToString("yyyy-MM-dd"),
                     ToDate = drive.ToDate.ToString("yyyy-MM-dd"),
                     SlotTiming = drive.SlotTiming,
-                    DriveDepartment = drive.Pool!.department.DepartmentName,
+                    DriveDepartment = drive.Pool!.department!.DepartmentName,
                     DriveLocation = drive.Location!.LocationName,
                     DrivePool = drive.Pool.PoolName,
 
@@ -744,7 +744,7 @@ namespace IMS.Service
         }
         
 
-        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId, int departmentId, DateTime fromDate, DateTime toDate)
+        public Dictionary<string, int> ViewEmployeeDashboard(int employeeId, DateTime fromDate, DateTime toDate)
         {
             _stopwatch.Start();
             try
@@ -792,7 +792,7 @@ namespace IMS.Service
             var ViewEmployeePerformance = new List<object>();
             foreach (var member in employee)
             {
-                count = ViewEmployeeDashboard(member.EmployeeId, departmentId, fromDate, toDate);
+                count = ViewEmployeeDashboard(member.EmployeeId, fromDate, toDate);
 
                 ViewEmployeePerformance.Add(new
                 {

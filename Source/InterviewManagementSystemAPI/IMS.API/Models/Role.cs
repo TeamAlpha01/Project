@@ -14,7 +14,7 @@ namespace IMS.Models
         public int RoleId{get; set;}
         [Required]
         [StringLength(100)]
-        public string RoleName  { get; set; }
+        public string ?RoleName  { get; set; }
 
         public bool IsActive { get; set; } = true;
         public bool IsManagement{get;set;}=false;

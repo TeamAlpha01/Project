@@ -194,7 +194,7 @@ namespace IMS.Service
                  return _poolDataAccessLayer.GetPoolsFromDatabase(employeeId).Select(
                 poolMembers=>new
                 {
-                     employeesUnderPool=poolMembers.Pools.PoolName,
+                     employeesUnderPool=poolMembers.Pools!.PoolName,
                      PoolId=poolMembers.Pools.PoolId
                 }
                );
@@ -319,7 +319,7 @@ namespace IMS.Service
                 {
                     poolId=poolMembers.PoolId,
                     poolMemberId=poolMembers.PoolMembersId,
-                    employeeAceNumber=poolMembers.Employees.EmployeeAceNumber,
+                    employeeAceNumber=poolMembers.Employees!.EmployeeAceNumber,
                     employeeName=poolMembers.Employees.Name,
                     employeeRole=poolMembers.Employees.Role!.RoleName
 

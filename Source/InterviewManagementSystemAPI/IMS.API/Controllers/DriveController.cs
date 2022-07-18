@@ -752,18 +752,18 @@ public class DriveController : ControllerBase
     /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
-    /// <param name="departmentId"></param>
+   
     /// <param name="fromDate"></param>
     /// <param name="toDate"></param>
     /// <returns>Returns the dashboard of employee</returns>
     [HttpGet]
-    public IActionResult ViewEmployeeDashboard(int departmentId, DateTime fromDate, DateTime toDate)
+    public IActionResult ViewEmployeeDashboard(DateTime fromDate, DateTime toDate)
     {
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
 
-            return Ok(_driveService.ViewEmployeeDashboard(employeeId,departmentId, fromDate, toDate));
+            return Ok(_driveService.ViewEmployeeDashboard(employeeId, fromDate, toDate));
         }
         catch (ValidationException ViewEmployeeDashboardNotValid)
         {

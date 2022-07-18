@@ -14,16 +14,16 @@ namespace IMS.DataAccessLayer
             
         }
 
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Drive> Drives { get; set; }
-        public DbSet<EmployeeDriveResponse> EmployeeDriveResponse { get; set; }
-        public DbSet<EmployeeAvailability> EmployeeAvailability { get; set; }
-        public DbSet<Location> Locations { get; set; }
-        public DbSet<Pool> Pools { get; set; }
-        public DbSet<PoolMembers> PoolMembers { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<Role> ?Roles { get; set; }
+        public DbSet<Employee> ?Employees { get; set; }
+        public DbSet<Drive> ?Drives { get; set; }
+        public DbSet<EmployeeDriveResponse> ?EmployeeDriveResponse { get; set; }
+        public DbSet<EmployeeAvailability>? EmployeeAvailability { get; set; }
+        public DbSet<Location>? Locations { get; set; }
+        public DbSet<Pool>? Pools { get; set; }
+        public DbSet<PoolMembers>? PoolMembers { get; set; }
+        public DbSet<Department>? Departments { get; set; }
+        public DbSet<Project> ?Projects { get; set; }
         // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         // {
         //     optionsBuilder.UseSqlServer(@"Server=DESKTOP-0EL7H73;Database=InterviewManagementSystem;Trusted_Connection=True;");

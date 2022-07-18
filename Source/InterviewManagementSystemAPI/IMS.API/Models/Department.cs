@@ -15,7 +15,7 @@ namespace IMS.Models
         public int DepartmentId{get; set;}
         [Required]
         [StringLength(25)]
-        public string DepartmentName{get;set;}
+        public string ?DepartmentName{get;set;}
         public bool IsActive { get; set; } = true;
 
         [InverseProperty("department")]
@@ -24,7 +24,7 @@ namespace IMS.Models
         [InverseProperty("department")]
         public ICollection<Project>? Projects { get; set; }
         [InverseProperty("Department")]
-        public ICollection<Employee> EmployeesUnderDepartment{get;set;}
+        public ICollection<Employee> ?EmployeesUnderDepartment{get;set;}
 
         [InverseProperty("Department")]
         public ICollection<Drive>? DrivesUnderDepartment { get; set; }

@@ -33,7 +33,7 @@ namespace IMS.Controllers
                 return BadRequest("Mail Id and Password cannot be null");
             try
             {
-                var Result = _tokenService.AuthToken(user.EmailId, user.Password);
+                var Result = _tokenService.AuthToken(user.EmailId, user.Password!);
                 return Ok(Result);
             }
             catch (ValidationException validationException)

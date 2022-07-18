@@ -336,7 +336,7 @@ namespace IMS.DataAccessLayer
         }
         private bool isPoolMemberValid(PoolMembers poolMembers)
         {
-            _stopwatch.Start();
+           
             var employee=_db.Employees.Include(e=>e.Role).FirstOrDefault(e=>e.EmployeeId==poolMembers.EmployeeId);
             var pool =_db.Pools.Find(poolMembers.PoolId);
             if(employee==null || pool==null)
@@ -348,11 +348,7 @@ namespace IMS.DataAccessLayer
 
             return true;
             
-          /**  finally
-            {
-                _stopwatch.Stop();
-                _logger.LogError($"Pool DAL Time elapsed for isPoolMemberValid(PoolMembers poolMembers)  :{_stopwatch.ElapsedMilliseconds}ms");
-            }**/
+         
         }
 
         /// <summary>
@@ -424,7 +420,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Employees.Role) where poolMember.PoolId==poolId && poolMember.IsActive ==true && poolMember.Employees.IsAdminAccepted==true && poolMember.Employees.IsAdminResponded==true select poolMember).ToList();
+                return (from poolMember in _db.PoolMembers.Include(e=>e.Employees).Include(r=>r.Employees!.Role) where poolMember.PoolId==poolId && poolMember.IsActive ==true && poolMember.Employees!.IsAdminAccepted==true && poolMember.Employees.IsAdminResponded==true select poolMember).ToList();
 
                 //return _db.PoolMembers.ToList();
             }

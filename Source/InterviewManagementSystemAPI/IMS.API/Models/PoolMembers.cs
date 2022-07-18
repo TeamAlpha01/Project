@@ -15,10 +15,10 @@ namespace IMS.Models
 
         [ForeignKey("PoolId")]
         [InverseProperty("PoolMembers")]
-        public Pool Pools{get;set;}
+        public Pool?Pools{get;set;}
         [ForeignKey("EmployeeId")]
         [InverseProperty("PoolMembers")]
-        public Employee Employees{get;set;}
+        public Employee?Employees{get;set;}
       
         
     }

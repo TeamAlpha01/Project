@@ -103,7 +103,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from poolMember in _db.PoolMembers.Include(p => p.Employees) where poolMember.PoolId == poolId select poolMember.Employees.EmailId).ToList();
+                return (from poolMember in _db.PoolMembers.Include(p => p.Employees) where poolMember.PoolId == poolId select poolMember.Employees!.EmailId).ToList();
             }
             catch (Exception getEmployeeEmailsByPoolException)
             {

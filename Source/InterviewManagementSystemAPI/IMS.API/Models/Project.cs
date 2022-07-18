@@ -13,7 +13,7 @@ namespace IMS.Models
         }
      [Key]
      public int ProjectId{get; set;}
-     public string ProjectName {get;set;}
+     public string ?ProjectName {get;set;}
      public bool IsActive { get; set; } = true;
      public int  DepartmentId{get;set;}
 

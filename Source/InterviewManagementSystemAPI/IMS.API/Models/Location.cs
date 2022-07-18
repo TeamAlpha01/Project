@@ -12,7 +12,7 @@ namespace IMS.Models
         public int LocationId { get; set; }
         [Required]
         [StringLength(15)]
-        public string LocationName { get; set; }
+        public string ? LocationName { get; set; }
         public bool IsActive { get; set; } = true;
 
 

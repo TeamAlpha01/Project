@@ -34,14 +34,14 @@ namespace IMS.DataAccessLayer
         {
             _stopwatch.Start();
             DepartmentValidation.IsDepartmentValid(department);
-            bool departmentNameExists = _db.Departments.Any(x => x.DepartmentName == department.DepartmentName && x.IsActive == true);
+            bool departmentNameExists = _db.Departments!.Any(x => x.DepartmentName == department.DepartmentName && x.IsActive == true);
             if (departmentNameExists)
             {
                 throw new ValidationException("Department already exist");
             }
             try
             {
-                _db.Departments.Add(department);
+                _db.Departments!.Add(department);
                 _db.SaveChanges();
                 return true;
             }
@@ -87,14 +87,14 @@ namespace IMS.DataAccessLayer
              _stopwatch.Start();
             DepartmentValidation.IsDepartmentIdValid(departmentId);
 
-            bool isDeletedepartmentId = _db.Departments.Any(x => x.DepartmentId == departmentId && x.IsActive == false);
+            bool isDeletedepartmentId = _db.Departments!.Any(x => x.DepartmentId == departmentId && x.IsActive == false);
             if (isDeletedepartmentId)
             {
                 throw new ValidationException("Department already deleted");
             }
             try
             {
-                var department = _db.Departments.Find(departmentId);
+                var department = _db.Departments!.Find(departmentId);
                 if (department == null)
                     throw new ValidationException("No Department  is found with given Department Id");
 
@@ -176,7 +176,7 @@ namespace IMS.DataAccessLayer
         public bool AddProjectToDatabase(Project project)
         {
              _stopwatch.Start();
-            var department = _db.Projects.Find(project.DepartmentId);
+            var department = _db.Projects!.Find(project.DepartmentId);
             if (department == null)
                 throw new ValidationException("No department Id found with given department id");
 
@@ -240,7 +240,7 @@ namespace IMS.DataAccessLayer
              _stopwatch.Start();
             ProjectValidation.IsProjectValid(projectId);
 
-            bool isProjectId = _db.Projects.Any(x => x.ProjectId == projectId && x.IsActive == false);
+            bool isProjectId = _db.Projects!.Any(x => x.ProjectId == projectId && x.IsActive == false);
             if (isProjectId)
             {
                 throw new ValidationException("Project already deleted");
@@ -248,7 +248,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                var project = _db.Projects.Find(projectId);
+                var project = _db.Projects!.Find(projectId);
                 if (project == null)
                     throw new ValidationException("No Project is found with given Project Id");
 
@@ -293,7 +293,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                return(from project in _db.Projects.Include(p=>p.department)where project.IsActive == true select project).ToList();
+                return(from project in _db.Projects!.Include(p=>p.department)where project.IsActive == true select project).ToList();
             }
             catch (DbUpdateException exception)
             {
@@ -320,24 +320,16 @@ namespace IMS.DataAccessLayer
         public void CheckDepartmentId(int departmentId)
         {
              _stopwatch.Start();
-            if(!_db.Departments.Any(x => x.DepartmentId == departmentId)) 
+            if(!_db.Departments!.Any(x => x.DepartmentId == departmentId)) 
                 throw new ValidationException("Department was not found");
-          /**  finally
-            {
-                _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for  CheckDepartmentId(int departmentId) :{_stopwatch.ElapsedMilliseconds}ms");
-            }**/
+          
         }
         public void CheckProjectId(int projectId)
         {
              _stopwatch.Start();
-            if(!_db.Projects.Any(x => x.ProjectId == projectId)) 
+            if(!_db.Projects!.Any(x => x.ProjectId == projectId)) 
                 throw new ValidationException("Project was not found");
-           /** finally
-            {
-                _stopwatch.Stop();
-                _logger.LogError($"Department DAL Time elapsed for  CreateProjectId(int projectId) :{_stopwatch.ElapsedMilliseconds}ms");
-            }**/
+           
         }
     }
 }
