@@ -60,7 +60,6 @@ export class TacCancelDriveComponent implements OnInit {
     this.submitted = true;
     this.error = '';
     if (this.CancelDriveForm.valid) {
-      console.log(this.getCancelReason()?.value)
       this.connection.CancelDrive(this.driveId, this.getCancelReason()?.value).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,

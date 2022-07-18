@@ -39,7 +39,6 @@ export class TacEditPoolComponent implements OnInit {
       for (let item of this.poolDetails) {
         if (this.poolId == item.poolId) {
           this._pool = item.poolName;
-          console.log(this._pool);
           this._dept = item.departmentName;
         }
       }
@@ -54,7 +53,6 @@ export class TacEditPoolComponent implements OnInit {
     this.submitted = true;
     this.error = '';
     if (this.EditPoolForm.valid) {
-      console.log(true)
       this.connection.EditPool(this.poolId, this.getpoolName()?.value).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.message,
@@ -65,8 +63,6 @@ export class TacEditPoolComponent implements OnInit {
 
   clearInputFields() 
   {    
-    console.warn(this.response)
-    console.warn(this.error)
       this.submitted = false;
       setTimeout(() => {
         this.response = '';

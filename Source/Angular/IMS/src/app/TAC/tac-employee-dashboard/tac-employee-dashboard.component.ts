@@ -39,7 +39,6 @@ export class TacEmployeeDashboardComponent implements OnInit {
     })
     this.connection.GetEmployees().subscribe((data: any) => {
       this.employeeDetails = data;
-      console.warn(this.employeeDetails);
     })
   }
   
@@ -57,7 +56,6 @@ export class TacEmployeeDashboardComponent implements OnInit {
   GetEmployeeDashboard(employeeId: number) {
     this.connection.GetEmployeeDashboard(employeeId).subscribe((data: any) => {
       this.employeeDashboardDetails = data;
-      console.log(this.employeeDashboardDetails);
     })
   }
 }

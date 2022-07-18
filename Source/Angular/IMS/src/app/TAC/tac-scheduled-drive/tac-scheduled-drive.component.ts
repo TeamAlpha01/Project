@@ -47,6 +47,7 @@ export class TacScheduledDriveComponent implements OnInit {
 
   OnDepartmentChange() {
     this._pool = ''
+    this._date=''
     this.filterDropdown(this._dept);
   }
 

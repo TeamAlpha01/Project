@@ -90,7 +90,6 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
         toTime: this.toTime
       }
 
-      console.log(timeSlot);
       this.connection.AddTimeSlot(timeSlot).subscribe({
         next: (data) => { this.response = data.message, this.AcceptResponse(), this.GetAvailability() },
         error: (error) => { this.error = error.error, this.snackBar() },

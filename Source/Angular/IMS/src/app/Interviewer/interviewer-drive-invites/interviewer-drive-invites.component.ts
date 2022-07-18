@@ -11,20 +11,23 @@ export class InterviewerDriveInvitesComponent implements OnInit {
   data: any;
   totalLength: any;
   page: number = 1;
-  Invites: any;
-  driveId: any;
+  Invites: any[] = [];
   error: string = '';
   response: string = '';
+
+
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
     this.GetDriveInvitesById();
   }
+
   GetDriveInvitesById() {
     this.connection.GetDriveInvitesById().subscribe((data: any) => {
       this.Invites = data;
     })
   }
+
   AddResponse(DriveId: number) {
     const response = {
       responseId: 0,

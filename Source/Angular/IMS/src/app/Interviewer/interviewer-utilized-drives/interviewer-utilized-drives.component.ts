@@ -9,7 +9,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class InterviewerUtilizedDrivesComponent implements OnInit {
 
-  title='Utilized Interviews';
+  title = 'Utilized Interviews';
   Utilized: any;
   totalLength: any;
   page: number = 1;
@@ -25,15 +25,15 @@ export class InterviewerUtilizedDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection :ConnectionService) { }
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
     this.connection.GetUtilizedInterviews().subscribe((data: any) => {
       this.Utilized = data;
-      for (let item of data){
+      for (let item of data) {
         this.drive.push(item);
       }
-    }) 
+    })
 
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
@@ -41,10 +41,10 @@ export class InterviewerUtilizedDrivesComponent implements OnInit {
   }
 
   filterDropdown() {
-  
+
     this.drive = [];
     for (let item of this.Utilized) {
-      if ( this._pool == '' && item.interviewDate == this._date ) {
+      if (this._pool == '' && item.interviewDate == this._date) {
         this.drive.push(item);
       }
       else if (item.drivePool == this._pool && item.interviewDate == this._date) {

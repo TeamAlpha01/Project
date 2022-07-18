@@ -44,7 +44,7 @@ export class DepartmentPerformanceComponent implements OnInit {
 
   GetEmployeesPerformance() {
     this.connection.GetEmployeesPerformance().subscribe({
-      next: (data: any) =>{ this.employeesPerformance = data, console.warn(this.employeesPerformance)},
+      next: (data: any) =>{ this.employeesPerformance = data},
     })
   }
 

@@ -39,7 +39,6 @@ export class InterviewerScheduledDriveComponent implements OnInit {
     this.connection.GetScheduledInterviews().subscribe({
       next: (data: any) => {
         this.driveDetails = data;
-        console.warn(this.driveDetails)
         for (let item of this.driveDetails) {
           this.drive.push(item);
         }

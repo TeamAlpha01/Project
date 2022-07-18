@@ -7,7 +7,4 @@ export class ValidationService {
 
   constructor() { }
 
-  ValidateName(UserName: string){
-    console.log(UserName)
-  }
 }

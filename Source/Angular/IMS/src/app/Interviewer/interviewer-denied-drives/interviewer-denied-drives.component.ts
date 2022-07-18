@@ -31,12 +31,10 @@ export class InterviewerDeniedDrivesComponent implements OnInit {
   ngOnInit(): void {
     this.connection.GetDeniedDrives().subscribe((data: any) => {
       this.Denied = data;
-      console.warn(this.Denied)
     }) 
 
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
-      console.warn(this.poolDetails)
     })
   }
 

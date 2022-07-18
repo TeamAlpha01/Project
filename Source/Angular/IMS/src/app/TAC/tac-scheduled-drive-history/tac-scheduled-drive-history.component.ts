@@ -59,7 +59,7 @@ export class TacScheduledDriveHistoryComponent implements OnInit {
 
   GetDepartments() {
     this.connection.GetDepartments().subscribe({
-      next: (data: any) => this.driveDetails = data,
+      next: (data: any) => this.departmentDetails = data,
       error: (error: any) => this.error = error.error.message,
     });
   }

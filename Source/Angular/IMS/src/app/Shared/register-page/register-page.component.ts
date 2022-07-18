@@ -100,7 +100,6 @@ export class RegisterPageComponent implements OnInit {
   OpenAlertBox() {
     var dialogRef = this.dialog.open(AlertBoxComponent);
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result)
       if (result == 'confirm' || result == undefined)
         this.router.navigateByUrl('');
     })

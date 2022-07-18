@@ -34,7 +34,6 @@ export class InterviewerTotalDrivesComponent implements OnInit {
 
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
-      console.warn(this.poolDetails)
     })
   }
 

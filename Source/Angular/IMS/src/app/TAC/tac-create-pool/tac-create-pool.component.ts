@@ -48,7 +48,6 @@ export class TacCreatePoolComponent implements OnInit {
   }
 
   clearInputFields() {
-    console.log("1");
     this.submitted = false;
     setTimeout(() => {
       this.response = '';

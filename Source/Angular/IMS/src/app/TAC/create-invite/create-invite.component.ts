@@ -74,10 +74,8 @@ export class CreateInviteComponent implements OnInit {
   toDateEnabler(date: any) {
     this.toDateActive = false;
     this.CreateInviteForm.controls['toDate'].enable();
-    console.warn(this.getFromDate()?.value);
     this.toDate = new Date(date);
     this.toDate.setDate(this.toDate.getDate() + 7)
-    console.warn(this.toDate);
   }
 
   //GET METHODS CALLED AT CONNECTION SERVICE
@@ -133,7 +131,6 @@ export class CreateInviteComponent implements OnInit {
       locationId: this.getLocationId()?.value,
       slotTiming: this.getSlotTiming()?.value,
     }
-    console.warn(drive);
 
     if (this.CreateInviteForm.valid) {
       this.connection.CreateDrive(drive).subscribe({

@@ -42,7 +42,6 @@ export class InterviewerAvailabilityGivenComponent implements OnInit {
     //GET METHOD CALLED AT CONNECTION SERVICE
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
-      console.warn(this.poolDetails)
     })
   }
 

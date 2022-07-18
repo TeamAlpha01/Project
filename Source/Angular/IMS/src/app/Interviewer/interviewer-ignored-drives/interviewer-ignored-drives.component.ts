@@ -29,12 +29,10 @@ export class InterviewerIgnoredDrivesComponent implements OnInit {
   ngOnInit(): void {
     this.connection.GetIgnoredDrives().subscribe((data: any) => {
       this.Ignored = data;
-      console.warn(this.Ignored)
     }) 
 
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
-      console.warn(this.poolDetails)
     })
   }
 

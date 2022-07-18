@@ -15,7 +15,7 @@ export class TacViewResponseComponent implements OnInit {
   driveId: number = 0;
   errorMessage: any;
   driveResponses: any[] = [];
-  response: string='';
+  response: string = '';
   error: any;
 
   drive = {
@@ -43,7 +43,7 @@ export class TacViewResponseComponent implements OnInit {
   GetDriveResponse() {
     this.connection.GetDriveResponse(this.driveId).subscribe({
       next: (data: any) => {
-        this.driveResponses = data, console.warn(this.driveResponses);
+        this.driveResponses = data;
       },
       error: (errorMessage: any) => this.errorMessage = errorMessage.message
     });
@@ -57,7 +57,6 @@ export class TacViewResponseComponent implements OnInit {
   }
 
   schedule(employeeResponseId: number) {
-    console.warn(employeeResponseId);
     this.connection.ScheduleInterview(employeeResponseId).subscribe({
       next: (data) => { this.response = data.message, this.GetDriveResponse() },
       error: (error) => this.error = error.error.message,
