@@ -62,11 +62,7 @@ namespace IMS.DataAccessLayer
                 _db.EmployeeDriveResponse!.Add(initialResponse);
             }
             _db.SaveChanges();
-           /** finally
-            {
-                _stopwatch.Stop();
-                _logger.LogInformation($"Drive DAL Time elapsed for FillInitialResponseForDrive(int driveId, int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
-            }**/
+          
         }
         public bool CancelDriveFromDatabase(int driveId, int tacId, string reason)
         {
