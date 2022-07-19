@@ -88,25 +88,22 @@ namespace IMS.DataAccessLayer
         /// <param name="poolId">int</param>
         /// <returns>Returns true or Exception message when any misconnection in database</returns>
         /// 
-        public bool RemovePoolFromDatabase(int poolId)
+        public bool RemovePoolFromDatabase(Pool pool)
         {
             _stopwatch.Start();
-            PoolValidation.IsValidPoolId(poolId);
+            PoolValidation.IsValidPoolId(pool.PoolId);
 
-            if (_db.Pools!.Any(x => x.PoolId == poolId && x.IsActive == false))
+            if (_db.Pools!.Any(x => x.PoolId == pool.PoolId && x.IsActive == false))
                 throw new ValidationException("Pool already deleted");
-            if(hasActiveDrives(poolId))
+            if(hasActiveDrives(pool.PoolId))
                 throw new ValidationException("Pool contains active drives.");
             
             try
             {
-                var Pool = _db.Pools!.Find(poolId);
-                if (poolId <= 0)
+                if (pool.PoolId <= 0)
                     throw new ValidationException("No Pool  is found with given Pool Id");
-
-                
-                Pool!.IsActive = false;
-                _db.Pools.Update(Pool);
+                pool.IsActive = false;
+                _db.Pools.Update(pool);
                 _db.SaveChanges();
                 return true;
             }
@@ -169,23 +166,23 @@ namespace IMS.DataAccessLayer
         /// <param name="poolName">string</param>
         /// <returns>Return true or Throws Exception : No pool is found with given Pool Id or The given pool Id is inactive,so unable to rename the pool</returns>
         /// Catches exceptions thorwed by Database if any Misconnections in DB
-        public bool EditPoolFromDatabase(int poolId, string poolName)
+        public bool EditPoolFromDatabase(Pool pool)
         {
             _stopwatch.Start();
-            PoolValidation.IsEditPoolValid(poolId, poolName);
+            PoolValidation.IsEditPoolValid(pool.PoolId, pool.PoolName);
             try
             {
-                bool poolNameExists = _db.Pools!.Any(x => x.PoolName == poolName && x.IsActive == true);
+                bool poolNameExists = _db.Pools!.Any(x => x.PoolName == pool.PoolName && x.IsActive == true);
                 if(poolNameExists)
                     throw new ValidationException("Pool Name already Exists");
                 
-                var edit = _db.Pools!.Find(poolId);
+                var edit = _db.Pools!.Find(pool.PoolId);
                 if (edit == null)
                     throw new ValidationException("No pool is found with given Pool Id");
                 else if (edit.IsActive == false)
                     throw new ValidationException("The given pool Id is inactive,so unable to rename the pool");
                   
-                edit.PoolName = poolName;
+                edit.PoolName = pool.PoolName;
                 _db.Pools.Update(edit);
                 _db.SaveChanges();
                  return true;
@@ -316,7 +313,6 @@ namespace IMS.DataAccessLayer
                 _db.PoolMembers!.Add(poolMembers);
                 _db.SaveChanges();
                 return true;
-               
 
             }
             catch (ValidationException employeeNotFound)

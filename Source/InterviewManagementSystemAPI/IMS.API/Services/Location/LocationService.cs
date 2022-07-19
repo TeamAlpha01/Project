@@ -27,17 +27,17 @@ namespace IMS.Service
         /// <param name="locationName">String</param>
         /// <returns> Returns False when Exception occured in Data Access Layer. 
         /// Throws ArgumentNullException when Role Name is not passed to this service method</returns>
-        public bool CreateLocation(string locationName)
+        public bool CreateLocation(Location location)
 
         {
             _stopwatch.Start();
-            LocationValidation.IsLocationNameValid(locationName);
+            LocationValidation.IsLocationNameValid(location.LocationName);
 
             try
             {
-                Location _location = DataFactory.LocationDataFactory.GetLocationObject();
-                _location.LocationName = locationName;
-                return _locationDataAccessLayer.AddLocationToDatabase(_location) ? true : false; // LOG Error in DAL;
+                location.AddedOn=System.DateTime.Now;
+                location.UpdatedOn=null;
+                return _locationDataAccessLayer.AddLocationToDatabase(location) ? true : false; // LOG Error in DAL;
             }
             catch (ArgumentException exception)
             {
@@ -70,14 +70,16 @@ namespace IMS.Service
         /// <returns>Returns False when Exception occured in Data Access Layer.
         /// Throws ArgumentNullException when Role Id is not passed to this service method</returns>
 
-        public bool RemoveLocation(int locationId)
+        public bool RemoveLocation(Location location)
         {
             _stopwatch.Start();
-            LocationValidation.IsLocationIdValid(locationId);
+            LocationValidation.IsLocationIdValid(location.LocationId);
 
             try
             {
-                return _locationDataAccessLayer.RemoveLocationFromDatabase(locationId) ? true : false; // LOG Error in DAL;
+                location.AddedOn=null;
+                location.UpdatedOn=System.DateTime.Now;
+                return _locationDataAccessLayer.RemoveLocationFromDatabase(location.LocationId) ? true : false; // LOG Error in DAL;
             }
            catch (ArgumentException exception)
             {

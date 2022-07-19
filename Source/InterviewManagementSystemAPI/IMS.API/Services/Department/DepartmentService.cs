@@ -42,7 +42,7 @@ namespace IMS.Service
             try
             {
                 department.AddedOn=System.DateTime.Now;
-                department.UpdatedOn=System.DateTime.Now;
+                department.UpdatedOn=null;
                 return _departmentDataAccessLayer.AddDepartmentToDatabase(department) ? true : false; // LOG Error in DAL;
             }
             catch (ValidationException departmentExist)
@@ -79,7 +79,7 @@ namespace IMS.Service
 
             try
             {
-                department.AddedOn=System.DateTime.Now;
+                department.AddedOn=null;
                 department.UpdatedOn=System.DateTime.Now;
                 return _departmentDataAccessLayer.RemoveDepartmentFromDatabase(department) ? true : false; // LOG Error in DAL;
             }

@@ -40,7 +40,7 @@ public class DepartmentController : ControllerBase
         {
             int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
             department.AddedBy=currentUser;
-            department.UpdatedBy=currentUser;
+            department.UpdatedBy=null;
             return _departmentService.CreateDepartment(department)?Ok(UtilityService.Response("Department Added Successfully")) : Problem("Sorry internal error occured");
         }
          catch (ValidationException departmentnotvalid)
@@ -72,7 +72,7 @@ public class DepartmentController : ControllerBase
         try
         {
             int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            department.AddedBy=currentUser;
+            department.AddedBy=null;
             department.UpdatedBy=currentUser;
             return _departmentService.RemoveDepartment(department) ? Ok(UtilityService.Response("Department Removed Successfully")) : Problem("Sorry internal error occured");
         }

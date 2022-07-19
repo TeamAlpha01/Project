@@ -32,14 +32,17 @@ public class LocationController : ControllerBase
     /// Returns problem if some internal error occurs</returns>
 
     [HttpPost]
-    public IActionResult CreateNewLocation(string locationName)
+    public IActionResult CreateNewLocation(Location location)
     {
-        if (locationName == null)
+        if (location == null || String.IsNullOrEmpty(location.LocationName))
             return BadRequest("Location name is required");
 
         try
         {
-            return _locationService.CreateLocation(locationName) ? Ok(UtilityService.Response("Location Added Successfully")) : Problem("Sorry internal error occured");
+            int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            location.AddedBy=currentUser;
+            location.UpdatedBy=null;
+            return _locationService.CreateLocation(location) ? Ok(UtilityService.Response("Location Added Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException locationnameAlreadyExists)
         {
@@ -65,13 +68,16 @@ public class LocationController : ControllerBase
     /// Returns problem when some internal error occurs</returns>
 
     [HttpPatch]
-    public IActionResult RemoveLocation(int locationId)
+    public IActionResult RemoveLocation(Location location)
     {
-        if (locationId <= 0)
+        if (location.LocationId <= 0)
            return BadRequest("Location id cannot be negative or null");
         try
         {            
-            return _locationService.RemoveLocation(locationId) ? Ok(UtilityService.Response("Location Removed Successfully")) : Problem("Sorry internal error occured");
+            int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            location.AddedBy=null;
+            location.UpdatedBy=currentUser;
+            return _locationService.RemoveLocation(location) ? Ok(UtilityService.Response("Location Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException locationNotFound)
         {

@@ -28,18 +28,16 @@ namespace IMS.Service
         /// <param name="departmentId">int</param>
         /// <param name="poolName">string</param>
         /// <returns>Return True or False to the Pool Controller Layer</returns>
-        public bool CreatePool(int departmentId, string poolName)
+        public bool CreatePool(Pool pool)
 
         {
             _stopwatch.Start();
             Pool _pool = DataFactory.PoolDataFactory.GetPoolObject();
-            PoolValidation.IsCreatePoolValid(departmentId, poolName);
+            PoolValidation.IsCreatePoolValid(pool.DepartmentId, pool.PoolName);
 
             try
             {
-                _pool.DepartmentId = departmentId;
-                _pool.PoolName = poolName;
-                return _poolDataAccessLayer.AddPoolToDatabase(_pool) ? true : false;
+                return _poolDataAccessLayer.AddPoolToDatabase(pool) ? true : false;
 
             }
             catch (ArgumentException exception)
@@ -73,14 +71,16 @@ namespace IMS.Service
         /// </summary>
         /// <param name="poolId">int</param>
         /// <returns>Return True or False to the Pool Controller Layer</returns>
-        public bool RemovePool(int poolId)
+        public bool RemovePool(Pool pool)
         {
             _stopwatch.Start();
-            PoolValidation.IsRemovePoolValid(poolId);
+            PoolValidation.IsRemovePoolValid(pool.PoolId);
 
             try
             {
-                return _poolDataAccessLayer.RemovePoolFromDatabase(poolId) ? true : false; // LOG Error in DAL;
+                pool.AddedOn=null;
+                pool.UpdatedOn=System.DateTime.Now;
+                return _poolDataAccessLayer.RemovePoolFromDatabase(pool) ? true : false; // LOG Error in DAL;
             }
             catch (ArgumentException exception)
             {
@@ -113,15 +113,17 @@ namespace IMS.Service
         /// <param name="poolId">int</param>
         /// <param name="poolName">string</param>
         /// <returns>>Return True or False to the Pool Controller Layer</returns>
-        public bool EditPool(int poolId, string poolName)
+        public bool EditPool(Pool pool)
         {
             _stopwatch.Start();
-            PoolValidation.IsEditPoolValid(poolId, poolName);
+            PoolValidation.IsEditPoolValid(pool.PoolId, pool.PoolName);
 
 
             try
             {
-                return _poolDataAccessLayer.EditPoolFromDatabase(poolId, poolName) ? true : false;
+                pool.AddedOn=null;
+                pool.UpdatedOn=System.DateTime.Now;
+                return _poolDataAccessLayer.EditPoolFromDatabase(pool) ? true : false;
             }
             catch (ArgumentException exception)
             {
@@ -225,16 +227,17 @@ namespace IMS.Service
         /// <param name="poolId">int</param>
         /// <returns>Return true or false for the Pool controller</returns>
 
-        public bool AddPoolMember(int employeeId, int poolId)
+        public bool AddPoolMember(PoolMembers poolMembers)
         {
             _stopwatch.Start();
             PoolMembers _poolMembers = DataFactory.PoolDataFactory.GetPoolMembersObject();
-            PoolValidation.IsAddPoolMembersValid(employeeId, poolId);
+            PoolValidation.IsAddPoolMembersValid(poolMembers.EmployeeId, poolMembers.PoolId);
 
             try
             {
-                _poolMembers.EmployeeId = employeeId;
-                _poolMembers.PoolId = poolId;
+                _poolMembers.EmployeeId = poolMembers.EmployeeId;
+                _poolMembers.PoolId = poolMembers.PoolId;
+                
                 return _poolDataAccessLayer.AddPoolMembersToDatabase(_poolMembers) ? true : false; // LOG Error in DAL;
             }
             catch (ArgumentException exception)
