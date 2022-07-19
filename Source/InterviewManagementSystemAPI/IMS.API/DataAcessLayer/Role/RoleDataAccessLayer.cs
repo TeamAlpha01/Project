@@ -144,7 +144,7 @@ namespace IMS.DataAccessLayer
             try
             {
                 _logger.LogError("logger DAL");
-                return (from role in _db.Roles where role.IsActive == true select role).ToList();
+                return (from role in _db.Roles where role.IsActive == true select role).OrderBy(x => x.RoleName).ToList();
             }
             catch (DbUpdateException exception)
             {

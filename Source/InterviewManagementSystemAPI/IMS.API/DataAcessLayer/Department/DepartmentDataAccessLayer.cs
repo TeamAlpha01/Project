@@ -146,7 +146,7 @@ namespace IMS.DataAccessLayer
              _stopwatch.Start();
             try
             {
-                return (from department in _db.Departments where department.IsActive == true select department).OrderByDescending(x => x.DepartmentId).ToList();
+                return (from department in _db.Departments where department.IsActive == true select department).OrderBy(x => x.DepartmentName).ToList();
             }
             catch (DbUpdateException exception)
             {
@@ -294,7 +294,7 @@ namespace IMS.DataAccessLayer
 
             try
             {
-                return(from project in _db.Projects!.Include(p=>p.department)where project.IsActive == true select project).ToList();
+                return(from project in _db.Projects!.Include(p=>p.department)where project.IsActive == true select project).OrderBy(x => x.ProjectName).ToList();
             }
             catch (DbUpdateException exception)
             {
