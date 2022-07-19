@@ -31,13 +31,15 @@ public class RoleController : ControllerBase
     /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
     
     [HttpPost]
-    public IActionResult CreateNewRole(string roleName,bool isManagement)
+    public IActionResult CreateNewRole(Role role)
     {
-        if(String.IsNullOrEmpty(roleName))
+        if(String.IsNullOrEmpty(role.RoleName))
             return BadRequest("Role Name cannot be null");
         try
         {
-            return _roleService.CreateRole(roleName,isManagement) ? Ok(UtilityService.Response("Role Added Successfully")) : Problem("Sorry internal error occured");
+            role.AddedBy= Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            role.AddedOn=DateTime.Now;
+            return _roleService.CreateRole(role) ? Ok(UtilityService.Response("Role Added Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException roleNameException)
         {
@@ -62,13 +64,15 @@ public class RoleController : ControllerBase
     /// Returns problem if internal error occurs</returns>
   
    [HttpPatch]
-    public IActionResult RemoveRole(int roleId)
+    public IActionResult RemoveRole(Role role)
     {
-        if (roleId == 0) return BadRequest("Role Id is not provided");
+        if (role.RoleId == 0) return BadRequest("Role Id is not provided");
 
         try
         {
-            return _roleService.RemoveRole(roleId) ? Ok(UtilityService.Response("Role Removed Successfully")) : BadRequest("Sorry internal error occured");
+            role.UpdatedBy= Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            role.UpdatedOn=DateTime.Now;
+            return _roleService.RemoveRole(role) ? Ok(UtilityService.Response("Role Removed Successfully")) : BadRequest("Sorry internal error occured");
         }
         catch (ValidationException roleNotFound)
         {

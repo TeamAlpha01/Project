@@ -28,17 +28,14 @@ namespace IMS.Service
         /// <param name="isManagement">bool</param>
         /// <returns> Returns False when Exception occured in Data Access Layer. Throws ArgumentNullException when Role Name is not passed to this service method</returns>
         
-        public bool CreateRole(string roleName,bool isManagement)
+        public bool CreateRole(Role role)
         {
             _stopwatch.Start();
-            RoleValidation.IsRoleNameValid(roleName);
+            RoleValidation.IsRoleNameValid(role.RoleName);
 
             try
             {
-                Role _role = DataFactory.RoleDataFactory.GetRoleObject();
-                _role.RoleName = roleName;
-                _role.IsManagement=isManagement;
-                return _roleDataAccessLayer.AddRoleToDatabase(_role) ? true : false; // LOG Error in DAL;
+                return _roleDataAccessLayer.AddRoleToDatabase(role) ? true : false; // LOG Error in DAL;
             }
             catch (ValidationException roleNameValidException)
             {
@@ -64,15 +61,15 @@ namespace IMS.Service
         /// <returns> Returns False when Exception occured in Data Access Layer. Throws ArgumentNullException when Role Id is not passed to this service method</returns>
 
 
-        public bool RemoveRole(int roleId)
+        public bool RemoveRole(Role role)
         {
             _stopwatch.Start();
-            if (roleId <= 0)
+            if (role.RoleId <= 0)
                 throw new ValidationException("Role Id is not provided");
 
             try
             {
-                return _roleDataAccessLayer.RemoveRoleFromDatabase(roleId) ? true : false;
+                return _roleDataAccessLayer.RemoveRoleFromDatabase(role) ? true : false;
             }
             catch (ArgumentException exception)
             {

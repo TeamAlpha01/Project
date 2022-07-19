@@ -278,8 +278,8 @@ export class ConnectionService {
   RemoveRole(projectId: number) {
     return this.http.patch<any>(this.baseURL + `Role/RemoveRole?roleId=${projectId}`, null, { headers: this.headers })
   }
-  RemoveDepartment(departmentId: number) {
-    return this.http.patch<any>(this.baseURL + `Department/RemoveDepartment?departmentId=${departmentId}`, null, { headers: this.headers })
+  RemoveDepartment(department:any) {
+    return this.http.patch<any>(this.baseURL + `Department/RemoveDepartment`, department, { headers: this.headers })
   }
 
 }

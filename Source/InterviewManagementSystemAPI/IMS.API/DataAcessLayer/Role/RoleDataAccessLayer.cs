@@ -74,14 +74,13 @@ namespace IMS.DataAccessLayer
         /// </summary>
         /// <param name="roleId">int</param>
         /// <returns>  Returns False when Exception occured in Database Connectivity . Throws ArgumentNullException when Role Id is not passed </returns>
-        public bool RemoveRoleFromDatabase(int roleId)
+        public bool RemoveRoleFromDatabase(Role role)
         {
              _stopwatch.Start();
             // if (roleId <= 0)
             //     throw new ArgumentNullException("Role Id is not provided to DAL");
             try
             {
-                var role = _db.Roles!.Find(roleId);
                 if (role!.IsActive == false)
                 {
                     throw new ValidationException("There is no employee for this role id");

@@ -20,6 +20,11 @@ namespace IMS.Models
         public int DepartmentId { get; set; }
         public bool IsActive { get; set; } = true;
 
+        public int? AddedBy { get; set; }
+        public DateTime? AddedOn { get; set; }
+        public int? UpdatedBy { get; set; }
+        public DateTime? UpdatedOn { get; set; }
+
         [ForeignKey("DepartmentId")]
         [InverseProperty("Pools")]
         public Department ?department { get; set; }
