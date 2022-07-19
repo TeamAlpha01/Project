@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class ConnectionService {
 
-  baseURL = 'https://localhost:7072/'
+  baseURL = 'http://172.24.217.145/'
   constructor(private http: HttpClient) { }
 
   public headers = new HttpHeaders({
