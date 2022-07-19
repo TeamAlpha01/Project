@@ -94,6 +94,10 @@ namespace IMS.DataAccessLayer
             {
                 throw new ValidationException("Department already deleted");
             }
+            if(hasActivePools(department.DepartmentId))
+            {
+                throw new ValidationException("Department contains active Pools.");
+            }
             try
             {
                 if (!_db.Departments!.Any(d=>d.DepartmentId==department.DepartmentId))
@@ -346,5 +350,27 @@ namespace IMS.DataAccessLayer
             
         }
     }
+     private bool hasActivePools(int deparmentId)
+        {
+            _stopwatch.Start();
+            try
+            {
+                if(_db.Pools!.Any(p=>p.DepartmentId==deparmentId&&p.IsActive==true))
+                return true;
+
+
+             return false;
+            }
+            catch(Exception hasActivePoolsException)
+            {
+                _logger.LogError($"department DAL : hasActivePoola(int departmentId) :{hasActivePoolsException.Message} : {hasActivePoolsException.StackTrace}");
+                throw;
+            }
+              finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"department DAL Time elapsed for hasActiveDrives(int department)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
+        }
 }
 }
