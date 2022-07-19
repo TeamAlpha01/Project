@@ -24,14 +24,14 @@ namespace IMS.Service
         /// <summary>
         /// This method will be implemented when Location Controller Passes the Location Name to the service Layer. And controll Shifts to Location DAL.
         /// </summary>
-        /// <param name="locationName">String</param>
+        /// <param name="location">String</param>
         /// <returns> Returns False when Exception occured in Data Access Layer. 
         /// Throws ArgumentNullException when Role Name is not passed to this service method</returns>
         public bool CreateLocation(Location location)
 
         {
             _stopwatch.Start();
-            LocationValidation.IsLocationNameValid(location.LocationName);
+            LocationValidation.IsLocationNameValid(location.LocationName!);
 
             try
             {
@@ -66,7 +66,7 @@ namespace IMS.Service
         /// <summary>
         /// This method will be implemented when Location Controller Passes the Location ID to the service Layer. And controll Shifts to Location DAL.
         /// </summary>
-        /// <param name="locationId">int</param>
+        /// <param name="location">int</param>
         /// <returns>Returns False when Exception occured in Data Access Layer.
         /// Throws ArgumentNullException when Role Id is not passed to this service method</returns>
 

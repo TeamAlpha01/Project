@@ -26,8 +26,8 @@ public class RoleController : ControllerBase
     /// <response code="200">If new role is created</response>
     /// <response code="400">If the item is null or validation exception occurs</response> 
     /// <response code="500">If there is problem in server</response>
-    /// <param name="roleName">String</param>
-    /// <param name="isManagement">bool</param>
+    /// <param name="role">String</param>
+   
     /// <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
     
     [HttpPost]
@@ -58,7 +58,7 @@ public class RoleController : ControllerBase
     /// </summary>
     /// <response code="200">If role was created</response>
     /// <response code="400">If the item is null or validtaion exception occurs</response> 
-    /// <param name="roleId">int</param>
+    /// <param name="role">int</param>
     /// <returns>Returns success message  when role was created or 
     /// Returns bad request when validation exception occurs or
     /// Returns problem if internal error occurs</returns>

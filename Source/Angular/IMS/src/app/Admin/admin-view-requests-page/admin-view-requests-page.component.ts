@@ -12,6 +12,7 @@ export class AdminViewRequestsPageComponent implements OnInit {
   data: any[] = [];
   totalLength: any;
   page: number = 1;
+  response: string = '';
   title = "Employee Requests";
   result: any;
 
