@@ -4,7 +4,6 @@ using IMS.Validations;
 using System.ComponentModel.DataAnnotations;
 using IMS.Service;
 using System.Net;
-using IMS.Models;
 using Microsoft.AspNetCore.Authorization;
 using IMS.CustomExceptions;
 
@@ -37,17 +36,14 @@ public class PoolController : ControllerBase
     /// Returns bad request if validation exception occcurs</returns>
 
     [HttpPost]
-    public IActionResult CreateNewPool(Pool pool)
+    public IActionResult CreateNewPool(int departmentId, string poolName)
     {
-        if (pool.DepartmentId <= 0 || pool.PoolName == null)
+        if (departmentId <= 0 || poolName == null)
             BadRequest("DepartmentId cannot be null or neagtive and Pool Name cannot null");
 
         try
         {
-            int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            pool.AddedBy=currentUser;
-            pool.AddedOn=System.DateTime.Now;
-            return _poolService.CreatePool(pool) ? Ok(UtilityService.Response("Pool Added Successfully")) : Problem("Sorry internal error occured");
+            return _poolService.CreatePool(departmentId, poolName!) ? Ok(UtilityService.Response("Pool Added Successfully")) : Problem("Sorry internal error occured");
         }
 
         catch (ValidationException departmentNotFound)
@@ -75,17 +71,14 @@ public class PoolController : ControllerBase
     /// Returns Badrequest if validation exception occurs
     /// Retursn problem if some internal error occurs</returns>
 
-    [HttpPatch]
-    public IActionResult RemovePool(Pool pool)
+    [HttpPost]
+    public IActionResult RemovePool(int poolId)
     {
-        if (pool.PoolId <= 0)
+        if (poolId <= 0)
             BadRequest("Pool Id cannot be negative or null");
         try
         {
-            int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            pool.AddedBy=null;
-            pool.UpdatedBy=currentUser;
-            return _poolService.RemovePool(pool) ? Ok(UtilityService.Response("Pool Removed Successfully")) : Problem("Sorry internal error occured");
+            return _poolService.RemovePool(poolId) ? Ok(UtilityService.Response("Pool Removed Successfully")) : Problem("Sorry internal error occured");
         }
         catch (ValidationException poolNotFound)
         {
@@ -113,16 +106,13 @@ public class PoolController : ControllerBase
     /// Returns problem if some internal error occurs</returns>
 
     [HttpPut]
-    public IActionResult EditPool(Pool pool)
+    public IActionResult EditPool(int poolId, string poolName)
     {
-        if (pool.PoolId <= 0 && pool.PoolName == null )
+        if (poolId <= 0 && poolName == null )
             return BadRequest("Pool Id cannot be negative or null , Pool Name cannot be null  cannot be negative or null");
         try
         {
-            int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            pool.AddedBy=currentUser;
-            pool.AddedOn=System.DateTime.Now;
-            return _poolService.EditPool(pool) ? Ok(UtilityService.Response("Pool name changed Successfully")) : Problem("Sorry internal error occured");
+            return _poolService.EditPool(poolId, poolName) ? Ok(UtilityService.Response("Pool name changed Successfully")) : Problem("Sorry internal error occured");
 
         }
         catch (ValidationException poolNotFound)
@@ -212,20 +202,18 @@ public class PoolController : ControllerBase
     /// Rerurns problem when internal error occurs</returns>
 
     [HttpPost]
-    public IActionResult AddPoolMember(PoolMembers poolMembers)
+    public IActionResult AddPoolMember(int employeeId, int poolId)
     {
-        if (poolMembers.EmployeeId <= 0 && poolMembers.PoolId <= 0)
+        if (employeeId <= 0 && poolId <= 0)
             BadRequest("Employee Id and Pool Id cannot be negative or null");
         try
         {
-            if (_poolService.AddPoolMember(poolMembers))
+            if (_poolService.AddPoolMember(employeeId, poolId))
             {
-                int currentUser=Convert.ToInt32(User.FindFirst("UserId")?.Value);
-                poolMembers.AddedBy=currentUser;
-                poolMembers.AddedOn=System.DateTime.Now;
                 //_mailService.SendEmailAsync(_mailService.AddedEmployeeToPool(employeeId, poolId, Convert.ToInt32(User.FindFirst("UserId").Value)),true);
                 return Ok(UtilityService.Response("Pool Member Added Successfully"));
             }
+
             return Problem("Sorry internal error occured");
         }
         catch (ValidationException employeeNotException)

@@ -4,10 +4,10 @@ namespace IMS.DataAccessLayer
     public interface IPoolDataAccessLayer
     {
         public bool AddPoolToDatabase(Pool pool);
-        public bool RemovePoolFromDatabase(Pool pool);
+        public bool RemovePoolFromDatabase(int PoolId);
 
 
-        public bool EditPoolFromDatabase(Pool pool );
+        public bool EditPoolFromDatabase(int PoolId,string PoolName);
 
         public List<Pool> GetPoolsFromDatabase();
         public List<PoolMembers> GetPoolsFromDatabase(int employeeId);
