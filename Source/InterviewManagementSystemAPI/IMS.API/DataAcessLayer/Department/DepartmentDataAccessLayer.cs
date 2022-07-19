@@ -356,6 +356,7 @@ namespace IMS.DataAccessLayer
             try
             {
                 if(_db.Pools!.Any(p=>p.DepartmentId==deparmentId&&p.IsActive==true))
+                //if(_db.Employees!.Any(e=>e.DepartmentId==deparmentId&&e.IsActive==true))
                 return true;
 
 
@@ -363,7 +364,7 @@ namespace IMS.DataAccessLayer
             }
             catch(Exception hasActivePoolsException)
             {
-                _logger.LogError($"department DAL : hasActivePoola(int departmentId) :{hasActivePoolsException.Message} : {hasActivePoolsException.StackTrace}");
+                _logger.LogError($"department DAL : hasActivePools(int departmentId) :{hasActivePoolsException.Message} : {hasActivePoolsException.StackTrace}");
                 throw;
             }
               finally

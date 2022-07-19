@@ -14,7 +14,7 @@ namespace IMS.Models
         [Key]
         public int DepartmentId{get; set;}
         [Required]
-        [StringLength(25)]
+        [StringLength(30)]
         public string? DepartmentName{get;set;}
         public bool IsActive { get; set; } = true;
         public int? AddedBy { get; set; }

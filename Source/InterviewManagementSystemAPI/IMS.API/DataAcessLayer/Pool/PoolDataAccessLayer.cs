@@ -161,6 +161,7 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Pool DAL Time elapsed for hasActiveDrives(int poolId)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
+
           /// <summary>
         /// This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
         /// Pool DAL Perform the interaction with Database and Respond to the Rename a Pool from Database request.
