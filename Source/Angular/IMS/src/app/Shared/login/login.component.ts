@@ -76,9 +76,9 @@ export class LoginComponent implements OnInit {
 
         },
         error: (error: any) => {
-          if (!(error.error.toString())) {
+
             this.isCommanError = true;
-          }
+
           if (error.status == 0)
             this.error = "Oops! Server down please try again later";
           else if (error.status == 500)
