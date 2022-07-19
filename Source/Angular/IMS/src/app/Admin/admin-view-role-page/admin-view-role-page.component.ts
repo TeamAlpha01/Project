@@ -20,12 +20,18 @@ export class AdminViewRolePageComponent implements OnInit {
   }
 
   
-  async removeRole(roleId: number) {
   
+  async removeRole(roleId: number, roleName:string) {
+  
+    const role={
+      roleId:roleId,
+      roleName:roleName
+    }
+
     await this.dialogueService.IsDeleteConfirmed().then((value)=> {
 
       if(value)
-      this.service.RemoveRole(roleId).subscribe(() => this.GetRoles());
+      this.service.RemoveRole(role).subscribe(() => this.GetRoles());
     
     });
   }

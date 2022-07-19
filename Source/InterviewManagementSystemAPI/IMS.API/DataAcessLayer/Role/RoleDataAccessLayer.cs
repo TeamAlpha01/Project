@@ -72,7 +72,7 @@ namespace IMS.DataAccessLayer
         /// This method is implemented when the Service layer shifts the control to Role DAL. 
         /// Role DAL Perform the interaction with Database and Respond to the Remove Role from Database request.
         /// </summary>
-        /// <param name="roleId">int</param>
+        /// <param name="role">int</param>
         /// <returns>  Returns False when Exception occured in Database Connectivity . Throws ArgumentNullException when Role Id is not passed </returns>
         public bool RemoveRoleFromDatabase(Role role)
         {
@@ -88,7 +88,7 @@ namespace IMS.DataAccessLayer
                 else
                 {
                     role.IsActive = false;
-                    _db.Roles.Update(role);
+                    _db.Roles!.Update(role);
                     _db.SaveChanges();
                     return true;
                 }

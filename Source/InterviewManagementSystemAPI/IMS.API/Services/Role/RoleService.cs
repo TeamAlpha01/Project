@@ -24,14 +24,14 @@ namespace IMS.Service
         /// <summary>
         /// This method will be implemented when Role Controller Passes the Role Name to the service Layer. And controll Shifts to Role DAL.
         /// </summary>
-        /// <param name="roleName">String</param>
-        /// <param name="isManagement">bool</param>
+        /// <param name="role">String</param>
+       
         /// <returns> Returns False when Exception occured in Data Access Layer. Throws ArgumentNullException when Role Name is not passed to this service method</returns>
         
         public bool CreateRole(Role role)
         {
             _stopwatch.Start();
-            RoleValidation.IsRoleNameValid(role.RoleName);
+            RoleValidation.IsRoleNameValid(role.RoleName!);
 
             try
             {
@@ -57,7 +57,7 @@ namespace IMS.Service
         /// <summary>
         /// This method will be implemented when Role Controller Passes the Role id to the service Layer. And controll Shifts to Role DAL.
         /// </summary>
-        /// <param name="roleId">int</param>
+        /// <param name="role">int</param>
         /// <returns> Returns False when Exception occured in Data Access Layer. Throws ArgumentNullException when Role Id is not passed to this service method</returns>
 
 

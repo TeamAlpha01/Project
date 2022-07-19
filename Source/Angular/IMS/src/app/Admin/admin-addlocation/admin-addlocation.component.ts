@@ -40,9 +40,13 @@ export class AdminAddlocationComponent implements OnInit {
   addLocation() {
     this.submitted = true;
     this.error = '';
+    const location={
+      locationId:0,
+      locationName:this.getLocationName()?.value
+    }
 
     if (this.AddLocationForm.valid) {
-      this.service.AddLocation(this.getLocationName()?.value).subscribe({
+      this.service.AddLocation(location).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,
         complete: () => this.clearInputFields(),
