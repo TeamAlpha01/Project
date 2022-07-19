@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-4">
-                    <a [routerLink]="['/interviewer/dashboard/availabilitygiven']" class="link">
+                    <a [routerLink]="['/interviewer/dashboard/accepted-drives']" class="link">
                         <div class="card-card">
                             <div class="card-content">
                                 <h1 class="card-title numbersize">
@@ -79,6 +79,21 @@
                                 </h1>
                                 <h3>
                                     <b>Slot Availability Given</b>
+                                </h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-xs-12 col-sm-4">
+                    <a [routerLink]="['/interviewer/dashboard/cancelled-drives']" class="link">
+                        <div class="card-card">
+                            <div class="card-content">
+                                <h1 class="card-title numbersize">
+                                    {{CancelledDrives}}
+                                </h1>
+                                <h3>
+                                    <b>Cancelled Drives</b>
                                 </h3>
                             </div>
                         </div>

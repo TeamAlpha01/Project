@@ -30,9 +30,7 @@ export class InterviewerUtilizedDrivesComponent implements OnInit {
   ngOnInit(): void {
     this.connection.GetUtilizedInterviews().subscribe((data: any) => {
       this.Utilized = data;
-      for (let item of data) {
-        this.drive.push(item);
-      }
+      this.drive = data;
     })
 
     this.connection.GetPoolsbyId().subscribe((data: any) => {
@@ -47,13 +45,13 @@ export class InterviewerUtilizedDrivesComponent implements OnInit {
       if (this._pool == '' && item.interviewDate == this._date) {
         this.drive.push(item);
       }
-      else if (item.drivePool == this._pool && item.interviewDate == this._date) {
+      else if (item.poolName == this._pool && item.interviewDate == this._date) {
         this.drive.push(item);
       }
       else if (this._pool == '' && this._date == '') {
         this.drive.push(item);
       }
-      else if (item.drivePool == this._pool && this._date == '') {
+      else if (item.poolName == this._pool && this._date == '') {
         this.drive.push(item);
       }
     }

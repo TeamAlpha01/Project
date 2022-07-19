@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
 
         },
         error: (error: any) => {
-          if (!(error.error.toString().includes('mail') || error.error.toString().includes('Password'))) {
+          if (!(error.error.toString())) {
             this.isCommanError = true;
           }
           if (error.status == 0)

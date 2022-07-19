@@ -463,7 +463,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from interview in _db.EmployeeAvailability!.Include(d => d.Drive).Include(L => L.Drive!.Location).Include(P => P.Drive!.Pool) where interview.IsInterviewCancelled == status && interview.Drive!.IsCancelled == false && interview.EmployeeId == employeeId && interview.InterviewDate.Date > System.DateTime.Now.Date && interview.IsInterviewScheduled == false select interview).ToList();
+                return (from interview in _db.EmployeeAvailability!.Include(d => d.Drive).Include(L => L.Drive!.Location).Include(P => P.Drive!.Pool) where interview.IsInterviewCancelled == status && interview.Drive!.IsCancelled == false && interview.Drive!.IsScheduled == false && interview.EmployeeId == employeeId && interview.InterviewDate.Date > System.DateTime.Now.Date && interview.IsInterviewScheduled == false select interview).ToList();
             }
             catch (Exception viewInterviewsByStatusException)
             {
@@ -498,8 +498,9 @@ namespace IMS.DataAccessLayer
             {
             try
             {
-                return (from interview in _db.EmployeeAvailability!.Include(d => d.Drive).Include(L => L.Drive!.Location).Include(P => P.Drive!.Pool) where interview.IsInterviewCancelled == status && interview.Drive!.IsCancelled == false && interview.EmployeeId == employeeId  && interview.InterviewDate.Date > System.DateTime.Now.Date && interview.IsInterviewScheduled == true select interview).ToList();
+                 return (from interview in _db.EmployeeAvailability!.Include(d => d.Drive).Include(L => L.Drive!.Location).Include(P => P.Drive!.Pool) where interview.IsInterviewCancelled == status && interview.Drive!.IsCancelled == false && interview.EmployeeId == employeeId  && interview.InterviewDate.Date > System.DateTime.Now.Date && (interview.IsInterviewScheduled == true || interview.IsInterviewScheduled==false) select interview).ToList();
             }
+            
             catch (Exception viewInterviewsByStatusException)
             {
                 _logger.LogInformation($"Exception on Drive DAL : ViewInterviewsByStatus(bool status) : {viewInterviewsByStatusException.Message}");
@@ -572,7 +573,7 @@ namespace IMS.DataAccessLayer
             try
             {
                 if (_db.Drives!.Find(driveId) == null) throw new ValidationException($"No Drive is Found with driveId : {driveId}");
-                return (from availability in _db.EmployeeAvailability!.Include(e => e.Employee).Include(r => r.Employee!.Role).Include(d => d.Employee!.Department) where availability.DriveId == driveId && availability.IsInterviewScheduled == false select availability).ToList();
+                return (from availability in _db.EmployeeAvailability!.Include(e => e.Employee).Include(r => r.Employee!.Role).Include(d => d.Employee!.Department) where availability.DriveId == driveId && availability.IsInterviewScheduled == false && availability.IsInterviewCancelled == false select availability).ToList();
             }
             catch (Exception viewAvailableMembersForDriveException)
             {
@@ -630,7 +631,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where availability.IsInterviewScheduled == isUtilized && availability.EmployeeId == employeeId && availability.Drive!.IsScheduled == true && availability.IsInterviewCancelled != true select availability).ToList();
+                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where availability.IsInterviewScheduled == isUtilized && availability.EmployeeId == employeeId   select availability).ToList();
             }
             catch (Exception getResponseUtilizationByStatusException)
             {
@@ -646,7 +647,7 @@ namespace IMS.DataAccessLayer
         public List<EmployeeAvailability> GetSlotAvailabilityGiven(int employeeId)
         {
             try{
-                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location")where availability.EmployeeId==employeeId && availability.IsInterviewCancelled==false select availability).ToList();
+                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location")where availability.EmployeeId==employeeId  select availability).ToList();
             }
             catch(Exception exception)
             {

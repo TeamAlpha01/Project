@@ -15,6 +15,7 @@ export class InterviewerDashboardComponent implements OnInit {
   SlotAvailabilityGiven : number=0;
   UtilizedInterviews : number=0;
   NotUtilizedInterviews : number=0;
+  CancelledDrives : number=0;
 
   constructor( private connection :ConnectionService) { }
 
@@ -28,6 +29,7 @@ export class InterviewerDashboardComponent implements OnInit {
        this.SlotAvailabilityGiven = data.SlotAvailabiltyGiven
        this.UtilizedInterviews = data.UtilizedInterviews
        this.NotUtilizedInterviews = data.NotUtilizedInterviews
+       this.CancelledDrives = data.CancelledInterview
     })
   }
 

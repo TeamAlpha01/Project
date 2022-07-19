@@ -10,7 +10,7 @@
         <a [routerLink]="['/admin/role/add']"><button type="button" class="btn btn-filter">Add Role</button></a>
     </div>
 
-    <div class="mt-3 container shadow  bg-body rounded" *ngFor="let item of role| paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
+    <div class="mt-3 container shadow  bg-body rounded" *ngFor="let item of role| paginate: { itemsPerPage: 6, currentPage: page,totalItems:totalLength }">
         <div class>
             <div class="card-body">
                 <div class="row rone ">

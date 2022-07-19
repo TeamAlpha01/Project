@@ -501,7 +501,7 @@ namespace IMS.Service
                     ToTime = e.To.ToShortTimeString(),
                     DriveName = e.Drive!.Name,
                     PoolName = e.Drive.Pool!.PoolName,
-                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
+                    InterviewDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location!.LocationName,
                     Status = e.IsInterviewScheduled
@@ -567,7 +567,7 @@ namespace IMS.Service
                     ToTime = e.To.ToShortTimeString(),
                     DriveName = e.Drive!.Name,
                     PoolName = e.Drive.Pool!.PoolName,
-                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
+                    InterviewDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location!.LocationName,
                     Status = e.IsInterviewScheduled
@@ -750,7 +750,6 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-
                 var DashboardCount = new Dictionary<string, int>();
 
                 DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Count());
@@ -760,6 +759,7 @@ namespace IMS.Service
                 DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
                 DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
                 DashboardCount.Add("SlotAvailabiltyGiven",_driveDataAccess.GetSlotAvailabilityGiven(employeeId).Count());
+                DashboardCount.Add("CancelledInterview",_driveDataAccess.ViewCancelledInterview(true, employeeId).Count());
                 DashboardCount.Add("TotalAvailability", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"]);
                 return DashboardCount;
             }
@@ -773,7 +773,6 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service : ViewEmployeeDashboard(int employeeId) : {viewEmployeeDashboardException.Message} : {viewEmployeeDashboardException.StackTrace}");
                 throw;
             }
-            
             finally
             {
                 _stopwatch.Stop();
@@ -806,8 +805,6 @@ namespace IMS.Service
                     EmployeeRole = member.Role!.RoleName
                 }
                 });
-
-
             }
             return ViewEmployeePerformance;
             }

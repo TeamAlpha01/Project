@@ -7,16 +7,16 @@ import { ConnectionService } from 'src/app/Services/connection.service';
   styleUrls: ['./interviewer-availability-given.component.css']
 })
 export class InterviewerAvailabilityGivenComponent implements OnInit {
-  title='Slot Availability Given';
-  
+  title = 'Slot Availability Given';
+
   //TO GET DATA FROM DATABASE
   Availability: any;
-  
+
   //PAGINATION
   totalLength: any;
   page: number = 1;
 
-  
+
   //TO GET USER INPUT
   _pool = '';
   _date = '';
@@ -29,15 +29,15 @@ export class InterviewerAvailabilityGivenComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection :ConnectionService) { }
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
-    
+
     //GET METHOD CALLED AT CONNECTION SERVICE
     this.connection.GetSlotAvailability().subscribe((data: any) => {
       this.Availability = data;
-      this.drive=data;
-    }) 
+      this.drive = data;
+    })
 
     //GET METHOD CALLED AT CONNECTION SERVICE
     this.connection.GetPoolsbyId().subscribe((data: any) => {
@@ -47,23 +47,22 @@ export class InterviewerAvailabilityGivenComponent implements OnInit {
 
   //THIS METHOD IS CALLED ON CHANGE IN DROPDOWN FILTER 
   filterDropdown() {
-  
     this.drive = [];
-  
+
+
     for (let item of this.Availability) {
-      if ( this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
+      if (this._pool == '' && item.interviewDate == this._date) {
         this.drive.push(item);
       }
-      else if (item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
+      else if (item.poolName == this._pool && item.interviewDate == this._date) {
         this.drive.push(item);
       }
       else if (this._pool == '' && this._date == '') {
         this.drive.push(item);
       }
-      else if (item.drivePool == this._pool && this._date == '') {
+      else if (item.poolName == this._pool && this._date == '') {
         this.drive.push(item);
       }
     }
   }
-  }
-  
+}

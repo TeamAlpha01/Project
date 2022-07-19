@@ -24,12 +24,17 @@ export class AdminviewDepartmentPageComponent implements OnInit {
     this.GetDepartments();
   }
 
-  async removeDepartment(departmentId: number) {
+  async removeDepartment(departmentId: number,departmentName:string) {
+
+    const department={
+      departmentId:departmentId,
+      departmentName:departmentName
+    }
   
     await this.dialogueService.IsDeleteConfirmed().then((value)=> {
 
       if(value)
-      this.service.RemoveDepartment(departmentId).subscribe(() => this.GetDepartments());
+      this.service.RemoveDepartment(department).subscribe(() => this.GetDepartments());
     
     });
   }

@@ -6,8 +6,33 @@
     
     <app-navbar [title]="title"></app-navbar>
 
+    <div class=" mt-3 mb-5 container shadow  bg-body rounded">
+        <div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label" for="Pool">Pool </label>
+                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool"
+                            [(ngModel)]="_pool">
+                            <option value="">Select the Pool</option>
+                            <option *ngFor="let item of poolDetails" value={{item.poolName}}>
+                                {{item.poolName}} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="Pool">Date </label>
+                        <input type="date" id="Pool" class="form-select" (change)="filterDropdown()" name="_date"
+                            [(ngModel)]="_date">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [data]=drive -->
+
+    <!-- <div *ngIf="data.length>0; else ArrayEmpty"> -->
     <div class="mt-3 container shadow bg-body rounded" *ngFor="let item of drive| paginate: { itemsPerPage: 2, currentPage: page,totalItems:totalLength }">
-        <div class>
+        <div>
             <div class="card-body">
                 <div class="row rone mt-4">
                     <div class="col-md-4">
@@ -27,9 +52,10 @@
             </div>
         </div>
     </div>
-    <div class="mt-3">
-        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
-    </div>
+        <div class="mt-3">
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+        </div>
+    <!-- </div> -->
 
     <app-footer [BackBtn]=true></app-footer>
 

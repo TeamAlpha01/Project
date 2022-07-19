@@ -1,5 +1,5 @@
 
-import { HttpClientModule, HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 
@@ -36,6 +36,10 @@ export class ConnectionService {
 
   GetAvailability(driveId: number): any {
     return this.http.get<any>(this.baseURL + `Drive/ViewAvailabilty?driveId=${driveId}`, { headers: this.headers });
+  }
+
+  GetCancelledinterviews(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/ViewCancelledInterview', { headers: this.headers });
   }
 
   GetCancelledDrives(): any {
@@ -98,6 +102,14 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewDeniedDrives', { headers: this.headers });
   }
 
+  GetDrivesForCurrentUser(): any {
+    return this.http.get<any>(this.baseURL + 'Drive/GetDrivesForCurrentUser', { headers: this.headers });
+  }
+
+  GetDepartmentEmployeesForCurrentUser(): any {
+    return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeesByDepartmentForCurrentUser', { headers: this.headers });
+  }
+
   GetIgnoredDrives(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewIgnoredDrives', { headers: this.headers });
   }
@@ -134,7 +146,7 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Role/ViewRoles', { headers: this.headers });
   }
 
-  GetSlotAvailability(): any{
+  GetSlotAvailability(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewSlotAvailabilityGiven', { headers: this.headers });
   }
 
@@ -266,8 +278,8 @@ export class ConnectionService {
   RemoveRole(projectId: number) {
     return this.http.patch<any>(this.baseURL + `Role/RemoveRole?roleId=${projectId}`, null, { headers: this.headers })
   }
-  RemoveDepartment(departmentId: number) {
-    return this.http.patch<any>(this.baseURL + `Department/RemoveDepartment?departmentId=${departmentId}`, null, { headers: this.headers })
+  RemoveDepartment(department:any) {
+    return this.http.patch<any>(this.baseURL + `Department/RemoveDepartment`, department, { headers: this.headers })
   }
 
 }

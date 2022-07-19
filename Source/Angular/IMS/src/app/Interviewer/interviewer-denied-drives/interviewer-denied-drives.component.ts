@@ -9,12 +9,15 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class InterviewerDeniedDrivesComponent implements OnInit {
 
   title='Denied Drives';
+
+  //To get data from database
   Denied: any;
   
-  //PAGINATION
+  //Pagination
   totalLength: any;
   page: number = 1;
 
+  //To get user input
   _pool = '';
   _date = '';
 
@@ -26,24 +29,27 @@ export class InterviewerDeniedDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection :ConnectionService) { }
+  constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {
+     //GET METHOD CALLED AT CONNECTION SERVICE
     this.connection.GetDeniedDrives().subscribe((data: any) => {
       this.Denied = data;
-    }) 
+      this.drive = data;
+    })
 
+     //GET METHOD CALLED AT CONNECTION SERVICE
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
     })
   }
 
   filterDropdown() {
-  
+    //To filter cards based on the date and pool selection
     this.drive = [];
-  
+
     for (let item of this.Denied) {
-      if ( this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
+      if (this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
         this.drive.push(item);
       }
       else if (item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {

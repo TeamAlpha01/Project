@@ -40,8 +40,10 @@
                             name="departmentId" id="departmentId" class="form-select" formControlName="departmentId"
                             (change)="poolEnabler()" (change)="poolName()">
                             <option value="">Select the Department</option>
-                            <option *ngFor="let item of departmentDetails" value={{item.departmentId}}>
-                                {{item.departmentName}} </option>
+                            <ng-container *ngFor="let item of departmentDetails">
+                                <option *ngIf="item.departmentName!=='TAC' && item.departmentName!=='ADMIN'"
+                                    value={{item.departmentId}}> {{item.departmentName}} </option>
+                            </ng-container>
                         </select>
                     </div>
                     <div
@@ -91,7 +93,8 @@
                             name="locationId" id="locationId" class="form-select " formControlName="locationId">
                             <option value="">Select the Location</option>
                             <ng-container *ngFor="let item of locationDetails">
-                                <option *ngIf="!(item.locationId===9 && CreateInviteForm.controls['modeId'].value===2)"
+                                <option
+                                    *ngIf="!(CreateInviteForm.controls['modeId'].value==='2' && item.locationName==='Online')"
                                     value={{item.locationId}}> {{item.locationName}} </option>
                             </ng-container>
                         </select>

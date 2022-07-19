@@ -15,8 +15,8 @@
                         <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool"
                             [(ngModel)]="_pool">
                             <option value="">Select the Pool</option>
-                            <option *ngFor="let item of poolDetails | filter:_pool" value={{item.poolName}}>
-                                {{item.employeesUnderPool}} </option>
+                            <option *ngFor="let item of poolDetails" value={{item.poolName}}>
+                                {{item.poolName}} </option>
                         </select>
                     </div>
                     <div class="col-md-4">

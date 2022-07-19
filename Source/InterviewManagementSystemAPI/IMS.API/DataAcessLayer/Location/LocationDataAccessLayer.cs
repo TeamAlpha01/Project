@@ -11,10 +11,10 @@ namespace IMS.DataAccessLayer
         private ILogger _logger;
         private IConfiguration _configuration;
         private readonly Stopwatch _stopwatch = new Stopwatch();
-         private bool IsTracingEnabled;
-       
+        private bool IsTracingEnabled;
 
-        public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger,InterviewManagementSystemDbContext dbContext,IConfiguration configuration)
+
+        public LocationDataAccessLayer(ILogger<ILocationDataAccessLayer> logger, InterviewManagementSystemDbContext dbContext, IConfiguration configuration)
         {
             _logger = logger;
             _db = dbContext;
@@ -66,7 +66,7 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Location DAL : AddLocationToDatabase(Location location)) : {exception.Message}");
                 return false;
             }
-            
+
             finally
             {
                 _stopwatch.Stop();
@@ -122,7 +122,7 @@ namespace IMS.DataAccessLayer
                 _logger.LogError($"Location DAL : RemoveLocationFromDatabase(int locationId) : {exception.Message}");
                 return false;
             }
-            
+
             finally
             {
                 _stopwatch.Stop();
@@ -142,7 +142,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from location in _db.Locations where location.IsActive == true select location).ToList();
+                return (from location in _db.Locations where location.IsActive == true select location).OrderBy(x => x.LocationName).ToList();
             }
             catch (DbUpdateException exception)
             {
@@ -166,7 +166,7 @@ namespace IMS.DataAccessLayer
             }
         }
 
-      public bool GetIsTraceEnabledFromConfiguration()
+        public bool GetIsTraceEnabledFromConfiguration()
         {
             try
             {
@@ -177,9 +177,9 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Location DAL", "GetIsTraceEnabledFromConfiguration()", exception);
                 return false;
-            
-        }
 
+            }
+
+        }
     }
 }
-    }

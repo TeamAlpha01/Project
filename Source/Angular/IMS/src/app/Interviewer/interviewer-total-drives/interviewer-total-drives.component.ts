@@ -9,10 +9,15 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class InterviewerTotalDrivesComponent implements OnInit {
 
   title='Total No. of Drives';
+
+  //To get data from database
   Drives: any;
+
+  //Pagination
   totalLength: any;
   page: number = 1;
 
+  //To get user input
   _pool = '';
   _date = '';
 
