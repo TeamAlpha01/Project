@@ -26,7 +26,7 @@ public class LocationController : ControllerBase
     /// </summary>
     /// <response code="200">If new location was created</response>
     /// <response code="400">If the item is null or validation exception occurs</response> 
-    /// <param name="locationName">String</param>
+    /// <param name="location">String</param>
     /// <returns>Returns success message if location was created or 
     /// Returns bad request if validation exception occurs or
     /// Returns problem if some internal error occurs</returns>
@@ -62,7 +62,7 @@ public class LocationController : ControllerBase
     /// <response code="200">If Location was removed successfully</response>
     /// <response code="400">If the item is null or validation exception occurs</response> 
     /// <response code="500">If there is problem in server </response>
-    /// <param name="locationId">int</param>
+    /// <param name="location">int</param>
     /// <returns>Returns success message if location removed or
     /// Returns Bad request if validation exception occurs or
     /// Returns problem when some internal error occurs</returns>
