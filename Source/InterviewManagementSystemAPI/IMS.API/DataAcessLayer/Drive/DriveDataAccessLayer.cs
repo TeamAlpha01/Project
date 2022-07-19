@@ -183,7 +183,7 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             try
             {
-                return (from drive in _db.Drives!.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool!.department) where drive.IsCancelled == status && drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).ToList();
+                return (from drive in _db.Drives!.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool!.department) where drive.IsCancelled == status && drive.FromDate.Date != System.DateTime.Now.Date && drive.IsScheduled == false select drive).OrderByDescending(x => x.FromDate).ToList();
             }
             catch (Exception getDrivesByStatusException)
             {
