@@ -248,14 +248,14 @@ export class ConnectionService {
 
   //Admin
 
-  AddLocation(locationName: string) {
-    return this.http.post<any>(this.baseURL + `Location/CreateNewLocation?locationName=${locationName}`, null, { headers: this.headers });
+  AddLocation(location: any) {
+    return this.http.post<any>(this.baseURL + `Location/CreateNewLocation`, location, { headers: this.headers });
   }
   AddProject(projectName: string, departmentId: number) {
     return this.http.post<any>(this.baseURL + `Project/CreateNewProject?departmentId=${departmentId}&projectName=${projectName}`, null, { headers: this.headers })
   }
-  AddRole(roleName: string, isManagement: boolean) {
-    return this.http.post<any>(this.baseURL + `Role/CreateNewRole?roleName=${roleName}&isManagement=${isManagement}`, null, { headers: this.headers })
+  AddRole(role:any) {
+    return this.http.post<any>(this.baseURL + `Role/CreateNewRole`, role, { headers: this.headers })
   }
   AddDepartment(department: any) {
     return this.http.post<any>(this.baseURL + `Department/CreateNewDepartment`, department, { headers: this.headers })
@@ -268,15 +268,15 @@ export class ConnectionService {
     return this.http.patch<any>(this.baseURL + `Employee/RespondEmployeeRequest?employeeId=${employeeId}&response=${response}`, null, { headers: this.headers })
   }
 
-  RemoveLocation(locationId: number) {
-    return this.http.patch<any>(this.baseURL + `Location/RemoveLocation?locationId=${locationId}`, null, { headers: this.headers })
+  RemoveLocation(location: any) {
+    return this.http.patch<any>(this.baseURL + `Location/RemoveLocation`, location, { headers: this.headers })
   }
 
   RemoveProject(projectId: number) {
     return this.http.patch<any>(this.baseURL + `Project/RemoveProject?projectId=${projectId}`, null, { headers: this.headers })
   }
-  RemoveRole(projectId: number) {
-    return this.http.patch<any>(this.baseURL + `Role/RemoveRole?roleId=${projectId}`, null, { headers: this.headers })
+  RemoveRole(role: any) {
+    return this.http.patch<any>(this.baseURL + `Role/RemoveRole`, role, { headers: this.headers })
   }
   RemoveDepartment(department:any) {
     return this.http.patch<any>(this.baseURL + `Department/RemoveDepartment`, department, { headers: this.headers })

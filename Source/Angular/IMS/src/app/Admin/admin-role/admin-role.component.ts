@@ -43,8 +43,13 @@ export class AdminRoleComponent implements OnInit {
   addRole() {
     this.submitted = true;
     this.error = '';
+    const role={
+      roleId:0,
+      roleName:this.getRoleName(),
+      isManagement:this.getIsManagement()
+    }
     if (this.AddRoleForm.valid) {
-      this.service.AddRole(this.getRoleName(), this.getIsManagement()).subscribe({
+      this.service.AddRole(role).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,
         complete: () => this.clearInputFields(),

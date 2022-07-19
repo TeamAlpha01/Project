@@ -23,12 +23,17 @@ export class AdminviewLocationPageComponent implements OnInit {
   ngOnInit(): void {
     this.GetLocations();
   }
-  async removeLocation(employeeId: number) {
+  async removeLocation(locationId: number, locationName:string) {
+
+    const location={
+      locationId:locationId,
+      locationName:locationName
+    }
   
     await this.dialogueService.IsDeleteConfirmed().then((value)=> {
 
       if(value)
-      this.service.RemoveLocation(employeeId).subscribe(() => this.GetLocations());
+      this.service.RemoveLocation(location).subscribe(() => this.GetLocations());
     
     });
   }
