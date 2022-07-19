@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   loginForm = this.FB.group({
     EmailID: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]{4,22})@(aspiresys.com)")]],
-    Password: ['', [Validators.required]]
+    Password: ['', [Validators.required,Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,15}$")]]
   });
 
 
