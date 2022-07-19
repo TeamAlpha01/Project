@@ -602,7 +602,7 @@ namespace IMS.Service
                     DriveName = e.Drive!.Name,
                     DriveId = e.DriveId,
                     PoolName = e.Drive.Pool!.PoolName,
-                    IntervieDate = e.InterviewDate.ToString("yyyy-MM-dd"),
+                    InterviewDate = e.InterviewDate.ToString("yyyy-MM-dd"),
                     Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
                     LocationName = e.Drive.Location!.LocationName,
                     Status = e.IsInterviewScheduled

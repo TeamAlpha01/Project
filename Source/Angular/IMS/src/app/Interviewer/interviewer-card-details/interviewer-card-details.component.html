@@ -10,13 +10,13 @@
                         <p><b>Pool Name:</b> {{item.poolName}}</p>
                     </div>
                     <div class="col-md-5">
-                        <p><b>Date :</b> {{item.interviewDate}} </p>
+                        <p><b>Date :</b> {{item.interviewDate | date:'dd-MM-yyyy'}} </p>
                         <p><b>Mode :</b> {{item.mode}} </p>
                         <p><b>Location :</b> {{item.locationName}} </p>
                     </div>
                     <div class="col-md-2">
                         <div class="row mt-3">
-                            <a  [routerLink]="['/interviewer/cancel-interview-page',item.employeeAvailabilityId,item.driveId]" ><button type="button" class="btn btn-danger">Cancel</button></a>
+                            <a  [routerLink]="['interviewer/home/upcomingDrives/cancel-interview-page/:employeeAvailabilityId/:driveId']" ><button type="button" class="btn btn-danger">Cancel</button></a>
                         </div>
                     </div>
                 </div>

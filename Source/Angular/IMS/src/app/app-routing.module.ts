@@ -60,7 +60,7 @@ const routes: Routes = [
   { path: 'interviewer/driveInvites', component: InterviewerDriveInvitesComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/driveInvites/accept-invite/:driveId', component: InterviewerAcceptInvitePageComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   // { path: 'interviewer/driveInvites/reject-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
-  { path: 'interviewer/cancel-interview-page/:employeeAvailabilityId/:driveId', component: InterviewerCancelInterviewPageComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
+  { path: 'interviewer/home/upcomingDrives/cancel-interview-page/:employeeAvailabilityId/:driveId', component: InterviewerCancelInterviewPageComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/dashboard/totaldrives', component: InterviewerTotalDrivesComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/dashboard/availabilitygiven', component: InterviewerAvailabilityGivenComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/dashboard/utilizedinterviews', component: InterviewerUtilizedDrivesComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
