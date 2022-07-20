@@ -29,12 +29,10 @@
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['driveName'].errors?.['pattern'] && !CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive
                             name cannot contain numbers or symbols</span>
-                        <div *ngIf="error.toString().includes('Name')">
-                            <span class="text-center text-danger">{{error}}</span>
-                        </div>
                     </div>
                     <div class="form-input">
-                        <label class="form-label " for="departmentId">Department <span id="mandatoryfield">*</span></label>
+                        <label class="form-label " for="departmentId">Department <span
+                                id="mandatoryfield">*</span></label>
                         <select
                             [class.is-invalid]="(submitted && CreateInviteForm.controls['departmentId'].invalid )||CreateInviteForm.controls['departmentId'].invalid && CreateInviteForm.controls['departmentId'].touched"
                             name="departmentId" id="departmentId" class="form-select" formControlName="departmentId"
@@ -133,7 +131,8 @@
                             Date</span>
                     </div>
                     <div class="form-input">
-                        <label class="form-label " for="slotTiming">Slot Timing <span id="mandatoryfield">*</span></label>
+                        <label class="form-label " for="slotTiming">Slot Timing <span
+                                id="mandatoryfield">*</span></label>
                         <select
                             [class.is-invalid]="(submitted && CreateInviteForm.controls['slotTiming'].invalid)||CreateInviteForm.controls['slotTiming'].invalid && CreateInviteForm.controls['slotTiming'].touched"
                             name="slotTiming" id="slotTiming" class="form-select " formControlName="slotTiming">

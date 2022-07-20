@@ -95,8 +95,20 @@ export class CreateInviteComponent implements OnInit {
 
 
   locationEnabler() {
-    if (this.getModeId()?.value == '1' || '') { { this.CreateInviteForm.controls['locationId'].disable() }; this.CreateInviteForm.controls['locationId'].setValue('9') }
-    else { { this.CreateInviteForm.controls['locationId'].enable() } }
+    if (this.getModeId()?.value == '1') {
+      this.CreateInviteForm.controls['locationId'].disable();
+      for (let item of this.locationDetails) {
+        if (item.locationName == 'Online') {
+          this.CreateInviteForm.controls['locationId'].setValue(item.locationId)
+        }
+      }
+    }
+    else {
+      {
+        this.CreateInviteForm.controls['locationId'].enable();
+        this.CreateInviteForm.controls['locationId'].setValue('')
+      }
+    }
   }
 
   GetDepartments() {
@@ -131,32 +143,25 @@ export class CreateInviteComponent implements OnInit {
       locationId: this.getLocationId()?.value,
       slotTiming: this.getSlotTiming()?.value,
     }
+    console.warn(drive);
 
     if (this.CreateInviteForm.valid) {
-      this.connection.CreateDrive(drive).subscribe({
-        next: (data) => this.response = data.message,
-        error: (error) => { this.error = error.error.message; this.isNameError(error.error.message) },
-        complete: () => this.clearInputFields(),
-      });
+
+      // this.connection.CreateDrive(drive).subscribe({
+      //   next: (data) => this.response = data.message,
+      //   error: (error) => { this.error = error.error.message },
+      //   complete: () => this.clearInputFields(),
+      // });
     }
   }
 
   clearInputFields() {
-
     this.submitted = false;
     setTimeout(() => {
       this.response = '';
       this.CreateInviteForm.reset();
     }, 1000);
-
   }
-
-  isNameError(error: string): boolean {
-    if (error.toString().includes('Name'))
-      return true;
-    return false;
-  }
-
 }
 
 
