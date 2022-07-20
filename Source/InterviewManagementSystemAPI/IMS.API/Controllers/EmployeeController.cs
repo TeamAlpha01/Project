@@ -274,11 +274,11 @@ public class EmployeeController : ControllerBase
         {
             if (response)
             {
-                return _employeeService.RespondEmployeeRequest(employeeId, response) ? Ok(UtilityService.Response("Employee request is accepted Successfully")) : Problem("Sorry internal error occured");
+                return _employeeService.RespondEmployeeRequest(employeeId, response) ? Ok(UtilityService.Response("Employee's request is accepted Successfully")) : Problem("Sorry internal error occured");
             }
             else
             {
-                return _employeeService.RespondEmployeeRequest(employeeId, response) ? Ok(UtilityService.Response("Employee request is rejected Successfully")) : Problem("Sorry internal error occured");
+                return _employeeService.RespondEmployeeRequest(employeeId, response) ? Ok(UtilityService.Response("Employee's request is rejected.")) : Problem("Sorry internal error occured");
 
             }
         }
