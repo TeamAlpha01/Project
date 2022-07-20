@@ -1626,6 +1626,12 @@ body {
 
 /* Admin Add Role - Checkbox */
 
-.checkboxalignment {
+#checkboxalignment {
   margin-top: 2%;
+}
+
+
+/* Admin - Text alignments */
+#text-alignment{
+  padding-top: 1%;
 }
