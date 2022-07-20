@@ -12,6 +12,7 @@ export class AdminViewRequestsPageComponent implements OnInit {
   data: any[] = [];
   totalLength: any;
   page: number = 1;
+  error: string = '';
   response: string = '';
   title = "Employee Requests";
   result: any;
@@ -23,7 +24,11 @@ export class AdminViewRequestsPageComponent implements OnInit {
   }
   //THIS METHOD IS CALLED ON CLICK0F ACCEPT OR REJECT BUTTON
   RespondEmployeeRequest(employeeId: number, response: boolean) {
-    this.service.RespondEmployeeRequest(employeeId, response).subscribe(() => this.GetEmployeeRequests());
+    this.service.RespondEmployeeRequest(employeeId, response).subscribe({
+      next: (data) => { this.response = data.message },
+      error: (error) => { this.error = error.error, this.snackBar() },
+      complete: () => { this.snackBar(), this.GetEmployeeRequests() }
+    });
 
   }
   //GET METHOD CALLED AT CONNECTION SERVICE
@@ -33,6 +38,12 @@ export class AdminViewRequestsPageComponent implements OnInit {
         this.data = data;
         this.totalLength = data.length;
       });
+  }
+  snackBar() {
+    setTimeout(() => {
+      this.response = '';
+      //this.error = '';
+    }, 2000);
   }
 
 }

@@ -310,6 +310,7 @@ namespace IMS.DataAccessLayer
                 _db.Employees.Update(employee);
                 _db.SaveChanges(); 
                 return true;
+                
             }
             catch (ValidationException exception)
             {
