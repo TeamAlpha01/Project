@@ -17,9 +17,9 @@ namespace IMS.Validations
             
             if (String.IsNullOrEmpty(employee.EmployeeAceNumber)) throw new ValidationException("EmployeeACEnumber cannot be null");
             
-            else if (employee.EmployeeAceNumber.Length != 7 || employee.EmployeeAceNumber.Length !=8) throw new ValidationException("ACE number must be 7 or 8 characters");
+           else if (employee.EmployeeAceNumber.Length == 7 || employee.EmployeeAceNumber.Length ==8) throw new ValidationException("ACE number must be 7 or 8 characters");
 
-            else if (employee.EmployeeAceNumber == "ACE0000") throw new ValidationException("Invalid ACE number");
+            else if (employee.EmployeeAceNumber == "ACE0000" || employee.EmployeeAceNumber=="ACE00000") throw new ValidationException("Invalid ACE number");
 
             else if (!Regex.IsMatch(employee.EmployeeAceNumber,@"^ACE[0-9]{4,5}$")) throw new ValidationException("Invalid ACE number");
 

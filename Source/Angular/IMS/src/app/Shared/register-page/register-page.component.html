@@ -37,9 +37,11 @@
                     <span class="text-danger" *ngIf="registerForm.controls['ACENumber'].errors?.['required']">ACE Number
                         is
                         required</span>
+                       
                     <span class="text-danger" *ngIf="registerForm.controls['ACENumber'].errors?.['pattern']">Invalid ACE
                         Number
-                        Eg : ACE1234</span>
+                        Eg : ACE1234 (or) ACE12345</span>
+                         
                     <div *ngIf="error.includes('ACE')">
                         <span class="text-center text-danger">{{error}}</span>
                     </div>
@@ -54,7 +56,7 @@
                         (change)="projectName()">
                         <option value="">Select the Department</option>
                         <ng-container *ngFor="let item of departmentDetails">
-                            <option *ngIf="!(item.departmentName==='ADMIN')" value={{item.departmentId}}>
+                            <option *ngIf="!(item.departmentName==='ADMIN')" value={{item.departmentId}}> 
                                 {{item.departmentName}} </option>
                         </ng-container>
                     </select>
