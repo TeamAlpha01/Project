@@ -725,15 +725,19 @@ namespace IMS.Service
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId);
+                var _deniedDrives = _driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate).Select(d=>d.DriveId);
+                var _ignoredDrives = _driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate).Select(d=>d.DriveId);
 
-                DashboardCount.Add("AcceptedDrives", _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Count());
-                DashboardCount.Add("DeniedDrives", _driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate).Count());
-                DashboardCount.Add("IgnoredDrives", _driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate).Count());
+                DashboardCount.Add("AcceptedDrives", _acceptedDrives.Count());
+                DashboardCount.Add("DeniedDrives", _deniedDrives.Count());
+                DashboardCount.Add("IgnoredDrives", _ignoredDrives.Count());
                 DashboardCount.Add("TotalDrives", DashboardCount["AcceptedDrives"] + DashboardCount["DeniedDrives"] + DashboardCount["IgnoredDrives"]);
-                DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Count());
-                DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Count());
-                DashboardCount.Add("SlotAvailabiltyGiven", _driveDataAccess.GetSlotAvailabilityGiven(employeeId).Count());
+                DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,_acceptedDrives.ToList()).Count());
+                DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,_acceptedDrives.ToList()).Count());
                 DashboardCount.Add("CancelledInterview", _driveDataAccess.ViewCancelledInterview(true, employeeId).Count());
+                DashboardCount.Add("SlotAvailabiltyGiven", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"] + DashboardCount["CancelledInterview"]);
+                //_driveDataAccess.GetSlotAvailabilityGiven(employeeId).Count()
                 DashboardCount.Add("TotalAvailability", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"]);
                 return DashboardCount;
             }
@@ -924,7 +928,8 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId).Select(e => new
+                //var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId);
+                return _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,new List<int>()).Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive!.Name,
@@ -979,7 +984,8 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Select(e => new
+                //var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId);
+                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,new List<int>()).Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive!.Name,
@@ -1010,7 +1016,8 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId).Concat(_driveDataAccess.GetResponseUtilizationByStatus(true, employeeId))
+                //do something here
+                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,new List<int>()).Concat(_driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,new List<int>()))
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,

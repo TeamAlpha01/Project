@@ -595,7 +595,12 @@ namespace IMS.DataAccessLayer
             Validations.EmployeeResponseValidation.IsResponseTypeValid(responseType);
             try
             {
-                return (from response in _db.EmployeeDriveResponse!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where response.EmployeeId == employeeId && response.ResponseType == responseType && ((fromDate.Date >= response.Drive!.FromDate.Date && fromDate.Date <= response.Drive!.ToDate.Date  ) || (toDate.Date >= response.Drive!.FromDate.Date && toDate.Date <= response.Drive!.ToDate.Date  )) select response).ToList();
+                return (from response in _db.EmployeeDriveResponse!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where response.EmployeeId == employeeId && response.ResponseType == responseType 
+                && (
+                (fromDate.Date >= response.Drive!.FromDate.Date &&fromDate.Date <= response.Drive!.ToDate.Date) ||
+                (toDate.Date >= response.Drive!.FromDate.Date && toDate.Date <= response.Drive!.ToDate.Date) ||
+                (fromDate.Date <= response.Drive!.FromDate.Date && toDate.Date >= response.Drive!.ToDate.Date)
+                ) select response).ToList();
             }
             catch (Exception getResponseCountByStatusException)
             {
@@ -609,12 +614,12 @@ namespace IMS.DataAccessLayer
             }
         }
 
-        public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized, int employeeId)
+        public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized, int employeeId,List<int> driveIds)
         {
             _stopwatch.Start();
             try
             {
-                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where availability.IsInterviewScheduled == isUtilized && availability.EmployeeId == employeeId select availability).ToList();
+                return (from availability in _db.EmployeeAvailability!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where availability.IsInterviewScheduled == isUtilized && availability.EmployeeId == employeeId && driveIds.Contains(availability.DriveId) select availability).ToList();
             }
             catch (Exception getResponseUtilizationByStatusException)
             {

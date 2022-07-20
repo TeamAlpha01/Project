@@ -37,7 +37,7 @@ namespace IMS.DataAccessLayer
         public bool CancelInterview(int employeeAvailabilityId, string cancellationReason, string? comments);
         public List<Employee> GetEmployee(int departmentId);
         public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType, int employeeId, DateTime fromDate, DateTime toDate);
-        public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized, int employeeId);
+        public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized, int employeeId,List<int> driveIds);
         public object GetDefaulters(int poolId);
         public List<EmployeeDriveResponse> GetDriveResponse(int driveId);
         public int GetUtilizationCountByStatus(int driveId, int employeeId, bool status);
