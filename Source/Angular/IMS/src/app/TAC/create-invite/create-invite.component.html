@@ -12,7 +12,7 @@
                         <label class="form-label" for="driveName"> Drive Name</label>
                         <input type="text"
                             [class.is-invalid]="(error.length)||(submitted && CreateInviteForm.controls['driveName'].invalid)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched"
-                            type="text" id="driveName" class="form-control " formControlName="driveName" maxlength="25">
+                            type="text" id="driveName" class="form-control " formControlName="driveName" maxlength="20">
                     </div>
                     <div
                         *ngIf="(submitted)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched">
@@ -25,7 +25,7 @@
                             short</span>
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive name can't be
-                            more than 25 characters</span>
+                            more than 15 characters</span>
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['driveName'].errors?.['pattern'] && !CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive
                             name cannot contain numbers or symbols</span>
@@ -95,8 +95,7 @@
                             <ng-container *ngFor="let item of locationDetails">
                                 <option
                                     *ngIf="!(CreateInviteForm.controls['modeId'].value==='2' && item.locationName==='Online')"
-                                    value={{item.locationId}}> {{item.locationName}}
-                                </option>
+                                    value={{item.locationId}}> {{item.locationName}} </option>
                             </ng-container>
                         </select>
                     </div>
@@ -104,7 +103,7 @@
                         *ngIf="(submitted)||CreateInviteForm.controls['locationId'].invalid && CreateInviteForm.controls['locationId'].touched">
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['locationId'].errors?.['required']">Choose a
-                            Location</span>
+                            Pool</span>
                     </div>
                     <div class="form-input">
                         <label class="form-label" for="fromDate">From Date</label>

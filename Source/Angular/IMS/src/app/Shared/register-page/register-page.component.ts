@@ -35,7 +35,7 @@ export class RegisterPageComponent implements OnInit {
       Role: ['', [Validators.required]],
       Project: ['', [Validators.required]],
       Email: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]{5,22})@(aspiresys.com)")]],
-      Password: ['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$")]],
+      Password: ['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]],
       ConfirmPassword: ['', [Validators.required, this.ValidateConfirmPassword]]
     });
 
