@@ -1,3 +1,4 @@
+import { Project } from './../../Model/Project';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -31,8 +32,8 @@ export class RegisterPageComponent implements OnInit {
       Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")]],
       ACENumber: ['', [Validators.required, Validators.pattern("^ACE[0-9]{4}$"),Validators.pattern("^(?!.*ACE0000).*$")]],
       Department: ['', [Validators.required]],
-      Role: ['', [Validators.required]],
-      Project: ['', [Validators.required]],
+      Role: [{ value: '', disabled: true }, [Validators.required]],
+      Project: [{ value: '', disabled: true } , [Validators.required]],
       Email: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]{5,22})@(aspiresys.com)")]],
       Password: ['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]],
       ConfirmPassword: ['', [Validators.required, this.ValidateConfirmPassword]]
@@ -59,6 +60,17 @@ export class RegisterPageComponent implements OnInit {
     })
   }
 
+  projectEnabler(){
+    if (this.registerForm.get('Department')?.value == '')
+    {
+      this.registerForm.controls['Project'].disable();
+      this.registerForm.controls['Role'].disable();
+    }
+    else {
+      this.registerForm.controls['Project'].enable()
+      this.registerForm.controls['Role'].enable()
+    }
+  }
   projectName() {
     for (let item of this.departmentDetails) {
       if (this.registerForm.value['Department'] == item.departmentId) {
@@ -66,7 +78,6 @@ export class RegisterPageComponent implements OnInit {
       }
     }
   }
-
 
   submit() {
     this.formSubmitted = true;

@@ -20,7 +20,7 @@
                         short</span>
                     <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['maxlength']">Name is too
                         long</span>
-                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['pattern']">Please enter a proper name</span>
+                    <span class="text-danger" *ngIf="(!registerForm.controls['Name'].errors?.['maxlength']) && registerForm.controls['Name'].errors?.['pattern']">Name cannot contain symbols and numbers or three consecutive identical characters</span>
                 </div>
 
                 <!-- ACE Numeber -->
@@ -45,48 +45,48 @@
                     </div>
                 </div>
 
-                <!-- Department -->
-                <div class="form-input">
-                    <label class="form-label " for="Department Name">Department</label>
-                    <select
-                        [class.is-invalid]="(formSubmitted && registerForm.controls['Department'].invalid)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched"
-                        name="Department" id="Department Name" class="form-select" formControlName="Department"
-                        (change)="projectName()">
-                        <option value="">Select the Department</option>
-                        <ng-container *ngFor="let item of departmentDetails">
-                            <option *ngIf="!(item.departmentName==='ADMIN')" value={{item.departmentId}}>
-                                {{item.departmentName}} </option>
-                        </ng-container>
-                    </select>
-                </div>
-                <div
-                    *ngIf="(formSubmitted)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched">
-                    <span class="text-danger"
-                        *ngIf="registerForm.controls['Department'].errors?.['required']">Department is required</span>
-                </div>
+                 <!-- Department -->
+                 <div class="form-input">
+                  <label class="form-label " for="Department Name">Department</label>
+                  <select
+                      [class.is-invalid]="(formSubmitted && registerForm.controls['Department'].invalid)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched"
+                      name="Department" id="Department Name" class="form-select" formControlName="Department"
+                      (change)="projectEnabler()" (change)="projectName()">
+                      <option value="">Select the Department</option>
+                      <ng-container *ngFor="let item of departmentDetails">
+                          <option *ngIf="!(item.departmentName==='ADMIN')" value={{item.departmentId}}>
+                              {{item.departmentName}} </option>
+                      </ng-container>
+                  </select>
+              </div>
+              <div
+                  *ngIf="(formSubmitted)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched">
+                  <span class="text-danger"
+                      *ngIf="registerForm.controls['Department'].errors?.['required']">Department is required</span>
+              </div>
 
-                <!-- Role -->
+              <!-- Role -->
 
-                <div class="form-input">
-                    <label class="form-label " for="Role Name">Role</label>
-                    <select
-                        [class.is-invalid]="(formSubmitted && registerForm.controls['Role'].invalid)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched"
-                        name="Role" id="Role Name" class="form-select" name="Role" formControlName="Role">
+              <div class="form-input">
+                <label class="form-label " for="Role Name">Role</label>
+                <select
+                    [class.is-invalid]="(formSubmitted && registerForm.controls['Role'].invalid)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched"
+                    name="Role" id="Role Name" class="form-select" name="Role" formControlName="Role">
 
-                        <option value="">Select the Role</option>
-                        <ng-container *ngFor="let item of roleDetails">
-                            <option *ngIf="(_dept==='TAC' && item.roleName==='TAC')" value={{item.roleId}}>
-                                {{item.roleName}}</option>
-                            <option *ngIf="(item.roleName!=='Admin' && _dept!=='TAC' && item.roleName!=='TAC')"
-                                value={{item.roleId}}> {{item.roleName}} </option>
-                        </ng-container>
-                    </select>
-                </div>
-                <div
-                    *ngIf="(formSubmitted)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched">
-                    <span class="text-danger" *ngIf="registerForm.controls['Role'].errors?.['required']">Role is
-                        required</span>
-                </div>
+                    <option value="">Select the Role</option>
+                    <ng-container *ngFor="let item of roleDetails">
+                        <option *ngIf="(_dept==='TAC' && item.roleName==='TAC')" value={{item.roleId}}>
+                            {{item.roleName}}</option>
+                        <option *ngIf="(item.roleName!=='Admin' && _dept!=='TAC' && item.roleName!=='TAC')"
+                            value={{item.roleId}}> {{item.roleName}} </option>
+                    </ng-container>
+                </select>
+            </div>
+            <div
+                *ngIf="(formSubmitted)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched">
+                <span class="text-danger" *ngIf="registerForm.controls['Role'].errors?.['required']">Role is
+                    required</span>
+            </div>
 
                 <!-- Project  -->
 
