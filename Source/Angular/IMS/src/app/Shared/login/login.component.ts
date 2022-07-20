@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   loginForm = this.FB.group({
     EmailID: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]{4,22})@(aspiresys.com)")]],
-    Password: ['', [Validators.required,Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,15}$")]]
+    Password: ['', [Validators.required]]
   });
 
 
@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
 
     this.submitted = true;
     if (this.loginForm.valid) {
+      this.isCommanError=false;
       this.loading = true
       const user = {
         emailId: this.loginForm.value['EmailID'],
@@ -76,7 +77,8 @@ export class LoginComponent implements OnInit {
 
         },
         error: (error: any) => {
-          this.isCommanError = true
+          if(!error.error.toString().includes('email'))
+            this.isCommanError = true
           if (error.status == 0)
             this.error = "Oops! Server down please try again later";
           else if (error.status == 500)
