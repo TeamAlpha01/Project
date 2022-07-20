@@ -356,9 +356,11 @@ namespace IMS.DataAccessLayer
             try
             {
                 if(_db.Pools!.Any(p=>p.DepartmentId==deparmentId&&p.IsActive==true))
-                //if(_db.Employees!.Any(e=>e.DepartmentId==deparmentId&&e.IsActive==true))
-                return true;
-
+                    return true;
+                if(_db.Employees!.Any(e=>e.DepartmentId==deparmentId&&e.IsActive==true))
+                 
+                    return true;  
+             
 
              return false;
             }
