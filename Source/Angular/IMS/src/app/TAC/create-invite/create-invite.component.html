@@ -12,7 +12,7 @@
                         <label class="form-label" for="driveName"> Drive Name</label>
                         <input type="text"
                             [class.is-invalid]="(error.length)||(submitted && CreateInviteForm.controls['driveName'].invalid)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched"
-                            type="text" id="driveName" class="form-control " formControlName="driveName" maxlength="20">
+                            type="text" id="driveName" class="form-control " formControlName="driveName" maxlength="25">
                     </div>
                     <div
                         *ngIf="(submitted)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched">

@@ -11,7 +11,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class TacViewResponseComponent implements OnInit {
   totalLength: any;
   page: number = 1;
-  title = 'View Drive Response';
+  title = 'Drive Response';
   driveId: number = 0;
   errorMessage: any;
   driveResponses: any[] = [];

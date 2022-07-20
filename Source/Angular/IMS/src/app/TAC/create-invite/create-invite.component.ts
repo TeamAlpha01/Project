@@ -28,7 +28,7 @@ export class CreateInviteComponent implements OnInit {
 
   submitted: boolean = false;
   CreateInviteForm = this.fb.group({
-    driveName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern('[A-Za-z.0-9\\s]*')]],
+    driveName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern('[A-Za-z.0-9\\s]*')]],
     fromDate: ['', [Validators.required]],
     toDate: [{ value: '', disabled: true }, [Validators.required]],
     departmentId: ['', [Validators.required]],

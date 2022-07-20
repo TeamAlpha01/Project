@@ -12,7 +12,7 @@ export class ManagepoolComponent implements OnInit {
   title = 'Manage Pool'
 
   //TO STORE THE DATA FROM THE DATABASE
-  poolDetails: any;
+  poolDetails: any[]=[];
   departmentDetails: any;
 
   //TO GET USER INPUT

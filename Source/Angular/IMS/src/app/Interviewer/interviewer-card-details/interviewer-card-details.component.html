@@ -1,33 +1,36 @@
 <div *ngIf="data.length>0; else ArrayEmpty">
-<div class="container" *ngFor="let item of data | paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
-    <div class="mt-3 container shadow  bg-body rounded">
-        <div class>
-            <div class="card-body">
-                <div class="row rone mt-4">
-                    <div class="col-md-5">
-                        <p><b>Drive Name :</b> {{item.driveName}} </p>
-                        <p><b>Time :</b> {{item.fromTime}} to {{item.toTime}} </p>
-                        <p><b>Pool Name:</b> {{item.poolName}}</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p><b>Date :</b> {{item.interviewDate | date:'dd-MM-yyyy'}} </p>
-                        <p><b>Mode :</b> {{item.mode}} </p>
-                        <p><b>Location :</b> {{item.locationName}} </p>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="row mt-3">
-                            <a  [routerLink]="['/interviewer/home/upcomingDrives/cancel-interview-page/:employeeAvailabilityId/:driveId']" ><button type="button" class="btn btn-danger">Cancel</button></a>
+    <div class="container"
+        *ngFor="let item of data | paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
+        <div class="mt-3 container shadow  bg-body rounded">
+            <div class>
+                <div class="card-body">
+                    <div class="row rone mt-4">
+                        <div class="col-md-5">
+                            <p><b>Drive Name :</b> {{item.driveName}} </p>
+                            <p><b>Time :</b> {{item.fromTime}} to {{item.toTime}} </p>
+                            <p><b>Pool Name:</b> {{item.poolName}}</p>
+                        </div>
+                        <div class="col-md-5">
+                            <p><b>Date :</b> {{item.interviewDate | date:'dd-MM-yyyy'}} </p>
+                            <p><b>Mode :</b> {{item.mode}} </p>
+                            <p><b>Location :</b> {{item.locationName}} </p>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="row mt-3">
+                                <a
+                                    [routerLink]="['/interviewer/home/upcomingDrives/cancel-interview-page/:employeeAvailabilityId/:driveId']"><button
+                                        type="button" class="btn btn-danger">Cancel</button></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="mt-5">
-    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
-</div>
+    <div class="mt-5" *ngIf="data.length>4">
+        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    </div>
 </div>
 <ng-template #ArrayEmpty>
     <div class="text-center">

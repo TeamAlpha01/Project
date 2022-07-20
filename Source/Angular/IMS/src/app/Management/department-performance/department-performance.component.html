@@ -49,6 +49,7 @@
             </div>
         </div>
     </div>
+    
     <div *ngIf="Date">
         <div *ngIf="employeesPerformance.length>0; else ArrayEmpty">
             <div class="mt-3 container shadow  bg-body rounded"
@@ -115,7 +116,7 @@
     </div>
     <ng-template #ArrayEmpty>
         <div class="text-center">
-            No records found.
+            No {{title}} found.
         </div>
     </ng-template>
 

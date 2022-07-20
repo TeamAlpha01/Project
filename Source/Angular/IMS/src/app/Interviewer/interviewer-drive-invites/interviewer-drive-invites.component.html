@@ -38,12 +38,12 @@
                 </div>
             </div>
         </div>
-        <div class="mt-3">
+        <div class="mt-3" *ngIf="Invites.length>4">
             <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
         </div>
     </div>
     <ng-template #ArrayEmpty>
-        <div class="text-center">
+        <div class="text-center mt-4">
             No drive invites found.
         </div>
     </ng-template>
