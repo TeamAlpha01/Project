@@ -7,131 +7,151 @@
     <!-- Navbar Start  -->
     <app-navbar [title]="title"></app-navbar>
     <!-- Navbar End -->
-    <section>
-        <div class="container">
-            <div class="row dashboard">
-                <div class="col-xs-12 col-sm-4">
-                    <a [routerLink]="['/interviewer/dashboard/totaldrives']" class="link">
-                        <div class="card-card">
-                            <div class="card-body">
-                                <h1 class="card-title numbersize">
-                                    {{TotalDrives}}
-                                </h1>
-                                <h3>
-                                    <b>Total No. of Drives</b>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <a [routerLink]="['/interviewer/dashboard/accepted-drives']" class="link">
-                        <div class="card-card">
-                            <div class="card-content">
-                                <h1 class="card-title numbersize">
-                                    {{AcceptedDrives}}
-                                </h1>
-                                <h3>
-                                    <b>Accepted Drives</b>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <a [routerLink]="['/interviewer/dashboard/denied-drives']" class="link">
-                        <div class="card-card">
-                            <div class="card-content">
-                                <h1 class="card-title numbersize">
-                                    {{DeniedDrives}}
-                                </h1>
-                                <h3 class="">
-                                    <b>Denied Drives </b>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <a [routerLink]="['/interviewer/dashboard/ignoreddrives']" class="link">
-                        <div class="card-card">
-                            <div class="card-content">
-                                <h1 class="card-title numbersize">
-                                    {{IgnoredDrives}}
-                                </h1>
-                                <h3>
-                                    <b>Ignored Drives</b>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <a [routerLink]="['/interviewer/dashboard/availabilitygiven']" class="link">
-                        <div class="card-card">
-                            <div class="card-content">
-                                <h1 class="card-title numbersize">
-                                    {{SlotAvailabilityGiven}}
-                                </h1>
-                                <h3>
-                                    <b>Slot Availability Given</b>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <a [routerLink]="['/interviewer/dashboard/cancelled-drives']" class="link">
-                        <div class="card-card">
-                            <div class="card-content">
-                                <h1 class="card-title numbersize">
-                                    {{CancelledDrives}}
-                                </h1>
-                                <h3>
-                                    <b>Cancelled Drives</b>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <a [routerLink]="['/interviewer/dashboard/utilizedinterviews']" class="link">
-                        <div class="card-card">
-                            <div class="card-content">
-                                <h1 class="card-title numbersize">
-                                    {{UtilizedInterviews}}
-                                </h1>
-                                <h3 class="">
-                                    <b>Interviews Utilized</b>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xs-12 col-sm-4">
-                    <a [routerLink]="['/interviewer/dashboard/notutilizedinterviews']" class="link">
-                        <div class="card-card">
-                            <div class="card-content">
-                                <h1 class="card-title numbersize">
-                                    {{NotUtilizedInterviews}}
-                                </h1>
-                                <h3 class="">
-                                    <b>Interviews Not Utilized</b>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
+    <div class=" mt-3 mb-5 container shadow  bg-body rounded">
+        <div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="Pool">From Date</label>
+                        <input type="date" id="Pool" class="form-select" name="_date" [(ngModel)]="date._fromDate">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="Pool">To Date</label>
+                        <input type="date" id="Pool" class="form-select" name="_date" [(ngModel)]="date._toDate">
+                    </div>
+                    <div class="col-md-1">
+                        <button input type="submit" (click)="Apply()" class="btn btn-filter">Apply</button>
+                    </div>
+                    <div class="col"></div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <a [routerLink]="['/interviewer/dashboard/totaldrives']" class="link">
+                    <div class="card-card">
+                        <div class="card-body">
+                            <h1 class="card-title numbersize">
+                                {{TotalDrives}}
+                            </h1>
+                            <h3>
+                                <b>Total No. of Drives</b>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <a [routerLink]="['/interviewer/dashboard/accepted-drives']" class="link">
+                    <div class="card-card">
+                        <div class="card-content">
+                            <h1 class="card-title numbersize">
+                                {{AcceptedDrives}}
+                            </h1>
+                            <h3>
+                                <b>Accepted Drives</b>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <a [routerLink]="['/interviewer/dashboard/denied-drives']" class="link">
+                    <div class="card-card">
+                        <div class="card-content">
+                            <h1 class="card-title numbersize">
+                                {{DeniedDrives}}
+                            </h1>
+                            <h3 class="">
+                                <b>Denied Drives </b>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <a [routerLink]="['/interviewer/dashboard/ignoreddrives']" class="link">
+                    <div class="card-card">
+                        <div class="card-content">
+                            <h1 class="card-title numbersize">
+                                {{IgnoredDrives}}
+                            </h1>
+                            <h3>
+                                <b>Ignored Drives</b>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <a [routerLink]="['/interviewer/dashboard/availabilitygiven']" class="link">
+                    <div class="card-card">
+                        <div class="card-content">
+                            <h1 class="card-title numbersize">
+                                {{SlotAvailabilityGiven}}
+                            </h1>
+                            <h3>
+                                <b>Slot Availability Given</b>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <a [routerLink]="['/interviewer/dashboard/utilizedinterviews']" class="link">
+                    <div class="card-card">
+                        <div class="card-content">
+                            <h1 class="card-title numbersize">
+                                {{UtilizedInterviews}}
+                            </h1>
+                            <h3 class="">
+                                <b>Interviews Utilized</b>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <a [routerLink]="['/interviewer/dashboard/notutilizedinterviews']" class="link">
+                    <div class="card-card">
+                        <div class="card-content">
+                            <h1 class="card-title numbersize">
+                                {{NotUtilizedInterviews}}
+                            </h1>
+                            <h3 class="">
+                                <b>Interviews Not Utilized</b>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                <a [routerLink]="['/interviewer/dashboard/cancelled-drives']" class="link">
+                    <div class="card-card">
+                        <div class="card-content">
+                            <h1 class="card-title numbersize">
+                                {{CancelledDrives}}
+                            </h1>
+                            <h3>
+                                <b>Cancelled Drives</b>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
     <!-- Footer Component -->
     <app-footer></app-footer>
 </div>

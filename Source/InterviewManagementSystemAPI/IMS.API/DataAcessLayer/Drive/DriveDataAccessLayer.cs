@@ -31,8 +31,8 @@ namespace IMS.DataAccessLayer
             if (_db.Drives!.Any(d => d.Name == drive.Name && d.PoolId == drive.PoolId && d.IsCancelled == false && d.ToDate >= drive.FromDate)) throw new ValidationException("Drive Name already exists under this pool");
             try
             {
-                _db.Drives!.Add(drive);
-                _db.SaveChanges();
+                 // _db.Drives!.Add(drive);
+                //_db.SaveChanges();
                 FillInitialResponseForDrive(drive.DriveId, drive.PoolId);
                 return true;
             }
@@ -50,7 +50,7 @@ namespace IMS.DataAccessLayer
         private void FillInitialResponseForDrive(int driveId, int poolId)
         {
             _stopwatch.Start();
-            var employees = from employee in _db.PoolMembers where employee.PoolId == poolId select employee.EmployeeId;
+            var employees = from employee in _db.PoolMembers where employee.PoolId == poolId && employee.IsActive==true select employee.EmployeeId;
             foreach (var employeeId in employees)
             {
                 EmployeeDriveResponse initialResponse = new EmployeeDriveResponse()

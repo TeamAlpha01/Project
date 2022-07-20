@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class ConnectionService {
 
-  baseURL = 'https://localhost:7072/'
+  baseURL = 'http://172.24.217.145/IMS-API/'
   constructor(private http: HttpClient) { }
 
   public headers = new HttpHeaders({
@@ -46,8 +46,8 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewAllCancelledDrives', { headers: this.headers });
   }
 
-  GetDashboard(): any {
-    return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard`, { headers: this.headers });
+  GetDashboard(date: any): any {
+    return this.http.post<any>(this.baseURL + `Drive/ViewEmployeeDashboard`, date, { headers: this.headers });
   }
 
   GetDashboardDriveResponse(driveId: number): any {
@@ -154,8 +154,8 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewScheduledDrives', { headers: this.headers });
   }
 
-  GetTACDashboard(): any {
-    return this.http.get<any>(this.baseURL + `Drive/ViewDashboard`, { headers: this.headers });
+  GetTACDashboard(date: any): any {
+    return this.http.post<any>(this.baseURL + `Drive/ViewDashboard`, date, { headers: this.headers });
   }
 
   GetTodayDrives(): any {
@@ -254,7 +254,7 @@ export class ConnectionService {
   AddProject(projectName: string, departmentId: number) {
     return this.http.post<any>(this.baseURL + `Project/CreateNewProject?departmentId=${departmentId}&projectName=${projectName}`, null, { headers: this.headers })
   }
-  AddRole(role:any) {
+  AddRole(role: any) {
     return this.http.post<any>(this.baseURL + `Role/CreateNewRole`, role, { headers: this.headers })
   }
   AddDepartment(department: any) {
@@ -278,7 +278,7 @@ export class ConnectionService {
   RemoveRole(role: any) {
     return this.http.patch<any>(this.baseURL + `Role/RemoveRole`, role, { headers: this.headers })
   }
-  RemoveDepartment(department:any) {
+  RemoveDepartment(department: any) {
     return this.http.patch<any>(this.baseURL + `Department/RemoveDepartment`, department, { headers: this.headers })
   }
 
