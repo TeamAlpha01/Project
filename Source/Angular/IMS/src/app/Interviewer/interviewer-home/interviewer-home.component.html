@@ -7,27 +7,27 @@
     <section class="wrapper">
         <div class="container">
             <div class="row ">
-                <div class="col-xs-12 col-sm-4">
-                    <div class="card-card h-100">
-                        <a class="img-card" [routerLink]="['/interviewer/home/currentDrives']">
-                            <img src="assets/Images/Current.jpg" alt="Today's Interviews"/>
-                        </a>
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/interviewer/home/currentDrives']">
+                    <div class="card-card h-100 ">
+                        <div class="img-card">
+                            <img src="assets/Images/Current.jpg" alt="Today's Interviews" />
+                        </div>
                         <div class="card-content">
-                            <h2 class="card-title" >
-                                Today's Interviews   
+                            <h2 class="card-title">
+                                Today's Interviews
                             </h2>
                             <p class="">
                                 View interviews scheduled for you today!
                             </p>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-xs-12 col-sm-4">
+                </a>
+
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/interviewer/home/scheduledDrives']">
                     <div class="card-card h-100">
-                        <a class="img-card" [routerLink]="['/interviewer/home/scheduledDrives']">
-                            <img src="assets/Images/Scheduled.jpg" alt="Scheduled Interviews"/>
-                        </a>
+                        <div class="img-card">
+                            <img src="assets/Images/Scheduled.jpg" alt="Scheduled Interviews" />
+                        </div>
                         <div class="card-content">
                             <h2 class="card-title">
                                 Scheduled Interviews
@@ -37,13 +37,13 @@
                             </p>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-xs-12 col-sm-4">
-                    <div class="card-card h-100">
-                        <a class="img-card " [routerLink]="['/interviewer/home/upcomingDrives']">
-                            <img src="assets/Images/Upcoming.jpg" alt="Upcoming Interviews"/>
-                        </a>
+                </a>
+
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/interviewer/home/upcomingDrives']">
+                    <div class="card-card h-100 ">
+                        <div class="img-card ">
+                            <img src="assets/Images/Upcoming.jpg" alt="Upcoming Interviews" />
+                        </div>
                         <div class="card-content">
                             <h2 class="card-title">
                                 Upcoming Interviews
@@ -53,7 +53,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>

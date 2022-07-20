@@ -30,6 +30,7 @@ export class DepartmentPerformanceComponent implements OnInit {
   driveDetails: any;
   departmentEmployees: any;
   driveId = 0;
+  error: any;
 
   constructor(private connection: ConnectionService) { }
 
@@ -53,13 +54,14 @@ export class DepartmentPerformanceComponent implements OnInit {
 
   GetDrivesForCurrentUser() {
     this.connection.GetDrivesForCurrentUser().subscribe({
-      next: (data: any) => { this.driveDetails = data, console.warn(this.driveDetails) }
+      next: (data: any) => { this.driveDetails = data},
+      // error:(error:any)=>this.error=error,
     })
   }
 
   GetDrives(driveId: number) {
     this.connection.GetDashboardDriveResponse(driveId).subscribe({
-      next: (data: any) =>{ this.driveResponse = data,console.warn(this.driveResponse)},
+      next: (data: any) =>{ this.driveResponse = data},
     })
   }
 
@@ -86,36 +88,28 @@ export class DepartmentPerformanceComponent implements OnInit {
   }
 
   Apply() {
-    console.warn("10")
     if (this._drive.driveName == undefined || this._drive.driveName == '') {
       this._drive = {
         driveId: 0,
         driveName: ''
       }
       if (this._drive.driveName == '') {
-        console.warn("3");
         this.Drive = false;
         this.Date = true;
         this.GetEmployeesPerformance();
         if (this._pool != '') {
           this.Drive = false;
           this.Date = true;
-          console.warn("1");
         }
         else if (this._fromDate != '' || this._toDate != '') {
           this.Drive = false;
           this.Date = true;
           const dateRange = {FromDate : this._fromDate,ToDate:this._toDate}
           this.connection.GetEmployeePerformance(dateRange);
-          console.warn("5");
-        }
-        else {
-          console.warn("7")
         }
       }
     }
     if (this._drive.driveName != '') {
-      console.warn("2");
       this.Drive = true;
       this.Date = false;
       this.GetDrives(this._drive.driveId);

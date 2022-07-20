@@ -9,7 +9,9 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class ConnectionService {
 
-  baseURL = 'http://172.24.217.145/IMS-API/'
+  // baseURL = 'http://172.24.217.145/IMS-API/'
+  baseURL = 'https://localhost:7072/'
+
   constructor(private http: HttpClient) { }
 
   public headers = new HttpHeaders({
@@ -85,12 +87,9 @@ export class ConnectionService {
   GetEmployeeDashboard(employeeId: number) {
     return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard?employeeId=${employeeId}`, { headers: this.headers });
   }
-  // GetEmployeesPerformance() {
-  //   return this.http.get<any>(this.baseURL + `Drive/ViewEmployeePerformance`, { headers: this.headers });
-  // }
-  GetEmployeePerformance(dateRange:any):any{
-    console.log(dateRange);
-    return this.http.post<any>(this.baseURL + 'Drive/ViewEmployeePerformance', dateRange,{ headers: this.headers });
+
+  GetEmployeePerformance(dateRange: any): any {
+    return this.http.post<any>(this.baseURL + 'Drive/ViewEmployeePerformance', dateRange, { headers: this.headers });
   }
 
   GetEmployeeProfile() {
