@@ -607,14 +607,16 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
-      [HttpGet]
-    public IActionResult ViewEmployeePerformance(DateTime fromDate, DateTime toDate)
+    [HttpPost]
+    public IActionResult ViewEmployeePerformance(DateRange? dateRange)
     {
+        
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
             int departmentId=Convert.ToInt32(User.FindFirst("DepartmentId")?.Value);
-            return Ok(_driveService.ViewEmployeePerformance(employeeId,departmentId, fromDate, toDate));
+            return Ok(_driveService.ViewEmployeePerformance(employeeId,departmentId, dateRange.FromDate, dateRange.ToDate));
         }
         catch (ValidationException ViewEmployeeDashboardNotValid)
         {
@@ -628,7 +630,7 @@ public class DriveController : ControllerBase
         }
     }
 
- 
+
 
     /// <summary>
     /// This method invoked when the employee wants to see their dashboard
@@ -644,18 +646,18 @@ public class DriveController : ControllerBase
     /// </remarks>
     /// <response code="201">Returns the newly created item</response>
     /// <response code="400">If the item is null</response> 
-   
-    /// <param name="fromDate"></param>
-    /// <param name="toDate"></param>
+
+    /// <param name="dateRange"></param>
     /// <returns>Returns the dashboard of employee</returns>
-    [HttpGet]
-    public IActionResult ViewEmployeeDashboard(DateTime fromDate, DateTime toDate)
+    [HttpPost]
+    public IActionResult ViewEmployeeDashboard(DateRange? dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
 
-            return Ok(_driveService.ViewEmployeeDashboard(employeeId, fromDate, toDate));
+            return Ok(_driveService.ViewEmployeeDashboard(employeeId, dateRange.FromDate, dateRange.ToDate));
         }
         catch (ValidationException ViewEmployeeDashboardNotValid)
         {

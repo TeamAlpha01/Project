@@ -9,7 +9,7 @@ namespace IMS.DataAccessLayer
 {
     public class DriveDataAccessLayer : IDriveDataAccessLayer
     {
-        private InterviewManagementSystemDbContext _db;// = DataFactory.DbContextDataFactory.GetInterviewManagementSystemDbContextObject();
+        private InterviewManagementSystemDbContext _db;
 
         private ILogger _logger;
         private IConfiguration _configuration;
@@ -62,13 +62,11 @@ namespace IMS.DataAccessLayer
                 _db.EmployeeDriveResponse!.Add(initialResponse);
             }
             _db.SaveChanges();
-
         }
         public bool CancelDriveFromDatabase(int driveId, int tacId, string reason)
         {
             _stopwatch.Start();
             DriveValidation.IsCancelDriveValid(driveId, tacId, reason);
-
             try
             {
                 Drive? drive = _db.Drives!.Find(driveId);
@@ -597,7 +595,7 @@ namespace IMS.DataAccessLayer
             Validations.EmployeeResponseValidation.IsResponseTypeValid(responseType);
             try
             {
-                return (from response in _db.EmployeeDriveResponse!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where response.EmployeeId == employeeId && response.ResponseType == responseType && (response.Drive!.FromDate.Date >= fromDate.Date || response.Drive.ToDate.Date >= toDate.Date) select response).ToList();
+                return (from response in _db.EmployeeDriveResponse!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where response.EmployeeId == employeeId && response.ResponseType == responseType && ((response.Drive!.FromDate.Date >= fromDate.Date && response.Drive!.FromDate.Date <= toDate.Date ) || (response.Drive!.ToDate.Date >= fromDate.Date && response.Drive!.ToDate.Date <= toDate.Date )) select response).ToList();
             }
             catch (Exception getResponseCountByStatusException)
             {
