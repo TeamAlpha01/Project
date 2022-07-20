@@ -30,7 +30,7 @@ export class RegisterPageComponent implements OnInit {
     this.registerForm = this.FB.group({
       Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")]],
 
-      ACENumber: ['', [Validators.required, Validators.pattern("^ACE[0-9]{4},!ACE0000$")]],
+      ACENumber: ['', [Validators.required, Validators.pattern("^ACE[0-9]{4}")]],
       Department: ['', [Validators.required]],
       Role: ['', [Validators.required]],
       Project: ['', [Validators.required]],
