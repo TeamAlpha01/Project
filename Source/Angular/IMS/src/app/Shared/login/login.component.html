@@ -6,10 +6,10 @@
             <form [formGroup]="loginForm" (ngSubmit)="submit()">
                 <br>
                 <div class="form-input">
-                    <label class="form-label" for="EmailID">Email ID</label>
+                    <label class="form-label" for="EmailID">Email ID <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="(error.toString().includes('mail')||submitted && loginForm.controls['EmailID'].invalid)||loginForm.controls['EmailID'].invalid && loginForm.controls['EmailID'].touched"
-                        id="EmailID" type="text" placeholder="Email ID" formControlName="EmailID" class="form-control">
+                        id="EmailID" type="text" placeholder="Enter your Email" formControlName="EmailID" class="form-control">
                 </div>
                 <div
                     *ngIf="(submitted)||loginForm.controls['EmailID'].invalid && loginForm.controls['EmailID'].touched">
@@ -21,10 +21,10 @@
                 </div>
 
                 <div class="form-input">
-                    <label class="form-label" for="Password">Password</label>
+                    <label class="form-label" for="Password">Password <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="(error.toString().includes('Password')||submitted && loginForm.controls['Password'].invalid)||loginForm.controls['Password'].invalid && loginForm.controls['Password'].touched"
-                        id="Password" type="password" placeholder="Password" formControlName="Password"
+                        id="Password" type="password" placeholder="Enter your Password" formControlName="Password"
                         class="form-control">
                 </div>
                 <div
