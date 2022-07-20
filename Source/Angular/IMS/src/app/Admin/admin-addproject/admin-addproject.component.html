@@ -22,13 +22,13 @@
                 
                 <div class="form-input">
                     <label class="form-label" for="Name">Project Name </label>
-                    <input type="text" maxlength="15" [class.is-invalid]="(error.length)||(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched" type="text" id="Name" class="form-control " formControlName="projectName" >
+                    <input type="text" maxlength="20" [class.is-invalid]="(error.length)||(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched" type="text" id="Name" class="form-control " formControlName="projectName" >
                 </div>
                 <div *ngIf="(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched">
                     <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['required']">Project name is required</span>
                     <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['minlength']">Project name is too short</span>
-                    <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['maxlength']">Project name can't be more than 15 characters</span>
-                    <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['pattern'] && !AddProjectForm.controls['projectName'].errors?.['minlength']">Project name cannot contain numbers or symbols</span>
+                    <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['maxlength']">Project name can't be more than 20 characters</span>
+                    <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['pattern'] && !AddProjectForm.controls['projectName'].errors?.['minlength']">Project name cannot contain numbers,symbols,multiple spaces or repeated characters </span>
                 </div>
 
                <!--Snack Bar-->
