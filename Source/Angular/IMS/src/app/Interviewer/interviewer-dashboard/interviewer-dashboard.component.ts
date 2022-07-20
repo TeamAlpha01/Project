@@ -17,8 +17,8 @@ export class InterviewerDashboardComponent implements OnInit {
   NotUtilizedInterviews: number = 0;
   CancelledDrives: number = 0;
   date = {
-    _fromDate: '',
-    _toDate: ''
+    From: '',
+    To: ''
   }
 
 

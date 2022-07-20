@@ -595,7 +595,7 @@ namespace IMS.DataAccessLayer
             Validations.EmployeeResponseValidation.IsResponseTypeValid(responseType);
             try
             {
-                return (from response in _db.EmployeeDriveResponse!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where response.EmployeeId == employeeId && response.ResponseType == responseType && ((response.Drive!.FromDate.Date >= fromDate.Date && response.Drive!.FromDate.Date <= toDate.Date ) || (response.Drive!.ToDate.Date >= fromDate.Date && response.Drive!.ToDate.Date <= toDate.Date )) select response).ToList();
+                return (from response in _db.EmployeeDriveResponse!.Include("Drive").Include("Drive.Pool").Include("Drive.Location") where response.EmployeeId == employeeId && response.ResponseType == responseType && ((fromDate.Date >= response.Drive!.FromDate.Date && fromDate.Date <= response.Drive!.ToDate.Date  ) || (toDate.Date >= response.Drive!.FromDate.Date && toDate.Date <= response.Drive!.ToDate.Date  )) select response).ToList();
             }
             catch (Exception getResponseCountByStatusException)
             {
@@ -784,7 +784,7 @@ namespace IMS.DataAccessLayer
         {
             _stopwatch.Start();
             DepartmentValidation.IsDepartmentIdValid(departmentId);
-            bool isDepartmentIdExist = _db.Drives!.Any(x => x.DepartmentId == departmentId);
+            bool isDepartmentIdExist = _db.Departments!.Any(x => x.DepartmentId == departmentId);
             if (!isDepartmentIdExist)
             {
                 throw new ValidationException("Department not found wwith given department Id");
