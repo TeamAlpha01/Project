@@ -29,13 +29,15 @@
                         <button class="btn btn-success"
                             (click)="RespondEmployeeRequest(item.employeeId,true)">Accept</button>
                         <div class="col-1"></div>
-                        <div *ngIf="response.length!==0">
-                            <app-snack-bar snackBarMessage={{response}} snackBarAction="Employe Request accepted successfully"></app-snack-bar>
-                        </div>
                         <button class="btn btn-danger"
                             (click)="RespondEmployeeRequest(item.employeeId,false)">Reject</button>
                     </div>
-                   
+                    <div *ngIf="error.length!==0">
+                        <app-snack-bar snackBarMessage={{error}} snackBarAction="Done"></app-snack-bar>
+                    </div>
+                    <div *ngIf="response.length!==0">
+                        <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                    </div>
                 </div>
             </div>
         </div>

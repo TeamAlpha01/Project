@@ -7,10 +7,10 @@
                 <!-- Name -->
 
                 <div class="form-input">
-                    <label class="form-label" for="Name">Name </label>
+                    <label class="form-label" for="Name">Name <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="(formSubmitted && registerForm.controls['Name'].invalid )||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched"
-                        id="Name" type="text" placeholder="Name" formControlName="Name" class="form-control">
+                        id="Name" type="text" placeholder="Ex : Sample" formControlName="Name" class="form-control">
                 </div>
                 <div
                     *ngIf="(formSubmitted)||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched">
@@ -26,10 +26,10 @@
                 <!-- ACE Numeber -->
 
                 <div class="form-input">
-                    <label class="form-label" for="ACE Number">ACE Number </label>
+                    <label class="form-label" for="ACE Number">ACE Number <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="(error.includes('ACE'))||(formSubmitted && registerForm.controls['ACENumber'].invalid )||registerForm.controls['ACENumber'].invalid && registerForm.controls['ACENumber'].touched"
-                        id="ACE Number" type="text" placeholder="ACE Number" formControlName="ACENumber"
+                        id="ACE Number" type="text" placeholder="Ex : ACE12345" formControlName="ACENumber"
                         class="form-control">
                 </div>
                 <div
@@ -47,7 +47,7 @@
 
                  <!-- Department -->
                  <div class="form-input">
-                  <label class="form-label " for="Department Name">Department</label>
+                  <label class="form-label " for="Department Name">Department <span id="mandatoryfield">*</span></label>
                   <select
                       [class.is-invalid]="(formSubmitted && registerForm.controls['Department'].invalid)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched"
                       name="Department" id="Department Name" class="form-select" formControlName="Department"
@@ -68,7 +68,7 @@
               <!-- Role -->
 
               <div class="form-input">
-                <label class="form-label " for="Role Name">Role</label>
+                <label class="form-label " for="Role Name">Role <span id="mandatoryfield">*</span></label>
                 <select
                     [class.is-invalid]="(formSubmitted && registerForm.controls['Role'].invalid)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched"
                     name="Role" id="Role Name" class="form-select" name="Role" formControlName="Role">
@@ -91,7 +91,7 @@
                 <!-- Project  -->
 
                 <div class="form-input">
-                    <label class="form-label " for="Project Name">Project</label>
+                    <label class="form-label " for="Project Name">Project <span id="mandatoryfield">*</span></label>
                     <select
                         [class.is-invalid]="(formSubmitted && registerForm.controls['Project'].invalid)||registerForm.controls['Project'].invalid && registerForm.controls['Project'].touched"
                         name="Project" id="Project Name" class="form-select" name="Project" formControlName="Project">
@@ -109,10 +109,10 @@
                 <!-- Email  -->
 
                 <div class="form-input">
-                    <label class="form-label" for="Email">Email</label>
+                    <label class="form-label" for="Email">Email <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="error.includes('Email')||(formSubmitted && registerForm.controls['Email'].invalid)||registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched"
-                        id="Email" type="email" placeholder="Email" formControlName="Email" class="form-control">
+                        id="Email" type="email" placeholder="Ex : sample@aspiresys.com" formControlName="Email" class="form-control">
                 </div>
                 <div
                     *ngIf="(formSubmitted)||registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched">
@@ -129,10 +129,10 @@
                 <!-- Password  -->
 
                 <div class="form-input">
-                    <label class="form-label" for="Password">Password</label>
+                    <label class="form-label" for="Password">Password <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="(formSubmitted && registerForm.controls['Password'].invalid)||registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched"
-                        id="Password" type="password" placeholder="Password" formControlName="Password"
+                        id="Password" type="password" placeholder="Ex : #Sample01" formControlName="Password"
                         class="form-control">
                 </div>
                 <div
@@ -146,10 +146,10 @@
                 <!-- Confirm Password  -->
 
                 <div class="form-input">
-                    <label class="form-label" for="ConfirmPassword">Confirm Password</label>
+                    <label class="form-label" for="ConfirmPassword">Confirm Password <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="(formSubmitted && registerForm.controls['ConfirmPassword'].invalid) || registerForm.controls['ConfirmPassword'].invalid && registerForm.controls['ConfirmPassword'].touched"
-                        id="ConfirmPassword" type="password" placeholder="ConfirmPassword"
+                        id="ConfirmPassword" type="password" placeholder="Ex : #Sample01"
                         formControlName="ConfirmPassword" class="form-control">
                 </div>
                 <div

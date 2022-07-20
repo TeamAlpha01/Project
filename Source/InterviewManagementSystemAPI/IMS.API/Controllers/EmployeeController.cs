@@ -224,8 +224,8 @@ public class EmployeeController : ControllerBase
     [HttpGet]
     public IActionResult ViewEmployeeByApprovalStatus(bool isAdminAccepted)
     {
-        
-        
+
+
         try
         {
             return Ok(_employeeService.ViewEmployeeByApprovalStatus(isAdminAccepted));
@@ -244,7 +244,7 @@ public class EmployeeController : ControllerBase
     /// <returns>Returns list of request received from employee or
     /// Returns Problem when internal error occurs
     /// </returns>
-   
+
     [HttpGet]
     public IActionResult ViewEmployeeRequest()
     {
@@ -272,7 +272,15 @@ public class EmployeeController : ControllerBase
             return BadRequest("Employee Id cannot be zero or less than zero ");
         try
         {
-            return Ok(_employeeService.RespondEmployeeRequest(employeeId, response));
+            if (response)
+            {
+                return _employeeService.RespondEmployeeRequest(employeeId, response) ? Ok(UtilityService.Response("Employee's request is accepted Successfully")) : Problem("Sorry internal error occured");
+            }
+            else
+            {
+                return _employeeService.RespondEmployeeRequest(employeeId, response) ? Ok(UtilityService.Response("Employee's request is rejected.")) : Problem("Sorry internal error occured");
+
+            }
         }
         catch (ValidationException exception)
         {

@@ -11,13 +11,13 @@
                 <!--  -->
                 <div class="form-input">
                     <label class="form-label " for="Name" >Department Name </label>
-                    <input type="text" maxlength="15" [class.is-invalid]="(error.length)||(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched" type="text" id="Name" class="form-control " formControlName="departmentName" >
+                    <input type="text" maxlength="20" [class.is-invalid]="(error.length)||(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched" type="text" id="Name" class="form-control " formControlName="departmentName" >
                 </div>
                 <div *ngIf="(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched">
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['required']">Department name is required</span>
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name is too short</span>
                     <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['maxlength']">Department name can't be more than 30 characters</span>
-                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['pattern'] && !AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name cannot contain numbers or symbols</span>
+                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['pattern'] && !AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name cannot contains numbers,symbols ,repeated characters or multiple spaces</span>
                 </div>
 
                 <div *ngIf="response.length!==0">

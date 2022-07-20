@@ -64,7 +64,8 @@ export class DepartmentPerformanceComponent implements OnInit {
   }
 
   GetEmployeesPerformance() {
-    this.connection.GetEmployeesPerformance().subscribe({
+    const dataRange={From: this._fromDate,To:this._toDate}
+    this.connection.GetEmployeePerformance(dataRange).subscribe({
       next: (data: any) => { this.employeesPerformance = data },
     })
   }
@@ -104,6 +105,8 @@ export class DepartmentPerformanceComponent implements OnInit {
         else if (this._fromDate != '' || this._toDate != '') {
           this.Drive = false;
           this.Date = true;
+          const dateRange = {FromDate : this._fromDate,ToDate:this._toDate}
+          this.connection.GetEmployeePerformance(dateRange);
           console.warn("5");
         }
         else {

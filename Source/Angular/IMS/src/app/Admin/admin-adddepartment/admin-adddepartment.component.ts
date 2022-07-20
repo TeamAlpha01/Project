@@ -27,7 +27,7 @@ export class AdminAdddepartmentComponent implements OnInit {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(15),
-        Validators.pattern('[A-Za-z\\s]*'),
+        Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$"),
       ],
     ],
   });

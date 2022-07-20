@@ -17,7 +17,7 @@ namespace IMS.Validations
             
             if (String.IsNullOrEmpty(employee.EmployeeAceNumber)) throw new ValidationException("EmployeeACEnumber cannot be null");
             
-           //else if (employee.EmployeeAceNumber.Length != 7 || employee.EmployeeAceNumber.Length != 8) throw new ValidationException("ACE number must be 7 or 8 characters");
+            else if (employee.EmployeeAceNumber.Length != 7 || employee.EmployeeAceNumber.Length != 8) throw new ValidationException("ACE number must be 7 or 8 characters");
 
             else if (employee.EmployeeAceNumber == "ACE0000" || employee.EmployeeAceNumber=="ACE00000") throw new ValidationException("Invalid ACE number");
 
@@ -25,7 +25,7 @@ namespace IMS.Validations
 
             if (String.IsNullOrEmpty(employee.EmailId)) throw new ValidationException("EmailId cannot be null");
 
-            else if (!Regex.IsMatch(employee.EmailId,@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z")) throw new ValidationException ("Email Wrong Please enter valid email");
+            else if (!Regex.IsMatch(employee.EmailId,@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z")) throw new ValidationException ("Please enter valid email Id");
 
             if (String.IsNullOrEmpty(employee.Password)) throw new ValidationException("Password cannot be null"); 
 

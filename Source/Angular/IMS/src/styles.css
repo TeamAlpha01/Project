@@ -1635,3 +1635,7 @@ body {
 #text-alignment{
   padding-top: 1%;
 }
+
+#mandatoryfield{
+  color: red;
+}

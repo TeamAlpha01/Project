@@ -85,9 +85,12 @@ export class ConnectionService {
   GetEmployeeDashboard(employeeId: number) {
     return this.http.get<any>(this.baseURL + `Drive/ViewEmployeeDashboard?employeeId=${employeeId}`, { headers: this.headers });
   }
-
-  GetEmployeesPerformance() {
-    return this.http.get<any>(this.baseURL + `Drive/ViewEmployeePerformance`, { headers: this.headers });
+  // GetEmployeesPerformance() {
+  //   return this.http.get<any>(this.baseURL + `Drive/ViewEmployeePerformance`, { headers: this.headers });
+  // }
+  GetEmployeePerformance(dateRange:any):any{
+    console.log(dateRange);
+    return this.http.post<any>(this.baseURL + 'Drive/ViewEmployeePerformance', dateRange,{ headers: this.headers });
   }
 
   GetEmployeeProfile() {
@@ -185,7 +188,6 @@ export class ConnectionService {
   GetUtilizedInterviews(): any {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUtilizedInterviews', { headers: this.headers });
   }
-
 
 
   AddResponse(response: any) {
