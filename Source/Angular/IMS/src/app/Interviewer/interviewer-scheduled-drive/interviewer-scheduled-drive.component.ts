@@ -18,6 +18,7 @@ export class InterviewerScheduledDriveComponent implements OnInit {
   _pool = '';
   _date = '';
 
+
   pool: any[] = [];
   drive: any[] = [];
 

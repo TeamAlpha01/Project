@@ -14,6 +14,8 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
+  Current='Current'
+
   _dept = '';
   _pool = '';
 

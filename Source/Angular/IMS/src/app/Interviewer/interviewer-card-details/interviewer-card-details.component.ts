@@ -14,6 +14,9 @@ export class InterviewerCardDetailsComponent implements OnInit {
   @Input()
   data!: any[];
 
+  @Input()
+  Page!: string;
+
   constructor() { }
 
   ngOnInit(): void {
