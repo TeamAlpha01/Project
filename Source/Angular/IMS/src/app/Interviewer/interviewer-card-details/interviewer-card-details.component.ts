@@ -20,6 +20,7 @@ export class InterviewerCardDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.warn(this.data);
   }
 
 }
