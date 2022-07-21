@@ -9,8 +9,10 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 
 export class TacCreatePoolComponent implements OnInit {
-  title = 'Add Pool'
+  title = 'Add Pool' //This gives the title for the page
   data: any;
+
+  //To get HTTP responses
   response: string = '';
   error: any;
 
@@ -30,16 +32,16 @@ export class TacCreatePoolComponent implements OnInit {
     })
   }
   getpoolName() {
-    return this.AddPoolForm.get('poolName')
+    return this.AddPoolForm.get('poolName')?.value;
   }
   getdepartmentId() {
-    return this.AddPoolForm.get('departmentId')
+    return this.AddPoolForm.get('departmentId')?.value;
   }
   addPool() {
     this.submitted = true;
     this.error = '';
     if (this.AddPoolForm.valid) {
-      this.connection.AddPool(this.getpoolName()?.value, this.getdepartmentId()?.value).subscribe({
+      this.connection.AddPool(this.getpoolName(), this.getdepartmentId()).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,
         complete: () => this.clearInputFields(),
@@ -47,6 +49,7 @@ export class TacCreatePoolComponent implements OnInit {
     };
   }
 
+  //This method clears the input fields and triggers snackbar
   clearInputFields() {
     this.submitted = false;
     setTimeout(() => {

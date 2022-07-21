@@ -8,9 +8,11 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 
 export class MyperformanceComponent implements OnInit {
-  title = 'My Performance'
+  title = 'My Performance' // This gives the title of the page
+
   ScheduledDrives: number = 0
   CancelledDrives: number = 0
+
   error: any;
 
   date = {
@@ -24,7 +26,8 @@ export class MyperformanceComponent implements OnInit {
     this.GetDashboard(this.date);
   }
 
-  GetDashboard(date:any) {
+  //This function sends the data to server
+  GetDashboard(date: any) {
     this.connection.GetTACDashboard(date).subscribe({
       next: (data: any) => {
         this.ScheduledDrives = data.ScheduledDrives
@@ -34,8 +37,8 @@ export class MyperformanceComponent implements OnInit {
     });
   }
 
+  //Filteration method
   Apply() {
-    console.warn(this.date);
     this.GetDashboard(this.date);
   }
 }

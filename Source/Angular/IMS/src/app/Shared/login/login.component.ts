@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ConnectionService } from 'src/app/Services/connection.service';
-import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 
     this.submitted = true;
     if (this.loginForm.valid) {
-      this.isCommanError=false;
+      this.isCommanError = false;
       this.loading = true
       const user = {
         emailId: this.loginForm.value['EmailID'],
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
 
         },
         error: (error: any) => {
-          if(!error.error.toString().includes('email'))
+          if (!error.error.toString().includes('email'))
             this.isCommanError = true
           if (error.status == 0)
             this.error = "Oops! Server down please try again later";

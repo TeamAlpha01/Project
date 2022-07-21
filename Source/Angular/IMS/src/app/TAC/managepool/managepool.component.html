@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <!-- <div> -->
+    
     <div class="mt-3 container shadow  bg-body rounded"
         *ngFor="let item of poolDetails | filter:_dept | filter:_pool | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength }">
         <div class *ngIf="item; else ArrayEmpty">
@@ -44,7 +44,7 @@
                                     class="fa fa-solid fa-user-pen "></i></a>
                         </div>
                     </div>
-                    <div class="col-md-1 "> 
+                    <div class="col-md-1 ">
                         <div class="row" title="Edit Pool">
                             <a routerLink="/tac/managepool/editpool/{{item.poolId}}" class="btn"><i
                                     class="fa fa-solid fa-pen "></i></a>
@@ -63,13 +63,12 @@
                         <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                     </div>
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
     <div class="mt-3 sticky-pagination">
         <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
     </div>
-    <!-- </div> -->
     <ng-template #ArrayEmpty>
         <div class="text-center mt-4">
             No {{title}} found.

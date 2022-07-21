@@ -9,22 +9,28 @@ import { DatePipe } from '@angular/common'
   styleUrls: ['./create-invite.component.css']
 })
 export class CreateInviteComponent implements OnInit {
-  title = 'Create Invite'
-  driveName = '';
-  departmentDetails: any;
+
+  title = 'Create Invite';  //This gives the title of the page
+
+  //To store the HTTP responses
+  response: string = '';
   error: string = '';
+
+  //To store the data receives from server 
+  departmentDetails: any;
   poolDetails: any;
   locationDetails: any;
-  response: string = '';
+
+  //Declaractions
   minDate: Date = new Date();
   maxDate: Date = new Date();
   toDate: Date = new Date();
   toDateActive: boolean = true;
 
+  //To get the user input 
   _dept = '';
-  _pool = '';
 
-  constructor(private connection: ConnectionService, private fb: FormBuilder, private datepipe: DatePipe) { }
+  constructor(private connection: ConnectionService, private fb: FormBuilder) { }
 
   submitted: boolean = false;
   CreateInviteForm = this.fb.group({
@@ -39,28 +45,28 @@ export class CreateInviteComponent implements OnInit {
   });
 
   getDriveName() {
-    return this.CreateInviteForm.get('driveName')
+    return this.CreateInviteForm.get('driveName')?.value;
   }
   getFromDate() {
-    return this.CreateInviteForm.get('fromDate')
+    return this.CreateInviteForm.get('fromDate')?.value;
   }
   getToDate() {
-    return this.CreateInviteForm.get('toDate')
+    return this.CreateInviteForm.get('toDate')?.value;
   }
   getDepartmentId() {
-    return this.CreateInviteForm.get('departmentId')
+    return this.CreateInviteForm.get('departmentId')?.value;
   }
   getPoolId() {
-    return this.CreateInviteForm.get('poolId')
+    return this.CreateInviteForm.get('poolId')?.value;
   }
   getModeId() {
-    return this.CreateInviteForm.get('modeId')
+    return this.CreateInviteForm.get('modeId')?.value;
   }
   getLocationId() {
-    return this.CreateInviteForm.get('locationId')
+    return this.CreateInviteForm.get('locationId')?.value;
   }
   getSlotTiming() {
-    return this.CreateInviteForm.get('slotTiming')
+    return this.CreateInviteForm.get('slotTiming')?.value;
   }
 
   ngOnInit(): void {
@@ -69,46 +75,6 @@ export class CreateInviteComponent implements OnInit {
     this.GetLocation();
     this.minDate.setDate(this.minDate.getDate() + 7);
     this.maxDate.setDate(this.maxDate.getDate() + 31);
-  }
-
-  toDateEnabler(date: any) {
-    this.toDateActive = false;
-    this.CreateInviteForm.controls['toDate'].enable();
-    this.toDate = new Date(date);
-    this.toDate.setDate(this.toDate.getDate() + 7)
-  }
-
-  //GET METHODS CALLED AT CONNECTION SERVICE
-
-  poolEnabler() {
-    if (this.getDepartmentId()?.value == '') { this.CreateInviteForm.controls['poolId'].disable() }
-    else { this.CreateInviteForm.controls['poolId'].enable() }
-  }
-
-  poolName() {
-    for (let item of this.poolDetails) {
-      if (this.getDepartmentId()?.value == item.departmentId) {
-        this._dept = item.departmentName
-      }
-    }
-  }
-
-
-  locationEnabler() {
-    if (this.getModeId()?.value == '1') {
-      this.CreateInviteForm.controls['locationId'].disable();
-      for (let item of this.locationDetails) {
-        if (item.locationName == 'Online') {
-          this.CreateInviteForm.controls['locationId'].setValue(item.locationId)
-        }
-      }
-    }
-    else {
-      {
-        this.CreateInviteForm.controls['locationId'].enable();
-        this.CreateInviteForm.controls['locationId'].setValue('')
-      }
-    }
   }
 
   GetDepartments() {
@@ -129,32 +95,76 @@ export class CreateInviteComponent implements OnInit {
     })
   }
 
-  CreateInvite() {
-    this.submitted = true;
-    this.error = '';
-    const drive = {
-      driveId: 0,
-      name: this.getDriveName()?.value,
-      fromDate: this.getFromDate()?.value,
-      toDate: this.getToDate()?.value,
-      departmentId: this.getDepartmentId()?.value,
-      poolId: this.getPoolId()?.value,
-      modeId: this.getModeId()?.value,
-      locationId: this.getLocationId()?.value,
-      slotTiming: this.getSlotTiming()?.value,
-    }
-    console.warn(drive);
+  //To enable to date field
+  toDateEnabler(date: any) {
+    this.toDateActive = false;
+    this.CreateInviteForm.controls['toDate'].enable();
+    this.toDate = new Date(date);
+    this.toDate.setDate(this.toDate.getDate() + 7)
+  }
 
-    if (this.CreateInviteForm.valid) {
+  //To enable pool field
+  poolEnabler() {
+    if (this.getDepartmentId() == '') { this.CreateInviteForm.controls['poolId'].disable() }
+    else { this.CreateInviteForm.controls['poolId'].enable() }
+  }
 
-      // this.connection.CreateDrive(drive).subscribe({
-      //   next: (data) => this.response = data.message,
-      //   error: (error) => { this.error = error.error.message },
-      //   complete: () => this.clearInputFields(),
-      // });
+  //For pool filteration 
+  poolName() {
+    for (let item of this.poolDetails) {
+      if (this.getDepartmentId() == item.departmentId) {
+        this._dept = item.departmentName
+      }
     }
   }
 
+  //To enable location field when mode is offline
+  locationEnabler() {
+    if (this.getModeId() == '1') {
+      this.CreateInviteForm.controls['locationId'].disable();
+      for (let item of this.locationDetails) {
+        if (item.locationName == 'Online') {
+          this.CreateInviteForm.controls['locationId'].setValue(item.locationId) //If mode is online setting the location to Online
+        }
+      }
+    }
+    else {
+      {
+        this.CreateInviteForm.controls['locationId'].enable();
+        this.CreateInviteForm.controls['locationId'].setValue('')
+      }
+    }
+  }
+
+
+
+  CreateInvite() {
+    this.submitted = true;
+    this.error = '';
+
+    const drive = {
+      driveId: 0,
+      name: this.getDriveName(),
+      fromDate: this.getFromDate(),
+      toDate: this.getToDate(),
+      departmentId: this.getDepartmentId(),
+      poolId: this.getPoolId(),
+      modeId: this.getModeId(),
+      locationId: this.getLocationId(),
+      slotTiming: this.getSlotTiming(),
+    }
+
+    //This function post the data to Server
+    if (this.CreateInviteForm.valid) {
+      this.connection.CreateDrive(drive).subscribe({
+        next: (data) => this.response = data.message,
+        error: (error) => this.error = error.error.message,
+        complete: () => this.clearInputFields(),
+      });
+    }
+  }
+
+  //This methods clears the input field and activates snackbar
   clearInputFields() {
     this.submitted = false;
     setTimeout(() => {

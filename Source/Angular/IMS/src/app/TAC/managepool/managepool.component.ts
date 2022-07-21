@@ -11,19 +11,19 @@ import { DialogueBoxService } from 'src/app/Services/dialogue-box.service';
 export class ManagepoolComponent implements OnInit {
   title = 'Manage Pool'
 
-  //TO STORE THE DATA FROM THE DATABASE
-  poolDetails: any[]=[];
+  //To store the data receives from server 
+  poolDetails: any[] = [];
   departmentDetails: any;
 
-  //TO GET USER INPUT
+  //To get the user input
   _dept = '';
   _pool = '';
 
-  //PAGINATION
+  //Pagination
   page: number = 1;
   totalLength: any;
 
-  //HTTP RESPONSE
+  //To store the HTTP responses
   error: string = '';
   response: string = '';
 
@@ -49,7 +49,7 @@ export class ManagepoolComponent implements OnInit {
   }
 
   async RemovePool(poolId: number) {
-    await this.dialogueService.IsDeleteConfirmed().then((value) => {
+    await this.dialogueService.IsDeleteConfirmed().then((value) => { // This function triggers the dialogue box
       if (value)
         this.connection.RemovePool(poolId).subscribe({
           next: (data) => { this.response = data.message, this.GetPools() },
@@ -59,6 +59,7 @@ export class ManagepoolComponent implements OnInit {
     });
   }
 
+  //This method triggers the snackbar
   snackBar() {
     setTimeout(() => {
       this.error = '';

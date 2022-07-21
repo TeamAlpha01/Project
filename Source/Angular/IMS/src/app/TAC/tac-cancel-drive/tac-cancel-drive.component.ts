@@ -12,13 +12,16 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 
 export class TacCancelDriveComponent implements OnInit {
-  title = 'Cancel Drive';
-  driveId: number = 0;
-  Reason = '';
-  data: any;
-  error: string = '';
-  submitted: boolean = false;
+  title = 'Cancel Drive'; //This gives the title of the page
+
+  //To store the HTTP response
   response: string = '';
+  error: string = '';
+
+  Reason = '';
+  driveId: number = 0;
+  data: any;
+  submitted: boolean = false;
 
   drive = {
     driveDepartment: "",
@@ -39,12 +42,12 @@ export class TacCancelDriveComponent implements OnInit {
   });
 
   getCancelReason() {
-    return this.CancelDriveForm.get('cancelReason')
+    return this.CancelDriveForm.get('cancelReason')?.value;
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.driveId = params['driveId']
+      this.driveId = params['driveId']   //This methods gets the data from the query string
     })
     this.GetDrive();
   }
@@ -60,7 +63,7 @@ export class TacCancelDriveComponent implements OnInit {
     this.submitted = true;
     this.error = '';
     if (this.CancelDriveForm.valid) {
-      this.connection.CancelDrive(this.driveId, this.getCancelReason()?.value).subscribe({
+      this.connection.CancelDrive(this.driveId, this.getCancelReason()).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,
         complete: () => this.clearInputFields(),
@@ -68,6 +71,7 @@ export class TacCancelDriveComponent implements OnInit {
     }
   }
 
+  //This method clears the input field and triggers snackbar
   clearInputFields() {
     this.submitted = false;
     setTimeout(() => {
