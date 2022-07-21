@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -10,14 +11,14 @@ export class InterviewerCancelledDrivesComponent implements OnInit {
 
   title = 'Cancelled Drives';
 
-  //TO GET DATA FROM DATABASE
+  //To get data from database
   CancelledDrives: any;
 
-  //PAGINATION
+  //Pagination
   totalLength: any;
   page: number = 1;
 
-  //TO GET USER INPUT
+  //To get user input
   _pool = '';
   _date = '';
 
@@ -29,22 +30,34 @@ export class InterviewerCancelledDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection: ConnectionService) { }
+  date = {
+    From: '',
+    To: ''
+  }
+
+  constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //GET METHOD CALLED AT CONNECTION SERVICE
-    this.connection.GetCancelledinterviews().subscribe((data: any) => {
+    this.GetCancelledinterviews();
+    this.GetPoolsbyId();
+  }
+
+  GetCancelledinterviews() {
+    //Get method called at connection service
+    this.connection.GetCancelledinterviews(this.date).subscribe((data: any) => {
       this.CancelledDrives = data;
       this.drive = data;
     })
+  }
 
-    //GET METHOD CALLED AT CONNECTION SERVICE
+  GetPoolsbyId() {
+    //Get method called at connection service
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
     })
   }
 
-  //THIS METHOD IS CALLED ON CHANGE IN DROPDOWN FILTER 
+  //This method is called on change in dropdown filter
   filterDropdown() {
 
     this.drive = [];
