@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class InterviewerTotalDrivesComponent implements OnInit {
 
-  title='Total Drives';
+  title = 'Total Drives';
 
   //To get data from database
   Drives: any;
@@ -29,37 +30,51 @@ export class InterviewerTotalDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection :ConnectionService) { }
+  date = {
+    From: '',
+    To: ''
+  }
+  constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.connection.GetTotalDrives().subscribe((data: any) => {
+    this.route.params.subscribe(params => {
+      this.date.From = params['fromDate']   //This methods gets the data from the query string
+      this.date.To = params['toDate']
+    })
+    this.GetTotalDrives();
+    this.GetPoolsbyId();
+  }
+  GetTotalDrives() {
+    this.connection.GetTotalDrives(this.date).subscribe((data: any) => {
       this.Drives = data;
-      this.drive=data;
-    }) 
+      this.drive = data;
+    })
+  }
 
+  GetPoolsbyId() {
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
     })
   }
 
-filterDropdown() {
-  
-  this.drive = [];
+  filterDropdown() {
 
-  for (let item of this.Drives) {
-    if ( this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
-      this.drive.push(item);
-    }
-    else if (item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
-      this.drive.push(item);
-    }
-    else if (this._pool == '' && this._date == '') {
-      this.drive.push(item);
-    }
-    else if (item.drivePool == this._pool && this._date == '') {
-      this.drive.push(item);
+    this.drive = [];
+
+    for (let item of this.Drives) {
+      if (this._pool == '' && item.fromDate <= this._date && this._date <= item.toDate) {
+        this.drive.push(item);
+      }
+      else if (item.drivePool == this._pool && item.fromDate <= this._date && this._date <= item.toDate) {
+        this.drive.push(item);
+      }
+      else if (this._pool == '' && this._date == '') {
+        this.drive.push(item);
+      }
+      else if (item.drivePool == this._pool && this._date == '') {
+        this.drive.push(item);
+      }
     }
   }
-}
 }
 

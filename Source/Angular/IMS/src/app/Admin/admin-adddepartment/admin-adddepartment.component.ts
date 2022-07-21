@@ -33,7 +33,7 @@ export class AdminAdddepartmentComponent implements OnInit {
   });
 
   getDepartmentName() {
-    return this.AddDepartmentForm.get('departmentName');
+    return this.AddDepartmentForm.get('departmentName')?.value;
   }
 
   addDepartment() {

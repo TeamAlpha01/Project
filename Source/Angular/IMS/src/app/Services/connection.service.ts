@@ -164,8 +164,8 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewTodayDrives', { headers: this.headers });
   }
 
-  GetTotalDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewTotalDrives', { headers: this.headers });
+  GetTotalDrives(date: any): any {
+    return this.http.post<any>(this.baseURL + 'Drive/ViewTotalDrives', date, { headers: this.headers });
   }
 
   GetTodaysInterviews(): any {

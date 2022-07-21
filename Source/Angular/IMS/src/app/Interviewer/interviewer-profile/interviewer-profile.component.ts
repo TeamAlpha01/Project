@@ -10,7 +10,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class InterviewerProfileComponent implements OnInit {
   title = 'My Profile'
   data: any;
-  public profile = {
+  profile = {
     employeeACEId: '',
     employeeDepartment: '',
     employeeEmailID: '',

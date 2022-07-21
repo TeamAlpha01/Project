@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-4 col-md-3">
-                <a [routerLink]="['/interviewer/dashboard/totaldrives']" class="link">
+                <a [routerLink]="['/interviewer/dashboard/totaldrives',date.From,date.To]" class="link">
                     <div class="card-card">
                         <div class="card-body">
                             <h1 class="card-title numbersize">
@@ -47,7 +47,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-4 col-md-3">
-                <a [routerLink]="['/interviewer/dashboard/accepted-drives']" class="link">
+                <a [routerLink]="['/interviewer/dashboard/accepted-drives',date.From,date.To]" class="link">
                     <div class="card-card">
                         <div class="card-content">
                             <h1 class="card-title numbersize">
@@ -62,7 +62,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-4 col-md-3">
-                <a [routerLink]="['/interviewer/dashboard/denied-drives']" class="link">
+                <a [routerLink]="['/interviewer/dashboard/denied-drives',date.From,date.To]" class="link">
                     <div class="card-card">
                         <div class="card-content">
                             <h1 class="card-title numbersize">
@@ -77,7 +77,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-4 col-md-3">
-                <a [routerLink]="['/interviewer/dashboard/ignoreddrives']" class="link">
+                <a [routerLink]="['/interviewer/dashboard/ignoreddrives',date.From,date.To]" class="link">
                     <div class="card-card">
                         <div class="card-content">
                             <h1 class="card-title numbersize">
@@ -92,7 +92,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-4 col-md-3">
-                <a [routerLink]="['/interviewer/dashboard/availabilitygiven']" class="link">
+                <a [routerLink]="['/interviewer/dashboard/availabilitygiven',date.From,date.To]" class="link">
                     <div class="card-card">
                         <div class="card-content">
                             <h1 class="card-title numbersize">
@@ -107,7 +107,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-4 col-md-3">
-                <a [routerLink]="['/interviewer/dashboard/utilizedinterviews']" class="link">
+                <a [routerLink]="['/interviewer/dashboard/utilizedinterviews',date.From,date.To]" class="link">
                     <div class="card-card">
                         <div class="card-content">
                             <h1 class="card-title numbersize">
@@ -122,7 +122,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-4 col-md-3">
-                <a [routerLink]="['/interviewer/dashboard/notutilizedinterviews']" class="link">
+                <a [routerLink]="['/interviewer/dashboard/notutilizedinterviews',date.From,date.To]" class="link">
                     <div class="card-card">
                         <div class="card-content">
                             <h1 class="card-title numbersize">
@@ -137,7 +137,7 @@
             </div>
 
             <div class="col-xs-12 col-sm-4 col-md-3">
-                <a [routerLink]="['/interviewer/dashboard/cancelled-drives']" class="link">
+                <a [routerLink]="['/interviewer/dashboard/cancelled-drives',date.From,date.To]" class="link">
                     <div class="card-card">
                         <div class="card-content">
                             <h1 class="card-title numbersize">

@@ -10,14 +10,25 @@
             <form [formGroup]="AddDepartmentForm" (ngSubmit)="addDepartment()">
                 <!--  -->
                 <div class="form-input">
-                    <label class="form-label " for="Name" >Department Name </label>
-                    <input type="text" maxlength="20" [class.is-invalid]="(error.length)||(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched" type="text" id="Name" class="form-control " formControlName="departmentName" >
+                    <label class="form-label " for="Name">Department Name </label>
+                    <input type="text" maxlength="20"
+                        [class.is-invalid]="(error.length)||(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched"
+                        type="text" id="Name" class="form-control " formControlName="departmentName">
                 </div>
-                <div *ngIf="(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched">
-                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['required']">Department name is required</span>
-                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name is too short</span>
-                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['maxlength']">Department name can't be more than 30 characters</span>
-                    <span class="text-danger" *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['pattern'] && !AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name cannot contains numbers,symbols ,repeated characters or multiple spaces</span>
+                <div
+                    *ngIf="(submitted)||AddDepartmentForm.controls['departmentName'].invalid && AddDepartmentForm.controls['departmentName'].touched">
+                    <span class="text-danger"
+                        *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['required']">Department name is
+                        required</span>
+                    <span class="text-danger"
+                        *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department name is
+                        too short</span>
+                    <span class="text-danger"
+                        *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['maxlength']">Department name can't
+                        be more than 30 characters</span>
+                    <span class="text-danger"
+                        *ngIf="AddDepartmentForm.controls['departmentName'].errors?.['pattern'] && !AddDepartmentForm.controls['departmentName'].errors?.['minlength']">Department
+                        name cannot contains numbers,symbols ,repeated characters or multiple spaces</span>
                 </div>
 
                 <div *ngIf="response.length!==0">
@@ -27,8 +38,8 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-back">Add</button>
                 </div>
-                <div >
-                    <h3 class="text-center text-danger" >{{error}}</h3>
+                <div>
+                    <h3 class="text-center text-danger">{{error}}</h3>
                 </div>
             </form>
         </div>
