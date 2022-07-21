@@ -9,32 +9,41 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class AdminviewProjectPageComponent implements OnInit {
   title = "Projects";
-  
+
   //TO STORE DATA FROM DATABASE
   data: any;
-  
+
   //PAGINATION
   totalLength: any;
   page: number = 1;
   response: string = '';
   error: string = '';
-  
- 
-  constructor(private connection: ConnectionService,private dialogueService:DialogueBoxService) { }
+  department: any;
+  _dept = ''
+
+
+  constructor(private connection: ConnectionService, private dialogueService: DialogueBoxService) { }
 
   ngOnInit(): void {
     this.GetProjects()
+    this.GetDepartments()
   }
-  
+
   //GET METHOD CALLED AT CONNECTIONS SERVICE
-  GetProjects(){
+  GetProjects() {
     this.connection.GetProjects().subscribe((data: any) => {
       this.data = data;
     })
   }
 
+  GetDepartments() {
+    this.connection.GetDepartments().subscribe((data: any) => {
+      this.department = data;
+    })
+  }
+
   async RemoveProject(projectId: number) {
-  
+
     await this.dialogueService.IsDeleteConfirmed().then((value) => {
 
       if (value)
@@ -45,12 +54,12 @@ export class AdminviewProjectPageComponent implements OnInit {
         });
 
     });
-    
+
   }
   snackBar() {
     setTimeout(() => {
       this.error = '';
       this.response = '';
     }, 2000);
-}
+  }
 }

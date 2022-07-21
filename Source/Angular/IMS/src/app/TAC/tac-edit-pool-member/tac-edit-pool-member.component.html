@@ -20,8 +20,10 @@
                         <label class="form-label" for="ACE Number">Role </label>
                         <select name="Pool" id="Pool" class="form-select" name="_role" [(ngModel)]="_role">
                             <option value="">Select the Role</option>
-                            <option *ngFor="let item of roleDetails" value={{item.roleName}}>
-                                {{item.roleName}} </option>
+                            <ng-container *ngFor="let item of roleDetails">
+                                <option *ngIf="item.roleName!=='TAC' && item.roleName!=='Admin'"
+                                    value={{item.roleName}}> {{item.roleName}} </option>
+                            </ng-container>
                         </select>
                         <br>
                     </div>
@@ -40,7 +42,8 @@
                     <h3 class="card-header text-cente">{{_dept}} Employees</h3>
                     <div class="container my-box " *ngIf="_dept!=='';else ArrayEmpty">
                         <div *ngFor="let item of employeeDetails |filter:_dept |filter:_role ">
-                            <div class="card-body p-1 border-bottom" *ngIf="(item.employeeAceNumber | lowercase).includes(_search | lowercase) || (item.employeeName | lowercase).includes(_search | lowercase)">
+                            <div class="card-body p-1 border-bottom"
+                                *ngIf="(item.employeeAceNumber | lowercase).includes(_search | lowercase) || (item.employeeName | lowercase).includes(_search | lowercase)">
                                 <div class="d-flex justify-content-evenly align-items-center">
                                     <div class="col-md-3">{{item.employeeAceNumber}}</div>
                                     <div class="col-md-3">{{item.employeeName}}</div>

@@ -1,30 +1,53 @@
 <!-- Title and sidebar Component  -->
-<app-admin-header ></app-admin-header>
+<app-admin-header></app-admin-header>
 <!-- Content Starts -->
 <div class="content">
     <!-- Navbar componen -->
     <app-navbar [title]="title"></app-navbar>
 
-    <div class="text-center">
-        <a [routerLink]="['/admin/project/add']"><button type="button" class="btn btn-filter">Add Project</button></a>
+
+    <div class=" mt-3 mb-5 container shadow  bg-body rounded">
+        <div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label" for="Department">Department </label>
+                        <select name="Department" id="Department Name" class="form-select" name="dept"
+                            [(ngModel)]="_dept">
+                            <option value="">Select the Department</option>
+                            <ng-container *ngFor="let item of department">
+                                <option *ngIf="!(item.departmentName==='TAC' || item.departmentName==='ADMIN')"
+                                    value={{item.departmentName}}> {{item.departmentName}} </option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="col"></div>
+                    <div class="text-center col-md-3">
+                        <a [routerLink]="['/admin/project/add']"><button type="button" class="btn btn-filter">Add
+                                Project</button></a>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
-
     <div class="mt-3 container shadow  bg-body rounded"
-        *ngFor="let item of data| paginate: { itemsPerPage: 6, currentPage: page,totalItems:totalLength }">
+        *ngFor="let item of data|filter:_dept | paginate: { itemsPerPage: 6, currentPage: page,totalItems:totalLength }">
         <div>
-            <div class="card-body" id="text-alignment"*ngIf="item.projectName!=='Not Applicable'">
+            <div class="card-body" id="text-alignment" *ngIf="item.projectName!=='Not Applicable'">
                 <div class="row rone">
-                    <div class="col-md-5 "  id="text-alignment">
+                    <div class="col-md-5 " id="text-alignment">
                         <p><strong>Project Name : </strong>{{item.projectName}}</p>
                     </div>
-                    <div class="col-md-5 "  id="text-alignment">
+                    <div class="col-md-5 " id="text-alignment">
                         <p><strong>Department Name : </strong>{{item.departmentName}}</p>
                     </div>
 
                     <div class="col-md-1 ">
                         <div class="row">
-                            <button (click)="RemoveProject(item.projectId)" class="btn"><i class="fa fa-solid fa-trash"></i></button>
+                            <button (click)="RemoveProject(item.projectId)" class="btn"><i
+                                    class="fa fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                     <div *ngIf="error.length!==0">

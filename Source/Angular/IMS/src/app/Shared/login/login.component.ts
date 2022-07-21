@@ -20,12 +20,14 @@ export class LoginComponent implements OnInit {
   isCommanError: boolean = false;
   loading: boolean = false;
   submitted: boolean = false;
+  currentUser: string = '';
 
 
   loginForm = this.FB.group({
     EmailID: ['', [Validators.required, Validators.pattern("([a-zA-Z0-9-_\.]{4,22})@(aspiresys.com)")]],
     Password: ['', [Validators.required]]
   });
+
 
 
   constructor(private route: Router, private connection: ConnectionService, private FB: FormBuilder) { }
@@ -52,21 +54,16 @@ export class LoginComponent implements OnInit {
       this.connection.Login(user).subscribe({
         next: (data: any) => {
 
-          this.IsAdmin = data.isAdmin
-          this.IsTAC = data.isTAC
-
           AuthenticationService.SetDateWithExpiry("token", data.token, data.expiryInMinutes)
-          AuthenticationService.SetDateWithExpiry("Admin", data.isAdmin, data.expiryInMinutes)
-          AuthenticationService.SetDateWithExpiry("TAC", data.isTAC, data.expiryInMinutes)
-          AuthenticationService.SetDateWithExpiry("Management", data.isManagement, data.expiryInMinutes)
+          AuthenticationService.SetDateWithExpiry("user", data.userHash, data.expiryInMinutes)
           AuthenticationService.SetUserName("UserName", data.userName)
 
           this.connection.initializeTokenHeader(AuthenticationService.GetData("token"))
-
-          if (this.IsAdmin) {
+          this.currentUser = AuthenticationService.GetUser();
+          if (this.currentUser == "Admin") {
             this.route.navigateByUrl("/admin/requests");  //navigation
           }
-          else if (this.IsTAC) {
+          else if (this.currentUser == "TAC") {
             this.route.navigateByUrl("/tac/home");
           }
           else {
