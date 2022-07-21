@@ -51,7 +51,7 @@ public class EmployeeController : ControllerBase
         catch (ValidationException employeeNameException)
         {
             _logger.LogError($"Employee Service : CreateNewEmployee(Employee employee) : {employeeNameException.Message}");
-            return BadRequest(employeeNameException.Message);
+            return BadRequest(UtilityService.Response(employeeNameException.Message));
         }
         catch (MailException mailException)
         {

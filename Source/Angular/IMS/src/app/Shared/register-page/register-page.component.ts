@@ -95,8 +95,9 @@ export class RegisterPageComponent implements OnInit {
 
       this.connection.CreateEmployee(user).subscribe({
         next: (data) => { this.OpenAlertBox() },
-        error: (error) => this.error = error.error
+        error: (error) => this.error = error.error.message
       });
+      console.log('error : '+this.error);
     }
   }
 

@@ -35,8 +35,9 @@ namespace IMS.DataAccessLayer
             _stopwatch.Start();
             EmployeeValidation.IsEmployeeValid(employee);
             
-            if ( _db.Employees!.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber ))throw new ValidationException("ACE number already exists");
-            if ( _db.Employees!.Any(x => x.EmailId == employee.EmailId))throw new ValidationException("Email id  already exists");
+            if ( _db.Employees!.Any(x => x.EmployeeAceNumber == employee.EmployeeAceNumber && x.IsActive==true && x.IsAdminAccepted ==true))throw new ValidationException("ACE number already exists");
+            if ( _db.Employees!.Any(x => x.EmailId == employee.EmailId && x.IsActive==true && x.IsAdminAccepted ==true))throw new ValidationException("Email id  already exists");
+            if ( _db.Employees!.Any(x => ( x.EmailId == employee.EmailId ||  x.EmployeeAceNumber == employee.EmployeeAceNumber) && x.IsActive==true && x.IsAdminAccepted ==false && x.IsAdminResponded ==false))throw new ValidationException("An account already created & waiting for administrator approval");
             
             try
             {

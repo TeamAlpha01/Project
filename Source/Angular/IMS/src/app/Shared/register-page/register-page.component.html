@@ -161,6 +161,9 @@
                         *ngIf="registerForm.controls['ConfirmPassword'].errors?.['passwordNotMatched']">Your password
                         not matched</span>
                 </div>
+                <div class="text-center" *ngIf="!(error.includes('ACE') || error.includes('mail'))">
+                  <span class="text-center text-danger">{{error}}</span>
+              </div>
 
                 <!-- Submit btn -->
                 <div class="d-flex justify-content-center ">
