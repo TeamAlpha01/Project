@@ -66,9 +66,10 @@ namespace IMS.Service
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     ExpiryInMinutes = 360,
-                    IsAdmin = user.RoleId == 10 ? true : false,
-                    IsTAC = user.RoleId == 9 ? true : false,
-                    IsManagement=user.Role!.IsManagement? true : false,
+                    UserHash=getUserHash(user.Role),
+                    // IsAdmin = user.RoleId == 10 ? true : false,
+                    // IsTAC = user.RoleId == 9 ? true : false,
+                    // IsManagement=user.Role!.IsManagement? true : false,
                     UserName=user.Name
                 };
 
@@ -92,5 +93,16 @@ namespace IMS.Service
             }
         }
 
+        private string getUserHash(Role role)
+        {
+            if(role.RoleName.ToLower()=="tac")
+                return UtilityService.TacHashKey;
+            if(role.RoleName.ToLower()=="admin")
+                return UtilityService.AdminHashKey;
+            if(role.IsManagement)
+                return UtilityService.ManagementHashKey;
+            
+            return UtilityService.InterviewerHashKey;
+        }
     }
 }

@@ -14,9 +14,11 @@ namespace IMS.Validations
 
             if (string.IsNullOrWhiteSpace(drive.Name)) throw new ValidationException("Drive name cannot be null");
 
-            if (drive.Name!.Length <= 2) throw new ValidationException("Drive name is too short");
+            if (drive.Name!.Length <= 3) throw new ValidationException("Drive name is too short");
 
-            if(!Regex.IsMatch(drive.Name,"^[a-zA-Z0-9 ]{2,20}$")) throw new ValidationException("Drive name cannot contain symbols");
+            if (drive.Name!.Length >= 25) throw new ValidationException("Drive name is too long");
+
+            if(!Regex.IsMatch(drive.Name,"[A-Za-z.0-9\\s]*")) throw new ValidationException("Drive name cannot contain symbols.");
 
             if (drive.FromDate.Date < System.DateTime.Now.Date.AddDays(minimumFromDate)) throw new ValidationException($"From date must be greater than {System.DateTime.Now.Date.AddDays(minimumFromDate-1).ToShortDateString()}");
 
@@ -24,7 +26,7 @@ namespace IMS.Validations
             
             if (drive.ToDate.Date < drive.FromDate.Date) throw new ValidationException("To date must be greater than from date");
 
-            if ((drive.ToDate.Date - drive.FromDate.Date ).Days > drivePeriod ) throw new ValidationException($"The Drive period must be within Seven(7) Days");
+            if ((drive.ToDate.Date - drive.FromDate.Date ).Days > drivePeriod ) throw new ValidationException($"The Drive period must be within {drivePeriod} Days");
 
             setDefaultValues(drive);
         }
@@ -45,6 +47,7 @@ namespace IMS.Validations
             IsEmployeeIdValid(tacId);   
             if(String.IsNullOrEmpty(reason)) throw new ValidationException("Reason cannot be empty");
             if(reason.Length<=5) throw new ValidationException($"{reason} : This reason is too short");
+            if(reason.Length>250) throw new ValidationException($"{reason} : This reason is too long");
             if(String.IsNullOrWhiteSpace(reason)) throw new ValidationException("Reason cannot contain only whitespaces");
             if(!Regex.IsMatch(reason,"[a-zA-Z0-9]")) throw new ValidationException($"{reason} : Reason cannot contain only symbols");
 

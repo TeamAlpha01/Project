@@ -73,14 +73,15 @@ public class DriveController : ControllerBase
     /// <response code="400">If the item is null or validation exception occurs</response> 
     /// <response code="500">If the an exception occurs</response> 
     [HttpPatch]
-    public IActionResult CancelDrive(int driveId, int tacId, string reason)
+    public IActionResult CancelDrive(int driveId, string reason)
     {
-        if (driveId <= 0 || tacId <= 0 || reason.Length <= 0)
+        if (driveId <= 0 || reason.Length <= 0)
             return BadRequest("Provide proper driveId, tacId and reason");
 
         try
         {
-            if (_driveService.CancelDrive(driveId, tacId, reason))
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            if (_driveService.CancelDrive(driveId, currentUser, reason))
             {
                 //_mailService.SendEmailAsync(_mailService.DriveCancelled(driveId, Convert.ToInt32(User.FindFirst("UserId").Value)), false);
                 return Ok(UtilityService.Response("Drive Cancelled Sucessfully"));
@@ -90,7 +91,7 @@ public class DriveController : ControllerBase
         catch (ValidationException cancelDriveNotValid)
         {
             _logger.LogInformation($"Drive Controller : CancelDrive(int driveId, int tacId, string reason) : {cancelDriveNotValid.Message} : {cancelDriveNotValid.StackTrace}");
-            return BadRequest(cancelDriveNotValid.Message);
+            return BadRequest(UtilityService.Response(cancelDriveNotValid.Message));
         }
         catch (MailException mailException)
         {
