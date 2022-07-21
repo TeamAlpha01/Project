@@ -33,6 +33,7 @@ export class CreateInviteComponent implements OnInit {
   constructor(private connection: ConnectionService, private fb: FormBuilder) { }
 
   submitted: boolean = false;
+  
   CreateInviteForm = this.fb.group({
     driveName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern('[A-Za-z.0-9\\s]*')]],
     fromDate: ['', [Validators.required]],
