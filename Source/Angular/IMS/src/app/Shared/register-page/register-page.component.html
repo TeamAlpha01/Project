@@ -10,7 +10,7 @@
                     <label class="form-label" for="Name">Name <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="(formSubmitted && registerForm.controls['Name'].invalid )||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched"
-                        id="Name" type="text" placeholder="Ex : Sample" formControlName="Name" class="form-control">
+                        id="Name" type="text" placeholder="Ex : Sample" formControlName="Name" class="form-control" maxlength="20">
                 </div>
                 <div
                     *ngIf="(formSubmitted)||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched">
@@ -18,12 +18,10 @@
                         required</span>
                     <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['minlength']">Name is too
                         short.Please enter minimum of 3 characters</span>
-                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['maxlength']">Name is too
-                        long.Please enter maximum of 15 characters</span>
                     <span class="text-danger" *ngIf="(!registerForm.controls['Name'].errors?.['maxlength']) && registerForm.controls['Name'].errors?.['pattern']">Name cannot contain symbols and numbers or three consecutive identical characters</span>
                 </div>
 
-                <!-- ACE Numeber -->
+                <!-- ACE Number -->
 
                 <div class="form-input">
                     <label class="form-label" for="ACE Number">ACE Number <span id="mandatoryfield">*</span></label>
@@ -140,7 +138,7 @@
                     <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['required']">Password is
                         required</span>
                     <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['pattern']">Password
-                        should contain minimum of 8 digits with one uppercase, 1 symbol and 1 number</span>
+                        should contain minimum of 8 digits with 1 uppercase, 1 symbol and 1 number</span>
                 </div>
 
                 <!-- Confirm Password  -->
