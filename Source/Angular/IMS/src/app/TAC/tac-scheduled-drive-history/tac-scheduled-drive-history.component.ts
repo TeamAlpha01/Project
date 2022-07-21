@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -30,16 +30,26 @@ export class TacScheduledDriveHistoryComponent implements OnInit {
   error: any;
   showErrorMessage: boolean = false;
 
-  constructor(private connection: ConnectionService, private route: Router) { }
+  date = {
+    From: '',
+    To: ''
+  }
+
+  constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.route.params.subscribe(params => {
+      this.date.From = params['fromDate']   //This methods gets the data from the query string
+      this.date.To = params['toDate']
+    })
     this.GetNonCancelledDrives();
     this.GetPools();
     this.GetDepartments();
   }
-  
+
   GetNonCancelledDrives() {
-    this.connection.GetNonCancelledDrives().subscribe({
+    this.connection.GetNonCancelledDrives(this.date).subscribe({
       next: (data: any) => {
         this.driveDetails = data;
         for (let item of this.driveDetails) {

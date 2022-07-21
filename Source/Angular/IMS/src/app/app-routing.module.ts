@@ -87,8 +87,8 @@ const routes: Routes = [
 
   //tac pages
   { path: 'tac/dashboard', component: MyperformanceComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
-  { path: 'tac/dashboard/scheduled-drive-history', component: TacScheduledDriveHistoryComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
-  { path: 'tac/dashboard/cancelled-drive-history', component: TacCancelledDriveHistoryComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
+  { path: 'tac/dashboard/scheduled-drive-history/:fromDate/:toDate', component: TacScheduledDriveHistoryComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
+  { path: 'tac/dashboard/cancelled-drive-history/:fromDate/:toDate', component: TacCancelledDriveHistoryComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
   { path: 'tac/dashboard/employee-dashboard', component: TacEmployeeDashboardComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
   { path: 'tac/managepool/managepoolmembers/:poolId', component: TacEditPoolMemberComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
   { path: 'tac/myProfile', component: TacProfileComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
