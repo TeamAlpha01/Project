@@ -28,7 +28,7 @@
                             more than 15 characters</span>
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['driveName'].errors?.['pattern'] && !CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive
-                            name cannot contain numbers or symbols</span>
+                            name cannot contain numbers or symbols or empty space</span>
                     </div>
                     <div class="form-input">
                         <label class="form-label " for="departmentId">Department <span
@@ -101,7 +101,7 @@
                         *ngIf="(submitted)||CreateInviteForm.controls['locationId'].invalid && CreateInviteForm.controls['locationId'].touched">
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['locationId'].errors?.['required']">Choose a
-                            Pool</span>
+                            Location</span>
                     </div>
                     <div class="form-input">
                         <label class="form-label" for="fromDate">From Date <span id="mandatoryfield">*</span></label>
