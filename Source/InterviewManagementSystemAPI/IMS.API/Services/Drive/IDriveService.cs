@@ -27,7 +27,6 @@ namespace IMS.Service
 
         public Object ViewTodayInterviews(int employeeId);
         public Object ViewScheduledInterview(int employeeId);
-         public Object ViewCancelledInterview(int employeeId);
         public Object ViewUpcomingInterview(int employeeId);
         public Object ViewAllInterview(int employeeId);
         public bool ScheduleInterview(int employeeAvailabilityId);
@@ -40,9 +39,10 @@ namespace IMS.Service
         public Object ViewAcceptedDrives(int employeeId,DateTime fromDate,DateTime toDate);
         public Object ViewDeniedDrives(int employeeId,DateTime fromDate,DateTime toDate);
         public Object ViewIgnoredDrives(int employeeId,DateTime fromDate,DateTime toDate);
-        public Object ViewUtilizedInterviews(int employeeId);
-        public Object ViewNotUtilizedInterviews(int employeeId);
-        public Object ViewTotalAvailability(int employeeId);
+        public Object ViewUtilizedInterviews(int employeeId,DateTime fromDate,DateTime toDate);
+        public Object ViewNotUtilizedInterviews(int employeeId,DateTime fromDate,DateTime toDate);
+        public Object ViewCancelledInterview(int employeeId,DateTime fromDate,DateTime toDate);
+        public Object ViewTotalAvailability(int employeeId,DateTime fromDate,DateTime toDate);
         public Object ViewDefaulters(int poolId);
         public Object ViewDriveResponse(int driveId);
         public Object GetDrivesForCurrentUser(int departmentId);

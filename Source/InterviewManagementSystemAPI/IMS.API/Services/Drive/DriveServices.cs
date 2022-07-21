@@ -527,40 +527,7 @@ namespace IMS.Service
                 _stopwatch.Stop();
                 _logger.LogInformation($"Drive Service Time elapsed for  ViewScheduledInterview(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
-        }
-        public Object ViewCancelledInterview(int employeeId)
-        {
-            _stopwatch.Start();
-            try
-            {
-                return _driveDataAccess.ViewCancelledInterview(true, employeeId)
-                .Select(e => new
-                {
-                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
-                    FromTime = e.From.ToShortTimeString(),
-                    ToTime = e.To.ToShortTimeString(),
-                    DriveName = e.Drive!.Name,
-                    PoolName = e.Drive.Pool!.PoolName,
-                    InterviewDate = e.InterviewDate.ToString("yyyy-MM-dd"),
-                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
-                    LocationName = e.Drive.Location!.LocationName,
-                    Status = e.IsInterviewScheduled
-                }
-                );//filter by user using authentication  
-
-            }
-            catch (Exception exception)
-            {
-                _logger.LogInformation($"Drive Service : ViewCancelledInterview(int employeeId) : {exception.Message} : {exception.StackTrace}");
-                throw;
-            }
-
-            finally
-            {
-                _stopwatch.Stop();
-                _logger.LogInformation($"Drive Service Time elapsed for  ViewCancelledInterview(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
-            }
-        }
+        }    
 
         public Object ViewUpcomingInterview(int employeeId)
         {
@@ -681,7 +648,6 @@ namespace IMS.Service
         public Object ViewAvailableMembersForDrive(int driveId)
         {
             _stopwatch.Start();
-            //Drive Id validation
             try
             {
                 return _driveDataAccess.ViewAvailableMembersForDrive(driveId).Select(
@@ -735,10 +701,10 @@ namespace IMS.Service
                 DashboardCount.Add("TotalDrives", DashboardCount["AcceptedDrives"] + DashboardCount["DeniedDrives"] + DashboardCount["IgnoredDrives"]);
                 DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,_acceptedDrives.ToList()).Count());
                 DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,_acceptedDrives.ToList()).Count());
-                DashboardCount.Add("CancelledInterview", _driveDataAccess.ViewCancelledInterview(true, employeeId).Count());
+                DashboardCount.Add("CancelledInterview", _driveDataAccess.GetCancelledInterviewCount(employeeId,_acceptedDrives.ToList()).Count());
                 DashboardCount.Add("SlotAvailabiltyGiven", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"] + DashboardCount["CancelledInterview"]);
                 //_driveDataAccess.GetSlotAvailabilityGiven(employeeId).Count()
-                DashboardCount.Add("TotalAvailability", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"]);
+                DashboardCount.Add("TotalAvailability", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"]+ DashboardCount["CancelledInterview"]);
                 return DashboardCount;
             }
             catch (ValidationException viewEmployeeDashboardNotVlaid)
@@ -923,13 +889,13 @@ namespace IMS.Service
             }
         }
 
-        public Object ViewUtilizedInterviews(int employeeId)
+        public Object ViewUtilizedInterviews(int employeeId,DateTime fromDate,DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                //var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId);
-                return _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,new List<int>()).Select(e => new
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId).ToList();
+                return _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,_acceptedDrives).Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive!.Name,
@@ -979,13 +945,13 @@ namespace IMS.Service
                 throw e;
             }
         }
-        public Object ViewNotUtilizedInterviews(int employeeId)
+        public Object ViewNotUtilizedInterviews(int employeeId,DateTime fromDate,DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                //var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId);
-                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,new List<int>()).Select(e => new
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId).ToList();
+                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,_acceptedDrives).Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive!.Name,
@@ -1011,13 +977,46 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service Time elapsed for  ViewNotUtilizedInterviews(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
-        public Object ViewTotalAvailability(int employeeId)
+        public Object ViewCancelledInterview(int employeeId, DateTime fromDate, DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                //do something here
-                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,new List<int>()).Concat(_driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,new List<int>()))
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId).ToList();
+                return _driveDataAccess.GetCancelledInterviewCount(employeeId,_acceptedDrives.ToList())
+                .Select(e => new
+                {
+                    EmployeeAvailabilityId = e.EmployeeAvailabilityId,
+                    FromTime = e.From.ToShortTimeString(),
+                    ToTime = e.To.ToShortTimeString(),
+                    DriveName = e.Drive!.Name,
+                    PoolName = e.Drive.Pool!.PoolName,
+                    InterviewDate = e.InterviewDate.ToString("yyyy-MM-dd"),
+                    Mode = Enum.GetName(typeof(UtilityService.Mode), e.Drive.ModeId),
+                    LocationName = e.Drive.Location!.LocationName,
+                    Status = e.IsInterviewScheduled
+                }
+                );
+
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Drive Service : ViewCancelledInterview(int employeeId) : {exception.Message} : {exception.StackTrace}");
+                throw;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Drive Service Time elapsed for  ViewCancelledInterview(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
+        }
+        public Object ViewTotalAvailability(int employeeId,DateTime fromDate,DateTime toDate)
+        {
+            _stopwatch.Start();
+            try
+            {
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId).ToList();
+                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,_acceptedDrives).Concat(_driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,_acceptedDrives))
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,

@@ -414,26 +414,6 @@ public class DriveController : ControllerBase
             return Problem("Sorry internal error occured");
         }
     }
-    
-    /// <summary>
-    /// This method gets a list of cancelled interviews for current user
-    /// </summary>
-    /// <response code="200">Returns list of cancelled interviews</response>
-    /// <response code="500">If there is problem in server</response> 
-    [HttpGet]
-    public IActionResult ViewCancelledInterview()
-    {
-        try
-        {
-            int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewCancelledInterview(currentUser));
-        }
-        catch (Exception viewScheduledInterviewException)
-        {
-            _logger.LogInformation($"Drive Controller : ViewCancelledInterview() : {viewScheduledInterviewException.Message} : {viewScheduledInterviewException.StackTrace}");
-            return Problem("Sorry internal error occured");
-        }
-    }
 
     /// <summary>
     /// This method gets a list of upcoming interviews for current user
@@ -799,14 +779,14 @@ public class DriveController : ControllerBase
     /// <returns>Returns list of utilized interviews or 
     /// Returns problem if some internal problem occurs</returns>
 
-    [HttpGet]
+    [HttpPost]
     public IActionResult ViewUtilizedInterviews(DateRange dateRange)
     {
         Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewUtilizedInterviews(employeeId));//,dateRange.FromDate,dateRange.ToDate
+            return Ok(_driveService.ViewUtilizedInterviews(employeeId,dateRange.FromDate,dateRange.ToDate));
         }
         catch (Exception viewUtilizedInterviewsNotValid)
         {
@@ -823,18 +803,39 @@ public class DriveController : ControllerBase
   
     /// <returns>Returns list of not utilized interviews </returns>
 
-    [HttpGet]
-    public IActionResult ViewNotUtilizedInterviews()
+    [HttpPost]
+    public IActionResult ViewNotUtilizedInterviews(DateRange dateRange)
     {
-
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewNotUtilizedInterviews(employeeId));
+            return Ok(_driveService.ViewNotUtilizedInterviews(employeeId,dateRange.FromDate,dateRange.ToDate));
         }
         catch (Exception viewNotUtilizedInterviewsException)
         {
             _logger.LogInformation($"Drive Controller : ViewDeniedDrives() : {viewNotUtilizedInterviewsException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+    }
+    
+    /// <summary>
+    /// This method gets a list of cancelled interviews for current user
+    /// </summary>
+    /// <response code="200">Returns list of cancelled interviews</response>
+    /// <response code="500">If there is problem in server</response> 
+    [HttpPost]
+    public IActionResult ViewCancelledInterview(DateRange dateRange)
+    {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
+        try
+        {
+            int currentUser = Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            return Ok(_driveService.ViewCancelledInterview(currentUser,dateRange.FromDate,dateRange.ToDate));
+        }
+        catch (Exception viewScheduledInterviewException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewCancelledInterview() : {viewScheduledInterviewException.Message} : {viewScheduledInterviewException.StackTrace}");
             return Problem("Sorry internal error occured");
         }
     }
@@ -856,13 +857,13 @@ public class DriveController : ControllerBase
   
     /// <returns>Returns the dashboard of employee</returns>
 
-    [HttpGet]
-    public IActionResult ViewTotalAvailability()
+    [HttpPost]
+    public IActionResult ViewTotalAvailability(DateRange dateRange)
     {
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewTotalAvailability(employeeId));
+            return Ok(_driveService.ViewTotalAvailability(employeeId,dateRange.FromDate,dateRange.ToDate));
         }
         catch (Exception viewTotalAvailabilityException)
         {

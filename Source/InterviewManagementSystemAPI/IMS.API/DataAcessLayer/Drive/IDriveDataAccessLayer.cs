@@ -38,11 +38,12 @@ namespace IMS.DataAccessLayer
         public List<Employee> GetEmployee(int departmentId);
         public List<EmployeeDriveResponse> GetResponseDetailsByStatus(int responseType, int employeeId, DateTime fromDate, DateTime toDate);
         public List<EmployeeAvailability> GetResponseUtilizationByStatus(bool isUtilized, int employeeId,List<int> driveIds);
+        public List<EmployeeAvailability> GetCancelledInterviewCount(int employeeId,List<int> driveIds);
         public object GetDefaulters(int poolId);
         public List<EmployeeDriveResponse> GetDriveResponse(int driveId);
         public int GetUtilizationCountByStatus(int driveId, int employeeId, bool status);
         public int GetCancelledInterviewCount(int driveId, int employeeId);
-        public List<EmployeeAvailability> ViewCancelledInterview(bool status, int employeeId);
+        public List<EmployeeAvailability> ViewCancelledInterview(int employeeId,DateTime fromDate, DateTime toDate);
         public Object GetDrivesForCurrentUser(int departmentId);
         public bool GetIsTraceEnabledFromConfiguration();
     }
