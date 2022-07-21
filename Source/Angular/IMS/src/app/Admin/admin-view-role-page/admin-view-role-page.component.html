@@ -23,6 +23,12 @@
                             <button (click)="removeRole(item.roleId, item.roleName)" class="btn"><i class="fa fa-solid fa-trash"></i></button>
                         </div>
                     </div>
+                    <div *ngIf="error.length!==0">
+                        <app-snack-bar snackBarMessage={{error}} snackBarAction="Done"></app-snack-bar>
+                    </div>
+                    <div *ngIf="response.length!==0">
+                        <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                    </div>
                 </div>
             </div>
         </div>
