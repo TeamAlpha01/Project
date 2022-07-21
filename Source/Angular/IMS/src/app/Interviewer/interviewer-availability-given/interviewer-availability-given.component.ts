@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -9,15 +10,14 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class InterviewerAvailabilityGivenComponent implements OnInit {
   title = 'Slot Availability Given';
 
-  //TO GET DATA FROM DATABASE
+  //To get data from database
   Availability: any;
 
-  //PAGINATION
+  //Pagination
   totalLength: any;
   page: number = 1;
 
-
-  //TO GET USER INPUT
+  //To get user input
   _pool = '';
   _date = '';
 
@@ -29,26 +29,40 @@ export class InterviewerAvailabilityGivenComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection: ConnectionService) { }
+  date = {
+    From: '',
+    To: ''
+  }
+
+  constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.date.From = params['fromDate']   //This methods gets the data from the query string
+      this.date.To = params['toDate']
+    })
+    this.GetSlotAvailability();
+    this.GetPoolsbyId();
+  }
 
-    //GET METHOD CALLED AT CONNECTION SERVICE
-    this.connection.GetSlotAvailability().subscribe((data: any) => {
+  GetSlotAvailability() {
+    //Get method called at connection service
+    this.connection.GetSlotAvailability(this.date).subscribe((data: any) => {
       this.Availability = data;
       this.drive = data;
     })
+  }
 
-    //GET METHOD CALLED AT CONNECTION SERVICE
+  GetPoolsbyId() {
+    //Get method called at connection service
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
     })
   }
 
-  //THIS METHOD IS CALLED ON CHANGE IN DROPDOWN FILTER 
+  //This method is called on change in dropdown filter
   filterDropdown() {
     this.drive = [];
-
 
     for (let item of this.Availability) {
       if (this._pool == '' && item.interviewDate == this._date) {

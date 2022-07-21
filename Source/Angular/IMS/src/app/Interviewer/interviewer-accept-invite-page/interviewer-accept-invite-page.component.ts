@@ -19,9 +19,12 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   Availability: string = '';
   GivenSlot: any;
 
+  submitted: boolean = false;
+
   AcceptInvitePage = this.fb.group({
     InterviewDate: ['', [Validators.required]],
-    SlotTime: ['', [Validators.required]]
+    SlotTime: [{ value: '', disabled: true }, [Validators.required]],
+
   });
 
 
@@ -70,6 +73,7 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
   }
   //
   AddResponse() {
+    this.submitted = true;
     if (this.AcceptInvitePage.valid) {
       var to = new Date()
       to.setHours(this.getSlotTime().substr(0, 2))
@@ -94,7 +98,16 @@ export class InterviewerAcceptInvitePageComponent implements OnInit {
       });
     }
   }
+  //To enable time field
+  slotEnabler() {
+    if (this.getInterviewDate() == '') { this.AcceptInvitePage.controls['SlotTime'].disable() }
+    else { this.AcceptInvitePage.controls['SlotTime'].enable() }
+  }
+
+
   snackBar() {
+    this.submitted = false
+    this.AcceptInvitePage.controls['SlotTime'].disable();
     setTimeout(() => {
       this.error = [];
       this.response = '';

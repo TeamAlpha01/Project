@@ -30,10 +30,10 @@ export class RegisterPageComponent implements OnInit {
 
     this.registerForm = this.FB.group({
       Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")]],
-      ACENumber: ['', [Validators.required, Validators.pattern("^ACE[0-9]{4,5}$"),Validators.pattern("^(?!.*ACE0000).*$"),Validators.pattern("^(?!.*ACE00000).*$")]],
+      ACENumber: ['', [Validators.required, Validators.pattern("^ACE[0-9]{4,5}$"), Validators.pattern("^(?!.*ACE0000).*$"), Validators.pattern("^(?!.*ACE00000).*$")]],
       Department: ['', [Validators.required]],
       Role: [{ value: '', disabled: true }, [Validators.required]],
-      Project: [{ value: '', disabled: true } , [Validators.required]],
+      Project: [{ value: '', disabled: true }, [Validators.required]],
       Email: ['', [Validators.required, Validators.pattern("([a-z0-9-_\.]{5,22})@(aspiresys.com)")]],
       Password: ['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,15}$")]],
       ConfirmPassword: ['', [Validators.required, this.ValidateConfirmPassword]]
@@ -60,16 +60,36 @@ export class RegisterPageComponent implements OnInit {
     })
   }
 
-  projectEnabler(){
-    if (this.registerForm.get('Department')?.value == '')
-    {
+  projectEnabler() {
+    for (let item of this.departmentDetails) {
+      if (this.registerForm.get('Department')?.value == item.departmentId) {
+        var departmentName = item.departmentName;
+      }
+      if (departmentName == "TAC") {
+        this.registerForm.controls['Role'].disable();
+        this.registerForm.controls['Project'].disable();
+        for (let item of this.roleDetails) {
+          if (item.roleName == "TAC") {
+            this.registerForm.controls['Role'].setValue(item.roleId)
+          }
+        }
+        for (let item of this.projectDetails) {
+          if (item.projectName == "Not Applicable") {
+            this.registerForm.controls['Project'].setValue(item.projectId)
+          }
+        }
+      }
+      else {
+        this.registerForm.controls['Role'].enable();
+        this.registerForm.controls['Project'].enable();
+      }
+    }
+
+    if (this.registerForm.get('Department')?.value == '') {
       this.registerForm.controls['Project'].disable();
       this.registerForm.controls['Role'].disable();
     }
-    else {
-      this.registerForm.controls['Project'].enable()
-      this.registerForm.controls['Role'].enable()
-    }
+
   }
   projectName() {
     for (let item of this.departmentDetails) {
@@ -97,7 +117,7 @@ export class RegisterPageComponent implements OnInit {
         next: (data) => { this.OpenAlertBox() },
         error: (error) => this.error = error.error.message
       });
-      console.log('error : '+this.error);
+      console.log('error : ' + this.error);
     }
   }
 

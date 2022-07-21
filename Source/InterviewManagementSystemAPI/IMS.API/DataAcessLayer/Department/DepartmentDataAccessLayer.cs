@@ -250,6 +250,10 @@ namespace IMS.DataAccessLayer
             {
                 throw new ValidationException("Project already deleted");
             }
+             if(hasActiveEmployees(projectId))
+            {
+                throw new ValidationException("Project contains active employees.");
+            }
 
             try
             {
@@ -375,5 +379,29 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"department DAL Time elapsed for hasActiveDrives(int department)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
-}
+
+        private bool hasActiveEmployees(int projectId)
+        {
+            _stopwatch.Start();
+            try
+            {
+                if(_db.Employees!.Any(e=>e.ProjectId==projectId &&e.IsActive==true))
+                 
+                    return true;  
+             
+
+             return false;
+            }
+            catch(Exception hasActiveEmployeeException)
+            {
+                _logger.LogError($"department DAL : hasActiveEmployees(int project id) :{hasActiveEmployeeException.Message} : {hasActiveEmployeeException.StackTrace}");
+                throw;
+            }
+              finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"department DAL Time elapsed for hasActiveDrives(int department)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
+        }
+    }
 }

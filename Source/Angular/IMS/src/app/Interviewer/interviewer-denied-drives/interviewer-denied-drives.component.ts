@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -29,11 +30,20 @@ export class InterviewerDeniedDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection: ConnectionService) { }
+  date = {
+    From: '',
+    To: ''
+  }
+
+  constructor(private connection: ConnectionService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.date.From = params['fromDate']   //This methods gets the data from the query string
+      this.date.To = params['toDate']
+    })
      //GET METHOD CALLED AT CONNECTION SERVICE
-    this.connection.GetDeniedDrives().subscribe((data: any) => {
+    this.connection.GetDeniedDrives(this.date).subscribe((data: any) => {
       this.Denied = data;
       this.drive = data;
     })

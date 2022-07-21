@@ -1,5 +1,5 @@
-import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -25,14 +25,30 @@ export class InterviewerUtilizedDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection: ConnectionService) { }
+  date = {
+    From: '',
+    To: ''
+  }
+
+  constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.connection.GetUtilizedInterviews().subscribe((data: any) => {
+    this.route.params.subscribe(params => {
+      this.date.From = params['fromDate']   //This methods gets the data from the query string
+      this.date.To = params['toDate']
+    })
+    this.GetUtilizedInterviews();
+    this.GetPoolsbyId();
+  }
+
+  GetUtilizedInterviews(){
+    this.connection.GetUtilizedInterviews(this.date).subscribe((data: any) => {
       this.Utilized = data;
       this.drive = data;
     })
+  }
 
+  GetPoolsbyId(){
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
     })

@@ -32,16 +32,16 @@ export class ConnectionService {
 
   //GET methods
 
-  GetAcceptedDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewAcceptedDrives', { headers: this.headers });
+  GetAcceptedDrives(date: any): any {
+    return this.http.post<any>(this.baseURL + 'Drive/ViewAcceptedDrives', date, { headers: this.headers });
   }
 
   GetAvailability(driveId: number): any {
     return this.http.get<any>(this.baseURL + `Drive/ViewAvailabilty?driveId=${driveId}`, { headers: this.headers });
   }
 
-  GetCancelledinterviews(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewCancelledInterview', { headers: this.headers });
+  GetCancelledinterviews(date:any): any {
+    return this.http.post<any>(this.baseURL + 'Drive/ViewCancelledInterview',date, { headers: this.headers });
   }
 
   GetCancelledDrives(): any {
@@ -100,8 +100,8 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeeRequest', { headers: this.headers });
   }
 
-  GetDeniedDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewDeniedDrives', { headers: this.headers });
+  GetDeniedDrives(date:any): any {
+    return this.http.post<any>(this.baseURL + 'Drive/ViewDeniedDrives',date , { headers: this.headers });
   }
 
   GetDrivesForCurrentUser(): any {
@@ -112,8 +112,8 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Employee/ViewEmployeesByDepartmentForCurrentUser', { headers: this.headers });
   }
 
-  GetIgnoredDrives(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewIgnoredDrives', { headers: this.headers });
+  GetIgnoredDrives(date:any): any {
+    return this.http.post<any>(this.baseURL + 'Drive/ViewIgnoredDrives',date, { headers: this.headers });
   }
 
   GetLocations(): any {
@@ -124,8 +124,8 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewNonCancelledDrives', { headers: this.headers });
   }
 
-  GetNotUtilizedInterviews(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewNotUtilizedInterviews', { headers: this.headers });
+  GetNotUtilizedInterviews(date:any): any {
+    return this.http.post<any>(this.baseURL + 'Drive/ViewNotUtilizedInterviews',date, { headers: this.headers });
   }
 
   GetPools(): any {
@@ -148,8 +148,8 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Role/ViewRoles', { headers: this.headers });
   }
 
-  GetSlotAvailability(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewSlotAvailabilityGiven', { headers: this.headers });
+  GetSlotAvailability(date:any): any {
+    return this.http.post<any>(this.baseURL + 'Drive/ViewSlotAvailabilityGiven', date,{ headers: this.headers });
   }
 
   GetScheduledDrives(): any {
@@ -184,10 +184,9 @@ export class ConnectionService {
     return this.http.get<any>(this.baseURL + 'Drive/ViewUpcomingInterview', { headers: this.headers });
   }
 
-  GetUtilizedInterviews(): any {
-    return this.http.get<any>(this.baseURL + 'Drive/ViewUtilizedInterviews', { headers: this.headers });
+  GetUtilizedInterviews(date:any): any {
+    return this.http.post<any>(this.baseURL + 'Drive/ViewUtilizedInterviews',date, { headers: this.headers });
   }
-
 
   AddResponse(response: any) {
     return this.http.post<any>(this.baseURL + `Drive/AddResponse`, response, { headers: this.headers });

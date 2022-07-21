@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -10,14 +11,14 @@ export class InterviewerAcceptedDrivesComponent implements OnInit {
 
   title = 'Accepted Drives';
 
-  //TO GET DATA FROM DATABASE
+  //To get data from database
   AcceptedDrives: any;
 
-  //PAGINATION
+  //Pagination
   totalLength: any;
   page: number = 1;
 
-  //TO GET USER INPUT
+  //To get user input
   _pool = '';
   _date = '';
 
@@ -29,22 +30,36 @@ export class InterviewerAcceptedDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection: ConnectionService) { }
+  date = {
+    From: '',
+    To: ''
+  }
+
+  constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //GET METHOD CALLED AT CONNECTION SERVICE
-    this.connection.GetAcceptedDrives().subscribe((data: any) => {
+    this.route.params.subscribe(params => {
+      this.date.From = params['fromDate']   //This methods gets the data from the query string
+      this.date.To = params['toDate']
+    })
+    this.GetAcceptedDrives();
+    this.GetPoolsbyId();
+  }
+
+  GetAcceptedDrives() {
+    this.connection.GetAcceptedDrives(this.date).subscribe((data: any) => {
       this.AcceptedDrives = data;
       this.drive = data;
     })
+  }
 
-    //GET METHOD CALLED AT CONNECTION SERVICE
+  GetPoolsbyId() {
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
     })
   }
 
-  //THIS METHOD IS CALLED ON CHANGE IN DROPDOWN FILTER 
+  //T his method is called on change in dropdown filter 
   filterDropdown() {
 
     this.drive = [];

@@ -34,6 +34,7 @@ export class InterviewerTotalDrivesComponent implements OnInit {
     From: '',
     To: ''
   }
+  
   constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {

@@ -83,7 +83,11 @@ namespace IMS.DataAccessLayer
             {
                 if (role!.IsActive == false)
                 {
-                    throw new ValidationException("There is no employee for this role id");
+                    throw new ValidationException("There is no role for this role id");
+                }
+                if(hasActiveEmployee(role.RoleId))
+                {
+                    throw new ValidationException("This role has active employees");
                 }
                 else
                 {
@@ -190,5 +194,28 @@ namespace IMS.DataAccessLayer
         }
 
     }
+       private bool hasActiveEmployee(int roleId)
+        {
+            _stopwatch.Start();
+            try
+            {
+                if(_db.Employees!.Any(e=>e.RoleId==roleId &&e.IsActive==true))
+                 
+                    return true;  
+             
+
+             return false;
+            }
+            catch(Exception hasActiveEmployeeException)
+            {
+                _logger.LogError($"department DAL : hasActiveEmployees(int project id) :{hasActiveEmployeeException.Message} : {hasActiveEmployeeException.StackTrace}");
+                throw;
+            }
+              finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"department DAL Time elapsed for hasActiveDrives(int department)  :{_stopwatch.ElapsedMilliseconds}ms");
+            }
+        }
 }
 }

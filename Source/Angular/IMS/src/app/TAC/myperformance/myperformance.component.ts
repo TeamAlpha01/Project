@@ -16,8 +16,8 @@ export class MyperformanceComponent implements OnInit {
   error: any;
 
   date = {
-    _fromDate: '',
-    _toDate: ''
+    From: '',
+    To: ''
   }
 
   constructor(private connection: ConnectionService) { }
@@ -33,7 +33,7 @@ export class MyperformanceComponent implements OnInit {
         this.ScheduledDrives = data.ScheduledDrives
         this.CancelledDrives = data.CancelledDrives
       },
-      error: (error: any) => this.error = error.error.message,
+      error: (error: any) => this.error = error.error,
     });
   }
 

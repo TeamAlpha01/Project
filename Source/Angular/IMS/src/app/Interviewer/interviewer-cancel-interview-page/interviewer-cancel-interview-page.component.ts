@@ -21,7 +21,7 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
 
   CancelInterviewForm: FormGroup = this.Fb.group({
     CancelInterviewReason: ['', Validators.required],
-    Comments: ['', Validators.required]
+    Comments: ['', Validators.required],
   });
 
   public Invites = {

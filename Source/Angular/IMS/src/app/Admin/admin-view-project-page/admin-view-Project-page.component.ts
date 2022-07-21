@@ -16,6 +16,8 @@ export class AdminviewProjectPageComponent implements OnInit {
   //PAGINATION
   totalLength: any;
   page: number = 1;
+  response: string = '';
+  error: string = '';
   
  
   constructor(private connection: ConnectionService,private dialogueService:DialogueBoxService) { }
@@ -33,12 +35,22 @@ export class AdminviewProjectPageComponent implements OnInit {
 
   async RemoveProject(projectId: number) {
   
-    await this.dialogueService.IsDeleteConfirmed().then((value)=> {
+    await this.dialogueService.IsDeleteConfirmed().then((value) => {
 
-      if(value)
-      this.connection.RemoveProject(projectId).subscribe(()=>this.GetProjects());
-    
+      if (value)
+        this.connection.RemoveProject(projectId).subscribe({
+          next: (data) => { this.response = data.message, this.GetProjects() },
+          error: (error) => { this.error = error.error, this.snackBar() },
+          complete: () => this.snackBar(),
+        });
+
     });
+    
   }
-
+  snackBar() {
+    setTimeout(() => {
+      this.error = '';
+      this.response = '';
+    }, 2000);
+}
 }

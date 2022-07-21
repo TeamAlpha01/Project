@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -24,20 +25,32 @@ export class InterviewerNotUtilizedDrivesComponent implements OnInit {
   driveDetails: any;
   poolDetails: any;
 
-  constructor(private connection: ConnectionService) { }
+  date = {
+    From: '',
+    To: ''
+  }
+
+  constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.connection.GetNotUtilizedInterviews().subscribe((data: any) => {
+    this.GetNotUtilizedInterviews();
+    this.GetPoolsbyId();
+  }
+
+  GetNotUtilizedInterviews(){
+    this.connection.GetNotUtilizedInterviews(this.date).subscribe((data: any) => {
       this.NotUtilized = data;
       this.drive = data;
       console.warn(this.drive)
     })
 
+  }
+  GetPoolsbyId(){
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
     })
   }
-
+  
   filterDropdown() {
 
     this.drive = [];

@@ -22,15 +22,32 @@
                         <div class="card-body">
                             <div class="row rone mt-4">
                                 <div class="col-md-6">
-                                    <label class="text"><b>Availability</b></label>
+                                    <label class="text"><b>Availability <span id="mandatoryfield">*</span></b></label>
                                     <br>
                                     <input formControlName="InterviewDate" type="date" min="{{Invites.fromDate}}"
-                                        max="{{Invites.toDate}}" class="form-control">
+                                        max="{{Invites.toDate}}" class="form-control" (change)="slotEnabler()">
+                                    <div
+                                        *ngIf="(submitted)||AcceptInvitePage.controls['InterviewDate'].invalid && AcceptInvitePage.controls['InterviewDate'].touched">
+                                        <span class="text-danger"
+                                            *ngIf="AcceptInvitePage.controls['InterviewDate'].errors?.['required']">Choose
+                                            a date</span>
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <label class="text"><b>Select Timing </b></label>
                                     <input type="time" class="form-control" id="appt" formControlName="SlotTime"
                                         min="09:00" max="22:00" required>
+                                </div> -->
+                                <div class="col-md-6">
+                                    <label class="text"><b>Select timing <span id="mandatoryfield">*</span></b></label>
+                                    <br>
+                                    <input formControlName="SlotTime" type="time" class="form-control">
+                                    <div
+                                        *ngIf="(submitted)||AcceptInvitePage.controls['SlotTime'].invalid && AcceptInvitePage.controls['SlotTime'].touched">
+                                        <span class="text-danger"
+                                            *ngIf="AcceptInvitePage.controls['SlotTime'].errors?.['required']">Choose a
+                                            slot</span>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-2 ">
