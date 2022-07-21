@@ -106,6 +106,7 @@ export class CreateInviteComponent implements OnInit {
 
   //To enable pool field
   poolEnabler() {
+    this.CreateInviteForm.controls['poolId'].setValue('')
     if (this.getDepartmentId() == '') { this.CreateInviteForm.controls['poolId'].disable() }
     else { this.CreateInviteForm.controls['poolId'].enable() }
   }
@@ -121,6 +122,7 @@ export class CreateInviteComponent implements OnInit {
 
   //To enable location field when mode is offline
   locationEnabler() {
+    this.CreateInviteForm.controls['locationId'].setValue('')
     if (this.getModeId() == '1') {
       this.CreateInviteForm.controls['locationId'].disable();
       for (let item of this.locationDetails) {
