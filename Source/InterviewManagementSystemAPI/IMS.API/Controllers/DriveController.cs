@@ -860,6 +860,7 @@ public class DriveController : ControllerBase
     [HttpPost]
     public IActionResult ViewTotalAvailability(DateRange dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
