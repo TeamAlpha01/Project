@@ -17,9 +17,9 @@
                     <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['required']">Name is
                         required</span>
                     <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['minlength']">Name is too
-                        short</span>
+                        short.Please enter minimum of 3 characters</span>
                     <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['maxlength']">Name is too
-                        long</span>
+                        long.Please enter maximum of 15 characters</span>
                     <span class="text-danger" *ngIf="(!registerForm.controls['Name'].errors?.['maxlength']) && registerForm.controls['Name'].errors?.['pattern']">Name cannot contain symbols and numbers or three consecutive identical characters</span>
                 </div>
 
