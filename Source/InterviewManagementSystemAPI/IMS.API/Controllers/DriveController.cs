@@ -671,22 +671,22 @@ public class DriveController : ControllerBase
         }
     }
 
-   /// <summary>
-   /// This method is used to view  list of drives
-   /// </summary>
-   /// <response code="200">Returns list of total drives</response>
-    /// <response code="500">If there is problem in server</response> 
-   /// <param name="fromDate">DateTime</param>
-   /// <param name="toDate">DateTime</param>
-   /// <returns>Returns the dashboard of employee</returns>
+    /// <summary>
+    /// This method is used to view  list of drives
+    /// </summary>
+    /// <response code="200">Returns list of total drives</response>
+    /// <response code="500">If there is problem in server</response>
+    /// <param name="dateRange"></param> 
+    /// <returns>Returns the dashboard of employee</returns>
 
-    [HttpGet]
-    public IActionResult ViewTotalDrives(DateTime fromDate, DateTime toDate)
+    [HttpPost]
+    public IActionResult ViewTotalDrives(DateRange dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewTotalDrives(employeeId, fromDate, toDate));
+            return Ok(_driveService.ViewTotalDrives(employeeId, dateRange.FromDate, dateRange.ToDate));
         }
         catch (Exception viewTotalDrivesException)
         {
@@ -695,36 +695,22 @@ public class DriveController : ControllerBase
         }
     }
 
-   
-    [HttpGet]
-    public IActionResult ViewSlotAvailabilityGiven()
-    {
-        try{
-            int employeeId=Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewSlotAvailabilityGiven(employeeId));
-        }
-        catch (Exception viewAcceptedDrivesException)
-        {
-            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {viewAcceptedDrivesException.Message}");
-            return Problem("Sorry internal error occured");
-        }
 
-    }
     /// <summary>
     /// This method invoked when the employee wants to see their Accepted Drive
     /// </summary>
     /// <response code="200">Returns list of accepted drives</response>
     /// <response code="500">If there is problem in server</response>
-    /// <param name="fromDate"></param>
-    /// <param name="toDate"></param>
+    /// <param name="dateRange"></param>
     /// <returns>Returns list of accepted drives</returns>
-    [HttpGet]
-    public IActionResult ViewAcceptedDrives(DateTime fromDate, DateTime toDate)
+    [HttpPost]
+    public IActionResult ViewAcceptedDrives(DateRange dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewAcceptedDrives(employeeId, fromDate, toDate));
+            return Ok(_driveService.ViewAcceptedDrives(employeeId, dateRange.FromDate, dateRange.ToDate));
         }
         catch (Exception viewAcceptedDrivesException)
         {
@@ -736,17 +722,18 @@ public class DriveController : ControllerBase
     /// This method invoked when the employee wants to see their Denied drives
     /// </summary>
     /// <response code="200">If it returns list of denied drives</response>
-    /// <response code="500">If there is problem</response> 
-    /// <param name="fromDate">DateTime</param>
-    /// <param name="toDate">DateTime</param>
+    /// <response code="500">If there is problem</response>
+    /// <param name="dateRange"></param> 
     /// <returns>Returns list of denied drives</returns>
-    [HttpGet]
-    public IActionResult ViewDeniedDrives(DateTime fromDate, DateTime toDate)
+    
+    [HttpPost]
+    public IActionResult ViewDeniedDrives(DateRange dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewDeniedDrives(employeeId, fromDate, toDate));
+            return Ok(_driveService.ViewDeniedDrives(employeeId, dateRange.FromDate, dateRange.ToDate));
         }
         catch (Exception viewDeniedDrivesNotValid)
         {
@@ -767,25 +754,40 @@ public class DriveController : ControllerBase
     ///
     /// </remarks>
     /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response> 
-    /// <param name="fromDate"></param>
-    /// <param name="toDate"></param>
+    /// <response code="400">If the item is null</response>
+    /// <param name="dateRange"></param> 
     /// <returns>Returns the dashboard of employee</returns>
 
 
-    [HttpGet]
-    public IActionResult ViewIgnoredDrives(DateTime fromDate, DateTime toDate)
+    [HttpPost]
+    public IActionResult ViewIgnoredDrives(DateRange dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewIgnoredDrives(employeeId, fromDate, toDate));
+            return Ok(_driveService.ViewIgnoredDrives(employeeId, dateRange.FromDate, dateRange.ToDate));
         }
         catch (Exception viewIgnoredDrivesNotValid)
         {
             _logger.LogInformation($"Drive Controller : ViewDeniedDrives() : {viewIgnoredDrivesNotValid.Message}");
             return Problem("Sorry internal error occured");
         }
+    }
+
+    [HttpGet]
+    public IActionResult ViewSlotAvailabilityGiven()
+    {
+        try{
+            int employeeId=Convert.ToInt32(User.FindFirst("UserId")?.Value);
+            return Ok(_driveService.ViewSlotAvailabilityGiven(employeeId));
+        }
+        catch (Exception viewAcceptedDrivesException)
+        {
+            _logger.LogInformation($"Drive Controller : ViewEmployeeDashboard(int employeeId) : {viewAcceptedDrivesException.Message}");
+            return Problem("Sorry internal error occured");
+        }
+
     }
 
     /// <summary>
@@ -798,12 +800,13 @@ public class DriveController : ControllerBase
     /// Returns problem if some internal problem occurs</returns>
 
     [HttpGet]
-    public IActionResult ViewUtilizedInterviews()
+    public IActionResult ViewUtilizedInterviews(DateRange dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int employeeId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewUtilizedInterviews(employeeId));
+            return Ok(_driveService.ViewUtilizedInterviews(employeeId));//,dateRange.FromDate,dateRange.ToDate
         }
         catch (Exception viewUtilizedInterviewsNotValid)
         {
