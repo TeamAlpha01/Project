@@ -1,7 +1,6 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
-import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
   selector: 'app-admin-header',
