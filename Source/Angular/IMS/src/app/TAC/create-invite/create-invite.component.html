@@ -11,7 +11,7 @@
                     <div class="form-input">
                         <label class="form-label" for="driveName"> Drive Name <span id="mandatoryfield">*</span></label>
                         <input type="text"
-                            [class.is-invalid]="(error.length)||(submitted && CreateInviteForm.controls['driveName'].invalid)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched"
+                            [class.is-invalid]="(error.includes('name'))||(submitted && CreateInviteForm.controls['driveName'].invalid)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched"
                             type="text" id="driveName" class="form-control " formControlName="driveName" maxlength="25">
                     </div>
                     <div
@@ -24,11 +24,14 @@
                             too
                             short</span>
                         <span class="text-danger"
-                            *ngIf="CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive name can't be
-                            more than 15 characters</span>
+                            *ngIf="CreateInviteForm.controls['driveName'].errors?.['maxlength']">Drive name can't be
+                            more than 25 characters</span>
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['driveName'].errors?.['pattern'] && !CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive
-                            name cannot contain numbers or symbols or empty space</span>
+                            name cannot contain symbols or empty space</span>
+                        <div *ngIf="error.includes('name')">
+                            <span class="text-center text-danger">{{error}}</span>
+                        </div>
                     </div>
                     <div class="form-input">
                         <label class="form-label " for="departmentId">Department <span
@@ -106,7 +109,7 @@
                     <div class="form-input">
                         <label class="form-label" for="fromDate">From Date <span id="mandatoryfield">*</span></label>
                         <input type="date"
-                            [class.is-invalid]="(submitted && CreateInviteForm.controls['fromDate'].invalid)||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched"
+                            [class.is-invalid]="(error.includes('From'))||(error.includes('period'))||(submitted && CreateInviteForm.controls['fromDate'].invalid)||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched"
                             name="fromDate" id="fromDate" class="form-control " formControlName="fromDate"
                             (change)="toDateEnabler(CreateInviteForm.controls['fromDate'].value)"
                             [min]="minDate|date:'yyyy-MM-dd'" [max]="maxDate|date:'yyyy-MM-dd'">
@@ -116,11 +119,14 @@
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['fromDate'].errors?.['required']">Choose a
                             Date</span>
+                        <div *ngIf="error.includes('From')">
+                            <span class="text-center text-danger">{{error}}</span>
+                        </div>
                     </div>
                     <div class="form-input">
                         <label class="form-label" for="toDate">To Date <span id="mandatoryfield">*</span></label>
                         <input type="date"
-                            [class.is-invalid]="(submitted && CreateInviteForm.controls['toDate'].invalid)||CreateInviteForm.controls['toDate'].invalid && CreateInviteForm.controls['toDate'].touched"
+                            [class.is-invalid]="(error.includes('To'))||(error.includes('period'))||(submitted && CreateInviteForm.controls['toDate'].invalid)||CreateInviteForm.controls['toDate'].invalid && CreateInviteForm.controls['toDate'].touched"
                             name="toDate" id="toDate" class="form-control " formControlName="toDate"
                             [min]="CreateInviteForm.controls['fromDate'].value">
                     </div>
@@ -129,6 +135,9 @@
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['toDate'].errors?.['required']">Choose a
                             Date</span>
+                            <div *ngIf="error.includes('To')||error.includes('period')">
+                                <span class="text-center text-danger">{{error}}</span>
+                            </div>
                     </div>
                     <div class="form-input">
                         <label class="form-label " for="slotTiming">Slot Timing <span

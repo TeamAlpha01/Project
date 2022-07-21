@@ -23,7 +23,7 @@ export class AdminRoleComponent implements OnInit {
 
   AddRoleForm = this.fb.group({
     //VALIDATE THE INPUT
-    roleName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")],],
+    roleName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")],],
     management: ['']
   });
 

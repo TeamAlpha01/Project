@@ -33,7 +33,7 @@ export class CreateInviteComponent implements OnInit {
   constructor(private connection: ConnectionService, private fb: FormBuilder) { }
 
   submitted: boolean = false;
-  
+
   CreateInviteForm = this.fb.group({
     driveName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern('[A-Za-z.0-9\\s]*')]],
     fromDate: ['', [Validators.required]],
@@ -69,6 +69,18 @@ export class CreateInviteComponent implements OnInit {
   getSlotTiming() {
     return this.CreateInviteForm.get('slotTiming')?.value;
   }
+
+  resetForm() {
+    this.CreateInviteForm.controls['driveName'].setValue('')
+    this.CreateInviteForm.controls['fromDate'].setValue('')
+    this.CreateInviteForm.controls['toDate'].setValue('')
+    this.CreateInviteForm.controls['departmentId'].setValue('')
+    this.CreateInviteForm.controls['poolId'].setValue('')
+    this.CreateInviteForm.controls['modeId'].setValue('')
+    this.CreateInviteForm.controls['locationId'].setValue('')
+    this.CreateInviteForm.controls['slotTiming'].setValue('')
+  }
+
 
   ngOnInit(): void {
     this.GetDepartments();

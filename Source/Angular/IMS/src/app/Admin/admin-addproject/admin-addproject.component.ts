@@ -19,7 +19,7 @@ export class AdminAddprojectComponent implements OnInit {
   constructor(private connection: ConnectionService, private fb: FormBuilder) { }
   submitted: boolean = false;
   AddProjectForm = this.fb.group({
-    projectName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")]],
+    projectName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")]],
     departmentId: ['', [Validators.required]]
   });
   getProjectName() {

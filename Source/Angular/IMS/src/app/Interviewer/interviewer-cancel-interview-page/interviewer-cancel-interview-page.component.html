@@ -21,27 +21,48 @@
                                 <p><b>Location : </b> {{Invites.driveLocation}}</p>
                             </div>
                         </div>
+                        <hr>
                         <div>
-                            <div class="container kl"><br>
+                            <div class="container"><br>
                                 <h3><b>Cancellation Reason</b></h3>
                                 <div class="row rtwo my-3">
                                     <div class="col-md-12">
-                                        <div class="form-check"> <input class="form-check-input radiobtnalign" type="radio"
-                                                [value]="'Candidate Not Available'"
+                                        <div class="form-check"> <input class="form-check-input radiobtnalign"
+                                                type="radio" [value]="'Candidate Not Available'"
                                                 formControlName="CancelInterviewReason"> <label
                                                 class="form-check-label">Candidate Not Available</label></div>
-                                        <div class="form-check"> <input class="form-check-input radiobtnalign" type="radio"
-                                                [value]="'Interviewer Not Available'"
+                                        <div class="form-check"> <input class="form-check-input radiobtnalign"
+                                                type="radio" [value]="'Interviewer Not Available'"
                                                 formControlName="CancelInterviewReason"> <label
                                                 class="form-check-label">Interviewer Not Available</label>
                                         </div>
+                                        <div
+                                            *ngIf="(submitted)||CancelInterviewForm.controls['CancelInterviewReason'].invalid && CancelInterviewForm.controls['CancelInterviewReason'].touched">
+                                            <span class="text-danger"
+                                                *ngIf="CancelInterviewForm.controls['CancelInterviewReason'].errors?.['required']">*Cancellation
+                                                Reason
+                                                is
+                                                required</span>
+                                        </div>
                                         <div>
                                             <br>
-                                            <h3><b>Comments(Optional)</b></h3>
+                                            <h3><b>Comments</b></h3>
                                             <div class="form-outline">
-                                                <textarea class="textinput" maxlength="250"  formControlName="Comments"></textarea>
+                                                <textarea class="textinput" maxlength="250"
+                                                    formControlName="Comments"></textarea>
                                                 <br>
                                                 <br>
+                                            </div>
+                                            <div
+                                                *ngIf="(submitted)||CancelInterviewForm.controls['Comments'].invalid && CancelInterviewForm.controls['Comments'].touched">
+                                                <span class="text-danger"
+                                                    *ngIf="CancelInterviewForm.controls['Comments'].errors?.['required']">*Cancellation
+                                                    comments
+                                                    is
+                                                    required</span>
+                                                <span class="text-danger"
+                                                    *ngIf="CancelInterviewForm.controls['Comments'].errors?.['maxlength']">*Comments
+                                                    can't be more than 250 characters</span>
                                             </div>
                                         </div>
                                     </div>

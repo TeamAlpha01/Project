@@ -16,7 +16,7 @@
                
                 <div class="form-input">
                     <label class="form-label" for="Name">Pool Name </label>
-                    <input [class.is-invalid]="(error.length)||(submitted)||EditPoolForm.controls['poolName'].invalid && EditPoolForm.controls['poolName'].touched" type="text" id="Name" class="form-control " formControlName="poolName" value="{{_pool}}" maxlength="15">
+                    <input [class.is-invalid]="(error.length)||(submitted)||EditPoolForm.controls['poolName'].invalid && EditPoolForm.controls['poolName'].touched" type="text" id="Name" class="form-control " formControlName="poolName" value="{{_pool}}" maxlength="25">
                 </div>
                 <div *ngIf="(submitted)||EditPoolForm.controls['poolName'].invalid && EditPoolForm.controls['poolName'].touched">
                     <span class="text-danger" *ngIf="EditPoolForm.controls['poolName'].errors?.['required']">*Pool name is required</span>

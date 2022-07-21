@@ -19,7 +19,7 @@ export class TacCreatePoolComponent implements OnInit {
   constructor(private connection: ConnectionService, private fb: FormBuilder) { }
   submitted: boolean = false;
   AddPoolForm = this.fb.group({
-    poolName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15), Validators.pattern('[A-Za-z\\s]*')]],
+    poolName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern('[A-Za-z\\s]*')]],
     departmentId: ['', [Validators.required]]
   });
 

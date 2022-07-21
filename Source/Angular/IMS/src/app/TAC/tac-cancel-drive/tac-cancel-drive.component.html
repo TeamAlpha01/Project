@@ -27,7 +27,7 @@
                                 <textarea
                                     [class.is-invalid]="(error.length)||(submitted)||CancelDriveForm.controls['cancelReason'].invalid && CancelDriveForm.controls['cancelReason'].touched"
                                     type="text" id="Name" class="form-control " formControlName="cancelReason"
-                                    maxlength="100"></textarea>
+                                    maxlength="250"></textarea>
                             </div>
                             <div
                                 *ngIf="(submitted)||CancelDriveForm.controls['cancelReason'].invalid && CancelDriveForm.controls['cancelReason'].touched">

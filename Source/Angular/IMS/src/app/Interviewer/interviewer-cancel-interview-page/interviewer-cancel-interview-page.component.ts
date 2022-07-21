@@ -16,12 +16,13 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
   Drives: any;
   response: string = '';
   error: string = '';
+  submitted: boolean = false;
 
-  constructor(private connection: ConnectionService, private service: ConnectionService, private route: ActivatedRoute, private Fb: FormBuilder, private location: Location) { }
+  constructor(private service: ConnectionService, private route: ActivatedRoute, private Fb: FormBuilder, private location: Location) { }
 
   CancelInterviewForm: FormGroup = this.Fb.group({
     CancelInterviewReason: ['', Validators.required],
-    Comments: ['', Validators.required],
+    Comments: ['', Validators.required, Validators.maxLength(250), Validators.minLength(10)],
   });
 
   public Invites = {
@@ -59,6 +60,7 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
   }
 
   CancellInterview() {
+    this.submitted = true;
     if (this.CancelInterviewForm.valid) {
       this.service.CancelInterview(this.employeeAvailabilityId, this.getCancellationReason(), this.getComments()).subscribe({
         next: (data) => this.response = data.message,
@@ -71,6 +73,7 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
   clearInputFields() {
     setTimeout(() => {
       this.response = '';
+      this.submitted = false;
       this.CancelInterviewForm.reset();
       this.location.back();
     }, 1000);

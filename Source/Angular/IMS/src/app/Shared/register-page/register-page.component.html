@@ -10,7 +10,7 @@
                     <label class="form-label" for="Name">Name <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="(formSubmitted && registerForm.controls['Name'].invalid )||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched"
-                        id="Name" type="text" placeholder="Ex : Sample" formControlName="Name" class="form-control" maxlength="20">
+                        id="Name" type="text" placeholder="Ex : Sample" formControlName="Name" class="form-control" maxlength="25">
                 </div>
                 <div
                     *ngIf="(formSubmitted)||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched">

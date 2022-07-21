@@ -29,7 +29,7 @@ export class RegisterPageComponent implements OnInit {
   ngOnInit(): void {
 
     this.registerForm = this.FB.group({
-      Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")]],
+      Name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25), Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$")]],
       ACENumber: ['', [Validators.required, Validators.pattern("^ACE[0-9]{4,5}$"), Validators.pattern("^(?!.*ACE0000).*$"), Validators.pattern("^(?!.*ACE00000).*$")]],
       Department: ['', [Validators.required]],
       Role: [{ value: '', disabled: true }, [Validators.required]],
@@ -65,20 +65,20 @@ export class RegisterPageComponent implements OnInit {
       if (this.registerForm.get('Department')?.value == item.departmentId) {
         var departmentName = item.departmentName;
       }
-      if (departmentName == "TAC") {
-        this.registerForm.controls['Role'].disable();
-        this.registerForm.controls['Project'].disable();
-        for (let item of this.roleDetails) {
-          if (item.roleName == "TAC") {
-            this.registerForm.controls['Role'].setValue(item.roleId)
-          }
-        }
-        for (let item of this.projectDetails) {
-          if (item.projectName == "Not Applicable") {
-            this.registerForm.controls['Project'].setValue(item.projectId)
-          }
-        }
-      }
+      // if (departmentName == "TAC") {
+      //   this.registerForm.controls['Role'].disable();
+      //   this.registerForm.controls['Project'].disable();
+      //   for (let item of this.roleDetails) {
+      //     if (item.roleName == "TAC") {
+      //       this.registerForm.controls['Role'].setValue(item.roleId)
+      //     }
+      //   }
+      //   for (let item of this.projectDetails) {
+      //     if (item.projectName == "Not Applicable") {
+      //       this.registerForm.controls['Project'].setValue(item.projectId)
+      //     }
+      //   }
+      // }
       else {
         this.registerForm.controls['Role'].enable();
         this.registerForm.controls['Project'].enable();
@@ -112,12 +112,10 @@ export class RegisterPageComponent implements OnInit {
         emailId: this.registerForm.value['Email'],
         password: this.registerForm.value['Password'],
       }
-
       this.connection.CreateEmployee(user).subscribe({
         next: (data) => { this.OpenAlertBox() },
         error: (error) => this.error = error.error.message
       });
-      console.log('error : ' + this.error);
     }
   }
 

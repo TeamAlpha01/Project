@@ -16,7 +16,7 @@
                         <div class="Location">
                             <div class="form-input">
                                 <label class="form-label" for="locationName">Location Name </label>
-                                <input type="text" maxlength="20"[class.is-invalid]="(error.length)||(submitted)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched" type="text" id="Name" class="form-control" formControlName="locationName">
+                                <input type="text" maxlength="25"[class.is-invalid]="(error.length)||(submitted)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched" type="text" id="Name" class="form-control" formControlName="locationName">
                             </div>
                             <div *ngIf="(submitted)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched">
                                 <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['required']">Location name is required</span>

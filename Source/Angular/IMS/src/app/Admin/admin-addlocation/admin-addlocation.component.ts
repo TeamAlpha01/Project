@@ -24,7 +24,7 @@ export class AdminAddlocationComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(20),
+        Validators.maxLength(25),
         Validators.pattern("^(?!.*([ ])\\1)(?!.*([A-Za-z])\\2{2})\\w[a-zA-Z\\s]*$"),
       ],
     ],
