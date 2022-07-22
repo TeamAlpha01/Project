@@ -1,7 +1,7 @@
 .background-img-login {
   object-fit: fill;
   height: 100vh;
-  padding: 6%;
+  padding: 10%;
   background-size: cover;
   background-image: url(../../../assets/Images/Interview.jpg);
   alt: "Login_Bg_Img";
@@ -10,7 +10,6 @@
 .Login {
   margin: 0% 25%;
   padding: 0% 5%;
-  width:fit-content;
   border-radius: 15px;
   background-color: white;
   backdrop-filter: blur(100px);
