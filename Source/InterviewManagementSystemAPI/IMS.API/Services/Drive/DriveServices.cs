@@ -176,12 +176,12 @@ namespace IMS.Service
 
         }
 
-        public Object ViewNonCancelledDrives(int tacId)
+        public Object ViewNonCancelledDrives(int tacId,DateTime fromDate,DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                return _driveDataAccess.GetNonCancelledDrivesByStatus(false, tacId)
+                return _driveDataAccess.GetNonCancelledDrivesByStatus(false, tacId,fromDate,toDate)
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -208,12 +208,12 @@ namespace IMS.Service
             }
         }
 
-        public Object ViewAllCancelledDrives(int tacId)
+        public Object ViewAllCancelledDrives(int tacId,DateTime fromDate,DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                return _driveDataAccess.GetNonCancelledDrivesByStatus(true, tacId)
+                return _driveDataAccess.GetNonCancelledDrivesByStatus(true, tacId,fromDate,toDate)
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -241,15 +241,15 @@ namespace IMS.Service
             }
         }
 
-        public Dictionary<string, int> ViewTACDashboard(int employeeId)
+        public Dictionary<string, int> ViewTACDashboard(int employeeId,DateTime fromDate,DateTime toDate)
         {
             _stopwatch.Start();
             DriveValidation.IsEmployeeIdValid(employeeId);
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                DashboardCount.Add("ScheduledDrives", DriveCountForTacByStatus(false, employeeId));
-                DashboardCount.Add("CancelledDrives", DriveCountForTacByStatus(true, employeeId));
+                DashboardCount.Add("ScheduledDrives", DriveCountForTacByStatus(false, employeeId,fromDate,toDate));
+                DashboardCount.Add("CancelledDrives", DriveCountForTacByStatus(true, employeeId,fromDate,toDate));
                 return DashboardCount;
             }
             catch (Exception viewTACDashboardException)
@@ -264,10 +264,10 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service Time elapsed for  ViewTACDashboard(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
-        private int DriveCountForTacByStatus(bool status, int employeeId)
+        private int DriveCountForTacByStatus(bool status, int employeeId,DateTime fromDate,DateTime toDate)
         {
 
-            return _driveDataAccess.GetNonCancelledDrivesByStatus(status, employeeId).Count();
+            return _driveDataAccess.GetNonCancelledDrivesByStatus(status, employeeId,fromDate,toDate).Count();
 
         }
 

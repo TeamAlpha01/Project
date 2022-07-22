@@ -171,13 +171,14 @@ public class DriveController : ControllerBase
     /// </summary>
     /// <response code="200">Returns a list of all non cancelled drives</response>
     /// <response code="500">If the an exception occurs</response> 
-    [HttpGet]
-    public IActionResult ViewNonCancelledDrives()
+    [HttpPost]
+    public IActionResult ViewNonCancelledDrives(DateRange dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int tacId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewNonCancelledDrives(tacId));
+            return Ok(_driveService.ViewNonCancelledDrives(tacId,dateRange.FromDate,dateRange.ToDate));
         }
         catch (Exception viewAllScheduledDrivesException)
         {
@@ -192,13 +193,14 @@ public class DriveController : ControllerBase
     /// </summary>
     /// <response code="200">Returns a list of all cancelled drives</response>
     /// <response code="500">If the an exception occurs</response> 
-    [HttpGet]
-    public IActionResult ViewAllCancelledDrives()
+    [HttpPost]
+    public IActionResult ViewAllCancelledDrives(DateRange dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
             int tacId = Convert.ToInt32(User.FindFirst("UserId")?.Value);
-            return Ok(_driveService.ViewAllCancelledDrives(tacId));
+            return Ok(_driveService.ViewAllCancelledDrives(tacId,dateRange.FromDate,dateRange.ToDate));
         }
         catch (Exception viewAllCancelledDrivesException)
         {
@@ -283,12 +285,13 @@ public class DriveController : ControllerBase
     /// </summary>
     /// <response code="200">Returns a dictionary contains count for TAC dashboard</response>
     /// <response code="500">If there is problem in server</response>
-    [HttpGet]
-    public IActionResult ViewDashboard()
+    [HttpPost]
+    public IActionResult ViewDashboard(DateRange dateRange)
     {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
         try
         {
-            return Ok(_driveService.ViewTACDashboard(Convert.ToInt32(User.FindFirst("UserId")?.Value)));
+            return Ok(_driveService.ViewTACDashboard(Convert.ToInt32(User.FindFirst("UserId")?.Value),dateRange.FromDate,dateRange.ToDate));
         }
         catch (Exception viewDashboardException)
         {

@@ -154,12 +154,18 @@ namespace IMS.DataAccessLayer
                 _logger.LogInformation($"Drive DAL Time elapsed for GetDrivesByStatus(bool status)  :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
-        public List<Drive> GetNonCancelledDrivesByStatus(bool status, int tacId)
+        public List<Drive> GetNonCancelledDrivesByStatus(bool status, int tacId,DateTime fromDate,DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                return (from drive in _db.Drives!.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool!.department) where drive.IsCancelled == status && drive.AddedBy == tacId select drive).ToList();
+                return (from drive in _db.Drives!.Include(l => l.Location).Include(p => p.Pool).Include(d => d.Pool!.department) where drive.IsCancelled == status && drive.AddedBy == tacId
+                    && (
+                (fromDate.Date >= drive.FromDate.Date &&fromDate.Date <= drive.ToDate.Date) ||
+                (toDate.Date >= drive.FromDate.Date && toDate.Date <= drive.ToDate.Date) ||
+                (fromDate.Date <= drive.FromDate.Date && toDate.Date >= drive.ToDate.Date)
+                ) 
+                 select drive).ToList();
             }
             catch (Exception getDrivesByStatusException)
             {

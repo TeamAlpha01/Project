@@ -9,9 +9,9 @@ namespace IMS.Service
         public Object ViewTodayDrives();
         public Object ViewScheduledDrives();
         public Object ViewUpcomingDrives();
-        public Object ViewNonCancelledDrives(int tacId);
-        public Object ViewAllCancelledDrives(int tacId);
-        public Dictionary<string,int> ViewTACDashboard(int employeeId);  
+        public Object ViewNonCancelledDrives(int tacId,DateTime fromDate,DateTime toDate);
+        public Object ViewAllCancelledDrives(int tacId,DateTime fromDate,DateTime toDate);
+        public Dictionary<string,int> ViewTACDashboard(int employeeId,DateTime fromDate,DateTime toDate);  
         public Object ViewDrive(int driveId);
 
 

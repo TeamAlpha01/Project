@@ -10,7 +10,7 @@ namespace IMS.DataAccessLayer
         public List<Drive> GetTodaysDrivesByStatus(bool status);
         public List<Drive> GetScheduledDrivesByStatus(bool status);
         public List<Drive> GetUpcomingDrivesByStatus(bool status);
-        public List<Drive> GetNonCancelledDrivesByStatus(bool status, int tacId);
+        public List<Drive> GetNonCancelledDrivesByStatus(bool status, int tacId,DateTime fromDate,DateTime toDate);
         public List<Drive> GetDriveInviteByStatus(bool status);
         public Drive ViewDrive(int driveId);
         public List<Drive> ViewDrives(List<int> driveIds);
