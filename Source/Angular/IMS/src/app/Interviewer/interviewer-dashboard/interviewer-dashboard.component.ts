@@ -20,6 +20,7 @@ export class InterviewerDashboardComponent implements OnInit {
     From: '',
     To: ''
   }
+  MaxDate: Date = new Date()
 
 
   constructor(private connection: ConnectionService) { }

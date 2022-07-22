@@ -105,7 +105,7 @@ public class PoolController : ControllerBase
     /// Returns bad request if validation exception occurs or
     /// Returns problem if some internal error occurs</returns>
 
-    [HttpPut]
+    [HttpPatch]
     public IActionResult EditPool(int poolId, string poolName)
     {
         if (poolId <= 0 && poolName == null )

@@ -20,6 +20,8 @@ export class MyperformanceComponent implements OnInit {
     To: ''
   }
 
+  MaxDate:Date=new Date()
+
   constructor(private connection: ConnectionService) { }
 
   ngOnInit(): void {

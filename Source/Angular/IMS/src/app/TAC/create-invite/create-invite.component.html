@@ -11,7 +11,7 @@
                     <div class="form-input">
                         <label class="form-label" for="driveName"> Drive Name <span id="mandatoryfield">*</span></label>
                         <input type="text"
-                            [class.is-invalid]="(error.includes('name'))||(submitted && CreateInviteForm.controls['driveName'].invalid)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched"
+                            [class.is-invalid]="(error.includes('Name'))||(submitted && CreateInviteForm.controls['driveName'].invalid)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched"
                             type="text" id="driveName" class="form-control " formControlName="driveName" maxlength="25">
                     </div>
                     <div
@@ -29,7 +29,7 @@
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['driveName'].errors?.['pattern'] && !CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive
                             name cannot contain symbols or empty space</span>
-                        <div *ngIf="error.includes('name')">
+                        <div *ngIf="error.includes('Name')">
                             <span class="text-center text-danger">{{error}}</span>
                         </div>
                     </div>
@@ -135,9 +135,9 @@
                         <span class="text-danger"
                             *ngIf="CreateInviteForm.controls['toDate'].errors?.['required']">Choose a
                             Date</span>
-                            <div *ngIf="error.includes('To')||error.includes('period')">
-                                <span class="text-center text-danger">{{error}}</span>
-                            </div>
+                        <div *ngIf="error.includes('To')||error.includes('period')">
+                            <span class="text-center text-danger">{{error}}</span>
+                        </div>
                     </div>
                     <div class="form-input">
                         <label class="form-label " for="slotTiming">Slot Timing <span
@@ -163,7 +163,7 @@
                     <div *ngIf="response.length!==0">
                         <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                     </div>
-                    <div *ngIf="!error.toString().includes('Name')">
+                    <div *ngIf="!(error.includes('From'))||error.includes('To')||error.includes('period')||error.toString().includes('Name')">
                         <h3 class="text-center text-danger">{{error}}</h3>
                     </div>
                 </form>

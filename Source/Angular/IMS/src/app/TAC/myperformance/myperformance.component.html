@@ -10,11 +10,11 @@
                     <div class="col"></div>
                     <div class="col-md-3">
                         <label class="form-label" for="Pool">From Date</label>
-                        <input type="date" id="Pool" class="form-select" name="_date" [(ngModel)]="date.From">
+                        <input type="date" id="Pool" class="form-select" name="_date" [(ngModel)]="date.From" [max]="MaxDate|date:'yyyy-MM-dd'">
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="Pool">To Date</label>
-                        <input type="date" id="Pool" class="form-select" name="_date" [(ngModel)]="date.To">
+                        <input type="date" id="Pool" class="form-select" [min]="date.From" name="_date" [(ngModel)]="date.To">
                     </div>
                     <div class="col-md-1">
                         <button input type="submit" (click)="Apply()" class="btn btn-filter">Apply</button>

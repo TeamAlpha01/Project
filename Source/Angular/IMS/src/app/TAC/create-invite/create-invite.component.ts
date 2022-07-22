@@ -112,6 +112,7 @@ export class CreateInviteComponent implements OnInit {
   toDateEnabler(date: any) {
     this.toDateActive = false;
     this.CreateInviteForm.controls['toDate'].enable();
+    this.CreateInviteForm.controls['toDate'].setValue('');
     this.toDate = new Date(date);
     this.toDate.setDate(this.toDate.getDate() + 7)
   }

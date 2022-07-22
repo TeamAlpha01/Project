@@ -176,12 +176,12 @@ namespace IMS.Service
 
         }
 
-        public Object ViewNonCancelledDrives(int tacId,DateTime fromDate,DateTime toDate)
+        public Object ViewNonCancelledDrives(int tacId, DateTime fromDate, DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                return _driveDataAccess.GetNonCancelledDrivesByStatus(false, tacId,fromDate,toDate)
+                return _driveDataAccess.GetNonCancelledDrivesByStatus(false, tacId, fromDate, toDate)
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -208,12 +208,12 @@ namespace IMS.Service
             }
         }
 
-        public Object ViewAllCancelledDrives(int tacId,DateTime fromDate,DateTime toDate)
+        public Object ViewAllCancelledDrives(int tacId, DateTime fromDate, DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                return _driveDataAccess.GetNonCancelledDrivesByStatus(true, tacId,fromDate,toDate)
+                return _driveDataAccess.GetNonCancelledDrivesByStatus(true, tacId, fromDate, toDate)
                 .Select(d => new
                 {
                     DriveId = d.DriveId,
@@ -241,15 +241,15 @@ namespace IMS.Service
             }
         }
 
-        public Dictionary<string, int> ViewTACDashboard(int employeeId,DateTime fromDate,DateTime toDate)
+        public Dictionary<string, int> ViewTACDashboard(int employeeId, DateTime fromDate, DateTime toDate)
         {
             _stopwatch.Start();
             DriveValidation.IsEmployeeIdValid(employeeId);
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                DashboardCount.Add("ScheduledDrives", DriveCountForTacByStatus(false, employeeId,fromDate,toDate));
-                DashboardCount.Add("CancelledDrives", DriveCountForTacByStatus(true, employeeId,fromDate,toDate));
+                DashboardCount.Add("ScheduledDrives", DriveCountForTacByStatus(false, employeeId, fromDate, toDate));
+                DashboardCount.Add("CancelledDrives", DriveCountForTacByStatus(true, employeeId, fromDate, toDate));
                 return DashboardCount;
             }
             catch (Exception viewTACDashboardException)
@@ -264,10 +264,10 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service Time elapsed for  ViewTACDashboard(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
-        private int DriveCountForTacByStatus(bool status, int employeeId,DateTime fromDate,DateTime toDate)
+        private int DriveCountForTacByStatus(bool status, int employeeId, DateTime fromDate, DateTime toDate)
         {
 
-            return _driveDataAccess.GetNonCancelledDrivesByStatus(status, employeeId,fromDate,toDate).Count();
+            return _driveDataAccess.GetNonCancelledDrivesByStatus(status, employeeId, fromDate, toDate).Count();
 
         }
 
@@ -470,6 +470,7 @@ namespace IMS.Service
                 return _driveDataAccess.ViewTodayInterviewsByStatus(false, employeeId)
                 .Select(e => new
                 {
+                    DriveId = e.DriveId,
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     FromTime = e.From.ToShortTimeString(),
                     ToTime = e.To.ToShortTimeString(),
@@ -527,7 +528,7 @@ namespace IMS.Service
                 _stopwatch.Stop();
                 _logger.LogInformation($"Drive Service Time elapsed for  ViewScheduledInterview(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
-        }    
+        }
 
         public Object ViewUpcomingInterview(int employeeId)
         {
@@ -691,20 +692,20 @@ namespace IMS.Service
             try
             {
                 var DashboardCount = new Dictionary<string, int>();
-                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId);
-                var _deniedDrives = _driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate).Select(d=>d.DriveId);
-                var _ignoredDrives = _driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate).Select(d=>d.DriveId);
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d => d.DriveId);
+                var _deniedDrives = _driveDataAccess.GetResponseDetailsByStatus(2, employeeId, fromDate, toDate).Select(d => d.DriveId);
+                var _ignoredDrives = _driveDataAccess.GetResponseDetailsByStatus(3, employeeId, fromDate, toDate).Select(d => d.DriveId);
 
                 DashboardCount.Add("AcceptedDrives", _acceptedDrives.Count());
                 DashboardCount.Add("DeniedDrives", _deniedDrives.Count());
                 DashboardCount.Add("IgnoredDrives", _ignoredDrives.Count());
                 DashboardCount.Add("TotalDrives", DashboardCount["AcceptedDrives"] + DashboardCount["DeniedDrives"] + DashboardCount["IgnoredDrives"]);
-                DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,_acceptedDrives.ToList()).Count());
-                DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,_acceptedDrives.ToList()).Count());
-                DashboardCount.Add("CancelledInterview", _driveDataAccess.GetCancelledInterviewCount(employeeId,_acceptedDrives.ToList()).Count());
+                DashboardCount.Add("UtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId, _acceptedDrives.ToList()).Count());
+                DashboardCount.Add("NotUtilizedInterviews", _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId, _acceptedDrives.ToList()).Count());
+                DashboardCount.Add("CancelledInterview", _driveDataAccess.GetCancelledInterviewCount(employeeId, _acceptedDrives.ToList()).Count());
                 DashboardCount.Add("SlotAvailabiltyGiven", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"] + DashboardCount["CancelledInterview"]);
                 //_driveDataAccess.GetSlotAvailabilityGiven(employeeId).Count()
-                DashboardCount.Add("TotalAvailability", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"]+ DashboardCount["CancelledInterview"]);
+                DashboardCount.Add("TotalAvailability", DashboardCount["UtilizedInterviews"] + DashboardCount["NotUtilizedInterviews"] + DashboardCount["CancelledInterview"]);
                 return DashboardCount;
             }
             catch (ValidationException viewEmployeeDashboardNotVlaid)
@@ -889,13 +890,13 @@ namespace IMS.Service
             }
         }
 
-        public Object ViewUtilizedInterviews(int employeeId,DateTime fromDate,DateTime toDate)
+        public Object ViewUtilizedInterviews(int employeeId, DateTime fromDate, DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId).ToList();
-                return _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,_acceptedDrives).Select(e => new
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d => d.DriveId).ToList();
+                return _driveDataAccess.GetResponseUtilizationByStatus(true, employeeId, _acceptedDrives).Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive!.Name,
@@ -945,13 +946,13 @@ namespace IMS.Service
                 throw e;
             }
         }
-        public Object ViewNotUtilizedInterviews(int employeeId,DateTime fromDate,DateTime toDate)
+        public Object ViewNotUtilizedInterviews(int employeeId, DateTime fromDate, DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId).ToList();
-                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,_acceptedDrives).Select(e => new
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d => d.DriveId).ToList();
+                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId, _acceptedDrives).Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
                     DriveName = e.Drive!.Name,
@@ -982,8 +983,8 @@ namespace IMS.Service
             _stopwatch.Start();
             try
             {
-                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId).ToList();
-                return _driveDataAccess.GetCancelledInterviewCount(employeeId,_acceptedDrives.ToList())
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d => d.DriveId).ToList();
+                return _driveDataAccess.GetCancelledInterviewCount(employeeId, _acceptedDrives.ToList())
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,
@@ -1010,13 +1011,13 @@ namespace IMS.Service
                 _logger.LogInformation($"Drive Service Time elapsed for  ViewCancelledInterview(int employeeId) :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
-        public Object ViewTotalAvailability(int employeeId,DateTime fromDate,DateTime toDate)
+        public Object ViewTotalAvailability(int employeeId, DateTime fromDate, DateTime toDate)
         {
             _stopwatch.Start();
             try
             {
-                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d=>d.DriveId).ToList();
-                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId,_acceptedDrives).Concat(_driveDataAccess.GetResponseUtilizationByStatus(true, employeeId,_acceptedDrives))
+                var _acceptedDrives = _driveDataAccess.GetResponseDetailsByStatus(1, employeeId, fromDate, toDate).Select(d => d.DriveId).ToList();
+                return _driveDataAccess.GetResponseUtilizationByStatus(false, employeeId, _acceptedDrives).Concat(_driveDataAccess.GetResponseUtilizationByStatus(true, employeeId, _acceptedDrives))
                 .Select(e => new
                 {
                     EmployeeAvailabilityId = e.EmployeeAvailabilityId,

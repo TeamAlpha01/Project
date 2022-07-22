@@ -60,9 +60,12 @@
                                                     comments
                                                     is
                                                     required</span>
-                                                <span class="text-danger"
+                                                <!-- <span class="text-danger"
                                                     *ngIf="CancelInterviewForm.controls['Comments'].errors?.['maxlength']">*Comments
                                                     can't be more than 250 characters</span>
+                                                <span class="text-danger"
+                                                    *ngIf="CancelInterviewForm.controls['Comments'].errors?.['minlength']">*Comments
+                                                    can't be less than 10 characters</span> -->
                                             </div>
                                         </div>
                                     </div>
@@ -70,7 +73,7 @@
                             </div>
                             <br>
                             <div class="text-center">
-                                <button type="submit" (click)="CancellInterview()" class="btn btn-back">Submit</button>
+                                <button type="submit" class="btn btn-back">Submit</button>
                             </div>
                             <div *ngIf="response.length!==0">
                                 <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>

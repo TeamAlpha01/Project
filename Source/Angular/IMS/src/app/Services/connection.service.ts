@@ -9,8 +9,8 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class ConnectionService {
 
-  // baseURL = 'http://172.24.217.145/IMS-API/'
-  baseURL = 'https://localhost:7072/'
+  baseURL = 'http://172.24.217.145/IMS-API/'
+  // baseURL = 'https://localhost:7072/'
 
   constructor(private http: HttpClient) { }
 
@@ -231,7 +231,7 @@ export class ConnectionService {
   }
 
   EditPool(poolId: number, poolName: string) {
-    return this.http.put<any>(this.baseURL + `Pool/EditPool?poolId=${poolId}&poolName=${poolName}`, null, { headers: this.headers })
+    return this.http.patch<any>(this.baseURL + `Pool/EditPool?poolId=${poolId}&poolName=${poolName}`, null, { headers: this.headers })
   }
 
   RemovePoolMember(poolMemberId: number) {

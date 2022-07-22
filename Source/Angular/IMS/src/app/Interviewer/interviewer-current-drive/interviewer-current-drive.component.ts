@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { Router } from '@angular/router';
 
@@ -14,7 +13,7 @@ export class InterviewerCurrentDriveComponent implements OnInit {
   totalLength: any;
   page: number = 1;
 
-  Current='Current'
+  Current = 'Current'
 
   _dept = '';
   _pool = '';
@@ -54,12 +53,11 @@ export class InterviewerCurrentDriveComponent implements OnInit {
     //To filter cards based on the department and pool selection
 
     this.drive = [];
-
     for (let item of this.interviewDetails) {
       if (this._pool == '') {
         this.drive.push(item);
       }
-      else if (item.pool == this._pool) {
+      else if (item.poolName == this._pool) {
         this.drive.push(item);
       }
     }

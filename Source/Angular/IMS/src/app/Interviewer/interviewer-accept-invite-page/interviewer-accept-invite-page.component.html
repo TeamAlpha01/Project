@@ -21,7 +21,7 @@
                     <form [formGroup]="AcceptInvitePage" (ngSubmit)="AddResponse()">
                         <div class="card-body">
                             <div class="row rone mt-4">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <label class="text"><b>Availability <span id="mandatoryfield">*</span></b></label>
                                     <br>
                                     <input formControlName="InterviewDate" type="date" min="{{Invites.fromDate}}"
@@ -38,7 +38,7 @@
                                     <input type="time" class="form-control" id="appt" formControlName="SlotTime"
                                         min="09:00" max="22:00" required>
                                 </div> -->
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <label class="text"><b>Select timing <span id="mandatoryfield">*</span></b></label>
                                     <br>
                                     <input formControlName="SlotTime" type="time" class="form-control">
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-2 ">
+                                <div class="col-md-1 ">
                                     <a><button type="submit" class="btn btn-back">Add</button></a>
                                 </div>
                                 <div *ngIf="response.length!==0">
@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" *ngIf="GivenSlot.length>0">
         <div class="card mx-auto">
             <div class="card-body">
                 <div class="row mt-1" *ngFor="let item of GivenSlot">

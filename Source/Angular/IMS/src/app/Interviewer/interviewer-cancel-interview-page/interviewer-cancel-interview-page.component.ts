@@ -22,7 +22,7 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
 
   CancelInterviewForm: FormGroup = this.Fb.group({
     CancelInterviewReason: ['', Validators.required],
-    Comments: ['', Validators.required, Validators.maxLength(250), Validators.minLength(10)],
+    Comments: ['', Validators.required],
   });
 
   public Invites = {
@@ -61,7 +61,9 @@ export class InterviewerCancelInterviewPageComponent implements OnInit {
 
   CancellInterview() {
     this.submitted = true;
+    console.warn(this.CancelInterviewForm.valid)
     if (this.CancelInterviewForm.valid) {
+      console.warn("1")
       this.service.CancelInterview(this.employeeAvailabilityId, this.getCancellationReason(), this.getComments()).subscribe({
         next: (data) => this.response = data.message,
         error: (error) => this.error = error.error.message,
