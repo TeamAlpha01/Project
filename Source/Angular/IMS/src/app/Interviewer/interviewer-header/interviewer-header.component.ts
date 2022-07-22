@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ConnectionService } from 'src/app/Services/connection.service';
@@ -11,7 +11,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 export class InterviewerHeaderComponent implements OnInit {
   userName: string | null = '';
   Name: string = '';
-  isManagement:boolean=false
+  isManagement: boolean = false
 
   constructor(private service: AuthenticationService) { }
 
@@ -23,7 +23,7 @@ export class InterviewerHeaderComponent implements OnInit {
 
   GetUser() {
     this.userName = AuthenticationService.GetUserName();
-    this.isManagement = AuthenticationService.GetData("Management")?true:false;
+    this.isManagement = AuthenticationService.GetUser() == "Management" ? true : false;
     if (this.userName == null) {
       this.Name = "User"
     }
@@ -33,7 +33,7 @@ export class InterviewerHeaderComponent implements OnInit {
   }
 
   //THIS METHOD IS CALLED ON CLICK OF LOGOUT BUTTTON
-  logout(){
+  logout() {
     this.service.ClearToken();
   }
 }

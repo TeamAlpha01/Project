@@ -37,20 +37,19 @@ export class InterviewerNotUtilizedDrivesComponent implements OnInit {
     this.GetPoolsbyId();
   }
 
-  GetNotUtilizedInterviews(){
+  GetNotUtilizedInterviews() {
     this.connection.GetNotUtilizedInterviews(this.date).subscribe((data: any) => {
       this.NotUtilized = data;
       this.drive = data;
-      console.warn(this.drive)
     })
 
   }
-  GetPoolsbyId(){
+  GetPoolsbyId() {
     this.connection.GetPoolsbyId().subscribe((data: any) => {
       this.poolDetails = data;
     })
   }
-  
+
   filterDropdown() {
 
     this.drive = [];

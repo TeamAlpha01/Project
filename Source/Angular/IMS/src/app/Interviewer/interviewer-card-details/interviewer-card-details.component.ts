@@ -7,10 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InterviewerCardDetailsComponent implements OnInit {
   page: number = 1;
-  totalLength:any;
-  driveDetail:any[]=[]
-  item:any[]=[]
-  id:any[]=[]
+  totalLength: any;
+  driveDetail: any[] = []
+  item: any[] = []
+  id: any[] = []
   @Input()
   data!: any[];
 
@@ -20,7 +20,6 @@ export class InterviewerCardDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.warn(this.data);
   }
 
 }

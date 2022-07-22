@@ -130,7 +130,7 @@
                     <label class="form-label" for="Password">Password <span id="mandatoryfield">*</span></label>
                     <input
                         [class.is-invalid]="(formSubmitted && registerForm.controls['Password'].invalid)||registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched"
-                        id="Password" type="password" placeholder="Ex : #Sample01" formControlName="Password"
+                        id="Password" type="password" placeholder="Ex : #Sample01" formControlName="Password" 
                         class="form-control">
                 </div>
                 <div
@@ -138,7 +138,11 @@
                     <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['required']">Password is
                         required</span>
                     <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['pattern']">Password
-                        should contain minimum of 8 digits with 1 uppercase, 1 symbol and 1 number</span>
+                        should contain minimum of 8 digits with 1 uppercase, 1 symbol and 1 number and can't be more than 15 characters</span>
+                    <!-- <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['maxlength']&&!registerForm.controls['Password'].errors?.['pattern']"> and password
+                        should not contain more than 15 characters</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['minlength']"> and password
+                        should not contain less than 3 characters</span> -->
                 </div>
 
                 <!-- Confirm Password  -->

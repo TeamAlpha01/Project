@@ -1,23 +1,32 @@
 .Register {
-    margin: 0% 25%;
-    padding: 0% 5%;
-    border: 1px solid black;
-    border-radius: 15px;
-    background-color: var(--light);
-  }
+  margin: 0% 25%;
+  padding: 0% 5%;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: var(--light);
+}
 
+.background-img-register {
+  /* object-fit: fill; */
+  padding: 75px;
+  background-size: 150%;
+  background-image: url(../../../assets/Images/Interview.jpg);
+  alt: "Register_Bg_Img";
+
+}
+
+.background-img-register1 {
+  padding: 75px;
+  background-size: cover;
+}
+
+@media screen and (max-width:1080px) {
+  .Register {
+    padding: 0%;
+    margin: 0%;
+  }
   .background-img-register {
-    object-fit: fill;
-    padding: 75px;
-    background-size: cover; 
-    background-image: url(../../../assets/Images/Interview.jpg);
-    alt: "Register_Bg_Img";
-    
+    padding: 50px;
+    background-size: 600%;  
   }
-  
-  .background-img-register1 {
-    padding: 75px;
-    background-size: cover;
-  }
-  
-  
+}
