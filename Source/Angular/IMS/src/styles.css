@@ -6,6 +6,11 @@
   --dark: #231924;
 }
 
+.loading {
+  color: white;
+  padding-top: 50px;
+}
+
 .link {
   text-decoration: none;
   color: black;
@@ -1195,6 +1200,10 @@ body {
   width: 100%;
 }
 
+.footer-background {
+  background-color: var(--primary);
+}
+
 .sticky-footer {
   position: sticky;
   top: 100%;
@@ -1639,9 +1648,10 @@ body {
 #mandatoryfield {
   color: red;
 }
+
 ::ng-deep .cdk-overlay-container {
   /* Do you changes here */
-  
-  position: fixed; 
+
+  position: fixed;
   z-index: 2000;
 }

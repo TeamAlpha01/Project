@@ -3,6 +3,8 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ConnectionService } from 'src/app/Services/connection.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,6 @@ export class LoginComponent implements OnInit {
   employeeACENumber: any;
   error: string = '';
   isCommanError: boolean = false;
-  loading: boolean = false;
   submitted: boolean = false;
   currentUser: string = '';
 
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private route: Router, private connection: ConnectionService, private FB: FormBuilder) { }
+  constructor(private route: Router, private connection: ConnectionService, private FB: FormBuilder, private spinner: NgxSpinnerService) { }
 
 
 
@@ -44,8 +45,8 @@ export class LoginComponent implements OnInit {
 
     this.submitted = true;
     if (this.loginForm.valid) {
+      this.spinner.show();
       this.isCommanError = false;
-      this.loading = true
       const user = {
         emailId: this.loginForm.value['EmailID'],
         password: this.loginForm.value['Password'],
@@ -74,6 +75,7 @@ export class LoginComponent implements OnInit {
 
         },
         error: (error: any) => {
+          this.spinner.hide();
           if (!error.error.toString().includes('email'))
             this.isCommanError = true
           if (error.status == 0)
@@ -82,11 +84,9 @@ export class LoginComponent implements OnInit {
             this.error = "Sorry some internal error occured please try again later";
           else
             this.error = error.error;
-          this.loading = false;
         },
         complete: () => {
-
-          return this.loading = false;
+          this.spinner.hide();
         }
       })
     }

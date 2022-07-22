@@ -34,8 +34,8 @@
                         required</span>
                     <span *ngIf="error.toString().includes('Password')" class="text-danger">{{error}}</span>
                 </div>
-                <div *ngIf="loading" diameter="40" class="spinner">
-                </div>
+                <!-- <div *ngIf="loading" diameter="40" class="spinner">
+                </div> -->
                 <div *ngIf="isCommanError" class="span12 text-center">
                     <span class="text-center text-danger">{{error}}</span>
                 </div>
@@ -52,3 +52,6 @@
         </div>
     </div>
 </div>
+<ngx-spinner type="ball-clip-rotate-multiple"  >
+    <p class="loading">Loading please wait...</p>
+</ngx-spinner>

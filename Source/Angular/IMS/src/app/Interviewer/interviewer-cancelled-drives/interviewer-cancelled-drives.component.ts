@@ -9,7 +9,7 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class InterviewerCancelledDrivesComponent implements OnInit {
 
-  title = 'Cancelled Drives';
+  title = 'Cancelled Interviews';
 
   //To get data from database
   CancelledDrives: any;

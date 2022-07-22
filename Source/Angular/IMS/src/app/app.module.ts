@@ -5,8 +5,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { HashLocationStrategy,LocationStrategy } from '@angular/common';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 
 import { AdminAddlocationComponent } from './Admin/admin-addlocation/admin-addlocation.component';
@@ -167,10 +167,10 @@ import { InterviewerCancelledDrivesComponent } from './Interviewer/interviewer-c
     MatSnackBarModule,
     MatDialogModule,
     AutocompleteLibModule,
-
+    
 
   ],
-  providers: [DatePipe, {provide:LocationStrategy,useClass:HashLocationStrategy}],
+  providers: [DatePipe, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
