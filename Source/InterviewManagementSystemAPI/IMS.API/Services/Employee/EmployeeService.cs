@@ -46,6 +46,7 @@ namespace IMS.Service
             _departmentDataAccessLayer.CheckProjectId(employee.ProjectId);
             try
             {
+                employee.AccountCreatedOn=System.DateTime.Now;
                 return _employeeDataAccessLayer.AddEmployeeToDatabase(employee) ? true : false; // LOG Error in DAL;
             }
             catch (ValidationException employeeNotValid)
@@ -350,6 +351,25 @@ namespace IMS.Service
             {
                 _stopwatch.Stop();
                 _logger.LogInformation($"Employee Service Time elapsed for  RespondEmployeeRequest(int employeeId, bool response) :{_stopwatch.ElapsedMilliseconds}ms");
+            }
+        }
+
+        public object AdminDashboard(DateTime fromDate,DateTime toDate)
+        {
+            _stopwatch.Start();
+            try
+            {
+                return _employeeDataAccessLayer.AdminDashboard(fromDate,toDate);
+            } 
+            catch (Exception exception)
+            {
+                _logger.LogError($"Employee DAL : AdminDashboard throwed an exception : {exception.Message}");
+                throw ;
+            }
+            finally
+            {
+                _stopwatch.Stop();
+                _logger.LogInformation($"Employee Service Time elapsed for  AdminDashboard :{_stopwatch.ElapsedMilliseconds}ms");
             }
         }
     }

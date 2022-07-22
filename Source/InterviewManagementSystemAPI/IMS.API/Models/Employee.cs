@@ -26,6 +26,9 @@ namespace IMS.Models
         public bool IsAdminAccepted {get;set;} = false;
         public bool IsAdminResponded {get;set;} = false;
 
+        public DateTime AccountCreatedOn {get;set;}
+        public DateTime AdminRespondedOn {get;set;}
+
 
         [InverseProperty("AddedEmployee")]
         public ICollection<Drive>? AddedEmployeeDrives { get; set; }

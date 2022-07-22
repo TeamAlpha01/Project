@@ -3,6 +3,7 @@ using IMS.Models;
 using IMS.Validations;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Text;
 
 namespace IMS.DataAccessLayer
 {
@@ -308,6 +309,7 @@ namespace IMS.DataAccessLayer
                 var employee = _db.Employees!.Find(employeeId);
                 employee!.IsAdminResponded=true; 
                 employee.IsAdminAccepted=response;
+                employee.AdminRespondedOn=System.DateTime.Now;
                 _db.Employees.Update(employee);
                 _db.SaveChanges(); 
                 return true;
@@ -342,8 +344,33 @@ namespace IMS.DataAccessLayer
             {
                 _logger.LogInformation($"Employee DAL", "GetIsTraceEnabledFromConfiguration()", exception);
                 return false;
-            
+            }
+        }
+
+        public object AdminDashboard(DateTime fromDate,DateTime toDate)
+        {
+            try
+            {
+                return _db.Employees!.Include(e=>e.Department).Where(employee=>employee.IsAdminResponded==true)
+                    .Where(employee=>
+                    (fromDate.Date >= employee.AdminRespondedOn.Date &&fromDate.Date <= employee.AdminRespondedOn.Date)||
+                    (toDate.Date >= employee.AdminRespondedOn.Date && toDate.Date <= employee.AdminRespondedOn.Date) ||
+                    (fromDate.Date <= employee.AdminRespondedOn.Date && toDate.Date >= employee.AdminRespondedOn.Date))
+                    .Select(employee => new{
+                    employeeName=employee.Name,
+                    employeAceNumber=employee.EmployeeAceNumber,
+                    employeDepartment=employee.Department!.DepartmentName,
+                    employeeRole=employee.Role!.RoleName,
+                    employeeStatus=employee.IsActive,
+                    adminResponse=employee.IsAdminAccepted?"Accepted":"Rejected",
+                    adminRespondedOn=employee.AdminRespondedOn.ToString("yyyy-MM-dd")
+                });
+            }
+            catch (Exception exception)
+            {
+                _logger.LogInformation($"Employee DAL", "GetIsTraceEnabledFromConfiguration()", exception);
+                return false;
+            }
         }
     }
-}
 }

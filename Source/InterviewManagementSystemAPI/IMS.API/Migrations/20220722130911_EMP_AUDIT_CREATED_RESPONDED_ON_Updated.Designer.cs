@@ -4,6 +4,7 @@ using IMS.DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Source.Migrations
 {
     [DbContext(typeof(InterviewManagementSystemDbContext))]
-    partial class InterviewManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220722130911_EMP_AUDIT_CREATED_RESPONDED_ON_Updated")]
+    partial class EMP_AUDIT_CREATED_RESPONDED_ON_Updated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

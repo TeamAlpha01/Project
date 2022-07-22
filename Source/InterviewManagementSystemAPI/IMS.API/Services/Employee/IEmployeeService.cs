@@ -1,4 +1,6 @@
 using IMS.Models;
+using Microsoft.AspNetCore.Mvc;
+
 namespace IMS.Service
 {
     public interface IEmployeeService
@@ -12,5 +14,6 @@ namespace IMS.Service
         public Object ViewEmployeeRequest();
         public bool Login(string employeeAceNumber, string password);
         public bool RespondEmployeeRequest(int employeeId, bool response);
+        public Object AdminDashboard(DateTime fromDate,DateTime toDate);
     }
 }

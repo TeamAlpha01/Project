@@ -293,5 +293,19 @@ public class EmployeeController : ControllerBase
             return Problem("Sorry some internal error occured");
         }
     }
+    [AllowAnonymous]
+    [HttpPost]
+    public IActionResult AdminDashboard(DateRange dateRange)
+    {
+        Validations.DateRangeValidaation.IsDateValid(dateRange);
+        try{
+        return Ok(_employeeService.AdminDashboard(dateRange.FromDate,dateRange.ToDate));
+        }
+        catch (Exception AdminDashboard)
+        {
+            _logger.LogError($"Service throwed exception while fetching employees : {AdminDashboard.Message}");
+            return Problem("Sorry some internal error occured");
+        }
+    }
 
 }
