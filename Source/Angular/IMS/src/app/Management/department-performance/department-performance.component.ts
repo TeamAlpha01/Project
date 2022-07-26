@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { data } from 'jquery';
 import { ConnectionService } from 'src/app/Services/connection.service';
 
 @Component({
@@ -54,24 +55,7 @@ export class DepartmentPerformanceComponent implements OnInit {
   },
   ]
 
-  // employeePerformance = {
-  //   dashboardCount: {
-  //     AcceptedDrives: 0,
-  //     CancelledInterview: 0,
-  //     DeniedDrives: 0,
-  //     IgnoredDrives: 0,
-  //     NotUtilizedInterviews: 0,
-  //     SlotAvailabiltyGiven: 0,
-  //     TotalAvailability: 0,
-  //     TotalDrives: 0,
-  //     UtilizedInterviews: 0
-  //   },
-  //   employee: {
-  //     employeeACENumber: "",
-  //     employeeName: "",
-  //     employeeRole: ""
-  //   }
-  // }
+
 
   constructor(private connection: ConnectionService) { }
 
@@ -87,16 +71,12 @@ export class DepartmentPerformanceComponent implements OnInit {
     })
   }
 
-  // GetDepartmentEmployeesForCurrentUser() {
-  //   this.connection.GetDepartmentEmployeesForCurrentUser().subscribe({
-  //     next: (data: any) => { this.departmentEmployees = data, console.warn(this.departmentEmployees) }
-  //   })
-  // }
+
 
   GetDrivesForCurrentUser() {
     this.connection.GetDrivesForCurrentUser().subscribe({
       next: (data: any) => { this.driveDetails = data },
-      // error:(error:any)=>this.error=error,
+      error: (error: any) => this.error = error.message,
     })
   }
 
@@ -110,8 +90,9 @@ export class DepartmentPerformanceComponent implements OnInit {
     const dataRange = { From: this._fromDate, To: this._toDate }
     this.connection.GetEmployeePerformance(dataRange).subscribe({
       next: (data: any) => {
-        this.performance = data,
-          this.List = data
+        this.performance = data
+        this.List = data
+        this.List = this.List.sort((a, b) => b.dashboardCount.TotalDrives - a.dashboardCount.TotalDrives); //Sorting is performed by total number of drives
       },
     })
   }
@@ -131,6 +112,7 @@ export class DepartmentPerformanceComponent implements OnInit {
     this._drive = { driveId: 0, driveName: '' }
   }
 
+  //This method is to filter the data based on the filter 
   Apply() {
     if (this._drive.driveName == undefined || this._drive.driveName == '') {
       this._drive = {
@@ -160,7 +142,8 @@ export class DepartmentPerformanceComponent implements OnInit {
     }
   }
 
-  filter() {
+//This method is used to filter the data based on the employee name
+  nameFilter() {
     this.List = []
     this.List = this.performance.filter((data: any) => data.employee.employeeName.toLowerCase().includes(this._name.toLowerCase()));
   }
