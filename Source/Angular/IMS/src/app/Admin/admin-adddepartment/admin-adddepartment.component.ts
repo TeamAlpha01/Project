@@ -9,14 +9,14 @@ import { ConnectionService } from 'src/app/Services/connection.service';
 })
 export class AdminAdddepartmentComponent implements OnInit {
   title = 'Add Department';
-  
+
   //HTTP  RESPONSE
-  response: string = '';  
+  response: string = '';
   error: string = '';
   submitted: boolean = false;
 
   constructor(private service: ConnectionService, private fb: FormBuilder) { }
-  
+
   ngOnInit(): void { }
 
   AddDepartmentForm = this.fb.group({
@@ -39,15 +39,15 @@ export class AdminAdddepartmentComponent implements OnInit {
   addDepartment() {
     this.submitted = true;
     this.error = '';
-    const department={
-      departmentId:0,
-      departmentName:this.getDepartmentName()?.value
+    const department = {
+      departmentId: 0,
+      departmentName: this.getDepartmentName()
     }
 
     if (this.AddDepartmentForm.valid) {
       this.service.AddDepartment(department).subscribe({
-        next: (data) => this.response = data.message,
-        error: (error) => this.error = error.error.message,
+        next: (data) => { this.response = data.message },
+        error: (error) => { this.error = error.error.message },
         complete: () => this.clearInputFields(),
       });
     }

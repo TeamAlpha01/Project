@@ -37,7 +37,7 @@ export class AdminviewDepartmentPageComponent implements OnInit {
 
       if (value)
         this.service.RemoveDepartment(department).subscribe({
-          next: (data) => { this.response = data },
+          next: (data) => { this.response = data.message, this.GetDepartments(); },
           error: (error) => { this.error = error.error, this.snackBar() },
           complete: () => this.snackBar(),
         });
