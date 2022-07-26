@@ -1,0 +1,1025 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Source</name>
+    </assembly>
+    <members>
+        <member name="M:IMS.Controllers.DepartmentController.CreateNewDepartment(IMS.Models.Department)">
+            <summary>
+             This method is used to create new department
+            </summary>
+            <response code="200">If new department was created</response>
+            <response code="400">If the item is null</response> 
+            <response code="500">If some internal problem arises </response>
+            <param name="department">String</param>
+            <returns>Returns success message when department is added or
+            Returns Bad request when validation exception occurs or
+            Returns Problem when internal error occurs </returns>
+        </member>
+        <member name="M:IMS.Controllers.DepartmentController.RemoveDepartment(IMS.Models.Department)">
+            <summary>
+            This method is used to remove department,when request rises from admin
+            </summary>
+            <response code="200">If department removed successfully</response>
+            <response code="400">If the item is null</response> 
+            <response code="500">If there is problem in server</response>
+            <param name="department">int</param>
+            <returns>Returns success message when department removed or
+            Returns bad request when validation exception occurs or
+            Returns problem when internal problem occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.DepartmentController.ViewDepartments">
+            <summary>
+            This method is used to view list of departments,when request rises from admin
+            </summary>
+            <response code="200">Returns list of department</response>
+            <response code="500">If there is problem in server </response> 
+            <returns>Returns list of department or
+            Returns problem when internal problem occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.CreateDrive(IMS.Models.Drive)">
+            <summary>
+            This method is used to create drive
+            </summary>
+            <param name="drive">An object of class "Drive" which contains info about drive</param>
+            <response code="200">If drive was created successfully</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <response code="500">If the an exception occurs</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.CancelDrive(System.Int32,System.String)">
+            <summary>
+            This method is used to cancel a drive by a TAC
+            </summary>
+            <param name="driveId">This is the Id of the drive to be Cancelled</param>
+            <param name="reason">This is the reason for the cancellation</param>
+            <response code="200">If drive was cancelled successfully</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <response code="500">If the an exception occurs</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewTodayDrives">
+            <summary>
+            This method is used to view drives for today(Current Day) by a TAC
+            </summary>
+            <response code="200">Returns list of today's drive</response>
+            <response code="500">If the an exception occurs</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewScheduledDrives">
+            <summary>
+            This method invoked by TAC to view the list of Scheduled drives
+            </summary>
+            <response code="200">Returns list of scheduled drives</response>
+            <response code="500">If the an exception occurs</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewUpcomingDrives">
+            <summary>
+            This method invoked by TAC to view the list of Upcoming drives
+            </summary>
+            <response code="200">Returns list of upcoming drive</response>
+            <response code="500">If the an exception occurs</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewNonCancelledDrives(IMS.Models.DateRange)">
+            <summary>
+            This method is invoked When the 'ViewNonCancelledDrive' request raises.
+            </summary>
+            <response code="200">Returns a list of all non cancelled drives</response>
+            <response code="500">If the an exception occurs</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewAllCancelledDrives(IMS.Models.DateRange)">
+            <summary>
+            This method is invoked When the 'ViewAllCancelledDrives' request raises.
+            </summary>
+            <response code="200">Returns a list of all cancelled drives</response>
+            <response code="500">If the an exception occurs</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewDrive(System.Int32)">
+            <summary>
+            This method gives the details about a specific drive with provided drive id 
+            </summary>
+            <param name="driveId">The Id of the drive to be viewed</param>
+            <response code="200">Returns the details of the particular drive</response>
+            <response code="400">If the item is null or if a validation error occurs</response> 
+            <response code="500">If the an exception occurs</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewInvites">
+            <summary>
+            This method gets the drive invites for the current user
+            </summary>
+            <response code="200">Returns a list of drive invites for the current user</response>
+            <response code="500">If the an exception occurs</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewDashboard(IMS.Models.DateRange)">
+            <summary>
+            This method get dashboard count for current TAC user
+            </summary>
+            <response code="200">Returns a dictionary contains count for TAC dashboard</response>
+            <response code="500">If there is problem in server</response>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.AddResponse(IMS.Models.EmployeeDriveResponse)">
+            <summary>
+            This method adds a resonse for a drive by current user
+            </summary>
+            <param name="response">It contains drive id and response type to be added</param>
+            <response code="200">Returns success message</response>
+            <response code="400">Returns validation error messages</response>
+            <response code="500">If there is problem in server</response>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.SetTimeSlot(IMS.Models.EmployeeAvailability)">
+            <summary>
+            This method set's time slots for a particular drive for current Interviewer user
+            </summary>
+            <param name="employeeAvailability">A object of EmployeeAvailability which contains drive id and slot timing</param>
+            <response code="200">Returns success message</response>
+            <response code="400">Returns validation error messages</response>
+            <response code="500">If there is problem in server</response>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewTodaysInterview">
+            <summary>
+            This method gets a list of today's interviews for the current Interviewer user.
+            </summary>
+            <response code="200">Returs list of today's interview</response>
+            <response code="500">If there is problem in server </response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewScheduledInterview">
+            <summary>
+            This method gets a list of  Scheduled interviews for current user
+            </summary>
+            <response code="200">Returns list of scheduled interviews</response>
+            <response code="500">If there is problem in server</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewUpcomingInterview">
+            <summary>
+            This method gets a list of upcoming interviews for current user
+            </summary>
+            <response code="200">Returns list of upcoming interviews</response>
+            <response code="500">If there is problem in server</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewAllInterview(System.Int32)">
+             <summary>
+             This Method is invoked when 'ViewAllInterviews' request raise
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /ViewAllInterviews
+                 {
+                    "Employee Id": "1",
+                 }
+            
+             </remarks>
+             <response code="201">Returns the newly created item</response>
+             <response code="400">If the item is null</response> 
+             <param name="employeeId"></param>
+             <returns>Returns a list of interviews</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ScheduleInterview(System.Int32)">
+            <summary>
+            This method is invoked when 'view scheduled interview' request
+            </summary>
+            <response code="200">Returns the newly created item</response>
+            <response code="400">If the item is null</response> 
+            <param name="employeeAvailabilityId"></param>
+            <returns>Returns a list of scheduled interviews</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.CancelInterview(System.Int32,System.String,System.String)">
+            <summary>
+            This method invokes when the employee needs to cancel the availability 
+            </summary>
+            <response code="200">Returns list of canceled interview</response>
+            <response code="400">If there is validation exception occurs</response>
+            <response code="500">If there is problem in server</response>
+            <param name="employeeAvailabilityId"></param>
+            <param name="cancellationReason"></param>
+            <param name="comments"></param>
+            <returns>Returns list of cancelled interview or 
+            Returns bad request when validtaion exception occurs or
+            Returns problem if internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewAvailableMembersForDrive(System.Int32)">
+             <summary>
+             This method invoked when the list of members available for the particular drive
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /ViewAvailableMembersForDrive
+                 {
+                    "DriveId": "1",
+                 }
+            
+             </remarks>
+             <response code="201">Returns the newly created item</response>
+             <response code="400">If the item is null</response> 
+             <param name="driveId"></param>
+             <returns>Returns a list of available members for the particuler drive</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewEmployeeDashboard(IMS.Models.DateRange)">
+             <summary>
+             This method invoked when the employee wants to see their dashboard
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /ViewEmployueeDashboard
+                 {
+                    "Employee Id": "1",
+                 }
+            
+             </remarks>
+             <response code="201">Returns the newly created item</response>
+             <response code="400">If the item is null</response> 
+            <param name="dateRange"></param>
+            <returns>Returns the dashboard of employee</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewTotalDrives(IMS.Models.DateRange)">
+            <summary>
+            This method is used to view  list of drives
+            </summary>
+            <response code="200">Returns list of total drives</response>
+            <response code="500">If there is problem in server</response>
+            <param name="dateRange"></param> 
+            <returns>Returns the dashboard of employee</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewAcceptedDrives(IMS.Models.DateRange)">
+            <summary>
+            This method invoked when the employee wants to see their Accepted Drive
+            </summary>
+            <response code="200">Returns list of accepted drives</response>
+            <response code="500">If there is problem in server</response>
+            <param name="dateRange"></param>
+            <returns>Returns list of accepted drives</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewDeniedDrives(IMS.Models.DateRange)">
+            <summary>
+            This method invoked when the employee wants to see their Denied drives
+            </summary>
+            <response code="200">If it returns list of denied drives</response>
+            <response code="500">If there is problem</response>
+            <param name="dateRange"></param> 
+            <returns>Returns list of denied drives</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewIgnoredDrives(IMS.Models.DateRange)">
+             <summary>
+             This method invoked when the employee wants to see their Ignored Drives
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /ViewEmployueeDashboard
+                 {
+                    "Employee Id": "1",
+                 }
+            
+             </remarks>
+             <response code="201">Returns the newly created item</response>
+             <response code="400">If the item is null</response>
+             <param name="dateRange"></param> 
+             <returns>Returns the dashboard of employee</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewUtilizedInterviews(IMS.Models.DateRange)">
+            <summary>
+            This method invoked when the employee wants to see their Utilized Slots
+            </summary>
+            <response code="200">If it returns list of utilized interviews</response>
+            <response code="500">If there is problem in server</response> 
+            <returns>Returns list of utilized interviews or 
+            Returns problem if some internal problem occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewNotUtilizedInterviews(IMS.Models.DateRange)">
+            <summary>
+            This method invoked when the employee wants to see their Not Utilized Slots
+            </summary>
+            <response code="201">If it returns list of not utilized interviews</response>
+            <response code="500">If there is problem in server</response> 
+            <returns>Returns list of not utilized interviews </returns>
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewCancelledInterview(IMS.Models.DateRange)">
+            <summary>
+            This method gets a list of cancelled interviews for current user
+            </summary>
+            <response code="200">Returns list of cancelled interviews</response>
+            <response code="500">If there is problem in server</response> 
+        </member>
+        <member name="M:IMS.Controllers.DriveController.ViewTotalAvailability(IMS.Models.DateRange)">
+             <summary>
+             This method invoked when the employee wants to see their Total Availability
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /ViewEmployueeDashboard
+                 {
+                    "Employee Id": "1",
+                 }
+            
+             </remarks>
+             <response code="201">Returns the newly created item</response>
+             <response code="400">If the item is null</response> 
+            <returns>Returns the dashboard of employee</returns>
+        </member>
+        <member name="M:IMS.Controllers.EmployeeController.CreateNewEmployee(IMS.Models.Employee)">
+            <summary>
+            This method is used to register as a new employee
+            </summary>
+            <response code="200">If new employee was created</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <response code="500">If there is problem in server</response>
+            <param name="employee"></param>
+            <returns>
+            Return OK when role is added successfully or
+            Return Badrequest or Problem when exception occured in the EmployeeService layer.
+            </returns>
+        </member>
+        <member name="M:IMS.Controllers.EmployeeController.RemoveEmployee(System.Int32)">
+            <summary>
+            This method is used to remove employee
+            </summary>
+            <response code="200">If employee was removed successfully</response>
+            <response code="400">If the item is null or validation exception occurs</response>
+            <response code="500">If there is problem in server</response>
+            <param name="employeeId"></param>
+            <returns>
+            Return success message when employee removed
+            Return Badrequest when validation exception or 
+            Return Problem when some internal error occurred
+            </returns>
+        </member>
+        <member name="M:IMS.Controllers.EmployeeController.ViewEmployees">
+            <summary>
+            This method is used view list of employees 
+            </summary>
+            <response code="200">Returns list of employee</response>
+            <response code="400">If the item is null</response>
+            <response code="500">If there is problem in server</response>
+            <returns>
+            Return list of all employees or
+            Return Problem when exception occured in the EmployeeService layer.
+            </returns>
+        </member>
+        <member name="M:IMS.Controllers.EmployeeController.ViewProfile(System.Int32)">
+            <summary>
+            This method is used to view employee profile
+            </summary>
+            <response code="200">Returns employee profile</response>
+            <response code="400">If the item is null or validation exception occurs</response>
+            <response code="500">If there is problem in server</response>
+            <param name="employeeId"></param>
+            <returns>
+            Return Employee details(profile) or
+            Return problem when exception occured in the EmployeeService layer.
+            </returns>
+        </member>
+        <member name="M:IMS.Controllers.EmployeeController.ViewEmployeeProfile">
+            <summary>
+            This is used to view their profile
+            </summary>
+            <returns>
+            Returns his/her profile or
+            Returns problem when internal problem occurs
+            </returns>
+        </member>
+        <member name="M:IMS.Controllers.EmployeeController.ViewEmployeesByDepartment(System.Int32)">
+            <summary>
+            This method is used to view list of employees by department
+            </summary>
+            <response code="200">Returns list of employees by department</response>
+            <response code="400">If the item is null or validations exception occurs</response>
+            <response code="500">If there is problem in server</response>
+            <param name="departmentId"></param>
+            <returns>
+            Return list of employees by department  or
+            Return BadRequest when validation exception occurs or 
+            Return Problem when problem arises in server
+            </returns>
+        </member>
+        <member name="M:IMS.Controllers.EmployeeController.ViewEmployeeByApprovalStatus(System.Boolean)">
+            <summary>
+            This method is used to view whether employee is accepted by admin or not
+            </summary>
+            <response code="200">Returns list of approved employee</response>
+            <response code="500">If there is problem in server</response>
+            <param name="isAdminAccepted"></param>
+            <returns>Returns list of employees where accepted by admin or
+            Returns problem when internal error occurs </returns>
+        </member>
+        <member name="M:IMS.Controllers.EmployeeController.ViewEmployeeRequest">
+            <summary>
+            This method is used to view request received from the employee
+            </summary>
+            <response code="200">Returns list of request from employee</response>
+            <response code="500">If there is problem in server</response>
+            <returns>Returns list of request received from employee or
+            Returns Problem when internal error occurs
+            </returns>
+        </member>
+        <member name="M:IMS.Controllers.EmployeeController.RespondEmployeeRequest(System.Int32,System.Boolean)">
+            <summary>
+            This method is used to respond request received from employee
+            </summary>
+            <param name="employeeId">int</param>
+            <param name="response">bool</param>
+            <returns>Returns true after accept/reject request from employee or
+            Returns bad request when employeeId is null</returns>
+        </member>
+        <member name="M:IMS.Controllers.LocationController.CreateNewLocation(IMS.Models.Location)">
+            <summary>
+            This method is used to create new location
+            </summary>
+            <response code="200">If new location was created</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <param name="location">String</param>
+            <returns>Returns success message if location was created or 
+            Returns bad request if validation exception occurs or
+            Returns problem if some internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.LocationController.RemoveLocation(IMS.Models.Location)">
+            <summary>
+            This method is used to remove location
+            </summary>
+            <response code="200">If Location was removed successfully</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <response code="500">If there is problem in server </response>
+            <param name="location">int</param>
+            <returns>Returns success message if location removed or
+            Returns Bad request if validation exception occurs or
+            Returns problem when some internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.LocationController.ViewLocations">
+            <summary>
+            This method is used to view list of locations
+            </summary>
+            <response code="20o">Returns list of locations</response>
+            <response code="500">If there is problem in server</response> 
+            <returns>Returns list of locations or 
+            Returns problem when some internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.PoolController.CreateNewPool(System.Int32,System.String)">
+            <summary>
+            This method is used to create new pool
+            </summary>
+            <response code="200">If new pool was created</response>
+            <response code="400">If the item is null or validation exception occurs</response>
+            <response code="500">If there is problem in server</response>
+            <param name="departmentId">int</param>
+            <param name="poolName">string</param>
+            <returns>Returns success message if new pool was created
+            Returns bad request if validation exception occcurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.PoolController.RemovePool(System.Int32)">
+            <summary>
+            This method is used to remove pool
+            </summary>
+            <response code="200">If pool removed successfully</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <response code="500">If there is problem in server</response>
+            <param name="poolId">int</param>
+            <returns>Returns Success Message if pool was removed or
+            Returns Badrequest if validation exception occurs
+            Retursn problem if some internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.PoolController.EditPool(System.Int32,System.String)">
+            <summary>
+            This method is used to rename a pool 
+            </summary>
+            <response code="200">If pool was successfully renamed</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <response code="500">If there is problem in server</response>
+            <param name="poolId">int</param>
+            <param name="poolName">String</param>
+            <returns>Returns Success Message if pool was renamed or 
+            Returns bad request if validation exception occurs or
+            Returns problem if some internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.PoolController.ViewPools">
+            <summary>
+            This method is used to view list of pools
+            </summary>
+            <response code="200">Returns the newly created item</response>
+            <response code="400">If the item is null</response> 
+            <response code="500">If there is problem in server</response>
+            <returns>Returns a list of pools or 
+            Returns bad request when validation exception occurs or
+            Returns problem when some internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.PoolController.ViewPoolsByID">
+            <summary>
+            This method is used view list of pools for a cuurent user
+            </summary>
+            <response code="200">Returns pool by Id</response>
+            <response code="400">Returns bad request when validation exception occurs </response>
+            <response code="500">If there is problem in server</response>
+            <returns>Returns list of pool based on employee id or
+            Returns bad request when validation exception occurs or
+            Returnns problem when intrenal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.PoolController.AddPoolMember(System.Int32,System.Int32)">
+            <summary>
+            This method is used to add a pool member
+            </summary>
+            <response code="200">If pool member is added sucessfully</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <response code="500">If problem occurs in server</response>
+            <param name="employeeId">int</param>
+            <param name="poolId">int</param>
+            <returns>Returns Success message when pool member added or 
+            Returns bad request when validation exception occurs
+            Rerurns problem when internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.PoolController.RemovePoolMember(System.Int32)">
+            <summary>
+            This method is used to remove a pool member from a pool
+            </summary>
+            <response code="200">If pool member removed successfully</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <param name="poolMemberId">int</param>
+            <returns>Returns Success Message or Error Message when Exception occurs in Service layer</returns>
+        </member>
+        <member name="M:IMS.Controllers.PoolController.ViewPoolMembers(System.Int32)">
+            <summary>
+            This method is used to view list of pool members by pool id
+            </summary>
+            <response code="200">Returns list of pool members</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <param name="poolId">int</param>
+            <returns>Returns a list of pool Members or 
+            Returns bad request when validation exception occurs or
+            Returns problem when some internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.RoleController.CreateNewRole(IMS.Models.Role)">
+            <summary>
+            This method used to create new role
+            </summary>
+            <response code="200">If new role is created</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <response code="500">If there is problem in server</response>
+            <param name="role">String</param>
+            <returns>Returns Error Message when Exception occured in Role Service. Succsess Message or Internal Error</returns>
+        </member>
+        <member name="M:IMS.Controllers.RoleController.RemoveRole(IMS.Models.Role)">
+            <summary>
+             This method is used to remove a role
+            </summary>
+            <response code="200">If role was created</response>
+            <response code="400">If the item is null or validtaion exception occurs</response> 
+            <param name="role">int</param>
+            <returns>Returns success message  when role was created or 
+            Returns bad request when validation exception occurs or
+            Returns problem if internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.RoleController.ViewRoles">
+            <summary>
+            This method is used to view list of roles
+            </summary>
+            <response code="200">If it returns list of roles</response>
+            <response code="500">If there is problem in server</response> 
+            <returns>Returns list of role or 
+            Returns problem if some internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controllers.TokenController.Login(IMS.Models.User)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IMS.Controller.ProjectController.CreateNewProject(System.Int32,System.String)">
+            <summary>
+            This method is used to create new project
+            </summary>
+            <response code="200">If project is created successfully</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <response code="500">If there is problem in server</response>
+            <param name="departmentId">int</param>
+            <param name="projectName">String</param>
+            <returns>Returns success message when project added or
+            Returns bad request when validation exception occurs or
+            Retuurns problem when internal problem occurs </returns>
+        </member>
+        <member name="M:IMS.Controller.ProjectController.RemoveProject(System.Int32)">
+            <summary>
+            This method is used to remove project
+            </summary>
+            <response code="200">If project was removed successfully</response>
+            <response code="400">If the item is null or validation exception oocurs</response> 
+            <response code="500">If there is problem in server</response>
+            <param name="projectId">int</param>
+            <returns>Return success message if project removed or
+            Returns bad request when validation exception occurs or
+            Returns problem if some internal error occurs</returns>
+        </member>
+        <member name="M:IMS.Controller.ProjectController.ViewProjects">
+            <summary>
+            This method is used to view list of projects
+            </summary>
+            <response code="200">Returns list of projects</response>
+            <response code="400">If the item is null or validation exception occurs</response> 
+            <returns>Return List of Projects or
+            Returns problem if internal error occurs</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.DepartmentDataAccessLayer.AddDepartmentToDatabase(IMS.Models.Department)">
+            <summary>
+            This method will implement when Department service pass the object and it interact with Database.It validate the department name
+            </summary>
+            <param name="department">Department</param>
+            <returns>Return True otherwise Return False when it throw DbUpdateException or OperationCanceledException or Exception</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.DepartmentDataAccessLayer.RemoveDepartmentFromDatabase(IMS.Models.Department)">
+            <summary>
+            This method will implement when Department service pass the department Id and it interact with Database.It validate the department Id
+            </summary>
+            <param name="department">int</param>
+            <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.DepartmentDataAccessLayer.GetDepartmentsFromDatabase">
+            <summary>
+            This method will implement when Department service pass the request and it interact with Database.
+            </summary>
+            <returns>Return List. otherwise throw DbUpdateException or OperationCanceledException or Exception</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.DepartmentDataAccessLayer.AddProjectToDatabase(IMS.Models.Project)">
+            <summary>
+            This method will implement when Department service pass the object and it interact with Database.It validate the department Id and project Name
+            </summary>
+            <param name="project">Project</param>
+            <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.DepartmentDataAccessLayer.RemoveProjectFromDatabase(System.Int32)">
+            <summary>
+            This method will implement when Department service pass the project Id and it interact with Database.It validate the Project Id
+            </summary>
+            <param name="projectId">int</param>
+            <returns>Return True otherwise Return False when it  throw DbUpdateException or OperationCanceledException or Exception</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.DepartmentDataAccessLayer.GetProjectsFromDatabase">
+            <summary>
+            This method will implement when Department service pass the department Id and it interact with Database.It validate the department Id.
+            </summary>
+            <returns>Return List otherwise it throw DbUpdateException or OperationCanceledException or Exception</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.EmployeeDataAccessLayer.AddEmployeeToDatabase(IMS.Models.Employee)">
+            <summary>
+            This method implements when Employee service passes the object to this method,then this method add the employee data to the database.
+            </summary>
+            <param name="employee"></param>
+            <returns>
+            Return true when the data is added successfully to the database or
+            Return false when exception is occured in this method.
+            </returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.EmployeeDataAccessLayer.RemoveEmployeeFromDatabase(System.Int32)">
+            <summary>
+            This method implements when Employee service passes the object to this method,then this method remove the employee data from the database.
+            </summary>
+            <param name="employeeId"></param>
+            <returns>
+            Return true when the data is removed successfully from the database or
+            Return false when the exception is occured in this method.
+            </returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.EmployeeDataAccessLayer.GetApprovedEmployessFromDatabase(System.Boolean)">
+            <summary>
+            This method implements when employee service passes the request to this method,then this method 
+            </summary>
+            <returns>
+            Return list of all employees to the service layer or
+            Throws an exception when exception is occured in this method.
+            </returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.EmployeeDataAccessLayer.ViewProfile(System.Int32)">
+            <summary>
+            This method implements when employee service passes the object to this method,then this method shows the employee details based on parameter(employee id).
+            </summary>
+            <param name="employeeId"></param>
+            <returns>
+            Return employee details or
+            Throws an exception when the exception is occured in this method.
+            </returns>
+            
+        </member>
+        <member name="M:IMS.DataAccessLayer.LocationDataAccessLayer.AddLocationToDatabase(IMS.Models.Location)">
+            <summary>
+            This method is implemented when the Service layer shifts the control to Location DAL. 
+            Location DAL Perform the interaction with Database and Respond to the Add Location to Database request. 
+            </summary>
+            <param name="location">Object</param>
+            <returns> Returns False when Exception occured in Database Connectivity.
+            Throws ArgumentNullException when Role object is not passed </returns>       
+        </member>
+        <member name="M:IMS.DataAccessLayer.LocationDataAccessLayer.RemoveLocationFromDatabase(System.Int32)">
+            <summary>
+            This method is implemented when the Service layer shifts the control to Location DAL. 
+            Location DAL Perform the interaction with Database and Respond to the Remove Location From Database request. 
+            </summary>
+            <param name="locationId">int</param>
+            <returns>Returns False when Exception occured in Database Connectivity.
+            Throws Argument Null Exception when Location ID is null</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.LocationDataAccessLayer.GetLocationsFromDatabase">
+            <summary>
+            This method is implemented when the Service layer shifts the control to Location DAL to View all Locations. 
+            Location DAL Perform the interaction with Database and Respond to the view all Locations request.
+            </summary>
+            <returns>Returns a list of Location.
+            Catches exceptions if any problems in interacting with Database</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.PoolDataAccessLayer.AddPoolToDatabase(IMS.Models.Pool)">
+            <summary>
+            This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+            Pool DAL Perform the interaction with Database and Respond to the Add Pool to Database request.
+            </summary>
+            <param name="pool">object</param>
+            <returns>Returns true or Exception message when any misconnection in database</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.PoolDataAccessLayer.RemovePoolFromDatabase(System.Int32)">
+            <summary>
+            This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+            Pool DAL Perform the interaction with Database and Respond to the Remove Pool from Database request.
+            </summary>
+            <param name="poolId">int</param>
+            <returns>Returns true or Exception message when any misconnection in database</returns>
+            
+        </member>
+        <member name="M:IMS.DataAccessLayer.PoolDataAccessLayer.EditPoolFromDatabase(System.Int32,System.String)">
+            <summary>
+            This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+            Pool DAL Perform the interaction with Database and Respond to the Rename a Pool from Database request.
+            </summary>
+            <param name="poolId">int</param>
+            <param name="poolName">string</param>
+            <returns>Return true or Throws Exception : No pool is found with given Pool Id or The given pool Id is inactive,so unable to rename the pool</returns>
+            Catches exceptions thorwed by Database if any Misconnections in DB
+        </member>
+        <member name="M:IMS.DataAccessLayer.PoolDataAccessLayer.GetPoolsFromDatabase">
+            <summary>
+            This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+            Pool DAL Perform the interaction with Database and Respond to the Get Pools from Database request.
+            </summary>
+            <returns>Return list of pools from database or Throws Exception : No pool is found with given department Id</returns>
+            Catches exceptions thorwed by Database if any Misconnections in DB 
+        </member>
+        <member name="M:IMS.DataAccessLayer.PoolDataAccessLayer.AddPoolMembersToDatabase(IMS.Models.PoolMembers)">
+            <summary>
+            This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+            Pool DAL Perform the interaction with Database and Respond to the Add members to Pools request.
+            </summary>
+            <param name="poolMembers">object</param>
+            <returns>Return true or  Catches exceptions thorwed by Database if any Misconnections in DB</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.PoolDataAccessLayer.RemovePoolMembersFromDatabase(System.Int32)">
+            <summary>
+            This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+            Pool DAL Perform the interaction with Database and Respond to the Remove members to Pools request.
+            </summary>
+            <param name="poolMemberId">int</param>
+            <returns>Return true or  Catches exceptions thorwed by Database if any Misconnections in DB</returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.PoolDataAccessLayer.GetPoolMembersFromDatabase(System.Int32)">
+            <summary>
+            This method is implemented when the Service layer shifts the control and parameters to Pool DAL. 
+            Pool DAL Perform the interaction with Database and Respond to theGet pool members from Database request.
+            </summary>
+            <param name="poolId">int</param>
+            <returns>Return the list of pool members or Throws exception : Pool not found with the given Pool Id
+            Catches exceptions thorwed by Database if any Misconnections in DB </returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.RoleDataAccessLayer.AddRoleToDatabase(IMS.Models.Role)">
+            <summary>
+            This method is implemented when the Service layer shifts the control to Role DAL. 
+            Role DAL Perform the interaction with Database and Respond to the Add Role to Database request.
+            </summary>
+            <param name="role">Object</param>
+            <returns>Returns False when Exception occured in Database Connectivity . Throws ArgumentNullException when Role object is not passed </returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.RoleDataAccessLayer.RemoveRoleFromDatabase(IMS.Models.Role)">
+            <summary>
+            This method is implemented when the Service layer shifts the control to Role DAL. 
+            Role DAL Perform the interaction with Database and Respond to the Remove Role from Database request.
+            </summary>
+            <param name="role">int</param>
+            <returns>  Returns False when Exception occured in Database Connectivity . Throws ArgumentNullException when Role Id is not passed </returns>
+        </member>
+        <member name="M:IMS.DataAccessLayer.RoleDataAccessLayer.GetRolesFromDatabase">
+            <summary>
+             This method is implemented when the Service layer shifts the control to Role DAL to View all Roles. 
+            Role DAL Perform the interaction with Database and Respond to the view all Role request.
+            </summary>
+            <returns>Throws Exception when Exception occured in Database Connectivity</returns>
+        </member>
+        <member name="M:IMS.Service.DepartmentService.CreateDepartment(IMS.Models.Department)">
+            <summary>
+            This Method will implement when Department controller pass the parameter to this method an
+            </summary>
+            <param name="department">string</param>
+            <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
+        </member>
+        <member name="M:IMS.Service.DepartmentService.RemoveDepartment(IMS.Models.Department)">
+            <summary>
+            This Method will implement when Department controller pass the parameter to this method and it validate the department ID and pass the departmentID to the DAL
+            </summary>
+            <param name="department">int</param>
+            <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
+        </member>
+        <member name="M:IMS.Service.DepartmentService.ViewDepartments">
+            <summary>
+            This Method will implement when Department controller pass the request to this method .It Shift the control to the DAL
+            </summary>
+            <returns>Return list otherwise throw exception when exception occur in DAL</returns>
+        </member>
+        <member name="M:IMS.Service.DepartmentService.CreateProject(System.Int32,System.String)">
+            <summary>
+            This Method will implement when Project controller pass the parameter to this method and it validate the  department ID and project name and pass the object to the DAL
+            </summary>
+            <param name="departmentId">int</param>
+            <param name="projectName">string</param>
+            <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
+        </member>
+        <member name="M:IMS.Service.DepartmentService.RemoveProject(System.Int32)">
+            <summary>
+            This Method will implement when project controller pass the parameter to this method and it validate the project Id and pass the projectId to the DAL
+            </summary>
+            <param name="projectId">int</param>
+            <returns>Return true or false otherwise throw exception when exception occur in DAL</returns>
+        </member>
+        <member name="M:IMS.Service.DepartmentService.ViewProjects">
+            <summary>
+            This Method will implement when Project controller pass the request to this method  and it shift the control  to the DAL
+            </summary>
+            <returns>Return list otherwise throw exception when exception occur in DAL</returns>
+        </member>
+        <member name="M:IMS.Service.EmployeeService.CreateNewEmployee(IMS.Models.Employee)">
+            <summary>
+            This method will implemented when EmployeeController passes the request to this method,then this method calls the AddEmployeeToDatabase method in DAL.
+            </summary>
+            <param name="employee"></param>
+            <returns>
+            Returns true when role is added successfully in DAL or
+            Returns false when exception occured in AddEmployeeToDatabase method in DAL or
+            Throws an exception when error is occuren in this method
+            </returns>
+        </member>
+        <member name="M:IMS.Service.EmployeeService.RemoveEmployee(System.Int32)">
+            <summary>
+            This method will be implemented when EmployeeController passes the request to this method,then this method calls the RemoveEmployeeFromDatabase method in DAL.
+            </summary>
+            <param name="employeeId"></param>
+            <returns>
+            Returns true when role is removed successfully in DAL or
+            Returns false when exception occured in RemoveEmployeeFromDatabase method in DAL or
+            Throws an exception when error is occuren in this method.
+            </returns>
+        </member>
+        <member name="M:IMS.Service.EmployeeService.ViewEmployees">
+            <summary>
+            This method will implemented when EmployeeController passes the request to this method,then this method calls the GetEmployeesFromDatabase method in DAL.
+            </summary>
+            <returns>
+            Returns list of all employees who are in "IsActive==true" or
+            Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
+            </returns>
+        </member>
+        <member name="M:IMS.Service.EmployeeService.ViewProfile(System.Int32)">
+            <summary>
+            This method implements when EmployeeController passes the request to this method,then this method calls ViewProfile method in DAL.
+            </summary>
+            <param name="employeeId"></param>
+            <returns>
+            Return Employee details or
+            Throws an exception when exception is occured in ViewProfile method in DAL. 
+            </returns>
+        </member>
+        <member name="M:IMS.Service.EmployeeService.ViewEmployeesByDepartment(System.Int32)">
+            <summary>
+            This method will implemented when EmployeeController passes the request to this method,then this method calls the GetEmployeesFromDatabase method in DAL.
+            </summary>
+            <param name="departmentId"></param>
+            <returns>
+            Returns list of employees who's departmentId matches in database table department id or
+            Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
+            </returns>
+        </member>
+        <member name="M:IMS.Service.EmployeeService.ViewEmployeeByApprovalStatus(System.Boolean)">
+            <summary>
+            This method implements when EmployeeController passes the request to this method,then this method calls the ViewEmployeeByApprovalStatus method in DAL.
+            </summary>
+            <param name="isAdminAccepted"></param>
+            <returns>
+            Return list of employees who are approved or rejected by admin based on isAdminAccepted parameter or
+            Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
+            </returns>
+        </member>
+        <member name="M:IMS.Service.EmployeeService.ViewEmployeeRequest">
+            <summary>
+            This method implements when EmployeeController passes the request to this method,then this method calls the ViewEmployeeRequest method in DAL.
+            </summary>
+            <returns>
+            Return list of employees who has sent a request to admin and doesn't shows a accepted request or 
+            Throws an exception when exception is occured in GetEmployeesFromDatabase method in DAL.
+            </returns>
+        </member>
+        <member name="M:IMS.Service.LocationService.CreateLocation(IMS.Models.Location)">
+            <summary>
+            This method will be implemented when Location Controller Passes the Location Name to the service Layer. And controll Shifts to Location DAL.
+            </summary>
+            <param name="location">String</param>
+            <returns> Returns False when Exception occured in Data Access Layer. 
+            Throws ArgumentNullException when Role Name is not passed to this service method</returns>
+        </member>
+        <member name="M:IMS.Service.LocationService.RemoveLocation(IMS.Models.Location)">
+            <summary>
+            This method will be implemented when Location Controller Passes the Location ID to the service Layer. And controll Shifts to Location DAL.
+            </summary>
+            <param name="location">int</param>
+            <returns>Returns False when Exception occured in Data Access Layer.
+            Throws ArgumentNullException when Role Id is not passed to this service method</returns>
+        </member>
+        <member name="M:IMS.Service.LocationService.ViewLocations">
+            <summary>
+            This method will be implemented when "View all Location" - Request raise . And control Shifts to Location DAL.
+            </summary>
+            <returns>Returns List of locations otherwise Throws Exception when Exception occured in DAL while fetching roles</returns>
+        </member>
+        <member name="M:IMS.Service.PoolService.CreatePool(System.Int32,System.String)">
+            <summary>
+            This method will be implemented when Pool Controller Passes the Pool Name, Pool Id to the service Layer. And controll Shifts to Pool DAL.
+            </summary>
+            <param name="departmentId">int</param>
+            <param name="poolName">string</param>
+            <returns>Return True or False to the Pool Controller Layer</returns>
+        </member>
+        <member name="M:IMS.Service.PoolService.RemovePool(System.Int32)">
+            <summary>
+             This method will be implemented when Pool Controller Passes the Pool Id to the service Layer. And controll Shifts to Pool DAL.
+            </summary>
+            <param name="poolId">int</param>
+            <returns>Return True or False to the Pool Controller Layer</returns>
+        </member>
+        <member name="M:IMS.Service.PoolService.EditPool(System.Int32,System.String)">
+            <summary>
+             This method will be implemented when Pool Controller Passes the Pool Id, Pool name to the service Layer for Renaming the pool. And controll Shifts to Pool DAL.
+            </summary>
+            <param name="poolId">int</param>
+            <param name="poolName">string</param>
+            <returns>>Return True or False to the Pool Controller Layer</returns>
+        </member>
+        <member name="M:IMS.Service.PoolService.ViewPools">
+            <summary>
+            This method will be implemented when Pool Controller Passes the Department Id to the service Layer to view all pools. And controll Shifts to Pool DAL.
+            </summary>
+            <returns>Returns list of pools</returns>
+        </member>
+        <member name="M:IMS.Service.PoolService.ViewPoolsByID(System.Int32)">
+            <summary>
+            /// This method will be implemented when Pool Controller Passes the Employee Id to the service Layer to view pools by employee id. And controll Shifts to Pool DAL.
+            </summary>
+            <param name="employeeId"></param>
+            <returns>Returns list of pool by employee id</returns>
+        </member>
+        <member name="M:IMS.Service.PoolService.AddPoolMember(System.Int32,System.Int32)">
+            <summary>
+            This method will be implemented when Pool Controller Passes the Employee Id, PoolId to the service Layer to add a member to the pool. And controll Shifts to Pool DAL.
+            </summary>
+            <param name="employeeId">int</param>
+            <param name="poolId">int</param>
+            <returns>Return true or false for the Pool controller</returns>
+        </member>
+        <member name="M:IMS.Service.PoolService.RemovePoolMember(System.Int32)">
+            <summary>
+            This method will be implemented when Pool Controller Passes the Pool Member Id to the service Layer to remove a member to the pool. And controll Shifts to Pool DAL.
+            </summary>
+            <param name="poolMemberId">int</param>
+            <returns>Return true or false for the Pool controller</returns>
+        </member>
+        <member name="M:IMS.Service.PoolService.ViewPoolMembers(System.Int32)">
+            <summary>
+            This method is implemented when Pool Controller Passes the Pool Id to the service Layer to View all pool members. And controll Shifts to Pool DAL.
+            </summary>
+            <param name="poolId">int</param>
+            <returns>Returns list of poolmembers by pool id</returns>
+        </member>
+        <member name="M:IMS.Service.RoleService.CreateRole(IMS.Models.Role)">
+            <summary>
+            This method will be implemented when Role Controller Passes the Role Name to the service Layer. And controll Shifts to Role DAL.
+            </summary>
+            <param name="role">String</param>
+            <returns> Returns False when Exception occured in Data Access Layer. Throws ArgumentNullException when Role Name is not passed to this service method</returns>
+        </member>
+        <member name="M:IMS.Service.RoleService.RemoveRole(IMS.Models.Role)">
+            <summary>
+            This method will be implemented when Role Controller Passes the Role id to the service Layer. And controll Shifts to Role DAL.
+            </summary>
+            <param name="role">int</param>
+            <returns> Returns False when Exception occured in Data Access Layer. Throws ArgumentNullException when Role Id is not passed to this service method</returns>
+        </member>
+        <member name="M:IMS.Service.RoleService.ViewRoles">
+            <summary>
+            This method will be implemented when "View all Role" - Request raise . And control Shifts to Role DAL.
+            </summary>
+            <returns> Throws Exception when Exception occured in DAL while fetching roles</returns>
+        </member>
+        <member name="M:MailController.SendMail(IMS.Models.MailRequest)">
+            <summary>
+            This method is used to send mail t
+            </summary>
+            <param name="request"></param>
+        </member>
+    </members>
+</doc>
