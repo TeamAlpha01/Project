@@ -10,7 +10,7 @@
                         <label class="form-label" for="Department">Drive </label>
                         <ng-autocomplete [data]="driveDetails" [searchKeyword]="driveList" placeholder="Drive"
                             [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" [(ngModel)]="_drive"
-                            historyIdentifier="driveDetails" (selected)="drive()">
+                            (selected)="drive()">
                         </ng-autocomplete>
                         <ng-template #itemTemplate let-item>
                             <a [innerHTML]="item.driveName"></a>
@@ -22,7 +22,7 @@
                     <div class="col-md-2">
                         <label class="form-label" for="ACE Number"> Employee Name</label>
                         <input type="text" class="form-control " placeholder="Name" name="_name" [(ngModel)]="_name"
-                            (change)="pool()">
+                            (change)="pool()" (change)="filter()">
                     </div>
                     <!-- <div class="col-md-2">
                         <label class="form-label" for="Pool">Pool </label>
@@ -51,44 +51,44 @@
     </div>
 
     <div *ngIf="Date">
-        <div *ngIf="employeesPerformance.length>0; else ArrayEmpty">
-            <div class="mt-3 container shadow  bg-body rounded"
-                *ngFor="let item of employeesPerformance | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength }">
-                <div class *ngIf="(item.employee.employeeName | lowercase).includes(_name | lowercase)">
-                    <div class="card-body">
-                        <div class="row rone mt-4">
-                            <div class="col-md-3">
-                                <div class="row">
-                                    <p><b>Name : </b>{{item.employee.employeeName}}</p>
-                                    <p><b>ACE Number : </b>{{item.employee.employeeACENumber}}</p>
-                                    <p><b>Role :</b>{{item.employee.employeeRole}}</p>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <p><b>Total No.of.Drives : </b>{{item.dashboardCount.TotalDrives}}</p>
-                                <p><b>Availability : </b>{{item.dashboardCount.TotalAvailability}}</p>
-                            </div>
-                            <div class="col-md-2">
-                                <p><b>Accepted : </b>{{item.dashboardCount.AcceptedDrives}}</p>
-                                <p><b>Utilized : </b>{{item.dashboardCount.UtilizedInterviews}}</p>
-                            </div>
-                            <div class="col-md-2">
-                                <p><b>Denied : </b>{{item.dashboardCount.DeniedDrives}}</p>
-                                <p><b>Not utilized : </b>{{item.dashboardCount.NotUtilizedInterviews}}</p>
-                            </div>
-                            <div class="col-md-2">
-                                <p><b>Ignored : </b>{{item.dashboardCount.IgnoredDrives}}</p>
-                                <p><b>Cancelled : </b>{{item.dashboardCount.TotalAvailability -
-                                    item.dashboardCount.UtilizedInterviews}}</p>
-                            </div>
+        <!-- <div *ngIf="employeePerformance.length>0; else ArrayEmpty"> -->
+        <div class="mt-3 container shadow  bg-body rounded"
+            *ngFor="let item of List | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength }">
+            <!-- <div class *ngIf="(item.employee.employeeName | lowercase).includes(_name | lowercase)"> -->
+            <div class="card-body">
+                <div class="row rone mt-4">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <p><b>Name : </b>{{item.employee.employeeName}}</p>
+                            <p><b>ACE Number : </b>{{item.employee.employeeACENumber}}</p>
+                            <p><b>Role :</b>{{item.employee.employeeRole}}</p>
                         </div>
+                    </div>
+                    <div class="col-md-3">
+                        <p><b>Total No.of.Drives : </b>{{item.dashboardCount.TotalDrives}}</p>
+                        <p><b>Availability : </b>{{item.dashboardCount.TotalAvailability}}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p><b>Accepted : </b>{{item.dashboardCount.AcceptedDrives}}</p>
+                        <p><b>Utilized : </b>{{item.dashboardCount.UtilizedInterviews}}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p><b>Denied : </b>{{item.dashboardCount.DeniedDrives}}</p>
+                        <p><b>Not utilized : </b>{{item.dashboardCount.NotUtilizedInterviews}}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <p><b>Ignored : </b>{{item.dashboardCount.IgnoredDrives}}</p>
+                        <p><b>Cancelled : </b>{{item.dashboardCount.TotalAvailability -
+                            item.dashboardCount.UtilizedInterviews}}</p>
                     </div>
                 </div>
             </div>
-            <div class="mt-3">
-                <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
-            </div>
+            <!-- </div> -->
         </div>
+        <div class="mt-3">
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+        </div>
+        <!-- </div> -->
     </div>
     <div *ngIf="Drive">
         <div *ngIf="driveResponse.length>0; else ArrayEmpty">

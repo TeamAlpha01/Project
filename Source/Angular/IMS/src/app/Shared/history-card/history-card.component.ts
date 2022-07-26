@@ -8,10 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HistoryCardComponent implements OnInit {
 
   page: number = 1;
-  totalLength:any;
+  totalLength: any;
 
-  @Input()
-  data!: any[];
+  @Input() data!: any[];
+  @Input() title: string = '';
 
   constructor() { }
 

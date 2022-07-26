@@ -38,6 +38,10 @@ export class InterviewerCancelledDrivesComponent implements OnInit {
   constructor(private connection: ConnectionService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.date.From = params['fromDate']   //This methods gets the data from the query string
+      this.date.To = params['toDate']
+    })
     this.GetCancelledinterviews();
     this.GetPoolsbyId();
   }

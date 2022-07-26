@@ -23,6 +23,8 @@ export class DepartmentPerformanceComponent implements OnInit {
   Drive: boolean = false
   Date: boolean = true
 
+  List: any[] = [];
+
   page: number = 1;
   totalLength: any;
   driveResponse: any[] = [];
@@ -31,6 +33,45 @@ export class DepartmentPerformanceComponent implements OnInit {
   departmentEmployees: any;
   driveId = 0;
   error: any;
+
+  performance = [{
+    dashboardCount: {
+      AcceptedDrives: 0,
+      CancelledInterview: 0,
+      DeniedDrives: 0,
+      IgnoredDrives: 0,
+      NotUtilizedInterviews: 0,
+      SlotAvailabiltyGiven: 0,
+      TotalAvailability: 0,
+      TotalDrives: 0,
+      UtilizedInterviews: 0
+    },
+    employee: {
+      employeeACENumber: "",
+      employeeName: "",
+      employeeRole: ""
+    }
+  },
+  ]
+
+  // employeePerformance = {
+  //   dashboardCount: {
+  //     AcceptedDrives: 0,
+  //     CancelledInterview: 0,
+  //     DeniedDrives: 0,
+  //     IgnoredDrives: 0,
+  //     NotUtilizedInterviews: 0,
+  //     SlotAvailabiltyGiven: 0,
+  //     TotalAvailability: 0,
+  //     TotalDrives: 0,
+  //     UtilizedInterviews: 0
+  //   },
+  //   employee: {
+  //     employeeACENumber: "",
+  //     employeeName: "",
+  //     employeeRole: ""
+  //   }
+  // }
 
   constructor(private connection: ConnectionService) { }
 
@@ -54,21 +95,24 @@ export class DepartmentPerformanceComponent implements OnInit {
 
   GetDrivesForCurrentUser() {
     this.connection.GetDrivesForCurrentUser().subscribe({
-      next: (data: any) => { this.driveDetails = data},
+      next: (data: any) => { this.driveDetails = data },
       // error:(error:any)=>this.error=error,
     })
   }
 
   GetDrives(driveId: number) {
     this.connection.GetDashboardDriveResponse(driveId).subscribe({
-      next: (data: any) =>{ this.driveResponse = data},
+      next: (data: any) => { this.driveResponse = data },
     })
   }
 
   GetEmployeesPerformance() {
-    const dataRange={From: this._fromDate,To:this._toDate}
+    const dataRange = { From: this._fromDate, To: this._toDate }
     this.connection.GetEmployeePerformance(dataRange).subscribe({
-      next: (data: any) => { this.employeesPerformance = data },
+      next: (data: any) => {
+        this.performance = data,
+          this.List = data
+      },
     })
   }
 
@@ -104,7 +148,7 @@ export class DepartmentPerformanceComponent implements OnInit {
         else if (this._fromDate != '' || this._toDate != '') {
           this.Drive = false;
           this.Date = true;
-          const dateRange = {FromDate : this._fromDate,ToDate:this._toDate}
+          const dateRange = { FromDate: this._fromDate, ToDate: this._toDate }
           this.connection.GetEmployeePerformance(dateRange);
         }
       }
@@ -114,17 +158,10 @@ export class DepartmentPerformanceComponent implements OnInit {
       this.Date = false;
       this.GetDrives(this._drive.driveId);
     }
+  }
 
-
-
-
-    // this.GetDrives();
-    // this.Drive = true;
-    // this.Date = false;
-    // if (this._drive.driveName === '') {
-    //   this.GetPools();
-    //   this.Drive = false;
-    //   this.Date = true;
-    // }
+  filter() {
+    this.List = []
+    this.List = this.performance.filter((data: any) => data.employee.employeeName.toLowerCase().includes(this._name.toLowerCase()));
   }
 }

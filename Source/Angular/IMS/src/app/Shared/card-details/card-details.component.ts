@@ -7,15 +7,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardDetailsComponent implements OnInit {
   page: number = 1;
-  totalLength:any;
+  totalLength: any;
 
-  @Input()  data!: any[];
-  @Input()  response:boolean=false
-  
+  @Input() data!: any[];
+  @Input() response: boolean = false;
+  @Input() title: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
 
