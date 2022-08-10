@@ -72,6 +72,8 @@ builder.Services.AddTransient<ILocationServices,LocationService>();
 builder.Services.AddTransient<ILocationDataAccessLayer,LocationDataAccessLayer>();
 builder.Services.AddTransient<IPoolService,PoolService>();
 builder.Services.AddTransient<IPoolDataAccessLayer,PoolDataAccessLayer>();
+builder.Services.AddTransient<IPoolDataAccessLayer,PoolDataAccessLayer>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {

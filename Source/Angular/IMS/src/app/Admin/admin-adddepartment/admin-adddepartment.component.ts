@@ -56,7 +56,6 @@ export class AdminAdddepartmentComponent implements OnInit {
 
   //RESET AFTER SUBMIT
   clearInputFields() {
-
     this.submitted = false;
     setTimeout(() => {
       this.response = '';

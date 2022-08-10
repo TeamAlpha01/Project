@@ -1,16 +1,18 @@
-
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
-  selector: 'app-admin-header',
-  templateUrl: './admin-header.component.html',
-  styleUrls: ['./admin-header.component.css'],
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css']
 })
-export class AdminHeaderComponent implements OnInit {
-  //TO GET DATA FROM DATABASE
+export class SidebarComponent implements OnInit {
+
   userName: string | null = '';
   Name: string = '';
+  Role:string='';
+  isManagement: boolean = false
+
 
   constructor(private service: AuthenticationService) { }
 
@@ -19,7 +21,9 @@ export class AdminHeaderComponent implements OnInit {
   }
 
   GetUser() {
+    this.isManagement = AuthenticationService.GetUser() == "Management" ? true : false;
     this.userName = AuthenticationService.GetUserName();
+    this.Role = AuthenticationService.GetUser();
     if (this.userName == null) {
       this.Name = "User"
     }
@@ -28,8 +32,8 @@ export class AdminHeaderComponent implements OnInit {
     }
   }
 
-  //THIS METHOD IS CALLED ON CLICK OF LOGOUT BUTTON
   logout() {
     this.service.ClearToken();
   }
+
 }

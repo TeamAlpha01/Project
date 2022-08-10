@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ConnectionService } from 'src/app/Services/connection.service';
-import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-create-invite',
@@ -44,6 +43,10 @@ export class CreateInviteComponent implements OnInit {
     locationId: [{ value: '', disabled: true }, [Validators.required]],
     slotTiming: ['', [Validators.required]],
   });
+
+  getInviteDetailsFromFormByKey(key:string){
+    return this.CreateInviteForm.get(key)?.value;
+  }
 
   getDriveName() {
     return this.CreateInviteForm.get('driveName')?.value;
@@ -160,7 +163,7 @@ export class CreateInviteComponent implements OnInit {
 
     const drive = {
       driveId: 0,
-      name: this.getDriveName(),
+      name: this.getInviteDetailsFromFormByKey('driveName'),
       fromDate: this.getFromDate(),
       toDate: this.getToDate(),
       departmentId: this.getDepartmentId(),

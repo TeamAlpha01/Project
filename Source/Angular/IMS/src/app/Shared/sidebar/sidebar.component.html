@@ -1,0 +1,62 @@
+<div class="sidebar  d-flex flex-column justify-content-between">
+    <nav class="navbar bg-custom navbar-dark">
+        <div class="user-profile">
+            <div>
+                <img src="assets/Images/profile_.png" class="profile-img mb-2" alt="Tac_Navbar_Img">
+            </div>
+            <p class="username">{{Name}}</p>
+        </div>
+
+        <div class="navbar-nav w-100">
+            <div *ngIf="Role==='TAC'">
+                <a [routerLink]="['/tac/home']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class="fa fa-home"></i> Home</a>
+                <a [routerLink]="['/tac/myProfile']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class='fa fa-user-circle'></i> Profile</a>
+                <a [routerLink]="['/tac/dashboard']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class="fa fa-info-circle"></i> Dashboard</a>
+                <a [routerLink]="['/tac/managepool']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class="fa fa-user-tie"></i> Manage
+                    Pool</a>
+                <a [routerLink]="['/tac/create-invite']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class="fa fa-calendar-week"></i> Create
+                    Invite</a>
+            </div>
+            <div *ngIf="Role==='Admin'">
+                <a [routerLink]="['/admin/requests']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class="fa fa-users"></i> Employee Requests</a>
+                <a [routerLink]="['/admin/department']" Class="nav-item nav-link" routerLinkActive="active"><i
+                        class="fa fa-people-carry"></i> Manage Department</a>
+                <a [routerLink]="['/admin/location']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class="fa fa-location-pin"></i> Manage Location</a>
+                <a [routerLink]="['/admin/project']" class="nav-item nav-link " routerLinkActive="active"><i
+                        class="fa fa-box-open"></i> Manage Project</a>
+                <a [routerLink]="['/admin/role']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class='fa fa-user'></i> Manage Role</a>
+            </div>
+            <div *ngIf="Role==='Management'||Role==='Interviewer'">
+                <a [routerLink]="['/interviewer/home']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class="fa fa-home"></i> Home</a>
+                <a [routerLink]="['/interviewer/profile']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class='fa fa-user-circle'></i> Profile</a>
+                <div *ngIf="isManagement">
+                    <a [routerLink]="['/management/dashboard']" class="nav-item nav-link" routerLinkActive="active"><i
+                            class="fa fa-info-circle"></i> Dashboard</a>
+                </div>
+                <div *ngIf="!isManagement">
+                    <a [routerLink]="['/interviewer/dashboard']" class="nav-item nav-link" routerLinkActive="active"><i
+                            class="fa fa-info-circle"></i> Dashboard</a>
+                </div>
+                <a [routerLink]="['/interviewer/driveInvites']" class="nav-item nav-link" routerLinkActive="active"><i
+                        class="fa fa-calendar-week"></i> Drive Invites</a>
+            </div>
+        </div>
+    </nav>
+    <footer class="navbar navbar-light ">
+        <div class="navbar-nav w-100">
+            <a (click)="logout()" [routerLink]="['']" class="nav-item nav-link mb-3"><i
+                    class="fa fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </footer>
+</div>
+<!-- Sidebar End -->

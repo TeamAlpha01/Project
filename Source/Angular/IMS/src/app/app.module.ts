@@ -78,6 +78,7 @@ import { ManagementDashboardComponent } from './Management/management-dashboard/
 import { DepartmentPerformanceComponent } from './Management/department-performance/department-performance.component';
 import { InterviewerAcceptedDrivesComponent } from './Interviewer/interviewer-accepted-drives/interviewer-accepted-drives.component';
 import { InterviewerCancelledDrivesComponent } from './Interviewer/interviewer-cancelled-drives/interviewer-cancelled-drives.component';
+import { SidebarComponent } from './Shared/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +150,7 @@ import { InterviewerCancelledDrivesComponent } from './Interviewer/interviewer-c
     DepartmentPerformanceComponent,
     InterviewerAcceptedDrivesComponent,
     InterviewerCancelledDrivesComponent,
+    SidebarComponent,
 
   ],
 
