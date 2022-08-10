@@ -1,0 +1,44 @@
+<!-- Title and sidebar Component  -->
+<app-admin-header></app-admin-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+
+    <!-- Navbar End -->
+
+    <div class="text-center">
+        <a [routerLink]="['/admin/role/add']"><button type="button" class="btn btn-filter">Add Role</button></a>
+    </div>
+
+    <div class="mt-3 container shadow  bg-body rounded"
+        *ngFor="let item of role| paginate: { itemsPerPage: 6, currentPage: page,totalItems:totalLength }">
+        <div class *ngIf="item.roleName!=='Admin'">
+            <div class="card-body">
+                <div class="row rone ">
+                    <div class="col-md-10" id="text-alignment" >
+                        <p>{{item.roleName}}</p>
+                    </div>
+
+                    <div class="col-md-1">
+                        <div class="row">
+                            <button (click)="removeRole(item.roleId, item.roleName)" class="btn"><i
+                                    class="fa fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div *ngIf="error.length!==0">
+                        <app-snack-bar snackBarMessage={{error}} snackBarAction="Done"></app-snack-bar>
+                    </div>
+                    <div *ngIf="response.length!==0">
+                        <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 ">
+        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    </div>
+    <!-- Footer Component -->
+    <app-footer></app-footer>
+</div>
+<!-- Content Ends -->

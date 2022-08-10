@@ -1,0 +1,59 @@
+<app-tac-header></app-tac-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+    <!-- Navbar End -->
+    <section class="wrapper">
+        <div class="container">
+            <div class="row ">
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/tac/home/current-drive']">
+                    <div class="card-card h-100">
+                        <div class="img-card" >
+                            <img src="assets/Images/Current.jpg" alt="TAC_Current_Img" />
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                Current Drives
+                            </h2>
+                            <p class="">
+                                View drives scheduled for you today!
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <!--section 2-->
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/tac/home/scheduled-drive']">
+                    <div class="card-card h-100">
+                        <div class="img-card" >
+                            <img src="assets/Images/Scheduled.jpg" alt="TAC_Scheduled_Img"/>
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                Scheduled Drives
+                            </h2>
+                            <p class="">
+                                View your scheduled drives and plan your days!
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/tac/home/upcomingDrives']">
+                    <div class="card-card h-100">
+                        <div class="img-card " >
+                            <img src="assets/Images/Upcoming.jpg" alt="TAC_Upcoming_Img" />
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                Upcoming Drives
+                            </h2>
+                            <p class="">
+                                View drives scheduled for you today!
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <app-footer></app-footer>
+</div>

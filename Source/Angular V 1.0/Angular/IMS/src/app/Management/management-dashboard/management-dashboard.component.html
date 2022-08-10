@@ -1,0 +1,41 @@
+<app-interviewer-header></app-interviewer-header>
+<div class="content">
+    <app-navbar [title]="title"></app-navbar>
+    <section class="wrapper">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/interviewer/dashboard']">
+                    <div class="card-card">
+                        <div class="img-card">
+                            <img src="assets/Images/Current.jpg" />
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                My Performance
+                            </h2>
+                            <p class="">
+                                Check your performance here !
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/management/dashboard/department-performance']">
+                    <div class="card-card">
+                        <div class="img-card">
+                            <img src="assets/Images/TeamPerformance.jfif" />
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                Department Performance
+                            </h2>
+                            <p class="">
+                                Check your Department performance !
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <app-footer></app-footer>
+</div>

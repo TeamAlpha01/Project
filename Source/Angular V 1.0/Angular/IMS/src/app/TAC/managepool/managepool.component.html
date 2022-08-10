@@ -1,0 +1,80 @@
+<app-tac-header></app-tac-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+    <!-- Navbar End -->
+    <div class="mt-3 container shadow  bg-body rounded">
+        <div class="mt-3">
+            <div class="card-body">
+                <div class="row rone">
+                    <div class="col-md-5">
+                        <label class="form-label mt-4" for="ACE Number">Department </label>
+                        <select name="Department" id="Department Name" class="form-select " name="_dept"
+                            [(ngModel)]="_dept">
+                            <option value="">Select the Department</option>
+                            <ng-container *ngFor="let item of departmentDetails">
+                                <option *ngIf="!(item.departmentName==='TAC' || item.departmentName==='ADMIN')"
+                                    value={{item.departmentName}}> {{item.departmentName}} </option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2 mt-4">
+                        <a routerLink="/tac/managepool/createPool"> <button class="btn btn-back">Add Pool</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3 container shadow  bg-body rounded"
+        *ngFor="let item of poolDetails | filter:_dept | filter:_pool | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength }">
+        <div class *ngIf="item; else ArrayEmpty">
+            <div class="card-body">
+                <div class="row rone ">
+                    <div class="col-md-5 mt-2">
+                        <p class=""><b>Pool Name :</b> {{item.poolName}} </p>
+                    </div>
+                    <div class="col-md-4  mt-2">
+                        <p class=""><b>Department :</b> {{item.departmentName}} </p>
+                    </div>
+                    <div class="col-md-1 ">
+                        <div class="row" title="Manage Pool Members">
+                            <a routerLink="/tac/managepool/managepoolmembers/{{item.poolId}}" class="btn"><i
+                                    class="fa fa-solid fa-user-pen "></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-1 ">
+                        <div class="row" title="Edit Pool">
+                            <a routerLink="/tac/managepool/editpool/{{item.poolId}}" class="btn">
+                                <i class="fa fa-solid fa-pen "></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-1 ">
+                        <div class="row" title="Remove Pool">
+                            <button (click)="RemovePool(item.poolId)" class="btn"><i
+                                    class="fa fa-solid fa-trash "></i></button>
+                        </div>
+                    </div>
+                    <div *ngIf="error.length!==0">
+                        <app-snack-bar snackBarMessage={{error}} snackBarAction="Done"></app-snack-bar>
+                    </div>
+                    <div *ngIf="response.length!==0">
+                        <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 sticky-pagination">
+        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    </div>
+    <ng-template #ArrayEmpty>
+        <div class="text-center mt-4">
+            No {{title}} found.
+        </div>
+    </ng-template>
+
+    <app-footer></app-footer>
+</div>

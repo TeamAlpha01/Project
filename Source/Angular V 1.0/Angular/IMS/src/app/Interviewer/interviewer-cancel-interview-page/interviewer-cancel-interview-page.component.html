@@ -1,0 +1,91 @@
+<app-interviewer-header></app-interviewer-header>
+
+<div class="content">
+    <app-navbar [title]="title"></app-navbar>
+
+    <div class="container">
+        <div class="card mx-auto">
+            <div class="card-body">
+                <br>
+                <div>
+                    <h2 class="card-title" id="cancelinvitealign"><b>Drive Name : </b> {{Invites.driveName}}</h2>
+                    <form [formGroup]="CancelInterviewForm" (ngSubmit)="CancellInterview()">
+                        <div class="row rone mt-4">
+                            <div class="col-md-6">
+                                <p><b>From Date : </b> {{Invites.fromDate|date:'dd-MM-yyyy'}}</p>
+                                <p><b>To Date : </b> {{Invites.toDate|date:'dd-MM-yyyy'}}</p>
+                                <p><b>Pool Name : </b>{{Invites.drivePool}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><b>Mode : </b> {{Invites.driveMode}}</p>
+                                <p><b>Location : </b> {{Invites.driveLocation}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div>
+                            <div class="container"><br>
+                                <h3><b>Cancellation Reason <span id="mandatoryfield">*</span></b></h3>
+                                <div class="row rtwo my-3">
+                                    <div class="col-md-12">
+                                        <div class="form-check"> <input class="form-check-input radiobtnalign"
+                                                type="radio" [value]="'Candidate Not Available'"
+                                                formControlName="CancelInterviewReason"> <label
+                                                class="form-check-label">Candidate Not Available</label></div>
+                                        <div class="form-check"> <input class="form-check-input radiobtnalign"
+                                                type="radio" [value]="'Interviewer Not Available'"
+                                                formControlName="CancelInterviewReason"> <label
+                                                class="form-check-label">Interviewer Not Available</label>
+                                        </div>
+                                        <div
+                                            *ngIf="(submitted)||CancelInterviewForm.controls['CancelInterviewReason'].invalid && CancelInterviewForm.controls['CancelInterviewReason'].touched">
+                                            <span class="text-danger"
+                                                *ngIf="CancelInterviewForm.controls['CancelInterviewReason'].errors?.['required']">*Cancellation
+                                                Reason
+                                                is
+                                                required</span>
+                                        </div>
+                                        <div>
+                                            <br>
+                                            <h3><b>Comments</b></h3>
+                                            <div class="form-outline">
+                                                <textarea class="textinput" maxlength="250"
+                                                    formControlName="Comments"></textarea>
+                                                <br>
+                                                <br>
+                                            </div>
+                                            <div
+                                                *ngIf="(submitted)||CancelInterviewForm.controls['Comments'].invalid && CancelInterviewForm.controls['Comments'].touched">
+                                                <span class="text-danger"
+                                                    *ngIf="CancelInterviewForm.controls['Comments'].errors?.['required']">*Cancellation
+                                                    comments
+                                                    is
+                                                    required</span>
+                                                <!-- <span class="text-danger"
+                                                    *ngIf="CancelInterviewForm.controls['Comments'].errors?.['maxlength']">*Comments
+                                                    can't be more than 250 characters</span>
+                                                <span class="text-danger"
+                                                    *ngIf="CancelInterviewForm.controls['Comments'].errors?.['minlength']">*Comments
+                                                    can't be less than 10 characters</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-back">Submit</button>
+                            </div>
+                            <div *ngIf="response.length!==0">
+                                <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                            </div>
+                            <div *ngIf="error.length!==0">
+                                <app-snack-bar snackBarMessage={{error}} snackBarAction="Done"></app-snack-bar>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer [BackBtn]=true></app-footer>
+</div>

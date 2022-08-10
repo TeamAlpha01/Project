@@ -181,23 +181,15 @@ namespace IMS.DataAccessLayer
         public bool AddProjectToDatabase(Project project)
         {
              _stopwatch.Start();
-            var department = _db.Projects!.Find(project.DepartmentId);
-            if (department == null)
+            if (_db.Projects!.Find(project.DepartmentId) == null)
                 throw new ValidationException("No department Id found with given department id");
-
+            if(_db.Projects.Any(x => x.ProjectName == project.ProjectName && x.IsActive == true && x.DepartmentId==project.DepartmentId))
+                throw new ValidationException("Project Name already exists");
             try
             {
-
-                bool projectnameAlreadyExists = _db.Projects.Any(x => x.ProjectName == project.ProjectName && x.IsActive == true && x.DepartmentId==project.DepartmentId);
-                if (!projectnameAlreadyExists)
-                {
-                    _db.Projects.Add(project);
-                    _db.SaveChanges();
-                    return true;
-                }
-                else
-                    throw new ValidationException("Project Name already exists");
-
+                _db.Projects.Add(project);
+                _db.SaveChanges();
+                return true;
             }
 
             catch (DbUpdateException exception)

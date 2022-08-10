@@ -1,0 +1,62 @@
+<app-interviewer-header></app-interviewer-header>
+
+<!-- Sidebar End -->
+
+<div class="content">
+
+    <app-navbar [title]="title"></app-navbar>
+
+    <div class=" mt-3 mb-5 container shadow  bg-body rounded">
+        <div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label" for="Pool">Pool </label>
+                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown()" name="_pool"
+                            [(ngModel)]="_pool">
+                            <option value="">Select the Pool</option>
+                            <option *ngFor="let item of poolDetails " value={{item.poolName}}>
+                                {{item.poolName}} </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="drive.length>0; else ArrayEmpty">
+
+        <div class="mt-3 container shadow bg-body rounded"
+            *ngFor="let item of drive | paginate: { itemsPerPage: 3, currentPage: page,totalItems:totalLength }">
+            <div class>
+                <div class="card-body">
+                    <div class="row rone mt-4">
+                        <div class="col-md-4">
+                            <p><b>Drive Name : </b> {{item.driveName}}</p>
+                            <p><b>Pool Name : </b> {{item.drivePool}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b> From Date : </b> {{item.fromDate}}</p>
+                            <p><b> To Date : </b> {{item.toDate}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p><b>Mode : </b> {{item.driveMode}}</p>
+                            <p><b>Location : </b> {{item.driveLocation}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3">
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+        </div>
+    </div>
+    <ng-template #ArrayEmpty>
+        <div class="text-center">
+            No {{title}} found.
+        </div>
+    </ng-template>
+
+    <app-footer [BackBtn]=true></app-footer>
+
+</div>

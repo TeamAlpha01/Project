@@ -1,0 +1,85 @@
+<app-interviewer-header></app-interviewer-header>
+
+<div class="content">
+    <app-navbar [title]="title"></app-navbar>
+    <div class="container">
+        <div class="card mx-auto">
+            <div class="card-body">
+                <h3 class="card-title" id="cancelinvitealign"><b>Drive Name : </b> {{Invites.driveName}}</h3>
+                <div class="row rone mt-4">
+                    <div class="col-md-6">
+                        <p><b>From Date : </b> {{Invites.fromDate|date:'dd-MM-yyyy'}}</p>
+                        <p><b>To Date : </b> {{Invites.toDate|date:'dd-MM-yyyy'}}</p>
+                        <p><b>Interview Timing : </b>{{Invites.slotTiming}} minutes</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><b>Mode : </b> {{Invites.driveMode}}</p>
+                        <p><b>Location : </b> {{Invites.driveLocation}}</p>
+                    </div>
+                </div>
+                <div class="card mx-auto">
+                    <form [formGroup]="AcceptInvitePage" (ngSubmit)="AddResponse()">
+                        <div class="card-body">
+                            <div class="row rone mt-4">
+                                <div class="col-md-5">
+                                    <label class="text"><b>Availability <span id="mandatoryfield">*</span></b></label>
+                                    <br>
+                                    <input formControlName="InterviewDate" type="date" min="{{Invites.fromDate}}"
+                                        max="{{Invites.toDate}}" class="form-control" (change)="slotEnabler()">
+                                    <div
+                                        *ngIf="(submitted)||AcceptInvitePage.controls['InterviewDate'].invalid && AcceptInvitePage.controls['InterviewDate'].touched">
+                                        <span class="text-danger"
+                                            *ngIf="AcceptInvitePage.controls['InterviewDate'].errors?.['required']">Choose
+                                            a date</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4">
+                                    <label class="text"><b>Select Timing </b></label>
+                                    <input type="time" class="form-control" id="appt" formControlName="SlotTime"
+                                        min="09:00" max="22:00" required>
+                                </div> -->
+                                <div class="col-md-5">
+                                    <label class="text"><b>Select timing <span id="mandatoryfield">*</span></b></label>
+                                    <br>
+                                    <input formControlName="SlotTime" type="time" class="form-control">
+                                    <div
+                                        *ngIf="(submitted)||AcceptInvitePage.controls['SlotTime'].invalid && AcceptInvitePage.controls['SlotTime'].touched">
+                                        <span class="text-danger"
+                                            *ngIf="AcceptInvitePage.controls['SlotTime'].errors?.['required']">Choose a
+                                            slot</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1 ">
+                                    <a><button type="submit" class="btn btn-back">Add</button></a>
+                                </div>
+                                <div *ngIf="response.length!==0">
+                                    <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                                </div>
+                                <div *ngIf="error.length!==0">
+                                    <app-snack-bar snackBarMessage={{error}} snackBarAction="Done"></app-snack-bar>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="GivenSlot.length>0">
+        <div class="card mx-auto">
+            <div class="card-body">
+                <div class="row mt-1" *ngFor="let item of GivenSlot">
+                    <div class="col-md-6">
+                        <p><b>Availability Date: </b>{{item.date|date:'dd-MM-yyyy'}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><b>Selected Timing : </b>{{item.fromTime|date:'h:mm a'}} to {{item.toTime|date:'h:mm a'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-footer [BackBtn]=true></app-footer>
+</div>

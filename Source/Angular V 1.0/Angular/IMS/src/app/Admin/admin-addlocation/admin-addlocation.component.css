@@ -1,0 +1,16 @@
+/* Admin location */
+.location-admin {
+    border: #191C24;
+    background-color: #ddd;
+    padding: 2px;
+    margin: 12px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .location1-admin {
+    float: right;
+  }
+  .Location {
+    margin-top: 5vh;
+  }

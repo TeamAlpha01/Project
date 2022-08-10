@@ -1,0 +1,35 @@
+<div *ngIf="data.length>0; else ArrayEmpty">
+    <div *ngFor="let item of data | paginate: { itemsPerPage: 5, currentPage: page,totalItems:totalLength }">
+        <div class="mt-3 container shadow  bg-body rounded">
+            <div class>
+                <div class="card-body">
+                    <div class="row rone mt-4">
+                        <div class="col-md-4">
+                            <p><b>Drive Name :</b> {{item.driveName}} </p>                            
+                            <p><b>Date :</b> {{item.fromDate|date:'dd-MM-yyyy'}} to {{item.toDate|date:'dd-MM-yyyy'}} </p> 
+                        </div>
+                        <div class="col-md-4">
+                            <p><b>Pool Name:</b> {{item.drivePool}}</p>
+                            <p><b>Department :</b> {{item.driveDepartment}} </p>
+                        </div> 
+                        <div class="col-md-4">
+                            <p><b>Mode :</b> {{item.driveMode}} </p>
+                            <p><b>Location :</b> {{item.driveLocation}} </p>
+                        </div>   
+                    </div>
+                    <div class="col" *ngIf="item.cancellationReason">
+                        <p><b>Reason :</b> {{item.cancellationReason}} </p>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>
+<ng-template #ArrayEmpty>
+    <div class="text-center">
+        No {{title}} found.
+    </div>
+</ng-template>

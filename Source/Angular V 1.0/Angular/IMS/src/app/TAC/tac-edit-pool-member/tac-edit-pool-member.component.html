@@ -1,0 +1,100 @@
+<app-tac-header></app-tac-header>
+
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+    <!-- Navbar End -->
+    <div class=" container shadow  bg-body rounded">
+        <div class="mt-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number">Department</label>
+                        <input type="text" class="form-control" value="{{_dept}}" disabled>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number">Pool </label>
+                        <input type="text" class="form-control" value="{{_pool}}" disabled>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number">Role </label>
+                        <select name="Pool" id="Pool" class="form-select" name="_role" [(ngModel)]="_role">
+                            <option value="">Select the Role</option>
+                            <ng-container *ngFor="let item of roleDetails">
+                                <option *ngIf="item.roleName!=='TAC' && item.roleName!=='Admin'"
+                                    value={{item.roleName}}> {{item.roleName}} </option>
+                            </ng-container>
+                        </select>
+                        <br>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="ACE Number"> Search</label>
+                        <input type="text" class="form-control " placeholder="Name or ACE ID" name="_role"
+                            [(ngModel)]="_search">
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class=" container row AddMemberPool mt-2 justify-content-evenly">
+            <div class="card  col-6 ml-5">
+                <div class="">
+                    <h3 class="card-header text-cente">{{_dept}} Employees</h3>
+                    <div class="container my-box " *ngIf="_dept!=='';else ArrayEmpty">
+                        <div *ngFor="let item of employeeDetails |filter:_dept |filter:_role ">
+                            <div class="card-body p-1 border-bottom"
+                                *ngIf="(item.employeeAceNumber | lowercase).includes(_search | lowercase) || (item.employeeName | lowercase).includes(_search | lowercase)">
+                                <div class="d-flex justify-content-evenly align-items-center">
+                                    <div class="col-md-3">{{item.employeeAceNumber}}</div>
+                                    <div class="col-md-3">{{item.employeeName}}</div>
+                                    <div class="col-md-3">{{item.employeeRoleName}}</div>
+                                    <div><button class="btn btn-success btn-sm"
+                                            (click)="AddPoolMember(item.employeeId)">
+                                            <i class="fa-solid fa-arrow-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template #ArrayEmpty>
+                        <div class="text-center">
+                            No records found.
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div class="card col-6 ">
+                <div>
+                    <h3 class="card-header">{{_pool}} Pool Members</h3>
+                    <div class="container my-box" *ngIf="_dept!=='';else ArrayEmpty">
+                        <div class="card-body p-1 border-bottom" *ngFor="let item of poolMembers">
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div class="col-md-3">{{item.employeeAceNumber}}</div>
+                                <div class="col-md-3">{{item.employeeName}}</div>
+                                <div class="col-md-3">{{item.employeeRole}}</div>
+                                <div><button class="btn btn-danger btn-sm"
+                                        (click)="RemovePoolMember(item.poolMemberId)">
+                                        <i class="fa-solid fa-arrow-left"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template #ArrayEmpty>
+                        <div class="text-center">
+                            No records found.
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+            <div *ngIf="response.length!==0">
+                <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+            </div>
+            <div>
+                <h3 class="text-center text-danger">{{error}}</h3>
+            </div>
+        </div>
+    </div>
+    <app-footer [BackBtn]=true></app-footer>
+</div>

@@ -1,0 +1,52 @@
+<app-admin-header></app-admin-header>
+
+<!--Content Start  -->
+<div class="content">
+    <app-navbar [title]="title"></app-navbar>
+
+     <div class="Register CreatePool">
+        <div class="card-body"><br>
+            <form [formGroup]="AddProjectForm" (ngSubmit)="addProject()" >
+                <div class="form-input">
+                    <label class="form-label" for="Department">Department Name</label>
+                    <select [class.is-invalid]="(submitted)||AddProjectForm.controls['departmentId'].invalid && AddProjectForm.controls['departmentId'].touched" name="Department" id="Department Name" class="form-select " formControlName="departmentId">
+                        <option value="">Select the Department</option>
+                        <ng-container *ngFor="let item of data">
+                            <option *ngIf="item.departmentName!=='TAC' && item.departmentName!=='ADMIN'" value={{item.departmentId}}> {{item.departmentName}} </option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div *ngIf="(submitted)||AddProjectForm.controls['departmentId'].invalid && AddProjectForm.controls['departmentId'].touched">
+                    <span class="text-danger" *ngIf="AddProjectForm.controls['departmentId'].errors?.['required']">Choose a Department</span>
+                </div>
+                
+                <div class="form-input">
+                    <label class="form-label" for="Name">Project Name </label>
+                    <input type="text" maxlength="25" [class.is-invalid]="(error.length)||(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched" type="text" id="Name" class="form-control " formControlName="projectName" >
+                </div>
+                <div *ngIf="(submitted)||AddProjectForm.controls['projectName'].invalid && AddProjectForm.controls['projectName'].touched">
+                    <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['required']">Project name is required</span>
+                    <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['minlength']">Project name is too short</span>
+                    <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['maxlength']">Project name can't be more than 20 characters</span>
+                    <span class="text-danger" *ngIf="AddProjectForm.controls['projectName'].errors?.['pattern'] && !AddProjectForm.controls['projectName'].errors?.['minlength']">Project name cannot contain numbers,symbols,multiple spaces or repeated characters </span>
+                </div>
+
+               <!--Snack Bar-->
+                <div *ngIf="response.length!==0">
+                    <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-back"> Add </button>
+                </div>
+                <div >
+                    <h3 class="text-center text-danger" >{{error}}</h3>
+                </div>
+            </form>
+        </div>
+     </div>
+    <!-- Footer Starts -->
+    <app-footer [BackBtn]=true></app-footer>
+    <!-- Footer Ends -->
+ </div>
+<!-- Content Ends -->

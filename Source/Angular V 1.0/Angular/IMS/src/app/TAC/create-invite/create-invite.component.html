@@ -1,0 +1,175 @@
+<app-tac-header></app-tac-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+
+    <div>
+        <div class="CreateInvite mt-5 mb-5">
+            <div class="card-body mt-3">
+                <form [formGroup]="CreateInviteForm" (ngSubmit)="CreateInvite()">
+
+                    <div class="form-input">
+                        <label class="form-label" for="driveName"> Drive Name <span id="mandatoryfield">*</span></label>
+                        <input type="text"
+                            [class.is-invalid]="(error.includes('Name'))||(submitted && CreateInviteForm.controls['driveName'].invalid)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched"
+                            type="text" id="driveName" class="form-control " formControlName="driveName" maxlength="25">
+                    </div>
+                    <div
+                        *ngIf="(submitted)||CreateInviteForm.controls['driveName'].invalid && CreateInviteForm.controls['driveName'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['driveName'].errors?.['required']">Drive name is
+                            required</span>
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive name is
+                            too
+                            short</span>
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['driveName'].errors?.['maxlength']">Drive name can't be
+                            more than 25 characters</span>
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['driveName'].errors?.['pattern'] && !CreateInviteForm.controls['driveName'].errors?.['minlength']">Drive
+                            name cannot contain symbols or empty space</span>
+                        <div *ngIf="error.includes('Name')">
+                            <span class="text-center text-danger">{{error}}</span>
+                        </div>
+                    </div>
+                    <div class="form-input">
+                        <label class="form-label " for="departmentId">Department <span
+                                id="mandatoryfield">*</span></label>
+                        <select
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['departmentId'].invalid )||CreateInviteForm.controls['departmentId'].invalid && CreateInviteForm.controls['departmentId'].touched"
+                            name="departmentId" id="departmentId" class="form-select" formControlName="departmentId"
+                            (change)="poolEnabler()" (change)="poolName()">
+                            <option value="">Select the Department</option>
+                            <ng-container *ngFor="let item of departmentDetails">
+                                <option *ngIf="item.departmentName!=='TAC' && item.departmentName!=='ADMIN'"
+                                    value={{item.departmentId}}> {{item.departmentName}} </option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div
+                        *ngIf="(submitted)||CreateInviteForm.controls['departmentId'].invalid && CreateInviteForm.controls['departmentId'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['departmentId'].errors?.['required']">Choose a
+                            Department</span>
+                    </div>
+                    <div class="form-input">
+                        <label class="form-label " for="poolId">Pool <span id="mandatoryfield">*</span></label>
+                        <select
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['poolId'].invalid)||CreateInviteForm.controls['poolId'].invalid && CreateInviteForm.controls['poolId'].touched"
+                            name="poolId" id="poolId" class="form-select " formControlName="poolId">
+                            <option value="">Select the Pool</option>
+                            <option *ngFor="let item of poolDetails| filter:_dept" value={{item.poolId}}>
+                                {{item.poolName}} </option>
+                        </select>
+                    </div>
+                    <div
+                        *ngIf="(submitted)||CreateInviteForm.controls['poolId'].invalid && CreateInviteForm.controls['poolId'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['poolId'].errors?.['required']">Choose a
+                            Pool</span>
+                    </div>
+                    <div class="form-input">
+                        <label class="form-label " for="modeId">Mode <span id="mandatoryfield">*</span></label>
+                        <select
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['modeId'].invalid)||CreateInviteForm.controls['modeId'].invalid && CreateInviteForm.controls['modeId'].touched"
+                            name="modeId" id="modeId" class="form-select " formControlName="modeId"
+                            (change)="locationEnabler()">
+                            <option value="">Select the Mode</option>
+                            <option value=1>Online</option>
+                            <option value=2>Offline</option>
+                        </select>
+                    </div>
+                    <div
+                        *ngIf="(submitted)||CreateInviteForm.controls['modeId'].invalid && CreateInviteForm.controls['modeId'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['modeId'].errors?.['required']">Choose
+                            a Mode</span>
+                    </div>
+
+                    <div class="form-input">
+                        <label class="form-label " for="locationId">Location <span id="mandatoryfield">*</span></label>
+                        <select
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['locationId'].invalid)||CreateInviteForm.controls['locationId'].invalid && CreateInviteForm.controls['locationId'].touched"
+                            name="locationId" id="locationId" class="form-select " formControlName="locationId">
+                            <option value="">Select the Location</option>
+                            <ng-container *ngFor="let item of locationDetails">
+                                <option
+                                    *ngIf="!(CreateInviteForm.controls['modeId'].value==='2' && item.locationName==='Online')"
+                                    value={{item.locationId}}> {{item.locationName}} </option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div
+                        *ngIf="(submitted)||CreateInviteForm.controls['locationId'].invalid && CreateInviteForm.controls['locationId'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['locationId'].errors?.['required']">Choose a
+                            Location</span>
+                    </div>
+                    <div class="form-input">
+                        <label class="form-label" for="fromDate">From Date <span id="mandatoryfield">*</span></label>
+                        <input type="date"
+                            [class.is-invalid]="(error.includes('From'))||(error.includes('period'))||(submitted && CreateInviteForm.controls['fromDate'].invalid)||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched"
+                            name="fromDate" id="fromDate" class="form-control " formControlName="fromDate"
+                            (change)="toDateEnabler(CreateInviteForm.controls['fromDate'].value)"
+                            [min]="minDate|date:'yyyy-MM-dd'" [max]="maxDate|date:'yyyy-MM-dd'">
+                    </div>
+                    <div
+                        *ngIf="(submitted )||CreateInviteForm.controls['fromDate'].invalid && CreateInviteForm.controls['fromDate'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['fromDate'].errors?.['required']">Choose a
+                            Date</span>
+                        <div *ngIf="error.includes('From')">
+                            <span class="text-center text-danger">{{error}}</span>
+                        </div>
+                    </div>
+                    <div class="form-input">
+                        <label class="form-label" for="toDate">To Date <span id="mandatoryfield">*</span></label>
+                        <input type="date"
+                            [class.is-invalid]="(error.includes('To'))||(error.includes('period'))||(submitted && CreateInviteForm.controls['toDate'].invalid)||CreateInviteForm.controls['toDate'].invalid && CreateInviteForm.controls['toDate'].touched"
+                            name="toDate" id="toDate" class="form-control " formControlName="toDate"
+                            [min]="CreateInviteForm.controls['fromDate'].value">
+                    </div>
+                    <div *ngIf="(submitted)||CreateInviteForm.controls['toDate'].invalid &&
+                            CreateInviteForm.controls['toDate'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['toDate'].errors?.['required']">Choose a
+                            Date</span>
+                        <div *ngIf="error.includes('To')||error.includes('period')">
+                            <span class="text-center text-danger">{{error}}</span>
+                        </div>
+                    </div>
+                    <div class="form-input">
+                        <label class="form-label " for="slotTiming">Slot Timing <span
+                                id="mandatoryfield">*</span></label>
+                        <select
+                            [class.is-invalid]="(submitted && CreateInviteForm.controls['slotTiming'].invalid)||CreateInviteForm.controls['slotTiming'].invalid && CreateInviteForm.controls['slotTiming'].touched"
+                            name="slotTiming" id="slotTiming" class="form-select " formControlName="slotTiming">
+                            <option value="">Select the Timing</option>
+                            <option value=30>30 MINS</option>
+                            <option value=60>1 HOUR</option>
+                            <option value=90>1 HOUR 30 MINS</option>
+                        </select>
+                    </div>
+                    <div
+                        *ngIf="(submitted)||CreateInviteForm.controls['slotTiming'].invalid && CreateInviteForm.controls['slotTiming'].touched">
+                        <span class="text-danger"
+                            *ngIf="CreateInviteForm.controls['slotTiming'].errors?.['required']">Choose a Slot
+                            Timing</span>
+                    </div>
+                    <div class="Login-btn">
+                        <a><button class="btn btn-back" type="submit">CREATE</button></a>
+                    </div>
+                    <div *ngIf="response.length!==0">
+                        <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                    </div>
+                    <div *ngIf="!(error.includes('From'))||error.includes('To')||error.includes('period')||error.toString().includes('Name')">
+                        <h3 class="text-center text-danger">{{error}}</h3>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

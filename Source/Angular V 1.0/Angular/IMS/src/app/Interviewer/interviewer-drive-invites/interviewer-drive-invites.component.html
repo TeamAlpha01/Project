@@ -1,0 +1,52 @@
+<app-interviewer-header></app-interviewer-header>
+
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+    <div *ngIf="Invites.length>0; else ArrayEmpty">
+        <div class="mt-5 container shadow mb-5 bg-body rounded"
+            *ngFor="let item of Invites| paginate: { itemsPerPage: 4, currentPage: page,totalItems:totalLength }">
+            <div class>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p><b>Drive Name : </b> {{item.driveName}}</p>
+                            <p><b>Pool Name : </b> {{item.drivePool}}</p>
+                            <p><b>Drive Timing : </b>{{item.driveTiming}} minutes</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><b>From Date : </b> {{item.fromDate}}</p>
+                            <p><b>To Date : </b> {{item.toDate}}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><b>Mode : </b> {{item.driveMode}}</p>
+                            <p><b>Location : </b> {{item.driveLocation}}</p>
+                        </div>
+                        <div class="col-md-3 col-sm-2 col-3 d-flex align-items-start">
+                            <a [routerLink]="['/interviewer/driveInvites/accept-invite',item.driveId]"> <button
+                                    class="btn btn-success">Accept</button></a>
+                            <div class="col-1"></div>
+                            <button class="btn btn-danger" (click)="AddResponse(item.driveId)">Reject</button>
+                        </div>
+                        <div *ngIf="error.length!==0">
+                            <app-snack-bar snackBarMessage={{error}} snackBarAction="Done"></app-snack-bar>
+                        </div>
+                        <div *ngIf="response.length!==0">
+                            <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3" *ngIf="Invites.length>4">
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+        </div>
+    </div>
+    <ng-template #ArrayEmpty>
+        <div class="text-center mt-4">
+            No drive invites found.
+        </div>
+    </ng-template>
+
+    <app-footer></app-footer>
+</div>

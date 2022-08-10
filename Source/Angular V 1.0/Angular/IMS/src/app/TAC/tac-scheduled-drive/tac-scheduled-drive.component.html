@@ -1,0 +1,42 @@
+<app-tac-header></app-tac-header>
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+    <!-- Navbar End -->
+    <div class=" mt-3 mb-5 container shadow  bg-body rounded">
+        <div class="">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label" for="Department">Department </label>
+                        <select name="Department" id="Department Name" class="form-select" (change)="OnDepartmentChange()"
+                            name="dept" [(ngModel)]="_dept">
+                            <option value="">Select the Department</option>
+                            <ng-container *ngFor="let item of departmentDetails">
+                                <option *ngIf="!(item.departmentName==='TAC' || item.departmentName==='ADMIN')"
+                                    value={{item.departmentName}}> {{item.departmentName}} </option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="Pool">Pool </label>
+                        <select name="Pool" id="Pool" class="form-select" (change)="filterDropdown(_dept)" name="_pool"
+                            [(ngModel)]="_pool" [disabled]="_dept===''">
+                            <option value="">Select the Pool</option>
+                            <option *ngFor="let item of poolDetails | filter:_dept" value={{item.poolName}}>
+                                {{item.poolName}} </option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="Pool">Date </label>
+                        <input type="date" id="Pool" class="form-select" (change)="filterDropdown(_dept)" name="_date"
+                            [(ngModel)]="_date">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-card-details [data]=drive></app-card-details>
+    <app-footer [BackBtn]=true></app-footer>
+</div>

@@ -1,0 +1,61 @@
+<app-interviewer-header></app-interviewer-header>
+
+<div class="content">
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+    <!-- Navbar End -->
+    <section class="wrapper">
+        <div class="container">
+            <div class="row ">
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/interviewer/home/currentDrives']">
+                    <div class="card-card h-100">
+                        <div class="img-card">
+                            <img src="assets/Images/Current.jpg" alt="Today's Interviews" />
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                Today's Interviews
+                            </h2>
+                            <p class="">
+                                View interviews scheduled for you today!
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/interviewer/home/scheduledDrives']">
+                    <div class="card-card h-100">
+                        <div class="img-card" >
+                            <img src="assets/Images/Scheduled.jpg" alt="Scheduled Interviews" />
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                Scheduled Interviews
+                            </h2>
+                            <p class="">
+                                View your scheduled interviews and plan your days !
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="col-xs-12 col-sm-4 link" [routerLink]="['/interviewer/home/upcomingDrives']">
+                    <div class="card-card h-100">
+                        <div class="img-card">
+                            <img src="assets/Images/Upcoming.jpg" alt="Upcoming Interviews" />
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                Upcoming Interviews
+                            </h2>
+                            <p class="">
+                                View all upcoming interviews!
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>    
+    <app-footer></app-footer>
+</div>

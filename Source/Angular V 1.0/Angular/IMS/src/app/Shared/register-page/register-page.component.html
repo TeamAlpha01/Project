@@ -1,0 +1,182 @@
+<div class="background-img-register">
+    <div class="Register">
+        <div class="card-body">
+            <h2 class="text-center">CREATE AN ACCOUNT</h2>
+            <form [formGroup]="registerForm">
+
+                <!-- Name -->
+
+                <div class="form-input">
+                    <label class="form-label" for="Name">Name <span id="mandatoryfield">*</span></label>
+                    <input
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['Name'].invalid )||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched"
+                        id="Name" type="text" placeholder="Ex : Sample" formControlName="Name" class="form-control" maxlength="25">
+                </div>
+                <div
+                    *ngIf="(formSubmitted)||registerForm.controls['Name'].invalid && registerForm.controls['Name'].touched">
+                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['required']">Name is
+                        required</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Name'].errors?.['minlength']">Name is too
+                        short.Please enter minimum of 3 characters</span>
+                    <span class="text-danger" *ngIf="(!registerForm.controls['Name'].errors?.['maxlength']) && registerForm.controls['Name'].errors?.['pattern']">Name cannot contain symbols and numbers or three consecutive identical characters</span>
+                </div>
+
+                <!-- ACE Number -->
+
+                <div class="form-input">
+                    <label class="form-label" for="ACE Number">ACE Number <span id="mandatoryfield">*</span></label>
+                    <input
+                        [class.is-invalid]="(error.includes('ACE'))||(formSubmitted && registerForm.controls['ACENumber'].invalid )||registerForm.controls['ACENumber'].invalid && registerForm.controls['ACENumber'].touched"
+                        id="ACE Number" type="text" placeholder="Ex : ACE12345" formControlName="ACENumber"
+                        class="form-control">
+                </div>
+                <div
+                    *ngIf="(formSubmitted )||registerForm.controls['ACENumber'].invalid && registerForm.controls['ACENumber'].touched">
+                    <span class="text-danger" *ngIf="registerForm.controls['ACENumber'].errors?.['required']">ACE Number
+                        is
+                        required</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['ACENumber'].errors?.['pattern']">Invalid ACE
+                        Number
+                        Ex : ACE1234 (or) ACE12345 </span>
+                    <div *ngIf="error.includes('ACE')">
+                        <span class="text-center text-danger">{{error}}</span>
+                    </div>
+                </div>
+
+                 <!-- Department -->
+                 <div class="form-input">
+                  <label class="form-label " for="Department Name">Department <span id="mandatoryfield">*</span></label>
+                  <select
+                      [class.is-invalid]="(formSubmitted && registerForm.controls['Department'].invalid)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched"
+                      name="Department" id="Department Name" class="form-select" formControlName="Department"
+                      (change)="projectEnabler()" (change)="projectName()">
+                      <option value="">Select the Department</option>
+                      <ng-container *ngFor="let item of departmentDetails">
+                          <option *ngIf="!(item.departmentName==='ADMIN')" value={{item.departmentId}}>
+                              {{item.departmentName}} </option>
+                      </ng-container>
+                  </select>
+              </div>
+              <div
+                  *ngIf="(formSubmitted)||registerForm.controls['Department'].invalid && registerForm.controls['Department'].touched">
+                  <span class="text-danger"
+                      *ngIf="registerForm.controls['Department'].errors?.['required']">Department is required</span>
+              </div>
+
+              <!-- Role -->
+
+              <div class="form-input">
+                <label class="form-label " for="Role Name">Role <span id="mandatoryfield">*</span></label>
+                <select
+                    [class.is-invalid]="(formSubmitted && registerForm.controls['Role'].invalid)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched"
+                    name="Role" id="Role Name" class="form-select" name="Role" formControlName="Role">
+
+                    <option value="">Select the Role</option>
+                    <ng-container *ngFor="let item of roleDetails">
+                        <option *ngIf="(_dept==='TAC' && item.roleName==='TAC')" value={{item.roleId}}>
+                            {{item.roleName}}</option>
+                        <option *ngIf="(item.roleName!=='Admin' && _dept!=='TAC' && item.roleName!=='TAC')"
+                            value={{item.roleId}}> {{item.roleName}} </option>
+                    </ng-container>
+                </select>
+            </div>
+            <div
+                *ngIf="(formSubmitted)||registerForm.controls['Role'].invalid && registerForm.controls['Role'].touched">
+                <span class="text-danger" *ngIf="registerForm.controls['Role'].errors?.['required']">Role is
+                    required</span>
+            </div>
+
+                <!-- Project  -->
+
+                <div class="form-input">
+                    <label class="form-label " for="Project Name">Project <span id="mandatoryfield">*</span></label>
+                    <select
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['Project'].invalid)||registerForm.controls['Project'].invalid && registerForm.controls['Project'].touched"
+                        name="Project" id="Project Name" class="form-select" name="Project" formControlName="Project">
+                        <option value="">Select the Project</option>
+                        <option *ngFor="let item of projectDetails |filter:_dept" value={{item.projectId}}>
+                            {{item.projectName}} </option>
+                    </select>
+                </div>
+                <div
+                    *ngIf="(formSubmitted)||registerForm.controls['Project'].invalid && registerForm.controls['Project'].touched">
+                    <span class="text-danger" *ngIf="registerForm.controls['Project'].errors?.['required']">Project is
+                        required</span>
+                </div>
+
+                <!-- Email  -->
+
+                <div class="form-input">
+                    <label class="form-label" for="Email">Email <span id="mandatoryfield">*</span></label>
+                    <input
+                        [class.is-invalid]="error.includes('Email')||(formSubmitted && registerForm.controls['Email'].invalid)||registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched"
+                        id="Email" type="email" placeholder="Ex : sample@aspiresys.com" formControlName="Email" class="form-control">
+                </div>
+                <div
+                    *ngIf="(formSubmitted)||registerForm.controls['Email'].invalid && registerForm.controls['Email'].touched">
+                    <span class="text-danger" *ngIf="registerForm.controls['Email'].errors?.['required']">Email
+                        is
+                        required</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Email'].errors?.['pattern']">Please enter a
+                        valid email with aspire domain</span>
+                    <div *ngIf="error.includes('Email')">
+                        <span class="text-center text-danger">{{error}}</span>
+                    </div>
+                </div>
+
+                <!-- Password  -->
+
+                <div class="form-input">
+                    <label class="form-label" for="Password">Password <span id="mandatoryfield">*</span></label>
+                    <input
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['Password'].invalid)||registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched"
+                        id="Password" type="password" placeholder="Ex : #Sample01" formControlName="Password" 
+                        class="form-control">
+                </div>
+                <div
+                    *ngIf="(formSubmitted ) || registerForm.controls['Password'].invalid && registerForm.controls['Password'].touched">
+                    <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['required']">Password is
+                        required</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['pattern']">Password
+                        should contain minimum of 8 digits with 1 uppercase, 1 symbol and 1 number and can't be more than 15 characters</span>
+                    <!-- <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['maxlength']&&!registerForm.controls['Password'].errors?.['pattern']"> and password
+                        should not contain more than 15 characters</span>
+                    <span class="text-danger" *ngIf="registerForm.controls['Password'].errors?.['minlength']"> and password
+                        should not contain less than 3 characters</span> -->
+                </div>
+
+                <!-- Confirm Password  -->
+
+                <div class="form-input">
+                    <label class="form-label" for="ConfirmPassword">Confirm Password <span id="mandatoryfield">*</span></label>
+                    <input
+                        [class.is-invalid]="(formSubmitted && registerForm.controls['ConfirmPassword'].invalid) || registerForm.controls['ConfirmPassword'].invalid && registerForm.controls['ConfirmPassword'].touched"
+                        id="ConfirmPassword" type="password" placeholder="Ex : #Sample01"
+                        formControlName="ConfirmPassword" class="form-control">
+                </div>
+                <div
+                    *ngIf="(formSubmitted)||registerForm.controls['ConfirmPassword'].invalid && registerForm.controls['ConfirmPassword'].touched">
+                    <span class="text-danger"
+                        *ngIf="registerForm.controls['ConfirmPassword'].errors?.['required']">Please re-enter your
+                        password</span>
+                    <span class="text-danger"
+                        *ngIf="registerForm.controls['ConfirmPassword'].errors?.['passwordNotMatched']">Your password
+                        not matched</span>
+                </div>
+                <div class="text-center" *ngIf="!(error.includes('ACE') || error.includes('mail'))">
+                  <span class="text-center text-danger">{{error}}</span>
+              </div>
+
+                <!-- Submit btn -->
+                <div class="d-flex justify-content-center ">
+                    <button type="submit" (click)="submit()" class="btn btn-back">Register</button>
+                </div>
+
+                <p class="text-center text-muted mt-3">Already have an account?
+                    <a routerLink="">Login</a>
+                </p>
+
+            </form>
+        </div>
+    </div>
+</div>

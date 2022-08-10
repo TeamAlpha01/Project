@@ -1,0 +1,47 @@
+<!-- Title and sidebar Component  -->
+<app-admin-header></app-admin-header>
+
+<!-- Content Start -->
+
+<div class="content">
+
+    <!-- Navbar Start -->
+    <app-navbar [title]="title"></app-navbar>
+        <!-- Navbar End -->
+        
+        <div class="container">
+            <div class="Register CreatePool">
+                <div class="card-body">
+                    <form [formGroup]="AddLocationForm" (ngSubmit)="addLocation()">
+                        <div class="Location">
+                            <div class="form-input">
+                                <label class="form-label" for="locationName">Location Name </label>
+                                <input type="text" maxlength="25"[class.is-invalid]="(error.length)||(submitted)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched" type="text" id="Name" class="form-control" formControlName="locationName">
+                            </div>
+                            <div *ngIf="(submitted)||AddLocationForm.controls['locationName'].invalid && AddLocationForm.controls['locationName'].touched">
+                                <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['required']">Location name is required</span>
+                                <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['minlength']">Location name is too short</span>
+                                <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['maxlength']">Location name can't be more than 20 characters</span>
+                                <span class="text-danger" *ngIf="AddLocationForm.controls['locationName'].errors?.['pattern'] && !AddLocationForm.controls['locationName'].errors?.['minlength']">Location name cannot contain symbols,numbers,multiple spaces or repeated characters</span>
+                            </div>
+                        </div>
+                            
+                        <div *ngIf="response.length!==0">
+                            <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-back">Add</button>
+                        </div>
+                        <div >
+                            <h3 class="text-center text-danger" >{{error}}</h3>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Starts -->
+        <app-footer [BackBtn]=true></app-footer>
+        <!-- Footer Ends -->
+</div>
+<!-- Content Ends -->
