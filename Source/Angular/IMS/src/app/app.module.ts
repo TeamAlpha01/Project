@@ -18,11 +18,9 @@ import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-v
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { InterviewerHeaderComponent } from './Interviewer/interviewer-header/interviewer-header.component';
 import { FooterComponent } from './Shared/footer/footer.component';
 import { BackButtonComponent } from './Shared/back-button/back-button.component';
 import { InterviewerHomeComponent } from './Interviewer/interviewer-home/interviewer-home.component';
-import { TacHeaderComponent } from './TAC/tac-header/tac-header.component';
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
@@ -39,7 +37,6 @@ import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-dr
 import { TacScheduledDriveComponent } from './TAC/tac-scheduled-drive/tac-scheduled-drive.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
-import { AdminHeaderComponent } from './Admin/admin-header/admin-header.component';
 import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming-drive.component';
 import { InterviewerCardDetailsComponent } from './Interviewer/interviewer-card-details/interviewer-card-details.component';
 import { ManageCardsComponent } from './Shared/manage-cards/manage-cards.component';
@@ -52,7 +49,6 @@ import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.componen
 import { TacEditPoolMemberComponent } from './TAC/tac-edit-pool-member/tac-edit-pool-member.component';
 import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
 import { RegisterPageComponent } from './Shared/register-page/register-page.component';
-import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 import { TacScheduledDriveHistoryComponent } from './TAC/tac-scheduled-drive-history/tac-scheduled-drive-history.component';
 import { TacCancelledDriveHistoryComponent } from './TAC/tac-cancelled-drive-history/tac-cancelled-drive-history.component';
 import { HistoryCardComponent } from './Shared/history-card/history-card.component';
@@ -79,11 +75,11 @@ import { DepartmentPerformanceComponent } from './Management/department-performa
 import { InterviewerAcceptedDrivesComponent } from './Interviewer/interviewer-accepted-drives/interviewer-accepted-drives.component';
 import { InterviewerCancelledDrivesComponent } from './Interviewer/interviewer-cancelled-drives/interviewer-cancelled-drives.component';
 import { SidebarComponent } from './Shared/sidebar/sidebar.component';
+import { SearchFilterComponent } from './Shared/search-filter/search-filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminHeaderComponent,
     AdminRoleComponent,
     AdminAdddepartmentComponent,
     AdminAddlocationComponent,
@@ -93,11 +89,9 @@ import { SidebarComponent } from './Shared/sidebar/sidebar.component';
     AdminViewRolePageComponent,
     AdminviewDepartmentPageComponent,
     AdminviewLocationPageComponent,
-    InterviewerHeaderComponent,
     FooterComponent,
     BackButtonComponent,
     InterviewerHomeComponent,
-    TacHeaderComponent,
     InterviewerCurrentDriveComponent,
     InterviewerDashboardComponent,
     InterviewerDriveInvitesComponent,
@@ -130,7 +124,6 @@ import { SidebarComponent } from './Shared/sidebar/sidebar.component';
     TacCancelDriveComponent,
     InterviewerProfileComponent,
     RegisterPageComponent,
-    ErrorPageComponent,
     TacScheduledDriveHistoryComponent,
     TacCancelledDriveHistoryComponent,
     HistoryCardComponent,
@@ -151,6 +144,7 @@ import { SidebarComponent } from './Shared/sidebar/sidebar.component';
     InterviewerAcceptedDrivesComponent,
     InterviewerCancelledDrivesComponent,
     SidebarComponent,
+    SearchFilterComponent,
 
   ],
 

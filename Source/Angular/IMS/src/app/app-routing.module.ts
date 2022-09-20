@@ -6,13 +6,13 @@ import { AuthorizationService } from './Services/authorization.service';
 import { ManagepoolComponent } from './TAC/managepool/managepool.component';
 import { AdminRoleComponent } from './Admin/admin-role/admin-role.component';
 import { TacProfileComponent } from './TAC/tac-profile/tac-profile.component';
-import { ErrorPageComponent } from './Shared/error-page/error-page.component';
 import { TacEditPoolComponent } from './TAC/tac-edit-pool/tac-edit-pool.component';
 import { CreateInviteComponent } from './TAC/create-invite/create-invite.component';
 import { MyperformanceComponent } from './TAC/myperformance/myperformance.component';
 import { RegisterPageComponent } from './Shared/register-page/register-page.component';
 import { TacCreatePoolComponent } from './TAC/tac-create-pool/tac-create-pool.component';
 import { TacCancelDriveComponent } from './TAC/tac-cancel-drive/tac-cancel-drive.component';
+import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-response.component';
 import { AdminAddprojectComponent } from './Admin/admin-addproject/admin-addproject.component';
 import { TacCurrentDriveComponent } from './TAC/tac-current-drive/tac-current-drive.component';
 import { TacUpcomingDriveComponent } from './TAC/tac-upcoming-drive/tac-upcoming-drive.component';
@@ -24,30 +24,29 @@ import { AdminAdddepartmentComponent } from './Admin/admin-adddepartment/admin-a
 import { AdminViewRolePageComponent } from './Admin/admin-view-role-page/admin-view-role-page.component';
 import { InterviewerProfileComponent } from './Interviewer/interviewer-profile/interviewer-profile.component';
 import { TacEmployeeDashboardComponent } from './TAC/tac-employee-dashboard/tac-employee-dashboard.component';
+import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
 import { AdminviewProjectPageComponent } from './Admin/admin-view-project-page/admin-view-Project-page.component';
 import { AdminviewLocationPageComponent } from './Admin/admin-view-Location-page/admin-viewLocation-page.component';
 import { InterviewerDashboardComponent } from './Interviewer/interviewer-dashboard/interviewer-dashboard.component';
 import { AdminViewRequestsPageComponent } from './Admin/admin-view-requests-page/admin-view-requests-page.component';
+import { DepartmentPerformanceComponent } from './Management/department-performance/department-performance.component';
 import { AdminviewDepartmentPageComponent } from './Admin/admin-view-department-page/admin-view-department-page.component';
 import { TacCancelledDriveHistoryComponent } from './TAC/tac-cancelled-drive-history/tac-cancelled-drive-history.component';
 import { TacScheduledDriveHistoryComponent } from './TAC/tac-scheduled-drive-history/tac-scheduled-drive-history.component';
+import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total-drives/interviewer-total-drives.component';
 import { InterviewerDriveInvitesComponent } from './Interviewer/interviewer-drive-invites/interviewer-drive-invites.component';
+import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-denied-drives/interviewer-denied-drives.component';
 import { InterviewerCurrentDriveComponent } from './Interviewer/interviewer-current-drive/interviewer-current-drive.component';
+import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ignored-drives/interviewer-ignored-drives.component';
 import { InterviewerUpcomingDriveComponent } from './Interviewer/interviewer-upcoming-drive/interviewer-upcoming-drive.component';
 import { InterviewerScheduledDriveComponent } from './Interviewer/interviewer-scheduled-drive/interviewer-scheduled-drive.component';
-import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
-import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
-import { TacViewResponseComponent } from './TAC/tac-view-response/tac-view-response.component';
-import { InterviewerTotalDrivesComponent } from './Interviewer/interviewer-total-drives/interviewer-total-drives.component';
-import { InterviewerAvailabilityGivenComponent } from './Interviewer/interviewer-availability-given/interviewer-availability-given.component';
 import { InterviewerUtilizedDrivesComponent } from './Interviewer/interviewer-utilized-drives/interviewer-utilized-drives.component';
-import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer-not-utilized-drives/interviewer-not-utilized-drives.component';
-import { InterviewerIgnoredDrivesComponent } from './Interviewer/interviewer-ignored-drives/interviewer-ignored-drives.component';
-import { InterviewerDeniedDrivesComponent } from './Interviewer/interviewer-denied-drives/interviewer-denied-drives.component';
-import { ManagementDashboardComponent } from './Management/management-dashboard/management-dashboard.component';
-import { DepartmentPerformanceComponent } from './Management/department-performance/department-performance.component';
 import { InterviewerAcceptedDrivesComponent } from './Interviewer/interviewer-accepted-drives/interviewer-accepted-drives.component';
 import { InterviewerCancelledDrivesComponent } from './Interviewer/interviewer-cancelled-drives/interviewer-cancelled-drives.component';
+import { InterviewerAcceptInvitePageComponent } from './Interviewer/interviewer-accept-invite-page/interviewer-accept-invite-page.component';
+import { InterviewerAvailabilityGivenComponent } from './Interviewer/interviewer-availability-given/interviewer-availability-given.component';
+import { InterviewerNotUtilizedDrivesComponent } from './Interviewer/interviewer-not-utilized-drives/interviewer-not-utilized-drives.component';
+import { InterviewerCancelInterviewPageComponent } from './Interviewer/interviewer-cancel-interview-page/interviewer-cancel-interview-page.component';
 
 const routes: Routes = [
   //interviewer pages
@@ -59,7 +58,6 @@ const routes: Routes = [
   { path: 'interviewer/home/upcomingDrives', component: InterviewerUpcomingDriveComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/driveInvites', component: InterviewerDriveInvitesComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/driveInvites/accept-invite/:driveId', component: InterviewerAcceptInvitePageComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
-  // { path: 'interviewer/driveInvites/reject-invite/:driveId', component: InterviewerCancelInvitePageComponent,canActivate:[AuthorizationService], data:{User:"Interviewer"} },
   { path: 'interviewer/home/upcomingDrives/cancel-interview-page/:employeeAvailabilityId/:driveId', component: InterviewerCancelInterviewPageComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/dashboard/totaldrives/:fromDate/:toDate', component: InterviewerTotalDrivesComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
   { path: 'interviewer/dashboard/availabilitygiven/:fromDate/:toDate', component: InterviewerAvailabilityGivenComponent, canActivate: [AuthorizationService], data: { User: "Interviewer" } },
@@ -83,8 +81,6 @@ const routes: Routes = [
   { path: 'admin/project', component: AdminviewProjectPageComponent, canActivate: [AuthorizationService], data: { User: "Admin" } },
   { path: 'admin/project/add', component: AdminAddprojectComponent, canActivate: [AuthorizationService], data: { User: "Admin" } },
 
-
-
   //tac pages
   { path: 'tac/dashboard', component: MyperformanceComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
   { path: 'tac/dashboard/scheduled-drive-history/:fromDate/:toDate', component: TacScheduledDriveHistoryComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
@@ -102,7 +98,6 @@ const routes: Routes = [
   { path: 'tac/managepool/editpool/:poolId', component: TacEditPoolComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
   { path: 'tac/managepool', component: ManagepoolComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
   { path: 'tac/home', component: TacHomeComponent, canActivate: [AuthorizationService], data: { User: "TAC" } },
-  { path: 'errorPage', component: ErrorPageComponent },
 
   //management pages
   { path: 'management/dashboard', component: ManagementDashboardComponent, canActivate: [AuthorizationService], data: { User: "Management" } },

@@ -163,7 +163,8 @@
                     <div *ngIf="response.length!==0">
                         <app-snack-bar snackBarMessage={{response}} snackBarAction="Done"></app-snack-bar>
                     </div>
-                    <div *ngIf="!(error.includes('From'))||error.includes('To')||error.includes('period')||error.toString().includes('Name')">
+                    <div
+                        *ngIf="!(error.includes('From'))||error.includes('To')||error.includes('period')||error.toString().includes('Name')">
                         <h3 class="text-center text-danger">{{error}}</h3>
                     </div>
                 </form>

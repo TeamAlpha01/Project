@@ -11,7 +11,6 @@ export class SidebarComponent implements OnInit {
   userName: string | null = '';
   Name: string = '';
   Role:string='';
-  isManagement: boolean = false
 
 
   constructor(private service: AuthenticationService) { }
@@ -21,7 +20,6 @@ export class SidebarComponent implements OnInit {
   }
 
   GetUser() {
-    this.isManagement = AuthenticationService.GetUser() == "Management" ? true : false;
     this.userName = AuthenticationService.GetUserName();
     this.Role = AuthenticationService.GetUser();
     if (this.userName == null) {

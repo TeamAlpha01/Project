@@ -39,11 +39,11 @@
                         class="fa fa-home"></i> Home</a>
                 <a [routerLink]="['/interviewer/profile']" class="nav-item nav-link" routerLinkActive="active"><i
                         class='fa fa-user-circle'></i> Profile</a>
-                <div *ngIf="isManagement">
+                <div *ngIf="Role==='Management'">
                     <a [routerLink]="['/management/dashboard']" class="nav-item nav-link" routerLinkActive="active"><i
                             class="fa fa-info-circle"></i> Dashboard</a>
                 </div>
-                <div *ngIf="!isManagement">
+                <div *ngIf="Role==='Interviewer'">
                     <a [routerLink]="['/interviewer/dashboard']" class="nav-item nav-link" routerLinkActive="active"><i
                             class="fa fa-info-circle"></i> Dashboard</a>
                 </div>
